@@ -133,6 +133,7 @@ UpgradeLog*.htm
 
 ## NuGet
 packages/
+*.nupkg
 
 ## Miscellaneous Ignores
 
