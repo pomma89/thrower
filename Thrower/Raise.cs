@@ -1885,13 +1885,29 @@ namespace Thrower
 
 		static ConstructorInfo GetCtor (IList<Type> ctorTypes)
 		{
-			return (from c in typeof(TEx).GetConstructors (CtorFlags)
-			                 let args = c.GetParameters ()
-			                 where args.Length == ctorTypes.Count &&
-			                     (c.IsPublic || c.IsAssembly) &&
-			                     !args.Any ((t, i) => !ReferenceEquals (t.ParameterType, ctorTypes [i]))
-			                 select c).FirstOrDefault ();
+			return (from c in typeof(TEx).GetConstructors(CtorFlags)
+			        let args = c.GetParameters ()
+                    let zipArgs = Zip(args, ctorTypes, (argType, ctorType) => new { argType, ctorType })
+			        where args.Length == ctorTypes.Count &&
+			              (c.IsPublic || c.IsAssembly) &&
+			              zipArgs.All (t => ReferenceEquals(t.argType.ParameterType, t.ctorType))
+			        select c).FirstOrDefault ();
 		}
+
+        static IEnumerable<T> Zip<A, B, T>(IEnumerable<A> seqA, IEnumerable<B> seqB, Func<A, B, T> func)
+        {
+            if (seqA == null) throw new ArgumentNullException("seqA");
+            if (seqB == null) throw new ArgumentNullException("seqB");
+
+            using (var iteratorA = seqA.GetEnumerator())
+            using (var iteratorB = seqB.GetEnumerator())
+            {
+                while (iteratorA.MoveNext() && iteratorB.MoveNext())
+                {
+                    yield return func(iteratorA.Current, iteratorB.Current);
+                }
+            }
+        }
 
 		static void DoThrow ()
 		{
