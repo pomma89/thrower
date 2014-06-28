@@ -13,7 +13,7 @@
     <MinimumVisualStudioVersion>10.0</MinimumVisualStudioVersion>
     <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\</SolutionDir>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
-    <TargetFrameworkProfile>Profile158</TargetFrameworkProfile>
+    <TargetFrameworkProfile>Profile147</TargetFrameworkProfile>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>True</DebugSymbols>
@@ -58,11 +58,8 @@
   </ItemGroup>
   <PropertyGroup>
     <PostBuildEvent>if $(ConfigurationName) == Release (
-
     copy "Thrower.dll" "$(SolutionDir)Thrower.Packager/lib/net35-client"
-
     copy "Thrower.xml" "$(SolutionDir)Thrower.Packager/lib/net35-client"
-
 )</PostBuildEvent>
   </PropertyGroup>
 </Project>

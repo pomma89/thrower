@@ -1,10 +1,10 @@
 ﻿//
 // AssemblyInfo.cs
 //
-// Author:
+// Author(s):
 //       Alessio Parma <alessio.parma@gmail.com>
 //
-// Copyright (c) 2013 Alessio Parma <alessio.parma@gmail.com>
+// Copyright (c) 2013-2014 Alessio Parma <alessio.parma@gmail.com>
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -37,7 +37,7 @@ using System.Security;
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
 [assembly: AssemblyProduct("Thrower.Tests")]
-[assembly: AssemblyCopyright("Copyright (c) 2013 Alessio Parma <alessio.parma@gmail.com>")]
+[assembly: AssemblyCopyright("Copyright (c) 2013-2014 Alessio Parma <alessio.parma@gmail.com>")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 

@@ -1,10 +1,10 @@
 ﻿//
 // IfIsEmptyTests.cs
 //
-// Author:
+// Author(s):
 //       Alessio Parma <alessio.parma@gmail.com>
 //
-// Copyright (c) 2013 Alessio Parma <alessio.parma@gmail.com>
+// Copyright (c) 2013-2014 Alessio Parma <alessio.parma@gmail.com>
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -33,6 +33,8 @@ namespace Thrower.Tests
 
     public sealed class IfIsEmptyTests : TestBase
     {
+        const string BlankString = "   ";
+
         [Test]
         [ExpectedException(typeof(ApplicationException))]
         public void IfIsEmpty_EmptyIntegerCollection()
@@ -59,6 +61,20 @@ namespace Thrower.Tests
         public void IfIsEmpty_EmptyString_WithMsg()
         {
             Raise<FormatException>.IfIsEmpty(string.Empty, TestMessage);
+        }
+
+        [Test]
+        [ExpectedException(typeof(FormatException))]
+        public void IfIsEmpty_BlankString()
+        {
+            Raise<FormatException>.IfIsEmpty(BlankString);
+        }
+
+        [Test]
+        [ExpectedException(typeof(FormatException), ExpectedMessage = TestMessage)]
+        public void IfIsEmpty_BlankString_WithMsg()
+        {
+            Raise<FormatException>.IfIsEmpty(BlankString, TestMessage);
         }
 
         [Test]
@@ -133,6 +149,18 @@ namespace Thrower.Tests
         public void IfIsNotEmpty_EmptyString_WithMsg()
         {
             Raise<FormatException>.IfIsNotEmpty(string.Empty, TestMessage);
+        }
+
+        [Test]
+        public void IfIsNotEmpty_BlankString()
+        {
+            Raise<FormatException>.IfIsNotEmpty(BlankString);
+        }
+
+        [Test]
+        public void IfIsNotEmpty_BlankString_WithMsg()
+        {
+            Raise<FormatException>.IfIsNotEmpty(BlankString, TestMessage);
         }
 
         [Test]

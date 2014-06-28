@@ -4,7 +4,7 @@
 // Author(s):
 //       Alessio Parma <alessio.parma@gmail.com>
 //
-// Copyright (c) 2013 Alessio Parma <alessio.parma@gmail.com>
+// Copyright (c) 2013-2014 Alessio Parma <alessio.parma@gmail.com>
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -37,7 +37,7 @@ using System.Security;
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
 [assembly: AssemblyProduct("Thrower")]
-[assembly: AssemblyCopyright("Copyright (c) 2013 Alessio Parma <alessio.parma@gmail.com>")]
+[assembly: AssemblyCopyright("Copyright (c) 2013-2014 Alessio Parma <alessio.parma@gmail.com>")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
@@ -52,8 +52,8 @@ using System.Security;
 // by using the '*' as shown below:
 // [assembly: AssemblyVersion("1.0.*")]
 
-[assembly: AssemblyVersion("0.11")]
-[assembly: AssemblyFileVersion("0.11")]
+[assembly: AssemblyVersion("0.12.0")]
+[assembly: AssemblyFileVersion("0.12.0")]
 
 // Common Language Specification (CLS) compliance generally refers to the claim 
 // that CLS rules and restrictions are being followed.

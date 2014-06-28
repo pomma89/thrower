@@ -3,15 +3,15 @@
 <package>
   <metadata>
     <id>Thrower</id>
-    <version>0.11</version>
-    <title>Thrower</title>
+    <version>0.12.0</version>
+    <title>PommaLabs.Thrower</title>
     <authors>Alessio Parma &lt;alessio.parma@gmail.com&gt;</authors>
     <owners>Alessio Parma &lt;alessio.parma@gmail.com&gt;</owners>
     <description>
 Fully managed library providing convenience methods to perform argument checks. It offers methods whose compilation can be enabled with the "USETHROWER" directive, and they can of course be disabled by undefining that directive. Therefore, it allows to write code whose integrity checks can be easily removed (for performance reasons, for example).
     </description>
     <releaseNotes>
-* Library is not portable anymore, it has gone back to .NET framework 3.5 (client profile).
+* Library is now portable.
     </releaseNotes>
     <summary>Fully managed library providing convenience methods to perform argument checks.</summary>
     <language>en-US</language>
@@ -19,7 +19,7 @@ Fully managed library providing convenience methods to perform argument checks. 
     <iconUrl>http://pomma89.altervista.it/thrower/logo.png</iconUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <licenseUrl>http://opensource.org/licenses/MIT</licenseUrl>
-    <copyright>Copyright (c) 2012-2013 Alessio Parma &lt;alessio.parma@gmail.com&gt;</copyright>
+    <copyright>Copyright (c) 2013-2014 Alessio Parma &lt;alessio.parma@gmail.com&gt;</copyright>
     <dependencies></dependencies>
     <references>
       <reference file="Thrower.dll" />
