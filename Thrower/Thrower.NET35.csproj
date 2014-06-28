@@ -59,11 +59,8 @@
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PostBuildEvent>if $(ConfigurationName) == Release (
-
     copy "Thrower.dll" "$(SolutionDir)Thrower.Packager/lib/net35-client"
-
     copy "Thrower.xml" "$(SolutionDir)Thrower.Packager/lib/net35-client"
-
 )</PostBuildEvent>
   </PropertyGroup>
 </Project>

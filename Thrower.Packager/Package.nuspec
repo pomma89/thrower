@@ -12,6 +12,7 @@ Fully managed library providing convenience methods to perform argument checks. 
     </description>
     <releaseNotes>
 * Library is now portable.
+* Better implementation of IsEmpty for System.String.
     </releaseNotes>
     <summary>Fully managed library providing convenience methods to perform argument checks.</summary>
     <language>en-US</language>

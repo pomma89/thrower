@@ -12,11 +12,9 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		VERSION.md = VERSION.md
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Thrower", "Thrower\Thrower.NET35.csproj", "{9E97B616-DBE8-4355-990C-F3B8055597C7}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Thrower.NET35", "Thrower\Thrower.NET35.csproj", "{9E97B616-DBE8-4355-990C-F3B8055597C7}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Thrower.Tests", "Thrower.Tests\Thrower.Tests.csproj", "{11EBB50D-0194-4A5B-8081-DA3605EA1E04}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Thrower.Examples", "Thrower.Examples\Thrower.Examples.csproj", "{2C09A058-D85E-4338-BE93-F0B2DABF7E8F}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Thrower.Packager", "Thrower.Packager\Thrower.Packager.csproj", "{0451BAEF-DF2E-4B98-8644-94EE9415E389}"
 EndProject
@@ -41,10 +39,6 @@ Global
 		{11EBB50D-0194-4A5B-8081-DA3605EA1E04}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{11EBB50D-0194-4A5B-8081-DA3605EA1E04}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{11EBB50D-0194-4A5B-8081-DA3605EA1E04}.Release|Any CPU.Build.0 = Release|Any CPU
-		{2C09A058-D85E-4338-BE93-F0B2DABF7E8F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{2C09A058-D85E-4338-BE93-F0B2DABF7E8F}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{2C09A058-D85E-4338-BE93-F0B2DABF7E8F}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{2C09A058-D85E-4338-BE93-F0B2DABF7E8F}.Release|Any CPU.Build.0 = Release|Any CPU
 		{0451BAEF-DF2E-4B98-8644-94EE9415E389}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{0451BAEF-DF2E-4B98-8644-94EE9415E389}.Release|Any CPU.ActiveCfg = Debug|Any CPU
 		{0451BAEF-DF2E-4B98-8644-94EE9415E389}.Release|Any CPU.Build.0 = Debug|Any CPU

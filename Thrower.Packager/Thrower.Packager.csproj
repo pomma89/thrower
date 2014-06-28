@@ -55,7 +55,9 @@
     <None Include="NuGetSetup.ps1" />
     <None Include="NuGet.exe" />
     <None Include="NuGet.config" />
-    <None Include="Package.nuspec" />
+    <None Include="Package.nuspec">
+      <SubType>Designer</SubType>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Thrower\Thrower.csproj">
@@ -68,6 +70,8 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="lib\net35-client\" />
+    <Folder Include="lib\net40-client\" />
+    <Folder Include="lib\portable-win8+net40+sl5+wp8\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -18,8 +18,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Thrower.Tests", "Thrower.Te
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Thrower.Examples", "Thrower.Examples\Thrower.Examples.csproj", "{2C09A058-D85E-4338-BE93-F0B2DABF7E8F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Thrower.Packager", "Thrower.Packager\Thrower.Packager.csproj", "{0451BAEF-DF2E-4B98-8644-94EE9415E389}"
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{5301D3BE-7DAB-4A89-9E3F-68F5C9C9C696}"
 	ProjectSection(SolutionItems) = preProject
 		.nuget\NuGet.Config = .nuget\NuGet.Config
@@ -45,9 +43,6 @@ Global
 		{2C09A058-D85E-4338-BE93-F0B2DABF7E8F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2C09A058-D85E-4338-BE93-F0B2DABF7E8F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2C09A058-D85E-4338-BE93-F0B2DABF7E8F}.Release|Any CPU.Build.0 = Release|Any CPU
-		{0451BAEF-DF2E-4B98-8644-94EE9415E389}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{0451BAEF-DF2E-4B98-8644-94EE9415E389}.Release|Any CPU.ActiveCfg = Debug|Any CPU
-		{0451BAEF-DF2E-4B98-8644-94EE9415E389}.Release|Any CPU.Build.0 = Debug|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
