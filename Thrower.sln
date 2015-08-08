@@ -1,0 +1,73 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.23107.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Thrower.UnitTests", "Thrower.UnitTests\Thrower.UnitTests.csproj", "{25FF2687-7636-4B3C-9B11-33B1C468F9A1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Thrower", "Thrower\Thrower.csproj", "{A7F28AB3-4B28-4856-9AA8-61BC71E0C466}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Thrower.Portable", "Thrower.Portable\Thrower.Portable.csproj", "{595363FB-70CC-4042-8CF0-68B0AF5FFE1D}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{40BFDC8F-025F-4E62-A6A2-EFA3FEB24059}"
+	ProjectSection(SolutionItems) = preProject
+		LICENSE.md = LICENSE.md
+		README.md = README.md
+		VERSION.md = VERSION.md
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Project Logo", "Project Logo", "{4210067E-09D4-471C-98AE-366A874F90AB}"
+	ProjectSection(SolutionItems) = preProject
+		Project Logo\logo-128.png = Project Logo\logo-128.png
+		Project Logo\logo-256.png = Project Logo\logo-256.png
+		Project Logo\logo-32.png = Project Logo\logo-32.png
+		Project Logo\logo-512.png = Project Logo\logo-512.png
+		Project Logo\logo-64.png = Project Logo\logo-64.png
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Thrower.Examples", "Thrower.Examples\Thrower.Examples.csproj", "{2C09A058-D85E-4338-BE93-F0B2DABF7E8F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Thrower.NuGetPackager", "Thrower.NuGetPackager\Thrower.NuGetPackager.csproj", "{0451BAEF-DF2E-4B98-8644-94EE9415E389}"
+	ProjectSection(ProjectDependencies) = postProject
+		{A7F28AB3-4B28-4856-9AA8-61BC71E0C466} = {A7F28AB3-4B28-4856-9AA8-61BC71E0C466}
+		{595363FB-70CC-4042-8CF0-68B0AF5FFE1D} = {595363FB-70CC-4042-8CF0-68B0AF5FFE1D}
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Publish|Any CPU = Publish|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{25FF2687-7636-4B3C-9B11-33B1C468F9A1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{25FF2687-7636-4B3C-9B11-33B1C468F9A1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{25FF2687-7636-4B3C-9B11-33B1C468F9A1}.Publish|Any CPU.ActiveCfg = Release|Any CPU
+		{25FF2687-7636-4B3C-9B11-33B1C468F9A1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{25FF2687-7636-4B3C-9B11-33B1C468F9A1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A7F28AB3-4B28-4856-9AA8-61BC71E0C466}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A7F28AB3-4B28-4856-9AA8-61BC71E0C466}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A7F28AB3-4B28-4856-9AA8-61BC71E0C466}.Publish|Any CPU.ActiveCfg = Release|Any CPU
+		{A7F28AB3-4B28-4856-9AA8-61BC71E0C466}.Publish|Any CPU.Build.0 = Release|Any CPU
+		{A7F28AB3-4B28-4856-9AA8-61BC71E0C466}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A7F28AB3-4B28-4856-9AA8-61BC71E0C466}.Release|Any CPU.Build.0 = Release|Any CPU
+		{595363FB-70CC-4042-8CF0-68B0AF5FFE1D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{595363FB-70CC-4042-8CF0-68B0AF5FFE1D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{595363FB-70CC-4042-8CF0-68B0AF5FFE1D}.Publish|Any CPU.ActiveCfg = Release|Any CPU
+		{595363FB-70CC-4042-8CF0-68B0AF5FFE1D}.Publish|Any CPU.Build.0 = Release|Any CPU
+		{595363FB-70CC-4042-8CF0-68B0AF5FFE1D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{595363FB-70CC-4042-8CF0-68B0AF5FFE1D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2C09A058-D85E-4338-BE93-F0B2DABF7E8F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2C09A058-D85E-4338-BE93-F0B2DABF7E8F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2C09A058-D85E-4338-BE93-F0B2DABF7E8F}.Publish|Any CPU.ActiveCfg = Release|Any CPU
+		{2C09A058-D85E-4338-BE93-F0B2DABF7E8F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2C09A058-D85E-4338-BE93-F0B2DABF7E8F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0451BAEF-DF2E-4B98-8644-94EE9415E389}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0451BAEF-DF2E-4B98-8644-94EE9415E389}.Publish|Any CPU.ActiveCfg = Debug|Any CPU
+		{0451BAEF-DF2E-4B98-8644-94EE9415E389}.Publish|Any CPU.Build.0 = Debug|Any CPU
+		{0451BAEF-DF2E-4B98-8644-94EE9415E389}.Release|Any CPU.ActiveCfg = Debug|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

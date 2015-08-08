@@ -1,0 +1,32 @@
+<?xml version="1.0"?>
+
+<package>
+    <metadata>
+        <id>Thrower</id>
+        <version>1.1</version>
+        <title>Thrower - Compact preconditions helpers</title>
+        <authors>Alessio Parma &lt;alessio.parma@gmail.com&gt;</authors>
+        <owners>Alessio Parma &lt;alessio.parma@gmail.com&gt;</owners>
+        <description>
+Fully managed library providing convenience methods to perform argument checks. It offers methods whose compilation can be enabled with the "USETHROWER" directive, and they can of course be disabled by undefining that directive. Therefore, it allows to write code whose integrity checks can be easily removed (for performance reasons, for example).
+        </description>
+        <releaseNotes>
+* Library is now portable.
+* Better implementation of IsEmpty for System.String.
+        </releaseNotes>
+        <summary>Fully managed library providing convenience methods to perform argument checks.</summary>
+        <language>en-US</language>
+        <projectUrl>https://bitbucket.org/pomma89/thrower/overview</projectUrl>
+        <iconUrl>https://googledrive.com/host/0B8v0ikF4z2BiR29YQmxfSlE1Sms/Progetti/Thrower/logo-128.png</iconUrl>
+        <requireLicenseAcceptance>false</requireLicenseAcceptance>
+        <licenseUrl>http://opensource.org/licenses/MIT</licenseUrl>
+        <copyright>Copyright (c) 2013-2014 Alessio Parma &lt;alessio.parma@gmail.com&gt;</copyright>
+        <dependencies></dependencies>
+        <references></references>
+        <tags>preconditions check integrity parameters arguments conditional compilation</tags>
+    </metadata>
+    <files>
+        <file src="lib\" target="lib" />
+        <file src="LICENSE.txt" target="LICENSE.txt" />
+    </files>
+</package>
