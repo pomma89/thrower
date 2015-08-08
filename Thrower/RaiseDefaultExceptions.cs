@@ -22,52 +22,95 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 using System;
+using System.Diagnostics;
 
 namespace PommaLabs.Thrower
 {
+    /// <summary>
+    ///   Utility methods which can be used to handle null references.
+    /// </summary>
     public sealed class RaiseArgumentNullException : RaiseBase
     {
-        public static void IfIsNull<TArg>(TArg arg)
+        /// <summary>
+        ///   Throws <see cref="ArgumentNullException"/> if given argument if null.
+        /// </summary>
+        /// <typeparam name="TArg">The type of the argument.</typeparam>
+        /// <param name="argument">The argument.</param>
+        [Conditional(UseThrowerDefine)]
+        public static void IfIsNull<TArg>(TArg argument)
         {
-            if (ReferenceEquals(arg, null))
+            if (ReferenceEquals(argument, null))
             {
                 throw new ArgumentNullException();
             }
         }
 
-        public static void IfIsNull<TArg>(TArg arg, string parameterName)
+        /// <summary>
+        ///   Throws <see cref="ArgumentNullException"/> if given argument if null.
+        /// </summary>
+        /// <typeparam name="TArg">The type of the argument.</typeparam>
+        /// <param name="argument">The argument.</param>
+        /// <param name="argumentName">The name of the argument.</param>
+        [Conditional(UseThrowerDefine)]
+        public static void IfIsNull<TArg>(TArg argument, string argumentName)
         {
-            if (ReferenceEquals(arg, null))
+            if (ReferenceEquals(argument, null))
             {
-                throw new ArgumentNullException(parameterName);
+                throw new ArgumentNullException(argumentName);
             }
         }
 
-        public static void IfIsNull<TArg>(TArg arg, string parameterName, string message)
+        /// <summary>
+        ///   Throws <see cref="ArgumentNullException"/> if given argument if null.
+        /// </summary>
+        /// <typeparam name="TArg">The type of the argument.</typeparam>
+        /// <param name="argument">The argument.</param>
+        /// <param name="argumentName">The name of the argument.</param>
+        /// <param name="message">The message that should be put into the exception.</param>
+        [Conditional(UseThrowerDefine)]
+        public static void IfIsNull<TArg>(TArg argument, string argumentName, string message)
         {
-            if (ReferenceEquals(arg, null))
+            if (ReferenceEquals(argument, null))
             {
-                throw new ArgumentNullException(parameterName, message);
+                throw new ArgumentNullException(argumentName, message);
             }
         }
     }
 
+    /// <summary>
+    ///   Utility methods which can be used to handle ranges.
+    /// </summary>
     public sealed class RaiseArgumentOutOfRangeException : RaiseBase
     {
         #region Less - Without parameter name, without message
 
-        public static void IfIsLess<TArg>(TArg arg1, TArg arg2)
+        /// <summary>
+        ///   Throws <see cref="ArgumentOutOfRangeException"/> if <paramref name="argument1"/> is
+        ///   less than <paramref name="argument2"/>.
+        /// </summary>
+        /// <typeparam name="TArg">The type of the arguments.</typeparam>
+        /// <param name="argument1">The left side argument.</param>
+        /// <param name="argument2">The right side argument.</param>
+        [Conditional(UseThrowerDefine)]
+        public static void IfIsLess<TArg>(TArg argument1, TArg argument2)
             where TArg : IComparable<TArg>
         {
-            if (ReferenceEquals(arg1, null) || arg1.CompareTo(arg2) < 0)
+            if (ReferenceEquals(argument1, null) || argument1.CompareTo(argument2) < 0)
             {
                 throw new ArgumentOutOfRangeException();
             }
         }
 
-        public static void IfIsLess(IComparable arg1, IComparable arg2)
+        /// <summary>
+        ///   Throws <see cref="ArgumentOutOfRangeException"/> if <paramref name="argument1"/> is
+        ///   less than <paramref name="argument2"/>.
+        /// </summary>
+        /// <param name="argument1">The left side argument.</param>
+        /// <param name="argument2">The right side argument.</param>
+        [Conditional(UseThrowerDefine)]
+        public static void IfIsLess(IComparable argument1, IComparable argument2)
         {
-            if (ReferenceEquals(arg1, null) || arg1.CompareTo(arg2) < 0)
+            if (ReferenceEquals(argument1, null) || argument1.CompareTo(argument2) < 0)
             {
                 throw new ArgumentOutOfRangeException();
             }
@@ -77,20 +120,37 @@ namespace PommaLabs.Thrower
 
         #region Less - With parameter name, without message
 
-        public static void IfIsLess<TArg>(TArg arg1, TArg arg2, string parameterName)
+        /// <summary>
+        ///   Throws <see cref="ArgumentOutOfRangeException"/> if <paramref name="argument1"/> is
+        ///   less than <paramref name="argument2"/>.
+        /// </summary>
+        /// <typeparam name="TArg">The type of the arguments.</typeparam>
+        /// <param name="argument1">The left side argument.</param>
+        /// <param name="argument2">The right side argument.</param>
+        /// <param name="argumentName">The name of the argument.</param>
+        [Conditional(UseThrowerDefine)]
+        public static void IfIsLess<TArg>(TArg argument1, TArg argument2, string argumentName)
             where TArg : IComparable<TArg>
         {
-            if (ReferenceEquals(arg1, null) || arg1.CompareTo(arg2) < 0)
+            if (ReferenceEquals(argument1, null) || argument1.CompareTo(argument2) < 0)
             {
-                throw new ArgumentOutOfRangeException(parameterName);
+                throw new ArgumentOutOfRangeException(argumentName);
             }
         }
 
-        public static void IfIsLess(IComparable arg1, IComparable arg2, string parameterName)
+        /// <summary>
+        ///   Throws <see cref="ArgumentOutOfRangeException"/> if <paramref name="argument1"/> is
+        ///   less than <paramref name="argument2"/>.
+        /// </summary>
+        /// <param name="argument1">The left side argument.</param>
+        /// <param name="argument2">The right side argument.</param>
+        /// <param name="argumentName">The name of the argument.</param>
+        [Conditional(UseThrowerDefine)]
+        public static void IfIsLess(IComparable argument1, IComparable argument2, string argumentName)
         {
-            if (ReferenceEquals(arg1, null) || arg1.CompareTo(arg2) < 0)
+            if (ReferenceEquals(argument1, null) || argument1.CompareTo(argument2) < 0)
             {
-                throw new ArgumentOutOfRangeException(parameterName);
+                throw new ArgumentOutOfRangeException(argumentName);
             }
         }
 
@@ -98,65 +158,612 @@ namespace PommaLabs.Thrower
 
         #region Less - With parameter name, with message
 
-        public static void IfIsLess<TArg>(TArg arg1, TArg arg2, string parameterName, string message)
+        /// <summary>
+        ///   Throws <see cref="ArgumentOutOfRangeException"/> if <paramref name="argument1"/> is
+        ///   less than <paramref name="argument2"/>.
+        /// </summary>
+        /// <typeparam name="TArg">The type of the arguments.</typeparam>
+        /// <param name="argument1">The left side argument.</param>
+        /// <param name="argument2">The right side argument.</param>
+        /// <param name="argumentName">The name of the argument.</param>
+        /// <param name="message">The message that should be put into the exception.</param>
+        [Conditional(UseThrowerDefine)]
+        public static void IfIsLess<TArg>(TArg argument1, TArg argument2, string argumentName, string message)
             where TArg : IComparable<TArg>
         {
-            if (ReferenceEquals(arg1, null) || arg1.CompareTo(arg2) < 0)
+            if (ReferenceEquals(argument1, null) || argument1.CompareTo(argument2) < 0)
             {
-                throw new ArgumentOutOfRangeException(parameterName, arg1, message);
+                throw new ArgumentOutOfRangeException(argumentName, argument1, message);
             }
         }
 
-        public static void IfIsLess(IComparable arg1, IComparable arg2, string parameterName, string message)
+        /// <summary>
+        ///   Throws <see cref="ArgumentOutOfRangeException"/> if <paramref name="argument1"/> is
+        ///   less than <paramref name="argument2"/>.
+        /// </summary>
+        /// <param name="argument1">The left side argument.</param>
+        /// <param name="argument2">The right side argument.</param>
+        /// <param name="argumentName">The name of the argument.</param>
+        /// <param name="message">The message that should be put into the exception.</param>
+        [Conditional(UseThrowerDefine)]
+        public static void IfIsLess(IComparable argument1, IComparable argument2, string argumentName, string message)
         {
-            if (ReferenceEquals(arg1, null) || arg1.CompareTo(arg2) < 0)
+            if (ReferenceEquals(argument1, null) || argument1.CompareTo(argument2) < 0)
             {
-                throw new ArgumentOutOfRangeException(parameterName, arg1, message);
+                throw new ArgumentOutOfRangeException(argumentName, argument1, message);
             }
         }
 
         #endregion Less - With parameter name, with message
 
-        #region Greater - With parameter name, without message
+        #region LessEqual - Without parameter name, without message
 
-        public static void IfIsGreater<TArg>(TArg arg1, TArg arg2, string parameterName)
+        /// <summary>
+        ///   Throws <see cref="ArgumentOutOfRangeException"/> if <paramref name="argument1"/> is
+        ///   less than or equal to <paramref name="argument2"/>.
+        /// </summary>
+        /// <typeparam name="TArg">The type of the arguments.</typeparam>
+        /// <param name="argument1">The left side argument.</param>
+        /// <param name="argument2">The right side argument.</param>
+        [Conditional(UseThrowerDefine)]
+        public static void IfIsLessOrEqual<TArg>(TArg argument1, TArg argument2)
             where TArg : IComparable<TArg>
         {
-            if (ReferenceEquals(arg1, null) || arg1.CompareTo(arg2) > 0)
+            if (ReferenceEquals(argument1, null) || argument1.CompareTo(argument2) <= 0)
             {
-                throw new ArgumentOutOfRangeException(parameterName);
+                throw new ArgumentOutOfRangeException();
             }
         }
 
-        public static void IfIsGreater(IComparable arg1, IComparable arg2, string parameterName)
+        /// <summary>
+        ///   Throws <see cref="ArgumentOutOfRangeException"/> if <paramref name="argument1"/> is
+        ///   less than or equal to <paramref name="argument2"/>.
+        /// </summary>
+        /// <param name="argument1">The left side argument.</param>
+        /// <param name="argument2">The right side argument.</param>
+        [Conditional(UseThrowerDefine)]
+        public static void IfIsLessOrEqual(IComparable argument1, IComparable argument2)
         {
-            if (ReferenceEquals(arg1, null) || arg1.CompareTo(arg2) > 0)
+            if (ReferenceEquals(argument1, null) || argument1.CompareTo(argument2) <= 0)
             {
-                throw new ArgumentOutOfRangeException(parameterName);
+                throw new ArgumentOutOfRangeException();
+            }
+        }
+
+        #endregion LessEqual - Without parameter name, without message
+
+        #region LessEqual - With parameter name, without message
+
+        /// <summary>
+        ///   Throws <see cref="ArgumentOutOfRangeException"/> if <paramref name="argument1"/> is
+        ///   less than or equal to <paramref name="argument2"/>.
+        /// </summary>
+        /// <typeparam name="TArg">The type of the arguments.</typeparam>
+        /// <param name="argument1">The left side argument.</param>
+        /// <param name="argument2">The right side argument.</param>
+        /// <param name="argumentName">The name of the argument.</param>
+        [Conditional(UseThrowerDefine)]
+        public static void IfIsLessOrEqual<TArg>(TArg argument1, TArg argument2, string argumentName)
+            where TArg : IComparable<TArg>
+        {
+            if (ReferenceEquals(argument1, null) || argument1.CompareTo(argument2) <= 0)
+            {
+                throw new ArgumentOutOfRangeException(argumentName);
+            }
+        }
+
+        /// <summary>
+        ///   Throws <see cref="ArgumentOutOfRangeException"/> if <paramref name="argument1"/> is
+        ///   less than or equal to <paramref name="argument2"/>.
+        /// </summary>
+        /// <param name="argument1">The left side argument.</param>
+        /// <param name="argument2">The right side argument.</param>
+        /// <param name="argumentName">The name of the argument.</param>
+        [Conditional(UseThrowerDefine)]
+        public static void IfIsLessOrEqual(IComparable argument1, IComparable argument2, string argumentName)
+        {
+            if (ReferenceEquals(argument1, null) || argument1.CompareTo(argument2) <= 0)
+            {
+                throw new ArgumentOutOfRangeException(argumentName);
+            }
+        }
+
+        #endregion LessEqual - With parameter name, without message
+
+        #region LessEqual - With parameter name, with message
+
+        /// <summary>
+        ///   Throws <see cref="ArgumentOutOfRangeException"/> if <paramref name="argument1"/> is
+        ///   less than or equal to <paramref name="argument2"/>.
+        /// </summary>
+        /// <typeparam name="TArg">The type of the arguments.</typeparam>
+        /// <param name="argument1">The left side argument.</param>
+        /// <param name="argument2">The right side argument.</param>
+        /// <param name="argumentName">The name of the argument.</param>
+        /// <param name="message">The message that should be put into the exception.</param>
+        [Conditional(UseThrowerDefine)]
+        public static void IfIsLessOrEqual<TArg>(TArg argument1, TArg argument2, string argumentName, string message)
+            where TArg : IComparable<TArg>
+        {
+            if (ReferenceEquals(argument1, null) || argument1.CompareTo(argument2) <= 0)
+            {
+                throw new ArgumentOutOfRangeException(argumentName, argument1, message);
+            }
+        }
+
+        /// <summary>
+        ///   Throws <see cref="ArgumentOutOfRangeException"/> if <paramref name="argument1"/> is
+        ///   less than or equal to <paramref name="argument2"/>.
+        /// </summary>
+        /// <param name="argument1">The left side argument.</param>
+        /// <param name="argument2">The right side argument.</param>
+        /// <param name="argumentName">The name of the argument.</param>
+        /// <param name="message">The message that should be put into the exception.</param>
+        [Conditional(UseThrowerDefine)]
+        public static void IfIsLessOrEqual(IComparable argument1, IComparable argument2, string argumentName, string message)
+        {
+            if (ReferenceEquals(argument1, null) || argument1.CompareTo(argument2) <= 0)
+            {
+                throw new ArgumentOutOfRangeException(argumentName, argument1, message);
+            }
+        }
+
+        #endregion LessEqual - With parameter name, with message
+
+        #region Greater - Without parameter name, without message
+
+        /// <summary>
+        ///   Throws <see cref="ArgumentOutOfRangeException"/> if <paramref name="argument1"/> is
+        ///   greater than <paramref name="argument2"/>.
+        /// </summary>
+        /// <typeparam name="TArg">The type of the arguments.</typeparam>
+        /// <param name="argument1">The left side argument.</param>
+        /// <param name="argument2">The right side argument.</param>
+        [Conditional(UseThrowerDefine)]
+        public static void IfIsGreater<TArg>(TArg argument1, TArg argument2)
+            where TArg : IComparable<TArg>
+        {
+            if (ReferenceEquals(argument1, null) || argument1.CompareTo(argument2) > 0)
+            {
+                throw new ArgumentOutOfRangeException();
+            }
+        }
+
+        /// <summary>
+        ///   Throws <see cref="ArgumentOutOfRangeException"/> if <paramref name="argument1"/> is
+        ///   greater than <paramref name="argument2"/>.
+        /// </summary>
+        /// <param name="argument1">The left side argument.</param>
+        /// <param name="argument2">The right side argument.</param>
+        [Conditional(UseThrowerDefine)]
+        public static void IfIsGreater(IComparable argument1, IComparable argument2)
+        {
+            if (ReferenceEquals(argument1, null) || argument1.CompareTo(argument2) > 0)
+            {
+                throw new ArgumentOutOfRangeException();
+            }
+        }
+
+        #endregion Greater - Without parameter name, without message
+
+        #region Greater - With parameter name, without message
+
+        /// <summary>
+        ///   Throws <see cref="ArgumentOutOfRangeException"/> if <paramref name="argument1"/> is
+        ///   greater than <paramref name="argument2"/>.
+        /// </summary>
+        /// <typeparam name="TArg">The type of the arguments.</typeparam>
+        /// <param name="argument1">The left side argument.</param>
+        /// <param name="argument2">The right side argument.</param>
+        /// <param name="argumentName">The name of the argument.</param>
+        [Conditional(UseThrowerDefine)]
+        public static void IfIsGreater<TArg>(TArg argument1, TArg argument2, string argumentName)
+            where TArg : IComparable<TArg>
+        {
+            if (ReferenceEquals(argument1, null) || argument1.CompareTo(argument2) > 0)
+            {
+                throw new ArgumentOutOfRangeException(argumentName);
+            }
+        }
+
+        /// <summary>
+        ///   Throws <see cref="ArgumentOutOfRangeException"/> if <paramref name="argument1"/> is
+        ///   greater than <paramref name="argument2"/>.
+        /// </summary>
+        /// <param name="argument1">The left side argument.</param>
+        /// <param name="argument2">The right side argument.</param>
+        /// <param name="argumentName">The name of the argument.</param>
+        [Conditional(UseThrowerDefine)]
+        public static void IfIsGreater(IComparable argument1, IComparable argument2, string argumentName)
+        {
+            if (ReferenceEquals(argument1, null) || argument1.CompareTo(argument2) > 0)
+            {
+                throw new ArgumentOutOfRangeException(argumentName);
             }
         }
 
         #endregion Greater - With parameter name, without message
 
-        #region GreaterOrEqual - With parameter name, without message
+        #region Greater - With parameter name, with message
 
-        public static void IfIsGreaterOrEqual<TArg>(TArg arg1, TArg arg2, string parameterName)
+        /// <summary>
+        ///   Throws <see cref="ArgumentOutOfRangeException"/> if <paramref name="argument1"/> is
+        ///   greater than <paramref name="argument2"/>.
+        /// </summary>
+        /// <typeparam name="TArg">The type of the arguments.</typeparam>
+        /// <param name="argument1">The left side argument.</param>
+        /// <param name="argument2">The right side argument.</param>
+        /// <param name="argumentName">The name of the argument.</param>
+        /// <param name="message">The message that should be put into the exception.</param>
+        [Conditional(UseThrowerDefine)]
+        public static void IfIsGreater<TArg>(TArg argument1, TArg argument2, string argumentName, string message)
             where TArg : IComparable<TArg>
         {
-            if (ReferenceEquals(arg1, null) || arg1.CompareTo(arg2) >= 0)
+            if (ReferenceEquals(argument1, null) || argument1.CompareTo(argument2) > 0)
             {
-                throw new ArgumentOutOfRangeException(parameterName);
+                throw new ArgumentOutOfRangeException(argumentName, argument1, message);
             }
         }
 
-        public static void IfIsGreaterOrEqual(IComparable arg1, IComparable arg2, string parameterName)
+        /// <summary>
+        ///   Throws <see cref="ArgumentOutOfRangeException"/> if <paramref name="argument1"/> is
+        ///   greater than <paramref name="argument2"/>.
+        /// </summary>
+        /// <param name="argument1">The left side argument.</param>
+        /// <param name="argument2">The right side argument.</param>
+        /// <param name="argumentName">The name of the argument.</param>
+        /// <param name="message">The message that should be put into the exception.</param>
+        [Conditional(UseThrowerDefine)]
+        public static void IfIsGreater(IComparable argument1, IComparable argument2, string argumentName, string message)
         {
-            if (ReferenceEquals(arg1, null) || arg1.CompareTo(arg2) >= 0)
+            if (ReferenceEquals(argument1, null) || argument1.CompareTo(argument2) > 0)
             {
-                throw new ArgumentOutOfRangeException(parameterName);
+                throw new ArgumentOutOfRangeException(argumentName, argument1, message);
             }
         }
 
-        #endregion GreaterOrEqual - With parameter name, without message
+        #endregion Greater - With parameter name, with message
+
+        #region GreaterEqual - Without parameter name, without message
+
+        /// <summary>
+        ///   Throws <see cref="ArgumentOutOfRangeException"/> if <paramref name="argument1"/> is
+        ///   greater than or equal to <paramref name="argument2"/>.
+        /// </summary>
+        /// <typeparam name="TArg">The type of the arguments.</typeparam>
+        /// <param name="argument1">The left side argument.</param>
+        /// <param name="argument2">The right side argument.</param>
+        [Conditional(UseThrowerDefine)]
+        public static void IfIsGreaterOrEqual<TArg>(TArg argument1, TArg argument2)
+            where TArg : IComparable<TArg>
+        {
+            if (ReferenceEquals(argument1, null) || argument1.CompareTo(argument2) >= 0)
+            {
+                throw new ArgumentOutOfRangeException();
+            }
+        }
+
+        /// <summary>
+        ///   Throws <see cref="ArgumentOutOfRangeException"/> if <paramref name="argument1"/> is
+        ///   greater than or equal to <paramref name="argument2"/>.
+        /// </summary>
+        /// <param name="argument1">The left side argument.</param>
+        /// <param name="argument2">The right side argument.</param>
+        [Conditional(UseThrowerDefine)]
+        public static void IfIsGreaterOrEqual(IComparable argument1, IComparable argument2)
+        {
+            if (ReferenceEquals(argument1, null) || argument1.CompareTo(argument2) >= 0)
+            {
+                throw new ArgumentOutOfRangeException();
+            }
+        }
+
+        #endregion GreaterEqual - Without parameter name, without message
+
+        #region GreaterEqual - With parameter name, without message
+
+        /// <summary>
+        ///   Throws <see cref="ArgumentOutOfRangeException"/> if <paramref name="argument1"/> is
+        ///   greater than or equal to <paramref name="argument2"/>.
+        /// </summary>
+        /// <typeparam name="TArg">The type of the arguments.</typeparam>
+        /// <param name="argument1">The left side argument.</param>
+        /// <param name="argument2">The right side argument.</param>
+        /// <param name="argumentName">The name of the argument.</param>
+        [Conditional(UseThrowerDefine)]
+        public static void IfIsGreaterOrEqual<TArg>(TArg argument1, TArg argument2, string argumentName)
+            where TArg : IComparable<TArg>
+        {
+            if (ReferenceEquals(argument1, null) || argument1.CompareTo(argument2) >= 0)
+            {
+                throw new ArgumentOutOfRangeException(argumentName);
+            }
+        }
+
+        /// <summary>
+        ///   Throws <see cref="ArgumentOutOfRangeException"/> if <paramref name="argument1"/> is
+        ///   greater than or equal to <paramref name="argument2"/>.
+        /// </summary>
+        /// <param name="argument1">The left side argument.</param>
+        /// <param name="argument2">The right side argument.</param>
+        /// <param name="argumentName">The name of the argument.</param>
+        [Conditional(UseThrowerDefine)]
+        public static void IfIsGreaterOrEqual(IComparable argument1, IComparable argument2, string argumentName)
+        {
+            if (ReferenceEquals(argument1, null) || argument1.CompareTo(argument2) >= 0)
+            {
+                throw new ArgumentOutOfRangeException(argumentName);
+            }
+        }
+
+        #endregion GreaterEqual - With parameter name, without message
+
+        #region GreaterEqual - With parameter name, with message
+
+        /// <summary>
+        ///   Throws <see cref="ArgumentOutOfRangeException"/> if <paramref name="argument1"/> is
+        ///   greater than or equal to <paramref name="argument2"/>.
+        /// </summary>
+        /// <typeparam name="TArg">The type of the arguments.</typeparam>
+        /// <param name="argument1">The left side argument.</param>
+        /// <param name="argument2">The right side argument.</param>
+        /// <param name="argumentName">The name of the argument.</param>
+        /// <param name="message">The message that should be put into the exception.</param>
+        [Conditional(UseThrowerDefine)]
+        public static void IfIsGreaterOrEqual<TArg>(TArg argument1, TArg argument2, string argumentName, string message)
+            where TArg : IComparable<TArg>
+        {
+            if (ReferenceEquals(argument1, null) || argument1.CompareTo(argument2) >= 0)
+            {
+                throw new ArgumentOutOfRangeException(argumentName, argument1, message);
+            }
+        }
+
+        /// <summary>
+        ///   Throws <see cref="ArgumentOutOfRangeException"/> if <paramref name="argument1"/> is
+        ///   greater than or equal to <paramref name="argument2"/>.
+        /// </summary>
+        /// <param name="argument1">The left side argument.</param>
+        /// <param name="argument2">The right side argument.</param>
+        /// <param name="argumentName">The name of the argument.</param>
+        /// <param name="message">The message that should be put into the exception.</param>
+        [Conditional(UseThrowerDefine)]
+        public static void IfIsGreaterOrEqual(IComparable argument1, IComparable argument2, string argumentName, string message)
+        {
+            if (ReferenceEquals(argument1, null) || argument1.CompareTo(argument2) >= 0)
+            {
+                throw new ArgumentOutOfRangeException(argumentName, argument1, message);
+            }
+        }
+
+        #endregion GreaterEqual - With parameter name, with message
+
+        #region Equal - Without parameter name, without message
+
+        /// <summary>
+        ///   Throws <see cref="ArgumentOutOfRangeException"/> if <paramref name="argument1"/> is
+        ///   equal to <paramref name="argument2"/>.
+        /// </summary>
+        /// <typeparam name="TArg">The type of the arguments.</typeparam>
+        /// <param name="argument1">The left side argument.</param>
+        /// <param name="argument2">The right side argument.</param>
+        [Conditional(UseThrowerDefine)]
+        public static void IfIsEqual<TArg>(TArg argument1, TArg argument2)
+            where TArg : IComparable<TArg>
+        {
+            if (ReferenceEquals(argument1, null) || argument1.CompareTo(argument2) == 0)
+            {
+                throw new ArgumentOutOfRangeException();
+            }
+        }
+
+        /// <summary>
+        ///   Throws <see cref="ArgumentOutOfRangeException"/> if <paramref name="argument1"/> is
+        ///   equal to <paramref name="argument2"/>.
+        /// </summary>
+        /// <param name="argument1">The left side argument.</param>
+        /// <param name="argument2">The right side argument.</param>
+        [Conditional(UseThrowerDefine)]
+        public static void IfIsEqual(IComparable argument1, IComparable argument2)
+        {
+            if (ReferenceEquals(argument1, null) || argument1.CompareTo(argument2) == 0)
+            {
+                throw new ArgumentOutOfRangeException();
+            }
+        }
+
+        #endregion Equal - Without parameter name, without message
+
+        #region Equal - With parameter name, without message
+
+        /// <summary>
+        ///   Throws <see cref="ArgumentOutOfRangeException"/> if <paramref name="argument1"/> is
+        ///   equal to <paramref name="argument2"/>.
+        /// </summary>
+        /// <typeparam name="TArg">The type of the arguments.</typeparam>
+        /// <param name="argument1">The left side argument.</param>
+        /// <param name="argument2">The right side argument.</param>
+        /// <param name="argumentName">The name of the argument.</param>
+        [Conditional(UseThrowerDefine)]
+        public static void IfIsEqual<TArg>(TArg argument1, TArg argument2, string argumentName)
+            where TArg : IComparable<TArg>
+        {
+            if (ReferenceEquals(argument1, null) || argument1.CompareTo(argument2) == 0)
+            {
+                throw new ArgumentOutOfRangeException(argumentName);
+            }
+        }
+
+        /// <summary>
+        ///   Throws <see cref="ArgumentOutOfRangeException"/> if <paramref name="argument1"/> is
+        ///   equal to <paramref name="argument2"/>.
+        /// </summary>
+        /// <param name="argument1">The left side argument.</param>
+        /// <param name="argument2">The right side argument.</param>
+        /// <param name="argumentName">The name of the argument.</param>
+        [Conditional(UseThrowerDefine)]
+        public static void IfIsEqual(IComparable argument1, IComparable argument2, string argumentName)
+        {
+            if (ReferenceEquals(argument1, null) || argument1.CompareTo(argument2) == 0)
+            {
+                throw new ArgumentOutOfRangeException(argumentName);
+            }
+        }
+
+        #endregion Equal - With parameter name, without message
+
+        #region Equal - With parameter name, with message
+
+        /// <summary>
+        ///   Throws <see cref="ArgumentOutOfRangeException"/> if <paramref name="argument1"/> is
+        ///   equal to <paramref name="argument2"/>.
+        /// </summary>
+        /// <typeparam name="TArg">The type of the arguments.</typeparam>
+        /// <param name="argument1">The left side argument.</param>
+        /// <param name="argument2">The right side argument.</param>
+        /// <param name="argumentName">The name of the argument.</param>
+        /// <param name="message">The message that should be put into the exception.</param>
+        [Conditional(UseThrowerDefine)]
+        public static void IfIsEqual<TArg>(TArg argument1, TArg argument2, string argumentName, string message)
+            where TArg : IComparable<TArg>
+        {
+            if (ReferenceEquals(argument1, null) || argument1.CompareTo(argument2) == 0)
+            {
+                throw new ArgumentOutOfRangeException(argumentName, argument1, message);
+            }
+        }
+
+        /// <summary>
+        ///   Throws <see cref="ArgumentOutOfRangeException"/> if <paramref name="argument1"/> is
+        ///   equal to <paramref name="argument2"/>.
+        /// </summary>
+        /// <param name="argument1">The left side argument.</param>
+        /// <param name="argument2">The right side argument.</param>
+        /// <param name="argumentName">The name of the argument.</param>
+        /// <param name="message">The message that should be put into the exception.</param>
+        [Conditional(UseThrowerDefine)]
+        public static void IfIsEqual(IComparable argument1, IComparable argument2, string argumentName, string message)
+        {
+            if (ReferenceEquals(argument1, null) || argument1.CompareTo(argument2) == 0)
+            {
+                throw new ArgumentOutOfRangeException(argumentName, argument1, message);
+            }
+        }
+
+        #endregion Equal - With parameter name, with message
+
+        #region NotEqual - Without parameter name, without message
+
+        /// <summary>
+        ///   Throws <see cref="ArgumentOutOfRangeException"/> if <paramref name="argument1"/> is
+        ///   not equal to <paramref name="argument2"/>.
+        /// </summary>
+        /// <typeparam name="TArg">The type of the arguments.</typeparam>
+        /// <param name="argument1">The left side argument.</param>
+        /// <param name="argument2">The right side argument.</param>
+        [Conditional(UseThrowerDefine)]
+        public static void IfIsNotEqual<TArg>(TArg argument1, TArg argument2)
+            where TArg : IComparable<TArg>
+        {
+            if (ReferenceEquals(argument1, null) || argument1.CompareTo(argument2) != 0)
+            {
+                throw new ArgumentOutOfRangeException();
+            }
+        }
+
+        /// <summary>
+        ///   Throws <see cref="ArgumentOutOfRangeException"/> if <paramref name="argument1"/> is
+        ///   not equal to <paramref name="argument2"/>.
+        /// </summary>
+        /// <param name="argument1">The left side argument.</param>
+        /// <param name="argument2">The right side argument.</param>
+        [Conditional(UseThrowerDefine)]
+        public static void IfIsNotEqual(IComparable argument1, IComparable argument2)
+        {
+            if (ReferenceEquals(argument1, null) || argument1.CompareTo(argument2) != 0)
+            {
+                throw new ArgumentOutOfRangeException();
+            }
+        }
+
+        #endregion NotEqual - Without parameter name, without message
+
+        #region NotEqual - With parameter name, without message
+
+        /// <summary>
+        ///   Throws <see cref="ArgumentOutOfRangeException"/> if <paramref name="argument1"/> is
+        ///   not equal to <paramref name="argument2"/>.
+        /// </summary>
+        /// <typeparam name="TArg">The type of the arguments.</typeparam>
+        /// <param name="argument1">The left side argument.</param>
+        /// <param name="argument2">The right side argument.</param>
+        /// <param name="argumentName">The name of the argument.</param>
+        [Conditional(UseThrowerDefine)]
+        public static void IfIsNotEqual<TArg>(TArg argument1, TArg argument2, string argumentName)
+            where TArg : IComparable<TArg>
+        {
+            if (ReferenceEquals(argument1, null) || argument1.CompareTo(argument2) != 0)
+            {
+                throw new ArgumentOutOfRangeException(argumentName);
+            }
+        }
+
+        /// <summary>
+        ///   Throws <see cref="ArgumentOutOfRangeException"/> if <paramref name="argument1"/> is
+        ///   not equal to <paramref name="argument2"/>.
+        /// </summary>
+        /// <param name="argument1">The left side argument.</param>
+        /// <param name="argument2">The right side argument.</param>
+        /// <param name="argumentName">The name of the argument.</param>
+        [Conditional(UseThrowerDefine)]
+        public static void IfIsNotEqual(IComparable argument1, IComparable argument2, string argumentName)
+        {
+            if (ReferenceEquals(argument1, null) || argument1.CompareTo(argument2) != 0)
+            {
+                throw new ArgumentOutOfRangeException(argumentName);
+            }
+        }
+
+        #endregion NotEqual - With parameter name, without message
+
+        #region NotEqual - With parameter name, with message
+
+        /// <summary>
+        ///   Throws <see cref="ArgumentOutOfRangeException"/> if <paramref name="argument1"/> is
+        ///   not equal to <paramref name="argument2"/>.
+        /// </summary>
+        /// <typeparam name="TArg">The type of the arguments.</typeparam>
+        /// <param name="argument1">The left side argument.</param>
+        /// <param name="argument2">The right side argument.</param>
+        /// <param name="argumentName">The name of the argument.</param>
+        /// <param name="message">The message that should be put into the exception.</param>
+        [Conditional(UseThrowerDefine)]
+        public static void IfIsNotEqual<TArg>(TArg argument1, TArg argument2, string argumentName, string message)
+            where TArg : IComparable<TArg>
+        {
+            if (ReferenceEquals(argument1, null) || argument1.CompareTo(argument2) != 0)
+            {
+                throw new ArgumentOutOfRangeException(argumentName, argument1, message);
+            }
+        }
+
+        /// <summary>
+        ///   Throws <see cref="ArgumentOutOfRangeException"/> if <paramref name="argument1"/> is
+        ///   not equal to <paramref name="argument2"/>.
+        /// </summary>
+        /// <param name="argument1">The left side argument.</param>
+        /// <param name="argument2">The right side argument.</param>
+        /// <param name="argumentName">The name of the argument.</param>
+        /// <param name="message">The message that should be put into the exception.</param>
+        [Conditional(UseThrowerDefine)]
+        public static void IfIsNotEqual(IComparable argument1, IComparable argument2, string argumentName, string message)
+        {
+            if (ReferenceEquals(argument1, null) || argument1.CompareTo(argument2) != 0)
+            {
+                throw new ArgumentOutOfRangeException(argumentName, argument1, message);
+            }
+        }
+
+        #endregion NotEqual - With parameter name, with message
     }
 }
