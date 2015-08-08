@@ -54,6 +54,12 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
+  <PropertyGroup>
+    <PostBuildEvent>if not exist "$(SolutionDir)Thrower.NuGetPackager/lib/portable-net45+win8+wp8+wpa81" mkdir "$(SolutionDir)Thrower.NuGetPackager/lib/portable-net45+win8+wp8+wpa81"
+copy "$(TargetDir)PommaLabs.Thrower.dll" "$(SolutionDir)Thrower.NuGetPackager/lib/portable-net45+win8+wp8+wpa81"
+copy "$(TargetDir)PommaLabs.Thrower.pdb" "$(SolutionDir)Thrower.NuGetPackager/lib/portable-net45+win8+wp8+wpa81"
+copy "$(TargetDir)PommaLabs.Thrower.xml" "$(SolutionDir)Thrower.NuGetPackager/lib/portable-net45+win8+wp8+wpa81"</PostBuildEvent>
+  </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">
