@@ -27,6 +27,76 @@ using System.Diagnostics;
 namespace PommaLabs.Thrower
 {
     /// <summary>
+    ///   Utility methods which can be used to handle bad arguments.
+    /// </summary>
+    public sealed class RaiseArgumentException : RaiseBase
+    {
+        /// <summary>
+        ///   Throws <see cref="ArgumentException"/> if given condition is true.
+        /// </summary>
+        /// <param name="condition">The condition.</param>
+        /// <param name="message">The optional message.</param>
+        [Conditional(UseThrowerDefine)]
+        public static void If(bool condition, string message = null)
+        {
+            if (condition)
+            {
+                throw string.IsNullOrEmpty(message) ? new ArgumentException() : new ArgumentException(message);
+            }
+        }
+
+        /// <summary>
+        ///   Throws <see cref="ArgumentException"/> if given condition is true.
+        /// </summary>
+        /// <param name="condition">The condition.</param>
+        /// <param name="message">The message.</param>
+        /// <param name="argumentName">The name of the argument.</param>
+        /// <remarks>
+        ///   <paramref name="message"/> and <paramref name="argumentName"/> are strictly required arguments.
+        /// </remarks>
+        [Conditional(UseThrowerDefine)]
+        public static void If(bool condition, string message, string argumentName)
+        {
+            if (condition)
+            {
+                throw new ArgumentException(message, argumentName);
+            }
+        }
+
+        /// <summary>
+        ///   Throws <see cref="ArgumentException"/> if given condition is false.
+        /// </summary>
+        /// <param name="condition">The condition.</param>
+        /// <param name="message">The optional message.</param>
+        [Conditional(UseThrowerDefine)]
+        public static void IfNot(bool condition, string message = null)
+        {
+            if (!condition)
+            {
+                throw string.IsNullOrEmpty(message) ? new ArgumentException() : new ArgumentException(message);
+            }
+        }
+
+        /// <summary>
+        ///   Throws <see cref="ArgumentException"/> if given condition is false.
+        /// </summary>
+        /// <param name="condition">The condition.</param>
+        /// <param name="message">The message.</param>
+        /// <param name="argumentName">The name of the argument.</param>
+        /// <remarks>
+        ///   <paramref name="message"/> and <paramref name="argumentName"/> are strictly required arguments.
+        /// </remarks>
+        [Conditional(UseThrowerDefine)]
+        public static void IfNot(bool condition, string message, string argumentName)
+        {
+            if (!condition)
+            {
+                throw new ArgumentException(message, argumentName);
+            }
+        }
+    }
+
+    /// <summary>
     ///   Utility methods which can be used to handle null references.
     /// </summary>
     public sealed class RaiseArgumentNullException : RaiseBase
@@ -765,5 +835,39 @@ namespace PommaLabs.Thrower
         }
 
         #endregion NotEqual - With parameter name, with message
+    }
+
+    /// <summary>
+    ///   Utility methods which can be used to handle bad object states.
+    /// </summary>
+    public sealed class RaiseInvalidOperationException : RaiseBase
+    {
+        /// <summary>
+        ///   Throws <see cref="InvalidOperationException"/> if given condition is true.
+        /// </summary>
+        /// <param name="condition">The condition.</param>
+        /// <param name="message">The optional message.</param>
+        [Conditional(UseThrowerDefine)]
+        public static void If(bool condition, string message = null)
+        {
+            if (condition)
+            {
+                throw string.IsNullOrEmpty(message) ? new InvalidOperationException() : new InvalidOperationException(message);
+            }
+        }
+
+        /// <summary>
+        ///   Throws <see cref="InvalidOperationException"/> if given condition is false.
+        /// </summary>
+        /// <param name="condition">The condition.</param>
+        /// <param name="message">The optional message.</param>
+        [Conditional(UseThrowerDefine)]
+        public static void IfNot(bool condition, string message = null)
+        {
+            if (!condition)
+            {
+                throw string.IsNullOrEmpty(message) ? new InvalidOperationException() : new InvalidOperationException(message);
+            }
+        }
     }
 }
