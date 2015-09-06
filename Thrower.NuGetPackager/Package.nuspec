@@ -11,8 +11,7 @@
 Fully managed library providing convenience methods to perform argument checks. It offers methods whose compilation can be enabled with the "USETHROWER" directive, and they can of course be disabled by undefining that directive. Therefore, it allows to write code whose integrity checks can be easily removed (for performance reasons, for example).
         </description>
         <releaseNotes>
-* Library is now portable.
-* Better implementation of IsEmpty for System.String.
+* More "Raise...Exception" classes for default and common exceptions.
         </releaseNotes>
         <summary>Fully managed library providing convenience methods to perform argument checks.</summary>
         <language>en-US</language>
