@@ -35,7 +35,19 @@ namespace PommaLabs.Thrower.UnitTests
         [Test]
         public void NotNullArgument_WithMsg()
         {
-            Raise<ArgumentNullException>.IfIsNull("PINO");
+            Raise<ArgumentNullException>.IfIsNull("PINO", "GINO");
+        }
+
+        [Test]
+        public void NotNullArgument_Struct()
+        {
+            Raise<ArgumentNullException>.IfIsNull(37M);
+        }
+
+        [Test]
+        public void NotNullArgument_WithMsg_Struct()
+        {
+            Raise<ArgumentNullException>.IfIsNull(37M, "GINO");
         }
 
         [Test]
@@ -87,7 +99,19 @@ namespace PommaLabs.Thrower.UnitTests
         [Test]
         public void NotNullArgument_WithMsg_UsingDefaultRaise()
         {
-            RaiseArgumentNullException.IfIsNull("PINO");
+            RaiseArgumentNullException.IfIsNull("PINO", "PINO", "GINO");
+        }
+
+        [Test]
+        public void NotNullArgument_UsingDefaultRaise_Struct()
+        {
+            RaiseArgumentNullException.IfIsNull(37M);
+        }
+
+        [Test]
+        public void NotNullArgument_WithMsg_UsingDefaultRaise_Struct()
+        {
+            RaiseArgumentNullException.IfIsNull(37M, "DECIMAL", "GINO");
         }
 
         [Test]

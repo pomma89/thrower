@@ -25,12 +25,6 @@ using System;
 using System.Collections.Generic;
 using System.Reflection;
 
-#if PORTABLE
-
-using IntrospectionExtensions = System.Reflection.IntrospectionExtensions;
-
-#endif
-
 namespace PommaLabs.Thrower.Core
 {
     /// <summary>
@@ -43,26 +37,49 @@ namespace PommaLabs.Thrower.Core
         /// </summary>
         /// <param name="type">The type.</param>
         /// <returns>The constructors for given type.</returns>
+#if (NET45 || NET46)
+        [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
+#endif
         public static IEnumerable<System.Reflection.ConstructorInfo> GetConstructors(Type type)
         {
 #if PORTABLE
-            return IntrospectionExtensions.GetTypeInfo(type).DeclaredConstructors;
+            return System.Reflection.IntrospectionExtensions.GetTypeInfo(type).DeclaredConstructors;
 #else
             return type.GetConstructors(BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance);
 #endif
-        }        
+        }
 
         /// <summary>
         ///   Determines whether the specified type is abstract.
         /// </summary>
         /// <param name="type">The type.</param>
         /// <returns>Whether the specified type is abstract.</returns>
-        public static bool IsAbstract(System.Type type)
+#if (NET45 || NET46)
+        [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
+#endif
+        public static bool IsAbstract(Type type)
         {
 #if PORTABLE
-            return IntrospectionExtensions.GetTypeInfo(type).IsAbstract;
+            return System.Reflection.IntrospectionExtensions.GetTypeInfo(type).IsAbstract;
 #else
             return type.IsAbstract;
+#endif
+        }
+
+        /// <summary>
+        ///   Determines whether the specified type is a value type.
+        /// </summary>
+        /// <param name="type">The type.</param>
+        /// <returns>Whether the specified type is a value type.</returns>
+#if (NET45 || NET46)
+        [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
+#endif
+        public static bool IsValueType(Type type)
+        {
+#if PORTABLE
+            return System.Reflection.IntrospectionExtensions.GetTypeInfo(type).IsValueType;
+#else
+            return type.IsValueType;
 #endif
         }
 
@@ -76,7 +93,10 @@ namespace PommaLabs.Thrower.Core
         ///   Whether an instance of the current <see cref="T:System.Type"/> can be assigned from an
         ///   instance of the specified Type.
         /// </returns>
-        public static bool IsAssignableFrom(object obj, System.Type type)
+#if (NET45 || NET46)
+        [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
+#endif
+        public static bool IsAssignableFrom(object obj, Type type)
         {
             if (ReferenceEquals(obj, null) || ReferenceEquals(type, null))
             {
@@ -84,7 +104,7 @@ namespace PommaLabs.Thrower.Core
             }
 
 #if PORTABLE
-            return IntrospectionExtensions.GetTypeInfo(obj.GetType()).IsAssignableFrom(IntrospectionExtensions.GetTypeInfo(type));
+            return System.Reflection.IntrospectionExtensions.GetTypeInfo(obj.GetType()).IsAssignableFrom(System.Reflection.IntrospectionExtensions.GetTypeInfo(type));
 #else
             return obj.GetType().IsAssignableFrom(type);
 #endif
@@ -96,7 +116,10 @@ namespace PommaLabs.Thrower.Core
         /// <param name="obj">The object.</param>
         /// <param name="type">The type.</param>
         /// <returns>Whether the specified object is an instance of the current <see cref="T:System.Type"/>.</returns>
-        public static bool IsInstanceOf(object obj, System.Type type)
+#if (NET45 || NET46)
+        [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
+#endif
+        public static bool IsInstanceOf(object obj, Type type)
         {
             if (ReferenceEquals(obj, null) || ReferenceEquals(type, null))
             {
@@ -104,7 +127,7 @@ namespace PommaLabs.Thrower.Core
             }
 
 #if PORTABLE
-            return IntrospectionExtensions.GetTypeInfo(type).IsAssignableFrom(IntrospectionExtensions.GetTypeInfo(obj.GetType()));
+            return System.Reflection.IntrospectionExtensions.GetTypeInfo(type).IsAssignableFrom(System.Reflection.IntrospectionExtensions.GetTypeInfo(obj.GetType()));
 #else
             return type.IsInstanceOfType(obj);
 #endif

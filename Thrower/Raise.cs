@@ -2042,7 +2042,7 @@ namespace PommaLabs.Thrower
         [SuppressMessage("Microsoft.Design", "CA1000:DoNotDeclareStaticMembersOnGenericTypes")]
         public static void IfIsNull<TArg>(TArg arg)
         {
-            if (ReferenceEquals(arg, null))
+            if (!PortableTypeInfo.IsValueType(typeof(TArg)) && ReferenceEquals(arg, null))
             {
                 DoThrow();
             }
@@ -2076,7 +2076,7 @@ namespace PommaLabs.Thrower
         [SuppressMessage("Microsoft.Design", "CA1000:DoNotDeclareStaticMembersOnGenericTypes")]
         public static void IfIsNull<TArg>(TArg arg, string message)
         {
-            if (ReferenceEquals(arg, null))
+            if (!PortableTypeInfo.IsValueType(typeof(TArg)) && ReferenceEquals(arg, null))
             {
                 DoThrow(message);
             }
@@ -2103,7 +2103,7 @@ namespace PommaLabs.Thrower
         [SuppressMessage("Microsoft.Design", "CA1000:DoNotDeclareStaticMembersOnGenericTypes")]
         public static void IfIsNotNull<TArg>(TArg arg)
         {
-            if (!ReferenceEquals(arg, null))
+            if (PortableTypeInfo.IsValueType(typeof(TArg)) || !ReferenceEquals(arg, null))
             {
                 DoThrow();
             }
@@ -2137,7 +2137,7 @@ namespace PommaLabs.Thrower
         [SuppressMessage("Microsoft.Design", "CA1000:DoNotDeclareStaticMembersOnGenericTypes")]
         public static void IfIsNotNull<TArg>(TArg arg, string message)
         {
-            if (!ReferenceEquals(arg, null))
+            if (PortableTypeInfo.IsValueType(typeof(TArg)) || !ReferenceEquals(arg, null))
             {
                 DoThrow(message);
             }
