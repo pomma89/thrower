@@ -18,38 +18,32 @@
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
     <OutputPath>bin\Debug\</OutputPath>
-    <DefineConstants>TRACE;DEBUG;USETHROWER</DefineConstants>
+    <DefineConstants>TRACE;DEBUG;USETHROWER NET35</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <DocumentationFile>bin\Debug\PommaLabs.Thrower.xml</DocumentationFile>
-    <CodeAnalysisRuleSet>Thrower.ruleset</CodeAnalysisRuleSet>
+    <CodeAnalysisRuleSet>
+    </CodeAnalysisRuleSet>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
-    <DefineConstants>TRACE;USETHROWER</DefineConstants>
+    <DefineConstants>TRACE;USETHROWER NET35</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <DocumentationFile>bin\Release\PommaLabs.Thrower.xml</DocumentationFile>
+    <CodeAnalysisRuleSet />
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Core\EnumerableExtensions.cs" />
-    <Compile Include="Core\PortableTypeInfo.cs" />
+    <Compile Include="Core\MyEnumerableExtensions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Raise.cs" />
-    <Compile Include="RaiseDefaultExceptions.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <Content Include="doxyfile.txt" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Thrower.ruleset" />
-  </ItemGroup>
+  <Import Project="..\..\Thrower\Thrower.projitems" Label="Shared" />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PostBuildEvent>if not exist "$(SolutionDir)Thrower.NuGetPackager/lib/net35" mkdir "$(SolutionDir)Thrower.NuGetPackager/lib/net35"

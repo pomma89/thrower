@@ -2,7 +2,7 @@
 // 
 // Author(s): Alessio Parma <alessio.parma@gmail.com>
 // 
-// Copyright (c) 2013-2014 Alessio Parma <alessio.parma@gmail.com>
+// Copyright (c) 2013-2016 Alessio Parma <alessio.parma@gmail.com>
 // 
 // Permission is hereby granted, free of charge, to any person obtaining a copy of this software and
 // associated documentation files (the "Software"), to deal in the Software without restriction,
@@ -19,8 +19,8 @@
 // DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
-using System;
 using NUnit.Framework;
+using System;
 
 namespace PommaLabs.Thrower.UnitTests
 {
@@ -35,7 +35,19 @@ namespace PommaLabs.Thrower.UnitTests
         [Test]
         public void NotNullArgument_WithMsg()
         {
-            Raise<ArgumentNullException>.IfIsNull("PINO");
+            Raise<ArgumentNullException>.IfIsNull("PINO", "GINO");
+        }
+
+        [Test]
+        public void NotNullArgument_Struct()
+        {
+            Raise<ArgumentNullException>.IfIsNull(37M);
+        }
+
+        [Test]
+        public void NotNullArgument_WithMsg_Struct()
+        {
+            Raise<ArgumentNullException>.IfIsNull(37M, "GINO");
         }
 
         [Test]
@@ -55,27 +67,27 @@ namespace PommaLabs.Thrower.UnitTests
         [Test]
         public void Not_NullArgument()
         {
-            Raise<ArgumentNullException>.IfIsNotNull((object)null);
+            Raise<ArgumentNullException>.IfIsNotNull((object) null);
         }
 
         [Test]
         public void Not_NullArgument_WithMsg()
         {
-            Raise<ArgumentNullException>.IfIsNotNull((object)null, TestMessage);
+            Raise<ArgumentNullException>.IfIsNotNull((object) null, TestMessage);
         }
 
         [Test]
         [ExpectedException(typeof(ArgumentNullException))]
         public void NullArgument()
         {
-            Raise<ArgumentNullException>.IfIsNull((object)null);
+            Raise<ArgumentNullException>.IfIsNull((object) null);
         }
 
         [Test]
         [ExpectedException(typeof(ArgumentNullException), ExpectedMessage = TestMessage)]
         public void NullArgument_WithMsg()
         {
-            Raise<ArgumentNullException>.IfIsNull((object)null, TestMessage);
+            Raise<ArgumentNullException>.IfIsNull((object) null, TestMessage);
         }
 
         [Test]
@@ -87,7 +99,19 @@ namespace PommaLabs.Thrower.UnitTests
         [Test]
         public void NotNullArgument_WithMsg_UsingDefaultRaise()
         {
-            RaiseArgumentNullException.IfIsNull("PINO");
+            RaiseArgumentNullException.IfIsNull("PINO", "PINO", "GINO");
+        }
+
+        [Test]
+        public void NotNullArgument_UsingDefaultRaise_Struct()
+        {
+            RaiseArgumentNullException.IfIsNull(37M);
+        }
+
+        [Test]
+        public void NotNullArgument_WithMsg_UsingDefaultRaise_Struct()
+        {
+            RaiseArgumentNullException.IfIsNull(37M, "DECIMAL", "GINO");
         }
 
         [Test]

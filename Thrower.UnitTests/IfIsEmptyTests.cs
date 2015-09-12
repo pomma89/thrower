@@ -2,7 +2,7 @@
 // 
 // Author(s): Alessio Parma <alessio.parma@gmail.com>
 // 
-// Copyright (c) 2013-2014 Alessio Parma <alessio.parma@gmail.com>
+// Copyright (c) 2013-2016 Alessio Parma <alessio.parma@gmail.com>
 // 
 // Permission is hereby granted, free of charge, to any person obtaining a copy of this software and
 // associated documentation files (the "Software"), to deal in the Software without restriction,
@@ -19,16 +19,16 @@
 // DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
+using NUnit.Framework;
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using NUnit.Framework;
 
 namespace PommaLabs.Thrower.UnitTests
 {
     sealed class IfIsEmptyTests : AbstractDiagnosticsTests
     {
-        private const string BlankString = "   ";
+        const string BlankString = "   ";
 
         [Test]
         [ExpectedException(typeof(FormatException))]
@@ -45,17 +45,17 @@ namespace PommaLabs.Thrower.UnitTests
         }
 
         [Test]
-        [ExpectedException(typeof(ApplicationException))]
+        [ExpectedException(typeof(FormatException))]
         public void IfIsEmpty_EmptyIntegerCollection()
         {
-            Raise<ApplicationException>.IfIsEmpty<int>(new List<int>());
+            Raise<FormatException>.IfIsEmpty<int>(new List<int>());
         }
 
         [Test]
-        [ExpectedException(typeof(ApplicationException), ExpectedMessage = TestMessage)]
+        [ExpectedException(typeof(FormatException), ExpectedMessage = TestMessage)]
         public void IfIsEmpty_EmptyIntegerCollection_WithMsg()
         {
-            Raise<ApplicationException>.IfIsEmpty<int>(new List<int>(), TestMessage);
+            Raise<FormatException>.IfIsEmpty<int>(new List<int>(), TestMessage);
         }
 
         [Test]
@@ -75,13 +75,13 @@ namespace PommaLabs.Thrower.UnitTests
         [Test]
         public void IfIsEmpty_FullIntegerCollection()
         {
-            Raise<ApplicationException>.IfIsEmpty<int>(new List<int> { 1, 2, 3 });
+            Raise<FormatException>.IfIsEmpty<int>(new List<int> { 1, 2, 3 });
         }
 
         [Test]
         public void IfIsEmpty_FullIntegerCollection_WithMsg()
         {
-            Raise<ApplicationException>.IfIsEmpty<int>(new List<int> { 1, 2, 3 }, TestMessage);
+            Raise<FormatException>.IfIsEmpty<int>(new List<int> { 1, 2, 3 }, TestMessage);
         }
 
         [Test]
@@ -97,29 +97,29 @@ namespace PommaLabs.Thrower.UnitTests
         }
 
         [Test]
-        [ExpectedException(typeof(ApplicationException))]
+        [ExpectedException(typeof(FormatException))]
         public void IfIsEmpty_ICollection_EmptyIntegerCollection()
         {
-            Raise<ApplicationException>.IfIsEmpty((ICollection)new List<int>());
+            Raise<FormatException>.IfIsEmpty((ICollection) new List<int>());
         }
 
         [Test]
-        [ExpectedException(typeof(ApplicationException), ExpectedMessage = TestMessage)]
+        [ExpectedException(typeof(FormatException), ExpectedMessage = TestMessage)]
         public void IfIsEmpty_ICollection_EmptyIntegerCollection_WithMsg()
         {
-            Raise<ApplicationException>.IfIsEmpty((ICollection)new List<int>(), TestMessage);
+            Raise<FormatException>.IfIsEmpty((ICollection) new List<int>(), TestMessage);
         }
 
         [Test]
         public void IfIsEmpty_ICollection_FullIntegerCollection()
         {
-            Raise<ApplicationException>.IfIsEmpty((ICollection)new List<int> { 1, 2, 3 });
+            Raise<FormatException>.IfIsEmpty((ICollection) new List<int> { 1, 2, 3 });
         }
 
         [Test]
         public void IfIsEmpty_ICollection_FullIntegerCollection_WithMsg()
         {
-            Raise<ApplicationException>.IfIsEmpty((ICollection)new List<int> { 1, 2, 3 }, TestMessage);
+            Raise<FormatException>.IfIsEmpty((ICollection) new List<int> { 1, 2, 3 }, TestMessage);
         }
 
         [Test]
@@ -137,13 +137,13 @@ namespace PommaLabs.Thrower.UnitTests
         [Test]
         public void IfIsNotEmpty_EmptyIntegerCollection()
         {
-            Raise<ApplicationException>.IfIsNotEmpty<int>(new List<int>());
+            Raise<FormatException>.IfIsNotEmpty<int>(new List<int>());
         }
 
         [Test]
         public void IfIsNotEmpty_EmptyIntegerCollection_WithMsg()
         {
-            Raise<ApplicationException>.IfIsNotEmpty<int>(new List<int>(), TestMessage);
+            Raise<FormatException>.IfIsNotEmpty<int>(new List<int>(), TestMessage);
         }
 
         [Test]
@@ -159,17 +159,17 @@ namespace PommaLabs.Thrower.UnitTests
         }
 
         [Test]
-        [ExpectedException(typeof(ApplicationException))]
+        [ExpectedException(typeof(FormatException))]
         public void IfIsNotEmpty_FullIntegerCollection()
         {
-            Raise<ApplicationException>.IfIsNotEmpty<int>(new List<int> { 1, 2, 3 });
+            Raise<FormatException>.IfIsNotEmpty<int>(new List<int> { 1, 2, 3 });
         }
 
         [Test]
-        [ExpectedException(typeof(ApplicationException), ExpectedMessage = TestMessage)]
+        [ExpectedException(typeof(FormatException), ExpectedMessage = TestMessage)]
         public void IfIsNotEmpty_FullIntegerCollection_WithMsg()
         {
-            Raise<ApplicationException>.IfIsNotEmpty<int>(new List<int> { 1, 2, 3 }, TestMessage);
+            Raise<FormatException>.IfIsNotEmpty<int>(new List<int> { 1, 2, 3 }, TestMessage);
         }
 
         [Test]
@@ -189,27 +189,27 @@ namespace PommaLabs.Thrower.UnitTests
         [Test]
         public void IfIsNotEmpty_ICollection_EmptyIntegerCollection()
         {
-            Raise<ApplicationException>.IfIsNotEmpty((ICollection)new List<int>());
+            Raise<FormatException>.IfIsNotEmpty((ICollection) new List<int>());
         }
 
         [Test]
         public void IfIsNotEmpty_ICollection_EmptyIntegerCollection_WithMsg()
         {
-            Raise<ApplicationException>.IfIsNotEmpty((ICollection)new List<int>(), TestMessage);
+            Raise<FormatException>.IfIsNotEmpty((ICollection) new List<int>(), TestMessage);
         }
 
         [Test]
-        [ExpectedException(typeof(ApplicationException))]
+        [ExpectedException(typeof(FormatException))]
         public void IfIsNotEmpty_ICollection_FullIntegerCollection()
         {
-            Raise<ApplicationException>.IfIsNotEmpty((ICollection)new List<int> { 1, 2, 3 });
+            Raise<FormatException>.IfIsNotEmpty((ICollection) new List<int> { 1, 2, 3 });
         }
 
         [Test]
-        [ExpectedException(typeof(ApplicationException), ExpectedMessage = TestMessage)]
+        [ExpectedException(typeof(FormatException), ExpectedMessage = TestMessage)]
         public void IfIsNotEmpty_ICollection_FullIntegerCollection_WithMsg()
         {
-            Raise<ApplicationException>.IfIsNotEmpty((ICollection)new List<int> { 1, 2, 3 }, TestMessage);
+            Raise<FormatException>.IfIsNotEmpty((ICollection) new List<int> { 1, 2, 3 }, TestMessage);
         }
     }
 }
