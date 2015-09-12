@@ -11,7 +11,8 @@
 Fully managed library providing convenience methods to perform argument checks. It offers methods whose compilation can be enabled with the "USETHROWER" directive, and they can of course be disabled by undefining that directive. Therefore, it allows to write code whose integrity checks can be easily removed (for performance reasons, for example).
         </description>
         <releaseNotes>
-* More "Raise...Exception" classes for default and common exceptions.
+* Added new DLLs specifically compiled for .NET 4, 4.5 and 4.6.
+* Thanks to shared projects, all platform specific versions are properly unit tested.
         </releaseNotes>
         <summary>Fully managed library providing convenience methods to perform argument checks.</summary>
         <language>en-US</language>
@@ -19,7 +20,7 @@ Fully managed library providing convenience methods to perform argument checks. 
         <iconUrl>https://googledrive.com/host/0B8v0ikF4z2BiR29YQmxfSlE1Sms/Progetti/Thrower/logo-128.png</iconUrl>
         <requireLicenseAcceptance>false</requireLicenseAcceptance>
         <licenseUrl>http://opensource.org/licenses/MIT</licenseUrl>
-        <copyright>Copyright (c) 2013-2014 Alessio Parma &lt;alessio.parma@gmail.com&gt;</copyright>
+        <copyright>Copyright (c) 2013-2016 Alessio Parma &lt;alessio.parma@gmail.com&gt;</copyright>
         <dependencies></dependencies>
         <references></references>
         <tags>preconditions check integrity parameters arguments conditional compilation</tags>
