@@ -46,7 +46,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\Thrower.NET40\Thrower.NET40.csproj">
+    <ProjectReference Include="..\Thrower.NET40\Thrower.NET40.csproj">
       <Project>{894ecf14-90a8-4103-863e-13e13c4a5889}</Project>
       <Name>Thrower.NET40</Name>
     </ProjectReference>
@@ -54,7 +54,10 @@
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
-  <Import Project="..\..\Thrower.UnitTests.Shared\Thrower.UnitTests.Shared.projitems" Label="Shared" />
+  <ItemGroup>
+    <Service Include="{82A7F48D-3B50-4B1E-B82E-3ADA8210C358}" />
+  </ItemGroup>
+  <Import Project="..\..\Thrower.UnitTests\Thrower.UnitTests.projitems" Label="Shared" />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

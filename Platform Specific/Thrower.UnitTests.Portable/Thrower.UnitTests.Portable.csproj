@@ -35,7 +35,7 @@
   </PropertyGroup>
   <ItemGroup>
     <!-- A reference to the entire .NET Framework is automatically included -->
-    <ProjectReference Include="..\..\Thrower.Portable\Thrower.Portable.csproj">
+    <ProjectReference Include="..\Thrower.Portable\Thrower.Portable.csproj">
       <Project>{595363fb-70cc-4042-8cf0-68b0af5ffe1d}</Project>
       <Name>Thrower.Portable</Name>
     </ProjectReference>
@@ -52,7 +52,10 @@
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
-  <Import Project="..\..\Thrower.UnitTests.Shared\Thrower.UnitTests.Shared.projitems" Label="Shared" />
+  <ItemGroup>
+    <Service Include="{82A7F48D-3B50-4B1E-B82E-3ADA8210C358}" />
+  </ItemGroup>
+  <Import Project="..\..\Thrower.UnitTests\Thrower.UnitTests.projitems" Label="Shared" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

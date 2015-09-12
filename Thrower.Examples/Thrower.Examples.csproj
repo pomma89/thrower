@@ -61,8 +61,8 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Thrower\Thrower.NET35.csproj">
-      <Project>{A7F28AB3-4B28-4856-9AA8-61BC71E0C466}</Project>
+    <ProjectReference Include="..\Platform Specific\Thrower.NET35\Thrower.NET35.csproj">
+      <Project>{a7f28ab3-4b28-4856-9aa8-61bc71e0c466}</Project>
       <Name>Thrower.NET35</Name>
     </ProjectReference>
   </ItemGroup>
