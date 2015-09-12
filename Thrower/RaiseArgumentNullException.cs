@@ -36,6 +36,9 @@ namespace PommaLabs.Thrower
         /// </summary>
         /// <typeparam name="TArg">The type of the argument.</typeparam>
         /// <param name="argument">The argument.</param>
+#if (NET45 || NET46)
+        [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
+#endif
         [Conditional(UseThrowerDefine)]
         public static void IfIsNull<TArg>(TArg argument)
         {
@@ -51,6 +54,9 @@ namespace PommaLabs.Thrower
         /// <typeparam name="TArg">The type of the argument.</typeparam>
         /// <param name="argument">The argument.</param>
         /// <param name="argumentName">The name of the argument.</param>
+#if (NET45 || NET46)
+        [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
+#endif
         [Conditional(UseThrowerDefine)]
         public static void IfIsNull<TArg>(TArg argument, string argumentName)
         {
@@ -67,6 +73,9 @@ namespace PommaLabs.Thrower
         /// <param name="argument">The argument.</param>
         /// <param name="argumentName">The name of the argument.</param>
         /// <param name="message">The message that should be put into the exception.</param>
+#if (NET45 || NET46)
+        [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
+#endif
         [Conditional(UseThrowerDefine)]
         public static void IfIsNull<TArg>(TArg argument, string argumentName, string message)
         {
