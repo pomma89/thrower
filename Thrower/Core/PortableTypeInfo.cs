@@ -23,7 +23,6 @@
 
 using System;
 using System.Collections.Generic;
-using System.Reflection;
 
 namespace PommaLabs.Thrower.Core
 {
@@ -45,7 +44,7 @@ namespace PommaLabs.Thrower.Core
 #if PORTABLE
             return System.Reflection.IntrospectionExtensions.GetTypeInfo(type).DeclaredConstructors;
 #else
-            return type.GetConstructors(BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance);
+            return type.GetConstructors(System.Reflection.BindingFlags.Public | System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance);
 #endif
         }
 
