@@ -2,26 +2,22 @@
 <Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
-    <MinimumVisualStudioVersion>11.0</MinimumVisualStudioVersion>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{595363FB-70CC-4042-8CF0-68B0AF5FFE1D}</ProjectGuid>
+    <ProjectGuid>{28B1254D-B6BB-4C2F-9094-6F0E1A0902EC}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>PommaLabs.Thrower</RootNamespace>
     <AssemblyName>PommaLabs.Thrower</AssemblyName>
-    <DefaultLanguage>en-US</DefaultLanguage>
-    <FileAlignment>512</FileAlignment>
-    <ProjectTypeGuids>{786C830F-07A1-408B-BD7F-6EE04809D6DB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
-    <TargetFrameworkProfile>Profile259</TargetFrameworkProfile>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
     <OutputPath>bin\Debug\</OutputPath>
-    <DefineConstants>TRACE;DEBUG;PORTABLE USETHROWER</DefineConstants>
+    <DefineConstants>TRACE;DEBUG;USETHROWER NET45</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <DocumentationFile>bin\Debug\PommaLabs.Thrower.xml</DocumentationFile>
@@ -30,35 +26,26 @@
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
-    <DefineConstants>TRACE;PORTABLE USETHROWER</DefineConstants>
+    <DefineConstants>TRACE;USETHROWER NET45</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <DocumentationFile>bin\Release\PommaLabs.Thrower.xml</DocumentationFile>
   </PropertyGroup>
   <ItemGroup>
-    <!-- A reference to the entire .NET Framework is automatically included -->
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="Microsoft.CSharp" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="..\Thrower\Core\EnumerableExtensions.cs">
-      <Link>Core\EnumerableExtensions.cs</Link>
-    </Compile>
-    <Compile Include="..\Thrower\Core\PortableTypeInfo.cs">
-      <Link>Core\PortableTypeInfo.cs</Link>
-    </Compile>
-    <Compile Include="..\Thrower\Raise.cs">
-      <Link>Raise.cs</Link>
-    </Compile>
-    <Compile Include="..\Thrower\RaiseDefaultExceptions.cs">
-      <Link>RaiseDefaultExceptions.cs</Link>
-    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
-  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
+  <Import Project="..\..\Thrower\Thrower.projitems" Label="Shared" />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
-    <PostBuildEvent>if not exist "$(SolutionDir)Thrower.NuGetPackager/lib/portable-net45+win8+wp8+wpa81" mkdir "$(SolutionDir)Thrower.NuGetPackager/lib/portable-net45+win8+wp8+wpa81"
-copy "$(TargetDir)PommaLabs.Thrower.dll" "$(SolutionDir)Thrower.NuGetPackager/lib/portable-net45+win8+wp8+wpa81"
-copy "$(TargetDir)PommaLabs.Thrower.pdb" "$(SolutionDir)Thrower.NuGetPackager/lib/portable-net45+win8+wp8+wpa81"
-copy "$(TargetDir)PommaLabs.Thrower.xml" "$(SolutionDir)Thrower.NuGetPackager/lib/portable-net45+win8+wp8+wpa81"</PostBuildEvent>
+    <PostBuildEvent>if not exist "$(SolutionDir)Thrower.NuGetPackager/lib/net45" mkdir "$(SolutionDir)Thrower.NuGetPackager/lib/net45"
+copy "$(TargetDir)PommaLabs.Thrower.dll" "$(SolutionDir)Thrower.NuGetPackager/lib/net45"
+copy "$(TargetDir)PommaLabs.Thrower.pdb" "$(SolutionDir)Thrower.NuGetPackager/lib/net45"
+copy "$(TargetDir)PommaLabs.Thrower.xml" "$(SolutionDir)Thrower.NuGetPackager/lib/net45"</PostBuildEvent>
   </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

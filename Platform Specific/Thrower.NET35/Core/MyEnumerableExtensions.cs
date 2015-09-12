@@ -1,10 +1,10 @@
-﻿// File name: EnumerableExtensions.cs
+﻿// File name: MyEnumerableExtensions.cs
 // 
 // Author(s): Alessio Parma <alessio.parma@gmail.com>
 // 
 // The MIT License (MIT)
 // 
-// Copyright (c) 2014-2016 Alessio Parma <alessio.parma@gmail.com>
+// Copyright (c) 2013-2016 Alessio Parma <alessio.parma@gmail.com>
 // 
 // Permission is hereby granted, free of charge, to any person obtaining a copy of this software and
 // associated documentation files (the "Software"), to deal in the Software without restriction,
@@ -21,15 +21,14 @@
 // DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
-using System;
 using System.Collections.Generic;
 
-namespace PommaLabs.Thrower.Core
+namespace System.Linq
 {
     /// <summary>
     ///   Taken from: http://blogs.msdn.com/b/ericlippert/archive/2009/05/07/zip-me-up.aspx.
     /// </summary>
-    static class EnumerableExtensions
+    static class MyEnumerableExtensions
     {
         public static IEnumerable<TResult> Zip<TFirst, TSecond, TResult>(this IEnumerable<TFirst> first, IEnumerable<TSecond> second, Func<TFirst, TSecond, TResult> resultSelector)
         {

@@ -37,10 +37,12 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|AnyCPU'">
     <PlatformTarget>AnyCPU</PlatformTarget>
     <OutputPath>bin\Debug\</OutputPath>
+    <CodeAnalysisRuleSet />
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|AnyCPU'">
     <PlatformTarget>AnyCPU</PlatformTarget>
     <OutputPath>bin\Release\</OutputPath>
+    <CodeAnalysisRuleSet />
   </PropertyGroup>
   <PropertyGroup>
     <StartupObject />
@@ -59,6 +61,9 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="lib\net35\" />
+    <Folder Include="lib\net40\" />
+    <Folder Include="lib\net45\" />
+    <Folder Include="lib\net46\" />
     <Folder Include="lib\portable-net45+win8+wp8+wpa81\" />
   </ItemGroup>
   <ItemGroup>

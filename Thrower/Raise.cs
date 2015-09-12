@@ -1,8 +1,10 @@
-﻿// Raise.cs
+﻿// File name: Raise.cs
 // 
 // Author(s): Alessio Parma <alessio.parma@gmail.com>
 // 
-// Copyright (c) 2013-2014 Alessio Parma <alessio.parma@gmail.com>
+// The MIT License (MIT)
+// 
+// Copyright (c) 2013-2016 Alessio Parma <alessio.parma@gmail.com>
 // 
 // Permission is hereby granted, free of charge, to any person obtaining a copy of this software and
 // associated documentation files (the "Software"), to deal in the Software without restriction,
@@ -128,6 +130,9 @@ namespace PommaLabs.Thrower
         ///   <typeparamref name="TEx"/> will be thrown. <br/> In order to do that,
         ///   <typeparamref name="TEx"/> must have a constructor which doesn't take any arguments.
         /// </remarks>
+#if (NET45 || NET46)
+        [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
+#endif
         [Conditional(UseThrowerDefine)]
         [SuppressMessage("Microsoft.Design", "CA1000:DoNotDeclareStaticMembersOnGenericTypes")]
         public static void If(bool cond)
@@ -159,6 +164,9 @@ namespace PommaLabs.Thrower
         ///   <br/> If both constructors are available, then the one which takes a
         ///   <see cref="string"/> and an <see cref="System.Exception"/> will be used to throw the exception.
         /// </remarks>
+#if (NET45 || NET46)
+        [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
+#endif
         [Conditional(UseThrowerDefine)]
         [SuppressMessage("Microsoft.Design", "CA1000:DoNotDeclareStaticMembersOnGenericTypes")]
         public static void If(bool cond, string message)
@@ -183,6 +191,9 @@ namespace PommaLabs.Thrower
         ///   <typeparamref name="TEx"/> will be thrown. <br/> In order to do that,
         ///   <typeparamref name="TEx"/> must have a constructor which doesn't take any arguments.
         /// </remarks>
+#if (NET45 || NET46)
+        [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
+#endif
         [Conditional(UseThrowerDefine)]
         [SuppressMessage("Microsoft.Design", "CA1000:DoNotDeclareStaticMembersOnGenericTypes")]
         public static void IfNot(bool cond)
@@ -214,6 +225,9 @@ namespace PommaLabs.Thrower
         ///   <br/> If both constructors are available, then the one which takes a
         ///   <see cref="string"/> and an <see cref="System.Exception"/> will be used to throw the exception.
         /// </remarks>
+#if (NET45 || NET46)
+        [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
+#endif
         [Conditional(UseThrowerDefine)]
         [SuppressMessage("Microsoft.Design", "CA1000:DoNotDeclareStaticMembersOnGenericTypes")]
         public static void IfNot(bool cond, string message)
@@ -239,6 +253,9 @@ namespace PommaLabs.Thrower
         ///   thrown. <br/> In order to do that, <typeparamref name="TEx"/> must have a constructor
         ///   which doesn't take any arguments.
         /// </remarks>
+#if (NET45 || NET46)
+        [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
+#endif
         [Conditional(UseThrowerDefine)]
         [SuppressMessage("Microsoft.Design", "CA1000:DoNotDeclareStaticMembersOnGenericTypes")]
         public static void IfAreEqual<TArg1, TArg2>(TArg1 arg1, TArg2 arg2)
@@ -271,6 +288,9 @@ namespace PommaLabs.Thrower
         ///   constructors are available, then the one which takes a <see cref="string"/> and an
         ///   <see cref="System.Exception"/> will be used to throw the exception.
         /// </remarks>
+#if (NET45 || NET46)
+        [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
+#endif
         [Conditional(UseThrowerDefine)]
         [SuppressMessage("Microsoft.Design", "CA1000:DoNotDeclareStaticMembersOnGenericTypes")]
         public static void IfAreEqual<TArg1, TArg2>(TArg1 arg1, TArg2 arg2, string message)
@@ -296,6 +316,9 @@ namespace PommaLabs.Thrower
         ///   be thrown. <br/> In order to do that, <typeparamref name="TEx"/> must have a
         ///   constructor which doesn't take any arguments.
         /// </remarks>
+#if (NET45 || NET46)
+        [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
+#endif
         [Conditional(UseThrowerDefine)]
         [SuppressMessage("Microsoft.Design", "CA1000:DoNotDeclareStaticMembersOnGenericTypes")]
         public static void IfAreNotEqual<TArg1, TArg2>(TArg1 arg1, TArg2 arg2)
@@ -328,6 +351,9 @@ namespace PommaLabs.Thrower
         ///   constructors are available, then the one which takes a <see cref="string"/> and an
         ///   <see cref="System.Exception"/> will be used to throw the exception.
         /// </remarks>
+#if (NET45 || NET46)
+        [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
+#endif
         [Conditional(UseThrowerDefine)]
         [SuppressMessage("Microsoft.Design", "CA1000:DoNotDeclareStaticMembersOnGenericTypes")]
         public static void IfAreNotEqual<TArg1, TArg2>(TArg1 arg1, TArg2 arg2, string message)
@@ -353,6 +379,9 @@ namespace PommaLabs.Thrower
         ///   <typeparamref name="TEx"/> will be thrown. <br/> In order to do that,
         ///   <typeparamref name="TEx"/> must have a constructor which doesn't take any arguments.
         /// </remarks>
+#if (NET45 || NET46)
+        [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
+#endif
         [Conditional(UseThrowerDefine)]
         [SuppressMessage("Microsoft.Design", "CA1000:DoNotDeclareStaticMembersOnGenericTypes")]
         public static void IfAreSame<TArg1, TArg2>(TArg1 arg1, TArg2 arg2)
@@ -385,6 +414,9 @@ namespace PommaLabs.Thrower
         ///   <br/> If both constructors are available, then the one which takes a
         ///   <see cref="string"/> and an <see cref="System.Exception"/> will be used to throw the exception.
         /// </remarks>
+#if (NET45 || NET46)
+        [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
+#endif
         [Conditional(UseThrowerDefine)]
         [SuppressMessage("Microsoft.Design", "CA1000:DoNotDeclareStaticMembersOnGenericTypes")]
         public static void IfAreSame<TArg1, TArg2>(TArg1 arg1, TArg2 arg2, string message)
@@ -410,6 +442,9 @@ namespace PommaLabs.Thrower
         ///   <typeparamref name="TEx"/> will be thrown. <br/> In order to do that,
         ///   <typeparamref name="TEx"/> must have a constructor which doesn't take any arguments.
         /// </remarks>
+#if (NET45 || NET46)
+        [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
+#endif
         [Conditional(UseThrowerDefine)]
         [SuppressMessage("Microsoft.Design", "CA1000:DoNotDeclareStaticMembersOnGenericTypes")]
         public static void IfAreNotSame<TArg1, TArg2>(TArg1 arg1, TArg2 arg2)
@@ -442,6 +477,9 @@ namespace PommaLabs.Thrower
         ///   <br/> If both constructors are available, then the one which takes a
         ///   <see cref="string"/> and an <see cref="System.Exception"/> will be used to throw the exception.
         /// </remarks>
+#if (NET45 || NET46)
+        [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
+#endif
         [Conditional(UseThrowerDefine)]
         [SuppressMessage("Microsoft.Design", "CA1000:DoNotDeclareStaticMembersOnGenericTypes")]
         public static void IfAreNotSame<TArg1, TArg2>(TArg1 arg1, TArg2 arg2, string message)
@@ -467,6 +505,9 @@ namespace PommaLabs.Thrower
         ///   type <typeparamref name="TEx"/> will be thrown. <br/> In order to do that,
         ///   <typeparamref name="TEx"/> must have a constructor which doesn't take any arguments.
         /// </remarks>
+#if (NET45 || NET46)
+        [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
+#endif
         [Conditional(UseThrowerDefine)]
         [SuppressMessage("Microsoft.Design", "CA1000:DoNotDeclareStaticMembersOnGenericTypes")]
         public static void IfIsAssignableFrom(object instance, Type type)
@@ -501,6 +542,9 @@ namespace PommaLabs.Thrower
         ///   constructors are available, then the one which takes a <see cref="string"/> and an
         ///   <see cref="System.Exception"/> will be used to throw the exception.
         /// </remarks>
+#if (NET45 || NET46)
+        [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
+#endif
         [Conditional(UseThrowerDefine)]
         [SuppressMessage("Microsoft.Design", "CA1000:DoNotDeclareStaticMembersOnGenericTypes")]
         public static void IfIsAssignableFrom(object instance, Type type, string message)
@@ -526,6 +570,9 @@ namespace PommaLabs.Thrower
         ///   type <typeparamref name="TEx"/> will be thrown. <br/> In order to do that,
         ///   <typeparamref name="TEx"/> must have a constructor which doesn't take any arguments.
         /// </remarks>
+#if (NET45 || NET46)
+        [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
+#endif
         [Conditional(UseThrowerDefine)]
         [SuppressMessage("Microsoft.Design", "CA1000:DoNotDeclareStaticMembersOnGenericTypes")]
         [SuppressMessage("Microsoft.Design", "CA1004:GenericMethodsShouldProvideTypeParameter")]
@@ -561,6 +608,9 @@ namespace PommaLabs.Thrower
         ///   constructors are available, then the one which takes a <see cref="string"/> and an
         ///   <see cref="System.Exception"/> will be used to throw the exception.
         /// </remarks>
+#if (NET45 || NET46)
+        [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
+#endif
         [Conditional(UseThrowerDefine)]
         [SuppressMessage("Microsoft.Design", "CA1000:DoNotDeclareStaticMembersOnGenericTypes")]
         [SuppressMessage("Microsoft.Design", "CA1004:GenericMethodsShouldProvideTypeParameter")]
@@ -587,6 +637,9 @@ namespace PommaLabs.Thrower
         ///   of type <typeparamref name="TEx"/> will be thrown. <br/> In order to do that,
         ///   <typeparamref name="TEx"/> must have a constructor which doesn't take any arguments.
         /// </remarks>
+#if (NET45 || NET46)
+        [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
+#endif
         [Conditional(UseThrowerDefine)]
         [SuppressMessage("Microsoft.Design", "CA1000:DoNotDeclareStaticMembersOnGenericTypes")]
         public static void IfIsNotAssignableFrom(object instance, Type type)
@@ -621,6 +674,9 @@ namespace PommaLabs.Thrower
         ///   constructors are available, then the one which takes a <see cref="string"/> and an
         ///   <see cref="System.Exception"/> will be used to throw the exception.
         /// </remarks>
+#if (NET45 || NET46)
+        [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
+#endif
         [Conditional(UseThrowerDefine)]
         [SuppressMessage("Microsoft.Design", "CA1000:DoNotDeclareStaticMembersOnGenericTypes")]
         public static void IfIsNotAssignableFrom(object instance, Type type, string message)
@@ -648,6 +704,9 @@ namespace PommaLabs.Thrower
         ///   of type <typeparamref name="TEx"/> will be thrown. <br/> In order to do that,
         ///   <typeparamref name="TEx"/> must have a constructor which doesn't take any arguments.
         /// </remarks>
+#if (NET45 || NET46)
+        [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
+#endif
         [Conditional(UseThrowerDefine)]
         [SuppressMessage("Microsoft.Design", "CA1000:DoNotDeclareStaticMembersOnGenericTypes")]
         [SuppressMessage("Microsoft.Design", "CA1004:GenericMethodsShouldProvideTypeParameter")]
@@ -685,6 +744,9 @@ namespace PommaLabs.Thrower
         ///   constructors are available, then the one which takes a <see cref="string"/> and an
         ///   <see cref="System.Exception"/> will be used to throw the exception.
         /// </remarks>
+#if (NET45 || NET46)
+        [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
+#endif
         [Conditional(UseThrowerDefine)]
         [SuppressMessage("Microsoft.Design", "CA1000:DoNotDeclareStaticMembersOnGenericTypes")]
         [SuppressMessage("Microsoft.Design", "CA1004:GenericMethodsShouldProvideTypeParameter")]
@@ -711,6 +773,9 @@ namespace PommaLabs.Thrower
         ///   <typeparamref name="TEx"/> will be thrown. <br/> In order to do that,
         ///   <typeparamref name="TEx"/> must have a constructor which doesn't take any arguments.
         /// </remarks>
+#if (NET45 || NET46)
+        [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
+#endif
         [Conditional(UseThrowerDefine)]
         [SuppressMessage("Microsoft.Design", "CA1000:DoNotDeclareStaticMembersOnGenericTypes")]
         public static void IfIsContainedIn(object argument, System.Collections.IList collection)
@@ -743,6 +808,9 @@ namespace PommaLabs.Thrower
         ///   <br/> If both constructors are available, then the one which takes a
         ///   <see cref="string"/> and an <see cref="System.Exception"/> will be used to throw the exception.
         /// </remarks>
+#if (NET45 || NET46)
+        [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
+#endif
         [Conditional(UseThrowerDefine)]
         [SuppressMessage("Microsoft.Design", "CA1000:DoNotDeclareStaticMembersOnGenericTypes")]
         public static void IfIsContainedIn(object argument, System.Collections.IList collection, string message)
@@ -768,6 +836,9 @@ namespace PommaLabs.Thrower
         ///   <typeparamref name="TEx"/> will be thrown. <br/> In order to do that,
         ///   <typeparamref name="TEx"/> must have a constructor which doesn't take any arguments.
         /// </remarks>
+#if (NET45 || NET46)
+        [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
+#endif
         [Conditional(UseThrowerDefine)]
         [SuppressMessage("Microsoft.Design", "CA1000:DoNotDeclareStaticMembersOnGenericTypes")]
         public static void IfIsNotContainedIn(object argument, System.Collections.IList collection)
@@ -800,6 +871,9 @@ namespace PommaLabs.Thrower
         ///   <br/> If both constructors are available, then the one which takes a
         ///   <see cref="string"/> and an <see cref="System.Exception"/> will be used to throw the exception.
         /// </remarks>
+#if (NET45 || NET46)
+        [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
+#endif
         [Conditional(UseThrowerDefine)]
         [SuppressMessage("Microsoft.Design", "CA1000:DoNotDeclareStaticMembersOnGenericTypes")]
         public static void IfIsNotContainedIn(object argument, System.Collections.IList collection, string message)
@@ -825,6 +899,9 @@ namespace PommaLabs.Thrower
         ///   <typeparamref name="TEx"/> will be thrown. <br/> In order to do that,
         ///   <typeparamref name="TEx"/> must have a constructor which doesn't take any arguments.
         /// </remarks>
+#if (NET45 || NET46)
+        [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
+#endif
         [Conditional(UseThrowerDefine)]
         [SuppressMessage("Microsoft.Design", "CA1000:DoNotDeclareStaticMembersOnGenericTypes")]
         public static void IfIsContainedIn<TArg>(TArg arg, System.Collections.Generic.IEnumerable<TArg> collection)
@@ -857,6 +934,9 @@ namespace PommaLabs.Thrower
         ///   <br/> If both constructors are available, then the one which takes a
         ///   <see cref="string"/> and an <see cref="System.Exception"/> will be used to throw the exception.
         /// </remarks>
+#if (NET45 || NET46)
+        [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
+#endif
         [Conditional(UseThrowerDefine)]
         [SuppressMessage("Microsoft.Design", "CA1000:DoNotDeclareStaticMembersOnGenericTypes")]
         public static void IfIsContainedIn<TArg>(TArg arg, System.Collections.Generic.IEnumerable<TArg> collection, string message)
@@ -882,6 +962,9 @@ namespace PommaLabs.Thrower
         ///   <typeparamref name="TEx"/> will be thrown. <br/> In order to do that,
         ///   <typeparamref name="TEx"/> must have a constructor which doesn't take any arguments.
         /// </remarks>
+#if (NET45 || NET46)
+        [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
+#endif
         [Conditional(UseThrowerDefine)]
         [SuppressMessage("Microsoft.Design", "CA1000:DoNotDeclareStaticMembersOnGenericTypes")]
         public static void IfIsNotContainedIn<TArg>(TArg arg, System.Collections.Generic.IEnumerable<TArg> collection)
@@ -914,6 +997,9 @@ namespace PommaLabs.Thrower
         ///   <br/> If both constructors are available, then the one which takes a
         ///   <see cref="string"/> and an <see cref="System.Exception"/> will be used to throw the exception.
         /// </remarks>
+#if (NET45 || NET46)
+        [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
+#endif
         [Conditional(UseThrowerDefine)]
         [SuppressMessage("Microsoft.Design", "CA1000:DoNotDeclareStaticMembersOnGenericTypes")]
         public static void IfIsNotContainedIn<TArg>(TArg arg, System.Collections.Generic.IEnumerable<TArg> collection, string message)
@@ -939,6 +1025,9 @@ namespace PommaLabs.Thrower
         ///   <typeparamref name="TEx"/> will be thrown. <br/> In order to do that,
         ///   <typeparamref name="TEx"/> must have a constructor which doesn't take any arguments.
         /// </remarks>
+#if (NET45 || NET46)
+        [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
+#endif
         [Conditional(UseThrowerDefine)]
         [SuppressMessage("Microsoft.Design", "CA1000:DoNotDeclareStaticMembersOnGenericTypes")]
         public static void IfIsContainedIn<TArg>(TArg arg, System.Collections.IDictionary dictionary)
@@ -972,6 +1061,9 @@ namespace PommaLabs.Thrower
         ///   <br/> If both constructors are available, then the one which takes a
         ///   <see cref="string"/> and an <see cref="System.Exception"/> will be used to throw the exception.
         /// </remarks>
+#if (NET45 || NET46)
+        [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
+#endif
         [Conditional(UseThrowerDefine)]
         [SuppressMessage("Microsoft.Design", "CA1000:DoNotDeclareStaticMembersOnGenericTypes")]
         public static void IfIsContainedIn<TArg>(TArg arg, System.Collections.IDictionary dictionary, string message)
@@ -997,6 +1089,9 @@ namespace PommaLabs.Thrower
         ///   <typeparamref name="TEx"/> will be thrown. <br/> In order to do that,
         ///   <typeparamref name="TEx"/> must have a constructor which doesn't take any arguments.
         /// </remarks>
+#if (NET45 || NET46)
+        [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
+#endif
         [Conditional(UseThrowerDefine)]
         [SuppressMessage("Microsoft.Design", "CA1000:DoNotDeclareStaticMembersOnGenericTypes")]
         public static void IfIsNotContainedIn<TArg>(TArg arg, System.Collections.IDictionary dictionary)
@@ -1030,6 +1125,9 @@ namespace PommaLabs.Thrower
         ///   <br/> If both constructors are available, then the one which takes a
         ///   <see cref="string"/> and an <see cref="System.Exception"/> will be used to throw the exception.
         /// </remarks>
+#if (NET45 || NET46)
+        [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
+#endif
         [Conditional(UseThrowerDefine)]
         [SuppressMessage("Microsoft.Design", "CA1000:DoNotDeclareStaticMembersOnGenericTypes")]
         public static void IfIsNotContainedIn<TArg>(TArg arg, System.Collections.IDictionary dictionary, string message)
@@ -1056,6 +1154,9 @@ namespace PommaLabs.Thrower
         ///   exception of type <typeparamref name="TEx"/> will be thrown. <br/> In order to do
         ///   that, <typeparamref name="TEx"/> must have a constructor which doesn't take any arguments.
         /// </remarks>
+#if (NET45 || NET46)
+        [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
+#endif
         [Conditional(UseThrowerDefine)]
         [SuppressMessage("Microsoft.Design", "CA1000:DoNotDeclareStaticMembersOnGenericTypes")]
         public static void IfIsContainedIn<TArg1, TArg2>(TArg1 arg1, TArg2 arg2, System.Collections.Generic.IDictionary<TArg1, TArg2> dictionary)
@@ -1091,6 +1192,9 @@ namespace PommaLabs.Thrower
         ///   constructors are available, then the one which takes a <see cref="string"/> and an
         ///   <see cref="System.Exception"/> will be used to throw the exception.
         /// </remarks>
+#if (NET45 || NET46)
+        [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
+#endif
         [Conditional(UseThrowerDefine)]
         [SuppressMessage("Microsoft.Design", "CA1000:DoNotDeclareStaticMembersOnGenericTypes")]
         public static void IfIsContainedIn<TArg1, TArg2>(TArg1 arg1, TArg2 arg2, System.Collections.Generic.IDictionary<TArg1, TArg2> dictionary,
@@ -1118,6 +1222,9 @@ namespace PommaLabs.Thrower
         ///   exception of type <typeparamref name="TEx"/> will be thrown. <br/> In order to do
         ///   that, <typeparamref name="TEx"/> must have a constructor which doesn't take any arguments.
         /// </remarks>
+#if (NET45 || NET46)
+        [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
+#endif
         [Conditional(UseThrowerDefine)]
         [SuppressMessage("Microsoft.Design", "CA1000:DoNotDeclareStaticMembersOnGenericTypes")]
         public static void IfIsNotContainedIn<TArg1, TArg2>(TArg1 arg1, TArg2 arg2, System.Collections.Generic.IDictionary<TArg1, TArg2> dictionary)
@@ -1153,6 +1260,9 @@ namespace PommaLabs.Thrower
         ///   constructors are available, then the one which takes a <see cref="string"/> and an
         ///   <see cref="System.Exception"/> will be used to throw the exception.
         /// </remarks>
+#if (NET45 || NET46)
+        [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
+#endif
         [Conditional(UseThrowerDefine)]
         [SuppressMessage("Microsoft.Design", "CA1000:DoNotDeclareStaticMembersOnGenericTypes")]
         public static void IfIsNotContainedIn<TArg1, TArg2>(TArg1 arg1, TArg2 arg2, System.Collections.Generic.IDictionary<TArg1, TArg2> dictionary,
@@ -1178,6 +1288,9 @@ namespace PommaLabs.Thrower
         ///   <typeparamref name="TEx"/> will be thrown. <br/> In order to do that,
         ///   <typeparamref name="TEx"/> must have a constructor which doesn't take any arguments.
         /// </remarks>
+#if (NET45 || NET46)
+        [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
+#endif
         [Conditional(UseThrowerDefine)]
         [SuppressMessage("Microsoft.Design", "CA1000:DoNotDeclareStaticMembersOnGenericTypes")]
         public static void IfIsEmpty(string valueToCheck)
@@ -1210,6 +1323,9 @@ namespace PommaLabs.Thrower
         ///   <br/> If both constructors are available, then the one which takes a
         ///   <see cref="string"/> and an <see cref="System.Exception"/> will be used to throw the exception.
         /// </remarks>
+#if (NET45 || NET46)
+        [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
+#endif
         [Conditional(UseThrowerDefine)]
         [SuppressMessage("Microsoft.Design", "CA1000:DoNotDeclareStaticMembersOnGenericTypes")]
         public static void IfIsEmpty(string valueToCheck, string message)
@@ -1234,6 +1350,9 @@ namespace PommaLabs.Thrower
         ///   <typeparamref name="TEx"/> will be thrown. <br/> In order to do that,
         ///   <typeparamref name="TEx"/> must have a constructor which doesn't take any arguments.
         /// </remarks>
+#if (NET45 || NET46)
+        [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
+#endif
         [Conditional(UseThrowerDefine)]
         [SuppressMessage("Microsoft.Design", "CA1000:DoNotDeclareStaticMembersOnGenericTypes")]
         public static void IfIsNotEmpty(string valueToCheck)
@@ -1266,6 +1385,9 @@ namespace PommaLabs.Thrower
         ///   <br/> If both constructors are available, then the one which takes a
         ///   <see cref="string"/> and an <see cref="System.Exception"/> will be used to throw the exception.
         /// </remarks>
+#if (NET45 || NET46)
+        [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
+#endif
         [Conditional(UseThrowerDefine)]
         [SuppressMessage("Microsoft.Design", "CA1000:DoNotDeclareStaticMembersOnGenericTypes")]
         public static void IfIsNotEmpty(string valueToCheck, string message)
@@ -1290,6 +1412,9 @@ namespace PommaLabs.Thrower
         ///   <typeparamref name="TEx"/> will be thrown. <br/> In order to do that,
         ///   <typeparamref name="TEx"/> must have a constructor which doesn't take any arguments.
         /// </remarks>
+#if (NET45 || NET46)
+        [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
+#endif
         [Conditional(UseThrowerDefine)]
         [SuppressMessage("Microsoft.Design", "CA1000:DoNotDeclareStaticMembersOnGenericTypes")]
         public static void IfIsEmpty(System.Collections.ICollection collection)
@@ -1321,6 +1446,9 @@ namespace PommaLabs.Thrower
         ///   <br/> If both constructors are available, then the one which takes a
         ///   <see cref="string"/> and an <see cref="System.Exception"/> will be used to throw the exception.
         /// </remarks>
+#if (NET45 || NET46)
+        [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
+#endif
         [Conditional(UseThrowerDefine)]
         [SuppressMessage("Microsoft.Design", "CA1000:DoNotDeclareStaticMembersOnGenericTypes")]
         public static void IfIsEmpty(System.Collections.ICollection collection, string message)
@@ -1345,6 +1473,9 @@ namespace PommaLabs.Thrower
         ///   <typeparamref name="TEx"/> will be thrown. <br/> In order to do that,
         ///   <typeparamref name="TEx"/> must have a constructor which doesn't take any arguments.
         /// </remarks>
+#if (NET45 || NET46)
+        [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
+#endif
         [Conditional(UseThrowerDefine)]
         [SuppressMessage("Microsoft.Design", "CA1000:DoNotDeclareStaticMembersOnGenericTypes")]
         public static void IfIsNotEmpty(System.Collections.ICollection collection)
@@ -1376,6 +1507,9 @@ namespace PommaLabs.Thrower
         ///   <br/> If both constructors are available, then the one which takes a
         ///   <see cref="string"/> and an <see cref="System.Exception"/> will be used to throw the exception.
         /// </remarks>
+#if (NET45 || NET46)
+        [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
+#endif
         [Conditional(UseThrowerDefine)]
         [SuppressMessage("Microsoft.Design", "CA1000:DoNotDeclareStaticMembersOnGenericTypes")]
         public static void IfIsNotEmpty(System.Collections.ICollection collection, string message)
@@ -1400,6 +1534,9 @@ namespace PommaLabs.Thrower
         ///   <typeparamref name="TEx"/> will be thrown. <br/> In order to do that,
         ///   <typeparamref name="TEx"/> must have a constructor which doesn't take any arguments.
         /// </remarks>
+#if (NET45 || NET46)
+        [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
+#endif
         [Conditional(UseThrowerDefine)]
         [SuppressMessage("Microsoft.Design", "CA1000:DoNotDeclareStaticMembersOnGenericTypes")]
         public static void IfIsEmpty<TArg>(System.Collections.Generic.IEnumerable<TArg> collection)
@@ -1431,6 +1568,9 @@ namespace PommaLabs.Thrower
         ///   <br/> If both constructors are available, then the one which takes a
         ///   <see cref="string"/> and an <see cref="System.Exception"/> will be used to throw the exception.
         /// </remarks>
+#if (NET45 || NET46)
+        [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
+#endif
         [Conditional(UseThrowerDefine)]
         [SuppressMessage("Microsoft.Design", "CA1000:DoNotDeclareStaticMembersOnGenericTypes")]
         public static void IfIsEmpty<TArg>(System.Collections.Generic.IEnumerable<TArg> collection, string message)
@@ -1455,6 +1595,9 @@ namespace PommaLabs.Thrower
         ///   <typeparamref name="TEx"/> will be thrown. <br/> In order to do that,
         ///   <typeparamref name="TEx"/> must have a constructor which doesn't take any arguments.
         /// </remarks>
+#if (NET45 || NET46)
+        [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
+#endif
         [Conditional(UseThrowerDefine)]
         [SuppressMessage("Microsoft.Design", "CA1000:DoNotDeclareStaticMembersOnGenericTypes")]
         public static void IfIsNotEmpty<TArg>(System.Collections.Generic.IEnumerable<TArg> collection)
@@ -1486,6 +1629,9 @@ namespace PommaLabs.Thrower
         ///   <br/> If both constructors are available, then the one which takes a
         ///   <see cref="string"/> and an <see cref="System.Exception"/> will be used to throw the exception.
         /// </remarks>
+#if (NET45 || NET46)
+        [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
+#endif
         [Conditional(UseThrowerDefine)]
         [SuppressMessage("Microsoft.Design", "CA1000:DoNotDeclareStaticMembersOnGenericTypes")]
         public static void IfIsNotEmpty<TArg>(System.Collections.Generic.IEnumerable<TArg> collection, string message)
@@ -1511,6 +1657,9 @@ namespace PommaLabs.Thrower
         ///   <typeparamref name="TEx"/> will be thrown. <br/> In order to do that,
         ///   <typeparamref name="TEx"/> must have a constructor which doesn't take any arguments.
         /// </remarks>
+#if (NET45 || NET46)
+        [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
+#endif
         [Conditional(UseThrowerDefine)]
         [SuppressMessage("Microsoft.Design", "CA1000:DoNotDeclareStaticMembersOnGenericTypes")]
         public static void IfIsInstanceOf(object instance, Type type)
@@ -1543,6 +1692,9 @@ namespace PommaLabs.Thrower
         ///   <br/> If both constructors are available, then the one which takes a
         ///   <see cref="string"/> and an <see cref="System.Exception"/> will be used to throw the exception.
         /// </remarks>
+#if (NET45 || NET46)
+        [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
+#endif
         [Conditional(UseThrowerDefine)]
         [SuppressMessage("Microsoft.Design", "CA1000:DoNotDeclareStaticMembersOnGenericTypes")]
         public static void IfIsInstanceOf(object instance, Type type, string message)
@@ -1568,6 +1720,9 @@ namespace PommaLabs.Thrower
         ///   <typeparamref name="TEx"/> will be thrown. <br/> In order to do that,
         ///   <typeparamref name="TEx"/> must have a constructor which doesn't take any arguments.
         /// </remarks>
+#if (NET45 || NET46)
+        [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
+#endif
         [Conditional(UseThrowerDefine)]
         [SuppressMessage("Microsoft.Design", "CA1000:DoNotDeclareStaticMembersOnGenericTypes")]
         [SuppressMessage("Microsoft.Design", "CA1004:GenericMethodsShouldProvideTypeParameter")]
@@ -1601,6 +1756,9 @@ namespace PommaLabs.Thrower
         ///   <br/> If both constructors are available, then the one which takes a
         ///   <see cref="string"/> and an <see cref="System.Exception"/> will be used to throw the exception.
         /// </remarks>
+#if (NET45 || NET46)
+        [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
+#endif
         [Conditional(UseThrowerDefine)]
         [SuppressMessage("Microsoft.Design", "CA1000:DoNotDeclareStaticMembersOnGenericTypes")]
         [SuppressMessage("Microsoft.Design", "CA1004:GenericMethodsShouldProvideTypeParameter")]
@@ -1627,6 +1785,9 @@ namespace PommaLabs.Thrower
         ///   <typeparamref name="TEx"/> will be thrown. <br/> In order to do that,
         ///   <typeparamref name="TEx"/> must have a constructor which doesn't take any arguments.
         /// </remarks>
+#if (NET45 || NET46)
+        [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
+#endif
         [Conditional(UseThrowerDefine)]
         [SuppressMessage("Microsoft.Design", "CA1000:DoNotDeclareStaticMembersOnGenericTypes")]
         public static void IfIsNotInstanceOf(object instance, Type type)
@@ -1659,6 +1820,9 @@ namespace PommaLabs.Thrower
         ///   <br/> If both constructors are available, then the one which takes a
         ///   <see cref="string"/> and an <see cref="System.Exception"/> will be used to throw the exception.
         /// </remarks>
+#if (NET45 || NET46)
+        [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
+#endif
         [Conditional(UseThrowerDefine)]
         [SuppressMessage("Microsoft.Design", "CA1000:DoNotDeclareStaticMembersOnGenericTypes")]
         public static void IfIsNotInstanceOf(object instance, Type type, string message)
@@ -1684,6 +1848,9 @@ namespace PommaLabs.Thrower
         ///   <typeparamref name="TEx"/> will be thrown. <br/> In order to do that,
         ///   <typeparamref name="TEx"/> must have a constructor which doesn't take any arguments.
         /// </remarks>
+#if (NET45 || NET46)
+        [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
+#endif
         [Conditional(UseThrowerDefine)]
         [SuppressMessage("Microsoft.Design", "CA1000:DoNotDeclareStaticMembersOnGenericTypes")]
         [SuppressMessage("Microsoft.Design", "CA1004:GenericMethodsShouldProvideTypeParameter")]
@@ -1717,6 +1884,9 @@ namespace PommaLabs.Thrower
         ///   <br/> If both constructors are available, then the one which takes a
         ///   <see cref="string"/> and an <see cref="System.Exception"/> will be used to throw the exception.
         /// </remarks>
+#if (NET45 || NET46)
+        [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
+#endif
         [Conditional(UseThrowerDefine)]
         [SuppressMessage("Microsoft.Design", "CA1000:DoNotDeclareStaticMembersOnGenericTypes")]
         [SuppressMessage("Microsoft.Design", "CA1004:GenericMethodsShouldProvideTypeParameter")]
@@ -1742,6 +1912,9 @@ namespace PommaLabs.Thrower
         ///   <typeparamref name="TEx"/> will be thrown. <br/> In order to do that,
         ///   <typeparamref name="TEx"/> must have a constructor which doesn't take any arguments.
         /// </remarks>
+#if (NET45 || NET46)
+        [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
+#endif
         [Conditional(UseThrowerDefine)]
         [SuppressMessage("Microsoft.Design", "CA1000:DoNotDeclareStaticMembersOnGenericTypes")]
         public static void IfIsNaN(double number)
@@ -1773,6 +1946,9 @@ namespace PommaLabs.Thrower
         ///   <br/> If both constructors are available, then the one which takes a
         ///   <see cref="string"/> and an <see cref="System.Exception"/> will be used to throw the exception.
         /// </remarks>
+#if (NET45 || NET46)
+        [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
+#endif
         [Conditional(UseThrowerDefine)]
         [SuppressMessage("Microsoft.Design", "CA1000:DoNotDeclareStaticMembersOnGenericTypes")]
         public static void IfIsNaN(double number, string message)
@@ -1797,6 +1973,9 @@ namespace PommaLabs.Thrower
         ///   type <typeparamref name="TEx"/> will be thrown. <br/> In order to do that,
         ///   <typeparamref name="TEx"/> must have a constructor which doesn't take any arguments.
         /// </remarks>
+#if (NET45 || NET46)
+        [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
+#endif
         [Conditional(UseThrowerDefine)]
         [SuppressMessage("Microsoft.Design", "CA1000:DoNotDeclareStaticMembersOnGenericTypes")]
         public static void IfIsNotNaN(double number)
@@ -1829,6 +2008,9 @@ namespace PommaLabs.Thrower
         ///   constructors are available, then the one which takes a <see cref="string"/> and an
         ///   <see cref="System.Exception"/> will be used to throw the exception.
         /// </remarks>
+#if (NET45 || NET46)
+        [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
+#endif
         [Conditional(UseThrowerDefine)]
         [SuppressMessage("Microsoft.Design", "CA1000:DoNotDeclareStaticMembersOnGenericTypes")]
         public static void IfIsNotNaN(double number, string message)
@@ -1853,11 +2035,14 @@ namespace PommaLabs.Thrower
         ///   <typeparamref name="TEx"/> will be thrown. <br/> In order to do that,
         ///   <typeparamref name="TEx"/> must have a constructor which doesn't take any arguments.
         /// </remarks>
+#if (NET45 || NET46)
+        [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
+#endif
         [Conditional(UseThrowerDefine)]
         [SuppressMessage("Microsoft.Design", "CA1000:DoNotDeclareStaticMembersOnGenericTypes")]
         public static void IfIsNull<TArg>(TArg arg)
         {
-            if (ReferenceEquals(arg, null))
+            if (!PortableTypeInfo.IsValueType(typeof(TArg)) && ReferenceEquals(arg, null))
             {
                 DoThrow();
             }
@@ -1884,11 +2069,14 @@ namespace PommaLabs.Thrower
         ///   <br/> If both constructors are available, then the one which takes a
         ///   <see cref="string"/> and an <see cref="System.Exception"/> will be used to throw the exception.
         /// </remarks>
+#if (NET45 || NET46)
+        [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
+#endif
         [Conditional(UseThrowerDefine)]
         [SuppressMessage("Microsoft.Design", "CA1000:DoNotDeclareStaticMembersOnGenericTypes")]
         public static void IfIsNull<TArg>(TArg arg, string message)
         {
-            if (ReferenceEquals(arg, null))
+            if (!PortableTypeInfo.IsValueType(typeof(TArg)) && ReferenceEquals(arg, null))
             {
                 DoThrow(message);
             }
@@ -1908,11 +2096,14 @@ namespace PommaLabs.Thrower
         ///   <typeparamref name="TEx"/> will be thrown. <br/> In order to do that,
         ///   <typeparamref name="TEx"/> must have a constructor which doesn't take any arguments.
         /// </remarks>
+#if (NET45 || NET46)
+        [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
+#endif
         [Conditional(UseThrowerDefine)]
         [SuppressMessage("Microsoft.Design", "CA1000:DoNotDeclareStaticMembersOnGenericTypes")]
         public static void IfIsNotNull<TArg>(TArg arg)
         {
-            if (!ReferenceEquals(arg, null))
+            if (PortableTypeInfo.IsValueType(typeof(TArg)) || !ReferenceEquals(arg, null))
             {
                 DoThrow();
             }
@@ -1939,11 +2130,14 @@ namespace PommaLabs.Thrower
         ///   <br/> If both constructors are available, then the one which takes a
         ///   <see cref="string"/> and an <see cref="System.Exception"/> will be used to throw the exception.
         /// </remarks>
+#if (NET45 || NET46)
+        [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
+#endif
         [Conditional(UseThrowerDefine)]
         [SuppressMessage("Microsoft.Design", "CA1000:DoNotDeclareStaticMembersOnGenericTypes")]
         public static void IfIsNotNull<TArg>(TArg arg, string message)
         {
-            if (!ReferenceEquals(arg, null))
+            if (PortableTypeInfo.IsValueType(typeof(TArg)) || !ReferenceEquals(arg, null))
             {
                 DoThrow(message);
             }
@@ -1953,13 +2147,16 @@ namespace PommaLabs.Thrower
         {
             return (from c in PortableTypeInfo.GetConstructors(typeof(TEx))
                     let args = c.GetParameters()
-                    let zipArgs = EnumerableExtensions.Zip(args, ctorTypes, (argType, ctorType) => new { argType, ctorType })
+                    let zipArgs = args.Zip(ctorTypes, (argType, ctorType) => new { argType, ctorType })
                     where args.Length == ctorTypes.Count &&
                           (c.IsPublic || c.IsAssembly) &&
                           zipArgs.All(t => ReferenceEquals(t.argType.ParameterType, t.ctorType))
                     select c).FirstOrDefault();
         }
 
+#if (NET45 || NET46)
+        [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
+#endif
         static void DoThrow()
         {
             // Checks whether the proper constructor exists. If not, then we produce an internal exception.

@@ -2,7 +2,7 @@
 // 
 // Author(s): Alessio Parma <alessio.parma@gmail.com>
 // 
-// Copyright (c) 2013-2014 Alessio Parma <alessio.parma@gmail.com>
+// Copyright (c) 2013-2016 Alessio Parma <alessio.parma@gmail.com>
 // 
 // Permission is hereby granted, free of charge, to any person obtaining a copy of this software and
 // associated documentation files (the "Software"), to deal in the Software without restriction,
@@ -21,6 +21,8 @@
 
 using System;
 using System.Reflection;
+using System.Runtime.CompilerServices;
+using System.Runtime.InteropServices;
 using System.Security;
 
 // General Information about an assembly is controlled through the following set of attributes.
@@ -30,9 +32,13 @@ using System.Security;
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
 [assembly: AssemblyProduct("PommaLabs.Thrower")]
-[assembly: AssemblyCopyright("Copyright (c) 2013-2014 Alessio Parma <alessio.parma@gmail.com>")]
+[assembly: AssemblyCopyright("Copyright (c) 2013-2016 Alessio Parma <alessio.parma@gmail.com>")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
+
+// Setting ComVisible to false makes the types in this assembly not visible to COM components. If
+// you need to access a type in this assembly from COM, set the ComVisible attribute to true on that type.
+[assembly: ComVisible(false)]
 
 // Version information for an assembly consists of the following four values:
 // 
@@ -40,8 +46,8 @@ using System.Security;
 // 
 // You can specify all the values or you can default the Build and Revision Numbers by using the '*'
 // as shown below: [assembly: AssemblyVersion("1.0.*")]
-[assembly: AssemblyVersion("1.2")]
-[assembly: AssemblyFileVersion("1.2")]
+[assembly: AssemblyVersion("1.3.0")]
+[assembly: AssemblyFileVersion("1.3.0")]
 
 // Common Language Specification (CLS) compliance generally refers to the claim that CLS rules and
 // restrictions are being followed.
@@ -49,3 +55,6 @@ using System.Security;
 
 // Specifies that an assembly cannot cause an elevation of privilege.
 [assembly: SecurityTransparent]
+
+// Added to improve unit testing.
+[assembly: InternalsVisibleTo("PommaLabs.Thrower.UnitTests")]
