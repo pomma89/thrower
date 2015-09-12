@@ -4,48 +4,52 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{28B1254D-B6BB-4C2F-9094-6F0E1A0902EC}</ProjectGuid>
+    <ProjectGuid>{A7F28AB3-4B28-4856-9AA8-61BC71E0C466}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>PommaLabs.Thrower</RootNamespace>
     <AssemblyName>PommaLabs.Thrower</AssemblyName>
-    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
     <OutputPath>bin\Debug\</OutputPath>
-    <DefineConstants>TRACE;DEBUG;USETHROWER NET45</DefineConstants>
+    <DefineConstants>TRACE;DEBUG;USETHROWER NET35</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <DocumentationFile>bin\Debug\PommaLabs.Thrower.xml</DocumentationFile>
+    <CodeAnalysisRuleSet>
+    </CodeAnalysisRuleSet>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
-    <DefineConstants>TRACE;USETHROWER NET45</DefineConstants>
+    <DefineConstants>TRACE;USETHROWER NET35</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <DocumentationFile>bin\Release\PommaLabs.Thrower.xml</DocumentationFile>
+    <CodeAnalysisRuleSet />
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
-    <Reference Include="Microsoft.CSharp" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Core\MyEnumerableExtensions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="..\..\Thrower\Thrower.projitems" Label="Shared" />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
-    <PostBuildEvent>if not exist "$(SolutionDir)Thrower.NuGetPackager/lib/net45" mkdir "$(SolutionDir)Thrower.NuGetPackager/lib/net45"
-copy "$(TargetDir)PommaLabs.Thrower.dll" "$(SolutionDir)Thrower.NuGetPackager/lib/net45"
-copy "$(TargetDir)PommaLabs.Thrower.pdb" "$(SolutionDir)Thrower.NuGetPackager/lib/net45"
-copy "$(TargetDir)PommaLabs.Thrower.xml" "$(SolutionDir)Thrower.NuGetPackager/lib/net45"</PostBuildEvent>
+    <PostBuildEvent>if not exist "$(SolutionDir)Thrower.NuGetPackager/lib/net35" mkdir "$(SolutionDir)Thrower.NuGetPackager/lib/net35"
+copy "$(TargetDir)PommaLabs.Thrower.dll" "$(SolutionDir)Thrower.NuGetPackager/lib/net35"
+copy "$(TargetDir)PommaLabs.Thrower.pdb" "$(SolutionDir)Thrower.NuGetPackager/lib/net35"
+copy "$(TargetDir)PommaLabs.Thrower.xml" "$(SolutionDir)Thrower.NuGetPackager/lib/net35"</PostBuildEvent>
   </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

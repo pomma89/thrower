@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{28B1254D-B6BB-4C2F-9094-6F0E1A0902EC}</ProjectGuid>
+    <ProjectGuid>{72704ABB-2170-441D-B1A1-98E327923F8C}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>PommaLabs.Thrower</RootNamespace>
-    <AssemblyName>PommaLabs.Thrower</AssemblyName>
+    <RootNamespace>Thrower.UnitTests.NET45</RootNamespace>
+    <AssemblyName>Thrower.UnitTests.NET45</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -20,7 +20,6 @@
     <DefineConstants>TRACE;DEBUG;USETHROWER NET45</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <DocumentationFile>bin\Debug\PommaLabs.Thrower.xml</DocumentationFile>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -29,24 +28,38 @@
     <DefineConstants>TRACE;USETHROWER NET45</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <DocumentationFile>bin\Release\PommaLabs.Thrower.xml</DocumentationFile>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="nunit.framework, Version=2.6.4.14350, Culture=neutral, PublicKeyToken=96d09a1eb7f44a77, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\NUnit.2.6.4\lib\nunit.framework.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
-  <Import Project="..\..\Thrower\Thrower.projitems" Label="Shared" />
+  <ItemGroup>
+    <ProjectReference Include="..\Thrower.NET45\Thrower.NET45.csproj">
+      <Project>{28b1254d-b6bb-4c2f-9094-6f0e1a0902ec}</Project>
+      <Name>Thrower.NET45</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{82A7F48D-3B50-4B1E-B82E-3ADA8210C358}" />
+  </ItemGroup>
+  <Import Project="..\..\Thrower.UnitTests\Thrower.UnitTests.projitems" Label="Shared" />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
-  <PropertyGroup>
-    <PostBuildEvent>if not exist "$(SolutionDir)Thrower.NuGetPackager/lib/net45" mkdir "$(SolutionDir)Thrower.NuGetPackager/lib/net45"
-copy "$(TargetDir)PommaLabs.Thrower.dll" "$(SolutionDir)Thrower.NuGetPackager/lib/net45"
-copy "$(TargetDir)PommaLabs.Thrower.pdb" "$(SolutionDir)Thrower.NuGetPackager/lib/net45"
-copy "$(TargetDir)PommaLabs.Thrower.xml" "$(SolutionDir)Thrower.NuGetPackager/lib/net45"</PostBuildEvent>
-  </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">
