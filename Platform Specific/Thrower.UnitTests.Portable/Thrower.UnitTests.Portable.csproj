@@ -8,8 +8,8 @@
     <ProjectGuid>{0CD78746-3585-4F53-A39B-9D4728380ACE}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Thrower.UnitTests.Portable</RootNamespace>
-    <AssemblyName>Thrower.UnitTests.Portable</AssemblyName>
+    <RootNamespace>PommaLabs.Thrower.UnitTests</RootNamespace>
+    <AssemblyName>PommaLabs.Thrower.UnitTests</AssemblyName>
     <DefaultLanguage>en-US</DefaultLanguage>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{786C830F-07A1-408B-BD7F-6EE04809D6DB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>

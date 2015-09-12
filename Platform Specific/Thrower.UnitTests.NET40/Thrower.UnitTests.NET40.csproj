@@ -7,8 +7,8 @@
     <ProjectGuid>{A1D71463-2F49-4590-B3EF-ADEED5DF70D2}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Thrower.UnitTests.NET40</RootNamespace>
-    <AssemblyName>Thrower.UnitTests.NET40</AssemblyName>
+    <RootNamespace>PommaLabs.Thrower.UnitTests</RootNamespace>
+    <AssemblyName>PommaLabs.Thrower.UnitTests</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
