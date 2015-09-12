@@ -1,8 +1,8 @@
-﻿// File name: IfAreSameTests.cs
+﻿// File name: IfIsNaNTests.cs
 // 
 // Author(s): Alessio Parma <alessio.parma@gmail.com>
 // 
-// Copyright (c) 2013-2014 Alessio Parma <alessio.parma@gmail.com>
+// Copyright (c) 2013-2016 Alessio Parma <alessio.parma@gmail.com>
 // 
 // Permission is hereby granted, free of charge, to any person obtaining a copy of this software and
 // associated documentation files (the "Software"), to deal in the Software without restriction,
@@ -24,62 +24,58 @@ using NUnit.Framework;
 
 namespace PommaLabs.Thrower.UnitTests
 {
-    sealed class IfAreSameTests : AbstractDiagnosticsTests
+    sealed class IfIsNaNTests : AbstractDiagnosticsTests
     {
         [Test]
-        public void DifferentObjects()
+        public void CorrectDouble()
         {
-            Raise<ArgumentNullException>.IfAreSame(new object(), new object());
+            Raise<ArgumentOutOfRangeException>.IfIsNaN(5.0);
         }
 
         [Test]
-        public void DifferentObjects_WithMsg()
+        public void CorrectDouble_WithMsg()
         {
-            Raise<ArgumentNullException>.IfAreSame(new object(), new object(), TestMessage);
+            Raise<ArgumentOutOfRangeException>.IfIsNaN(5.0, TestMessage);
         }
 
         [Test]
-        [ExpectedException(typeof(ArgumentException))]
-        public void Not_DifferentObjects()
+        [ExpectedException(typeof(ArgumentOutOfRangeException))]
+        public void NaN()
         {
-            Raise<ArgumentException>.IfAreNotSame(new object(), new object());
+            Raise<ArgumentOutOfRangeException>.IfIsNaN(double.NaN);
         }
 
         [Test]
-        [ExpectedException(typeof(ArgumentException), ExpectedMessage = TestMessage)]
-        public void Not_DifferentObjects_WithMsg()
+        [ExpectedException(typeof(ArgumentOutOfRangeException), ExpectedMessage = TestMessage)]
+        public void NaN_WithMsg()
         {
-            Raise<ArgumentException>.IfAreNotSame(new object(), new object(), TestMessage);
+            Raise<ArgumentOutOfRangeException>.IfIsNaN(double.NaN, TestMessage);
         }
 
         [Test]
-        public void Not_SameObjects()
+        [ExpectedException(typeof(ArgumentOutOfRangeException))]
+        public void Not_CorrectDouble()
         {
-            var obj = new object();
-            Raise<ArgumentException>.IfAreNotSame(obj, obj);
+            Raise<ArgumentOutOfRangeException>.IfIsNotNaN(5.0);
         }
 
         [Test]
-        public void Not_SameObjects_WithMsg()
+        [ExpectedException(typeof(ArgumentOutOfRangeException), ExpectedMessage = TestMessage)]
+        public void Not_CorrectDouble_WithMsg()
         {
-            var obj = new object();
-            Raise<ArgumentException>.IfAreNotSame(obj, obj, TestMessage);
+            Raise<ArgumentOutOfRangeException>.IfIsNotNaN(5.0, TestMessage);
         }
 
         [Test]
-        [ExpectedException(typeof(ArgumentException))]
-        public void SameObjects()
+        public void Not_NaN()
         {
-            var obj = new object();
-            Raise<ArgumentException>.IfAreSame(obj, obj);
+            Raise<ArgumentOutOfRangeException>.IfIsNotNaN(double.NaN);
         }
 
         [Test]
-        [ExpectedException(typeof(ArgumentException), ExpectedMessage = TestMessage)]
-        public void SameObjects_WithMsg()
+        public void Not_NaN_WithMsg()
         {
-            var obj = new object();
-            Raise<ArgumentException>.IfAreSame(obj, obj, TestMessage);
+            Raise<ArgumentOutOfRangeException>.IfIsNotNaN(double.NaN, TestMessage);
         }
     }
 }

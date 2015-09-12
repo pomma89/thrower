@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <MSBuildAllProjects>$(MSBuildAllProjects);$(MSBuildThisFileFullPath)</MSBuildAllProjects>
+    <HasSharedItems>true</HasSharedItems>
+    <SharedGUID>f52d0e79-5776-48fd-8822-94650733f081</SharedGUID>
+  </PropertyGroup>
+  <PropertyGroup Label="Configuration">
+    <Import_RootNamespace>PommaLabs.Thrower.UnitTests</Import_RootNamespace>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="$(MSBuildThisFileDirectory)AbstractDiagnosticsTests.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)AbstractTests.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)IfAreEqualTests.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)IfAreSameTests.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)IfIsAssignableFromTests.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)IfIsContainedInTests.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)IfIsEmptyTests.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)IfIsInstanceOfTests.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)IfIsNaNTests.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)IfIsNullTests.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)RaiseTests.cs" />
+  </ItemGroup>
+</Project>

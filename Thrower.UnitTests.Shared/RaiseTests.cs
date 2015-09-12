@@ -2,7 +2,7 @@
 // 
 // Author(s): Alessio Parma <alessio.parma@gmail.com>
 // 
-// Copyright (c) 2013-2014 Alessio Parma <alessio.parma@gmail.com>
+// Copyright (c) 2013-2016 Alessio Parma <alessio.parma@gmail.com>
 // 
 // Permission is hereby granted, free of charge, to any person obtaining a copy of this software and
 // associated documentation files (the "Software"), to deal in the Software without restriction,
@@ -19,17 +19,17 @@
 // DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
+using NUnit.Framework;
 using System;
 using System.Globalization;
-using System.Threading;
-using NUnit.Framework;
+using System.Threading.Tasks;
 
 namespace PommaLabs.Thrower.UnitTests
 {
     [TestFixture]
-sealed class RaiseTests : AbstractDiagnosticsTests
+    sealed class RaiseTests : AbstractDiagnosticsTests
     {
-        private static void ThreadTest()
+        static void ThreadTest()
         {
             for (var i = 0; i < 10000; ++i)
             {
@@ -45,7 +45,7 @@ sealed class RaiseTests : AbstractDiagnosticsTests
             }
         }
 
-        private static void WrongThreadTest()
+        static void WrongThreadTest()
         {
             for (var i = 0; i < 10000; ++i)
             {
@@ -61,7 +61,7 @@ sealed class RaiseTests : AbstractDiagnosticsTests
             }
         }
 
-        private abstract class AbstractException : Exception
+        abstract class AbstractException : Exception
         {
             public AbstractException()
             {
@@ -72,7 +72,7 @@ sealed class RaiseTests : AbstractDiagnosticsTests
             }
         }
 
-        private sealed class InternalCtorException : Exception
+        sealed class InternalCtorException : Exception
         {
             internal InternalCtorException()
             {
@@ -90,13 +90,13 @@ sealed class RaiseTests : AbstractDiagnosticsTests
             }
         }
 
-        private sealed class PrivateCtorException : Exception
+        sealed class PrivateCtorException : Exception
         {
-            private PrivateCtorException()
+            PrivateCtorException()
             {
             }
 
-            private PrivateCtorException(string msg)
+            PrivateCtorException(string msg)
             {
             }
         }
@@ -414,31 +414,28 @@ sealed class RaiseTests : AbstractDiagnosticsTests
         [Test]
         public void ThreadedUsage1()
         {
-            var threads = new Thread[10];
-            for (var i = 0; i < threads.Length; ++i)
+            var tasks = new Task[10];
+            for (var i = 0; i < tasks.Length; ++i)
             {
-                threads[i] = new Thread(ThreadTest);
-                threads[i].Start();
+                tasks[i] = Task.Factory.StartNew(ThreadTest);
             }
-            for (var i = 0; i < threads.Length; ++i)
+            for (var i = 0; i < tasks.Length; ++i)
             {
-                threads[i].Join();
+                tasks[i].Wait();
             }
         }
 
         [Test]
         public void ThreadedUsage2()
         {
-            var threads = new Thread[10];
-            for (var i = 0; i < threads.Length; ++i)
+            var tasks = new Task[10];
+            for (var i = 0; i < tasks.Length; ++i)
             {
-                var t = (i % 2 == 0) ? new Thread(ThreadTest) : new Thread(WrongThreadTest);
-                threads[i] = t;
-                threads[i].Start();
+                tasks[i] = (i % 2 == 0) ? Task.Factory.StartNew(ThreadTest) : Task.Factory.StartNew(WrongThreadTest);
             }
-            for (var i = 0; i < threads.Length; ++i)
+            for (var i = 0; i < tasks.Length; ++i)
             {
-                threads[i].Join();
+                tasks[i].Wait();
             }
         }
 
