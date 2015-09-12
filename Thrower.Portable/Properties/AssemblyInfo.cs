@@ -2,7 +2,7 @@
 // 
 // Author(s): Alessio Parma <alessio.parma@gmail.com>
 // 
-// Copyright (c) 2013-2014 Alessio Parma <alessio.parma@gmail.com>
+// Copyright (c) 2013-2016 Alessio Parma <alessio.parma@gmail.com>
 // 
 // Permission is hereby granted, free of charge, to any person obtaining a copy of this software and
 // associated documentation files (the "Software"), to deal in the Software without restriction,
@@ -21,6 +21,7 @@
 
 using System;
 using System.Reflection;
+using System.Runtime.CompilerServices;
 using System.Security;
 
 // General Information about an assembly is controlled through the following set of attributes.
@@ -30,7 +31,7 @@ using System.Security;
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
 [assembly: AssemblyProduct("PommaLabs.Thrower")]
-[assembly: AssemblyCopyright("Copyright (c) 2013-2014 Alessio Parma <alessio.parma@gmail.com>")]
+[assembly: AssemblyCopyright("Copyright (c) 2013-2016 Alessio Parma <alessio.parma@gmail.com>")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
@@ -49,3 +50,6 @@ using System.Security;
 
 // Specifies that an assembly cannot cause an elevation of privilege.
 [assembly: SecurityTransparent]
+
+// Added to improve unit testing.
+[assembly: InternalsVisibleTo("PommaLabs.Thrower.UnitTests")]
