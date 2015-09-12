@@ -21,6 +21,7 @@
 // DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
+using PommaLabs.Thrower.Core;
 using System;
 using System.Diagnostics;
 
@@ -42,7 +43,7 @@ namespace PommaLabs.Thrower
         [Conditional(UseThrowerDefine)]
         public static void IfIsNull<TArg>(TArg argument)
         {
-            if (ReferenceEquals(argument, null))
+            if (!PortableTypeInfo.IsValueType(typeof(TArg)) && ReferenceEquals(argument, null))
             {
                 throw new ArgumentNullException();
             }
@@ -60,7 +61,7 @@ namespace PommaLabs.Thrower
         [Conditional(UseThrowerDefine)]
         public static void IfIsNull<TArg>(TArg argument, string argumentName)
         {
-            if (ReferenceEquals(argument, null))
+            if (!PortableTypeInfo.IsValueType(typeof(TArg)) && ReferenceEquals(argument, null))
             {
                 throw new ArgumentNullException(argumentName);
             }
@@ -79,7 +80,7 @@ namespace PommaLabs.Thrower
         [Conditional(UseThrowerDefine)]
         public static void IfIsNull<TArg>(TArg argument, string argumentName, string message)
         {
-            if (ReferenceEquals(argument, null))
+            if (!PortableTypeInfo.IsValueType(typeof(TArg)) && ReferenceEquals(argument, null))
             {
                 throw new ArgumentNullException(argumentName, message);
             }
