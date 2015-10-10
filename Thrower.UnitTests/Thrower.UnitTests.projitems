@@ -9,7 +9,6 @@
     <Import_RootNamespace>PommaLabs.Thrower.UnitTests</Import_RootNamespace>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="$(MSBuildThisFileDirectory)AbstractDiagnosticsTests.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)AbstractTests.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)IfAreEqualTests.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)IfAreSameTests.cs" />
@@ -19,6 +18,8 @@
     <Compile Include="$(MSBuildThisFileDirectory)IfIsInstanceOfTests.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)IfIsNaNTests.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)IfIsNullTests.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)RaiseNotSupportedExceptionTests.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)RaiseInvalidOperationExceptionTests.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)RaiseTests.cs" />
   </ItemGroup>
 </Project>

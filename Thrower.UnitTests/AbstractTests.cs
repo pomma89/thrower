@@ -17,14 +17,34 @@ namespace PommaLabs.Thrower.UnitTests
     [TestFixture]
     abstract class AbstractTests
     {
+        #region Setup/Teardown
+
         [SetUp]
         public virtual void SetUp()
         {
+            Assert.False(string.IsNullOrEmpty(RaiseBase.UseThrowerDefine));
+            Assert.AreEqual(RaiseBase.UseThrowerDefine, RaiseBase.UseThrowerDefine);
         }
 
         [TearDown]
         public virtual void TearDown()
         {
+        }
+
+        #endregion Setup/Teardown
+
+        protected const string TestMessage = "A long and complicated error message...";
+
+        protected class Base { }
+
+        protected class Derived : Base { }
+
+        protected class Convertible
+        {
+            public static implicit operator Base(Convertible c)
+            {
+                return new Base();
+            }
         }
     }
 }

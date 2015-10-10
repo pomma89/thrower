@@ -26,8 +26,7 @@ using System.Threading.Tasks;
 
 namespace PommaLabs.Thrower.UnitTests
 {
-    [TestFixture]
-    sealed class RaiseTests : AbstractDiagnosticsTests
+    sealed class RaiseTests : AbstractTests
     {
         static void ThreadTest()
         {
