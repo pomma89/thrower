@@ -1,4 +1,4 @@
-﻿// File name: IfIsNaNTests.cs
+﻿// File name: RaiseInvalidOperationExceptionTests.cs
 // 
 // Author(s): Alessio Parma <alessio.parma@gmail.com>
 // 
@@ -24,58 +24,54 @@ using System;
 
 namespace PommaLabs.Thrower.UnitTests
 {
-    sealed class IfIsNaNTests : AbstractTests
+    sealed class RaiseInvalidOperationExceptionTests : AbstractTests
     {
-        [Test]
-        public void CorrectDouble()
+        [Test, ExpectedException(typeof(InvalidOperationException))]
+        public void If_TrueShouldThrow()
         {
-            Raise<ArgumentOutOfRangeException>.IfIsNaN(5.0);
+            RaiseInvalidOperationException.If(true);
+        }
+
+        [Test, ExpectedException(typeof(InvalidOperationException), ExpectedMessage = TestMessage)]
+        public void If_TrueShouldThrow_WithMessage()
+        {
+            RaiseInvalidOperationException.If(true, TestMessage);
         }
 
         [Test]
-        public void CorrectDouble_WithMsg()
+        public void If_FalseShouldNotThrow()
         {
-            Raise<ArgumentOutOfRangeException>.IfIsNaN(5.0, TestMessage);
+            RaiseInvalidOperationException.If(false);
         }
 
         [Test]
-        [ExpectedException(typeof(ArgumentOutOfRangeException))]
-        public void NaN()
+        public void If_FalseShouldNotThrow_WithMessage()
         {
-            Raise<ArgumentOutOfRangeException>.IfIsNaN(double.NaN);
+            RaiseInvalidOperationException.If(false, TestMessage);
+        }
+
+        [Test, ExpectedException(typeof(InvalidOperationException))]
+        public void IfNot_FalseShouldThrow()
+        {
+            RaiseInvalidOperationException.IfNot(false);
+        }
+
+        [Test, ExpectedException(typeof(InvalidOperationException), ExpectedMessage = TestMessage)]
+        public void IfNot_FalseShouldThrow_WithMessage()
+        {
+            RaiseInvalidOperationException.IfNot(false, TestMessage);
         }
 
         [Test]
-        [ExpectedException(typeof(ArgumentOutOfRangeException), ExpectedMessage = TestMessage)]
-        public void NaN_WithMsg()
+        public void IfNot_TrueShouldNotThrow()
         {
-            Raise<ArgumentOutOfRangeException>.IfIsNaN(double.NaN, TestMessage);
+            RaiseInvalidOperationException.IfNot(true);
         }
 
         [Test]
-        [ExpectedException(typeof(ArgumentOutOfRangeException))]
-        public void Not_CorrectDouble()
+        public void IfNot_TrueShouldNotThrow_WithMessage()
         {
-            Raise<ArgumentOutOfRangeException>.IfIsNotNaN(5.0);
-        }
-
-        [Test]
-        [ExpectedException(typeof(ArgumentOutOfRangeException), ExpectedMessage = TestMessage)]
-        public void Not_CorrectDouble_WithMsg()
-        {
-            Raise<ArgumentOutOfRangeException>.IfIsNotNaN(5.0, TestMessage);
-        }
-
-        [Test]
-        public void Not_NaN()
-        {
-            Raise<ArgumentOutOfRangeException>.IfIsNotNaN(double.NaN);
-        }
-
-        [Test]
-        public void Not_NaN_WithMsg()
-        {
-            Raise<ArgumentOutOfRangeException>.IfIsNotNaN(double.NaN, TestMessage);
+            RaiseInvalidOperationException.IfNot(true, TestMessage);
         }
     }
 }

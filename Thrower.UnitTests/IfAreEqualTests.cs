@@ -24,7 +24,7 @@ using System;
 
 namespace PommaLabs.Thrower.UnitTests
 {
-    sealed class IfAreEqualTests : AbstractDiagnosticsTests
+    sealed class IfAreEqualTests : AbstractTests
     {
         [Test]
         public void DifferentIntegers()

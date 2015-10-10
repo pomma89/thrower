@@ -24,7 +24,7 @@ using System;
 
 namespace PommaLabs.Thrower.UnitTests
 {
-    sealed class IfIsAssignableFromTests : AbstractDiagnosticsTests
+    sealed class IfIsAssignableFromTests : AbstractTests
     {
         [Test]
         public void BaseType()
