@@ -24,7 +24,7 @@ using System;
 
 namespace PommaLabs.Thrower.UnitTests
 {
-    sealed class IfIsNullTests : AbstractDiagnosticsTests
+    sealed class IfIsNullTests : AbstractTests
     {
         [Test]
         public void NotNullArgument()

@@ -26,7 +26,7 @@ using System.Collections.Generic;
 
 namespace PommaLabs.Thrower.UnitTests
 {
-    sealed class IfIsEmptyTests : AbstractDiagnosticsTests
+    sealed class IfIsEmptyTests : AbstractTests
     {
         const string BlankString = "   ";
 
