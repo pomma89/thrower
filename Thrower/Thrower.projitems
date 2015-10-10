@@ -14,6 +14,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)RaiseArgumentException.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)RaiseArgumentNullException.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)RaiseArgumentOutOfRangeException.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)RaiseNotSupportedException.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)RaiseInvalidOperationException.cs" />
   </ItemGroup>
   <ItemGroup>

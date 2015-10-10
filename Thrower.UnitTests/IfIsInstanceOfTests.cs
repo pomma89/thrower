@@ -24,7 +24,7 @@ using System;
 
 namespace PommaLabs.Thrower.UnitTests
 {
-    sealed class IfIsInstanceOfTests : AbstractDiagnosticsTests
+    sealed class IfIsInstanceOfTests : AbstractTests
     {
         [Test]
         [ExpectedException(typeof(InvalidOperationException))]
