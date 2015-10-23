@@ -21,7 +21,7 @@
 // DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
-using PommaLabs.Thrower.Core;
+using PommaLabs.Thrower.Reflection;
 using System;
 using System.Diagnostics;
 using System.Diagnostics.CodeAnalysis;

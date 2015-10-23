@@ -9,7 +9,12 @@
     <Import_RootNamespace>PommaLabs.Thrower</Import_RootNamespace>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="$(MSBuildThisFileDirectory)Core\PortableTypeInfo.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Reflection\FastMember\CallSiteCache.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Reflection\FastMember\MemberSet.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Reflection\FastMember\ObjectAccessor.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Reflection\FastMember\ObjectReader.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Reflection\FastMember\TypeAccessor.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Reflection\PortableTypeInfo.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Raise.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)RaiseArgumentException.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)RaiseArgumentNullException.cs" />
@@ -17,6 +22,8 @@
     <Compile Include="$(MSBuildThisFileDirectory)RaiseArgumentOutOfRangeException.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)RaiseNotSupportedException.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)RaiseInvalidOperationException.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Validation\ObjectValidator.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Validation\ValidateAttribute.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="$(MSBuildThisFileDirectory)doxyfile.txt" />
