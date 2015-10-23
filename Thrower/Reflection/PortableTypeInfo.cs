@@ -24,7 +24,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace PommaLabs.Thrower.Core
+namespace PommaLabs.Thrower.Reflection
 {
     /// <summary>
     ///   Portable version of some useful reflection methods.
