@@ -23,14 +23,27 @@
 
 using System;
 using System.Collections.Generic;
+using System.Reflection;
+#if PORTABLE
+using System.Linq;
+#else
+using PommaLabs.Thrower.Reflection.FastMember;
+#endif
 
 namespace PommaLabs.Thrower.Reflection
 {
     /// <summary>
     ///   Portable version of some useful reflection methods.
     /// </summary>
-    static class PortableTypeInfo
+    public static class PortableTypeInfo
     {
+#if !PORTABLE
+        internal const BindingFlags PublicAndPrivateInstanceFlags = BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance;
+        internal const BindingFlags PublicInstanceFlags = BindingFlags.Public | BindingFlags.Instance;
+#endif
+
+        private static readonly object[] EmptyObjectArray = new object[0];
+
         /// <summary>
         ///   Gets the constructors for given type.
         /// </summary>
@@ -39,14 +52,124 @@ namespace PommaLabs.Thrower.Reflection
 #if (NET45 || NET46)
         [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
 #endif
-        public static IEnumerable<System.Reflection.ConstructorInfo> GetConstructors(Type type)
+        public static IList<ConstructorInfo> GetConstructors(Type type)
         {
 #if PORTABLE
-            return System.Reflection.IntrospectionExtensions.GetTypeInfo(type).DeclaredConstructors;
+            return IntrospectionExtensions.GetTypeInfo(type).DeclaredConstructors.ToArray();
 #else
-            return type.GetConstructors(System.Reflection.BindingFlags.Public | System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance);
+            return type.GetConstructors(PublicAndPrivateInstanceFlags);
 #endif
         }
+
+        /// <summary>
+        ///   Gets the constructors for given type.
+        /// </summary>
+        /// <typeparam name="T">The type.</typeparam>
+        /// <returns>The constructors for given type.</returns>
+#if (NET45 || NET46)
+        [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
+#endif
+        public static IList<ConstructorInfo> GetConstructors<T>() => GetConstructors(typeof(T));
+
+        /// <summary>
+        ///   Gets the base type of given type.
+        /// </summary>
+        /// <param name="type">The type.</param>
+        /// <returns>The base type of given type.</returns>
+#if (NET45 || NET46)
+        [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
+#endif
+        public static Type GetBaseType(Type type)
+        {
+#if PORTABLE
+            return IntrospectionExtensions.GetTypeInfo(type).BaseType;
+#else
+            return type.BaseType;
+#endif
+        }
+
+        /// <summary>
+        ///   Gets the interfaces for given type.
+        /// </summary>
+        /// <param name="type">The type.</param>
+        /// <returns>The interfaces for given type.</returns>
+#if (NET45 || NET46)
+        [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
+#endif
+        public static IList<Type> GetInterfaces(Type type)
+        {
+#if PORTABLE
+            return IntrospectionExtensions.GetTypeInfo(type).ImplementedInterfaces.ToArray();
+#else
+            return type.GetInterfaces();
+#endif
+        }
+
+        /// <summary>
+        ///   Gets all the public instance properties for given type.
+        /// </summary>
+        /// <param name="type">The type.</param>
+        /// <returns>The public instance properties for given type.</returns>
+#if (NET45 || NET46)
+        [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
+#endif
+        public static IList<PropertyInfo> GetPublicProperties(Type type)
+        {
+#if PORTABLE
+            return IntrospectionExtensions.GetTypeInfo(type).DeclaredProperties.ToArray();
+#else
+            return type.GetProperties(PublicInstanceFlags);
+#endif
+        }
+
+        /// <summary>
+        ///   Gets all the instance properties for given type.
+        /// </summary>
+        /// <typeparam name="T">The type.</typeparam>
+        /// <returns>The instance properties for given type.</returns>
+#if (NET45 || NET46)
+        [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
+#endif
+        public static IList<PropertyInfo> GetPublicProperties<T>() => GetPublicProperties(typeof(T));
+
+        #region GetPropertyValue
+
+        /// <summary>
+        ///   Gets the value of given property on given instance.
+        /// </summary>
+        /// <param name="instance">The instance.</param>
+        /// <param name="propertyInfo">The property info.</param>
+        /// <returns>The value of given property on given instance.</returns>
+#if (NET45 || NET46)
+        [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
+#endif
+        public static object GetPublicPropertyValue(object instance, PropertyInfo propertyInfo)
+        {
+            RaiseArgumentNullException.IfIsNull(instance, nameof(instance), "Instance cannot be null");
+            RaiseArgumentException.IfNot(propertyInfo.CanRead, "Given property cannot be read", nameof(propertyInfo));
+            return propertyInfo.GetValue(instance, EmptyObjectArray);
+        }
+
+#if !PORTABLE
+        /// <summary>
+        ///   Gets the value of given property on given instance.
+        /// </summary>
+        /// <param name="typeAccessor">The type accessor.</param>
+        /// <param name="instance">The instance.</param>
+        /// <param name="propertyInfo">The property info.</param>
+        /// <returns>The value of given property on given instance.</returns>
+#if (NET45 || NET46)
+        [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
+#endif
+        public static object GetPublicPropertyValue(TypeAccessor typeAccessor, object instance, PropertyInfo propertyInfo)
+        {
+            RaiseArgumentNullException.IfIsNull(instance, nameof(instance), "Instance cannot be null");
+            RaiseArgumentException.IfNot(propertyInfo.CanRead, "Given property cannot be read", nameof(propertyInfo));
+            return typeAccessor[instance, propertyInfo.Name];
+        }
+#endif
+
+        #endregion
 
         /// <summary>
         ///   Determines whether the specified type is abstract.
@@ -59,28 +182,21 @@ namespace PommaLabs.Thrower.Reflection
         public static bool IsAbstract(Type type)
         {
 #if PORTABLE
-            return System.Reflection.IntrospectionExtensions.GetTypeInfo(type).IsAbstract;
+            return IntrospectionExtensions.GetTypeInfo(type).IsAbstract;
 #else
             return type.IsAbstract;
 #endif
         }
 
         /// <summary>
-        ///   Determines whether the specified type is a value type.
+        ///   Determines whether the specified type is abstract.
         /// </summary>
-        /// <param name="type">The type.</param>
-        /// <returns>Whether the specified type is a value type.</returns>
+        /// <typeparam name="T">The type.</typeparam>
+        /// <returns>Whether the specified type is abstract.</returns>
 #if (NET45 || NET46)
         [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
 #endif
-        public static bool IsValueType(Type type)
-        {
-#if PORTABLE
-            return System.Reflection.IntrospectionExtensions.GetTypeInfo(type).IsValueType;
-#else
-            return type.IsValueType;
-#endif
-        }
+        public static bool IsAbstract<T>() => IsAbstract(typeof(T));
 
         /// <summary>
         ///   Determines whether an instance of the current <see cref="T:System.Type"/> can be
@@ -103,11 +219,38 @@ namespace PommaLabs.Thrower.Reflection
             }
 
 #if PORTABLE
-            return System.Reflection.IntrospectionExtensions.GetTypeInfo(obj.GetType()).IsAssignableFrom(System.Reflection.IntrospectionExtensions.GetTypeInfo(type));
+            return IntrospectionExtensions.GetTypeInfo(obj.GetType()).IsAssignableFrom(IntrospectionExtensions.GetTypeInfo(type));
 #else
             return obj.GetType().IsAssignableFrom(type);
 #endif
         }
+
+        /// <summary>
+        ///   Determines whether the specified type is an enumeration.
+        /// </summary>
+        /// <param name="type">The type.</param>
+        /// <returns>Whether the specified type is an enumeration.</returns>
+#if (NET45 || NET46)
+        [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
+#endif
+        public static bool IsEnum(Type type)
+        {
+#if PORTABLE
+            return IntrospectionExtensions.GetTypeInfo(type).IsEnum;
+#else
+            return type.IsEnum;
+#endif
+        }
+
+        /// <summary>
+        ///   Determines whether the specified type is an enumeration.
+        /// </summary>
+        /// <typeparam name="T">The type.</typeparam>
+        /// <returns>Whether the specified type is an enumeration.</returns>
+#if (NET45 || NET46)
+        [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
+#endif
+        public static bool IsEnum<T>() => IsEnum(typeof(T));
 
         /// <summary>
         ///   Determines whether the specified object is an instance of the current <see cref="T:System.Type"/>.
@@ -126,10 +269,64 @@ namespace PommaLabs.Thrower.Reflection
             }
 
 #if PORTABLE
-            return System.Reflection.IntrospectionExtensions.GetTypeInfo(type).IsAssignableFrom(System.Reflection.IntrospectionExtensions.GetTypeInfo(obj.GetType()));
+            return IntrospectionExtensions.GetTypeInfo(type).IsAssignableFrom(IntrospectionExtensions.GetTypeInfo(obj.GetType()));
 #else
             return type.IsInstanceOfType(obj);
 #endif
         }
+
+        /// <summary>
+        ///   Determines whether the specified type is an interface.
+        /// </summary>
+        /// <param name="type">The type.</param>
+        /// <returns>Whether the specified type is an interface.</returns>
+#if (NET45 || NET46)
+        [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
+#endif
+        public static bool IsInterface(Type type)
+        {
+#if PORTABLE
+            return IntrospectionExtensions.GetTypeInfo(type).IsInterface;
+#else
+            return type.IsInterface;
+#endif
+        }
+
+        /// <summary>
+        ///   Determines whether the specified type is an interface.
+        /// </summary>
+        /// <typeparam name="T">The type.</typeparam>
+        /// <returns>Whether the specified type is an interface.</returns>
+#if (NET45 || NET46)
+        [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
+#endif
+        public static bool IsInterface<T>() => IsInterface(typeof(T));
+
+        /// <summary>
+        ///   Determines whether the specified type is a value type.
+        /// </summary>
+        /// <param name="type">The type.</param>
+        /// <returns>Whether the specified type is a value type.</returns>
+#if (NET45 || NET46)
+        [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
+#endif
+        public static bool IsValueType(Type type)
+        {
+#if PORTABLE
+            return IntrospectionExtensions.GetTypeInfo(type).IsValueType;
+#else
+            return type.IsValueType;
+#endif
+        }
+
+        /// <summary>
+        ///   Determines whether the specified type is a value type.
+        /// </summary>
+        /// <typeparam name="T">The type.</typeparam>
+        /// <returns>Whether the specified type is a value type.</returns>
+#if (NET45 || NET46)
+        [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
+#endif
+        public static bool IsValueType<T>() => IsValueType(typeof(T));
     }
 }
