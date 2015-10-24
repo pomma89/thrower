@@ -36,20 +36,29 @@ namespace PommaLabs.Thrower.UnitTests.Validation
             IList<ValidationError> validationErrors;
             var result = ObjectValidator.Validate(new TestClass(), out validationErrors);
 
+            var r = ObjectValidator.RootPlaceholder;
+
             Assert.IsFalse(result);
-            Assert.AreEqual(1, validationErrors.Count);
-            Assert.AreEqual(1, validationErrors.Count(ve => ve.Path == nameof(TestClass.NullableBooleanThatShouldBeValidated)));
+            Assert.AreEqual(2, validationErrors.Count);
+            Assert.AreEqual(1, validationErrors.Count(ve => ve.Path == r + "." + nameof(TestClass.NullBooleanThatShouldBeValidated)));
+            Assert.AreEqual(1, validationErrors.Count(ve => ve.Path == r + "." + nameof(TestClass.NullStringThatShouldBeValidated)));
         }
 
         public sealed class TestClass
         {
-            public bool BooleanThatShouldNotBeValidated { get; set; }
+            public bool BooleanThatShouldNotBeValidated { get; set; } = false;
 
             [Validate(Required = true)]
-            public bool BooleanThatShouldBeValidated { get; set; }
+            public bool BooleanThatShouldBeValidated { get; set; } = true;
 
             [Validate(Required = true)]
-            public bool? NullableBooleanThatShouldBeValidated { get; set; } = null;
+            public bool? NullBooleanThatShouldBeValidated { get; set; } = null;
+
+            [Validate(Required = true)]
+            public string StringThatShouldBeValidated { get; set; } = "OK";
+
+            [Validate(Required = true)]
+            public string NullStringThatShouldBeValidated { get; set; } = null;
         }
     }
 }
