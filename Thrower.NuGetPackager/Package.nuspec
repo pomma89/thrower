@@ -3,7 +3,7 @@
 <package>
     <metadata>
         <id>Thrower</id>
-        <version>2.0.1</version>
+        <version>2.0.2</version>
         <title>Thrower - Compact preconditions helpers</title>
         <authors>Alessio Parma &lt;alessio.parma@gmail.com&gt;</authors>
         <owners>Alessio Parma &lt;alessio.parma@gmail.com&gt;</owners>
@@ -11,8 +11,8 @@
 Fully managed library providing convenience methods to perform argument checks. It offers methods whose compilation can be enabled with the "USETHROWER" directive, and they can of course be disabled by undefining that directive. Therefore, it allows to write code whose integrity checks can be easily removed (for performance reasons, for example).
         </description>
         <releaseNotes>
-* All assemblies are now signed.
-* Added RaiseNotSupportedException and RaiseIndexOutOfRangeException.
+* Embedded FastMember.
+* Added a simple reflection-based object validator.
         </releaseNotes>
         <summary>Fully managed library providing convenience methods to perform argument checks.</summary>
         <language>en-US</language>
@@ -27,6 +27,7 @@ Fully managed library providing convenience methods to perform argument checks. 
     </metadata>
     <files>
         <file src="lib\" target="lib" />
+        <file src="CHANGELOG.md" target="CHANGELOG.md" />
         <file src="LICENSE.txt" target="LICENSE.txt" />
     </files>
 </package>
