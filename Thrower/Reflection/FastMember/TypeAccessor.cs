@@ -25,7 +25,7 @@ using System.Dynamic;
 namespace PommaLabs.Thrower.Reflection.FastMember
 {
     /// <summary>
-    ///   Provides by-name member-access to objects of a given type
+    ///   Provides by-name member-access to objects of a given type.
     /// </summary>
     public abstract class TypeAccessor
     {
@@ -38,7 +38,7 @@ namespace PommaLabs.Thrower.Reflection.FastMember
         public virtual bool CreateNewSupported => false;
 
         /// <summary>
-        ///   Create a new instance of this type
+        ///   Create a new instance of this type.
         /// </summary>
         public virtual object CreateNew() { throw new NotSupportedException(); }
 
@@ -48,25 +48,28 @@ namespace PommaLabs.Thrower.Reflection.FastMember
         public virtual bool GetMembersSupported => false;
 
         /// <summary>
-        ///   Query the members available for this type
+        ///   Query the members available for this type.
         /// </summary>
         public virtual MemberSet GetMembers() { throw new NotSupportedException(); }
 
         /// <summary>
-        ///   Provides a type-specific accessor, allowing by-name access for all objects of that type
+        ///   Provides a type-specific accessor, allowing by-name access for all objects of that type.
         /// </summary>
-        /// <remarks>The accessor is cached internally; a pre-existing accessor may be returned</remarks>
+        /// <param name="type">The type.</param>
+        /// <remarks>The accessor is cached internally; a pre-existing accessor may be returned.</remarks>
         public static TypeAccessor Create(Type type) => Create(type, false);
 
         /// <summary>
-        ///   Provides a type-specific accessor, allowing by-name access for all objects of that type
+        ///   Provides a type-specific accessor, allowing by-name access for all objects of that type.
         /// </summary>
-        /// <remarks>The accessor is cached internally; a pre-existing accessor may be returned</remarks>
+        /// <remarks>The accessor is cached internally; a pre-existing accessor may be returned.</remarks>
         public static TypeAccessor Create<T>() => Create(typeof(T), false);
 
         /// <summary>
-        ///   Provides a type-specific accessor, allowing by-name access for all objects of that type
+        ///   Provides a type-specific accessor, allowing by-name access for all objects of that type.
         /// </summary>
+        /// <param name="type">The type.</param>
+        /// <param name="allowNonPublicAccessors">Allow usage of non public accessors.</param>
         /// <remarks>The accessor is cached internally; a pre-existing accessor may be returned</remarks>
         public static TypeAccessor Create(Type type, bool allowNonPublicAccessors)
         {
@@ -89,9 +92,10 @@ namespace PommaLabs.Thrower.Reflection.FastMember
         }
 
         /// <summary>
-        ///   Provides a type-specific accessor, allowing by-name access for all objects of that type
+        ///   Provides a type-specific accessor, allowing by-name access for all objects of that type.
         /// </summary>
-        /// <remarks>The accessor is cached internally; a pre-existing accessor may be returned</remarks>
+        /// <param name="allowNonPublicAccessors">Allow usage of non public accessors.</param>
+        /// <remarks>The accessor is cached internally; a pre-existing accessor may be returned.</remarks>
         public static TypeAccessor Create<T>(bool allowNonPublicAccessors) => Create(typeof(T), allowNonPublicAccessors);
 
 #if !NET35
@@ -353,7 +357,7 @@ namespace PommaLabs.Thrower.Reflection.FastMember
 
             PropertyInfo indexer = typeof(TypeAccessor).GetProperty("Item");
             MethodInfo baseGetter = indexer.GetGetMethod(), baseSetter = indexer.GetSetMethod();
-            MethodBuilder body = tb.DefineMethod(baseGetter.Name, baseGetter.Attributes & ~MethodAttributes.Abstract, typeof(object), new Type[] { typeof(object), typeof(string) });
+            var body = tb.DefineMethod(baseGetter.Name, baseGetter.Attributes & ~MethodAttributes.Abstract, typeof(object), new Type[] { typeof(object), typeof(string) });
             il = body.GetILGenerator();
             WriteMapImpl(il, type, members, mapField, allowNonPublicAccessors, true);
             tb.DefineMethodOverride(body, baseGetter);
@@ -366,14 +370,14 @@ namespace PommaLabs.Thrower.Reflection.FastMember
             MethodInfo baseMethod;
             if (ctor != null)
             {
-                baseMethod = typeof(TypeAccessor).GetProperty("CreateNewSupported").GetGetMethod();
+                baseMethod = typeof(TypeAccessor).GetProperty(nameof(CreateNewSupported)).GetGetMethod();
                 body = tb.DefineMethod(baseMethod.Name, baseMethod.Attributes, baseMethod.ReturnType, Type.EmptyTypes);
                 il = body.GetILGenerator();
                 il.Emit(OpCodes.Ldc_I4_1);
                 il.Emit(OpCodes.Ret);
                 tb.DefineMethodOverride(body, baseMethod);
 
-                baseMethod = typeof(TypeAccessor).GetMethod("CreateNew");
+                baseMethod = typeof(TypeAccessor).GetMethod(nameof(CreateNew));
                 body = tb.DefineMethod(baseMethod.Name, baseMethod.Attributes, baseMethod.ReturnType, Type.EmptyTypes);
                 il = body.GetILGenerator();
                 il.Emit(OpCodes.Newobj, ctor);
@@ -381,7 +385,7 @@ namespace PommaLabs.Thrower.Reflection.FastMember
                 tb.DefineMethodOverride(body, baseMethod);
             }
 
-            baseMethod = typeof(RuntimeTypeAccessor).GetProperty("Type", BindingFlags.NonPublic | BindingFlags.Instance).GetGetMethod(true);
+            baseMethod = typeof(RuntimeTypeAccessor).GetProperty(nameof(Type), BindingFlags.NonPublic | BindingFlags.Instance).GetGetMethod(true);
             body = tb.DefineMethod(baseMethod.Name, baseMethod.Attributes & ~MethodAttributes.Abstract, baseMethod.ReturnType, Type.EmptyTypes);
             il = body.GetILGenerator();
             il.Emit(OpCodes.Ldtoken, type);

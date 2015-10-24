@@ -26,6 +26,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 
 namespace PommaLabs.Thrower.Validation
 {
@@ -58,6 +59,28 @@ namespace PommaLabs.Thrower.Validation
             typeof(decimal),
             typeof(string)
         };
+
+        /// <summary>
+        ///   Prepares a readable messages containing all validation errors.
+        /// </summary>
+        /// <param name="validationErrors">The validation errors.</param>
+        /// <param name="startMessage">An optional prefix.</param>
+        /// <returns>A readable messages containing all validation errors.</returns>
+        public static string FormatValidationErrors(IEnumerable<ValidationError> validationErrors,string startMessage = null)
+        {
+            var builder = new StringBuilder();
+            if (!string.IsNullOrEmpty(startMessage))
+            {
+                builder.Append(startMessage);
+                builder.Append(" - ");
+            }
+            builder.AppendLine("Following paths failed the validation checks:");
+            foreach (var ve in validationErrors)
+            {
+                builder.AppendLine($" >> {ve.Path}: {ve.Reason}");
+            }
+            return builder.ToString();
+        }
 
         /// <summary>
         ///   Validates given object using information contained in the <see cref="ValidateAttribute"/> custom attribute.

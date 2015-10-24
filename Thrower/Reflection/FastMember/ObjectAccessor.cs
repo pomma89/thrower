@@ -25,38 +25,42 @@ namespace PommaLabs.Thrower.Reflection.FastMember
     public abstract class ObjectAccessor
     {
         /// <summary>
-        ///   Get or Set the value of a named member for the underlying object
+        ///   Get or Set the value of a named member for the underlying object.
         /// </summary>
         public abstract object this[string name] { get; set; }
 
         /// <summary>
-        ///   The object represented by this instance
+        ///   The object represented by this instance.
         /// </summary>
         public abstract object Target { get; }
 
         /// <summary>
-        ///   Use the target types definition of equality
+        ///   Use the target types definition of equality.
         /// </summary>
+        /// <param name="obj">The object.</param>
         public override bool Equals(object obj) => Target.Equals(obj);
 
         /// <summary>
-        ///   Obtain the hash of the target object
+        ///   Obtain the hash of the target object.
         /// </summary>
         public override int GetHashCode() => Target.GetHashCode();
 
         /// <summary>
-        ///   Use the target's definition of a string representation
+        ///   Use the target's definition of a string representation.
         /// </summary>
         public override string ToString() => Target.ToString();
 
         /// <summary>
-        ///   Wraps an individual object, allowing by-name access to that instance
+        ///   Wraps an individual object, allowing by-name access to that instance.
         /// </summary>
+        /// <param name="target">The target object.</param>
         public static ObjectAccessor Create(object target) => Create(target, false);
 
         /// <summary>
         ///   Wraps an individual object, allowing by-name access to that instance
         /// </summary>
+        /// <param name="target">The target object.</param>
+        /// <param name="allowNonPublicAccessors">Allow usage of non public accessors.</param>
         public static ObjectAccessor Create(object target, bool allowNonPublicAccessors)
         {
             if (target == null) throw new ArgumentNullException(nameof(target));
