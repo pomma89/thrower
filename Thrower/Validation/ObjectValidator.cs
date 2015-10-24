@@ -114,7 +114,15 @@ namespace PommaLabs.Thrower.Validation
             var collection = obj as ICollection;
             if (collection != null)
             {
-
+                var c = collection.Count;
+                if (c < validation.CollectionItemsMinCount)
+                {
+                    validationErrors.Add(new ValidationError { Path = path, Reason = $"Minimum item count is {validation.CollectionItemsMinCount}, found {c}" });
+                }
+                if (c > validation.CollectionItemsMaxCount)
+                {
+                    validationErrors.Add(new ValidationError { Path = path, Reason = $"Maximum item count is {validation.CollectionItemsMaxCount}, found {c}" });
+                }
             }
 
             var enumerable = obj as IEnumerable;
