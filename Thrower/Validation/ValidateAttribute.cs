@@ -34,13 +34,26 @@ namespace PommaLabs.Thrower.Validation
     {
         /// <summary>
         ///   Indicates that the property is required, that is, it will be checked against null.
+        /// 
+        ///   Default value is false.
         /// </summary>
         public bool Required { get; set; } = false;
 
         /// <summary>
-        ///   If the property is an enumerable ( <see cref="IEnumerable"/>), then this flag controls
+        ///   If the property is an <see cref="IEnumerable"/>, then this flag controls
         ///   whether it should enumerated or not.
+        /// 
+        ///   Default value is true.
         /// </summary>
-        public bool Enumerate { get; set; } = true;
+        public bool Enumerable { get; set; } = true;
+
+        /// <summary>
+        ///   If the property is an <see cref="IEnumerable"/>, then this flag controls
+        ///   whether its items are required or not.
+        /// 
+        ///   Default value is false.
+        /// </summary>
+        public bool EnumerableItemsRequired { get; set; } = false;
+
     }
 }
