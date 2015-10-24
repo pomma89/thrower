@@ -23,6 +23,7 @@
 
 using NUnit.Framework;
 using PommaLabs.Thrower.Reflection;
+using System;
 using System.Linq;
 
 namespace PommaLabs.Thrower.UnitTests.Reflection
@@ -100,10 +101,38 @@ namespace PommaLabs.Thrower.UnitTests.Reflection
             Assert.AreEqual(x.C, PortableTypeInfo.GetPublicPropertyValue(x, props.First(p => p.Name == nameof(MyStruct.C))));
 
 #if !PORTABLE
-            var typeAccessor = PommaLabs.Thrower.Reflection.FastMember.TypeAccessor.Create<MyStruct>(true);
+            var typeAccessor = PommaLabs.Thrower.Reflection.FastMember.TypeAccessor.Create<MyStruct>();
             Assert.AreEqual(x.A, PortableTypeInfo.GetPublicPropertyValue(typeAccessor, x, props.First(p => p.Name == nameof(MyStruct.A))));
             Assert.AreEqual(x.B, PortableTypeInfo.GetPublicPropertyValue(typeAccessor, x, props.First(p => p.Name == nameof(MyStruct.B))));
             Assert.AreEqual(x.C, PortableTypeInfo.GetPublicPropertyValue(typeAccessor, x, props.First(p => p.Name == nameof(MyStruct.C))));
+#endif
+        }
+
+        [Test]
+        public void GetPropertyValue_ShouldGetAllValuesForMyClass()
+        {
+            var x = new MyClass
+            {
+                A = 21,
+                B = "PINO",
+                C = decimal.One,
+                D = Math.PI
+            };
+
+            var props = PortableTypeInfo.GetPublicProperties<MyClass>();
+
+
+            Assert.AreEqual(x.A, PortableTypeInfo.GetPublicPropertyValue(x, props.First(p => p.Name == nameof(MyClass.A))));
+            Assert.AreEqual(x.B, PortableTypeInfo.GetPublicPropertyValue(x, props.First(p => p.Name == nameof(MyClass.B))));
+            Assert.AreEqual(x.C, PortableTypeInfo.GetPublicPropertyValue(x, props.First(p => p.Name == nameof(MyClass.C))));
+            Assert.AreEqual(x.D, PortableTypeInfo.GetPublicPropertyValue(x, props.First(p => p.Name == nameof(MyClass.D))));
+
+#if !PORTABLE
+            var typeAccessor = PommaLabs.Thrower.Reflection.FastMember.TypeAccessor.Create<MyClass>();
+            Assert.AreEqual(x.A, PortableTypeInfo.GetPublicPropertyValue(typeAccessor, x, props.First(p => p.Name == nameof(MyClass.A))));
+            Assert.AreEqual(x.B, PortableTypeInfo.GetPublicPropertyValue(typeAccessor, x, props.First(p => p.Name == nameof(MyClass.B))));
+            Assert.AreEqual(x.C, PortableTypeInfo.GetPublicPropertyValue(typeAccessor, x, props.First(p => p.Name == nameof(MyClass.C))));
+            Assert.AreEqual(x.D, PortableTypeInfo.GetPublicPropertyValue(typeAccessor, x, props.First(p => p.Name == nameof(MyClass.D))));
 #endif
         }
 
