@@ -41,6 +41,6 @@ namespace PommaLabs.Thrower.Validation
         ///   If the property is an enumerable ( <see cref="IEnumerable"/>), then this flag controls
         ///   whether it should enumerated or not.
         /// </summary>
-        public bool Enumerate { get; set; } = false;
+        public bool Enumerate { get; set; } = true;
     }
 }

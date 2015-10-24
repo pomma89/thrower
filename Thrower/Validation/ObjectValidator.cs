@@ -35,6 +35,11 @@ namespace PommaLabs.Thrower.Validation
     /// </summary>
     public static class ObjectValidator
     {
+        /// <summary>
+        ///   The placeholder used to indicate the starting object.
+        /// </summary>
+        public const string RootPlaceholder = "$";
+
         private static readonly ValidateAttribute DefaultValidation = new ValidateAttribute();
 
         private static readonly HashSet<Type> AlwaysValidTypes = new HashSet<Type>
@@ -64,7 +69,7 @@ namespace PommaLabs.Thrower.Validation
         public static bool Validate(object obj, out IList<ValidationError> validationErrors)
         {
             validationErrors = new List<ValidationError>();
-            return ValidateInternal(obj, string.Empty, DefaultValidation, validationErrors);
+            return ValidateInternal(obj, RootPlaceholder, DefaultValidation, validationErrors);
         }
 
         private static bool ValidateInternal(object obj, string path, ValidateAttribute validation, IList<ValidationError> validationErrors)
@@ -134,7 +139,7 @@ namespace PommaLabs.Thrower.Validation
                     }
 
                     var enumerable = propertyValue as IEnumerable;
-                    if (enumerable != null)
+                    if (enumerable != null && rp.ValidateAttribute.Enumerate)
                     {
                         var index = 0;
                         foreach (var item in enumerable)
