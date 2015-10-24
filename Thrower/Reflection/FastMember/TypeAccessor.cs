@@ -1,4 +1,16 @@
-﻿#if !PORTABLE
+﻿// Copyright 2013 Marc Gravell
+// 
+// Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except
+// in compliance with the License. You may obtain a copy of the License at:
+// 
+// "http://www.apache.org/licenses/LICENSE-2.0"
+// 
+// Unless required by applicable law or agreed to in writing, software distributed under the License
+// is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express
+// or implied. See the License for the specific language governing permissions and limitations under
+// the License.
+
+#if !PORTABLE
 
 using System;
 using System.Collections;
@@ -15,7 +27,7 @@ namespace PommaLabs.Thrower.Reflection.FastMember
     /// <summary>
     ///   Provides by-name member-access to objects of a given type
     /// </summary>
-    internal abstract class TypeAccessor
+    public abstract class TypeAccessor
     {
         // hash-table has better read-without-locking semantics than dictionary
         private static readonly Hashtable publicAccessorsOnly = new Hashtable(), nonPublicAccessors = new Hashtable();
@@ -23,7 +35,8 @@ namespace PommaLabs.Thrower.Reflection.FastMember
         /// <summary>
         ///   Does this type support new instances via a parameterless constructor?
         /// </summary>
-        public virtual bool CreateNewSupported { get { return false; } }
+        public virtual bool CreateNewSupported => false;
+
         /// <summary>
         ///   Create a new instance of this type
         /// </summary>
@@ -32,7 +45,8 @@ namespace PommaLabs.Thrower.Reflection.FastMember
         /// <summary>
         ///   Can this type be queried for member availability?
         /// </summary>
-        public virtual bool GetMembersSupported { get { return false; } }
+        public virtual bool GetMembersSupported => false;
+
         /// <summary>
         ///   Query the members available for this type
         /// </summary>
@@ -42,10 +56,13 @@ namespace PommaLabs.Thrower.Reflection.FastMember
         ///   Provides a type-specific accessor, allowing by-name access for all objects of that type
         /// </summary>
         /// <remarks>The accessor is cached internally; a pre-existing accessor may be returned</remarks>
-        public static TypeAccessor Create(Type type)
-        {
-            return Create(type, false);
-        }
+        public static TypeAccessor Create(Type type) => Create(type, false);
+
+        /// <summary>
+        ///   Provides a type-specific accessor, allowing by-name access for all objects of that type
+        /// </summary>
+        /// <remarks>The accessor is cached internally; a pre-existing accessor may be returned</remarks>
+        public static TypeAccessor Create<T>() => Create(typeof(T), false);
 
         /// <summary>
         ///   Provides a type-specific accessor, allowing by-name access for all objects of that type
@@ -53,7 +70,7 @@ namespace PommaLabs.Thrower.Reflection.FastMember
         /// <remarks>The accessor is cached internally; a pre-existing accessor may be returned</remarks>
         public static TypeAccessor Create(Type type, bool allowNonPublicAccessors)
         {
-            if (type == null) throw new ArgumentNullException("type");
+            if (type == null) throw new ArgumentNullException(nameof(type));
             var lookup = allowNonPublicAccessors ? nonPublicAccessors : publicAccessorsOnly;
             TypeAccessor obj = (TypeAccessor) lookup[type];
             if (obj != null) return obj;
@@ -70,6 +87,13 @@ namespace PommaLabs.Thrower.Reflection.FastMember
                 return obj;
             }
         }
+
+        /// <summary>
+        ///   Provides a type-specific accessor, allowing by-name access for all objects of that type
+        /// </summary>
+        /// <remarks>The accessor is cached internally; a pre-existing accessor may be returned</remarks>
+        public static TypeAccessor Create<T>(bool allowNonPublicAccessors) => Create(typeof(T), allowNonPublicAccessors);
+
 #if !NET35
         sealed class DynamicAccessor : TypeAccessor
         {
@@ -192,16 +216,15 @@ namespace PommaLabs.Thrower.Reflection.FastMember
             /// <summary>
             ///   Can this type be queried for member availability?
             /// </summary>
-            public override bool GetMembersSupported { get { return true; } }
+            public override bool GetMembersSupported => true;
+
             private MemberSet members;
             /// <summary>
             ///   Query the members available for this type
             /// </summary>
-            public override MemberSet GetMembers()
-            {
-                return members ?? (members = new MemberSet(Type));
-            }
+            public override MemberSet GetMembers() => members ?? (members = new MemberSet(Type));
         }
+
         sealed class DelegateAccessor : RuntimeTypeAccessor
         {
             private readonly Dictionary<string, int> map;
@@ -209,10 +232,8 @@ namespace PommaLabs.Thrower.Reflection.FastMember
             private readonly Action<int, object, object> setter;
             private readonly Func<object> ctor;
             private readonly Type type;
-            protected override Type Type
-            {
-                get { return type; }
-            }
+            protected override Type Type => type;
+
             public DelegateAccessor(Dictionary<string, int> map, Func<int, object, object> getter, Action<int, object, object> setter, Func<object> ctor, Type type)
             {
                 this.map = map;
@@ -221,11 +242,10 @@ namespace PommaLabs.Thrower.Reflection.FastMember
                 this.ctor = ctor;
                 this.type = type;
             }
-            public override bool CreateNewSupported { get { return ctor != null; } }
-            public override object CreateNew()
-            {
-                return ctor != null ? ctor() : base.CreateNew();
-            }
+            public override bool CreateNewSupported => ctor != null;
+
+            public override object CreateNew() => ctor != null ? ctor() : base.CreateNew();
+
             public override object this[object target, string name]
             {
                 get
@@ -242,6 +262,7 @@ namespace PommaLabs.Thrower.Reflection.FastMember
                 }
             }
         }
+
         private static bool IsFullyPublic(Type type, PropertyInfo[] props, bool allowNonPublicAccessors)
         {
             while (type.IsNestedPublic) type = type.DeclaringType;
@@ -258,6 +279,7 @@ namespace PommaLabs.Thrower.Reflection.FastMember
 
             return true;
         }
+
         static TypeAccessor CreateNew(Type type, bool allowNonPublicAccessors)
         {
 #if !NET35

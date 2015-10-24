@@ -21,5 +21,6 @@
     <Compile Include="$(MSBuildThisFileDirectory)RaiseNotSupportedExceptionTests.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)RaiseInvalidOperationExceptionTests.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)RaiseTests.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Reflection\PortableTypeInfoTests.cs" />
   </ItemGroup>
 </Project>
