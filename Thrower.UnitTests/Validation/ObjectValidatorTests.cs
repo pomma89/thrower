@@ -1,4 +1,4 @@
-﻿// File name: ValidateAttribute.cs
+﻿// File name: ObjectValidatorTests.cs
 // 
 // Author(s): Alessio Parma <alessio.parma@gmail.com>
 // 
@@ -21,26 +21,35 @@
 // DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
-using System;
-using System.Collections;
+using NUnit.Framework;
+using PommaLabs.Thrower.Validation;
+using System.Collections.Generic;
+using System.Linq;
 
-namespace PommaLabs.Thrower.Validation
+namespace PommaLabs.Thrower.UnitTests.Validation
 {
-    /// <summary>
-    ///   Indicates that the property should be validated.
-    /// </summary>
-    [AttributeUsage(AttributeTargets.Property, AllowMultiple = false, Inherited = false)]
-    public sealed class ValidateAttribute : Attribute
+    sealed class ObjectValidatorTests : AbstractTests
     {
-        /// <summary>
-        ///   Indicates that the property is required, that is, it will be checked against null.
-        /// </summary>
-        public bool Required { get; set; } = false;
+        [Test]
+        public void Validate_TestClass()
+        {
+            IList<ValidationError> validationErrors;
+            var result = ObjectValidator.Validate(new TestClass(), out validationErrors);
 
-        /// <summary>
-        ///   If the property is an enumerable ( <see cref="IEnumerable"/>), then this flag controls
-        ///   whether it should enumerated or not.
-        /// </summary>
-        public bool Enumerate { get; set; } = false;
+            Assert.IsFalse(result);
+            Assert.AreEqual(1, validationErrors.Count);
+            Assert.AreEqual(1, validationErrors.Count(ve => ve.Path == nameof(TestClass.NullableBooleanThatShouldBeValidated)));
+        }
+
+        public sealed class TestClass
+        {
+            public bool BooleanThatShouldNotBeValidated { get; set; }
+
+            [Validate(Required = true)]
+            public bool BooleanThatShouldBeValidated { get; set; }
+
+            [Validate(Required = true)]
+            public bool? NullableBooleanThatShouldBeValidated { get; set; } = null;
+        }
     }
 }

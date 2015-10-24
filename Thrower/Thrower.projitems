@@ -24,6 +24,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)RaiseInvalidOperationException.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Validation\ObjectValidator.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Validation\ValidateAttribute.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Validation\ValidationError.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="$(MSBuildThisFileDirectory)doxyfile.txt" />
