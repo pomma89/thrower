@@ -49,7 +49,7 @@ namespace PommaLabs.Thrower.Reflection.FastMember
         /// <param name="members">The members that should be exposed to the reader</param>
         public ObjectReader(Type type, IEnumerable source, params string[] members)
         {
-            if (source == null) throw new ArgumentOutOfRangeException("source");
+            if (source == null) throw new ArgumentOutOfRangeException(nameof(source));
 
             bool allMembers = members == null || members.Length == 0;
 

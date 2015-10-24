@@ -20,7 +20,7 @@ using System.Reflection;
 namespace PommaLabs.Thrower.Reflection.FastMember
 {
     /// <summary>
-    ///   Represents an abstracted view of the members defined for a type
+    ///   Represents an abstracted view of the members defined for a type.
     /// </summary>
     public sealed class MemberSet : IEnumerable<Member>, IList<Member>
     {
@@ -35,7 +35,7 @@ namespace PommaLabs.Thrower.Reflection.FastMember
                 .ToArray();
         }
         /// <summary>
-        ///   Return a sequence of all defined members
+        ///   Return a sequence of all defined members.
         /// </summary>
         public IEnumerator<Member> GetEnumerator()
         {
@@ -48,7 +48,7 @@ namespace PommaLabs.Thrower.Reflection.FastMember
         public Member this[int index] => members[index];
 
         /// <summary>
-        ///   The number of members defined for this type
+        ///   The number of members defined for this type.
         /// </summary>
         public int Count => members.Length;
 
@@ -72,7 +72,7 @@ namespace PommaLabs.Thrower.Reflection.FastMember
     }
 
     /// <summary>
-    ///   Represents an abstracted view of an individual member defined for a type
+    ///   Represents an abstracted view of an individual member defined for a type.
     /// </summary>
     public sealed class Member
     {
@@ -84,12 +84,12 @@ namespace PommaLabs.Thrower.Reflection.FastMember
         }
 
         /// <summary>
-        ///   The name of this member
+        ///   The name of this member.
         /// </summary>
         public string Name => member.Name;
 
         /// <summary>
-        ///   The type of value stored in this member
+        ///   The type of value stored in this member.
         /// </summary>
         public Type Type
         {
@@ -105,8 +105,9 @@ namespace PommaLabs.Thrower.Reflection.FastMember
         }
 
         /// <summary>
-        ///   Is the attribute specified defined on this type
+        ///   Is the attribute specified defined on this type.
         /// </summary>
+        /// <param name="attributeType">The attribute type.</param>
         public bool IsDefined(Type attributeType)
         {
             if (attributeType == null) throw new ArgumentNullException(nameof(attributeType));

@@ -21,7 +21,9 @@
 // DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
+using PommaLabs.Thrower.Validation;
 using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 
 namespace PommaLabs.Thrower
@@ -31,6 +33,8 @@ namespace PommaLabs.Thrower
     /// </summary>
     public sealed class RaiseArgumentException : RaiseBase
     {
+        #region If
+
         /// <summary>
         ///   Throws <see cref="ArgumentException"/> if given condition is true.
         /// </summary>
@@ -69,6 +73,10 @@ namespace PommaLabs.Thrower
             }
         }
 
+        #endregion
+
+        #region IfNot
+
         /// <summary>
         ///   Throws <see cref="ArgumentException"/> if given condition is false.
         /// </summary>
@@ -106,5 +114,53 @@ namespace PommaLabs.Thrower
                 throw new ArgumentException(message, argumentName);
             }
         }
+
+        #endregion
+
+        #region IfIsNotValid
+
+        /// <summary>
+        ///   Throws <see cref="ArgumentException"/> if given argument is not valid.
+        /// </summary>
+        /// <typeparam name="TArg">The type of the argument.</typeparam>
+        /// <param name="argument">The argument.</param>
+        /// <param name="message">The optional message.</param>
+#if (NET45 || NET46)
+        [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
+#endif
+        [Conditional(UseThrowerDefine)]
+        public static void IfIsNotValid<TArg>(TArg argument, string message = null)
+        {
+            IList<ValidationError> validationErrors;
+            if (!ObjectValidator.Validate(argument, out validationErrors))
+            {
+                throw new ArgumentException(ObjectValidator.FormatValidationErrors(validationErrors, message));
+            }
+        }
+
+        /// <summary>
+        ///   Throws <see cref="ArgumentException"/> if given argument is not valid.
+        /// </summary>
+        /// <typeparam name="TArg">The type of the argument.</typeparam>
+        /// <param name="argument">The argument.</param>
+        /// <param name="message">The message.</param>
+        /// <param name="argumentName">The name of the argument.</param>
+        /// <remarks>
+        ///   <paramref name="message"/> and <paramref name="argumentName"/> are strictly required arguments.
+        /// </remarks>
+#if (NET45 || NET46)
+        [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
+#endif
+        [Conditional(UseThrowerDefine)]
+        public static void IfIsNotValid<TArg>(TArg argument, string message, string argumentName)
+        {
+            IList<ValidationError> validationErrors;
+            if (!ObjectValidator.Validate(argument, out validationErrors))
+            {
+                throw new ArgumentException(ObjectValidator.FormatValidationErrors(validationErrors, message), argumentName);
+            }
+        }
+
+        #endregion
     }
 }
