@@ -100,7 +100,7 @@ namespace PommaLabs.Thrower.Validation
             {
                 if (validation.Required)
                 {
-                    validationErrors.Add(new ValidationError { Path = path, Reason = "Object is required, found null" });
+                    validationErrors.Add(new ValidationError { Path = path, Reason = "Property is required, found null" });
                     return false;
                 }
 
@@ -125,7 +125,7 @@ namespace PommaLabs.Thrower.Validation
 
                 if ((bool) PortableTypeInfo.GetPublicPropertyValue(obj, nullableHasValueProp))
                 {
-                    validationErrors.Add(new ValidationError { Path = path, Reason = "Object is required, found null" });
+                    validationErrors.Add(new ValidationError { Path = path, Reason = "Property is required, found null" });
                     return false;
                 }
 

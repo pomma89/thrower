@@ -34,8 +34,8 @@ namespace PommaLabs.Thrower
         #region Less - Without message
 
         /// <summary>
-        ///   Throws <see cref="IndexOutOfRangeException"/> if <paramref name="argument1"/> is
-        ///   less than <paramref name="argument2"/>.
+        ///   Throws <see cref="IndexOutOfRangeException"/> if <paramref name="argument1"/> is less
+        ///   than <paramref name="argument2"/>.
         /// </summary>
         /// <typeparam name="TArg">The type of the arguments.</typeparam>
         /// <param name="argument1">The left side argument.</param>
@@ -54,8 +54,8 @@ namespace PommaLabs.Thrower
         }
 
         /// <summary>
-        ///   Throws <see cref="IndexOutOfRangeException"/> if <paramref name="argument1"/> is
-        ///   less than <paramref name="argument2"/>.
+        ///   Throws <see cref="IndexOutOfRangeException"/> if <paramref name="argument1"/> is less
+        ///   than <paramref name="argument2"/>.
         /// </summary>
         /// <param name="argument1">The left side argument.</param>
         /// <param name="argument2">The right side argument.</param>
@@ -76,8 +76,8 @@ namespace PommaLabs.Thrower
         #region Less - With message
 
         /// <summary>
-        ///   Throws <see cref="IndexOutOfRangeException"/> if <paramref name="argument1"/> is
-        ///   less than <paramref name="argument2"/>.
+        ///   Throws <see cref="IndexOutOfRangeException"/> if <paramref name="argument1"/> is less
+        ///   than <paramref name="argument2"/>.
         /// </summary>
         /// <typeparam name="TArg">The type of the arguments.</typeparam>
         /// <param name="argument1">The left side argument.</param>
@@ -97,8 +97,8 @@ namespace PommaLabs.Thrower
         }
 
         /// <summary>
-        ///   Throws <see cref="IndexOutOfRangeException"/> if <paramref name="argument1"/> is
-        ///   less than <paramref name="argument2"/>.
+        ///   Throws <see cref="IndexOutOfRangeException"/> if <paramref name="argument1"/> is less
+        ///   than <paramref name="argument2"/>.
         /// </summary>
         /// <param name="argument1">The left side argument.</param>
         /// <param name="argument2">The right side argument.</param>
@@ -120,8 +120,8 @@ namespace PommaLabs.Thrower
         #region LessEqual - Without message
 
         /// <summary>
-        ///   Throws <see cref="IndexOutOfRangeException"/> if <paramref name="argument1"/> is
-        ///   less than or equal to <paramref name="argument2"/>.
+        ///   Throws <see cref="IndexOutOfRangeException"/> if <paramref name="argument1"/> is less
+        ///   than or equal to <paramref name="argument2"/>.
         /// </summary>
         /// <typeparam name="TArg">The type of the arguments.</typeparam>
         /// <param name="argument1">The left side argument.</param>
@@ -140,8 +140,8 @@ namespace PommaLabs.Thrower
         }
 
         /// <summary>
-        ///   Throws <see cref="IndexOutOfRangeException"/> if <paramref name="argument1"/> is
-        ///   less than or equal to <paramref name="argument2"/>.
+        ///   Throws <see cref="IndexOutOfRangeException"/> if <paramref name="argument1"/> is less
+        ///   than or equal to <paramref name="argument2"/>.
         /// </summary>
         /// <param name="argument1">The left side argument.</param>
         /// <param name="argument2">The right side argument.</param>
@@ -162,8 +162,8 @@ namespace PommaLabs.Thrower
         #region LessEqual - With message
 
         /// <summary>
-        ///   Throws <see cref="IndexOutOfRangeException"/> if <paramref name="argument1"/> is
-        ///   less than or equal to <paramref name="argument2"/>.
+        ///   Throws <see cref="IndexOutOfRangeException"/> if <paramref name="argument1"/> is less
+        ///   than or equal to <paramref name="argument2"/>.
         /// </summary>
         /// <typeparam name="TArg">The type of the arguments.</typeparam>
         /// <param name="argument1">The left side argument.</param>
@@ -183,8 +183,8 @@ namespace PommaLabs.Thrower
         }
 
         /// <summary>
-        ///   Throws <see cref="IndexOutOfRangeException"/> if <paramref name="argument1"/> is
-        ///   less than or equal to <paramref name="argument2"/>.
+        ///   Throws <see cref="IndexOutOfRangeException"/> if <paramref name="argument1"/> is less
+        ///   than or equal to <paramref name="argument2"/>.
         /// </summary>
         /// <param name="argument1">The left side argument.</param>
         /// <param name="argument2">The right side argument.</param>
@@ -378,8 +378,8 @@ namespace PommaLabs.Thrower
         #region Equal - Without message
 
         /// <summary>
-        ///   Throws <see cref="IndexOutOfRangeException"/> if <paramref name="argument1"/> is
-        ///   equal to <paramref name="argument2"/>.
+        ///   Throws <see cref="IndexOutOfRangeException"/> if <paramref name="argument1"/> is equal
+        ///   to <paramref name="argument2"/>.
         /// </summary>
         /// <typeparam name="TArg">The type of the arguments.</typeparam>
         /// <param name="argument1">The left side argument.</param>
@@ -398,8 +398,8 @@ namespace PommaLabs.Thrower
         }
 
         /// <summary>
-        ///   Throws <see cref="IndexOutOfRangeException"/> if <paramref name="argument1"/> is
-        ///   equal to <paramref name="argument2"/>.
+        ///   Throws <see cref="IndexOutOfRangeException"/> if <paramref name="argument1"/> is equal
+        ///   to <paramref name="argument2"/>.
         /// </summary>
         /// <param name="argument1">The left side argument.</param>
         /// <param name="argument2">The right side argument.</param>
@@ -420,8 +420,8 @@ namespace PommaLabs.Thrower
         #region Equal - With message
 
         /// <summary>
-        ///   Throws <see cref="IndexOutOfRangeException"/> if <paramref name="argument1"/> is
-        ///   equal to <paramref name="argument2"/>.
+        ///   Throws <see cref="IndexOutOfRangeException"/> if <paramref name="argument1"/> is equal
+        ///   to <paramref name="argument2"/>.
         /// </summary>
         /// <typeparam name="TArg">The type of the arguments.</typeparam>
         /// <param name="argument1">The left side argument.</param>
@@ -441,8 +441,8 @@ namespace PommaLabs.Thrower
         }
 
         /// <summary>
-        ///   Throws <see cref="IndexOutOfRangeException"/> if <paramref name="argument1"/> is
-        ///   equal to <paramref name="argument2"/>.
+        ///   Throws <see cref="IndexOutOfRangeException"/> if <paramref name="argument1"/> is equal
+        ///   to <paramref name="argument2"/>.
         /// </summary>
         /// <param name="argument1">The left side argument.</param>
         /// <param name="argument2">The right side argument.</param>
@@ -464,8 +464,8 @@ namespace PommaLabs.Thrower
         #region NotEqual - Without message
 
         /// <summary>
-        ///   Throws <see cref="IndexOutOfRangeException"/> if <paramref name="argument1"/> is
-        ///   not equal to <paramref name="argument2"/>.
+        ///   Throws <see cref="IndexOutOfRangeException"/> if <paramref name="argument1"/> is not
+        ///   equal to <paramref name="argument2"/>.
         /// </summary>
         /// <typeparam name="TArg">The type of the arguments.</typeparam>
         /// <param name="argument1">The left side argument.</param>
@@ -484,8 +484,8 @@ namespace PommaLabs.Thrower
         }
 
         /// <summary>
-        ///   Throws <see cref="IndexOutOfRangeException"/> if <paramref name="argument1"/> is
-        ///   not equal to <paramref name="argument2"/>.
+        ///   Throws <see cref="IndexOutOfRangeException"/> if <paramref name="argument1"/> is not
+        ///   equal to <paramref name="argument2"/>.
         /// </summary>
         /// <param name="argument1">The left side argument.</param>
         /// <param name="argument2">The right side argument.</param>
@@ -506,8 +506,8 @@ namespace PommaLabs.Thrower
         #region NotEqual - With message
 
         /// <summary>
-        ///   Throws <see cref="IndexOutOfRangeException"/> if <paramref name="argument1"/> is
-        ///   not equal to <paramref name="argument2"/>.
+        ///   Throws <see cref="IndexOutOfRangeException"/> if <paramref name="argument1"/> is not
+        ///   equal to <paramref name="argument2"/>.
         /// </summary>
         /// <typeparam name="TArg">The type of the arguments.</typeparam>
         /// <param name="argument1">The left side argument.</param>
@@ -527,8 +527,8 @@ namespace PommaLabs.Thrower
         }
 
         /// <summary>
-        ///   Throws <see cref="IndexOutOfRangeException"/> if <paramref name="argument1"/> is
-        ///   not equal to <paramref name="argument2"/>.
+        ///   Throws <see cref="IndexOutOfRangeException"/> if <paramref name="argument1"/> is not
+        ///   equal to <paramref name="argument2"/>.
         /// </summary>
         /// <param name="argument1">The left side argument.</param>
         /// <param name="argument2">The right side argument.</param>
