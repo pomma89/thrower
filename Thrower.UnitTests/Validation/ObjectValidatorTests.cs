@@ -41,7 +41,7 @@ namespace PommaLabs.Thrower.UnitTests.Validation
             var r = ObjectValidator.RootPlaceholder;
 
             Assert.IsFalse(result);
-            Assert.AreEqual(7, validationErrors.Count);
+            Assert.AreEqual(9, validationErrors.Count);
             Assert.AreEqual(1, validationErrors.Count(ve => ve.Path == r + "." + nameof(TestClass.RequiredBooleanThatIsNull)));
             Assert.AreEqual(1, validationErrors.Count(ve => ve.Path == r + "." + nameof(TestClass.RequiredStringThatIsNull)));
             Assert.AreEqual(1, validationErrors.Count(ve => ve.Path == r + "." + nameof(TestClass.OptionalMyTupleWithNullProperty) + "." + nameof(TestClass.MyTuple.RequiredNullableDouble)));
@@ -49,6 +49,8 @@ namespace PommaLabs.Thrower.UnitTests.Validation
             Assert.AreEqual(1, validationErrors.Count(ve => ve.Path == r + "." + nameof(TestClass.OptionalEnumerableWithNullRequiredItems) + "[2]"));
             Assert.AreEqual(1, validationErrors.Count(ve => ve.Path == r + "." + nameof(TestClass.RequiredEnumerableWithRequiredItemsWithNullProperty) + "[0]." + nameof(TestClass.MyTuple.RequiredNullableDouble)));
             Assert.AreEqual(1, validationErrors.Count(ve => ve.Path == r + "." + nameof(TestClass.RequiredEnumerableWithRequiredItemsWithNullProperty) + "[1]." + nameof(TestClass.MyTuple.RequiredNullableDouble)));
+            Assert.AreEqual(1, validationErrors.Count(ve => ve.Path == r + "." + nameof(TestClass.OptionalCollectionWhichShouldNotBeEmpty)));
+            Assert.AreEqual(1, validationErrors.Count(ve => ve.Path == r + "." + nameof(TestClass.OptionalCollectionWhichShouldBeSmaller)));
         }
 
         [TestCase(1)]
@@ -111,6 +113,15 @@ namespace PommaLabs.Thrower.UnitTests.Validation
                 new MyTuple {RequiredNullableDouble = null },
                 new MyTuple {RequiredNullableDouble = null }
             };
+
+            [Validate(CollectionItemsMinCount = 3)]
+            public IList<int> OptionalCollectionWhichShouldNotBeEmpty { get; set; } = new List<int>();
+
+            [Validate(CollectionItemsMinCount = 3, CollectionItemsMaxCount = 5)]
+            public int[] OptionalCollection { get; set; } = new[] { 1, 2, 3, 4 };
+
+            [Validate(CollectionItemsMinCount = 3, CollectionItemsMaxCount = 5)]
+            public IList<int> OptionalCollectionWhichShouldBeSmaller { get; set; } = new[] { 1, 2, 3, 4, 5, 6 };
 
             public sealed class MyTuple
             {

@@ -40,20 +40,38 @@ namespace PommaLabs.Thrower.Validation
         public bool Required { get; set; } = false;
 
         /// <summary>
-        ///   If the property is an <see cref="IEnumerable"/>, then this flag controls
-        ///   whether it should enumerated or not.
+        ///   If the property is an <see cref="IEnumerable"/>, then this flag controls whether it
+        ///   should enumerated or not.
         /// 
         ///   Default value is true.
         /// </summary>
         public bool Enumerable { get; set; } = true;
 
         /// <summary>
-        ///   If the property is an <see cref="IEnumerable"/>, then this flag controls
-        ///   whether its items are required or not.
+        ///   If the property is an <see cref="IEnumerable"/>, then this flag controls whether its
+        ///   items are required or not.
         /// 
         ///   Default value is false.
         /// </summary>
         public bool EnumerableItemsRequired { get; set; } = false;
 
+        /// <summary>
+        ///   If the property is an <see cref="ICollection"/>, then this flag controls the minimum
+        ///   value for <see cref="ICollection.Count"/>.
+        /// 
+        ///   Default value is
+        ///   <code>
+        ///     0L
+        ///   </code>.
+        /// </summary>
+        public long CollectionItemsMinCount { get; set; } = 0L;
+
+        /// <summary>
+        ///   If the property is an <see cref="ICollection"/>, then this flag controls the maximum
+        ///   value for <see cref="ICollection.Count"/>.
+        /// 
+        ///   Default value is <see cref="long.MaxValue"/>.
+        /// </summary>
+        public long CollectionItemsMaxCount { get; set; } = long.MaxValue;
     }
 }
