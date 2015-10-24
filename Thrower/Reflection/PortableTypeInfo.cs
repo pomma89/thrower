@@ -308,7 +308,7 @@ namespace PommaLabs.Thrower.Reflection
 #endif
         public static bool IsEnum<T>() => IsEnum(typeof(T));
 
-        #endregion
+        #endregion IsEnum
 
         #region IsGenericType
 
@@ -339,7 +339,7 @@ namespace PommaLabs.Thrower.Reflection
 #endif
         public static bool IsGenericType<T>() => IsGenericType(typeof(T));
 
-        #endregion
+        #endregion IsGenericType
 
         /// <summary>
         ///   Determines whether the specified object is an instance of the current <see cref="T:System.Type"/>.

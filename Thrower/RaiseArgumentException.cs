@@ -73,7 +73,7 @@ namespace PommaLabs.Thrower
             }
         }
 
-        #endregion
+        #endregion If
 
         #region IfNot
 
@@ -115,7 +115,7 @@ namespace PommaLabs.Thrower
             }
         }
 
-        #endregion
+        #endregion IfNot
 
         #region IfIsNotValid
 
@@ -161,6 +161,6 @@ namespace PommaLabs.Thrower
             }
         }
 
-        #endregion
+        #endregion IfIsNotValid
     }
 }
