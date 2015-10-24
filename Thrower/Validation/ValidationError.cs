@@ -1,4 +1,4 @@
-﻿// File name: ValidateAttribute.cs
+﻿// File name: ValidationError.cs
 // 
 // Author(s): Alessio Parma <alessio.parma@gmail.com>
 // 
@@ -21,26 +21,21 @@
 // DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
-using System;
-using System.Collections;
-
 namespace PommaLabs.Thrower.Validation
 {
     /// <summary>
-    ///   Indicates that the property should be validated.
+    ///   Represents an error found while validating an object.
     /// </summary>
-    [AttributeUsage(AttributeTargets.Property, AllowMultiple = false, Inherited = false)]
-    public sealed class ValidateAttribute : Attribute
+    public struct ValidationError
     {
         /// <summary>
-        ///   Indicates that the property is required, that is, it will be checked against null.
+        ///   The path to the wrong property.
         /// </summary>
-        public bool Required { get; set; } = false;
+        public string Path { get; set; }
 
         /// <summary>
-        ///   If the property is an enumerable ( <see cref="IEnumerable"/>), then this flag controls
-        ///   whether it should enumerated or not.
+        ///   What caused the error.
         /// </summary>
-        public bool Enumerate { get; set; } = false;
+        public string Reason { get; set; }
     }
 }

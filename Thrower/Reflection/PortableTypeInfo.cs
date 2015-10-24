@@ -23,10 +23,9 @@
 
 using System;
 using System.Collections.Generic;
-using System.Reflection;
-#if PORTABLE
 using System.Linq;
-#else
+using System.Reflection;
+#if !PORTABLE
 using PommaLabs.Thrower.Reflection.FastMember;
 #endif
 
@@ -43,6 +42,26 @@ namespace PommaLabs.Thrower.Reflection
 #endif
 
         private static readonly object[] EmptyObjectArray = new object[0];
+
+        /// <summary>
+        ///   Gets the custom attributes for given member.
+        /// </summary>
+        /// <param name="memberInfo">The member.</param>
+        /// <param name="inherit">
+        ///   True to search this member's inheritance chain to find the attributes; otherwise, false.
+        /// </param>
+        /// <returns>The custom attributes for given member.</returns>
+#if (NET45 || NET46)
+        [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
+#endif
+        public static IList<Attribute> GetCustomAttributes(MemberInfo memberInfo, bool inherit)
+        {
+#if PORTABLE
+            return memberInfo.GetCustomAttributes().ToArray();
+#else
+            return memberInfo.GetCustomAttributes(inherit).Cast<Attribute>().ToArray();
+#endif
+        }
 
         /// <summary>
         ///   Gets the constructors for given type.
@@ -132,7 +151,7 @@ namespace PommaLabs.Thrower.Reflection
 #endif
         public static IList<PropertyInfo> GetPublicProperties<T>() => GetPublicProperties(typeof(T));
 
-        #region GetPropertyValue
+        #region GetPublicPropertyValue
 
         /// <summary>
         ///   Gets the value of given property on given instance.
@@ -169,7 +188,9 @@ namespace PommaLabs.Thrower.Reflection
         }
 #endif
 
-        #endregion
+        #endregion GetPublicPropertyValue
+
+        #region IsAbstract
 
         /// <summary>
         ///   Determines whether the specified type is abstract.
@@ -198,6 +219,39 @@ namespace PommaLabs.Thrower.Reflection
 #endif
         public static bool IsAbstract<T>() => IsAbstract(typeof(T));
 
+        #endregion IsAbstract
+
+        #region IsClass
+
+        /// <summary>
+        ///   Determines whether the specified type is a class.
+        /// </summary>
+        /// <param name="type">The type.</param>
+        /// <returns>Whether the specified type is a class.</returns>
+#if (NET45 || NET46)
+        [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
+#endif
+        public static bool IsClass(Type type)
+        {
+#if PORTABLE
+            return IntrospectionExtensions.GetTypeInfo(type).IsClass;
+#else
+            return type.IsClass;
+#endif
+        }
+
+        /// <summary>
+        ///   Determines whether the specified type is a class.
+        /// </summary>
+        /// <typeparam name="T">The type.</typeparam>
+        /// <returns>Whether the specified type is a class.</returns>
+#if (NET45 || NET46)
+        [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
+#endif
+        public static bool IsClass<T>() => IsClass(typeof(T));
+
+        #endregion IsClass
+
         /// <summary>
         ///   Determines whether an instance of the current <see cref="T:System.Type"/> can be
         ///   assigned from an instance of the specified Type.
@@ -224,6 +278,8 @@ namespace PommaLabs.Thrower.Reflection
             return obj.GetType().IsAssignableFrom(type);
 #endif
         }
+
+        #region IsEnum
 
         /// <summary>
         ///   Determines whether the specified type is an enumeration.
@@ -252,6 +308,39 @@ namespace PommaLabs.Thrower.Reflection
 #endif
         public static bool IsEnum<T>() => IsEnum(typeof(T));
 
+        #endregion
+
+        #region IsGenericType
+
+        /// <summary>
+        ///   Determines whether the specified type is a generic type.
+        /// </summary>
+        /// <param name="type">The type.</param>
+        /// <returns>Whether the specified type is a generic type.</returns>
+#if (NET45 || NET46)
+        [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
+#endif
+        public static bool IsGenericType(Type type)
+        {
+#if PORTABLE
+            return IntrospectionExtensions.GetTypeInfo(type).IsGenericType;
+#else
+            return type.IsGenericType;
+#endif
+        }
+
+        /// <summary>
+        ///   Determines whether the specified type is a generic type.
+        /// </summary>
+        /// <typeparam name="T">The type.</typeparam>
+        /// <returns>Whether the specified type is a generic type.</returns>
+#if (NET45 || NET46)
+        [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
+#endif
+        public static bool IsGenericType<T>() => IsGenericType(typeof(T));
+
+        #endregion
+
         /// <summary>
         ///   Determines whether the specified object is an instance of the current <see cref="T:System.Type"/>.
         /// </summary>
@@ -274,6 +363,8 @@ namespace PommaLabs.Thrower.Reflection
             return type.IsInstanceOfType(obj);
 #endif
         }
+
+        #region IsInterface
 
         /// <summary>
         ///   Determines whether the specified type is an interface.
@@ -302,6 +393,41 @@ namespace PommaLabs.Thrower.Reflection
 #endif
         public static bool IsInterface<T>() => IsInterface(typeof(T));
 
+        #endregion IsInterface
+
+        #region IsPrimitive
+
+        /// <summary>
+        ///   Determines whether the specified type is primitive.
+        /// </summary>
+        /// <param name="type">The type.</param>
+        /// <returns>Whether the specified type is primitive.</returns>
+#if (NET45 || NET46)
+        [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
+#endif
+        public static bool IsPrimitive(Type type)
+        {
+#if PORTABLE
+            return IntrospectionExtensions.GetTypeInfo(type).IsPrimitive;
+#else
+            return type.IsPrimitive;
+#endif
+        }
+
+        /// <summary>
+        ///   Determines whether the specified type is primitive.
+        /// </summary>
+        /// <typeparam name="T">The type.</typeparam>
+        /// <returns>Whether the specified type is primitive.</returns>
+#if (NET45 || NET46)
+        [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
+#endif
+        public static bool IsPrimitive<T>() => IsPrimitive(typeof(T));
+
+        #endregion IsPrimitive
+
+        #region IsValueType
+
         /// <summary>
         ///   Determines whether the specified type is a value type.
         /// </summary>
@@ -328,5 +454,7 @@ namespace PommaLabs.Thrower.Reflection
         [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
 #endif
         public static bool IsValueType<T>() => IsValueType(typeof(T));
+
+        #endregion IsValueType
     }
 }

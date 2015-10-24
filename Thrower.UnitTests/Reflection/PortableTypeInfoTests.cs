@@ -38,7 +38,7 @@ namespace PommaLabs.Thrower.UnitTests.Reflection
             Assert.AreSame(typeof(MyAbstractClass), PortableTypeInfo.GetBaseType(typeof(MyClass)));
         }
 
-        #endregion
+        #endregion GetBaseType
 
         #region GetPublicProperties
 
@@ -79,12 +79,12 @@ namespace PommaLabs.Thrower.UnitTests.Reflection
             Assert.AreEqual(1, props.Count(p => p.Name == nameof(MyAbstractClass.D)));
         }
 
-        #endregion
+        #endregion GetPublicProperties
 
-        #region GetPropertyValue
+        #region GetPublicPropertyValue
 
         [Test]
-        public void GetPropertyValue_ShouldGetAllValuesForMyStruct()
+        public void GetPublicPropertyValue_ShouldGetAllValuesForMyStruct()
         {
             var x = new MyStruct
             {
@@ -94,7 +94,6 @@ namespace PommaLabs.Thrower.UnitTests.Reflection
             };
 
             var props = PortableTypeInfo.GetPublicProperties<MyStruct>();
-
 
             Assert.AreEqual(x.A, PortableTypeInfo.GetPublicPropertyValue(x, props.First(p => p.Name == nameof(MyStruct.A))));
             Assert.AreEqual(x.B, PortableTypeInfo.GetPublicPropertyValue(x, props.First(p => p.Name == nameof(MyStruct.B))));
@@ -109,7 +108,7 @@ namespace PommaLabs.Thrower.UnitTests.Reflection
         }
 
         [Test]
-        public void GetPropertyValue_ShouldGetAllValuesForMyClass()
+        public void GetPublicPropertyValue_ShouldGetAllValuesForMyClass()
         {
             var x = new MyClass
             {
@@ -120,7 +119,6 @@ namespace PommaLabs.Thrower.UnitTests.Reflection
             };
 
             var props = PortableTypeInfo.GetPublicProperties<MyClass>();
-
 
             Assert.AreEqual(x.A, PortableTypeInfo.GetPublicPropertyValue(x, props.First(p => p.Name == nameof(MyClass.A))));
             Assert.AreEqual(x.B, PortableTypeInfo.GetPublicPropertyValue(x, props.First(p => p.Name == nameof(MyClass.B))));
@@ -136,7 +134,7 @@ namespace PommaLabs.Thrower.UnitTests.Reflection
 #endif
         }
 
-        #endregion
+        #endregion GetPublicPropertyValue
 
         #region IsEnum
 
@@ -177,9 +175,9 @@ namespace PommaLabs.Thrower.UnitTests.Reflection
             Assert.IsFalse(PortableTypeInfo.IsEnum(typeof(int)));
         }
 
-#endregion IsEnum
+        #endregion IsEnum
 
-#region IsAbstract
+        #region IsAbstract
 
         [Test]
         public void IsAbstract_ShouldReturnFalseWithEnum()
@@ -219,9 +217,52 @@ namespace PommaLabs.Thrower.UnitTests.Reflection
             Assert.IsFalse(PortableTypeInfo.IsAbstract(typeof(int)));
         }
 
-#endregion IsAbstract
+        #endregion IsAbstract
 
-#region IsInterface
+        #region IsClass
+
+        [Test]
+        public void IsClass_ShouldReturnFalseWithEnum()
+        {
+            Assert.IsFalse(PortableTypeInfo.IsClass(typeof(MyEnum)));
+        }
+
+        [Test]
+        public void IsClass_ShouldReturnFalseWithStruct()
+        {
+            Assert.IsFalse(PortableTypeInfo.IsClass(typeof(MyStruct)));
+        }
+
+        [Test]
+        public void IsClass_ShouldReturnFalseWithInterface()
+        {
+            Assert.IsFalse(PortableTypeInfo.IsClass(typeof(MyInterface)));
+            Assert.IsFalse(PortableTypeInfo.IsClass<MyInterface>());
+        }
+
+        [Test]
+        public void IsClass_ShouldReturnTrueWithClass()
+        {
+            Assert.IsTrue(PortableTypeInfo.IsClass(typeof(MyClass)));
+            Assert.IsTrue(PortableTypeInfo.IsClass<MyClass>());
+        }
+
+        [Test]
+        public void IsClass_ShouldReturnTrueWithAbstractClass()
+        {
+            Assert.IsTrue(PortableTypeInfo.IsClass(typeof(MyAbstractClass)));
+            Assert.IsTrue(PortableTypeInfo.IsClass<MyAbstractClass>());
+        }
+
+        [Test]
+        public void IsClass_ShouldReturnFalseWithPrimitive()
+        {
+            Assert.IsFalse(PortableTypeInfo.IsClass(typeof(int)));
+        }
+
+        #endregion IsClass
+
+        #region IsInterface
 
         [Test]
         public void IsInterface_ShouldReturnFalseWithEnum()
@@ -260,9 +301,9 @@ namespace PommaLabs.Thrower.UnitTests.Reflection
             Assert.IsFalse(PortableTypeInfo.IsInterface(typeof(int)));
         }
 
-#endregion IsInterface
+        #endregion IsInterface
 
-#region IsValueType
+        #region IsValueType
 
         [Test]
         public void IsValueType_ShouldReturnTrueWithEnum()
@@ -303,7 +344,50 @@ namespace PommaLabs.Thrower.UnitTests.Reflection
             Assert.IsTrue(PortableTypeInfo.IsValueType<int>());
         }
 
-#endregion IsValueType
+        #endregion IsValueType
+
+        #region IsPrimitive
+
+        [Test]
+        public void IsPrimitive_ShouldReturnFalseWithEnum()
+        {
+            Assert.IsFalse(PortableTypeInfo.IsPrimitive(typeof(MyEnum)));
+            Assert.IsFalse(PortableTypeInfo.IsPrimitive<MyEnum>());
+        }
+
+        [Test]
+        public void IsPrimitive_ShouldReturnFalseWithStruct()
+        {
+            Assert.IsFalse(PortableTypeInfo.IsPrimitive(typeof(MyStruct)));
+            Assert.IsFalse(PortableTypeInfo.IsPrimitive<MyStruct>());
+        }
+
+        [Test]
+        public void IsPrimitive_ShouldReturnFalseWithInterface()
+        {
+            Assert.IsFalse(PortableTypeInfo.IsPrimitive(typeof(MyInterface)));
+        }
+
+        [Test]
+        public void IsPrimitive_ShouldReturnFalseWithClass()
+        {
+            Assert.IsFalse(PortableTypeInfo.IsPrimitive(typeof(MyClass)));
+        }
+
+        [Test]
+        public void IsPrimitive_ShouldReturnFalseWithAbstractClass()
+        {
+            Assert.IsFalse(PortableTypeInfo.IsPrimitive(typeof(MyAbstractClass)));
+        }
+
+        [Test]
+        public void IsPrimitive_ShouldReturnTrueWithPrimitive()
+        {
+            Assert.IsTrue(PortableTypeInfo.IsPrimitive(typeof(int)));
+            Assert.IsTrue(PortableTypeInfo.IsPrimitive<int>());
+        }
+
+        #endregion IsPrimitive
 
         public enum MyEnum
         {
