@@ -56,7 +56,6 @@ namespace PommaLabs.Thrower.Validation
             typeof(float),
             typeof(double),
             typeof(decimal),
-            // ???
             typeof(string)
         };
 
@@ -74,10 +73,16 @@ namespace PommaLabs.Thrower.Validation
 
         private static bool ValidateInternal(object obj, string path, ValidateAttribute validation, IList<ValidationError> validationErrors)
         {
-            if (validation.Required && ReferenceEquals(obj, null))
+            if (ReferenceEquals(obj, null))
             {
-                validationErrors.Add(new ValidationError { Path = path, Reason = "Object is required, found null" });
-                return false;
+                if (validation.Required)
+                {
+                    validationErrors.Add(new ValidationError { Path = path, Reason = "Object is required, found null" });
+                    return false;
+                }
+
+                // If object is null, we cannot do anything else.
+                return true;
             }
 
             var objType = obj.GetType();
@@ -106,6 +111,24 @@ namespace PommaLabs.Thrower.Validation
                 return ValidateInternal(nullableValue, path, validation, validationErrors);
             }
 
+            var collection = obj as ICollection;
+            if (collection != null)
+            {
+
+            }
+
+            var enumerable = obj as IEnumerable;
+            if (enumerable != null && validation.Enumerable)
+            {
+                var itemValidation = new ValidateAttribute { Required = validation.EnumerableItemsRequired };
+                var index = 0;
+                foreach (var item in enumerable)
+                {
+                    var indexedNewPath = $"{path}[{index++}]";
+                    ValidateInternal(item, indexedNewPath, itemValidation, validationErrors);
+                }
+            }
+
             if (PortableTypeInfo.IsClass(objType) || isValueType)
             {
                 var props = PortableTypeInfo.GetPublicProperties(objType);
@@ -113,7 +136,7 @@ namespace PommaLabs.Thrower.Validation
                                from a in PortableTypeInfo.GetCustomAttributes(p, false)
                                let v = a as ValidateAttribute
                                where v != null
-                               select new { PropertyInfo = p, ValidateAttribute = v };
+                               select new { PropertyInfo = p, Validation = v };
 
 #if !PORTABLE
                 var typeAccessor = Reflection.FastMember.TypeAccessor.Create(objType);
@@ -130,24 +153,7 @@ namespace PommaLabs.Thrower.Validation
 #endif
 
                     var newPath = $"{path}.{propertyInfo.Name}";
-                    ValidateInternal(propertyValue, newPath, rp.ValidateAttribute, validationErrors);
-
-                    var collection = propertyValue as ICollection;
-                    if (collection != null)
-                    {
-
-                    }
-
-                    var enumerable = propertyValue as IEnumerable;
-                    if (enumerable != null && rp.ValidateAttribute.Enumerate)
-                    {
-                        var index = 0;
-                        foreach (var item in enumerable)
-                        {
-                            var indexedNewPath = $"{newPath}[{index}]";
-                            ValidateInternal(item, indexedNewPath, DefaultValidation, validationErrors);
-                        }
-                    }
+                    ValidateInternal(propertyValue, newPath, rp.Validation, validationErrors);                    
                 }
 
                 return validationErrors.Count == 0;

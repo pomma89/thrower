@@ -23,8 +23,10 @@
 
 using NUnit.Framework;
 using PommaLabs.Thrower.Validation;
+using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace PommaLabs.Thrower.UnitTests.Validation
 {
@@ -39,26 +41,88 @@ namespace PommaLabs.Thrower.UnitTests.Validation
             var r = ObjectValidator.RootPlaceholder;
 
             Assert.IsFalse(result);
-            Assert.AreEqual(2, validationErrors.Count);
-            Assert.AreEqual(1, validationErrors.Count(ve => ve.Path == r + "." + nameof(TestClass.NullBooleanThatShouldBeValidated)));
-            Assert.AreEqual(1, validationErrors.Count(ve => ve.Path == r + "." + nameof(TestClass.NullStringThatShouldBeValidated)));
+            Assert.AreEqual(7, validationErrors.Count);
+            Assert.AreEqual(1, validationErrors.Count(ve => ve.Path == r + "." + nameof(TestClass.RequiredBooleanThatIsNull)));
+            Assert.AreEqual(1, validationErrors.Count(ve => ve.Path == r + "." + nameof(TestClass.RequiredStringThatIsNull)));
+            Assert.AreEqual(1, validationErrors.Count(ve => ve.Path == r + "." + nameof(TestClass.OptionalMyTupleWithNullProperty) + "." + nameof(TestClass.MyTuple.RequiredNullableDouble)));
+            Assert.AreEqual(1, validationErrors.Count(ve => ve.Path == r + "." + nameof(TestClass.OptionalEnumerableWithNullRequiredItems) + "[0]"));
+            Assert.AreEqual(1, validationErrors.Count(ve => ve.Path == r + "." + nameof(TestClass.OptionalEnumerableWithNullRequiredItems) + "[2]"));
+            Assert.AreEqual(1, validationErrors.Count(ve => ve.Path == r + "." + nameof(TestClass.RequiredEnumerableWithRequiredItemsWithNullProperty) + "[0]." + nameof(TestClass.MyTuple.RequiredNullableDouble)));
+            Assert.AreEqual(1, validationErrors.Count(ve => ve.Path == r + "." + nameof(TestClass.RequiredEnumerableWithRequiredItemsWithNullProperty) + "[1]." + nameof(TestClass.MyTuple.RequiredNullableDouble)));
+        }
+
+        [TestCase(1)]
+        [TestCase(10)]
+        [TestCase(100)]
+        [TestCase(1000)]
+        [TestCase(10000)]
+        public void Validate_TestClass_Concurrent(int threadCount)
+        {
+            var tasks = new Task[threadCount];
+            for (var i = 0; i < tasks.Length; ++i)
+            {
+                tasks[i] = Task.Factory.StartNew(Validate_TestClass);
+            }
+            for (var i = 0; i < tasks.Length; ++i)
+            {
+                tasks[i].Wait();
+            }
         }
 
         public sealed class TestClass
         {
-            public bool BooleanThatShouldNotBeValidated { get; set; } = false;
+            public bool Boolean { get; set; } = false;
 
             [Validate(Required = true)]
-            public bool BooleanThatShouldBeValidated { get; set; } = true;
+            public bool RequiredBoolean { get; set; } = true;
 
             [Validate(Required = true)]
-            public bool? NullBooleanThatShouldBeValidated { get; set; } = null;
+            public bool? RequiredBooleanThatIsNull { get; set; } = null;
 
             [Validate(Required = true)]
-            public string StringThatShouldBeValidated { get; set; } = "OK";
+            public string RequiredString { get; set; } = "OK";
 
             [Validate(Required = true)]
-            public string NullStringThatShouldBeValidated { get; set; } = null;
+            public string RequiredStringThatIsNull { get; set; } = null;
+
+            [Validate]
+            public MyTuple OptionalMyTuple { get; set; } = null;
+
+            [Validate(Required = true)]
+            public MyTuple RequiredMyTuple { get; set; } = new MyTuple();
+
+            [Validate]
+            public MyTuple OptionalMyTupleWithNullProperty { get; set; } = new MyTuple
+            {
+                RequiredNullableDouble = null
+            };
+
+            [Validate(EnumerableItemsRequired = true)]
+            public IEnumerable<object> OptionalEnumerableWithNullRequiredItems { get; set; } = new object[]
+            {
+                null,
+                new object(),
+                null
+            };
+
+            [Validate(Required = true, EnumerableItemsRequired = true)]
+            public List<MyTuple> RequiredEnumerableWithRequiredItemsWithNullProperty { get; set; } = new List<MyTuple>
+            {
+                new MyTuple {RequiredNullableDouble = null },
+                new MyTuple {RequiredNullableDouble = null }
+            };
+
+            public sealed class MyTuple
+            {
+                [Validate]
+                public double Double { get; set; } = Math.PI;
+
+                [Validate]
+                public double? NullableDouble { get; set; } = Math.PI;
+
+                [Validate(Required = true)]
+                public double? RequiredNullableDouble { get; set; } = Math.PI;
+            }
         }
     }
 }
