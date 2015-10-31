@@ -21,7 +21,11 @@
 // DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
+#if !PORTABLE
+
 using NUnit.Framework;
+using PommaLabs.Thrower.Reflection.FastMember;
+using System.Collections.Generic;
 
 namespace PommaLabs.Thrower.UnitTests.Reflection.FastMember
 {
@@ -30,7 +34,20 @@ namespace PommaLabs.Thrower.UnitTests.Reflection.FastMember
         [Test]
         public void Create_AsIDictionary()
         {
-            Assert.Fail("TODO!!!");
+            var myStruct = new MyStruct
+            {
+                A = 21,
+                B = "Pu <3 Pi",
+                C = 3.14M
+            };
+
+            var dict = ObjectAccessor.Create(myStruct) as IDictionary<string, object>;
+
+            Assert.AreEqual(3, dict.Count);
+            Assert.IsTrue(dict.Keys.Contains(nameof(MyStruct.A)) && dict.Keys.Contains(nameof(MyStruct.B)) && dict.Keys.Contains(nameof(MyStruct.C)));
+            Assert.AreEqual(myStruct.A, dict[nameof(MyStruct.A)]);
+            Assert.AreEqual(myStruct.B, dict[nameof(MyStruct.B)]);
+            Assert.AreEqual(myStruct.C, dict[nameof(MyStruct.C)]);
         }
 
         public struct MyStruct
@@ -42,3 +59,5 @@ namespace PommaLabs.Thrower.UnitTests.Reflection.FastMember
         }
     }
 }
+
+#endif
