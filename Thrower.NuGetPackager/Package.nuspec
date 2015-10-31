@@ -11,8 +11,8 @@
 Fully managed library providing convenience methods to perform argument checks. It offers methods whose compilation can be enabled with the "USETHROWER" directive, and they can of course be disabled by undefining that directive. Therefore, it allows to write code whose integrity checks can be easily removed (for performance reasons, for example).
         </description>
         <releaseNotes>
-* Embedded FastMember.
-* Added a simple reflection-based object validator.
+* FastMember.ObjectAccessor now implements IDictionary&lt;string, object&gt;.
+* Added HttpException for Web API projects.
         </releaseNotes>
         <summary>Fully managed library providing convenience methods to perform argument checks.</summary>
         <language>en-US</language>
