@@ -27,7 +27,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Project Logo", "Project Log
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Thrower.Examples", "Thrower.Examples\Thrower.Examples.csproj", "{2C09A058-D85E-4338-BE93-F0B2DABF7E8F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Thrower.NuGetPackager", "Thrower.NuGetPackager\Thrower.NuGetPackager.csproj", "{0451BAEF-DF2E-4B98-8644-94EE9415E389}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Thrower.NuGet", "Thrower.NuGetPackager\Thrower.NuGet.csproj", "{0451BAEF-DF2E-4B98-8644-94EE9415E389}"
 	ProjectSection(ProjectDependencies) = postProject
 		{894ECF14-90A8-4103-863E-13E13C4A5889} = {894ECF14-90A8-4103-863E-13E13C4A5889}
 		{9F7A183B-9A44-4418-9425-A63D50850255} = {9F7A183B-9A44-4418-9425-A63D50850255}

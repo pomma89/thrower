@@ -18,9 +18,11 @@
     <Compile Include="$(MSBuildThisFileDirectory)IfIsInstanceOfTests.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)IfIsNaNTests.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)IfIsNullTests.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)RaiseHttpExceptionTests.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)RaiseNotSupportedExceptionTests.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)RaiseInvalidOperationExceptionTests.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)RaiseTests.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Reflection\FastMember\ObjectAccessorTests.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Reflection\PortableTypeInfoTests.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Validation\ObjectValidatorTests.cs" />
   </ItemGroup>
