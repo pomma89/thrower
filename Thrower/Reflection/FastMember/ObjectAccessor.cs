@@ -13,6 +13,9 @@
 #if !PORTABLE
 
 using System;
+using System.Collections;
+using System.Collections.Generic;
+using System.Linq;
 #if !NET35
 using System.Dynamic;
 #endif
@@ -20,9 +23,9 @@ using System.Dynamic;
 namespace PommaLabs.Thrower.Reflection.FastMember
 {
     /// <summary>
-    ///   Represents an individual object, allowing access to members by-name
+    ///   Represents an individual object, allowing access to members by-name.
     /// </summary>
-    public abstract class ObjectAccessor
+    public abstract class ObjectAccessor : IDictionary<string, object>
     {
         /// <summary>
         ///   Get or Set the value of a named member for the underlying object.
@@ -70,38 +73,156 @@ namespace PommaLabs.Thrower.Reflection.FastMember
 #endif
             return new TypeAccessorWrapper(target, TypeAccessor.Create(target.GetType(), allowNonPublicAccessors));
         }
-        sealed class TypeAccessorWrapper : ObjectAccessor
+
+        #region IDictionary<string, object> members
+
+        public abstract ICollection<string> Keys { get; }
+        public abstract ICollection<object> Values { get; }
+        public abstract int Count { get; }
+        public bool IsReadOnly => true;
+        public abstract bool ContainsKey(string key);
+        public void Add(string key, object value)
         {
-            private readonly object target;
-            private readonly TypeAccessor accessor;
+            throw new NotSupportedException();
+        }
+        public bool Remove(string key)
+        {
+            throw new NotSupportedException();
+        }
+        public abstract bool TryGetValue(string key, out object value);
+        public void Add(KeyValuePair<string, object> item)
+        {
+            throw new NotSupportedException();
+        }
+        public void Clear()
+        {
+            throw new NotSupportedException();
+        }
+        public abstract bool Contains(KeyValuePair<string, object> item);
+        public void CopyTo(KeyValuePair<string, object>[] array, int arrayIndex)
+        {
+            foreach (var kv in this)
+            {
+                array[arrayIndex++] = kv;
+            }
+        }
+        public bool Remove(KeyValuePair<string, object> item)
+        {
+            throw new NotSupportedException();
+        }
+        public abstract IEnumerator<KeyValuePair<string, object>> GetEnumerator();
+        IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();
+
+        #endregion
+
+        sealed class TypeAccessorWrapper : ObjectAccessor, IDictionary<string, object>
+        {
+            private readonly TypeAccessor _accessor;
+            private readonly MemberSet _members;
+
             public TypeAccessorWrapper(object target, TypeAccessor accessor)
             {
-                this.target = target;
-                this.accessor = accessor;
+                Target = target;
+                _accessor = accessor;
+                _members = accessor.GetMembers();
             }
+
             public override object this[string name]
             {
-                get { return accessor[target, name]; }
-                set { accessor[target, name] = value; }
+                get { return _accessor[Target, name]; }
+                set { _accessor[Target, name] = value; }
             }
-            public override object Target => target;
+
+            public override object Target { get; }
+
+            #region IDictionary<string, object> members
+
+            public override ICollection<string> Keys => _members.Select(x => x.Name).ToArray();
+
+            public override ICollection<object> Values => _members.Select(x => _accessor[Target, x.Name]).ToArray();
+
+            public override int Count => _members.Count;
+
+            public override bool ContainsKey(string key) => _members.Any(x => x.Name == key);
+
+            public override bool TryGetValue(string key, out object value)
+            {
+                if (ContainsKey(key))
+                {
+                    value = _accessor[Target, key];
+                    return true;
+                }
+                value = null;
+                return false;
+            }
+
+            public override bool Contains(KeyValuePair<string, object> item) => _members.Any(x => x.Name == item.Key && _accessor[Target, item.Key] == item.Value);
+
+            public override IEnumerator<KeyValuePair<string, object>> GetEnumerator()
+            {
+                foreach (var m in _members)
+                {
+                    yield return new KeyValuePair<string, object>(m.Name, _accessor[Target, m.Name]);
+                }
+            }
+
+            #endregion
         }
 
 #if !NET35
         sealed class DynamicWrapper : ObjectAccessor
         {
-            private readonly IDynamicMetaObjectProvider target;
-            public override object Target => target;
-
             public DynamicWrapper(IDynamicMetaObjectProvider target)
             {
-                this.target = target;
+                Target = target;
             }
+
             public override object this[string name]
             {
-                get { return CallSiteCache.GetValue(name, target); }
-                set { CallSiteCache.SetValue(name, target, value); }
+                get { return CallSiteCache.GetValue(name, Target); }
+                set { CallSiteCache.SetValue(name, Target, value); }
             }
+
+            public override object Target { get; }
+
+            #region IDictionary<string, object> members
+
+            public override ICollection<string> Keys
+            {
+                get { throw new NotSupportedException(); }               
+            }
+
+            public override ICollection<object> Values
+            {
+                get { throw new NotSupportedException(); }  
+            }
+
+            public override int Count
+            {
+                get { throw new NotSupportedException(); }  
+            }
+
+            public override bool ContainsKey(string key)
+            {
+                throw new NotSupportedException();
+            }
+
+            public override bool TryGetValue(string key, out object value)
+            {
+                throw new NotSupportedException();
+            }
+
+            public override bool Contains(KeyValuePair<string, object> item)
+            {
+                throw new NotSupportedException();
+            }
+
+            public override IEnumerator<KeyValuePair<string, object>> GetEnumerator()
+            {
+                throw new NotSupportedException();
+            }
+
+            #endregion
         }
 #endif
     }
