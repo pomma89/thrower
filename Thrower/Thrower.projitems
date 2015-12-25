@@ -10,6 +10,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="$(MSBuildThisFileDirectory)RaiseHttpException.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)RaiseObjectDisposedException.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Reflection\FastMember\CallSiteCache.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Reflection\FastMember\MemberSet.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Reflection\FastMember\ObjectAccessor.cs" />
