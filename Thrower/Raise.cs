@@ -36,11 +36,6 @@ namespace PommaLabs.Thrower
     public abstract class RaiseBase
     {
         /// <summary>
-        ///   The define used to enable method compilation.
-        /// </summary>
-        public const string UseThrowerDefine = "USETHROWER";
-
-        /// <summary>
         ///   Stores an empty array of <see cref="System.Type"/> used to seek constructors without parameters.
         /// </summary>
         [SuppressMessage("Microsoft.Naming", "CA1704:IdentifiersShouldBeSpelledCorrectly")]
@@ -66,8 +61,7 @@ namespace PommaLabs.Thrower
 
     /// <summary>
     ///   Contains methods that throw specified exception <typeparamref name="TEx"/> if given
-    ///   conditions will be verified. All methods in this class require that
-    ///   <see cref="RaiseBase.UseThrowerDefine"/> is specified as conditional compilation symbol.
+    ///   conditions will be verified.
     /// </summary>
     /// <typeparam name="TEx">The type of the exceptions thrown if conditions will be satisfied.</typeparam>
     /// <remarks>
@@ -132,8 +126,7 @@ namespace PommaLabs.Thrower
         /// </remarks>
 #if (NET45 || NET46)
         [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
-#endif
-        [Conditional(UseThrowerDefine)]
+#endif       
         [SuppressMessage("Microsoft.Design", "CA1000:DoNotDeclareStaticMembersOnGenericTypes")]
         public static void If(bool cond)
         {
@@ -166,8 +159,7 @@ namespace PommaLabs.Thrower
         /// </remarks>
 #if (NET45 || NET46)
         [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
-#endif
-        [Conditional(UseThrowerDefine)]
+#endif       
         [SuppressMessage("Microsoft.Design", "CA1000:DoNotDeclareStaticMembersOnGenericTypes")]
         public static void If(bool cond, string message)
         {
@@ -193,8 +185,7 @@ namespace PommaLabs.Thrower
         /// </remarks>
 #if (NET45 || NET46)
         [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
-#endif
-        [Conditional(UseThrowerDefine)]
+#endif       
         [SuppressMessage("Microsoft.Design", "CA1000:DoNotDeclareStaticMembersOnGenericTypes")]
         public static void IfNot(bool cond)
         {
@@ -227,8 +218,7 @@ namespace PommaLabs.Thrower
         /// </remarks>
 #if (NET45 || NET46)
         [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
-#endif
-        [Conditional(UseThrowerDefine)]
+#endif       
         [SuppressMessage("Microsoft.Design", "CA1000:DoNotDeclareStaticMembersOnGenericTypes")]
         public static void IfNot(bool cond, string message)
         {
@@ -255,8 +245,7 @@ namespace PommaLabs.Thrower
         /// </remarks>
 #if (NET45 || NET46)
         [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
-#endif
-        [Conditional(UseThrowerDefine)]
+#endif       
         [SuppressMessage("Microsoft.Design", "CA1000:DoNotDeclareStaticMembersOnGenericTypes")]
         public static void IfAreEqual<TArg1, TArg2>(TArg1 arg1, TArg2 arg2)
         {
@@ -290,8 +279,7 @@ namespace PommaLabs.Thrower
         /// </remarks>
 #if (NET45 || NET46)
         [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
-#endif
-        [Conditional(UseThrowerDefine)]
+#endif       
         [SuppressMessage("Microsoft.Design", "CA1000:DoNotDeclareStaticMembersOnGenericTypes")]
         public static void IfAreEqual<TArg1, TArg2>(TArg1 arg1, TArg2 arg2, string message)
         {
@@ -318,8 +306,7 @@ namespace PommaLabs.Thrower
         /// </remarks>
 #if (NET45 || NET46)
         [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
-#endif
-        [Conditional(UseThrowerDefine)]
+#endif       
         [SuppressMessage("Microsoft.Design", "CA1000:DoNotDeclareStaticMembersOnGenericTypes")]
         public static void IfAreNotEqual<TArg1, TArg2>(TArg1 arg1, TArg2 arg2)
         {
@@ -353,8 +340,7 @@ namespace PommaLabs.Thrower
         /// </remarks>
 #if (NET45 || NET46)
         [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
-#endif
-        [Conditional(UseThrowerDefine)]
+#endif       
         [SuppressMessage("Microsoft.Design", "CA1000:DoNotDeclareStaticMembersOnGenericTypes")]
         public static void IfAreNotEqual<TArg1, TArg2>(TArg1 arg1, TArg2 arg2, string message)
         {
@@ -381,8 +367,7 @@ namespace PommaLabs.Thrower
         /// </remarks>
 #if (NET45 || NET46)
         [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
-#endif
-        [Conditional(UseThrowerDefine)]
+#endif       
         [SuppressMessage("Microsoft.Design", "CA1000:DoNotDeclareStaticMembersOnGenericTypes")]
         public static void IfAreSame<TArg1, TArg2>(TArg1 arg1, TArg2 arg2)
         {
@@ -416,8 +401,7 @@ namespace PommaLabs.Thrower
         /// </remarks>
 #if (NET45 || NET46)
         [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
-#endif
-        [Conditional(UseThrowerDefine)]
+#endif       
         [SuppressMessage("Microsoft.Design", "CA1000:DoNotDeclareStaticMembersOnGenericTypes")]
         public static void IfAreSame<TArg1, TArg2>(TArg1 arg1, TArg2 arg2, string message)
         {
@@ -444,8 +428,7 @@ namespace PommaLabs.Thrower
         /// </remarks>
 #if (NET45 || NET46)
         [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
-#endif
-        [Conditional(UseThrowerDefine)]
+#endif       
         [SuppressMessage("Microsoft.Design", "CA1000:DoNotDeclareStaticMembersOnGenericTypes")]
         public static void IfAreNotSame<TArg1, TArg2>(TArg1 arg1, TArg2 arg2)
         {
@@ -479,8 +462,7 @@ namespace PommaLabs.Thrower
         /// </remarks>
 #if (NET45 || NET46)
         [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
-#endif
-        [Conditional(UseThrowerDefine)]
+#endif       
         [SuppressMessage("Microsoft.Design", "CA1000:DoNotDeclareStaticMembersOnGenericTypes")]
         public static void IfAreNotSame<TArg1, TArg2>(TArg1 arg1, TArg2 arg2, string message)
         {
@@ -507,8 +489,7 @@ namespace PommaLabs.Thrower
         /// </remarks>
 #if (NET45 || NET46)
         [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
-#endif
-        [Conditional(UseThrowerDefine)]
+#endif       
         [SuppressMessage("Microsoft.Design", "CA1000:DoNotDeclareStaticMembersOnGenericTypes")]
         public static void IfIsAssignableFrom(object instance, Type type)
         {
@@ -544,8 +525,7 @@ namespace PommaLabs.Thrower
         /// </remarks>
 #if (NET45 || NET46)
         [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
-#endif
-        [Conditional(UseThrowerDefine)]
+#endif       
         [SuppressMessage("Microsoft.Design", "CA1000:DoNotDeclareStaticMembersOnGenericTypes")]
         public static void IfIsAssignableFrom(object instance, Type type, string message)
         {
@@ -572,8 +552,7 @@ namespace PommaLabs.Thrower
         /// </remarks>
 #if (NET45 || NET46)
         [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
-#endif
-        [Conditional(UseThrowerDefine)]
+#endif       
         [SuppressMessage("Microsoft.Design", "CA1000:DoNotDeclareStaticMembersOnGenericTypes")]
         [SuppressMessage("Microsoft.Design", "CA1004:GenericMethodsShouldProvideTypeParameter")]
         public static void IfIsAssignableFrom<TType>(object instance)
@@ -610,8 +589,7 @@ namespace PommaLabs.Thrower
         /// </remarks>
 #if (NET45 || NET46)
         [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
-#endif
-        [Conditional(UseThrowerDefine)]
+#endif       
         [SuppressMessage("Microsoft.Design", "CA1000:DoNotDeclareStaticMembersOnGenericTypes")]
         [SuppressMessage("Microsoft.Design", "CA1004:GenericMethodsShouldProvideTypeParameter")]
         public static void IfIsAssignableFrom<TType>(object instance, string message)
@@ -639,8 +617,7 @@ namespace PommaLabs.Thrower
         /// </remarks>
 #if (NET45 || NET46)
         [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
-#endif
-        [Conditional(UseThrowerDefine)]
+#endif       
         [SuppressMessage("Microsoft.Design", "CA1000:DoNotDeclareStaticMembersOnGenericTypes")]
         public static void IfIsNotAssignableFrom(object instance, Type type)
         {
@@ -676,8 +653,7 @@ namespace PommaLabs.Thrower
         /// </remarks>
 #if (NET45 || NET46)
         [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
-#endif
-        [Conditional(UseThrowerDefine)]
+#endif       
         [SuppressMessage("Microsoft.Design", "CA1000:DoNotDeclareStaticMembersOnGenericTypes")]
         public static void IfIsNotAssignableFrom(object instance, Type type, string message)
         {
@@ -706,8 +682,7 @@ namespace PommaLabs.Thrower
         /// </remarks>
 #if (NET45 || NET46)
         [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
-#endif
-        [Conditional(UseThrowerDefine)]
+#endif       
         [SuppressMessage("Microsoft.Design", "CA1000:DoNotDeclareStaticMembersOnGenericTypes")]
         [SuppressMessage("Microsoft.Design", "CA1004:GenericMethodsShouldProvideTypeParameter")]
         public static void IfIsNotAssignableFrom<TType>(object instance)
@@ -746,8 +721,7 @@ namespace PommaLabs.Thrower
         /// </remarks>
 #if (NET45 || NET46)
         [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
-#endif
-        [Conditional(UseThrowerDefine)]
+#endif       
         [SuppressMessage("Microsoft.Design", "CA1000:DoNotDeclareStaticMembersOnGenericTypes")]
         [SuppressMessage("Microsoft.Design", "CA1004:GenericMethodsShouldProvideTypeParameter")]
         public static void IfIsNotAssignableFrom<TType>(object instance, string message)
@@ -775,8 +749,7 @@ namespace PommaLabs.Thrower
         /// </remarks>
 #if (NET45 || NET46)
         [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
-#endif
-        [Conditional(UseThrowerDefine)]
+#endif       
         [SuppressMessage("Microsoft.Design", "CA1000:DoNotDeclareStaticMembersOnGenericTypes")]
         public static void IfIsContainedIn(object argument, System.Collections.IList collection)
         {
@@ -810,8 +783,7 @@ namespace PommaLabs.Thrower
         /// </remarks>
 #if (NET45 || NET46)
         [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
-#endif
-        [Conditional(UseThrowerDefine)]
+#endif       
         [SuppressMessage("Microsoft.Design", "CA1000:DoNotDeclareStaticMembersOnGenericTypes")]
         public static void IfIsContainedIn(object argument, System.Collections.IList collection, string message)
         {
@@ -838,8 +810,7 @@ namespace PommaLabs.Thrower
         /// </remarks>
 #if (NET45 || NET46)
         [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
-#endif
-        [Conditional(UseThrowerDefine)]
+#endif       
         [SuppressMessage("Microsoft.Design", "CA1000:DoNotDeclareStaticMembersOnGenericTypes")]
         public static void IfIsNotContainedIn(object argument, System.Collections.IList collection)
         {
@@ -873,8 +844,7 @@ namespace PommaLabs.Thrower
         /// </remarks>
 #if (NET45 || NET46)
         [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
-#endif
-        [Conditional(UseThrowerDefine)]
+#endif       
         [SuppressMessage("Microsoft.Design", "CA1000:DoNotDeclareStaticMembersOnGenericTypes")]
         public static void IfIsNotContainedIn(object argument, System.Collections.IList collection, string message)
         {
@@ -901,8 +871,7 @@ namespace PommaLabs.Thrower
         /// </remarks>
 #if (NET45 || NET46)
         [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
-#endif
-        [Conditional(UseThrowerDefine)]
+#endif       
         [SuppressMessage("Microsoft.Design", "CA1000:DoNotDeclareStaticMembersOnGenericTypes")]
         public static void IfIsContainedIn<TArg>(TArg arg, System.Collections.Generic.IEnumerable<TArg> collection)
         {
@@ -936,8 +905,7 @@ namespace PommaLabs.Thrower
         /// </remarks>
 #if (NET45 || NET46)
         [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
-#endif
-        [Conditional(UseThrowerDefine)]
+#endif       
         [SuppressMessage("Microsoft.Design", "CA1000:DoNotDeclareStaticMembersOnGenericTypes")]
         public static void IfIsContainedIn<TArg>(TArg arg, System.Collections.Generic.IEnumerable<TArg> collection, string message)
         {
@@ -964,8 +932,7 @@ namespace PommaLabs.Thrower
         /// </remarks>
 #if (NET45 || NET46)
         [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
-#endif
-        [Conditional(UseThrowerDefine)]
+#endif       
         [SuppressMessage("Microsoft.Design", "CA1000:DoNotDeclareStaticMembersOnGenericTypes")]
         public static void IfIsNotContainedIn<TArg>(TArg arg, System.Collections.Generic.IEnumerable<TArg> collection)
         {
@@ -999,8 +966,7 @@ namespace PommaLabs.Thrower
         /// </remarks>
 #if (NET45 || NET46)
         [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
-#endif
-        [Conditional(UseThrowerDefine)]
+#endif       
         [SuppressMessage("Microsoft.Design", "CA1000:DoNotDeclareStaticMembersOnGenericTypes")]
         public static void IfIsNotContainedIn<TArg>(TArg arg, System.Collections.Generic.IEnumerable<TArg> collection, string message)
         {
@@ -1027,8 +993,7 @@ namespace PommaLabs.Thrower
         /// </remarks>
 #if (NET45 || NET46)
         [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
-#endif
-        [Conditional(UseThrowerDefine)]
+#endif       
         [SuppressMessage("Microsoft.Design", "CA1000:DoNotDeclareStaticMembersOnGenericTypes")]
         public static void IfIsContainedIn<TArg>(TArg arg, System.Collections.IDictionary dictionary)
         {
@@ -1063,8 +1028,7 @@ namespace PommaLabs.Thrower
         /// </remarks>
 #if (NET45 || NET46)
         [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
-#endif
-        [Conditional(UseThrowerDefine)]
+#endif       
         [SuppressMessage("Microsoft.Design", "CA1000:DoNotDeclareStaticMembersOnGenericTypes")]
         public static void IfIsContainedIn<TArg>(TArg arg, System.Collections.IDictionary dictionary, string message)
         {
@@ -1091,8 +1055,7 @@ namespace PommaLabs.Thrower
         /// </remarks>
 #if (NET45 || NET46)
         [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
-#endif
-        [Conditional(UseThrowerDefine)]
+#endif       
         [SuppressMessage("Microsoft.Design", "CA1000:DoNotDeclareStaticMembersOnGenericTypes")]
         public static void IfIsNotContainedIn<TArg>(TArg arg, System.Collections.IDictionary dictionary)
         {
@@ -1127,8 +1090,7 @@ namespace PommaLabs.Thrower
         /// </remarks>
 #if (NET45 || NET46)
         [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
-#endif
-        [Conditional(UseThrowerDefine)]
+#endif       
         [SuppressMessage("Microsoft.Design", "CA1000:DoNotDeclareStaticMembersOnGenericTypes")]
         public static void IfIsNotContainedIn<TArg>(TArg arg, System.Collections.IDictionary dictionary, string message)
         {
@@ -1156,8 +1118,7 @@ namespace PommaLabs.Thrower
         /// </remarks>
 #if (NET45 || NET46)
         [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
-#endif
-        [Conditional(UseThrowerDefine)]
+#endif       
         [SuppressMessage("Microsoft.Design", "CA1000:DoNotDeclareStaticMembersOnGenericTypes")]
         public static void IfIsContainedIn<TArg1, TArg2>(TArg1 arg1, TArg2 arg2, System.Collections.Generic.IDictionary<TArg1, TArg2> dictionary)
         {
@@ -1194,8 +1155,7 @@ namespace PommaLabs.Thrower
         /// </remarks>
 #if (NET45 || NET46)
         [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
-#endif
-        [Conditional(UseThrowerDefine)]
+#endif       
         [SuppressMessage("Microsoft.Design", "CA1000:DoNotDeclareStaticMembersOnGenericTypes")]
         public static void IfIsContainedIn<TArg1, TArg2>(TArg1 arg1, TArg2 arg2, System.Collections.Generic.IDictionary<TArg1, TArg2> dictionary,
             string message)
@@ -1224,8 +1184,7 @@ namespace PommaLabs.Thrower
         /// </remarks>
 #if (NET45 || NET46)
         [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
-#endif
-        [Conditional(UseThrowerDefine)]
+#endif       
         [SuppressMessage("Microsoft.Design", "CA1000:DoNotDeclareStaticMembersOnGenericTypes")]
         public static void IfIsNotContainedIn<TArg1, TArg2>(TArg1 arg1, TArg2 arg2, System.Collections.Generic.IDictionary<TArg1, TArg2> dictionary)
         {
@@ -1262,8 +1221,7 @@ namespace PommaLabs.Thrower
         /// </remarks>
 #if (NET45 || NET46)
         [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
-#endif
-        [Conditional(UseThrowerDefine)]
+#endif       
         [SuppressMessage("Microsoft.Design", "CA1000:DoNotDeclareStaticMembersOnGenericTypes")]
         public static void IfIsNotContainedIn<TArg1, TArg2>(TArg1 arg1, TArg2 arg2, System.Collections.Generic.IDictionary<TArg1, TArg2> dictionary,
             string message)
@@ -1290,8 +1248,7 @@ namespace PommaLabs.Thrower
         /// </remarks>
 #if (NET45 || NET46)
         [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
-#endif
-        [Conditional(UseThrowerDefine)]
+#endif       
         [SuppressMessage("Microsoft.Design", "CA1000:DoNotDeclareStaticMembersOnGenericTypes")]
         public static void IfIsEmpty(string valueToCheck)
         {
@@ -1325,8 +1282,7 @@ namespace PommaLabs.Thrower
         /// </remarks>
 #if (NET45 || NET46)
         [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
-#endif
-        [Conditional(UseThrowerDefine)]
+#endif       
         [SuppressMessage("Microsoft.Design", "CA1000:DoNotDeclareStaticMembersOnGenericTypes")]
         public static void IfIsEmpty(string valueToCheck, string message)
         {
@@ -1352,8 +1308,7 @@ namespace PommaLabs.Thrower
         /// </remarks>
 #if (NET45 || NET46)
         [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
-#endif
-        [Conditional(UseThrowerDefine)]
+#endif       
         [SuppressMessage("Microsoft.Design", "CA1000:DoNotDeclareStaticMembersOnGenericTypes")]
         public static void IfIsNotEmpty(string valueToCheck)
         {
@@ -1387,8 +1342,7 @@ namespace PommaLabs.Thrower
         /// </remarks>
 #if (NET45 || NET46)
         [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
-#endif
-        [Conditional(UseThrowerDefine)]
+#endif       
         [SuppressMessage("Microsoft.Design", "CA1000:DoNotDeclareStaticMembersOnGenericTypes")]
         public static void IfIsNotEmpty(string valueToCheck, string message)
         {
@@ -1414,8 +1368,7 @@ namespace PommaLabs.Thrower
         /// </remarks>
 #if (NET45 || NET46)
         [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
-#endif
-        [Conditional(UseThrowerDefine)]
+#endif       
         [SuppressMessage("Microsoft.Design", "CA1000:DoNotDeclareStaticMembersOnGenericTypes")]
         public static void IfIsEmpty(System.Collections.ICollection collection)
         {
@@ -1448,8 +1401,7 @@ namespace PommaLabs.Thrower
         /// </remarks>
 #if (NET45 || NET46)
         [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
-#endif
-        [Conditional(UseThrowerDefine)]
+#endif       
         [SuppressMessage("Microsoft.Design", "CA1000:DoNotDeclareStaticMembersOnGenericTypes")]
         public static void IfIsEmpty(System.Collections.ICollection collection, string message)
         {
@@ -1475,8 +1427,7 @@ namespace PommaLabs.Thrower
         /// </remarks>
 #if (NET45 || NET46)
         [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
-#endif
-        [Conditional(UseThrowerDefine)]
+#endif       
         [SuppressMessage("Microsoft.Design", "CA1000:DoNotDeclareStaticMembersOnGenericTypes")]
         public static void IfIsNotEmpty(System.Collections.ICollection collection)
         {
@@ -1509,8 +1460,7 @@ namespace PommaLabs.Thrower
         /// </remarks>
 #if (NET45 || NET46)
         [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
-#endif
-        [Conditional(UseThrowerDefine)]
+#endif       
         [SuppressMessage("Microsoft.Design", "CA1000:DoNotDeclareStaticMembersOnGenericTypes")]
         public static void IfIsNotEmpty(System.Collections.ICollection collection, string message)
         {
@@ -1536,8 +1486,7 @@ namespace PommaLabs.Thrower
         /// </remarks>
 #if (NET45 || NET46)
         [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
-#endif
-        [Conditional(UseThrowerDefine)]
+#endif       
         [SuppressMessage("Microsoft.Design", "CA1000:DoNotDeclareStaticMembersOnGenericTypes")]
         public static void IfIsEmpty<TArg>(System.Collections.Generic.IEnumerable<TArg> collection)
         {
@@ -1570,8 +1519,7 @@ namespace PommaLabs.Thrower
         /// </remarks>
 #if (NET45 || NET46)
         [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
-#endif
-        [Conditional(UseThrowerDefine)]
+#endif       
         [SuppressMessage("Microsoft.Design", "CA1000:DoNotDeclareStaticMembersOnGenericTypes")]
         public static void IfIsEmpty<TArg>(System.Collections.Generic.IEnumerable<TArg> collection, string message)
         {
@@ -1597,8 +1545,7 @@ namespace PommaLabs.Thrower
         /// </remarks>
 #if (NET45 || NET46)
         [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
-#endif
-        [Conditional(UseThrowerDefine)]
+#endif       
         [SuppressMessage("Microsoft.Design", "CA1000:DoNotDeclareStaticMembersOnGenericTypes")]
         public static void IfIsNotEmpty<TArg>(System.Collections.Generic.IEnumerable<TArg> collection)
         {
@@ -1631,8 +1578,7 @@ namespace PommaLabs.Thrower
         /// </remarks>
 #if (NET45 || NET46)
         [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
-#endif
-        [Conditional(UseThrowerDefine)]
+#endif       
         [SuppressMessage("Microsoft.Design", "CA1000:DoNotDeclareStaticMembersOnGenericTypes")]
         public static void IfIsNotEmpty<TArg>(System.Collections.Generic.IEnumerable<TArg> collection, string message)
         {
@@ -1659,8 +1605,7 @@ namespace PommaLabs.Thrower
         /// </remarks>
 #if (NET45 || NET46)
         [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
-#endif
-        [Conditional(UseThrowerDefine)]
+#endif       
         [SuppressMessage("Microsoft.Design", "CA1000:DoNotDeclareStaticMembersOnGenericTypes")]
         public static void IfIsInstanceOf(object instance, Type type)
         {
@@ -1694,8 +1639,7 @@ namespace PommaLabs.Thrower
         /// </remarks>
 #if (NET45 || NET46)
         [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
-#endif
-        [Conditional(UseThrowerDefine)]
+#endif       
         [SuppressMessage("Microsoft.Design", "CA1000:DoNotDeclareStaticMembersOnGenericTypes")]
         public static void IfIsInstanceOf(object instance, Type type, string message)
         {
@@ -1722,8 +1666,7 @@ namespace PommaLabs.Thrower
         /// </remarks>
 #if (NET45 || NET46)
         [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
-#endif
-        [Conditional(UseThrowerDefine)]
+#endif       
         [SuppressMessage("Microsoft.Design", "CA1000:DoNotDeclareStaticMembersOnGenericTypes")]
         [SuppressMessage("Microsoft.Design", "CA1004:GenericMethodsShouldProvideTypeParameter")]
         public static void IfIsInstanceOf<TType>(object instance)
@@ -1758,8 +1701,7 @@ namespace PommaLabs.Thrower
         /// </remarks>
 #if (NET45 || NET46)
         [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
-#endif
-        [Conditional(UseThrowerDefine)]
+#endif       
         [SuppressMessage("Microsoft.Design", "CA1000:DoNotDeclareStaticMembersOnGenericTypes")]
         [SuppressMessage("Microsoft.Design", "CA1004:GenericMethodsShouldProvideTypeParameter")]
         public static void IfIsInstanceOf<TType>(object instance, string message)
@@ -1787,8 +1729,7 @@ namespace PommaLabs.Thrower
         /// </remarks>
 #if (NET45 || NET46)
         [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
-#endif
-        [Conditional(UseThrowerDefine)]
+#endif       
         [SuppressMessage("Microsoft.Design", "CA1000:DoNotDeclareStaticMembersOnGenericTypes")]
         public static void IfIsNotInstanceOf(object instance, Type type)
         {
@@ -1822,8 +1763,7 @@ namespace PommaLabs.Thrower
         /// </remarks>
 #if (NET45 || NET46)
         [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
-#endif
-        [Conditional(UseThrowerDefine)]
+#endif       
         [SuppressMessage("Microsoft.Design", "CA1000:DoNotDeclareStaticMembersOnGenericTypes")]
         public static void IfIsNotInstanceOf(object instance, Type type, string message)
         {
@@ -1850,8 +1790,7 @@ namespace PommaLabs.Thrower
         /// </remarks>
 #if (NET45 || NET46)
         [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
-#endif
-        [Conditional(UseThrowerDefine)]
+#endif       
         [SuppressMessage("Microsoft.Design", "CA1000:DoNotDeclareStaticMembersOnGenericTypes")]
         [SuppressMessage("Microsoft.Design", "CA1004:GenericMethodsShouldProvideTypeParameter")]
         public static void IfIsNotInstanceOf<TType>(object instance)
@@ -1886,8 +1825,7 @@ namespace PommaLabs.Thrower
         /// </remarks>
 #if (NET45 || NET46)
         [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
-#endif
-        [Conditional(UseThrowerDefine)]
+#endif       
         [SuppressMessage("Microsoft.Design", "CA1000:DoNotDeclareStaticMembersOnGenericTypes")]
         [SuppressMessage("Microsoft.Design", "CA1004:GenericMethodsShouldProvideTypeParameter")]
         public static void IfIsNotInstanceOf<TType>(object instance, string message)
@@ -1914,8 +1852,7 @@ namespace PommaLabs.Thrower
         /// </remarks>
 #if (NET45 || NET46)
         [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
-#endif
-        [Conditional(UseThrowerDefine)]
+#endif       
         [SuppressMessage("Microsoft.Design", "CA1000:DoNotDeclareStaticMembersOnGenericTypes")]
         public static void IfIsNaN(double number)
         {
@@ -1948,8 +1885,7 @@ namespace PommaLabs.Thrower
         /// </remarks>
 #if (NET45 || NET46)
         [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
-#endif
-        [Conditional(UseThrowerDefine)]
+#endif       
         [SuppressMessage("Microsoft.Design", "CA1000:DoNotDeclareStaticMembersOnGenericTypes")]
         public static void IfIsNaN(double number, string message)
         {
@@ -1975,8 +1911,7 @@ namespace PommaLabs.Thrower
         /// </remarks>
 #if (NET45 || NET46)
         [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
-#endif
-        [Conditional(UseThrowerDefine)]
+#endif       
         [SuppressMessage("Microsoft.Design", "CA1000:DoNotDeclareStaticMembersOnGenericTypes")]
         public static void IfIsNotNaN(double number)
         {
@@ -2010,8 +1945,7 @@ namespace PommaLabs.Thrower
         /// </remarks>
 #if (NET45 || NET46)
         [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
-#endif
-        [Conditional(UseThrowerDefine)]
+#endif       
         [SuppressMessage("Microsoft.Design", "CA1000:DoNotDeclareStaticMembersOnGenericTypes")]
         public static void IfIsNotNaN(double number, string message)
         {
@@ -2037,8 +1971,7 @@ namespace PommaLabs.Thrower
         /// </remarks>
 #if (NET45 || NET46)
         [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
-#endif
-        [Conditional(UseThrowerDefine)]
+#endif       
         [SuppressMessage("Microsoft.Design", "CA1000:DoNotDeclareStaticMembersOnGenericTypes")]
         public static void IfIsNull<TArg>(TArg arg)
         {
@@ -2071,8 +2004,7 @@ namespace PommaLabs.Thrower
         /// </remarks>
 #if (NET45 || NET46)
         [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
-#endif
-        [Conditional(UseThrowerDefine)]
+#endif       
         [SuppressMessage("Microsoft.Design", "CA1000:DoNotDeclareStaticMembersOnGenericTypes")]
         public static void IfIsNull<TArg>(TArg arg, string message)
         {
@@ -2098,8 +2030,7 @@ namespace PommaLabs.Thrower
         /// </remarks>
 #if (NET45 || NET46)
         [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
-#endif
-        [Conditional(UseThrowerDefine)]
+#endif       
         [SuppressMessage("Microsoft.Design", "CA1000:DoNotDeclareStaticMembersOnGenericTypes")]
         public static void IfIsNotNull<TArg>(TArg arg)
         {
@@ -2132,8 +2063,7 @@ namespace PommaLabs.Thrower
         /// </remarks>
 #if (NET45 || NET46)
         [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
-#endif
-        [Conditional(UseThrowerDefine)]
+#endif       
         [SuppressMessage("Microsoft.Design", "CA1000:DoNotDeclareStaticMembersOnGenericTypes")]
         public static void IfIsNotNull<TArg>(TArg arg, string message)
         {
@@ -2172,6 +2102,9 @@ namespace PommaLabs.Thrower
             throw (TEx) NoArgsCtor.Invoke(new object[0]);
         }
 
+#if (NET45 || NET46)
+        [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
+#endif
         static void DoThrow(string message)
         {
             // Checks whether the proper constructor exists. If not, then we produce an internal exception.

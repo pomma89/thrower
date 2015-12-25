@@ -58,10 +58,8 @@
   <Import Project="..\..\Thrower\Thrower.projitems" Label="Shared" />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
-    <PostBuildEvent>if not exist "$(SolutionDir)Thrower.NuGetPackager/lib/net35" mkdir "$(SolutionDir)Thrower.NuGetPackager/lib/net35"
-copy "$(TargetDir)PommaLabs.Thrower.dll" "$(SolutionDir)Thrower.NuGetPackager/lib/net35"
-copy "$(TargetDir)PommaLabs.Thrower.pdb" "$(SolutionDir)Thrower.NuGetPackager/lib/net35"
-copy "$(TargetDir)PommaLabs.Thrower.xml" "$(SolutionDir)Thrower.NuGetPackager/lib/net35"</PostBuildEvent>
+    <PostBuildEvent>
+    </PostBuildEvent>
   </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

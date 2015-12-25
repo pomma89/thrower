@@ -22,7 +22,6 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 using System;
-using System.Diagnostics;
 
 namespace PommaLabs.Thrower
 {
@@ -32,36 +31,19 @@ namespace PommaLabs.Thrower
     public sealed class RaiseObjectDisposedException : RaiseBase
     {
         /// <summary>
-        ///   Throws <see cref="ObjectDisposedException"/> if given condition is true.
+        ///   Throws <see cref="ObjectDisposedException"/> if the object has been disposed.
         /// </summary>
-        /// <param name="condition">The condition.</param>
+        /// <param name="disposed">Whether the object has been disposed or not.</param>
+        /// <param name="objectName">The required object name.</param>
         /// <param name="message">The optional message.</param>
 #if (NET45 || NET46)
         [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
 #endif
-        [Conditional(UseThrowerDefine)]
-        public static void If(bool condition, string message = null)
+        public static void If(bool disposed, string objectName, string message = null)
         {
-            if (condition)
+            if (disposed)
             {
-                throw string.IsNullOrEmpty(message) ? new ObjectDisposedException() : new InvalidOperationException(message);
-            }
-        }
-
-        /// <summary>
-        ///   Throws <see cref="ObjectDisposedException"/> if given condition is false.
-        /// </summary>
-        /// <param name="condition">The condition.</param>
-        /// <param name="message">The optional message.</param>
-#if (NET45 || NET46)
-        [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
-#endif
-        [Conditional(UseThrowerDefine)]
-        public static void IfNot(bool condition, string message = null)
-        {
-            if (!condition)
-            {
-                throw string.IsNullOrEmpty(message) ? new InvalidOperationException() : new InvalidOperationException(message);
+                throw string.IsNullOrEmpty(message) ? new ObjectDisposedException(objectName) : new ObjectDisposedException(objectName, message);
             }
         }
     }
