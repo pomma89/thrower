@@ -47,6 +47,32 @@ namespace PommaLabs.Thrower.UnitTests
         }
 
         [Test]
+        public void IfStringIsNullOrEmpty_BlankString()
+        {
+            RaiseArgumentException.IfStringIsNullOrEmpty(BlankString);
+        }
+
+        [Test]
+        public void IfStringIsNullOrEmpty_BlankString_WithMsg()
+        {
+            RaiseArgumentException.IfStringIsNullOrEmpty(BlankString, TestMessage);
+        }
+
+        [Test]
+        [ExpectedException(typeof(ArgumentException))]
+        public void IfStringIsNullOrWhiteSpace_BlankString()
+        {
+            RaiseArgumentException.IfStringIsNullOrWhiteSpace(BlankString);
+        }
+
+        [Test]
+        [ExpectedException(typeof(ArgumentException), ExpectedMessage = TestMessage)]
+        public void IfStringIsNullOrWhiteSpace_BlankString_WithMsg()
+        {
+            RaiseArgumentException.IfStringIsNullOrWhiteSpace(BlankString, TestMessage);
+        }
+
+        [Test]
         [ExpectedException(typeof(FormatException))]
         public void IfIsEmpty_EmptyIntegerCollection()
         {
@@ -75,6 +101,34 @@ namespace PommaLabs.Thrower.UnitTests
         }
 
         [Test]
+        [ExpectedException(typeof(ArgumentException))]
+        public void IfStringIsNullOrEmpty_EmptyString()
+        {
+            RaiseArgumentException.IfStringIsNullOrEmpty(string.Empty);
+        }
+
+        [Test]
+        [ExpectedException(typeof(ArgumentException), ExpectedMessage = TestMessage)]
+        public void IfStringIsNullOrEmpty_EmptyString_WithMsg()
+        {
+            RaiseArgumentException.IfStringIsNullOrEmpty(string.Empty, TestMessage);
+        }
+
+        [Test]
+        [ExpectedException(typeof(ArgumentException))]
+        public void IfStringIsNullOrWhiteSpace_EmptyString()
+        {
+            RaiseArgumentException.IfStringIsNullOrWhiteSpace(string.Empty);
+        }
+
+        [Test]
+        [ExpectedException(typeof(ArgumentException), ExpectedMessage = TestMessage)]
+        public void IfStringIsNullOrWhiteSpace_EmptyString_WithMsg()
+        {
+            RaiseArgumentException.IfStringIsNullOrWhiteSpace(string.Empty, TestMessage);
+        }
+
+        [Test]
         public void IfIsEmpty_FullIntegerCollection()
         {
             Raise<FormatException>.IfIsEmpty<int>(new List<int> { 1, 2, 3 });
@@ -96,6 +150,30 @@ namespace PommaLabs.Thrower.UnitTests
         public void IfIsEmpty_FullString_WithMsg()
         {
             Raise<FormatException>.IfIsEmpty("PINO", TestMessage);
+        }
+
+        [Test]
+        public void IfStringIsNullOrEmpty_FullString()
+        {
+            RaiseArgumentException.IfStringIsNullOrEmpty("PINO");
+        }
+
+        [Test]
+        public void IfStringIsNullOrEmpty_FullString_WithMsg()
+        {
+            RaiseArgumentException.IfStringIsNullOrEmpty("PINO", TestMessage);
+        }
+
+        [Test]
+        public void IfStringIsNullOrWhiteSpace_FullString()
+        {
+            RaiseArgumentException.IfStringIsNullOrWhiteSpace("PINO");
+        }
+
+        [Test]
+        public void IfStringIsNullOrWhiteSpace_FullString_WithMsg()
+        {
+            RaiseArgumentException.IfStringIsNullOrWhiteSpace("PINO", TestMessage);
         }
 
         [Test]

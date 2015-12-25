@@ -1,4 +1,4 @@
-﻿// File name: AbstractTests.cs
+﻿// File name: RaiseObjectDisposedExceptionTests.cs
 // 
 // Author(s): Alessio Parma <alessio.parma@gmail.com>
 // 
@@ -22,38 +22,34 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 using NUnit.Framework;
+using System;
 
 namespace PommaLabs.Thrower.UnitTests
 {
-    [TestFixture]
-    abstract class AbstractTests
+    sealed class RaiseObjectDisposedExceptionTests : AbstractTests
     {
-        #region Setup/Teardown
-
-        [SetUp]
-        public virtual void SetUp()
+        [Test, ExpectedException(typeof(ObjectDisposedException))]
+        public void If_TrueShouldThrow()
         {
+            RaiseObjectDisposedException.If(true, nameof(RaiseObjectDisposedExceptionTests));
         }
 
-        [TearDown]
-        public virtual void TearDown()
+        [Test, ExpectedException(typeof(ObjectDisposedException), ExpectedMessage = TestMessage, MatchType = MessageMatch.StartsWith)]
+        public void If_TrueShouldThrow_WithMessage()
         {
+            RaiseObjectDisposedException.If(true, nameof(RaiseObjectDisposedExceptionTests), TestMessage);
         }
 
-        #endregion Setup/Teardown
-
-        protected const string TestMessage = "A long and complicated error message...";
-
-        protected class Base { }
-
-        protected class Derived : Base { }
-
-        protected class Convertible
+        [Test]
+        public void If_FalseShouldNotThrow()
         {
-            public static implicit operator Base(Convertible c)
-            {
-                return new Base();
-            }
+            RaiseObjectDisposedException.If(false, nameof(RaiseObjectDisposedExceptionTests));
+        }
+
+        [Test]
+        public void If_FalseShouldNotThrow_WithMessage()
+        {
+            RaiseObjectDisposedException.If(false, nameof(RaiseObjectDisposedExceptionTests), TestMessage);
         }
     }
 }

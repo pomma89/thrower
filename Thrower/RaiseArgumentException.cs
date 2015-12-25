@@ -24,7 +24,6 @@
 using PommaLabs.Thrower.Validation;
 using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 
 namespace PommaLabs.Thrower
 {
@@ -43,7 +42,7 @@ namespace PommaLabs.Thrower
 #if (NET45 || NET46)
         [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
 #endif
-        [Conditional(UseThrowerDefine)]
+
         public static void If(bool condition, string message = null)
         {
             if (condition)
@@ -64,7 +63,7 @@ namespace PommaLabs.Thrower
 #if (NET45 || NET46)
         [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
 #endif
-        [Conditional(UseThrowerDefine)]
+
         public static void If(bool condition, string message, string argumentName)
         {
             if (condition)
@@ -85,7 +84,7 @@ namespace PommaLabs.Thrower
 #if (NET45 || NET46)
         [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
 #endif
-        [Conditional(UseThrowerDefine)]
+
         public static void IfNot(bool condition, string message = null)
         {
             if (!condition)
@@ -106,7 +105,7 @@ namespace PommaLabs.Thrower
 #if (NET45 || NET46)
         [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
 #endif
-        [Conditional(UseThrowerDefine)]
+
         public static void IfNot(bool condition, string message, string argumentName)
         {
             if (!condition)
@@ -128,7 +127,7 @@ namespace PommaLabs.Thrower
 #if (NET45 || NET46)
         [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
 #endif
-        [Conditional(UseThrowerDefine)]
+
         public static void IfIsNotValid<TArg>(TArg argument, string message = null)
         {
             IList<ValidationError> validationErrors;
@@ -151,7 +150,7 @@ namespace PommaLabs.Thrower
 #if (NET45 || NET46)
         [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
 #endif
-        [Conditional(UseThrowerDefine)]
+
         public static void IfIsNotValid<TArg>(TArg argument, string message, string argumentName)
         {
             IList<ValidationError> validationErrors;
@@ -162,5 +161,85 @@ namespace PommaLabs.Thrower
         }
 
         #endregion IfIsNotValid
+
+        #region String validation
+
+        /// <summary>
+        ///   Throws <see cref="ArgumentException"/> if given string is null or empty.
+        /// </summary>
+        /// <param name="value">The string value.</param>
+        /// <param name="message">The optional message.</param>
+#if (NET45 || NET46)
+        [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
+#endif
+
+        public static void IfStringIsNullOrEmpty(string value, string message = null)
+        {
+            if (value == null || value == string.Empty)
+            {
+                throw string.IsNullOrEmpty(message) ? new ArgumentException() : new ArgumentException(message);
+            }
+        }
+
+        /// <summary>
+        ///   Throws <see cref="ArgumentException"/> if given string is null or empty.
+        /// </summary>
+        /// <param name="value">The string value.</param>
+        /// <param name="message">The optional message.</param>
+        /// <param name="argumentName">The name of the argument.</param>
+        /// <remarks>
+        ///   <paramref name="message"/> and <paramref name="argumentName"/> are strictly required arguments.
+        /// </remarks>
+#if (NET45 || NET46)
+        [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
+#endif
+
+        public static void IfStringIsNullOrEmpty(string value, string message, string argumentName)
+        {
+            if (value == null || value == string.Empty)
+            {
+                throw new ArgumentException(message, argumentName);
+            }
+        }
+
+        /// <summary>
+        ///   Throws <see cref="ArgumentException"/> if given string is null, empty or blank.
+        /// </summary>
+        /// <param name="value">The string value.</param>
+        /// <param name="message">The optional message.</param>
+#if (NET45 || NET46)
+        [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
+#endif
+
+        public static void IfStringIsNullOrWhiteSpace(string value, string message = null)
+        {
+            if (value == null || value.Trim() == string.Empty)
+            {
+                throw string.IsNullOrEmpty(message) ? new ArgumentException() : new ArgumentException(message);
+            }
+        }
+
+        /// <summary>
+        ///   Throws <see cref="ArgumentException"/> if given string is null, empty or blank.
+        /// </summary>
+        /// <param name="value">The string value.</param>
+        /// <param name="message">The optional message.</param>
+        /// <param name="argumentName">The name of the argument.</param>
+        /// <remarks>
+        ///   <paramref name="message"/> and <paramref name="argumentName"/> are strictly required arguments.
+        /// </remarks>
+#if (NET45 || NET46)
+        [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
+#endif
+
+        public static void IfStringIsNullOrWhiteSpace(string value, string message, string argumentName)
+        {
+            if (value == null || value.Trim() == string.Empty)
+            {
+                throw new ArgumentException(message, argumentName);
+            }
+        }
+
+        #endregion String validation
     }
 }
