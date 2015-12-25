@@ -3,16 +3,16 @@
 <package>
     <metadata>
         <id>Thrower</id>
-        <version>2.0.3</version>
+        <version>2.1.0</version>
         <title>Thrower - Compact preconditions helpers</title>
         <authors>Alessio Parma &lt;alessio.parma@gmail.com&gt;</authors>
         <owners>Alessio Parma &lt;alessio.parma@gmail.com&gt;</owners>
         <description>
-Fully managed library providing convenience methods to perform argument checks. It offers methods whose compilation can be enabled with the "USETHROWER" directive, and they can of course be disabled by undefining that directive. Therefore, it allows to write code whose integrity checks can be easily removed (for performance reasons, for example).
+Fully managed library providing convenience methods to perform argument checks. Thrower allows to write preconditions in a pretty lean way, which reduces the clutter at the beginning of each method by removing the need to use the cumbersome "if true then throw ex" required to validate parameters.
         </description>
         <releaseNotes>
-* FastMember.ObjectAccessor now implements IDictionary&lt;string, object&gt;.
-* Added HttpException for Web API projects.
+* Calls to all Raise* methods cannot be deleted any more by not defining the USETHROWER compilation symbol. The definition of that symbol was the cause of common errors and was not helpful on the performance side.
+* Added RaiseObjectDisposedException.
         </releaseNotes>
         <summary>Fully managed library providing convenience methods to perform argument checks.</summary>
         <language>en-US</language>

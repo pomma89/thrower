@@ -250,7 +250,7 @@ function Publish {
 }
 
 Write-Log " "
-Write-Log "NuGet Packager 2.0.3" -ForegroundColor Yellow
+Write-Log "NuGet Packager 2.1.0" -ForegroundColor Yellow
 
 # Make sure the nuget executable is writable
 Set-ItemProperty NuGet.exe -Name IsReadOnly -Value $false
