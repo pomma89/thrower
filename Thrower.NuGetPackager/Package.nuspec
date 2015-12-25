@@ -15,6 +15,8 @@ For example, a validation against null becomes "RaiseArgumentNullException.IfIsN
         <releaseNotes>
 * Calls to all Raise* methods cannot be deleted any more by not defining the USETHROWER compilation symbol. The definition of that symbol was the cause of common errors and was not helpful on the performance side.
 * Added RaiseObjectDisposedException.
+* Added methods for string validation to RaiseArgumentException.
+* Initial support for DNX.
         </releaseNotes>
         <summary>Fully managed library providing convenience methods to perform argument checks.</summary>
         <language>en-US</language>
