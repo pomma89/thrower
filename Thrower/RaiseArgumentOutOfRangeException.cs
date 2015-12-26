@@ -31,6 +31,86 @@ namespace PommaLabs.Thrower
     /// </summary>
     public sealed class RaiseArgumentOutOfRangeException : RaiseBase
     {
+        #region If
+
+        /// <summary>
+        ///   Throws <see cref="ArgumentOutOfRangeException"/> if given condition is true.
+        /// </summary>
+        /// <param name="condition">The condition.</param>
+        /// <param name="argumentName">The optional name of the argument.</param>
+#if (NET45 || NET46)
+        [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
+#endif
+        public static void If(bool condition, string argumentName = null)
+        {
+            if (condition)
+            {
+                throw string.IsNullOrEmpty(argumentName) ? new ArgumentOutOfRangeException() : new ArgumentOutOfRangeException(argumentName);
+            }
+        }
+
+        /// <summary>
+        ///   Throws <see cref="ArgumentOutOfRangeException"/> if given condition is true.
+        /// </summary>
+        /// <param name="condition">The condition.</param>
+        /// <param name="argumentName">The name of the argument.</param>
+        /// <param name="message">The message.</param>
+        /// <remarks>
+        ///   <paramref name="message"/> and <paramref name="argumentName"/> are strictly required arguments.
+        /// </remarks>
+#if (NET45 || NET46)
+        [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
+#endif
+        public static void If(bool condition, string argumentName, string message)
+        {
+            if (condition)
+            {
+                throw new ArgumentOutOfRangeException(argumentName, message);
+            }
+        }
+
+        #endregion If
+
+        #region IfNot
+
+        /// <summary>
+        ///   Throws <see cref="ArgumentOutOfRangeException"/> if given condition is false.
+        /// </summary>
+        /// <param name="condition">The condition.</param>
+        /// <param name="argumentName">The optional name of the argument.</param>
+#if (NET45 || NET46)
+        [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
+#endif
+        public static void IfNot(bool condition, string argumentName = null)
+        {
+            if (!condition)
+            {
+                throw string.IsNullOrEmpty(argumentName) ? new ArgumentOutOfRangeException() : new ArgumentOutOfRangeException(argumentName);
+            }
+        }
+
+        /// <summary>
+        ///   Throws <see cref="ArgumentOutOfRangeException"/> if given condition is false.
+        /// </summary>
+        /// <param name="condition">The condition.</param>
+        /// <param name="argumentName">The name of the argument.</param>
+        /// <param name="message">The message.</param>
+        /// <remarks>
+        ///   <paramref name="message"/> and <paramref name="argumentName"/> are strictly required arguments.
+        /// </remarks>
+#if (NET45 || NET46)
+        [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
+#endif
+        public static void IfNot(bool condition, string argumentName, string message)
+        {
+            if (!condition)
+            {
+                throw new ArgumentOutOfRangeException(argumentName, message);
+            }
+        }
+
+        #endregion IfNot
+
         #region Less - Without parameter name, without message
 
         /// <summary>
@@ -42,7 +122,7 @@ namespace PommaLabs.Thrower
         /// <param name="argument2">The right side argument.</param>
 #if (NET45 || NET46)
         [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
-#endif       
+#endif
         public static void IfIsLess<TArg>(TArg argument1, TArg argument2)
             where TArg : IComparable<TArg>
         {
