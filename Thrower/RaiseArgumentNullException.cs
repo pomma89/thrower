@@ -23,7 +23,6 @@
 
 using PommaLabs.Thrower.Reflection;
 using System;
-using System.Diagnostics;
 
 namespace PommaLabs.Thrower
 {
@@ -39,7 +38,7 @@ namespace PommaLabs.Thrower
         /// <param name="argument">The argument.</param>
 #if (NET45 || NET46)
         [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
-#endif   
+#endif  
         public static void IfIsNull<TArg>(TArg argument)
         {
             if (!PortableTypeInfo.IsValueType(typeof(TArg)) && ReferenceEquals(argument, null))
