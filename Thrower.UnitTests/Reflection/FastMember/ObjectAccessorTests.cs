@@ -29,7 +29,7 @@ using System.Collections.Generic;
 
 namespace PommaLabs.Thrower.UnitTests.Reflection.FastMember
 {
-    sealed class ObjectAccessorTests : AbstractTests
+    internal sealed class ObjectAccessorTests : AbstractTests
     {
         [Test]
         public void Create_AsIDictionary()

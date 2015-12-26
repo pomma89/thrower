@@ -25,8 +25,11 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
+
 #if !PORTABLE
+
 using PommaLabs.Thrower.Reflection.FastMember;
+
 #endif
 
 namespace PommaLabs.Thrower.Reflection
@@ -54,6 +57,7 @@ namespace PommaLabs.Thrower.Reflection
 #if (NET45 || NET46)
         [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
 #endif
+
         public static IList<Attribute> GetCustomAttributes(MemberInfo memberInfo, bool inherit)
         {
 #if PORTABLE
@@ -71,6 +75,7 @@ namespace PommaLabs.Thrower.Reflection
 #if (NET45 || NET46)
         [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
 #endif
+
         public static IList<ConstructorInfo> GetConstructors(Type type)
         {
 #if PORTABLE
@@ -88,6 +93,7 @@ namespace PommaLabs.Thrower.Reflection
 #if (NET45 || NET46)
         [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
 #endif
+
         public static IList<ConstructorInfo> GetConstructors<T>() => GetConstructors(typeof(T));
 
         /// <summary>
@@ -98,6 +104,7 @@ namespace PommaLabs.Thrower.Reflection
 #if (NET45 || NET46)
         [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
 #endif
+
         public static Type GetBaseType(Type type)
         {
 #if PORTABLE
@@ -115,6 +122,7 @@ namespace PommaLabs.Thrower.Reflection
 #if (NET45 || NET46)
         [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
 #endif
+
         public static IList<Type> GetInterfaces(Type type)
         {
 #if PORTABLE
@@ -132,6 +140,7 @@ namespace PommaLabs.Thrower.Reflection
 #if (NET45 || NET46)
         [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
 #endif
+
         public static IList<PropertyInfo> GetPublicProperties(Type type)
         {
 #if PORTABLE
@@ -149,6 +158,7 @@ namespace PommaLabs.Thrower.Reflection
 #if (NET45 || NET46)
         [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
 #endif
+
         public static IList<PropertyInfo> GetPublicProperties<T>() => GetPublicProperties(typeof(T));
 
         #region GetPublicPropertyValue
@@ -162,6 +172,7 @@ namespace PommaLabs.Thrower.Reflection
 #if (NET45 || NET46)
         [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
 #endif
+
         public static object GetPublicPropertyValue(object instance, PropertyInfo propertyInfo)
         {
             RaiseArgumentNullException.IfIsNull(instance, nameof(instance), "Instance cannot be null");
@@ -180,12 +191,14 @@ namespace PommaLabs.Thrower.Reflection
 #if (NET45 || NET46)
         [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
 #endif
+
         public static object GetPublicPropertyValue(TypeAccessor typeAccessor, object instance, PropertyInfo propertyInfo)
         {
             RaiseArgumentNullException.IfIsNull(instance, nameof(instance), "Instance cannot be null");
             RaiseArgumentException.IfNot(propertyInfo.CanRead, "Given property cannot be read", nameof(propertyInfo));
             return typeAccessor[instance, propertyInfo.Name];
         }
+
 #endif
 
         #endregion GetPublicPropertyValue
@@ -200,6 +213,7 @@ namespace PommaLabs.Thrower.Reflection
 #if (NET45 || NET46)
         [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
 #endif
+
         public static bool IsAbstract(Type type)
         {
 #if PORTABLE
@@ -217,6 +231,7 @@ namespace PommaLabs.Thrower.Reflection
 #if (NET45 || NET46)
         [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
 #endif
+
         public static bool IsAbstract<T>() => IsAbstract(typeof(T));
 
         #endregion IsAbstract
@@ -231,6 +246,7 @@ namespace PommaLabs.Thrower.Reflection
 #if (NET45 || NET46)
         [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
 #endif
+
         public static bool IsClass(Type type)
         {
 #if PORTABLE
@@ -248,6 +264,7 @@ namespace PommaLabs.Thrower.Reflection
 #if (NET45 || NET46)
         [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
 #endif
+
         public static bool IsClass<T>() => IsClass(typeof(T));
 
         #endregion IsClass
@@ -265,6 +282,7 @@ namespace PommaLabs.Thrower.Reflection
 #if (NET45 || NET46)
         [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
 #endif
+
         public static bool IsAssignableFrom(object obj, Type type)
         {
             if (ReferenceEquals(obj, null) || ReferenceEquals(type, null))
@@ -289,6 +307,7 @@ namespace PommaLabs.Thrower.Reflection
 #if (NET45 || NET46)
         [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
 #endif
+
         public static bool IsEnum(Type type)
         {
 #if PORTABLE
@@ -306,6 +325,7 @@ namespace PommaLabs.Thrower.Reflection
 #if (NET45 || NET46)
         [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
 #endif
+
         public static bool IsEnum<T>() => IsEnum(typeof(T));
 
         #endregion IsEnum
@@ -320,6 +340,7 @@ namespace PommaLabs.Thrower.Reflection
 #if (NET45 || NET46)
         [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
 #endif
+
         public static bool IsGenericType(Type type)
         {
 #if PORTABLE
@@ -337,6 +358,7 @@ namespace PommaLabs.Thrower.Reflection
 #if (NET45 || NET46)
         [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
 #endif
+
         public static bool IsGenericType<T>() => IsGenericType(typeof(T));
 
         #endregion IsGenericType
@@ -350,6 +372,7 @@ namespace PommaLabs.Thrower.Reflection
 #if (NET45 || NET46)
         [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
 #endif
+
         public static bool IsInstanceOf(object obj, Type type)
         {
             if (ReferenceEquals(obj, null) || ReferenceEquals(type, null))
@@ -374,6 +397,7 @@ namespace PommaLabs.Thrower.Reflection
 #if (NET45 || NET46)
         [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
 #endif
+
         public static bool IsInterface(Type type)
         {
 #if PORTABLE
@@ -391,6 +415,7 @@ namespace PommaLabs.Thrower.Reflection
 #if (NET45 || NET46)
         [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
 #endif
+
         public static bool IsInterface<T>() => IsInterface(typeof(T));
 
         #endregion IsInterface
@@ -405,6 +430,7 @@ namespace PommaLabs.Thrower.Reflection
 #if (NET45 || NET46)
         [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
 #endif
+
         public static bool IsPrimitive(Type type)
         {
 #if PORTABLE
@@ -422,6 +448,7 @@ namespace PommaLabs.Thrower.Reflection
 #if (NET45 || NET46)
         [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
 #endif
+
         public static bool IsPrimitive<T>() => IsPrimitive(typeof(T));
 
         #endregion IsPrimitive
@@ -436,6 +463,7 @@ namespace PommaLabs.Thrower.Reflection
 #if (NET45 || NET46)
         [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
 #endif
+
         public static bool IsValueType(Type type)
         {
 #if PORTABLE
@@ -453,6 +481,7 @@ namespace PommaLabs.Thrower.Reflection
 #if (NET45 || NET46)
         [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
 #endif
+
         public static bool IsValueType<T>() => IsValueType(typeof(T));
 
         #endregion IsValueType

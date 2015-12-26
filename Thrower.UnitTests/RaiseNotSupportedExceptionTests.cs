@@ -26,7 +26,7 @@ using System;
 
 namespace PommaLabs.Thrower.UnitTests
 {
-    sealed class RaiseNotSupportedExceptionTests : AbstractTests
+    internal sealed class RaiseNotSupportedExceptionTests : AbstractTests
     {
         [Test, ExpectedException(typeof(NotSupportedException))]
         public void If_TrueShouldThrow()

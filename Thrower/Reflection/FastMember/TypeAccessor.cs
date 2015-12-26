@@ -18,6 +18,7 @@ using System.Collections.Generic;
 using System.Reflection;
 using System.Reflection.Emit;
 using System.Threading;
+
 #if !NET35
 using System.Dynamic;
 #endif
@@ -115,7 +116,8 @@ namespace PommaLabs.Thrower.Reflection.FastMember
         private static ModuleBuilder module;
         private static int counter;
 
-        static readonly MethodInfo tryGetValue = typeof(Dictionary<string, int>).GetMethod("TryGetValue");
+        private static readonly MethodInfo tryGetValue = typeof(Dictionary<string, int>).GetMethod("TryGetValue");
+
         private static void WriteMapImpl(ILGenerator il, Type type, List<MemberInfo> members, FieldBuilder mapField, bool allowNonPublicAccessors, bool isGet)
         {
             OpCode obj, index, value;
@@ -223,13 +225,14 @@ namespace PommaLabs.Thrower.Reflection.FastMember
             public override bool GetMembersSupported => true;
 
             private MemberSet members;
+
             /// <summary>
             ///   Query the members available for this type
             /// </summary>
             public override MemberSet GetMembers() => members ?? (members = new MemberSet(Type));
         }
 
-        sealed class DelegateAccessor : RuntimeTypeAccessor
+        private sealed class DelegateAccessor : RuntimeTypeAccessor
         {
             private readonly Dictionary<string, int> map;
             private readonly Func<int, object, object> getter;
@@ -246,6 +249,7 @@ namespace PommaLabs.Thrower.Reflection.FastMember
                 this.ctor = ctor;
                 this.type = type;
             }
+
             public override bool CreateNewSupported => ctor != null;
 
             public override object CreateNew() => ctor != null ? ctor() : base.CreateNew();
@@ -284,7 +288,7 @@ namespace PommaLabs.Thrower.Reflection.FastMember
             return true;
         }
 
-        static TypeAccessor CreateNew(Type type, bool allowNonPublicAccessors)
+        private static TypeAccessor CreateNew(Type type, bool allowNonPublicAccessors)
         {
 #if !NET35
             if (typeof(IDynamicMetaObjectProvider).IsAssignableFrom(type))

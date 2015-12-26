@@ -24,7 +24,8 @@ namespace PommaLabs.Thrower.Reflection.FastMember
     /// </summary>
     public sealed class MemberSet : IEnumerable<Member>, IList<Member>
     {
-        Member[] members;
+        private Member[] members;
+
         internal MemberSet(Type type)
         {
             members = type
@@ -34,6 +35,7 @@ namespace PommaLabs.Thrower.Reflection.FastMember
                 .Select(member => new Member(member))
                 .ToArray();
         }
+
         /// <summary>
         ///   Return a sequence of all defined members.
         /// </summary>
@@ -59,15 +61,41 @@ namespace PommaLabs.Thrower.Reflection.FastMember
         }
 
         System.Collections.IEnumerator System.Collections.IEnumerable.GetEnumerator() => GetEnumerator();
-        bool ICollection<Member>.Remove(Member item) { throw new NotSupportedException(); }
-        void ICollection<Member>.Add(Member item) { throw new NotSupportedException(); }
-        void ICollection<Member>.Clear() { throw new NotSupportedException(); }
-        void IList<Member>.RemoveAt(int index) { throw new NotSupportedException(); }
-        void IList<Member>.Insert(int index, Member item) { throw new NotSupportedException(); }
+
+        bool ICollection<Member>.Remove(Member item)
+        {
+            throw new NotSupportedException();
+        }
+
+        void ICollection<Member>.Add(Member item)
+        {
+            throw new NotSupportedException();
+        }
+
+        void ICollection<Member>.Clear()
+        {
+            throw new NotSupportedException();
+        }
+
+        void IList<Member>.RemoveAt(int index)
+        {
+            throw new NotSupportedException();
+        }
+
+        void IList<Member>.Insert(int index, Member item)
+        {
+            throw new NotSupportedException();
+        }
 
         bool ICollection<Member>.Contains(Member item) => members.Contains(item);
-        void ICollection<Member>.CopyTo(Member[] array, int arrayIndex) { members.CopyTo(array, arrayIndex); }
+
+        void ICollection<Member>.CopyTo(Member[] array, int arrayIndex)
+        {
+            members.CopyTo(array, arrayIndex);
+        }
+
         bool ICollection<Member>.IsReadOnly => true;
+
         int IList<Member>.IndexOf(Member member) => Array.IndexOf<Member>(members, member);
     }
 

@@ -27,7 +27,7 @@ using System.Net;
 
 namespace PommaLabs.Thrower.UnitTests
 {
-    sealed class RaiseHttpExceptionTests : AbstractTests
+    internal sealed class RaiseHttpExceptionTests : AbstractTests
     {
         [Test, ExpectedException(typeof(HttpException))]
         public void If_TrueShouldThrow()

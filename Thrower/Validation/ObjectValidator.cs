@@ -31,8 +31,8 @@ using System.Text;
 namespace PommaLabs.Thrower.Validation
 {
     /// <summary>
-    ///   Validates an object public properties that have been decorated with the
-    ///   <see cref="ValidateAttribute"/> custom attribute.
+    ///   Validates an object public properties that have been decorated with the <see
+    ///   cref="ValidateAttribute"/> custom attribute.
     /// </summary>
     public static class ObjectValidator
     {
@@ -66,7 +66,7 @@ namespace PommaLabs.Thrower.Validation
         /// <param name="validationErrors">The validation errors.</param>
         /// <param name="startMessage">An optional prefix.</param>
         /// <returns>A readable messages containing all validation errors.</returns>
-        public static string FormatValidationErrors(IEnumerable<ValidationError> validationErrors,string startMessage = null)
+        public static string FormatValidationErrors(IEnumerable<ValidationError> validationErrors, string startMessage = null)
         {
             var builder = new StringBuilder();
             if (!string.IsNullOrEmpty(startMessage))
@@ -83,7 +83,8 @@ namespace PommaLabs.Thrower.Validation
         }
 
         /// <summary>
-        ///   Validates given object using information contained in the <see cref="ValidateAttribute"/> custom attribute.
+        ///   Validates given object using information contained in the <see
+        ///   cref="ValidateAttribute"/> custom attribute.
         /// </summary>
         /// <param name="obj">The object to be validated.</param>
         /// <param name="validationErrors">All validation errors found.</param>
@@ -184,7 +185,7 @@ namespace PommaLabs.Thrower.Validation
 #endif
 
                     var newPath = $"{path}.{propertyInfo.Name}";
-                    ValidateInternal(propertyValue, newPath, rp.Validation, validationErrors);                    
+                    ValidateInternal(propertyValue, newPath, rp.Validation, validationErrors);
                 }
 
                 return validationErrors.Count == 0;

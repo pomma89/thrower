@@ -16,6 +16,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+
 #if !NET35
 using System.Dynamic;
 #endif
@@ -80,25 +81,33 @@ namespace PommaLabs.Thrower.Reflection.FastMember
         public abstract ICollection<object> Values { get; }
         public abstract int Count { get; }
         public bool IsReadOnly => true;
+
         public abstract bool ContainsKey(string key);
+
         public void Add(string key, object value)
         {
             throw new NotSupportedException();
         }
+
         public bool Remove(string key)
         {
             throw new NotSupportedException();
         }
+
         public abstract bool TryGetValue(string key, out object value);
+
         public void Add(KeyValuePair<string, object> item)
         {
             throw new NotSupportedException();
         }
+
         public void Clear()
         {
             throw new NotSupportedException();
         }
+
         public abstract bool Contains(KeyValuePair<string, object> item);
+
         public void CopyTo(KeyValuePair<string, object>[] array, int arrayIndex)
         {
             foreach (var kv in this)
@@ -106,16 +115,19 @@ namespace PommaLabs.Thrower.Reflection.FastMember
                 array[arrayIndex++] = kv;
             }
         }
+
         public bool Remove(KeyValuePair<string, object> item)
         {
             throw new NotSupportedException();
         }
+
         public abstract IEnumerator<KeyValuePair<string, object>> GetEnumerator();
+
         IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();
 
-        #endregion
+        #endregion IDictionary<string, object> members
 
-        sealed class TypeAccessorWrapper : ObjectAccessor, IDictionary<string, object>
+        private sealed class TypeAccessorWrapper : ObjectAccessor, IDictionary<string, object>
         {
             private readonly TypeAccessor _accessor;
             private readonly MemberSet _members;
@@ -166,7 +178,7 @@ namespace PommaLabs.Thrower.Reflection.FastMember
                 }
             }
 
-            #endregion
+            #endregion IDictionary<string, object> members
         }
 
 #if !NET35
@@ -185,21 +197,21 @@ namespace PommaLabs.Thrower.Reflection.FastMember
 
             public override object Target { get; }
 
-            #region IDictionary<string, object> members
+        #region IDictionary<string, object> members
 
             public override ICollection<string> Keys
             {
-                get { throw new NotSupportedException(); }               
+                get { throw new NotSupportedException(); }
             }
 
             public override ICollection<object> Values
             {
-                get { throw new NotSupportedException(); }  
+                get { throw new NotSupportedException(); }
             }
 
             public override int Count
             {
-                get { throw new NotSupportedException(); }  
+                get { throw new NotSupportedException(); }
             }
 
             public override bool ContainsKey(string key)
@@ -222,7 +234,7 @@ namespace PommaLabs.Thrower.Reflection.FastMember
                 throw new NotSupportedException();
             }
 
-            #endregion
+        #endregion IDictionary<string, object> members
         }
 #endif
     }

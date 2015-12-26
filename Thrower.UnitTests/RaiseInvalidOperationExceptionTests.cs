@@ -26,7 +26,7 @@ using System;
 
 namespace PommaLabs.Thrower.UnitTests
 {
-    sealed class RaiseInvalidOperationExceptionTests : AbstractTests
+    internal sealed class RaiseInvalidOperationExceptionTests : AbstractTests
     {
         [Test, ExpectedException(typeof(InvalidOperationException))]
         public void If_TrueShouldThrow()

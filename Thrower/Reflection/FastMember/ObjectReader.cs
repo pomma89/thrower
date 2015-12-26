@@ -109,7 +109,8 @@ namespace PommaLabs.Thrower.Reflection.FastMember
             this.source = source.GetEnumerator();
         }
 
-        object current;
+        private object current;
+
         void IDataReader.Close()
         {
             Dispose();
@@ -173,6 +174,7 @@ namespace PommaLabs.Thrower.Reflection.FastMember
         {
             get { return 0; }
         }
+
         /// <summary>
         ///   Releases all resources used by the ObjectReader
         /// </summary>
@@ -322,6 +324,7 @@ namespace PommaLabs.Thrower.Reflection.FastMember
         {
             get { return accessor[current, name] ?? DBNull.Value; }
         }
+
         /// <summary>
         ///   Gets the value of the current object in the member specified
         /// </summary>
