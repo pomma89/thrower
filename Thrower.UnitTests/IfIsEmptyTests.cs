@@ -28,9 +28,9 @@ using System.Collections.Generic;
 
 namespace PommaLabs.Thrower.UnitTests
 {
-    sealed class IfIsEmptyTests : AbstractTests
+    internal sealed class IfIsEmptyTests : AbstractTests
     {
-        const string BlankString = "   ";
+        private const string BlankString = "   ";
 
         [Test]
         [ExpectedException(typeof(FormatException))]

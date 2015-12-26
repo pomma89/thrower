@@ -28,7 +28,7 @@ using System.Collections.Generic;
 
 namespace PommaLabs.Thrower.UnitTests
 {
-    sealed class IfIsContainedInTests : AbstractTests
+    internal sealed class IfIsContainedInTests : AbstractTests
     {
         [Test]
         [ExpectedException(typeof(FormatException))]

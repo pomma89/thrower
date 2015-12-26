@@ -22,7 +22,6 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 using System;
-using System.Diagnostics;
 
 namespace PommaLabs.Thrower
 {
@@ -42,7 +41,8 @@ namespace PommaLabs.Thrower
         /// <param name="argument2">The right side argument.</param>
 #if (NET45 || NET46)
         [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
-#endif        
+#endif
+
         public static void IfIsLess<TArg>(TArg argument1, TArg argument2)
             where TArg : IComparable<TArg>
         {
@@ -60,7 +60,8 @@ namespace PommaLabs.Thrower
         /// <param name="argument2">The right side argument.</param>
 #if (NET45 || NET46)
         [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
-#endif        
+#endif
+
         public static void IfIsLess(IComparable argument1, IComparable argument2)
         {
             if (ReferenceEquals(argument1, null) || argument1.CompareTo(argument2) < 0)
@@ -83,7 +84,8 @@ namespace PommaLabs.Thrower
         /// <param name="message">The message that should be put into the exception.</param>
 #if (NET45 || NET46)
         [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
-#endif        
+#endif
+
         public static void IfIsLess<TArg>(TArg argument1, TArg argument2, string message)
             where TArg : IComparable<TArg>
         {
@@ -102,7 +104,8 @@ namespace PommaLabs.Thrower
         /// <param name="message">The message that should be put into the exception.</param>
 #if (NET45 || NET46)
         [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
-#endif        
+#endif
+
         public static void IfIsLess(IComparable argument1, IComparable argument2, string message)
         {
             if (ReferenceEquals(argument1, null) || argument1.CompareTo(argument2) < 0)
@@ -124,7 +127,8 @@ namespace PommaLabs.Thrower
         /// <param name="argument2">The right side argument.</param>
 #if (NET45 || NET46)
         [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
-#endif        
+#endif
+
         public static void IfIsLessOrEqual<TArg>(TArg argument1, TArg argument2)
             where TArg : IComparable<TArg>
         {
@@ -142,7 +146,8 @@ namespace PommaLabs.Thrower
         /// <param name="argument2">The right side argument.</param>
 #if (NET45 || NET46)
         [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
-#endif        
+#endif
+
         public static void IfIsLessOrEqual(IComparable argument1, IComparable argument2)
         {
             if (ReferenceEquals(argument1, null) || argument1.CompareTo(argument2) <= 0)
@@ -165,7 +170,8 @@ namespace PommaLabs.Thrower
         /// <param name="message">The message that should be put into the exception.</param>
 #if (NET45 || NET46)
         [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
-#endif        
+#endif
+
         public static void IfIsLessOrEqual<TArg>(TArg argument1, TArg argument2, string message)
             where TArg : IComparable<TArg>
         {
@@ -184,7 +190,8 @@ namespace PommaLabs.Thrower
         /// <param name="message">The message that should be put into the exception.</param>
 #if (NET45 || NET46)
         [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
-#endif        
+#endif
+
         public static void IfIsLessOrEqual(IComparable argument1, IComparable argument2, string message)
         {
             if (ReferenceEquals(argument1, null) || argument1.CompareTo(argument2) <= 0)
@@ -206,7 +213,8 @@ namespace PommaLabs.Thrower
         /// <param name="argument2">The right side argument.</param>
 #if (NET45 || NET46)
         [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
-#endif        
+#endif
+
         public static void IfIsGreater<TArg>(TArg argument1, TArg argument2)
             where TArg : IComparable<TArg>
         {
@@ -224,7 +232,8 @@ namespace PommaLabs.Thrower
         /// <param name="argument2">The right side argument.</param>
 #if (NET45 || NET46)
         [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
-#endif        
+#endif
+
         public static void IfIsGreater(IComparable argument1, IComparable argument2)
         {
             if (ReferenceEquals(argument1, null) || argument1.CompareTo(argument2) > 0)
@@ -247,7 +256,8 @@ namespace PommaLabs.Thrower
         /// <param name="message">The message that should be put into the exception.</param>
 #if (NET45 || NET46)
         [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
-#endif        
+#endif
+
         public static void IfIsGreater<TArg>(TArg argument1, TArg argument2, string message)
             where TArg : IComparable<TArg>
         {
@@ -266,7 +276,8 @@ namespace PommaLabs.Thrower
         /// <param name="message">The message that should be put into the exception.</param>
 #if (NET45 || NET46)
         [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
-#endif        
+#endif
+
         public static void IfIsGreater(IComparable argument1, IComparable argument2, string message)
         {
             if (ReferenceEquals(argument1, null) || argument1.CompareTo(argument2) > 0)
@@ -288,7 +299,8 @@ namespace PommaLabs.Thrower
         /// <param name="argument2">The right side argument.</param>
 #if (NET45 || NET46)
         [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
-#endif        
+#endif
+
         public static void IfIsGreaterOrEqual<TArg>(TArg argument1, TArg argument2)
             where TArg : IComparable<TArg>
         {
@@ -306,7 +318,8 @@ namespace PommaLabs.Thrower
         /// <param name="argument2">The right side argument.</param>
 #if (NET45 || NET46)
         [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
-#endif        
+#endif
+
         public static void IfIsGreaterOrEqual(IComparable argument1, IComparable argument2)
         {
             if (ReferenceEquals(argument1, null) || argument1.CompareTo(argument2) >= 0)
@@ -329,7 +342,8 @@ namespace PommaLabs.Thrower
         /// <param name="message">The message that should be put into the exception.</param>
 #if (NET45 || NET46)
         [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
-#endif        
+#endif
+
         public static void IfIsGreaterOrEqual<TArg>(TArg argument1, TArg argument2, string message)
             where TArg : IComparable<TArg>
         {
@@ -348,7 +362,8 @@ namespace PommaLabs.Thrower
         /// <param name="message">The message that should be put into the exception.</param>
 #if (NET45 || NET46)
         [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
-#endif        
+#endif
+
         public static void IfIsGreaterOrEqual(IComparable argument1, IComparable argument2, string message)
         {
             if (ReferenceEquals(argument1, null) || argument1.CompareTo(argument2) >= 0)
@@ -370,7 +385,8 @@ namespace PommaLabs.Thrower
         /// <param name="argument2">The right side argument.</param>
 #if (NET45 || NET46)
         [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
-#endif        
+#endif
+
         public static void IfIsEqual<TArg>(TArg argument1, TArg argument2)
             where TArg : IComparable<TArg>
         {
@@ -388,7 +404,8 @@ namespace PommaLabs.Thrower
         /// <param name="argument2">The right side argument.</param>
 #if (NET45 || NET46)
         [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
-#endif        
+#endif
+
         public static void IfIsEqual(IComparable argument1, IComparable argument2)
         {
             if (ReferenceEquals(argument1, null) || argument1.CompareTo(argument2) == 0)
@@ -411,7 +428,8 @@ namespace PommaLabs.Thrower
         /// <param name="message">The message that should be put into the exception.</param>
 #if (NET45 || NET46)
         [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
-#endif        
+#endif
+
         public static void IfIsEqual<TArg>(TArg argument1, TArg argument2, string message)
             where TArg : IComparable<TArg>
         {
@@ -430,7 +448,8 @@ namespace PommaLabs.Thrower
         /// <param name="message">The message that should be put into the exception.</param>
 #if (NET45 || NET46)
         [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
-#endif        
+#endif
+
         public static void IfIsEqual(IComparable argument1, IComparable argument2, string message)
         {
             if (ReferenceEquals(argument1, null) || argument1.CompareTo(argument2) == 0)
@@ -452,7 +471,8 @@ namespace PommaLabs.Thrower
         /// <param name="argument2">The right side argument.</param>
 #if (NET45 || NET46)
         [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
-#endif        
+#endif
+
         public static void IfIsNotEqual<TArg>(TArg argument1, TArg argument2)
             where TArg : IComparable<TArg>
         {
@@ -470,7 +490,8 @@ namespace PommaLabs.Thrower
         /// <param name="argument2">The right side argument.</param>
 #if (NET45 || NET46)
         [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
-#endif        
+#endif
+
         public static void IfIsNotEqual(IComparable argument1, IComparable argument2)
         {
             if (ReferenceEquals(argument1, null) || argument1.CompareTo(argument2) != 0)
@@ -493,7 +514,8 @@ namespace PommaLabs.Thrower
         /// <param name="message">The message that should be put into the exception.</param>
 #if (NET45 || NET46)
         [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
-#endif        
+#endif
+
         public static void IfIsNotEqual<TArg>(TArg argument1, TArg argument2, string message)
             where TArg : IComparable<TArg>
         {
@@ -512,7 +534,8 @@ namespace PommaLabs.Thrower
         /// <param name="message">The message that should be put into the exception.</param>
 #if (NET45 || NET46)
         [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
-#endif        
+#endif
+
         public static void IfIsNotEqual(IComparable argument1, IComparable argument2, string message)
         {
             if (ReferenceEquals(argument1, null) || argument1.CompareTo(argument2) != 0)

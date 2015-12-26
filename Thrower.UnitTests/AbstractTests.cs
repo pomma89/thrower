@@ -26,7 +26,7 @@ using NUnit.Framework;
 namespace PommaLabs.Thrower.UnitTests
 {
     [TestFixture]
-    abstract class AbstractTests
+    internal abstract class AbstractTests
     {
         #region Setup/Teardown
 

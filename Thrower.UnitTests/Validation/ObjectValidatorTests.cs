@@ -30,7 +30,7 @@ using System.Threading.Tasks;
 
 namespace PommaLabs.Thrower.UnitTests.Validation
 {
-    sealed class ObjectValidatorTests : AbstractTests
+    internal sealed class ObjectValidatorTests : AbstractTests
     {
         [Test]
         public void Validate_TestClass()

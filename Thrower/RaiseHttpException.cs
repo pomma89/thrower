@@ -41,6 +41,7 @@ namespace PommaLabs.Thrower
 #if (NET45 || NET46)
         [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
 #endif
+
         public static void If(bool condition, HttpStatusCode httpStatusCode, string message = null)
         {
             if (condition)
@@ -59,6 +60,7 @@ namespace PommaLabs.Thrower
 #if (NET45 || NET46)
         [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
 #endif
+
         public static void If(bool condition, HttpStatusCode httpStatusCode, string message, HttpExceptionInfo additionalInfo)
         {
             if (condition)
@@ -76,6 +78,7 @@ namespace PommaLabs.Thrower
 #if (NET45 || NET46)
         [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
 #endif
+
         public static void IfNot(bool condition, HttpStatusCode httpStatusCode, string message = null)
         {
             if (!condition)
@@ -94,6 +97,7 @@ namespace PommaLabs.Thrower
 #if (NET45 || NET46)
         [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
 #endif
+
         public static void IfNot(bool condition, HttpStatusCode httpStatusCode, string message, HttpExceptionInfo additionalInfo)
         {
             if (!condition)

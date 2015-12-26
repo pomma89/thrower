@@ -28,9 +28,9 @@ using System.Threading.Tasks;
 
 namespace PommaLabs.Thrower.UnitTests
 {
-    sealed class RaiseTests : AbstractTests
+    internal sealed class RaiseTests : AbstractTests
     {
-        static void ThreadTest()
+        private static void ThreadTest()
         {
             for (var i = 0; i < 10000; ++i)
             {
@@ -46,7 +46,7 @@ namespace PommaLabs.Thrower.UnitTests
             }
         }
 
-        static void WrongThreadTest()
+        private static void WrongThreadTest()
         {
             for (var i = 0; i < 10000; ++i)
             {
@@ -62,7 +62,7 @@ namespace PommaLabs.Thrower.UnitTests
             }
         }
 
-        abstract class AbstractException : Exception
+        private abstract class AbstractException : Exception
         {
             public AbstractException()
             {
@@ -73,7 +73,7 @@ namespace PommaLabs.Thrower.UnitTests
             }
         }
 
-        sealed class InternalCtorException : Exception
+        private sealed class InternalCtorException : Exception
         {
             internal InternalCtorException()
             {
@@ -91,13 +91,13 @@ namespace PommaLabs.Thrower.UnitTests
             }
         }
 
-        sealed class PrivateCtorException : Exception
+        private sealed class PrivateCtorException : Exception
         {
-            PrivateCtorException()
+            private PrivateCtorException()
             {
             }
 
-            PrivateCtorException(string msg)
+            private PrivateCtorException(string msg)
             {
             }
         }

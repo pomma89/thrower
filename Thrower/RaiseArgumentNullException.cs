@@ -38,7 +38,8 @@ namespace PommaLabs.Thrower
         /// <param name="argument">The argument.</param>
 #if (NET45 || NET46)
         [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
-#endif  
+#endif
+
         public static void IfIsNull<TArg>(TArg argument)
         {
             if (!PortableTypeInfo.IsValueType(typeof(TArg)) && ReferenceEquals(argument, null))
@@ -55,7 +56,8 @@ namespace PommaLabs.Thrower
         /// <param name="argumentName">The name of the argument.</param>
 #if (NET45 || NET46)
         [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
-#endif      
+#endif
+
         public static void IfIsNull<TArg>(TArg argument, string argumentName)
         {
             if (!PortableTypeInfo.IsValueType(typeof(TArg)) && ReferenceEquals(argument, null))
@@ -73,7 +75,8 @@ namespace PommaLabs.Thrower
         /// <param name="message">The message that should be put into the exception.</param>
 #if (NET45 || NET46)
         [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
-#endif      
+#endif
+
         public static void IfIsNull<TArg>(TArg argument, string argumentName, string message)
         {
             if (!PortableTypeInfo.IsValueType(typeof(TArg)) && ReferenceEquals(argument, null))

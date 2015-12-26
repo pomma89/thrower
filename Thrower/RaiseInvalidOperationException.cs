@@ -22,7 +22,6 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 using System;
-using System.Diagnostics;
 
 namespace PommaLabs.Thrower
 {
@@ -38,7 +37,8 @@ namespace PommaLabs.Thrower
         /// <param name="message">The optional message.</param>
 #if (NET45 || NET46)
         [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
-#endif       
+#endif
+
         public static void If(bool condition, string message = null)
         {
             if (condition)
@@ -54,7 +54,8 @@ namespace PommaLabs.Thrower
         /// <param name="message">The optional message.</param>
 #if (NET45 || NET46)
         [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
-#endif       
+#endif
+
         public static void IfNot(bool condition, string message = null)
         {
             if (!condition)

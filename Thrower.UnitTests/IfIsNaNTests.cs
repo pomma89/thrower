@@ -26,7 +26,7 @@ using System;
 
 namespace PommaLabs.Thrower.UnitTests
 {
-    sealed class IfIsNaNTests : AbstractTests
+    internal sealed class IfIsNaNTests : AbstractTests
     {
         [Test]
         public void CorrectDouble()

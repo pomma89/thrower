@@ -39,6 +39,7 @@ namespace PommaLabs.Thrower
 #if (NET45 || NET46)
         [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
 #endif
+
         public static void If(bool disposed, string objectName, string message = null)
         {
             if (disposed)

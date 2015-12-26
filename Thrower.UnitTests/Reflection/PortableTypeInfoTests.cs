@@ -28,7 +28,7 @@ using System.Linq;
 
 namespace PommaLabs.Thrower.UnitTests.Reflection
 {
-    sealed class PortableTypeInfoTests : AbstractTests
+    internal sealed class PortableTypeInfoTests : AbstractTests
     {
         #region GetBaseType
 
