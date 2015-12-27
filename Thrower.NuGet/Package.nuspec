@@ -17,6 +17,7 @@ For example, a validation against null becomes "RaiseArgumentNullException.IfIsN
 * Added RaiseObjectDisposedException.
 * Added methods for string validation to RaiseArgumentException.
 * Initial support for DNX.
+* RaiseArgumentException now requires the argument name in the same way of other Raise* classes.
         </releaseNotes>
         <summary>Fully managed library providing convenience methods to perform argument checks.</summary>
         <language>en-US</language>

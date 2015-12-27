@@ -1,5 +1,8 @@
 ﻿# Changelog for PommaLabs.Thrower #
 
+### v2.1.1 (2015-12-27) ###
+* RaiseArgumentException now requires the argument name in the same way of other Raise* classes.
+
 ### v2.1.0 (2015-12-26) ###
 * Calls to all Raise* methods cannot be deleted any more by not defining the USETHROWER compilation symbol.
   The definition of that symbol was the cause of common errors and was not helpful on the performance side.

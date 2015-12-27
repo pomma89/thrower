@@ -176,7 +176,7 @@ namespace PommaLabs.Thrower.Reflection
         public static object GetPublicPropertyValue(object instance, PropertyInfo propertyInfo)
         {
             RaiseArgumentNullException.IfIsNull(instance, nameof(instance), "Instance cannot be null");
-            RaiseArgumentException.IfNot(propertyInfo.CanRead, "Given property cannot be read", nameof(propertyInfo));
+            RaiseArgumentException.IfNot(propertyInfo.CanRead, nameof(propertyInfo), "Given property cannot be read");
             return propertyInfo.GetValue(instance, EmptyObjectArray);
         }
 
@@ -195,7 +195,7 @@ namespace PommaLabs.Thrower.Reflection
         public static object GetPublicPropertyValue(TypeAccessor typeAccessor, object instance, PropertyInfo propertyInfo)
         {
             RaiseArgumentNullException.IfIsNull(instance, nameof(instance), "Instance cannot be null");
-            RaiseArgumentException.IfNot(propertyInfo.CanRead, "Given property cannot be read", nameof(propertyInfo));
+            RaiseArgumentException.IfNot(propertyInfo.CanRead, nameof(propertyInfo), "Given property cannot be read");
             return typeAccessor[instance, propertyInfo.Name];
         }
 

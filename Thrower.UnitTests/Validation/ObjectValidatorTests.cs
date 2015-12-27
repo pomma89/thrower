@@ -71,16 +71,16 @@ namespace PommaLabs.Thrower.UnitTests.Validation
             }
         }
 
-        [Test, ExpectedException(typeof(ArgumentException), ExpectedMessage = "Pino Gino Nino - Following paths failed the validation checks:", MatchType = MessageMatch.StartsWith)]
-        public void IfIsNotValid_MessageOnly()
+        [Test, ExpectedException(typeof(ArgumentException), ExpectedMessage = "Following paths failed the validation checks:", MatchType = MessageMatch.StartsWith)]
+        public void IfIsNotValid_ParameterNameOnly()
         {
-            RaiseArgumentException.IfIsNotValid(new TestClass(), "Pino Gino Nino");
+            RaiseArgumentException.IfIsNotValid(new TestClass(), "TEST");
         }
 
         [Test, ExpectedException(typeof(ArgumentException), ExpectedMessage = "Pino Gino Nino - Following paths failed the validation checks:", MatchType = MessageMatch.StartsWith)]
         public void IfIsNotValid_MessageAndParameterName()
         {
-            RaiseArgumentException.IfIsNotValid(new TestClass(), "Pino Gino Nino", "TEST");
+            RaiseArgumentException.IfIsNotValid(new TestClass(), "TEST", "Pino Gino Nino");
         }
 
         public sealed class TestClass
