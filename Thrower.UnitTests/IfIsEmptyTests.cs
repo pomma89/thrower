@@ -66,7 +66,7 @@ namespace PommaLabs.Thrower.UnitTests
         }
 
         [Test]
-        [ExpectedException(typeof(ArgumentException), ExpectedMessage = TestMessage)]
+        [ExpectedException(typeof(ArgumentException), ExpectedMessage = TestMessage, MatchType = MessageMatch.StartsWith)]
         public void IfIsNullOrWhiteSpace_BlankString_WithMsg()
         {
             RaiseArgumentException.IfIsNullOrWhiteSpace(BlankString, nameof(TestMessage), TestMessage);
@@ -108,7 +108,7 @@ namespace PommaLabs.Thrower.UnitTests
         }
 
         [Test]
-        [ExpectedException(typeof(ArgumentException), ExpectedMessage = TestMessage)]
+        [ExpectedException(typeof(ArgumentException), ExpectedMessage = TestMessage, MatchType = MessageMatch.StartsWith)]
         public void IfIsNullOrEmpty_EmptyString_WithMsg()
         {
             RaiseArgumentException.IfIsNullOrEmpty(string.Empty, nameof(TestMessage), TestMessage);
@@ -122,7 +122,7 @@ namespace PommaLabs.Thrower.UnitTests
         }
 
         [Test]
-        [ExpectedException(typeof(ArgumentException), ExpectedMessage = TestMessage)]
+        [ExpectedException(typeof(ArgumentException), ExpectedMessage = TestMessage, MatchType = MessageMatch.StartsWith)]
         public void IfIsNullOrWhiteSpace_EmptyString_WithMsg()
         {
             RaiseArgumentException.IfIsNullOrWhiteSpace(string.Empty, nameof(TestMessage), TestMessage);
