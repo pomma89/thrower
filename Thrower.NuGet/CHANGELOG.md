@@ -1,5 +1,8 @@
 ﻿# Changelog for PommaLabs.Thrower #
 
+### v2.1.3 (2016-01-09) ###
+* Added methods for phonr validation to RaiseArgumentException.
+
 ### v2.1.2 (2016-01-09) ###
 * Added methods for email validation to RaiseArgumentException.
 * RaiseArgumentException.IfIsNotValid also applies standard System.ComponentModel.DataAnnotations validation.

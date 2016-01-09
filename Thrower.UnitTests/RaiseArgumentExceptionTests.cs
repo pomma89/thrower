@@ -28,18 +28,18 @@ namespace PommaLabs.Thrower.UnitTests
 {
     internal sealed class RaiseArgumentExceptionTests : AbstractTests
     {
-        #region IfIsNotValidEmail
+        #region IfIsNotValidEmailAddress
 
         [TestCase("a@b.c")]
         [TestCase("a.d@b.c")]
         [TestCase("pinogino123@bau.com")]
         [TestCase("123aaa123@mao.info")]
         [TestCase("a1@b.it")]
-        public void IfIsNotValidEmail_ValidEmail_NotInternational(string email)
+        public void IfIsNotValidEmailAddress_ValidEmail_NotInternational(string email)
         {
-            RaiseArgumentException.IfIsNotValidEmail(email);
-            RaiseArgumentException.IfIsNotValidEmail(email, false);
-            RaiseArgumentException.IfIsNotValidEmail(email, true);
+            RaiseArgumentException.IfIsNotValidEmailAddress(email);
+            RaiseArgumentException.IfIsNotValidEmailAddress(email, false);
+            RaiseArgumentException.IfIsNotValidEmailAddress(email, true);
         }
 
         [TestCase("伊昭傑@郵件.商務")]
@@ -47,12 +47,12 @@ namespace PommaLabs.Thrower.UnitTests
         [TestCase("юзер@екзампл.ком")]
         [TestCase("θσερ@εχαμπλε.ψομ")]
         [TestCase("伊昭傑123@郵件.商務")]
-        public void IfIsNotValidEmail_ValidEmail_International(string email)
+        public void IfIsNotValidEmailAddress_ValidEmail_International(string email)
         {
             var hasThrown = false;
             try
             {
-                RaiseArgumentException.IfIsNotValidEmail(email);
+                RaiseArgumentException.IfIsNotValidEmailAddress(email);
             }
             catch (ArgumentException)
             {
@@ -63,7 +63,7 @@ namespace PommaLabs.Thrower.UnitTests
             hasThrown = false;
             try
             {
-                RaiseArgumentException.IfIsNotValidEmail(email, false);
+                RaiseArgumentException.IfIsNotValidEmailAddress(email, false);
             }
             catch (ArgumentException)
             {
@@ -71,7 +71,7 @@ namespace PommaLabs.Thrower.UnitTests
             }
             RaiseArgumentException.IfNot(hasThrown);
 
-            RaiseArgumentException.IfIsNotValidEmail(email, true);
+            RaiseArgumentException.IfIsNotValidEmailAddress(email, true);
         }
 
         [TestCase("ab.c")]
@@ -79,12 +79,12 @@ namespace PommaLabs.Thrower.UnitTests
         [TestCase("pinogino123@@bau.com")]
         [TestCase("123aaa123@mao.info.it@a@snau")]
         [TestCase("a1@snau@b.it")]
-        public void IfIsNotValidEmail_NotValidEmail_NotInternational(string email)
+        public void IfIsNotValidEmailAddress_NotValidEmail_NotInternational(string email)
         {
             var hasThrown = false;
             try
             {
-                RaiseArgumentException.IfIsNotValidEmail(email);
+                RaiseArgumentException.IfIsNotValidEmailAddress(email);
             }
             catch (ArgumentException)
             {
@@ -95,7 +95,7 @@ namespace PommaLabs.Thrower.UnitTests
             hasThrown = false;
             try
             {
-                RaiseArgumentException.IfIsNotValidEmail(email, false);
+                RaiseArgumentException.IfIsNotValidEmailAddress(email, false);
             }
             catch (ArgumentException)
             {
@@ -106,7 +106,7 @@ namespace PommaLabs.Thrower.UnitTests
             hasThrown = false;
             try
             {
-                RaiseArgumentException.IfIsNotValidEmail(email, true);
+                RaiseArgumentException.IfIsNotValidEmailAddress(email, true);
             }
             catch (ArgumentException)
             {
@@ -120,12 +120,12 @@ namespace PommaLabs.Thrower.UnitTests
         [TestCase("юзер@snau@екзампл.ком")]
         [TestCase("θσερ@εχαμπλε.ψομ123#")]
         [TestCase("伊昭傑123@郵件.商務@伊昭傑123")]
-        public void IfIsNotValidEmail_NotValidEmail_International(string email)
+        public void IfIsNotValidEmailAddress_NotValidEmail_International(string email)
         {
             var hasThrown = false;
             try
             {
-                RaiseArgumentException.IfIsNotValidEmail(email);
+                RaiseArgumentException.IfIsNotValidEmailAddress(email);
             }
             catch (ArgumentException)
             {
@@ -136,7 +136,7 @@ namespace PommaLabs.Thrower.UnitTests
             hasThrown = false;
             try
             {
-                RaiseArgumentException.IfIsNotValidEmail(email, false);
+                RaiseArgumentException.IfIsNotValidEmailAddress(email, false);
             }
             catch (ArgumentException)
             {
@@ -147,7 +147,7 @@ namespace PommaLabs.Thrower.UnitTests
             hasThrown = false;
             try
             {
-                RaiseArgumentException.IfIsNotValidEmail(email, true);
+                RaiseArgumentException.IfIsNotValidEmailAddress(email, true);
             }
             catch (ArgumentException)
             {
@@ -156,6 +156,60 @@ namespace PommaLabs.Thrower.UnitTests
             RaiseArgumentException.IfNot(hasThrown);
         }
 
-        #endregion IfIsNotValidEmail
+        #endregion IfIsNotValidEmailAddress
+
+        #region IfIsNotValidPhoneNumber
+
+        [TestCase("+393401234567")]
+        [TestCase("0185/123456")]
+        [TestCase("0185-123456")]
+        [TestCase("340 123 4567")]
+        [TestCase("340-12-34-567")]
+        [TestCase("+1 709 239-5000")]
+        [TestCase("+995 442 123456")]
+        [TestCase("+995 595 555 555")]
+        [TestCase("+7 840 123-45-67")]
+        [TestCase("+7 940 555 555")]
+        [TestCase("111")]
+        [TestCase("+84 996 202 4961")]
+        [TestCase("39 010 096 60")]
+        public void IfIsNotValidPhoneNumber_ValidPhone(string phone)
+        {
+            RaiseArgumentException.IfIsNotValidPhoneNumber(phone);
+            RaiseArgumentException.IfIsNotValidPhoneNumber(phone, nameof(phone), "TEST");
+        }
+
+        [TestCase("ab.c")]
+        [TestCase("a.d@b$.com")]
+        [TestCase("pinogino123@@bau.com")]
+        [TestCase("123aaa123@mao.info.it@a@snau")]
+        [TestCase("a1@snau@b.it")]
+        [TestCase("39 010 096 60 snau")]
+        public void IfIsNotValidPhoneNumber_NotValidPhone(string phone)
+        {
+            var hasThrown = false;
+            try
+            {
+                RaiseArgumentException.IfIsNotValidPhoneNumber(phone);
+            }
+            catch (ArgumentException)
+            {
+                hasThrown = true;
+            }
+            RaiseArgumentException.IfNot(hasThrown);
+
+            hasThrown = false;
+            try
+            {
+                RaiseArgumentException.IfIsNotValidPhoneNumber(phone, nameof(phone), "TEST");
+            }
+            catch (ArgumentException)
+            {
+                hasThrown = true;
+            }
+            RaiseArgumentException.IfNot(hasThrown);
+        }
+
+        #endregion IfIsNotValidPhoneNumber
     }
 }
