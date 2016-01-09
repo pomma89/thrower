@@ -18,6 +18,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)IfIsInstanceOfTests.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)IfIsNaNTests.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)IfIsNullTests.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)RaiseArgumentExceptionTests.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)RaiseHttpExceptionTests.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)RaiseObjectDisposedExceptionTests.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)RaiseNotSupportedExceptionTests.cs" />

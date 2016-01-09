@@ -34,7 +34,7 @@ namespace PommaLabs.Thrower
     {
         #region If
 
-        const string DefaultMessage = "Argument is not valid";
+        const string DefaultIfMessage = "Argument is not valid";
 
         /// <summary>
         ///   Throws <see cref="ArgumentException"/> if given condition is true.
@@ -48,7 +48,7 @@ namespace PommaLabs.Thrower
         {
             if (condition)
             {
-                throw new ArgumentException(DefaultMessage);
+                throw new ArgumentException(DefaultIfMessage);
             }
         }
 
@@ -69,7 +69,7 @@ namespace PommaLabs.Thrower
         {
             if (condition)
             {
-                throw new ArgumentException(message ?? DefaultMessage, argumentName);
+                throw new ArgumentException(message ?? DefaultIfMessage, argumentName);
             }
         }
 
@@ -89,7 +89,7 @@ namespace PommaLabs.Thrower
         {
             if (!condition)
             {
-                throw new ArgumentException(DefaultMessage);
+                throw new ArgumentException(DefaultIfMessage);
             }
         }
 
@@ -110,7 +110,7 @@ namespace PommaLabs.Thrower
         {
             if (!condition)
             {
-                throw new ArgumentException(message ?? DefaultMessage, argumentName);
+                throw new ArgumentException(message ?? DefaultIfMessage, argumentName);
             }
         }
 
@@ -160,6 +160,96 @@ namespace PommaLabs.Thrower
         }
 
         #endregion IfIsNotValid
+
+        #region IfIsNotValidEmail
+
+        const string DefaultIfIsNotValidEmailMessage = "String \"{0}\" is not a valid email address";
+
+        /// <summary>
+        ///   Throws <see cref="ArgumentException"/> if given string is not a valid email address.
+        /// </summary>
+        /// <param name="email">An email address.</param>
+#if (NET45 || NET46)
+        [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
+#endif
+
+        public static void IfIsNotValidEmail(string email)
+        {
+            if (!EmailValidator.Validate(email))
+            {
+                var exceptionMsg = string.Format(DefaultIfIsNotValidEmailMessage, email);
+                throw new ArgumentException(exceptionMsg);
+            }
+        }
+
+        /// <summary>
+        ///   Throws <see cref="ArgumentException"/> if given string is not a valid email address.
+        /// </summary>
+        /// <param name="email">An email address.</param>
+        /// <param name="allowInternational">
+        ///   <value>true</value> if the validator should allow international characters; otherwise, <value>false</value>.
+        /// </param>
+#if (NET45 || NET46)
+        [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
+#endif
+
+        public static void IfIsNotValidEmail(string email, bool allowInternational)
+        {
+            if (!EmailValidator.Validate(email, allowInternational))
+            {
+                var exceptionMsg = string.Format(DefaultIfIsNotValidEmailMessage, email);
+                throw new ArgumentException(exceptionMsg);
+            }
+        }
+
+        /// <summary>
+        ///   Throws <see cref="ArgumentException"/> if given string is not a valid email address.
+        /// </summary>
+        /// <param name="email">An email address.</param>
+        /// <param name="argumentName">The name of the argument.</param>
+        /// <param name="message">The message.</param>
+        /// <remarks>
+        ///   <paramref name="message"/> and <paramref name="argumentName"/> are strictly required arguments.
+        /// </remarks>
+#if (NET45 || NET46)
+        [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
+#endif
+
+        public static void IfIsNotValidEmail(string email, string argumentName, string message = null)
+        {
+            if (!EmailValidator.Validate(email))
+            {
+                var exceptionMsg = message ?? string.Format(DefaultIfIsNotValidEmailMessage, email);
+                throw new ArgumentException(exceptionMsg, argumentName);
+            }
+        }
+
+        /// <summary>
+        ///   Throws <see cref="ArgumentException"/> if given string is not a valid email address.
+        /// </summary>
+        /// <param name="email">An email address.</param>
+        /// <param name="allowInternational">
+        ///   <value>true</value> if the validator should allow international characters; otherwise, <value>false</value>.
+        /// </param>
+        /// <param name="argumentName">The name of the argument.</param>
+        /// <param name="message">The message.</param>
+        /// <remarks>
+        ///   <paramref name="message"/> and <paramref name="argumentName"/> are strictly required arguments.
+        /// </remarks>
+#if (NET45 || NET46)
+        [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
+#endif
+
+        public static void IfIsNotValidEmail(string email, bool allowInternational, string argumentName, string message = null)
+        {
+            if (!EmailValidator.Validate(email, allowInternational))
+            {
+                var exceptionMsg = message ?? string.Format(DefaultIfIsNotValidEmailMessage, email);
+                throw new ArgumentException(exceptionMsg, argumentName);
+            }
+        }
+
+        #endregion IfIsNotValidEmail
 
         #region String validation
 
