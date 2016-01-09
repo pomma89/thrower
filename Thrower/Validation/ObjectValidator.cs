@@ -91,7 +91,30 @@ namespace PommaLabs.Thrower.Validation
         /// <returns>True if object is valid, false otherwise.</returns>
         public static bool Validate(object obj, out IList<ValidationError> validationErrors)
         {
+            // The list of errors which will be populated during the validation process.
             validationErrors = new List<ValidationError>();
+
+#if (!NET35 && !PORTABLE)
+
+            // Applies standard .NET validation.
+            var netValidationErrors = new List<System.ComponentModel.DataAnnotations.ValidationResult>();
+            var netValidationContext = new System.ComponentModel.DataAnnotations.ValidationContext(obj, null, null);
+            if (!System.ComponentModel.DataAnnotations.Validator.TryValidateObject(obj, netValidationContext, netValidationErrors))
+            {
+                foreach (var netValidationError in netValidationErrors)
+                foreach (var memberName in netValidationError.MemberNames)
+                {
+                    validationErrors.Add(new ValidationError
+                    {
+                        Path = $"{RootPlaceholder}.{memberName}",
+                        Reason = netValidationError.ErrorMessage
+                    });
+                }
+            }
+
+#endif
+
+            // Apply the final Thrower validation.
             return ValidateInternal(obj, RootPlaceholder, DefaultValidation, validationErrors);
         }
 
