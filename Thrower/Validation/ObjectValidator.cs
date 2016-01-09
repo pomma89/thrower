@@ -99,7 +99,7 @@ namespace PommaLabs.Thrower.Validation
             // Applies standard .NET validation.
             var netValidationErrors = new List<System.ComponentModel.DataAnnotations.ValidationResult>();
             var netValidationContext = new System.ComponentModel.DataAnnotations.ValidationContext(obj, null, null);
-            if (!System.ComponentModel.DataAnnotations.Validator.TryValidateObject(obj, netValidationContext, netValidationErrors))
+            if (!System.ComponentModel.DataAnnotations.Validator.TryValidateObject(obj, netValidationContext, netValidationErrors, true))
             {
                 foreach (var netValidationError in netValidationErrors)
                 foreach (var memberName in netValidationError.MemberNames)

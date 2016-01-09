@@ -9,7 +9,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Thrower.Examples</RootNamespace>
     <AssemblyName>Thrower.Examples</AssemblyName>
-    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile>
     </TargetFrameworkProfile>
@@ -52,6 +52,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BankExample.cs" />
@@ -61,9 +62,9 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Platform Specific\Thrower.NET35\Thrower.NET35.csproj">
-      <Project>{a7f28ab3-4b28-4856-9aa8-61bc71e0c466}</Project>
-      <Name>Thrower.NET35</Name>
+    <ProjectReference Include="..\Platform Specific\Thrower.NET45\Thrower.NET45.csproj">
+      <Project>{28b1254d-b6bb-4c2f-9094-6f0e1a0902ec}</Project>
+      <Name>Thrower.NET45</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
