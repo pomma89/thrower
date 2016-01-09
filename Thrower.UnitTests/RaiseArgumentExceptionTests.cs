@@ -115,6 +115,47 @@ namespace PommaLabs.Thrower.UnitTests
             RaiseArgumentException.IfNot(hasThrown);
         }
 
+        [TestCase("伊昭傑@@郵件.商務")]
+        [TestCase("राम@मोहन.ईन्फो$")]
+        [TestCase("юзер@snau@екзампл.ком")]
+        [TestCase("θσερ@εχαμπλε.ψομ123#")]
+        [TestCase("伊昭傑123@郵件.商務@伊昭傑123")]
+        public void IfIsNotValidEmail_NotValidEmail_International(string email)
+        {
+            var hasThrown = false;
+            try
+            {
+                RaiseArgumentException.IfIsNotValidEmail(email);
+            }
+            catch (ArgumentException)
+            {
+                hasThrown = true;
+            }
+            RaiseArgumentException.IfNot(hasThrown);
+
+            hasThrown = false;
+            try
+            {
+                RaiseArgumentException.IfIsNotValidEmail(email, false);
+            }
+            catch (ArgumentException)
+            {
+                hasThrown = true;
+            }
+            RaiseArgumentException.IfNot(hasThrown);
+
+            hasThrown = false;
+            try
+            {
+                RaiseArgumentException.IfIsNotValidEmail(email, true);
+            }
+            catch (ArgumentException)
+            {
+                hasThrown = true;
+            }
+            RaiseArgumentException.IfNot(hasThrown);
+        }
+
         #endregion IfIsNotValidEmail
     }
 }

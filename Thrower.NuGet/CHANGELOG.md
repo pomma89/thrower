@@ -1,5 +1,8 @@
 ﻿# Changelog for PommaLabs.Thrower #
 
+### v2.1.2 (2016-01-09) ###
+* Added methods for email validation to RaiseArgumentException.
+
 ### v2.1.1 (2015-12-27) ###
 * RaiseArgumentException now requires the argument name in the same way of other Raise* classes.
 
