@@ -20,6 +20,7 @@ For example, a validation against null becomes "RaiseArgumentNullException.IfIsN
 * RaiseArgumentException now requires the argument name in the same way of other Raise* classes.
 * Added methods for email validation to RaiseArgumentException.
 * RaiseArgumentException.IfIsNotValid also applies standard System.ComponentModel.DataAnnotations validation.
+* Added methods for phonr validation to RaiseArgumentException.
         </releaseNotes>
         <summary>Fully managed library providing convenience methods to perform argument checks.</summary>
         <language>en-US</language>

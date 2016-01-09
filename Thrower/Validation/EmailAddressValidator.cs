@@ -1,4 +1,4 @@
-﻿// File name: EmailValidator.cs
+﻿// File name: EmailAddressValidator.cs
 // 
 // Author(s): Jeffrey Stedfast <jeff@xamarin.com>
 // 
@@ -27,7 +27,7 @@ namespace PommaLabs.Thrower.Validation
     ///   An email address validator.
     /// </summary>
     /// <remarks>An email address validator.</remarks>
-    public static class EmailValidator
+    public static class EmailAddressValidator
     {
         const string AtomCharacters = "!#$%&'*+-/=?^_`{|}~";
 
@@ -240,7 +240,7 @@ namespace PommaLabs.Thrower.Validation
         }
 
         /// <summary>
-        ///   Validate the specified email address.
+        ///   Validates the specified email address.
         /// </summary>
         /// <remarks>
         ///   <para>Validates the syntax of an email address.</para>
@@ -250,73 +250,73 @@ namespace PommaLabs.Thrower.Validation
         ///   </para>
         /// </remarks>
         /// <returns><c>true</c> if the email address is valid; otherwise <c>false</c>.</returns>
-        /// <param name="email">An email address.</param>
+        /// <param name="emailAddress">An email address.</param>
         /// <param name="allowInternational">
         ///   <value>true</value> if the validator should allow international characters; otherwise, <value>false</value>.
         /// </param>
-        /// <exception cref="System.ArgumentNullException"><paramref name="email"/> is <c>null</c>.</exception>
-        public static bool Validate(string email, bool allowInternational = false)
+        /// <exception cref="System.ArgumentNullException"><paramref name="emailAddress"/> is <c>null</c>.</exception>
+        public static bool Validate(string emailAddress, bool allowInternational = false)
         {
             var index = 0;
 
-            if (email == null)
-                throw new ArgumentNullException(nameof(email));
+            if (emailAddress == null)
+                throw new ArgumentNullException(nameof(emailAddress));
 
-            if (email.Length == 0 || email.Length >= 255)
+            if (emailAddress.Length == 0 || emailAddress.Length >= 255)
                 return false;
 
-            if (!SkipWord(email, ref index, allowInternational) || index >= email.Length)
+            if (!SkipWord(emailAddress, ref index, allowInternational) || index >= emailAddress.Length)
                 return false;
 
-            while (email[index] == '.')
+            while (emailAddress[index] == '.')
             {
                 index++;
 
-                if (index >= email.Length)
+                if (index >= emailAddress.Length)
                     return false;
 
-                if (!SkipWord(email, ref index, allowInternational))
+                if (!SkipWord(emailAddress, ref index, allowInternational))
                     return false;
 
-                if (index >= email.Length)
+                if (index >= emailAddress.Length)
                     return false;
             }
 
-            if (index + 1 >= email.Length || index > 64 || email[index++] != '@')
+            if (index + 1 >= emailAddress.Length || index > 64 || emailAddress[index++] != '@')
                 return false;
 
-            if (email[index] != '[')
+            if (emailAddress[index] != '[')
             {
                 // domain
-                if (!SkipDomain(email, ref index, allowInternational))
+                if (!SkipDomain(emailAddress, ref index, allowInternational))
                     return false;
 
-                return index == email.Length;
+                return index == emailAddress.Length;
             }
 
             // address literal
             index++;
 
             // we need at least 8 more characters
-            if (index + 8 >= email.Length)
+            if (index + 8 >= emailAddress.Length)
                 return false;
 
-            var ipv6 = email.Substring(index, 5);
+            var ipv6 = emailAddress.Substring(index, 5);
             if (ipv6.ToLowerInvariant() == "ipv6:")
             {
                 index += "IPv6:".Length;
-                if (!SkipIPv6Literal(email, ref index))
+                if (!SkipIPv6Literal(emailAddress, ref index))
                     return false;
             }
             else {
-                if (!SkipIPv4Literal(email, ref index))
+                if (!SkipIPv4Literal(emailAddress, ref index))
                     return false;
             }
 
-            if (index >= email.Length || email[index++] != ']')
+            if (index >= emailAddress.Length || emailAddress[index++] != ']')
                 return false;
 
-            return index == email.Length;
+            return index == emailAddress.Length;
         }
     }
 }
