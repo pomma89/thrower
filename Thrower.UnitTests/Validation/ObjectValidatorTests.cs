@@ -147,5 +147,118 @@ namespace PommaLabs.Thrower.UnitTests.Validation
                 public double? RequiredNullableDouble { get; set; } = Math.PI;
             }
         }
+
+        #region Standard .NET validation
+
+#if (!NET35 && !NET40 && !PORTABLE)
+
+        [Test]
+        public void Validate_StandardNetValidation_ValidObject()
+        {
+            IList<ValidationError> validationErrors;
+            ObjectValidator.Validate(new StandardNetValidationTestClass
+            {
+                RequiredString = "PINO",
+                OptionalEmail = "a@b.it",
+                OptionalPhone = "+393401234567",
+                RequiredInteger = 7
+            }, out validationErrors);
+
+            Assert.That(validationErrors.Count, Is.EqualTo(0));
+        }
+
+        [Test]
+        public void Validate_StandardNetValidation_NotValidObject_MissingRequiredString()
+        {
+            IList<ValidationError> validationErrors;
+            ObjectValidator.Validate(new StandardNetValidationTestClass
+            {
+                RequiredString = null,
+                OptionalEmail = "a@b.it",
+                OptionalPhone = null,
+                RequiredInteger = 7
+            }, out validationErrors);
+
+            Assert.That(validationErrors.Count, Is.EqualTo(1));
+        }
+
+        [Test]
+        public void Validate_StandardNetValidation_NotValidObject_NotValidEmail()
+        {
+            IList<ValidationError> validationErrors;
+            ObjectValidator.Validate(new StandardNetValidationTestClass
+            {
+                RequiredString = "PINO",
+                OptionalEmail = "123@123@a.it",
+                OptionalPhone = null,
+                RequiredInteger = 7
+            }, out validationErrors);
+
+            Assert.That(validationErrors.Count, Is.EqualTo(1));
+        }
+
+        [Test]
+        public void Validate_StandardNetValidation_NotValidObject_NotValidPhone()
+        {
+            IList<ValidationError> validationErrors;
+            ObjectValidator.Validate(new StandardNetValidationTestClass
+            {
+                RequiredString = "PINO",
+                OptionalEmail = "123@a.it",
+                OptionalPhone = "ciao belli",
+                RequiredInteger = 7
+            }, out validationErrors);
+
+            Assert.That(validationErrors.Count, Is.EqualTo(1));
+        }
+
+        [Test]
+        public void Validate_StandardNetValidation_NotValidObject_IntegerOutOfRange()
+        {
+            IList<ValidationError> validationErrors;
+            ObjectValidator.Validate(new StandardNetValidationTestClass
+            {
+                RequiredString = "PINO",
+                OptionalEmail = "123@a.it",
+                OptionalPhone = "+393401234567",
+                RequiredInteger = 1
+            }, out validationErrors);
+
+            Assert.That(validationErrors.Count, Is.EqualTo(1));
+        }
+
+        [Test]
+        public void Validate_StandardNetValidation_NotValidObject_ThreeErrors()
+        {
+            IList<ValidationError> validationErrors;
+            ObjectValidator.Validate(new StandardNetValidationTestClass
+            {
+                RequiredString = "PINO",
+                OptionalEmail = "123@a.it@snau",
+                OptionalPhone = "+wow123",
+                RequiredInteger = 1
+            }, out validationErrors);
+
+            Assert.That(validationErrors.Count, Is.EqualTo(3));
+        }
+
+        sealed class StandardNetValidationTestClass
+        {
+            [System.ComponentModel.DataAnnotations.Required]
+            public string RequiredString { get; set; }
+
+            [System.ComponentModel.DataAnnotations.EmailAddress]
+            public string OptionalEmail { get; set; }
+
+            [System.ComponentModel.DataAnnotations.Phone]
+            public string OptionalPhone { get; set; }
+
+            [System.ComponentModel.DataAnnotations.Required, System.ComponentModel.DataAnnotations.Range(5, 10)]
+            public int RequiredInteger { get; set; }
+        }
+
+#endif
+
+        #endregion Standard .NET validation
     }
 }

@@ -24,6 +24,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)RaiseArgumentOutOfRangeException.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)RaiseNotSupportedException.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)RaiseInvalidOperationException.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Validation\EmailValidator.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Validation\ObjectValidator.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Validation\ValidateAttribute.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Validation\ValidationError.cs" />
