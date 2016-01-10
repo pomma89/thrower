@@ -115,6 +115,42 @@ namespace PommaLabs.Thrower.Reflection
         }
 
         /// <summary>
+        ///   Gets the generic type definition of given type.
+        /// </summary>
+        /// <param name="type">The type.</param>
+        /// <returns>The generic type definition of given type.</returns>
+#if (NET45 || NET46)
+        [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
+#endif
+
+        public static Type GetGenericTypeDefinition(Type type)
+        {
+#if PORTABLE
+            return IntrospectionExtensions.GetTypeInfo(type).GetGenericTypeDefinition();
+#else
+            return type.GetGenericTypeDefinition();
+#endif
+        }
+
+        /// <summary>
+        ///   Gets the generic type arguments of given type.
+        /// </summary>
+        /// <param name="type">The type.</param>
+        /// <returns>The generic type arguments of given type.</returns>
+#if (NET45 || NET46)
+        [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
+#endif
+
+        public static IList<Type> GetGenericTypeArguments(Type type)
+        {
+#if PORTABLE
+            return IntrospectionExtensions.GetTypeInfo(type).GenericTypeArguments;
+#else
+            return type.GetGenericArguments();
+#endif
+        }
+
+        /// <summary>
         ///   Gets the interfaces for given type.
         /// </summary>
         /// <param name="type">The type.</param>
@@ -362,6 +398,39 @@ namespace PommaLabs.Thrower.Reflection
         public static bool IsGenericType<T>() => IsGenericType(typeof(T));
 
         #endregion IsGenericType
+
+        #region IsGenericTypeDefinition
+
+        /// <summary>
+        ///   Determines whether the specified type is a generic type definition.
+        /// </summary>
+        /// <param name="type">The type.</param>
+        /// <returns>Whether the specified type is a generic type definition.</returns>
+#if (NET45 || NET46)
+        [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
+#endif
+
+        public static bool IsGenericTypeDefinition(Type type)
+        {
+#if PORTABLE
+            return IntrospectionExtensions.GetTypeInfo(type).IsGenericTypeDefinition;
+#else
+            return type.IsGenericTypeDefinition;
+#endif
+        }
+
+        /// <summary>
+        ///   Determines whether the specified type is a generic type definition.
+        /// </summary>
+        /// <typeparam name="T">The type.</typeparam>
+        /// <returns>Whether the specified type is a generic type definition.</returns>
+#if (NET45 || NET46)
+        [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
+#endif
+
+        public static bool IsGenericTypeDefinition<T>() => IsGenericTypeDefinition(typeof(T));
+
+        #endregion IsGenericTypeDefinition
 
         /// <summary>
         ///   Determines whether the specified object is an instance of the current <see cref="T:System.Type"/>.
