@@ -1,7 +1,10 @@
 ﻿# Changelog for PommaLabs.Thrower #
 
+### v2.1.4 (2016-01-10) ###
+* Added new methods to PortableTypeInfo.
+
 ### v2.1.3 (2016-01-09) ###
-* Added methods for phonr validation to RaiseArgumentException.
+* Added methods for phone validation to RaiseArgumentException.
 
 ### v2.1.2 (2016-01-09) ###
 * Added methods for email validation to RaiseArgumentException.
