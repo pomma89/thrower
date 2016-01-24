@@ -23,6 +23,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Project Logo", "Project Log
 		Project Logo\logo-32.png = Project Logo\logo-32.png
 		Project Logo\logo-512.png = Project Logo\logo-512.png
 		Project Logo\logo-64.png = Project Logo\logo-64.png
+		Project Logo\logo-original.png = Project Logo\logo-original.png
 	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Thrower.Examples", "Thrower.Examples\Thrower.Examples.csproj", "{2C09A058-D85E-4338-BE93-F0B2DABF7E8F}"
