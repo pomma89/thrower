@@ -3,7 +3,7 @@
 <package>
     <metadata>
         <id>Thrower</id>
-        <version>2.1.1</version>
+        <version>2.1.4</version>
         <title>Thrower - Compact preconditions helpers</title>
         <authors>Alessio Parma &lt;alessio.parma@gmail.com&gt;</authors>
         <owners>Alessio Parma &lt;alessio.parma@gmail.com&gt;</owners>
@@ -18,10 +18,14 @@ For example, a validation against null becomes "RaiseArgumentNullException.IfIsN
 * Added methods for string validation to RaiseArgumentException.
 * Initial support for DNX.
 * RaiseArgumentException now requires the argument name in the same way of other Raise* classes.
+* Added methods for email validation to RaiseArgumentException.
+* RaiseArgumentException.IfIsNotValid also applies standard System.ComponentModel.DataAnnotations validation.
+* Added methods for phone validation to RaiseArgumentException.
+* Added new methods to PortableTypeInfo.
         </releaseNotes>
         <summary>Fully managed library providing convenience methods to perform argument checks.</summary>
         <language>en-US</language>
-        <projectUrl>https://bitbucket.org/pomma89/thrower/overview</projectUrl>
+        <projectUrl>https://github.com/pomma89/Thrower</projectUrl>
         <iconUrl>https://googledrive.com/host/0B8v0ikF4z2BiR29YQmxfSlE1Sms/Progetti/Thrower/logo-128.png</iconUrl>
         <requireLicenseAcceptance>false</requireLicenseAcceptance>
         <licenseUrl>http://opensource.org/licenses/MIT</licenseUrl>

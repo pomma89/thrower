@@ -1,5 +1,15 @@
 ﻿# Changelog for PommaLabs.Thrower #
 
+### v2.1.4 (2016-01-10) ###
+* Added new methods to PortableTypeInfo.
+
+### v2.1.3 (2016-01-09) ###
+* Added methods for phone validation to RaiseArgumentException.
+
+### v2.1.2 (2016-01-09) ###
+* Added methods for email validation to RaiseArgumentException.
+* RaiseArgumentException.IfIsNotValid also applies standard System.ComponentModel.DataAnnotations validation.
+
 ### v2.1.1 (2015-12-27) ###
 * RaiseArgumentException now requires the argument name in the same way of other Raise* classes.
 
