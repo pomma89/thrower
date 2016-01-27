@@ -39,7 +39,7 @@
     <SignAssembly>true</SignAssembly>
   </PropertyGroup>
   <PropertyGroup>
-    <AssemblyOriginatorKeyFile>C:\Keys\pomma89.pfx</AssemblyOriginatorKeyFile>
+    <AssemblyOriginatorKeyFile>..\..\pomma89.snk</AssemblyOriginatorKeyFile>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -52,8 +52,8 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="C:\Keys\pomma89.pfx">
-      <Link>pomma89.pfx</Link>
+    <None Include="..\..\pomma89.snk">
+      <Link>pomma89.snk</Link>
     </None>
   </ItemGroup>
   <Import Project="..\..\Thrower\Thrower.projitems" Label="Shared" />
