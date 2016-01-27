@@ -3,7 +3,7 @@
 
 Fully managed library providing convenience methods to perform argument checks.
 
-
+[![Build status](https://ci.appveyor.com/api/projects/status/xjkp8gn0cf4s7qbg?svg=true)](https://ci.appveyor.com/project/pomma89/thrower)
 
 | Item                                          | URL  |
 | --------------------------------------------- | ------------------------------------ |
