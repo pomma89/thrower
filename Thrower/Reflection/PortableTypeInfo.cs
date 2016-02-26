@@ -61,7 +61,7 @@ namespace PommaLabs.Thrower.Reflection
         public static IList<Attribute> GetCustomAttributes(MemberInfo memberInfo, bool inherit)
         {
 #if PORTABLE
-            return memberInfo.GetCustomAttributes().ToArray();
+            return memberInfo.GetCustomAttributes(inherit).ToArray();
 #else
             return memberInfo.GetCustomAttributes(inherit).Cast<Attribute>().ToArray();
 #endif

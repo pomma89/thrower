@@ -64,11 +64,11 @@ namespace PommaLabs.Thrower.UnitTests
 
         private abstract class AbstractException : Exception
         {
-            public AbstractException()
+            protected AbstractException()
             {
             }
 
-            public AbstractException(string msg)
+            protected AbstractException(string msg) : base(msg)
             {
             }
         }
@@ -79,14 +79,14 @@ namespace PommaLabs.Thrower.UnitTests
             {
             }
 
-            internal InternalCtorException(string msg)
+            internal InternalCtorException(string msg) : base(msg)
             {
             }
         }
 
         private sealed class NoCtorException : Exception
         {
-            public NoCtorException(int x)
+            public NoCtorException(int x) : base(x.ToString())
             {
             }
         }
@@ -97,7 +97,7 @@ namespace PommaLabs.Thrower.UnitTests
             {
             }
 
-            private PrivateCtorException(string msg)
+            private PrivateCtorException(string msg) : base(msg)
             {
             }
         }
