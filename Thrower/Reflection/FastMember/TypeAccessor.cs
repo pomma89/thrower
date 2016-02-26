@@ -76,7 +76,7 @@ namespace PommaLabs.Thrower.Reflection.FastMember
         {
             if (type == null) throw new ArgumentNullException(nameof(type));
             var lookup = allowNonPublicAccessors ? nonPublicAccessors : publicAccessorsOnly;
-            TypeAccessor obj = (TypeAccessor) lookup[type];
+            var obj = (TypeAccessor) lookup[type];
             if (obj != null) return obj;
 
             lock (lookup)
@@ -122,7 +122,7 @@ namespace PommaLabs.Thrower.Reflection.FastMember
         {
             OpCode obj, index, value;
 
-            Label fail = il.DefineLabel();
+            var fail = il.DefineLabel();
             if (mapField == null)
             {
                 index = OpCodes.Ldarg_0;
@@ -143,7 +143,7 @@ namespace PommaLabs.Thrower.Reflection.FastMember
                 il.EmitCall(OpCodes.Callvirt, tryGetValue, null);
                 il.Emit(OpCodes.Brfalse, fail);
             }
-            Label[] labels = new Label[members.Count];
+            var labels = new Label[members.Count];
             for (int i = 0; i < labels.Length; i++)
             {
                 labels[i] = il.DefineLabel();
@@ -158,7 +158,7 @@ namespace PommaLabs.Thrower.Reflection.FastMember
             {
                 il.MarkLabel(labels[i]);
                 var member = members[i];
-                bool isFail = true;
+                var isFail = true;
                 switch (member.MemberType)
                 {
                     case MemberTypes.Field:
@@ -297,11 +297,11 @@ namespace PommaLabs.Thrower.Reflection.FastMember
             }
 #endif
 
-            PropertyInfo[] props = type.GetProperties(BindingFlags.Public | BindingFlags.Instance);
-            FieldInfo[] fields = type.GetFields(BindingFlags.Public | BindingFlags.Instance);
-            Dictionary<string, int> map = new Dictionary<string, int>(StringComparer.Ordinal);
-            List<MemberInfo> members = new List<MemberInfo>(props.Length + fields.Length);
-            int i = 0;
+            var props = type.GetProperties(BindingFlags.Public | BindingFlags.Instance);
+            var fields = type.GetFields(BindingFlags.Public | BindingFlags.Instance);
+            var map = new Dictionary<string, int>(StringComparer.Ordinal);
+            var members = new List<MemberInfo>(props.Length + fields.Length);
+            var i = 0;
             foreach (var prop in props)
             {
                 if (!map.ContainsKey(prop.Name) && prop.GetIndexParameters().Length == 0)
@@ -320,8 +320,8 @@ namespace PommaLabs.Thrower.Reflection.FastMember
             ILGenerator il;
             if (!IsFullyPublic(type, props, allowNonPublicAccessors))
             {
-                DynamicMethod dynGetter = new DynamicMethod(type.FullName + "_get", typeof(object), new Type[] { typeof(int), typeof(object) }, type, true),
-                              dynSetter = new DynamicMethod(type.FullName + "_set", null, new Type[] { typeof(int), typeof(object), typeof(object) }, type, true);
+                var dynGetter = new DynamicMethod(type.FullName + "_get", typeof(object), new Type[] { typeof(int), typeof(object) }, type, true);
+                var dynSetter = new DynamicMethod(type.FullName + "_set", null, new Type[] { typeof(int), typeof(object), typeof(object) }, type, true);
                 WriteMapImpl(dynGetter.GetILGenerator(), type, members, null, allowNonPublicAccessors, true);
                 WriteMapImpl(dynSetter.GetILGenerator(), type, members, null, allowNonPublicAccessors, false);
                 DynamicMethod dynCtor = null;
@@ -343,11 +343,11 @@ namespace PommaLabs.Thrower.Reflection.FastMember
             // need to stress about the builders
             if (assembly == null)
             {
-                AssemblyName name = new AssemblyName("FastMember_dynamic");
+                var name = new AssemblyName("FastMember_dynamic");
                 assembly = AppDomain.CurrentDomain.DefineDynamicAssembly(name, AssemblyBuilderAccess.Run);
                 module = assembly.DefineDynamicModule(name.Name);
             }
-            TypeBuilder tb = module.DefineType("FastMember_dynamic." + type.Name + "_" + Interlocked.Increment(ref counter),
+            var tb = module.DefineType("FastMember_dynamic." + type.Name + "_" + Interlocked.Increment(ref counter),
                 (typeof(TypeAccessor).Attributes | TypeAttributes.Sealed | TypeAttributes.Public) & ~(TypeAttributes.Abstract | TypeAttributes.NotPublic), typeof(RuntimeTypeAccessor));
 
             il = tb.DefineConstructor(MethodAttributes.Public, CallingConventions.Standard, new[] {
@@ -355,12 +355,13 @@ namespace PommaLabs.Thrower.Reflection.FastMember
             }).GetILGenerator();
             il.Emit(OpCodes.Ldarg_0);
             il.Emit(OpCodes.Ldarg_1);
-            FieldBuilder mapField = tb.DefineField("_map", typeof(Dictionary<string, int>), FieldAttributes.InitOnly | FieldAttributes.Private);
+            var mapField = tb.DefineField("_map", typeof(Dictionary<string, int>), FieldAttributes.InitOnly | FieldAttributes.Private);
             il.Emit(OpCodes.Stfld, mapField);
             il.Emit(OpCodes.Ret);
 
-            PropertyInfo indexer = typeof(TypeAccessor).GetProperty("Item");
-            MethodInfo baseGetter = indexer.GetGetMethod(), baseSetter = indexer.GetSetMethod();
+            var indexer = typeof(TypeAccessor).GetProperty("Item");
+            var baseGetter = indexer.GetGetMethod();
+            var baseSetter = indexer.GetSetMethod();
             var body = tb.DefineMethod(baseGetter.Name, baseGetter.Attributes & ~MethodAttributes.Abstract, typeof(object), new Type[] { typeof(object), typeof(string) });
             il = body.GetILGenerator();
             WriteMapImpl(il, type, members, mapField, allowNonPublicAccessors, true);

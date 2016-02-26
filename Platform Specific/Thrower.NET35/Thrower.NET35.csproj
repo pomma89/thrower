@@ -55,6 +55,7 @@
     <None Include="..\..\pomma89.snk">
       <Link>pomma89.snk</Link>
     </None>
+    <None Include="Thrower.ruleset" />
   </ItemGroup>
   <Import Project="..\..\Thrower\Thrower.projitems" Label="Shared" />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

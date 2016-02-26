@@ -51,7 +51,7 @@ namespace PommaLabs.Thrower.Reflection.FastMember
         {
             if (source == null) throw new ArgumentOutOfRangeException(nameof(source));
 
-            bool allMembers = members == null || members.Length == 0;
+            var allMembers = members == null || members.Length == 0;
 
             this.accessor = TypeAccessor.Create(type);
             if (accessor.GetMembersSupported)
@@ -72,8 +72,8 @@ namespace PommaLabs.Thrower.Reflection.FastMember
                 for (int i = 0; i < members.Length; i++)
                 {
                     Type memberType = null;
-                    bool allowNull = true;
-                    string hunt = members[i];
+                    var allowNull = true;
+                    var hunt = members[i];
                     foreach (var member in typeMembers)
                     {
                         if (member.Name == hunt)
@@ -124,7 +124,7 @@ namespace PommaLabs.Thrower.Reflection.FastMember
         DataTable IDataReader.GetSchemaTable()
         {
             // these are the columns used by DataTable load
-            DataTable table = new DataTable
+            var table = new DataTable
             {
                 Columns =
                 {
@@ -135,7 +135,7 @@ namespace PommaLabs.Thrower.Reflection.FastMember
                     {"AllowDBNull", typeof(bool)}
                 }
             };
-            object[] rowData = new object[5];
+            var rowData = new object[5];
             for (int i = 0; i < memberNames.Length; i++)
             {
                 rowData[0] = i;
@@ -203,11 +203,11 @@ namespace PommaLabs.Thrower.Reflection.FastMember
 
         long IDataRecord.GetBytes(int i, long fieldOffset, byte[] buffer, int bufferoffset, int length)
         {
-            byte[] s = (byte[]) this[i];
-            int available = s.Length - (int) fieldOffset;
+            var s = (byte[]) this[i];
+            var available = s.Length - (int) fieldOffset;
             if (available <= 0) return 0;
 
-            int count = Math.Min(length, available);
+            var count = Math.Min(length, available);
             Buffer.BlockCopy(s, (int) fieldOffset, buffer, bufferoffset, count);
             return count;
         }
@@ -219,11 +219,11 @@ namespace PommaLabs.Thrower.Reflection.FastMember
 
         long IDataRecord.GetChars(int i, long fieldoffset, char[] buffer, int bufferoffset, int length)
         {
-            string s = (string) this[i];
-            int available = s.Length - (int) fieldoffset;
+            var s = (string) this[i];
+            var available = s.Length - (int) fieldoffset;
             if (available <= 0) return 0;
 
-            int count = Math.Min(length, available);
+            var count = Math.Min(length, available);
             s.CopyTo((int) fieldoffset, buffer, bufferoffset, count);
             return count;
         }
@@ -310,7 +310,7 @@ namespace PommaLabs.Thrower.Reflection.FastMember
             var current = this.current;
             var accessor = this.accessor;
 
-            int count = Math.Min(values.Length, members.Length);
+            var count = Math.Min(values.Length, members.Length);
             for (int i = 0; i < count; i++) values[i] = accessor[current, members[i]] ?? DBNull.Value;
             return count;
         }

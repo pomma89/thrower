@@ -1,5 +1,5 @@
 ﻿// File name: AbstractTests.cs
-// 
+//
 // Author(s): Alessio Parma <alessio.parma@gmail.com>
 // 
 // The MIT License (MIT)
