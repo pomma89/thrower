@@ -23,9 +23,9 @@ namespace PommaLabs.Thrower.Examples
 {
     using System;
 
-    static class BankExample
+    internal static class BankExample
     {
-        static void Main()
+        private static void Main()
         {
             var bank = new MyBank();
             try
@@ -51,9 +51,9 @@ namespace PommaLabs.Thrower.Examples
         }
     }
 
-    sealed class MyBank
+    internal sealed class MyBank
     {
-        bool isOpen;
+        private bool isOpen;
 
         /// <summary>
         ///   The amount held into the bank.
@@ -68,8 +68,8 @@ namespace PommaLabs.Thrower.Examples
         /// <exception cref="InvalidOperationException">Bank is closed.</exception>
         public void Deposit(double amount)
         {
-            Raise<InvalidOperationException>.IfNot(isOpen, "Bank is still closed");
-            Raise<ArgumentOutOfRangeException>.If(amount <= 0, "Zero or negative amount");
+            RaiseInvalidOperationException.IfNot(isOpen, "Bank is still closed");
+            RaiseArgumentOutOfRangeException.IfIsLessOrEqual(amount, 0, "Zero or negative amount");
             Amount += amount;
         }
 
