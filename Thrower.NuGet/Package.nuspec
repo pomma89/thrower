@@ -30,5 +30,6 @@ For example, a validation against null becomes "RaiseArgumentNullException.IfIsN
         <file src="lib\" target="lib" />
         <file src="CHANGELOG.md" target="CHANGELOG.md" />
         <file src="LICENSE.md" target="LICENSE.md" />
+        <file src="refman.pdf" target="refman.pdf" />
     </files>
 </package>
