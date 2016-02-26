@@ -30,7 +30,7 @@ using System.Security;
 [assembly: AssemblyTitle("PommaLabs.Thrower")]
 [assembly: AssemblyDescription("Fully managed library providing convenience methods to perform argument checks.")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("")]
+[assembly: AssemblyCompany("PommaLabs")]
 [assembly: AssemblyProduct("PommaLabs.Thrower")]
 [assembly: AssemblyCopyright("Copyright (c) 2013-2016 Alessio Parma <alessio.parma@gmail.com>")]
 [assembly: AssemblyTrademark("")]
@@ -46,7 +46,7 @@ using System.Security;
 // 
 // You can specify all the values or you can default the Build and Revision Numbers by using the '*'
 // as shown below: [assembly: AssemblyVersion("1.0.*")]
-[assembly: AssemblyVersion("2.2.1")]
+[assembly: AssemblyVersion("2.2.0")]
 [assembly: AssemblyFileVersion("2.2.1")]
 
 // Common Language Specification (CLS) compliance generally refers to the claim that CLS rules and
