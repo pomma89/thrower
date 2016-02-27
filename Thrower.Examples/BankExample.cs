@@ -1,4 +1,4 @@
-﻿// Throw.cs
+﻿// File name: BankExample.cs
 // 
 // Author(s): Alessio Parma <alessio.parma@gmail.com>
 // 
@@ -19,23 +19,45 @@
 // DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
+using System;
+
 namespace PommaLabs.Thrower.Examples
 {
-    using System;
-
+    /// <summary>
+    ///   Simple example for Thrower.
+    /// </summary>
     internal static class BankExample
     {
+        /// <summary>
+        ///   Simple example for Thrower.
+        /// </summary>
         private static void Main()
         {
             var bank = new MyBank();
+
+            try
+            {
+                // Say nothing!
+                bank.SayHello("   ");
+            }
+            catch (ArgumentException ex)
+            {
+                // Polite people say meaningful things.
+                Console.Error.WriteLine(ex.Message);
+            }
+
+            bank.SayHello("Good morning!"); // Everything OK!
+
             try
             {
                 bank.Deposit(100);
             }
             catch (InvalidOperationException ex)
             {
+                // Bank is still closed.
                 Console.Error.WriteLine(ex.Message);
             }
+
             bank.Open();
             try
             {
@@ -43,14 +65,30 @@ namespace PommaLabs.Thrower.Examples
             }
             catch (ArgumentOutOfRangeException ex)
             {
+                // Cannot deposit a negative amount.
                 Console.Error.WriteLine(ex.Message);
             }
+
+            try
+            {
+                bank.Deposit(9001M);
+            }
+            catch (OverNineThousandException ex)
+            {
+                // Cannot deposit more than 9000.
+                Console.Error.WriteLine(ex.Message);
+            }
+
             bank.Deposit(10); // Everything OK!
             Console.WriteLine("Amount: " + bank.Amount);
+
             Console.Read();
         }
     }
 
+    /// <summary>
+    ///   My bank implementation.
+    /// </summary>
     internal sealed class MyBank
     {
         private bool isOpen;
@@ -58,7 +96,18 @@ namespace PommaLabs.Thrower.Examples
         /// <summary>
         ///   The amount held into the bank.
         /// </summary>
-        public double Amount { get; private set; }
+        public decimal Amount { get; private set; }
+
+        /// <summary>
+        ///   Customers are very polite and say hello.
+        /// </summary>
+        /// <param name="helloMsg">The hello message.</param>
+        /// <exception cref="ArgumentException">The hello message is null or blank.</exception>
+        public void SayHello(string helloMsg)
+        {
+            RaiseArgumentException.IfIsNullOrWhiteSpace(helloMsg, nameof(helloMsg), "Hello message is null or blank");
+            Console.WriteLine(helloMsg);
+        }
 
         /// <summary>
         ///   Deposits given amount into the bank.
@@ -66,10 +115,12 @@ namespace PommaLabs.Thrower.Examples
         /// <param name="amount">A positive amount of money.</param>
         /// <exception cref="ArgumentOutOfRangeException">Amount is zero or negative.</exception>
         /// <exception cref="InvalidOperationException">Bank is closed.</exception>
-        public void Deposit(double amount)
+        /// <exception cref="OverNineThousandException">Amount is over nine thousand!</exception>
+        public void Deposit(decimal amount)
         {
             RaiseInvalidOperationException.IfNot(isOpen, "Bank is still closed");
-            RaiseArgumentOutOfRangeException.IfIsLessOrEqual(amount, 0, "Zero or negative amount");
+            RaiseArgumentOutOfRangeException.IfIsLessOrEqual(amount, 0, nameof(amount), "Zero or negative amount");
+            Raise<OverNineThousandException>.If(amount > 9000M, "You are very rich!");
             Amount += amount;
         }
 
@@ -79,6 +130,27 @@ namespace PommaLabs.Thrower.Examples
         public void Open()
         {
             isOpen = true;
+        }
+    }
+
+    /// <summary>
+    ///   Too rich for this bank.
+    /// </summary>
+    internal sealed class OverNineThousandException : Exception
+    {
+        /// <summary>
+        ///   Without a custom message.
+        /// </summary>
+        public OverNineThousandException() : base("It's over nine thousand!")
+        {
+        }
+
+        /// <summary>
+        ///   With a custom message.
+        /// </summary>
+        /// <param name="msg">The custom message.</param>
+        public OverNineThousandException(string msg) : base(msg + " - It's over nine thousand!")
+        {
         }
     }
 }
