@@ -1,4 +1,4 @@
-![](http://pomma89.altervista.it/thrower/logo64.png "Thrower Logo") Thrower
+![](https://googledrive.com/host/0B8v0ikF4z2BiR29YQmxfSlE1Sms/Progetti/Thrower/logo-64.png "Thrower Logo") Thrower
 ===========================================================================
 
 Fully managed library providing convenience methods to perform argument checks.
@@ -11,6 +11,8 @@ Fully managed library providing convenience methods to perform argument checks.
 | ![](http://is.gd/4uKNfs) Tutorial             | https://code.google.com/p/des-sharp/wiki/Thrower_Tutorial |
 | ![](http://is.gd/U2M21W) Documentation (HTML) | http://pomma89.altervista.it/thrower/html/index.html |
 | ![](http://is.gd/I7ThMS) Documentation (PDF)  | http://pomma89.altervista.it/thrower/refman.pdf |
+
+## Introduction ##
 
 This library allows to write code like the following example:
 
