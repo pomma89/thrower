@@ -1,20 +1,19 @@
 ![](https://googledrive.com/host/0B8v0ikF4z2BiR29YQmxfSlE1Sms/Progetti/Thrower/logo-64.png "Thrower Logo") Thrower
-===========================================================================
+==================================================================================================================
 
 Fully managed library providing convenience methods to perform argument checks.
 
-[![Build status](https://ci.appveyor.com/api/projects/status/xjkp8gn0cf4s7qbg?svg=true)](https://ci.appveyor.com/project/pomma89/thrower)
+## Summary ##
 
-| Item                                          | URL                                  |
-| --------------------------------------------- | ------------------------------------ |
-| ![](http://is.gd/1wCmXL) NuGet package        | https://nuget.org/packages/Thrower/  |
-| ![](http://is.gd/4uKNfs) Tutorial             | https://code.google.com/p/des-sharp/wiki/Thrower_Tutorial |
-| ![](http://is.gd/U2M21W) Documentation (HTML) | http://pomma89.altervista.it/thrower/html/index.html |
-| ![](http://is.gd/I7ThMS) Documentation (PDF)  | http://pomma89.altervista.it/thrower/refman.pdf |
+* Latest release version: `v2.2.1`
+* Build status on [AppVeyor](https://ci.appveyor.com): [![Build status](https://ci.appveyor.com/api/projects/status/xjkp8gn0cf4s7qbg?svg=true)](https://ci.appveyor.com/project/pomma89/thrower)
+* [Doxygen](http://www.stack.nl/~dimitri/doxygen/index.html) documentation: http://goo.gl/x1fCjT
+* [NuGet](https://www.nuget.org) package(s):
+    + [PommaLabs.Thrower](https://nuget.org/packages/Thrower/)
 
 ## Introduction ##
 
-This library allows to write code like the following example:
+This library allows to write preconditions like the ones exposed in the following example:
 
 ```cs
 /// <summary>
