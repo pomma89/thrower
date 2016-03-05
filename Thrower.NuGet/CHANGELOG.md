@@ -1,5 +1,11 @@
 ﻿# Changelog for PommaLabs.Thrower #
 
+### v2.2.2 (2016-03-05) ###
+* Imported a fix for the IPv6 email address validation logic.
+
+### v2.2.1 (2016-02-27) ###
+* Fixed AssemblyVersion, now it will not change anymore between minor releases.
+
 ### v2.1.4 (2016-01-10) ###
 * Added new methods to PortableTypeInfo.
 
