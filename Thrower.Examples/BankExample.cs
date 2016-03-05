@@ -67,7 +67,7 @@ namespace PommaLabs.Thrower.Examples
             }
 
             /// <summary>
-            ///   Send an email address from and to given addresses using the specified body.
+            ///   Sends an email address from and to given addresses using the specified body.
             /// </summary>
             /// <param name="fromAddress">The address which sent the email. International characters are _not_ allowed.</param>
             /// <param name="toAddress">The address which will receive the email. International characters are allowed.</param>
