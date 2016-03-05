@@ -29,6 +29,93 @@ namespace PommaLabs.Thrower.Examples
     internal static class BankExample
     {
         /// <summary>
+        ///   My bank implementation.
+        /// </summary>
+        internal sealed class MyBank
+        {
+            private bool isOpen;
+
+            /// <summary>
+            ///   The amount held into the bank.
+            /// </summary>
+            public decimal Amount { get; private set; }
+
+            /// <summary>
+            ///   Customers are very polite and say hello.
+            /// </summary>
+            /// <param name="helloMsg">The hello message.</param>
+            /// <exception cref="ArgumentException">The hello message is null or blank.</exception>
+            public void SayHello(string helloMsg)
+            {
+                RaiseArgumentException.IfIsNullOrWhiteSpace(helloMsg, nameof(helloMsg), "Hello message is null or blank");
+                Console.WriteLine(helloMsg);
+            }
+
+            /// <summary>
+            ///   Deposits given amount into the bank.
+            /// </summary>
+            /// <param name="amount">A positive amount of money.</param>
+            /// <exception cref="ArgumentOutOfRangeException">Amount is zero or negative.</exception>
+            /// <exception cref="InvalidOperationException">Bank is closed.</exception>
+            /// <exception cref="OverNineThousandException">Amount is over nine thousand!</exception>
+            public void Deposit(decimal amount)
+            {
+                RaiseInvalidOperationException.IfNot(isOpen, "Bank is still closed");
+                RaiseArgumentOutOfRangeException.IfIsLessOrEqual(amount, 0, nameof(amount), "Zero or negative amount");
+                Raise<OverNineThousandException>.If(amount > 9000M, "You are very rich!");
+                Amount += amount;
+            }
+
+            /// <summary>
+            ///   Send an email address from and to given addresses using the specified body.
+            /// </summary>
+            /// <param name="fromAddress">The address which sent the email. International characters are _not_ allowed.</param>
+            /// <param name="toAddress">The address which will receive the email. International characters are allowed.</param>
+            /// <param name="body">The message body.</param>
+            /// <exception cref="ArgumentException">
+            ///   Given email addresses are not valid. Given body is null, empty or blank.
+            /// </exception>
+            public void SendMail(string fromAddress, string toAddress, string body)
+            {
+                RaiseArgumentException.IfIsNotValidEmailAddress(fromAddress, argumentName: nameof(fromAddress), allowInternational: false);
+                RaiseArgumentException.IfIsNotValidEmailAddress(toAddress, argumentName: nameof(toAddress), allowInternational: true);
+                RaiseArgumentException.IfIsNullOrWhiteSpace(body, nameof(body), "The email body cannot be blank");
+                Console.WriteLine($"From: {fromAddress}");
+                Console.WriteLine($"To: {toAddress}");
+                Console.WriteLine($"Message: {body}");
+            }
+
+            /// <summary>
+            ///   Opens the bank.
+            /// </summary>
+            public void Open()
+            {
+                isOpen = true;
+            }
+        }
+
+        /// <summary>
+        ///   Too rich for this bank.
+        /// </summary>
+        internal sealed class OverNineThousandException : Exception
+        {
+            /// <summary>
+            ///   Without a custom message.
+            /// </summary>
+            public OverNineThousandException() : base("It's over nine thousand!")
+            {
+            }
+
+            /// <summary>
+            ///   With a custom message.
+            /// </summary>
+            /// <param name="msg">The custom message.</param>
+            public OverNineThousandException(string msg) : base(msg + " - It's over nine thousand!")
+            {
+            }
+        }
+
+        /// <summary>
         ///   Simple example for Thrower.
         /// </summary>
         private static void Main()
@@ -82,75 +169,10 @@ namespace PommaLabs.Thrower.Examples
             bank.Deposit(10); // Everything OK!
             Console.WriteLine("Amount: " + bank.Amount);
 
+            // Send an email with current amount.
+            bank.SendMail("info@mybank.org", "юзер@екзампл.ком", $"Your current amount is {bank.Amount}");
+
             Console.Read();
         }
-    }
-
-    /// <summary>
-    ///   My bank implementation.
-    /// </summary>
-    internal sealed class MyBank
-    {
-        private bool isOpen;
-
-        /// <summary>
-        ///   The amount held into the bank.
-        /// </summary>
-        public decimal Amount { get; private set; }
-
-        /// <summary>
-        ///   Customers are very polite and say hello.
-        /// </summary>
-        /// <param name="helloMsg">The hello message.</param>
-        /// <exception cref="ArgumentException">The hello message is null or blank.</exception>
-        public void SayHello(string helloMsg)
-        {
-            RaiseArgumentException.IfIsNullOrWhiteSpace(helloMsg, nameof(helloMsg), "Hello message is null or blank");
-            Console.WriteLine(helloMsg);
-        }
-
-        /// <summary>
-        ///   Deposits given amount into the bank.
-        /// </summary>
-        /// <param name="amount">A positive amount of money.</param>
-        /// <exception cref="ArgumentOutOfRangeException">Amount is zero or negative.</exception>
-        /// <exception cref="InvalidOperationException">Bank is closed.</exception>
-        /// <exception cref="OverNineThousandException">Amount is over nine thousand!</exception>
-        public void Deposit(decimal amount)
-        {
-            RaiseInvalidOperationException.IfNot(isOpen, "Bank is still closed");
-            RaiseArgumentOutOfRangeException.IfIsLessOrEqual(amount, 0, nameof(amount), "Zero or negative amount");
-            Raise<OverNineThousandException>.If(amount > 9000M, "You are very rich!");
-            Amount += amount;
-        }
-
-        /// <summary>
-        ///   Opens the bank.
-        /// </summary>
-        public void Open()
-        {
-            isOpen = true;
-        }
-    }
-
-    /// <summary>
-    ///   Too rich for this bank.
-    /// </summary>
-    internal sealed class OverNineThousandException : Exception
-    {
-        /// <summary>
-        ///   Without a custom message.
-        /// </summary>
-        public OverNineThousandException() : base("It's over nine thousand!")
-        {
-        }
-
-        /// <summary>
-        ///   With a custom message.
-        /// </summary>
-        /// <param name="msg">The custom message.</param>
-        public OverNineThousandException(string msg) : base(msg + " - It's over nine thousand!")
-        {
-        }
-    }
+    }    
 }
