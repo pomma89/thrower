@@ -51,6 +51,8 @@ Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "Thrower.UnitTests", "Throwe
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Thrower.UnitTests.NET45", "Platform Specific\Thrower.UnitTests.NET45\Thrower.UnitTests.NET45.csproj", "{72704ABB-2170-441D-B1A1-98E327923F8C}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Thrower.Benchmarks", "Thrower.Benchmarks\Thrower.Benchmarks.csproj", "{94A2EF50-9DFE-467A-BEB4-E15472784703}"
+EndProject
 Global
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution
 		Thrower\Thrower.projitems*{a7f28ab3-4b28-4856-9aa8-61bc71e0c466}*SharedItemsImports = 4
@@ -112,6 +114,11 @@ Global
 		{72704ABB-2170-441D-B1A1-98E327923F8C}.Publish|Any CPU.ActiveCfg = Release|Any CPU
 		{72704ABB-2170-441D-B1A1-98E327923F8C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{72704ABB-2170-441D-B1A1-98E327923F8C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{94A2EF50-9DFE-467A-BEB4-E15472784703}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{94A2EF50-9DFE-467A-BEB4-E15472784703}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{94A2EF50-9DFE-467A-BEB4-E15472784703}.Publish|Any CPU.ActiveCfg = Release|Any CPU
+		{94A2EF50-9DFE-467A-BEB4-E15472784703}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{94A2EF50-9DFE-467A-BEB4-E15472784703}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

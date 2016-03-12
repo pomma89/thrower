@@ -5,7 +5,7 @@ Fully managed library providing convenience methods to perform argument checks.
 
 ## Summary ##
 
-* Latest release version: `v2.2.1`
+* Latest release version: `v2.2.2`
 * Build status on [AppVeyor](https://ci.appveyor.com): [![Build status](https://ci.appveyor.com/api/projects/status/xjkp8gn0cf4s7qbg?svg=true)](https://ci.appveyor.com/project/pomma89/thrower)
 * [Doxygen](http://www.stack.nl/~dimitri/doxygen/index.html) documentation: https://goo.gl/iO6qZG
 * [NuGet](https://www.nuget.org) package(s):
@@ -16,69 +16,6 @@ Fully managed library providing convenience methods to perform argument checks.
 This library allows to write preconditions like the ones exposed in the following example:
 
 ```cs
-/// <summary>
-///   Simple example for Thrower.
-/// </summary>
-internal static class BankExample
-{
-    /// <summary>
-    ///   Simple example for Thrower.
-    /// </summary>
-    private static void Main()
-    {
-        var bank = new MyBank();
-
-        try
-        {
-            // Say nothing!
-            bank.SayHello("   ");
-        }
-        catch (ArgumentException ex)
-        {
-            // Polite people say meaningful things.
-            Console.Error.WriteLine(ex.Message);
-        }
-
-        bank.SayHello("Good morning!"); // Everything OK!
-
-        try
-        {
-            bank.Deposit(100);
-        }
-        catch (InvalidOperationException ex)
-        {
-            // Bank is still closed.
-            Console.Error.WriteLine(ex.Message);
-        }
-
-        bank.Open();
-        try
-        {
-            bank.Deposit(-1000);
-        }
-        catch (ArgumentOutOfRangeException ex)
-        {
-            // Cannot deposit a negative amount.
-            Console.Error.WriteLine(ex.Message);
-        }
-
-        try
-        {
-            bank.Deposit(9001M);
-        }
-        catch (OverNineThousandException ex)
-        {
-            // Cannot deposit more than 9000.
-            Console.Error.WriteLine(ex.Message);
-        }
-
-        bank.Deposit(10); // Everything OK!
-        Console.WriteLine("Amount: " + bank.Amount);
-
-        Console.Read();
-    }
-}
-
 /// <summary>
 ///   My bank implementation.
 /// </summary>
@@ -118,6 +55,25 @@ internal sealed class MyBank
     }
 
     /// <summary>
+    ///   Sends an email address from and to given addresses using the specified body.
+    /// </summary>
+    /// <param name="fromAddress">The address which sent the email. International characters are _not_ allowed.</param>
+    /// <param name="toAddress">The address which will receive the email. International characters are allowed.</param>
+    /// <param name="body">The message body.</param>
+    /// <exception cref="ArgumentException">
+    ///   Given email addresses are not valid. Given body is null, empty or blank.
+    /// </exception>
+    public void SendMail(string fromAddress, string toAddress, string body)
+    {
+        RaiseArgumentException.IfIsNotValidEmailAddress(fromAddress, argumentName: nameof(fromAddress), allowInternational: false);
+        RaiseArgumentException.IfIsNotValidEmailAddress(toAddress, argumentName: nameof(toAddress), allowInternational: true);
+        RaiseArgumentException.IfIsNullOrWhiteSpace(body, nameof(body), "The email body cannot be blank");
+        Console.WriteLine($"From: {fromAddress}");
+        Console.WriteLine($"To: {toAddress}");
+        Console.WriteLine($"Message: {body}");
+    }
+
+    /// <summary>
     ///   Opens the bank.
     /// </summary>
     public void Open()
@@ -145,6 +101,66 @@ internal sealed class OverNineThousandException : Exception
     public OverNineThousandException(string msg) : base(msg + " - It's over nine thousand!")
     {
     }
+}
+
+/// <summary>
+///   Simple example for Thrower.
+/// </summary>
+private static void Main()
+{
+    var bank = new MyBank();
+
+    try
+    {
+        // Say nothing!
+        bank.SayHello("   ");
+    }
+    catch (ArgumentException ex)
+    {
+        // Polite people say meaningful things.
+        Console.Error.WriteLine(ex.Message);
+    }
+
+    bank.SayHello("Good morning!"); // Everything OK!
+
+    try
+    {
+        bank.Deposit(100);
+    }
+    catch (InvalidOperationException ex)
+    {
+        // Bank is still closed.
+        Console.Error.WriteLine(ex.Message);
+    }
+
+    bank.Open();
+    try
+    {
+        bank.Deposit(-1000);
+    }
+    catch (ArgumentOutOfRangeException ex)
+    {
+        // Cannot deposit a negative amount.
+        Console.Error.WriteLine(ex.Message);
+    }
+
+    try
+    {
+        bank.Deposit(9001M);
+    }
+    catch (OverNineThousandException ex)
+    {
+        // Cannot deposit more than 9000.
+        Console.Error.WriteLine(ex.Message);
+    }
+
+    bank.Deposit(10); // Everything OK!
+    Console.WriteLine("Amount: " + bank.Amount);
+
+    // Send an email with current amount.
+    bank.SendMail("info@mybank.org", "юзер@екзампл.ком", $"Your current amount is {bank.Amount}");
+
+    Console.Read();
 }
 ```
 
