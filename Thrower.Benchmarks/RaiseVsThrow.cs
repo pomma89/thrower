@@ -24,6 +24,7 @@ using System;
 
 namespace PommaLabs.Thrower.Benchmarks
 {
+    [Config("jobs=AllJits")]
     public class RaiseVsThrow
     {
         private static T Identity<T>(T value) => value;
