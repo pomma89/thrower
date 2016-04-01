@@ -129,5 +129,19 @@ namespace PommaLabs.Thrower.UnitTests
         {
             RaiseArgumentNullException.IfIsNull((object) null, "null", TestMessage);
         }
+
+        [Test]
+        [ExpectedException(typeof(ArgumentNullException))]
+        public void NullArgument_UsingDefaultRaise_NullableInt()
+        {
+            RaiseArgumentNullException.IfIsNull(new int?());
+        }
+
+        [Test]
+        [ExpectedException(typeof(ArgumentNullException), ExpectedMessage = TestMessage, MatchType = MessageMatch.StartsWith)]
+        public void NullArgument_WithMsg_UsingDefaultRaise_NullableInt()
+        {
+            RaiseArgumentNullException.IfIsNull(new int?(), "null", TestMessage);
+        }
     }
 }
