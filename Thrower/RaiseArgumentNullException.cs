@@ -21,7 +21,6 @@
 // DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
-using PommaLabs.Thrower.Reflection;
 using System;
 
 namespace PommaLabs.Thrower
@@ -31,6 +30,8 @@ namespace PommaLabs.Thrower
     /// </summary>
     public sealed class RaiseArgumentNullException : RaiseBase
     {
+        #region Classes
+
         /// <summary>
         ///   Throws <see cref="ArgumentNullException"/> if given argument if null.
         /// </summary>
@@ -41,8 +42,9 @@ namespace PommaLabs.Thrower
 #endif
 
         public static void IfIsNull<TArg>(TArg argument)
+            where TArg : class
         {
-            if (!PortableTypeInfo.IsValueType(typeof(TArg)) && ReferenceEquals(argument, null))
+            if (ReferenceEquals(argument, null))
             {
                 throw new ArgumentNullException();
             }
@@ -59,8 +61,9 @@ namespace PommaLabs.Thrower
 #endif
 
         public static void IfIsNull<TArg>(TArg argument, string argumentName)
+            where TArg : class
         {
-            if (!PortableTypeInfo.IsValueType(typeof(TArg)) && ReferenceEquals(argument, null))
+            if (ReferenceEquals(argument, null))
             {
                 throw new ArgumentNullException(argumentName);
             }
@@ -78,11 +81,75 @@ namespace PommaLabs.Thrower
 #endif
 
         public static void IfIsNull<TArg>(TArg argument, string argumentName, string message)
+            where TArg : class
         {
-            if (!PortableTypeInfo.IsValueType(typeof(TArg)) && ReferenceEquals(argument, null))
+            if (ReferenceEquals(argument, null))
             {
                 throw new ArgumentNullException(argumentName, message);
             }
         }
+
+        #endregion
+
+        #region Nullable structs
+
+        /// <summary>
+        ///   Throws <see cref="ArgumentNullException"/> if given argument if null.
+        /// </summary>
+        /// <typeparam name="TArg">The type of the nullable argument.</typeparam>
+        /// <param name="argument">The argument.</param>
+#if (NET45 || NET46)
+        [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
+#endif
+
+        public static void IfIsNull<TArg>(TArg? argument)
+            where TArg : struct
+        {
+            if (!argument.HasValue)
+            {
+                throw new ArgumentNullException();
+            }
+        }
+
+        /// <summary>
+        ///   Throws <see cref="ArgumentNullException"/> if given argument if null.
+        /// </summary>
+        /// <typeparam name="TArg">The type of the nullable argument.</typeparam>
+        /// <param name="argument">The argument.</param>
+        /// <param name="argumentName">The name of the argument.</param>
+#if (NET45 || NET46)
+        [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
+#endif
+
+        public static void IfIsNull<TArg>(TArg? argument, string argumentName)
+            where TArg : struct
+        {
+            if (!argument.HasValue)
+            {
+                throw new ArgumentNullException(argumentName);
+            }
+        }
+
+        /// <summary>
+        ///   Throws <see cref="ArgumentNullException"/> if given argument if null.
+        /// </summary>
+        /// <typeparam name="TArg">The type of the nullable argument.</typeparam>
+        /// <param name="argument">The argument.</param>
+        /// <param name="argumentName">The name of the argument.</param>
+        /// <param name="message">The message that should be put into the exception.</param>
+#if (NET45 || NET46)
+        [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
+#endif
+
+        public static void IfIsNull<TArg>(TArg? argument, string argumentName, string message)
+            where TArg : struct
+        {
+            if (!argument.HasValue)
+            {
+                throw new ArgumentNullException(argumentName, message);
+            }
+        }
+
+        #endregion  
     }
 }

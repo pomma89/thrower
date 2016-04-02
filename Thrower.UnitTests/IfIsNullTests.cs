@@ -91,57 +91,5 @@ namespace PommaLabs.Thrower.UnitTests
         {
             Raise<ArgumentNullException>.IfIsNull((object) null, TestMessage);
         }
-
-        [Test]
-        public void NotNullArgument_UsingDefaultRaise()
-        {
-            RaiseArgumentNullException.IfIsNull("PINO");
-        }
-
-        [Test]
-        public void NotNullArgument_WithMsg_UsingDefaultRaise()
-        {
-            RaiseArgumentNullException.IfIsNull("PINO", "PINO", "GINO");
-        }
-
-        [Test]
-        public void NotNullArgument_UsingDefaultRaise_Struct()
-        {
-            RaiseArgumentNullException.IfIsNull(37M);
-        }
-
-        [Test]
-        public void NotNullArgument_WithMsg_UsingDefaultRaise_Struct()
-        {
-            RaiseArgumentNullException.IfIsNull(37M, "DECIMAL", "GINO");
-        }
-
-        [Test]
-        [ExpectedException(typeof(ArgumentNullException))]
-        public void NullArgument_UsingDefaultRaise()
-        {
-            RaiseArgumentNullException.IfIsNull((object) null);
-        }
-
-        [Test]
-        [ExpectedException(typeof(ArgumentNullException), ExpectedMessage = TestMessage, MatchType = MessageMatch.StartsWith)]
-        public void NullArgument_WithMsg_UsingDefaultRaise()
-        {
-            RaiseArgumentNullException.IfIsNull((object) null, "null", TestMessage);
-        }
-
-        [Test]
-        [ExpectedException(typeof(ArgumentNullException))]
-        public void NullArgument_UsingDefaultRaise_NullableInt()
-        {
-            RaiseArgumentNullException.IfIsNull(new int?());
-        }
-
-        [Test]
-        [ExpectedException(typeof(ArgumentNullException), ExpectedMessage = TestMessage, MatchType = MessageMatch.StartsWith)]
-        public void NullArgument_WithMsg_UsingDefaultRaise_NullableInt()
-        {
-            RaiseArgumentNullException.IfIsNull(new int?(), "null", TestMessage);
-        }
     }
 }
