@@ -41,6 +41,24 @@ namespace PommaLabs.Thrower.UnitTests
         }
 
         [Test]
+        public void NotNullArgument_Struct()
+        {
+            RaiseArgumentNullException.IfIsNull(37M);
+        }
+
+        [Test]
+        public void NotNullArgument_Struct_WithArgName()
+        {
+            RaiseArgumentNullException.IfIsNull(37M, "DECIMAL");
+        }
+
+        [Test]
+        public void NotNullArgument_Struct_WithMsg()
+        {
+            RaiseArgumentNullException.IfIsNull(37M, "DECIMAL", "GINO");
+        }
+
+        [Test]
         public void NotNullArgument_BoxedStruct()
         {
             object box = 37M;
