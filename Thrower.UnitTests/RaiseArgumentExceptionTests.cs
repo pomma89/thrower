@@ -23,6 +23,8 @@
 
 using NUnit.Framework;
 using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace PommaLabs.Thrower.UnitTests
 {
@@ -261,5 +263,55 @@ namespace PommaLabs.Thrower.UnitTests
         }
 
         #endregion IfIsNotValidPhoneNumber
+
+        #region IfIsEmpty - Collection
+
+        [TestCase(1)]
+        [TestCase(10)]
+        [TestCase(100)]
+        public void IfIsEmpty_FullList(int itemCount)
+        {
+            var list = Enumerable.Range(0, itemCount).ToList();
+            RaiseArgumentException.IfIsNullOrEmpty(list);
+        }
+
+        [TestCase(1)]
+        [TestCase(10)]
+        [TestCase(100)]
+        public void IfIsEmpty_FullDictionary(int itemCount)
+        {
+            var dict = Enumerable.Range(0, itemCount).ToDictionary(k => k, v => v.ToString());
+            RaiseArgumentException.IfIsNullOrEmpty(dict);
+        }
+
+        [Test, ExpectedException(typeof(ArgumentException), ExpectedMessage = RaiseArgumentException.CollectionIsNullOrEmptyMessage, MatchType = MessageMatch.Contains)]
+        public void IfIsEmpty_NullList()
+        {
+            List<string> list = null;
+            RaiseArgumentException.IfIsNullOrEmpty(list);
+        }
+
+        [Test, ExpectedException(typeof(ArgumentException), ExpectedMessage = RaiseArgumentException.CollectionIsNullOrEmptyMessage, MatchType = MessageMatch.Contains)]
+        public void IfIsEmpty_NullDictionary()
+        {
+            Dictionary<string, int> dict = null;
+            RaiseArgumentException.IfIsNullOrEmpty(dict);
+        }
+
+        [Test, ExpectedException(typeof(ArgumentException), ExpectedMessage = RaiseArgumentException.CollectionIsNullOrEmptyMessage, MatchType = MessageMatch.Contains)]
+        public void IfIsEmpty_EmptyList()
+        {
+            var list = new List<string>();
+            RaiseArgumentException.IfIsNullOrEmpty(list);
+        }
+
+        [Test, ExpectedException(typeof(ArgumentException), ExpectedMessage = RaiseArgumentException.CollectionIsNullOrEmptyMessage, MatchType = MessageMatch.Contains)]
+        public void IfIsEmpty_EmptyDictionary()
+        {
+            var dict = new Dictionary<string, int>();
+            RaiseArgumentException.IfIsNullOrEmpty(dict);
+        }
+
+        #endregion
     }
 }
