@@ -1,7 +1,7 @@
 ![](https://googledrive.com/host/0B8v0ikF4z2BiR29YQmxfSlE1Sms/Progetti/Thrower/logo-64.png "Thrower Logo") Thrower
 ==================================================================================================================
 
-Fully managed library providing convenience methods to perform argument checks.
+*Fully managed library providing convenience methods to perform argument checks.*
 
 ## Summary ##
 
