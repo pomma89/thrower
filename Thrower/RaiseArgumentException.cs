@@ -1,28 +1,29 @@
 ﻿// File name: RaiseArgumentException.cs
-// 
+//
 // Author(s): Alessio Parma <alessio.parma@gmail.com>
-// 
+//
 // The MIT License (MIT)
-// 
+//
 // Copyright (c) 2013-2016 Alessio Parma <alessio.parma@gmail.com>
-// 
+//
 // Permission is hereby granted, free of charge, to any person obtaining a copy of this software and
 // associated documentation files (the "Software"), to deal in the Software without restriction,
 // including without limitation the rights to use, copy, modify, merge, publish, distribute,
 // sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is
 // furnished to do so, subject to the following conditions:
-// 
+//
 // The above copyright notice and this permission notice shall be included in all copies or
 // substantial portions of the Software.
-// 
+//
 // THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT
 // NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
 // NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM,
-// DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-// OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+// DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT
+// OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 using PommaLabs.Thrower.Validation;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 
 namespace PommaLabs.Thrower
@@ -34,7 +35,7 @@ namespace PommaLabs.Thrower
     {
         #region If
 
-        const string DefaultIfMessage = "Argument is not valid";
+        private const string DefaultIfMessage = "Argument is not valid";
 
         /// <summary>
         ///   Throws <see cref="ArgumentException"/> if given condition is true.
@@ -163,7 +164,7 @@ namespace PommaLabs.Thrower
 
         #region IfIsNotValidEmailAddress
 
-        const string DefaultIfIsNotValidEmailAddressMessage = "String \"{0}\" is not a valid email address";
+        private const string DefaultIfIsNotValidEmailAddressMessage = "String \"{0}\" is not a valid email address";
 
         /// <summary>
         ///   Throws <see cref="ArgumentException"/> if given string is not a valid email address.
@@ -253,7 +254,7 @@ namespace PommaLabs.Thrower
 
         #region IfIsNotValidPhoneNumber
 
-        const string DefaultIfIsNotValidPhoneNumberMessage = "String \"{0}\" is not a valid phone number";
+        private const string DefaultIfIsNotValidPhoneNumberMessage = "String \"{0}\" is not a valid phone number";
 
         /// <summary>
         ///   Throws <see cref="ArgumentException"/> if given string is not a valid phone number.
@@ -298,8 +299,8 @@ namespace PommaLabs.Thrower
 
         #region String validation
 
-        const string IsNullOrEmptyMessage = "Argument cannot be a null or empty string";
-        const string IsNullOrWhiteSpaceMessage = "Argument cannot be a null, empty or blank string";
+        private const string StringIsNullOrEmptyMessage = "Argument cannot be a null or empty string";
+        private const string StringIsNullOrWhiteSpaceMessage = "Argument cannot be a null, empty or blank string";
 
         /// <summary>
         ///   Throws <see cref="ArgumentException"/> if given string is null or empty.
@@ -311,9 +312,9 @@ namespace PommaLabs.Thrower
 
         public static void IfIsNullOrEmpty(string value)
         {
-            if (value == null || value == string.Empty)
+            if (ReferenceEquals(value, null) || string.Empty.Equals(value))
             {
-                throw new ArgumentException(IsNullOrEmptyMessage);
+                throw new ArgumentException(StringIsNullOrEmptyMessage);
             }
         }
 
@@ -332,9 +333,9 @@ namespace PommaLabs.Thrower
 
         public static void IfIsNullOrEmpty(string value, string argumentName, string message = null)
         {
-            if (value == null || value == string.Empty)
+            if (ReferenceEquals(value, null) || string.Empty.Equals(value))
             {
-                throw new ArgumentException(message ?? IsNullOrEmptyMessage, argumentName);
+                throw new ArgumentException(message ?? StringIsNullOrEmptyMessage, argumentName);
             }
         }
 
@@ -348,9 +349,9 @@ namespace PommaLabs.Thrower
 
         public static void IfIsNullOrWhiteSpace(string value)
         {
-            if (value == null || value.Trim() == string.Empty)
+            if (ReferenceEquals(value, null) || string.Empty.Equals(value.Trim()))
             {
-                throw new ArgumentException(IsNullOrWhiteSpaceMessage);
+                throw new ArgumentException(StringIsNullOrWhiteSpaceMessage);
             }
         }
 
@@ -369,12 +370,57 @@ namespace PommaLabs.Thrower
 
         public static void IfIsNullOrWhiteSpace(string value, string argumentName, string message = null)
         {
-            if (value == null || value.Trim() == string.Empty)
+            if (ReferenceEquals(value, null) || string.Empty.Equals(value.Trim()))
             {
-                throw new ArgumentException(message ?? IsNullOrWhiteSpaceMessage, argumentName);
+                throw new ArgumentException(message ?? StringIsNullOrWhiteSpaceMessage, argumentName);
             }
         }
 
         #endregion String validation
+
+        #region Collection validation
+
+        internal const string CollectionIsNullOrEmptyMessage = "Argument cannot be a null or empty collection";
+
+        /// <summary>
+        ///   Throws <see cref="ArgumentException"/> if given collection is null or empty.
+        /// </summary>
+        /// <typeparam name="TItem">The type of the items contained in the collection.</typeparam>
+        /// <param name="value">The collection.</param>
+#if (NET45 || NET46)
+        [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
+#endif
+
+        public static void IfIsNullOrEmpty<TItem>(ICollection<TItem> value)
+        {
+            if (ReferenceEquals(value, null) || value.Count == 0)
+            {
+                throw new ArgumentException(CollectionIsNullOrEmptyMessage);
+            }
+        }
+
+        /// <summary>
+        ///   Throws <see cref="ArgumentException"/> if given collection is null or empty.
+        /// </summary>
+        /// <typeparam name="TItem">The type of the items contained in the collection.</typeparam>
+        /// <param name="value">The collection.</param>
+        /// <param name="argumentName">The name of the argument.</param>
+        /// <param name="message">The optional message.</param>
+        /// <remarks>
+        ///   <paramref name="message"/> and <paramref name="argumentName"/> are strictly required arguments.
+        /// </remarks>
+#if (NET45 || NET46)
+        [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
+#endif
+
+        public static void IfIsNullOrEmpty<TItem>(ICollection<TItem> value, string argumentName, string message = null)
+        {
+            if (ReferenceEquals(value, null) || value.Count == 0)
+            {
+                throw new ArgumentException(message ?? CollectionIsNullOrEmptyMessage, argumentName);
+            }
+        }
+
+        #endregion Collection validation
     }
 }

@@ -1,11 +1,11 @@
 ![](https://googledrive.com/host/0B8v0ikF4z2BiR29YQmxfSlE1Sms/Progetti/Thrower/logo-64.png "Thrower Logo") Thrower
 ==================================================================================================================
 
-Fully managed library providing convenience methods to perform argument checks.
+*Fully managed library providing convenience methods to perform argument checks.*
 
 ## Summary ##
 
-* Latest release version: `v2.2.2`
+* Latest release version: `v2.2.3`
 * Build status on [AppVeyor](https://ci.appveyor.com): [![Build status](https://ci.appveyor.com/api/projects/status/xjkp8gn0cf4s7qbg?svg=true)](https://ci.appveyor.com/project/pomma89/thrower)
 * [Doxygen](http://www.stack.nl/~dimitri/doxygen/index.html) documentation: https://goo.gl/iO6qZG
 * [NuGet](https://www.nuget.org) package(s):
