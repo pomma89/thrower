@@ -49,23 +49,6 @@ namespace PommaLabs.Thrower.Benchmarks
         }
 
         [Benchmark]
-        public void RaiseStatic_ArgumentNullException()
-        {
-            try
-            {
-                var nullString = Identity<string>(null);
-                RaiseArgumentNullException.IfIsNull(nullString, nameof(nullString));
-            }
-#pragma warning disable CC0004 // Catch block cannot be empty
-#pragma warning disable RECS0022 // A catch clause that catches System.Exception and has an empty body
-            catch
-            {
-            }
-#pragma warning restore RECS0022 // A catch clause that catches System.Exception and has an empty body
-#pragma warning restore CC0004 // Catch block cannot be empty
-        }
-
-        [Benchmark]
         public void Throw_ArgumentNullException()
         {
             try

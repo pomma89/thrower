@@ -20,7 +20,6 @@
     <Compile Include="$(MSBuildThisFileDirectory)IfIsNullTests.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)RaiseArgumentExceptionTests.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ArgumentNullExceptionTests.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)RaiseArgumentNullExceptionTests.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)RaiseHttpExceptionTests.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)RaiseObjectDisposedExceptionTests.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)RaiseNotSupportedExceptionTests.cs" />
