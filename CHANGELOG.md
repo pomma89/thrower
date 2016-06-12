@@ -4,6 +4,7 @@
 
 * Updated internal EmailValidator, now validation has a flag to enable top level domains.
   All validation calls now allow the specification of that flag.
+* Started new implementation for more fluent validation.
 
 ### v2.2.3 (2016-04-02) ###
 
