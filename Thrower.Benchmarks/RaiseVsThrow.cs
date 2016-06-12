@@ -37,7 +37,7 @@ namespace PommaLabs.Thrower.Benchmarks
             try
             {
                 var nullString = Identity<string>(null);
-                RaiseArgumentNullException.IfIsNull(nullString, nameof(nullString));
+                Raise.ArgumentNullException.IfIsNull(nullString, nameof(nullString));
             }
 #pragma warning disable CC0004 // Catch block cannot be empty
 #pragma warning disable RECS0022 // A catch clause that catches System.Exception and has an empty body
@@ -73,7 +73,7 @@ namespace PommaLabs.Thrower.Benchmarks
         #region ArgumentOutOfRangeException
 
         [Benchmark]
-        public void Raise_ArgumentOutOfRangeException_Integers()
+        public void RaiseStatic_ArgumentOutOfRangeException_Integers()
         {
             try
             {

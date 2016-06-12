@@ -187,16 +187,16 @@ namespace PommaLabs.Thrower
         ///   Throws <see cref="ArgumentException"/> if given string is not a valid email address.
         /// </summary>
         /// <param name="emailAddress">An email address.</param>
-        /// <param name="allowInternational">
-        ///   <value>true</value> if the validator should allow international characters; otherwise, <value>false</value>.
+        /// <param name="validatorOptions">
+        ///   Customizations for the validation process.
         /// </param>
 #if (NET45 || NET46)
         [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
 #endif
 
-        public static void IfIsNotValidEmailAddress(string emailAddress, bool allowInternational)
+        public static void IfIsNotValidEmailAddress(string emailAddress, EmailAddressValidator.Options validatorOptions)
         {
-            if (!EmailAddressValidator.Validate(emailAddress, allowInternational))
+            if (!EmailAddressValidator.Validate(emailAddress, validatorOptions))
             {
                 var exceptionMsg = string.Format(DefaultIfIsNotValidEmailAddressMessage, emailAddress);
                 throw new ArgumentException(exceptionMsg);
@@ -229,10 +229,10 @@ namespace PommaLabs.Thrower
         ///   Throws <see cref="ArgumentException"/> if given string is not a valid email address.
         /// </summary>
         /// <param name="emailAddress">An email address.</param>
-        /// <param name="allowInternational">
-        ///   <value>true</value> if the validator should allow international characters; otherwise, <value>false</value>.
-        /// </param>
         /// <param name="argumentName">The name of the argument.</param>
+        /// <param name="validatorOptions">
+        ///   Customizations for the validation process.
+        /// </param>
         /// <param name="message">The message.</param>
         /// <remarks>
         ///   <paramref name="message"/> and <paramref name="argumentName"/> are strictly required arguments.
@@ -241,9 +241,9 @@ namespace PommaLabs.Thrower
         [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
 #endif
 
-        public static void IfIsNotValidEmailAddress(string emailAddress, bool allowInternational, string argumentName, string message = null)
+        public static void IfIsNotValidEmailAddress(string emailAddress, string argumentName, EmailAddressValidator.Options validatorOptions, string message = null)
         {
-            if (!EmailAddressValidator.Validate(emailAddress, allowInternational))
+            if (!EmailAddressValidator.Validate(emailAddress, validatorOptions))
             {
                 var exceptionMsg = message ?? string.Format(DefaultIfIsNotValidEmailAddressMessage, emailAddress);
                 throw new ArgumentException(exceptionMsg, argumentName);

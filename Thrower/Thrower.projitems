@@ -9,7 +9,10 @@
     <Import_RootNamespace>PommaLabs.Thrower</Import_RootNamespace>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="$(MSBuildThisFileDirectory)ExceptionHandlers\ArgumentNullExceptionHandler.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Obsolete\RaiseArgumentNullException.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)RaiseHttpException.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)RaiseNew.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)RaiseObjectDisposedException.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Reflection\FastMember\CallSiteCache.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Reflection\FastMember\MemberSet.cs" />
@@ -19,7 +22,6 @@
     <Compile Include="$(MSBuildThisFileDirectory)Reflection\PortableTypeInfo.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Raise.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)RaiseArgumentException.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)RaiseArgumentNullException.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)RaiseIndexOutOfRangeException.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)RaiseArgumentOutOfRangeException.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)RaiseNotSupportedException.cs" />

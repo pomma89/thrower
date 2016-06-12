@@ -1,4 +1,4 @@
-﻿// File name: RaiseArgumentNullExceptionTests.cs
+﻿// File name: Raise.ArgumentNullExceptionTests.cs
 //
 // Author(s): Alessio Parma <alessio.parma@gmail.com>
 //
@@ -26,106 +26,106 @@ using System;
 
 namespace PommaLabs.Thrower.UnitTests
 {
-    internal sealed class RaiseArgumentNullExceptionTests : AbstractTests
+    internal sealed class ArgumentNullExceptionTests : AbstractTests
     {
         [Test]
         public void NotNullArgument_String()
         {
-            RaiseArgumentNullException.IfIsNull("PINO");
+            Raise.ArgumentNullException.IfIsNull("PINO");
         }
 
         [Test]
         public void NotNullArgument_String_WithMsg()
         {
-            RaiseArgumentNullException.IfIsNull("PINO", "PINO", "GINO");
+            Raise.ArgumentNullException.IfIsNull("PINO", "PINO", "GINO");
         }
 
         [Test]
         public void NotNullArgument_Struct()
         {
-            RaiseArgumentNullException.IfIsNull(37M);
+            Raise.ArgumentNullException.IfIsNull(37M);
         }
 
         [Test]
         public void NotNullArgument_Struct_WithArgName()
         {
-            RaiseArgumentNullException.IfIsNull(37M, "DECIMAL");
+            Raise.ArgumentNullException.IfIsNull(37M, "DECIMAL");
         }
 
         [Test]
         public void NotNullArgument_Struct_WithMsg()
         {
-            RaiseArgumentNullException.IfIsNull(37M, "DECIMAL", "GINO");
+            Raise.ArgumentNullException.IfIsNull(37M, "DECIMAL", "GINO");
         }
 
         [Test]
         public void NotNullArgument_BoxedStruct()
         {
             object box = 37M;
-            RaiseArgumentNullException.IfIsNull(box);
+            Raise.ArgumentNullException.IfIsNull(box);
         }
 
         [Test]
         public void NotNullArgument_BoxedStruct_WithMsg()
         {
             object box = 37M;
-            RaiseArgumentNullException.IfIsNull(box, "DECIMAL", "GINO");
+            Raise.ArgumentNullException.IfIsNull(box, "DECIMAL", "GINO");
         }
 
         [Test]
         public void NotNullArgument_BoxedNullableInt_WithValue()
         {
             object box = new int?(21);
-            RaiseArgumentNullException.IfIsNull(box);
+            Raise.ArgumentNullException.IfIsNull(box);
         }
 
         [Test]
         public void NotNullArgument_BoxedNullableInt_WithValue_WithArgName()
         {
             object box = new int?(21);
-            RaiseArgumentNullException.IfIsNull(box, "null");
+            Raise.ArgumentNullException.IfIsNull(box, "null");
         }
 
         [Test]
         public void NotNullArgument_BoxedNullableInt_WithValue_WithMsg()
         {
             object box = new int?(21);
-            RaiseArgumentNullException.IfIsNull(box, "null", TestMessage);
+            Raise.ArgumentNullException.IfIsNull(box, "null", TestMessage);
         }
 
         [Test]
         [ExpectedException(typeof(ArgumentNullException))]
         public void NullArgument_NullObject()
         {
-            RaiseArgumentNullException.IfIsNull((object) null);
+            Raise.ArgumentNullException.IfIsNull((object) null);
         }
 
         [Test]
         [ExpectedException(typeof(ArgumentNullException), ExpectedMessage = TestMessage, MatchType = MessageMatch.StartsWith)]
         public void NullArgument_NullObject_WithMsg()
         {
-            RaiseArgumentNullException.IfIsNull((object) null, "null", TestMessage);
+            Raise.ArgumentNullException.IfIsNull((object) null, "null", TestMessage);
         }
 
         [Test]
         [ExpectedException(typeof(ArgumentNullException))]
         public void NullArgument_NullableInt_WithoutValue()
         {
-            RaiseArgumentNullException.IfIsNull(new int?());
+            Raise.ArgumentNullException.IfIsNull(new int?());
         }
 
         [Test]
         [ExpectedException(typeof(ArgumentNullException))]
         public void NullArgument_NullableInt_WithoutValue_WithArgName()
         {
-            RaiseArgumentNullException.IfIsNull(new int?(), "null");
+            Raise.ArgumentNullException.IfIsNull(new int?(), "null");
         }
 
         [Test]
         [ExpectedException(typeof(ArgumentNullException), ExpectedMessage = TestMessage, MatchType = MessageMatch.StartsWith)]
         public void NullArgument_NullableInt_WithoutValue_WithMsg()
         {
-            RaiseArgumentNullException.IfIsNull(new int?(), "null", TestMessage);
+            Raise.ArgumentNullException.IfIsNull(new int?(), "null", TestMessage);
         }
 
         [Test]
@@ -133,7 +133,7 @@ namespace PommaLabs.Thrower.UnitTests
         public void NullArgument_BoxedNullableInt_WithoutValue()
         {
             object box = new int?();
-            RaiseArgumentNullException.IfIsNull(box);
+            Raise.ArgumentNullException.IfIsNull(box);
         }
 
         [Test]
@@ -141,7 +141,7 @@ namespace PommaLabs.Thrower.UnitTests
         public void NullArgument_BoxedNullableInt_WithoutValue_WithArgName()
         {
             object box = new int?();
-            RaiseArgumentNullException.IfIsNull(box, "null");
+            Raise.ArgumentNullException.IfIsNull(box, "null");
         }
 
         [Test]
@@ -149,7 +149,7 @@ namespace PommaLabs.Thrower.UnitTests
         public void NullArgument_BoxedNullableInt_WithoutValue_WithMsg()
         {
             object box = new int?();
-            RaiseArgumentNullException.IfIsNull(box, "null", TestMessage);
+            Raise.ArgumentNullException.IfIsNull(box, "null", TestMessage);
         }
     }
 }

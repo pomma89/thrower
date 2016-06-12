@@ -5,7 +5,7 @@
 
 ## Summary ##
 
-* Latest release version: `v2.2.3`
+* Latest release version: `v2.2.4`
 * Build status on [AppVeyor](https://ci.appveyor.com): [![Build status](https://ci.appveyor.com/api/projects/status/xjkp8gn0cf4s7qbg?svg=true)](https://ci.appveyor.com/project/pomma89/thrower)
 * [Doxygen](http://www.stack.nl/~dimitri/doxygen/index.html) documentation: https://goo.gl/iO6qZG
 * [NuGet](https://www.nuget.org) package(s):

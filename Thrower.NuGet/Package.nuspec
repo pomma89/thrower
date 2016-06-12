@@ -3,19 +3,18 @@
 <package>
     <metadata>
         <id>Thrower</id>
-        <version>2.2.3</version>
+        <version>2.2.4</version>
         <title>Thrower - Compact preconditions helpers</title>
         <authors>Alessio Parma &lt;alessio.parma@gmail.com&gt;</authors>
         <owners>Alessio Parma &lt;alessio.parma@gmail.com&gt;</owners>
         <description>
 Fully managed library providing convenience methods to perform argument checks.
 Thrower allows to write preconditions in a pretty lean way, which reduces the clutter at the beginning of each method by removing the need to use the cumbersome "if true then throw ex" required to validate parameters.
-For example, a validation against null becomes "RaiseArgumentNullException.IfIsNull(myParam)", while a generic validation may be written as "RaiseArgumentException.If(condition)".
+For example, a validation against null becomes "Raise.ArgumentNullException.IfIsNull(myParam)", while a generic validation may be written as "Raise.ArgumentException.If(condition)".
         </description>
         <releaseNotes>
-* Fixed issue #1 - IfIsNull does not handle Nullable&lt;T&gt; type.
-* Extended RaiseArgumentException with IfIsNullOrEmpty for ICollection&lt;T&gt;.
-* The CHANGELOG file has been moved to the root of the project.
+* Updated internal EmailValidator, now validation has a flag to enable top level domains. All validation calls now allow the specification of that flag.
+* Started new implementation for more fluent validation.
         </releaseNotes>
         <summary>Fully managed library providing convenience methods to perform argument checks.</summary>
         <language>en-US</language>
@@ -26,7 +25,7 @@ For example, a validation against null becomes "RaiseArgumentNullException.IfIsN
         <copyright>Copyright (c) 2013-2016 Alessio Parma &lt;alessio.parma@gmail.com&gt;</copyright>
         <dependencies></dependencies>
         <references></references>
-        <tags>preconditions check integrity parameters arguments validation portable dnx</tags>
+        <tags>preconditions check integrity parameters fluent arguments validation portable dnx</tags>
     </metadata>
     <files>
         <file src="lib\" target="lib" />
