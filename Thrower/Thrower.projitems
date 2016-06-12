@@ -9,7 +9,9 @@
     <Import_RootNamespace>PommaLabs.Thrower</Import_RootNamespace>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="$(MSBuildThisFileDirectory)ExceptionHandlers\ArgumentNullExceptionHandler.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)RaiseHttpException.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)RaiseNew.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)RaiseObjectDisposedException.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Reflection\FastMember\CallSiteCache.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Reflection\FastMember\MemberSet.cs" />
