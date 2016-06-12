@@ -19,6 +19,7 @@
 // DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
+using PommaLabs.Thrower.Validation;
 using System;
 
 namespace PommaLabs.Thrower.Examples
@@ -77,8 +78,8 @@ namespace PommaLabs.Thrower.Examples
             /// </exception>
             public void SendMail(string fromAddress, string toAddress, string body)
             {
-                RaiseArgumentException.IfIsNotValidEmailAddress(fromAddress, argumentName: nameof(fromAddress), allowInternational: false);
-                RaiseArgumentException.IfIsNotValidEmailAddress(toAddress, argumentName: nameof(toAddress), allowInternational: true);
+                RaiseArgumentException.IfIsNotValidEmailAddress(fromAddress, argumentName: nameof(fromAddress), validatorOptions: EmailAddressValidator.Options.AllowTopLevelDomains);
+                RaiseArgumentException.IfIsNotValidEmailAddress(toAddress, argumentName: nameof(toAddress), validatorOptions: EmailAddressValidator.Options.AllowInternational);
                 RaiseArgumentException.IfIsNullOrWhiteSpace(body, nameof(body), "The email body cannot be blank");
                 Console.WriteLine($"From: {fromAddress}");
                 Console.WriteLine($"To: {toAddress}");

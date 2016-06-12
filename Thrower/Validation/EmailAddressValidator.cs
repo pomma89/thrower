@@ -1,23 +1,23 @@
 ﻿// File name: EmailAddressValidator.cs
-// 
+//
 // Author(s): Jeffrey Stedfast <jeff@xamarin.com>
-// 
+//
 // Copyright (c) 2013 Xamarin Inc.
-// 
+//
 // Permission is hereby granted, free of charge, to any person obtaining a copy of this software and
 // associated documentation files (the "Software"), to deal in the Software without restriction,
 // including without limitation the rights to use, copy, modify, merge, publish, distribute,
 // sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is
 // furnished to do so, subject to the following conditions:
-// 
+//
 // The above copyright notice and this permission notice shall be included in all copies or
 // substantial portions of the Software.
-// 
+//
 // THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT
 // NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
 // NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM,
-// DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-// OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+// DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT
+// OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 using System;
 
@@ -29,24 +29,24 @@ namespace PommaLabs.Thrower.Validation
     /// <remarks>An email address validator.</remarks>
     public static class EmailAddressValidator
     {
-        const string AtomCharacters = "!#$%&'*+-/=?^_`{|}~";
+        private const string AtomCharacters = "!#$%&'*+-/=?^_`{|}~";
 
-        static bool IsLetterOrDigit(char c)
+        private static bool IsLetterOrDigit(char c)
         {
             return (c >= 'A' && c <= 'Z') || (c >= 'a' && c <= 'z') || (c >= '0' && c <= '9');
         }
 
-        static bool IsAtom(char c, bool allowInternational)
+        private static bool IsAtom(char c, bool allowInternational)
         {
             return c < 128 ? IsLetterOrDigit(c) || AtomCharacters.IndexOf(c) != -1 : allowInternational;
         }
 
-        static bool IsDomain(char c, bool allowInternational)
+        private static bool IsDomain(char c, bool allowInternational)
         {
             return c < 128 ? IsLetterOrDigit(c) || c == '-' : allowInternational;
         }
 
-        static bool SkipAtom(string text, ref int index, bool allowInternational)
+        private static bool SkipAtom(string text, ref int index, bool allowInternational)
         {
             var startIndex = index;
 
@@ -56,7 +56,7 @@ namespace PommaLabs.Thrower.Validation
             return index > startIndex;
         }
 
-        static bool SkipSubDomain(string text, ref int index, bool allowInternational)
+        private static bool SkipSubDomain(string text, ref int index, bool allowInternational)
         {
             var startIndex = index;
 
@@ -71,26 +71,33 @@ namespace PommaLabs.Thrower.Validation
             return (index - startIndex) < 64 && text[index - 1] != '-';
         }
 
-        static bool SkipDomain(string text, ref int index, bool allowInternational)
+        private static bool SkipDomain(string text, ref int index, bool allowInternational, bool allowTopLevelDomains)
         {
             if (!SkipSubDomain(text, ref index, allowInternational))
                 return false;
 
-            while (index < text.Length && text[index] == '.')
+            if (index < text.Length && text[index] == '.')
             {
-                index++;
+                do
+                {
+                    index++;
 
-                if (index == text.Length)
-                    return false;
+                    if (index == text.Length)
+                        return false;
 
-                if (!SkipSubDomain(text, ref index, allowInternational))
-                    return false;
+                    if (!SkipSubDomain(text, ref index, allowInternational))
+                        return false;
+                } while (index < text.Length && text[index] == '.');
+            }
+            else if (!allowTopLevelDomains)
+            {
+                return false;
             }
 
             return true;
         }
 
-        static bool SkipQuoted(string text, ref int index, bool allowInternational)
+        private static bool SkipQuoted(string text, ref int index, bool allowInternational)
         {
             var escaped = false;
 
@@ -111,7 +118,8 @@ namespace PommaLabs.Thrower.Validation
                     if (text[index] == '"')
                         break;
                 }
-                else {
+                else
+                {
                     escaped = false;
                 }
 
@@ -126,7 +134,7 @@ namespace PommaLabs.Thrower.Validation
             return true;
         }
 
-        static bool SkipWord(string text, ref int index, bool allowInternational)
+        private static bool SkipWord(string text, ref int index, bool allowInternational)
         {
             if (text[index] == '"')
                 return SkipQuoted(text, ref index, allowInternational);
@@ -134,7 +142,7 @@ namespace PommaLabs.Thrower.Validation
             return SkipAtom(text, ref index, allowInternational);
         }
 
-        static bool SkipIPv4Literal(string text, ref int index)
+        private static bool SkipIPv4Literal(string text, ref int index)
         {
             var groups = 0;
 
@@ -161,13 +169,13 @@ namespace PommaLabs.Thrower.Validation
             return groups == 4;
         }
 
-        static bool IsHexDigit(char c)
+        private static bool IsHexDigit(char c)
         {
             return (c >= 'A' && c <= 'F') || (c >= 'a' && c <= 'f') || (c >= '0' && c <= '9');
         }
 
         // This needs to handle the following forms:
-        // 
+        //
         // IPv6-addr = IPv6-full / IPv6-comp / IPv6v4-full / IPv6v4-comp IPv6-hex = 1*4HEXDIG
         // IPv6-full = IPv6-hex 7(":" IPv6-hex) IPv6-comp = [IPv6-hex *5(":" IPv6-hex)] "::"
         // [IPv6-hex *5(":" IPv6-hex)] ; The "::" represents at least 2 16-bit groups of zeros ; No
@@ -176,7 +184,7 @@ namespace PommaLabs.Thrower.Validation
         // [IPv6-hex *3(":" IPv6-hex) ":"] IPv4-address-literal ; The "::" represents at least 2
         // 16-bit groups of zeros ; No more than 4 groups in addition to the "::" and ;
         // IPv4-address-literal may be present
-        static bool SkipIPv6Literal(string text, ref int index)
+        private static bool SkipIPv6Literal(string text, ref int index)
         {
             var compact = false;
             var colons = 0;
@@ -225,7 +233,8 @@ namespace PommaLabs.Thrower.Validation
                     compact = true;
                     colons += 2;
                 }
-                else {
+                else
+                {
                     colons++;
                 }
             }
@@ -242,18 +251,23 @@ namespace PommaLabs.Thrower.Validation
         /// <remarks>
         ///   <para>Validates the syntax of an email address.</para>
         ///   <para>
-        ///     If <paramref name="allowInternational"/> is <value>true</value>, then the validator
+        ///     If <paramref name="options"/> contains <see cref="Options.AllowInternational"/>, then the validator
         ///     will use the newer International Email standards for validating the email address.
         ///   </para>
         /// </remarks>
         /// <returns><c>true</c> if the email address is valid; otherwise <c>false</c>.</returns>
         /// <param name="emailAddress">An email address.</param>
-        /// <param name="allowInternational">
-        ///   <value>true</value> if the validator should allow international characters; otherwise, <value>false</value>.
+        /// <param name="options">
+        ///   Customizations for the validation process.
         /// </param>
-        /// <exception cref="System.ArgumentNullException"><paramref name="emailAddress"/> is <c>null</c>.</exception>
-        public static bool Validate(string emailAddress, bool allowInternational = false)
+        /// <exception cref="System.ArgumentNullException">
+        ///   <paramref name="emailAddress"/> is <c>null</c>.
+        /// </exception>
+        public static bool Validate(string emailAddress, Options options = Options.None)
         {
+            var allowInternational = ((options & Options.AllowInternational) == Options.AllowInternational);
+            var allowTopLevelDomains = ((options & Options.AllowTopLevelDomains) == Options.AllowTopLevelDomains);
+
             var index = 0;
 
             if (emailAddress == null)
@@ -285,7 +299,7 @@ namespace PommaLabs.Thrower.Validation
             if (emailAddress[index] != '[')
             {
                 // domain
-                if (!SkipDomain(emailAddress, ref index, allowInternational))
+                if (!SkipDomain(emailAddress, ref index, allowInternational, allowTopLevelDomains))
                     return false;
 
                 return index == emailAddress.Length;
@@ -305,7 +319,8 @@ namespace PommaLabs.Thrower.Validation
                 if (!SkipIPv6Literal(emailAddress, ref index))
                     return false;
             }
-            else {
+            else
+            {
                 if (!SkipIPv4Literal(emailAddress, ref index))
                     return false;
             }
@@ -314,6 +329,28 @@ namespace PommaLabs.Thrower.Validation
                 return false;
 
             return index == emailAddress.Length;
+        }
+
+        /// <summary>
+        ///   Options used by validation process.
+        /// </summary>
+        [Flags]
+        public enum Options
+        {
+            /// <summary>
+            ///   No option specified.
+            /// </summary>
+            None = 0,
+
+            /// <summary>
+            ///   Whether the validator should allow international characters or not.
+            /// </summary>
+            AllowInternational = 1,
+
+            /// <summary>
+            ///   Whether the validator should allow addresses at top-level domains or not.
+            /// </summary>
+            AllowTopLevelDomains = 2
         }
     }
 }
