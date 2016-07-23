@@ -1,4 +1,4 @@
-﻿// File name: Raise.ArgumentNullExceptionTests.cs
+﻿// File name: ArgumentNullExceptionTests.cs
 //
 // Author(s): Alessio Parma <alessio.parma@gmail.com>
 //
@@ -73,6 +73,45 @@ namespace PommaLabs.Thrower.UnitTests
         }
 
         [Test]
+        public void NotNullArgument_NullableInt_WithoutValue()
+        {
+            Raise.ArgumentNullException.IfIsNull(new int?(21));
+        }
+
+        [Test]
+        public void NotNullArgument_NullableInt_WithoutValue_WithArgName()
+        {
+            Raise.ArgumentNullException.IfIsNull(new int?(21), "null");
+        }
+
+        [Test]
+        public void NotNullArgument_NullableInt_WithoutValue_WithMsg()
+        {
+            Raise.ArgumentNullException.IfIsNull(new int?(21), "null", TestMessage);
+        }
+
+        [Test]
+        public void NotNullArgument_NullableInt_WithoutValue_ByRef()
+        {
+            var x = new int?(21);
+            Raise.ArgumentNullException.IfIsNull(ref x, nameof(x));
+        }
+
+        [Test]
+        public void NotNullArgument_NullableInt_WithoutValue_WithArgName_ByRef()
+        {
+            var x = new int?(21);
+            Raise.ArgumentNullException.IfIsNull(ref x, nameof(x));
+        }
+
+        [Test]
+        public void NotNullArgument_NullableInt_WithoutValue_WithMsg_ByRef()
+        {
+            var x = new int?(21);
+            Raise.ArgumentNullException.IfIsNull(ref x, nameof(x), TestMessage);
+        }
+
+        [Test]
         public void NotNullArgument_BoxedNullableInt_WithValue()
         {
             object box = new int?(21);
@@ -126,6 +165,30 @@ namespace PommaLabs.Thrower.UnitTests
         public void NullArgument_NullableInt_WithoutValue_WithMsg()
         {
             Raise.ArgumentNullException.IfIsNull(new int?(), "null", TestMessage);
+        }
+
+        [Test]
+        [ExpectedException(typeof(ArgumentNullException))]
+        public void NullArgument_NullableInt_WithoutValue_ByRef()
+        {
+            var x = new int?();
+            Raise.ArgumentNullException.IfIsNull(ref x, nameof(x));
+        }
+
+        [Test]
+        [ExpectedException(typeof(ArgumentNullException))]
+        public void NullArgument_NullableInt_WithoutValue_WithArgName_ByRef()
+        {
+            var x = new int?();
+            Raise.ArgumentNullException.IfIsNull(ref x, nameof(x));
+        }
+
+        [Test]
+        [ExpectedException(typeof(ArgumentNullException), ExpectedMessage = TestMessage, MatchType = MessageMatch.StartsWith)]
+        public void NullArgument_NullableInt_WithoutValue_WithMsg_ByRef()
+        {
+            var x = new int?();
+            Raise.ArgumentNullException.IfIsNull(ref x, nameof(x), TestMessage);
         }
 
         [Test]

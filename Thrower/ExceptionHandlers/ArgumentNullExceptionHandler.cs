@@ -138,6 +138,24 @@ namespace PommaLabs.Thrower.ExceptionHandlers
         ///   Throws <see cref="ArgumentNullException"/> if given argument if null.
         /// </summary>
         /// <typeparam name="TArg">The type of the nullable argument.</typeparam>
+        /// <param name="argument">The argument, by reference.</param>
+#if (NET45 || NET46)
+        [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
+#endif
+
+        public void IfIsNull<TArg>(ref TArg? argument)
+            where TArg : struct
+        {
+            if (!argument.HasValue)
+            {
+                throw new ArgumentNullException();
+            }
+        }
+
+        /// <summary>
+        ///   Throws <see cref="ArgumentNullException"/> if given argument if null.
+        /// </summary>
+        /// <typeparam name="TArg">The type of the nullable argument.</typeparam>
         /// <param name="argument">The argument.</param>
         /// <param name="argumentName">The name of the argument.</param>
         /// <param name="message">The message that should be put into the exception.</param>
@@ -146,6 +164,26 @@ namespace PommaLabs.Thrower.ExceptionHandlers
 #endif
 
         public void IfIsNull<TArg>(TArg? argument, string argumentName, string message = null)
+            where TArg : struct
+        {
+            if (!argument.HasValue)
+            {
+                throw new ArgumentNullException(argumentName, message ?? DefaultMessage);
+            }
+        }
+
+        /// <summary>
+        ///   Throws <see cref="ArgumentNullException"/> if given argument if null.
+        /// </summary>
+        /// <typeparam name="TArg">The type of the nullable argument.</typeparam>
+        /// <param name="argument">The argument, by reference.</param>
+        /// <param name="argumentName">The name of the argument.</param>
+        /// <param name="message">The message that should be put into the exception.</param>
+#if (NET45 || NET46)
+        [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
+#endif
+
+        public void IfIsNull<TArg>(ref TArg? argument, string argumentName, string message = null)
             where TArg : struct
         {
             if (!argument.HasValue)
