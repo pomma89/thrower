@@ -56,6 +56,9 @@ build/
 [Tt]est[Rr]esult*/
 [Bb]uild[Ll]og.*
 
+# NUnit test Results
+[Tt]est[Rr]esults.xml
+
 *_i.c
 *_p.c
 *.ilk
