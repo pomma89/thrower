@@ -171,6 +171,9 @@ UpgradeLog*.htm
 App_Data/*.mdf
 App_Data/*.ldf
 
+# FAKE
+.fake
+
 #############
 ## Windows detritus
 #############
