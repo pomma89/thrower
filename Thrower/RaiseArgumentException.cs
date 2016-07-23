@@ -23,7 +23,6 @@
 
 using PommaLabs.Thrower.Validation;
 using System;
-using System.Collections;
 using System.Collections.Generic;
 
 namespace PommaLabs.Thrower
