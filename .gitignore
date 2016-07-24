@@ -58,6 +58,7 @@ build/
 
 # NUnit test Results
 [Tt]est[Rr]esults.xml
+.artifacts
 
 *_i.c
 *_p.c

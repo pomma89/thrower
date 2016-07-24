@@ -6,7 +6,7 @@ RestorePackages()
 
 // Properties
 let buildMode    = getBuildParamOrDefault "buildMode" "Debug"
-let artifactsDir = "./Artifacts"
+let artifactsDir = "./.artifacts/"
 let testDir      = "./Platform Specific/Thrower.UnitTests.*/bin/" + buildMode + "/"
 let testDll      = "PommaLabs.Thrower.UnitTests.dll"
 
@@ -44,7 +44,7 @@ Target "Test" (fun _ ->
       |> NUnit (fun p -> 
         { p with
             DisableShadowCopy = true;
-            OutputFile = "./Artifacts/test-results.xml" 
+            OutputFile = artifactsDir + "test-results.xml" 
         })
 )
 
