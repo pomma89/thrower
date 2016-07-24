@@ -10,7 +10,9 @@ let artifactsDir = "./.artifacts/"
 let testDir      = "./Platform Specific/Thrower.UnitTests.*/bin/{0}/"
 let testDll      = "PommaLabs.Thrower.UnitTests.dll"
 let perfDir      = "./Thrower.Benchmarks/bin/Release/"
-let perfExe      = "PommaLabs.Thrower.Benchmarks.exe"
+let perfExe      = perfDir + "PommaLabs.Thrower.Benchmarks.exe"
+let perfResSrc   = perfDir + "BenchmarkDotNet.Artifacts/results"
+let perfResDst   = artifactsDir + "perf-results"
 
 // Common - Build
 let myBuild target buildMode =
@@ -72,9 +74,10 @@ Target "TestRelease" (fun _ ->
 
 Target "PerfRelease" (fun _ ->
     trace "Testing performance..."
-    directExec (fun info ->
-      info.FileName <- perfDir + perfExe
-      info.WorkingDirectory <- perfDir) |> ignore
+    let ok = directExec (fun info ->
+      info.FileName <- perfExe
+      info.WorkingDirectory <- perfDir)
+    if ok then CopyDir perfResSrc perfResDst (fun s -> true)
 )
 
 Target "Default" (fun _ ->
