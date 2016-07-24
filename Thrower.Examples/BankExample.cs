@@ -61,7 +61,7 @@ namespace PommaLabs.Thrower.Examples
             /// <exception cref="OverNineThousandException">Amount is over nine thousand!</exception>
             public void Deposit(decimal amount)
             {
-                RaiseInvalidOperationException.IfNot(isOpen, "Bank is still closed");
+                Raise.InvalidOperationException.IfNot(isOpen, "Bank is still closed");
                 RaiseArgumentOutOfRangeException.IfIsLessOrEqual(amount, 0, nameof(amount), "Zero or negative amount");
                 Raise<OverNineThousandException>.If(amount > 9000M, "You are very rich!");
                 Amount += amount;
