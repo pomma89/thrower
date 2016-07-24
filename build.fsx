@@ -5,13 +5,17 @@ open Fake
 RestorePackages()
 
 // Properties
-let buildMode = getBuildParamOrDefault "buildMode" "Debug"
-let testDir = "./Platform Specific/Thrower.UnitTests.*/bin/" + buildMode + "/"
-let testDll = "PommaLabs.Thrower.UnitTests.dll"
+let buildMode    = getBuildParamOrDefault "buildMode" "Debug"
+let artifactsDir = "./Artifacts"
+let testDir      = "./Platform Specific/Thrower.UnitTests.*/bin/" + buildMode + "/"
+let testDll      = "PommaLabs.Thrower.UnitTests.dll"
 
 // Targets
 Target "Clean" (fun _ ->
     trace "Cleaning..."
+    
+    CleanDirs [artifactsDir]
+
     let setParams defaults = 
       { defaults with
           Verbosity = Some(Quiet)
@@ -40,7 +44,7 @@ Target "Test" (fun _ ->
       |> NUnit (fun p -> 
         { p with
             DisableShadowCopy = true;
-            OutputFile = "./TestResults.xml" 
+            OutputFile = "./Artifacts/test-results.xml" 
         })
 )
 

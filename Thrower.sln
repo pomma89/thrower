@@ -12,7 +12,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		.gitattributes = .gitattributes
 		.gitignore = .gitignore
 		appveyor.yml = appveyor.yml
-		build.bat = build.bat
 		build.fsx = build.fsx
 		CHANGELOG.md = CHANGELOG.md
 		LICENSE.md = LICENSE.md
@@ -60,12 +59,15 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Thrower.Benchmarks", "Throw
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Thrower.NETSTD11", "Platform Specific\Thrower.NETSTD10\Thrower.NETSTD11.csproj", "{1986F56F-008E-49B5-B579-FAD50CDEDF57}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Thrower.UnitTests.NET46", "Platform Specific\Thrower.UnitTests.NET46\Thrower.UnitTests.NET46.csproj", "{77861B69-4372-4B0F-89DB-F97B1E2464AE}"
+EndProject
 Global
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution
 		Thrower\Thrower.projitems*{28b1254d-b6bb-4c2f-9094-6f0e1a0902ec}*SharedItemsImports = 4
 		Thrower\Thrower.projitems*{29830b44-1ffb-45a7-b1e6-21c392f406f7}*SharedItemsImports = 13
 		Thrower\Thrower.projitems*{595363fb-70cc-4042-8cf0-68b0af5ffe1d}*SharedItemsImports = 4
 		Thrower.UnitTests\Thrower.UnitTests.projitems*{72704abb-2170-441d-b1a1-98e327923f8c}*SharedItemsImports = 4
+		Thrower.UnitTests\Thrower.UnitTests.projitems*{77861b69-4372-4b0f-89db-f97b1e2464ae}*SharedItemsImports = 4
 		Thrower\Thrower.projitems*{894ecf14-90a8-4103-863e-13e13c4a5889}*SharedItemsImports = 4
 		Thrower\Thrower.projitems*{9f7a183b-9a44-4418-9425-a63d50850255}*SharedItemsImports = 4
 		Thrower\Thrower.projitems*{a7f28ab3-4b28-4856-9aa8-61bc71e0c466}*SharedItemsImports = 4
@@ -132,6 +134,12 @@ Global
 		{1986F56F-008E-49B5-B579-FAD50CDEDF57}.Publish|Any CPU.Build.0 = Release|Any CPU
 		{1986F56F-008E-49B5-B579-FAD50CDEDF57}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1986F56F-008E-49B5-B579-FAD50CDEDF57}.Release|Any CPU.Build.0 = Release|Any CPU
+		{77861B69-4372-4B0F-89DB-F97B1E2464AE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{77861B69-4372-4B0F-89DB-F97B1E2464AE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{77861B69-4372-4B0F-89DB-F97B1E2464AE}.Publish|Any CPU.ActiveCfg = Release|Any CPU
+		{77861B69-4372-4B0F-89DB-F97B1E2464AE}.Publish|Any CPU.Build.0 = Release|Any CPU
+		{77861B69-4372-4B0F-89DB-F97B1E2464AE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{77861B69-4372-4B0F-89DB-F97B1E2464AE}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -144,5 +152,6 @@ Global
 		{894ECF14-90A8-4103-863E-13E13C4A5889} = {902A5981-10FF-4C05-9055-C07A72AF2A28}
 		{72704ABB-2170-441D-B1A1-98E327923F8C} = {902A5981-10FF-4C05-9055-C07A72AF2A28}
 		{1986F56F-008E-49B5-B579-FAD50CDEDF57} = {902A5981-10FF-4C05-9055-C07A72AF2A28}
+		{77861B69-4372-4B0F-89DB-F97B1E2464AE} = {902A5981-10FF-4C05-9055-C07A72AF2A28}
 	EndGlobalSection
 EndGlobal
