@@ -1,4 +1,4 @@
-﻿// File name: RaiseInvalidOperationExceptionTests.cs
+﻿// File name: InvalidOperationExceptionTests.cs
 // 
 // Author(s): Alessio Parma <alessio.parma@gmail.com>
 // 
@@ -24,56 +24,56 @@
 using NUnit.Framework;
 using System;
 
-namespace PommaLabs.Thrower.UnitTests
+namespace PommaLabs.Thrower.UnitTests.ExceptionHandlers
 {
-    internal sealed class RaiseInvalidOperationExceptionTests : AbstractTests
+    internal sealed class InvalidOperationExceptionTests : AbstractTests
     {
         [Test, ExpectedException(typeof(InvalidOperationException))]
         public void If_TrueShouldThrow()
         {
-            RaiseInvalidOperationException.If(true);
+            Raise.InvalidOperationException.If(true);
         }
 
         [Test, ExpectedException(typeof(InvalidOperationException), ExpectedMessage = TestMessage)]
         public void If_TrueShouldThrow_WithMessage()
         {
-            RaiseInvalidOperationException.If(true, TestMessage);
+            Raise.InvalidOperationException.If(true, TestMessage);
         }
 
         [Test]
         public void If_FalseShouldNotThrow()
         {
-            RaiseInvalidOperationException.If(false);
+            Raise.InvalidOperationException.If(false);
         }
 
         [Test]
         public void If_FalseShouldNotThrow_WithMessage()
         {
-            RaiseInvalidOperationException.If(false, TestMessage);
+            Raise.InvalidOperationException.If(false, TestMessage);
         }
 
         [Test, ExpectedException(typeof(InvalidOperationException))]
         public void IfNot_FalseShouldThrow()
         {
-            RaiseInvalidOperationException.IfNot(false);
+            Raise.InvalidOperationException.IfNot(false);
         }
 
         [Test, ExpectedException(typeof(InvalidOperationException), ExpectedMessage = TestMessage)]
         public void IfNot_FalseShouldThrow_WithMessage()
         {
-            RaiseInvalidOperationException.IfNot(false, TestMessage);
+            Raise.InvalidOperationException.IfNot(false, TestMessage);
         }
 
         [Test]
         public void IfNot_TrueShouldNotThrow()
         {
-            RaiseInvalidOperationException.IfNot(true);
+            Raise.InvalidOperationException.IfNot(true);
         }
 
         [Test]
         public void IfNot_TrueShouldNotThrow_WithMessage()
         {
-            RaiseInvalidOperationException.IfNot(true, TestMessage);
+            Raise.InvalidOperationException.IfNot(true, TestMessage);
         }
     }
 }

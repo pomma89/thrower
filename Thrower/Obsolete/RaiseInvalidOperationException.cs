@@ -28,6 +28,7 @@ namespace PommaLabs.Thrower
     /// <summary>
     ///   Utility methods which can be used to handle bad object states.
     /// </summary>
+    [Obsolete("Please use Raise.InvalidOperationException.If* overloads, this class has been deprecated")]
     public sealed class RaiseInvalidOperationException : RaiseBase
     {
         /// <summary>

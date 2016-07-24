@@ -77,7 +77,7 @@ Target "PerfRelease" (fun _ ->
     let ok = directExec (fun info ->
       info.FileName <- perfExe
       info.WorkingDirectory <- perfDir)
-    if ok then CopyDir perfResSrc perfResDst (fun s -> true)
+    if ok then CopyDir perfResDst perfResSrc (fun s -> true)
 )
 
 Target "Default" (fun _ ->

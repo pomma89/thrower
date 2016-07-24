@@ -1,4 +1,4 @@
-﻿// File name: Raise.cs
+﻿// File name: InvalidOperationException.cs
 //
 // Author(s): Alessio Parma <alessio.parma@gmail.com>
 //
@@ -21,28 +21,20 @@
 // DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT
 // OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
-using PommaLabs.Thrower.ExceptionHandlers;
+using System;
 
-namespace PommaLabs.Thrower
+namespace PommaLabs.Thrower.ExceptionHandlers
 {
     /// <summary>
-    ///   New exception handling mechanism, which is more fluent than the old ones.
+    ///   Handler for <see cref="InvalidOperationException"/>.
     /// </summary>
-    public static class Raise
+    public sealed class InvalidOperationExceptionHandler : GenericExceptionHandler<InvalidOperationException>
     {
         /// <summary>
-        ///   Handler for <see cref="System.ArgumentNullException"/>
+        ///   Creates an exception with given message.
         /// </summary>
-        public static ArgumentNullExceptionHandler ArgumentNullException { get; } = new ArgumentNullExceptionHandler();
-
-        /// <summary>
-        ///   Handler for <see cref="System.InvalidOperationException"/>
-        /// </summary>
-        public static InvalidOperationExceptionHandler InvalidOperationException { get; } = new InvalidOperationExceptionHandler();
-
-        /// <summary>
-        ///   Handler for <see cref="System.NotSupportedException"/>
-        /// </summary>
-        public static NotSupportedExceptionHandler NotSupportedException { get; } = new NotSupportedExceptionHandler();
+        /// <param name="message">The message used by the exception.</param>
+        /// <returns>An exception with given message.</returns>
+        protected override InvalidOperationException NewWithMessage(string message) => new InvalidOperationException(message);
     }
 }
