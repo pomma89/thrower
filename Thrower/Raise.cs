@@ -1,25 +1,25 @@
 ﻿// File name: Raise.cs
-// 
+//
 // Author(s): Alessio Parma <alessio.parma@gmail.com>
-// 
+//
 // The MIT License (MIT)
-// 
+//
 // Copyright (c) 2013-2016 Alessio Parma <alessio.parma@gmail.com>
-// 
+//
 // Permission is hereby granted, free of charge, to any person obtaining a copy of this software and
 // associated documentation files (the "Software"), to deal in the Software without restriction,
 // including without limitation the rights to use, copy, modify, merge, publish, distribute,
 // sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is
 // furnished to do so, subject to the following conditions:
-// 
+//
 // The above copyright notice and this permission notice shall be included in all copies or
 // substantial portions of the Software.
-// 
+//
 // THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT
 // NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
 // NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM,
-// DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-// OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+// DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT
+// OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 using PommaLabs.Thrower.Reflection;
 using System;
@@ -77,8 +77,7 @@ namespace PommaLabs.Thrower
 
         /// <summary>
         ///   Caches an instance of the constructor which takes no arguments. If it does not exist,
-        ///   then this field will be null. There must be an instance for each type associated with
-        ///   <see cref="Raise{TEx}"/>.
+        ///   then this field will be null. There must be an instance for each type associated with <see cref="Raise{TEx}"/>.
         /// </summary>
         private static readonly ConstructorInfo NoArgsCtor = GetCtor(NoCtorTypes);
 
@@ -116,13 +115,13 @@ namespace PommaLabs.Thrower
         /// </summary>
         /// <param name="cond">The condition that determines whether an exception will be thrown.</param>
         /// <exception cref="ThrowerException">
-        ///   <typeparamref name="TEx"/> has not a public or internal constructor with no
-        ///   parameters, or <typeparamref name="TEx"/> is abstract.
+        ///   <typeparamref name="TEx"/> has not a public or internal constructor with no parameters,
+        ///   or <typeparamref name="TEx"/> is abstract.
         /// </exception>
         /// <remarks>
-        ///   If <paramref name="cond"/> is true, then an exception of type <typeparamref
-        ///   name="TEx"/> will be thrown. <br/> In order to do that, <typeparamref name="TEx"/>
-        ///   must have a constructor which doesn't take any arguments.
+        ///   If <paramref name="cond"/> is true, then an exception of type
+        ///   <typeparamref name="TEx"/> will be thrown. <br/> In order to do that,
+        ///   <typeparamref name="TEx"/> must have a constructor which doesn't take any arguments.
         /// </remarks>
 #if (NET45 || NET46)
         [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
@@ -138,25 +137,25 @@ namespace PommaLabs.Thrower
         }
 
         /// <summary>
-        ///   Throws an exception of type <typeparamref name="TEx"/> with given message <paramref
-        ///   name="message"/> if and only if specified condition is true.
+        ///   Throws an exception of type <typeparamref name="TEx"/> with given message
+        ///   <paramref name="message"/> if and only if specified condition is true.
         /// </summary>
         /// <param name="cond">The condition that determines whether an exception will be thrown.</param>
         /// <param name="message">The message the thrown exception will have.</param>
         /// <exception cref="ThrowerException">
         ///   <typeparamref name="TEx"/> has not a public or internal constructor which takes, as
-        ///   parameters, either a <see cref="string"/> or a <see cref="string"/> and an <see
-        ///   cref="System.Exception"/>. The same exception is thrown when <typeparamref
-        ///   name="TEx"/> is abstract.
+        ///   parameters, either a <see cref="string"/> or a <see cref="string"/> and an
+        ///   <see cref="System.Exception"/>. The same exception is thrown when
+        ///   <typeparamref name="TEx"/> is abstract.
         /// </exception>
         /// <remarks>
-        ///   If <paramref name="cond"/> is true, then an exception of type <typeparamref
-        ///   name="TEx"/>, with the message specified by <paramref name="message"/>, will be
-        ///   thrown. <br/> In order to do that, <typeparamref name="TEx"/> must have either a
-        ///   constructor which takes a <see cref="string"/> and an <see cref="System.Exception"/>
+        ///   If <paramref name="cond"/> is true, then an exception of type
+        ///   <typeparamref name="TEx"/>, with the message specified by <paramref name="message"/>,
+        ///   will be thrown. <br/> In order to do that, <typeparamref name="TEx"/> must have either
+        ///   a constructor which takes a <see cref="string"/> and an <see cref="System.Exception"/>
         ///   as arguments, or a constructor which takes a <see cref="string"/> as only parameter.
-        ///   <br/> If both constructors are available, then the one which takes a <see
-        ///   cref="string"/> and an <see cref="System.Exception"/> will be used to throw the exception.
+        ///   <br/> If both constructors are available, then the one which takes a
+        ///   <see cref="string"/> and an <see cref="System.Exception"/> will be used to throw the exception.
         /// </remarks>
 #if (NET45 || NET46)
         [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
@@ -177,13 +176,13 @@ namespace PommaLabs.Thrower
         /// </summary>
         /// <param name="cond">The condition that determines whether an exception will be thrown.</param>
         /// <exception cref="ThrowerException">
-        ///   <typeparamref name="TEx"/> has not a public or internal constructor with no
-        ///   parameters, or <typeparamref name="TEx"/> is abstract.
+        ///   <typeparamref name="TEx"/> has not a public or internal constructor with no parameters,
+        ///   or <typeparamref name="TEx"/> is abstract.
         /// </exception>
         /// <remarks>
-        ///   If <paramref name="cond"/> is false, then an exception of type <typeparamref
-        ///   name="TEx"/> will be thrown. <br/> In order to do that, <typeparamref name="TEx"/>
-        ///   must have a constructor which doesn't take any arguments.
+        ///   If <paramref name="cond"/> is false, then an exception of type
+        ///   <typeparamref name="TEx"/> will be thrown. <br/> In order to do that,
+        ///   <typeparamref name="TEx"/> must have a constructor which doesn't take any arguments.
         /// </remarks>
 #if (NET45 || NET46)
         [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
@@ -199,25 +198,25 @@ namespace PommaLabs.Thrower
         }
 
         /// <summary>
-        ///   Throws an exception of type <typeparamref name="TEx"/> with given message <paramref
-        ///   name="message"/> if and only if specified condition is false.
+        ///   Throws an exception of type <typeparamref name="TEx"/> with given message
+        ///   <paramref name="message"/> if and only if specified condition is false.
         /// </summary>
         /// <param name="cond">The condition that determines whether an exception will be thrown.</param>
         /// <param name="message">The message the thrown exception will have.</param>
         /// <exception cref="ThrowerException">
         ///   <typeparamref name="TEx"/> has not a public or internal constructor which takes, as
-        ///   parameters, either a <see cref="string"/> or a <see cref="string"/> and an <see
-        ///   cref="System.Exception"/>. The same exception is thrown when <typeparamref
-        ///   name="TEx"/> is abstract.
+        ///   parameters, either a <see cref="string"/> or a <see cref="string"/> and an
+        ///   <see cref="System.Exception"/>. The same exception is thrown when
+        ///   <typeparamref name="TEx"/> is abstract.
         /// </exception>
         /// <remarks>
-        ///   If <paramref name="cond"/> is false, then an exception of type <typeparamref
-        ///   name="TEx"/>, with the message specified by <paramref name="message"/>, will be
-        ///   thrown. <br/> In order to do that, <typeparamref name="TEx"/> must have either a
-        ///   constructor which takes a <see cref="string"/> and an <see cref="System.Exception"/>
+        ///   If <paramref name="cond"/> is false, then an exception of type
+        ///   <typeparamref name="TEx"/>, with the message specified by <paramref name="message"/>,
+        ///   will be thrown. <br/> In order to do that, <typeparamref name="TEx"/> must have either
+        ///   a constructor which takes a <see cref="string"/> and an <see cref="System.Exception"/>
         ///   as arguments, or a constructor which takes a <see cref="string"/> as only parameter.
-        ///   <br/> If both constructors are available, then the one which takes a <see
-        ///   cref="string"/> and an <see cref="System.Exception"/> will be used to throw the exception.
+        ///   <br/> If both constructors are available, then the one which takes a
+        ///   <see cref="string"/> and an <see cref="System.Exception"/> will be used to throw the exception.
         /// </remarks>
 #if (NET45 || NET46)
         [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
@@ -239,8 +238,8 @@ namespace PommaLabs.Thrower
         /// <param name="arg1">First argument to test for equality.</param>
         /// <param name="arg2">Second argument to test for equality.</param>
         /// <exception cref="ThrowerException">
-        ///   <typeparamref name="TEx"/> has not a public or internal constructor with no
-        ///   parameters, or <typeparamref name="TEx"/> is abstract.
+        ///   <typeparamref name="TEx"/> has not a public or internal constructor with no parameters,
+        ///   or <typeparamref name="TEx"/> is abstract.
         /// </exception>
         /// <remarks>
         ///   If arguments are equal, then an exception of type <typeparamref name="TEx"/> will be
@@ -261,26 +260,26 @@ namespace PommaLabs.Thrower
         }
 
         /// <summary>
-        ///   Throws an exception of type <typeparamref name="TEx"/> with given message <paramref
-        ///   name="message"/> if and only if specified arguments are equal.
+        ///   Throws an exception of type <typeparamref name="TEx"/> with given message
+        ///   <paramref name="message"/> if and only if specified arguments are equal.
         /// </summary>
         /// <param name="arg1">First argument to test for equality.</param>
         /// <param name="arg2">Second argument to test for equality.</param>
         /// <param name="message">The message the thrown exception will have.</param>
         /// <exception cref="ThrowerException">
         ///   <typeparamref name="TEx"/> has not a public or internal constructor which takes, as
-        ///   parameters, either a <see cref="string"/> or a <see cref="string"/> and an <see
-        ///   cref="System.Exception"/>. The same exception is thrown when <typeparamref
-        ///   name="TEx"/> is abstract.
+        ///   parameters, either a <see cref="string"/> or a <see cref="string"/> and an
+        ///   <see cref="System.Exception"/>. The same exception is thrown when
+        ///   <typeparamref name="TEx"/> is abstract.
         /// </exception>
         /// <remarks>
         ///   If arguments are equal, then an exception of type <typeparamref name="TEx"/>, with the
         ///   message specified by <paramref name="message"/>, will be thrown. <br/> In order to do
-        ///   that, <typeparamref name="TEx"/> must have either a constructor which takes a <see
-        ///   cref="string"/> and an <see cref="System.Exception"/> as arguments, or a constructor
-        ///   which takes a <see cref="string"/> as only parameter. <br/> If both constructors are
-        ///   available, then the one which takes a <see cref="string"/> and an <see
-        ///   cref="System.Exception"/> will be used to throw the exception.
+        ///   that, <typeparamref name="TEx"/> must have either a constructor which takes a
+        ///   <see cref="string"/> and an <see cref="System.Exception"/> as arguments, or a
+        ///   constructor which takes a <see cref="string"/> as only parameter. <br/> If both
+        ///   constructors are available, then the one which takes a <see cref="string"/> and an
+        ///   <see cref="System.Exception"/> will be used to throw the exception.
         /// </remarks>
 #if (NET45 || NET46)
         [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
@@ -302,8 +301,8 @@ namespace PommaLabs.Thrower
         /// <param name="arg1">First argument to test for equality.</param>
         /// <param name="arg2">Second argument to test for equality.</param>
         /// <exception cref="ThrowerException">
-        ///   <typeparamref name="TEx"/> has not a public or internal constructor with no
-        ///   parameters, or <typeparamref name="TEx"/> is abstract.
+        ///   <typeparamref name="TEx"/> has not a public or internal constructor with no parameters,
+        ///   or <typeparamref name="TEx"/> is abstract.
         /// </exception>
         /// <remarks>
         ///   If arguments are not equal, then an exception of type <typeparamref name="TEx"/> will
@@ -324,26 +323,26 @@ namespace PommaLabs.Thrower
         }
 
         /// <summary>
-        ///   Throws an exception of type <typeparamref name="TEx"/> with given message <paramref
-        ///   name="message"/> if and only if specified arguments are not equal.
+        ///   Throws an exception of type <typeparamref name="TEx"/> with given message
+        ///   <paramref name="message"/> if and only if specified arguments are not equal.
         /// </summary>
         /// <param name="arg1">First argument to test for equality.</param>
         /// <param name="arg2">Second argument to test for equality.</param>
         /// <param name="message">The message the thrown exception will have.</param>
         /// <exception cref="ThrowerException">
         ///   <typeparamref name="TEx"/> has not a public or internal constructor which takes, as
-        ///   parameters, either a <see cref="string"/> or a <see cref="string"/> and an <see
-        ///   cref="System.Exception"/>. The same exception is thrown when <typeparamref
-        ///   name="TEx"/> is abstract.
+        ///   parameters, either a <see cref="string"/> or a <see cref="string"/> and an
+        ///   <see cref="System.Exception"/>. The same exception is thrown when
+        ///   <typeparamref name="TEx"/> is abstract.
         /// </exception>
         /// <remarks>
         ///   If arguments are not equal, then an exception of type <typeparamref name="TEx"/>, with
         ///   the message specified by <paramref name="message"/>, will be thrown. <br/> In order to
-        ///   do that, <typeparamref name="TEx"/> must have either a constructor which takes a <see
-        ///   cref="string"/> and an <see cref="System.Exception"/> as arguments, or a constructor
-        ///   which takes a <see cref="string"/> as only parameter. <br/> If both constructors are
-        ///   available, then the one which takes a <see cref="string"/> and an <see
-        ///   cref="System.Exception"/> will be used to throw the exception.
+        ///   do that, <typeparamref name="TEx"/> must have either a constructor which takes a
+        ///   <see cref="string"/> and an <see cref="System.Exception"/> as arguments, or a
+        ///   constructor which takes a <see cref="string"/> as only parameter. <br/> If both
+        ///   constructors are available, then the one which takes a <see cref="string"/> and an
+        ///   <see cref="System.Exception"/> will be used to throw the exception.
         /// </remarks>
 #if (NET45 || NET46)
         [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
@@ -365,13 +364,13 @@ namespace PommaLabs.Thrower
         /// <param name="arg1">First argument to test for reference equality.</param>
         /// <param name="arg2">Second argument to test for reference equality.</param>
         /// <exception cref="ThrowerException">
-        ///   <typeparamref name="TEx"/> has not a public or internal constructor with no
-        ///   parameters, or <typeparamref name="TEx"/> is abstract.
+        ///   <typeparamref name="TEx"/> has not a public or internal constructor with no parameters,
+        ///   or <typeparamref name="TEx"/> is abstract.
         /// </exception>
         /// <remarks>
-        ///   If arguments point to the same object, then an exception of type <typeparamref
-        ///   name="TEx"/> will be thrown. <br/> In order to do that, <typeparamref name="TEx"/>
-        ///   must have a constructor which doesn't take any arguments.
+        ///   If arguments point to the same object, then an exception of type
+        ///   <typeparamref name="TEx"/> will be thrown. <br/> In order to do that,
+        ///   <typeparamref name="TEx"/> must have a constructor which doesn't take any arguments.
         /// </remarks>
 #if (NET45 || NET46)
         [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
@@ -387,26 +386,26 @@ namespace PommaLabs.Thrower
         }
 
         /// <summary>
-        ///   Throws an exception of type <typeparamref name="TEx"/> with given message <paramref
-        ///   name="message"/> if and only if specified arguments point to the same object.
+        ///   Throws an exception of type <typeparamref name="TEx"/> with given message
+        ///   <paramref name="message"/> if and only if specified arguments point to the same object.
         /// </summary>
         /// <param name="arg1">First argument to test for reference equality.</param>
         /// <param name="arg2">Second argument to test for reference equality.</param>
         /// <param name="message">The message the thrown exception will have.</param>
         /// <exception cref="ThrowerException">
         ///   <typeparamref name="TEx"/> has not a public or internal constructor which takes, as
-        ///   parameters, either a <see cref="string"/> or a <see cref="string"/> and an <see
-        ///   cref="System.Exception"/>. The same exception is thrown when <typeparamref
-        ///   name="TEx"/> is abstract.
+        ///   parameters, either a <see cref="string"/> or a <see cref="string"/> and an
+        ///   <see cref="System.Exception"/>. The same exception is thrown when
+        ///   <typeparamref name="TEx"/> is abstract.
         /// </exception>
         /// <remarks>
-        ///   If arguments point to the same object, then an exception of type <typeparamref
-        ///   name="TEx"/>, with the message specified by <paramref name="message"/>, will be
-        ///   thrown. <br/> In order to do that, <typeparamref name="TEx"/> must have either a
-        ///   constructor which takes a <see cref="string"/> and an <see cref="System.Exception"/>
+        ///   If arguments point to the same object, then an exception of type
+        ///   <typeparamref name="TEx"/>, with the message specified by <paramref name="message"/>,
+        ///   will be thrown. <br/> In order to do that, <typeparamref name="TEx"/> must have either
+        ///   a constructor which takes a <see cref="string"/> and an <see cref="System.Exception"/>
         ///   as arguments, or a constructor which takes a <see cref="string"/> as only parameter.
-        ///   <br/> If both constructors are available, then the one which takes a <see
-        ///   cref="string"/> and an <see cref="System.Exception"/> will be used to throw the exception.
+        ///   <br/> If both constructors are available, then the one which takes a
+        ///   <see cref="string"/> and an <see cref="System.Exception"/> will be used to throw the exception.
         /// </remarks>
 #if (NET45 || NET46)
         [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
@@ -428,13 +427,13 @@ namespace PommaLabs.Thrower
         /// <param name="arg1">First argument to test for reference equality.</param>
         /// <param name="arg2">Second argument to test for reference equality.</param>
         /// <exception cref="ThrowerException">
-        ///   <typeparamref name="TEx"/> has not a public or internal constructor with no
-        ///   parameters, or <typeparamref name="TEx"/> is abstract.
+        ///   <typeparamref name="TEx"/> has not a public or internal constructor with no parameters,
+        ///   or <typeparamref name="TEx"/> is abstract.
         /// </exception>
         /// <remarks>
-        ///   If arguments do not point to the same object, then an exception of type <typeparamref
-        ///   name="TEx"/> will be thrown. <br/> In order to do that, <typeparamref name="TEx"/>
-        ///   must have a constructor which doesn't take any arguments.
+        ///   If arguments do not point to the same object, then an exception of type
+        ///   <typeparamref name="TEx"/> will be thrown. <br/> In order to do that,
+        ///   <typeparamref name="TEx"/> must have a constructor which doesn't take any arguments.
         /// </remarks>
 #if (NET45 || NET46)
         [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
@@ -450,26 +449,26 @@ namespace PommaLabs.Thrower
         }
 
         /// <summary>
-        ///   Throws an exception of type <typeparamref name="TEx"/> with given message <paramref
-        ///   name="message"/> if and only if specified arguments do not point to the same object.
+        ///   Throws an exception of type <typeparamref name="TEx"/> with given message
+        ///   <paramref name="message"/> if and only if specified arguments do not point to the same object.
         /// </summary>
         /// <param name="arg1">First argument to test for reference equality.</param>
         /// <param name="arg2">Second argument to test for reference equality.</param>
         /// <param name="message">The message the thrown exception will have.</param>
         /// <exception cref="ThrowerException">
         ///   <typeparamref name="TEx"/> has not a public or internal constructor which takes, as
-        ///   parameters, either a <see cref="string"/> or a <see cref="string"/> and an <see
-        ///   cref="System.Exception"/>. The same exception is thrown when <typeparamref
-        ///   name="TEx"/> is abstract.
+        ///   parameters, either a <see cref="string"/> or a <see cref="string"/> and an
+        ///   <see cref="System.Exception"/>. The same exception is thrown when
+        ///   <typeparamref name="TEx"/> is abstract.
         /// </exception>
         /// <remarks>
-        ///   If arguments do not point to the same object, then an exception of type <typeparamref
-        ///   name="TEx"/>, with the message specified by <paramref name="message"/>, will be
-        ///   thrown. <br/> In order to do that, <typeparamref name="TEx"/> must have either a
-        ///   constructor which takes a <see cref="string"/> and an <see cref="System.Exception"/>
+        ///   If arguments do not point to the same object, then an exception of type
+        ///   <typeparamref name="TEx"/>, with the message specified by <paramref name="message"/>,
+        ///   will be thrown. <br/> In order to do that, <typeparamref name="TEx"/> must have either
+        ///   a constructor which takes a <see cref="string"/> and an <see cref="System.Exception"/>
         ///   as arguments, or a constructor which takes a <see cref="string"/> as only parameter.
-        ///   <br/> If both constructors are available, then the one which takes a <see
-        ///   cref="string"/> and an <see cref="System.Exception"/> will be used to throw the exception.
+        ///   <br/> If both constructors are available, then the one which takes a
+        ///   <see cref="string"/> and an <see cref="System.Exception"/> will be used to throw the exception.
         /// </remarks>
 #if (NET45 || NET46)
         [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
@@ -491,8 +490,8 @@ namespace PommaLabs.Thrower
         /// <param name="instance">The object to test.</param>
         /// <param name="type">The type whose instance must be assigned to given object.</param>
         /// <exception cref="ThrowerException">
-        ///   <typeparamref name="TEx"/> has not a public or internal constructor with no
-        ///   parameters, or <typeparamref name="TEx"/> is abstract.
+        ///   <typeparamref name="TEx"/> has not a public or internal constructor with no parameters,
+        ///   or <typeparamref name="TEx"/> is abstract.
         /// </exception>
         /// <remarks>
         ///   If an instance of given type can be assigned to specified object, then an exception of
@@ -513,27 +512,28 @@ namespace PommaLabs.Thrower
         }
 
         /// <summary>
-        ///   Throws an exception of type <typeparamref name="TEx"/> with given message <paramref
-        ///   name="message"/> if and only if an instance of given type can be assigned to specified object.
+        ///   Throws an exception of type <typeparamref name="TEx"/> with given message
+        ///   <paramref name="message"/> if and only if an instance of given type can be assigned to
+        ///   specified object.
         /// </summary>
         /// <param name="instance">The object to test.</param>
         /// <param name="type">The type whose instance must be assigned to given object.</param>
         /// <param name="message">The message the thrown exception will have.</param>
         /// <exception cref="ThrowerException">
         ///   <typeparamref name="TEx"/> has not a public or internal constructor which takes, as
-        ///   parameters, either a <see cref="string"/> or a <see cref="string"/> and an <see
-        ///   cref="System.Exception"/>. The same exception is thrown when <typeparamref
-        ///   name="TEx"/> is abstract.
+        ///   parameters, either a <see cref="string"/> or a <see cref="string"/> and an
+        ///   <see cref="System.Exception"/>. The same exception is thrown when
+        ///   <typeparamref name="TEx"/> is abstract.
         /// </exception>
         /// <remarks>
         ///   If an instance of given type can be assigned to specified object, then an exception of
-        ///   type <typeparamref name="TEx"/>, with the message specified by <paramref
-        ///   name="message"/>, will be thrown. <br/> In order to do that, <typeparamref
-        ///   name="TEx"/> must have either a constructor which takes a <see cref="string"/> and an
-        ///   <see cref="System.Exception"/> as arguments, or a constructor which takes a <see
-        ///   cref="string"/> as only parameter. <br/> If both constructors are available, then the
-        ///   one which takes a <see cref="string"/> and an <see cref="System.Exception"/> will be
-        ///   used to throw the exception.
+        ///   type <typeparamref name="TEx"/>, with the message specified by
+        ///   <paramref name="message"/>, will be thrown. <br/> In order to do that,
+        ///   <typeparamref name="TEx"/> must have either a constructor which takes a
+        ///   <see cref="string"/> and an <see cref="System.Exception"/> as arguments, or a
+        ///   constructor which takes a <see cref="string"/> as only parameter. <br/> If both
+        ///   constructors are available, then the one which takes a <see cref="string"/> and an
+        ///   <see cref="System.Exception"/> will be used to throw the exception.
         /// </remarks>
 #if (NET45 || NET46)
         [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
@@ -555,8 +555,8 @@ namespace PommaLabs.Thrower
         /// <typeparam name="TType">The type whose instance must be assigned to given object.</typeparam>
         /// <param name="instance">The object to test.</param>
         /// <exception cref="ThrowerException">
-        ///   <typeparamref name="TEx"/> has not a public or internal constructor with no
-        ///   parameters, or <typeparamref name="TEx"/> is abstract.
+        ///   <typeparamref name="TEx"/> has not a public or internal constructor with no parameters,
+        ///   or <typeparamref name="TEx"/> is abstract.
         /// </exception>
         /// <remarks>
         ///   If an instance of given type can be assigned to specified object, then an exception of
@@ -578,27 +578,28 @@ namespace PommaLabs.Thrower
         }
 
         /// <summary>
-        ///   Throws an exception of type <typeparamref name="TEx"/> with given message <paramref
-        ///   name="message"/> if and only if an instance of given type can be assigned to specified object.
+        ///   Throws an exception of type <typeparamref name="TEx"/> with given message
+        ///   <paramref name="message"/> if and only if an instance of given type can be assigned to
+        ///   specified object.
         /// </summary>
         /// <typeparam name="TType">The type whose instance must be assigned to given object.</typeparam>
         /// <param name="instance">The object to test.</param>
         /// <param name="message">The message the thrown exception will have.</param>
         /// <exception cref="ThrowerException">
         ///   <typeparamref name="TEx"/> has not a public or internal constructor which takes, as
-        ///   parameters, either a <see cref="string"/> or a <see cref="string"/> and an <see
-        ///   cref="System.Exception"/>. The same exception is thrown when <typeparamref
-        ///   name="TEx"/> is abstract.
+        ///   parameters, either a <see cref="string"/> or a <see cref="string"/> and an
+        ///   <see cref="System.Exception"/>. The same exception is thrown when
+        ///   <typeparamref name="TEx"/> is abstract.
         /// </exception>
         /// <remarks>
         ///   If an instance of given type can be assigned to specified object, then an exception of
-        ///   type <typeparamref name="TEx"/>, with the message specified by <paramref
-        ///   name="message"/>, will be thrown. <br/> In order to do that, <typeparamref
-        ///   name="TEx"/> must have either a constructor which takes a <see cref="string"/> and an
-        ///   <see cref="System.Exception"/> as arguments, or a constructor which takes a <see
-        ///   cref="string"/> as only parameter. <br/> If both constructors are available, then the
-        ///   one which takes a <see cref="string"/> and an <see cref="System.Exception"/> will be
-        ///   used to throw the exception.
+        ///   type <typeparamref name="TEx"/>, with the message specified by
+        ///   <paramref name="message"/>, will be thrown. <br/> In order to do that,
+        ///   <typeparamref name="TEx"/> must have either a constructor which takes a
+        ///   <see cref="string"/> and an <see cref="System.Exception"/> as arguments, or a
+        ///   constructor which takes a <see cref="string"/> as only parameter. <br/> If both
+        ///   constructors are available, then the one which takes a <see cref="string"/> and an
+        ///   <see cref="System.Exception"/> will be used to throw the exception.
         /// </remarks>
 #if (NET45 || NET46)
         [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
@@ -621,8 +622,8 @@ namespace PommaLabs.Thrower
         /// <param name="instance">The object to test.</param>
         /// <param name="type">The type whose instance must not be assigned to given object.</param>
         /// <exception cref="ThrowerException">
-        ///   <typeparamref name="TEx"/> has not a public or internal constructor with no
-        ///   parameters, or <typeparamref name="TEx"/> is abstract.
+        ///   <typeparamref name="TEx"/> has not a public or internal constructor with no parameters,
+        ///   or <typeparamref name="TEx"/> is abstract.
         /// </exception>
         /// <remarks>
         ///   If an instance of given type cannot be assigned to specified object, then an exception
@@ -643,28 +644,28 @@ namespace PommaLabs.Thrower
         }
 
         /// <summary>
-        ///   Throws an exception of type <typeparamref name="TEx"/> with given message <paramref
-        ///   name="message"/> if and only if an instance of given type cannot be assigned to
-        ///   specified object.
+        ///   Throws an exception of type <typeparamref name="TEx"/> with given message
+        ///   <paramref name="message"/> if and only if an instance of given type cannot be assigned
+        ///   to specified object.
         /// </summary>
         /// <param name="instance">The object to test.</param>
         /// <param name="type">The type whose instance must not be assigned to given object.</param>
         /// <param name="message">The message the thrown exception will have.</param>
         /// <exception cref="ThrowerException">
         ///   <typeparamref name="TEx"/> has not a public or internal constructor which takes, as
-        ///   parameters, either a <see cref="string"/> or a <see cref="string"/> and an <see
-        ///   cref="System.Exception"/>. The same exception is thrown when <typeparamref
-        ///   name="TEx"/> is abstract.
+        ///   parameters, either a <see cref="string"/> or a <see cref="string"/> and an
+        ///   <see cref="System.Exception"/>. The same exception is thrown when
+        ///   <typeparamref name="TEx"/> is abstract.
         /// </exception>
         /// <remarks>
         ///   If an instance of given type cannot be assigned to specified object, then an exception
-        ///   of type <typeparamref name="TEx"/>, with the message specified by <paramref
-        ///   name="message"/>, will be thrown. <br/> In order to do that, <typeparamref
-        ///   name="TEx"/> must have either a constructor which takes a <see cref="string"/> and an
-        ///   <see cref="System.Exception"/> as arguments, or a constructor which takes a <see
-        ///   cref="string"/> as only parameter. <br/> If both constructors are available, then the
-        ///   one which takes a <see cref="string"/> and an <see cref="System.Exception"/> will be
-        ///   used to throw the exception.
+        ///   of type <typeparamref name="TEx"/>, with the message specified by
+        ///   <paramref name="message"/>, will be thrown. <br/> In order to do that,
+        ///   <typeparamref name="TEx"/> must have either a constructor which takes a
+        ///   <see cref="string"/> and an <see cref="System.Exception"/> as arguments, or a
+        ///   constructor which takes a <see cref="string"/> as only parameter. <br/> If both
+        ///   constructors are available, then the one which takes a <see cref="string"/> and an
+        ///   <see cref="System.Exception"/> will be used to throw the exception.
         /// </remarks>
 #if (NET45 || NET46)
         [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
@@ -688,8 +689,8 @@ namespace PommaLabs.Thrower
         /// </typeparam>
         /// <param name="instance">The object to test.</param>
         /// <exception cref="ThrowerException">
-        ///   <typeparamref name="TEx"/> has not a public or internal constructor with no
-        ///   parameters, or <typeparamref name="TEx"/> is abstract.
+        ///   <typeparamref name="TEx"/> has not a public or internal constructor with no parameters,
+        ///   or <typeparamref name="TEx"/> is abstract.
         /// </exception>
         /// <remarks>
         ///   If an instance of given type cannot be assigned to specified object, then an exception
@@ -711,9 +712,9 @@ namespace PommaLabs.Thrower
         }
 
         /// <summary>
-        ///   Throws an exception of type <typeparamref name="TEx"/> with given message <paramref
-        ///   name="message"/> if and only if an instance of given type cannot be assigned to
-        ///   specified object.
+        ///   Throws an exception of type <typeparamref name="TEx"/> with given message
+        ///   <paramref name="message"/> if and only if an instance of given type cannot be assigned
+        ///   to specified object.
         /// </summary>
         /// <typeparam name="TType">
         ///   The type whose instance must not be assigned to given object.
@@ -722,19 +723,19 @@ namespace PommaLabs.Thrower
         /// <param name="message">The message the thrown exception will have.</param>
         /// <exception cref="ThrowerException">
         ///   <typeparamref name="TEx"/> has not a public or internal constructor which takes, as
-        ///   parameters, either a <see cref="string"/> or a <see cref="string"/> and an <see
-        ///   cref="System.Exception"/>. The same exception is thrown when <typeparamref
-        ///   name="TEx"/> is abstract.
+        ///   parameters, either a <see cref="string"/> or a <see cref="string"/> and an
+        ///   <see cref="System.Exception"/>. The same exception is thrown when
+        ///   <typeparamref name="TEx"/> is abstract.
         /// </exception>
         /// <remarks>
         ///   If an instance of given type cannot be assigned to specified object, then an exception
-        ///   of type <typeparamref name="TEx"/>, with the message specified by <paramref
-        ///   name="message"/>, will be thrown. <br/> In order to do that, <typeparamref
-        ///   name="TEx"/> must have either a constructor which takes a <see cref="string"/> and an
-        ///   <see cref="System.Exception"/> as arguments, or a constructor which takes a <see
-        ///   cref="string"/> as only parameter. <br/> If both constructors are available, then the
-        ///   one which takes a <see cref="string"/> and an <see cref="System.Exception"/> will be
-        ///   used to throw the exception.
+        ///   of type <typeparamref name="TEx"/>, with the message specified by
+        ///   <paramref name="message"/>, will be thrown. <br/> In order to do that,
+        ///   <typeparamref name="TEx"/> must have either a constructor which takes a
+        ///   <see cref="string"/> and an <see cref="System.Exception"/> as arguments, or a
+        ///   constructor which takes a <see cref="string"/> as only parameter. <br/> If both
+        ///   constructors are available, then the one which takes a <see cref="string"/> and an
+        ///   <see cref="System.Exception"/> will be used to throw the exception.
         /// </remarks>
 #if (NET45 || NET46)
         [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
@@ -757,13 +758,13 @@ namespace PommaLabs.Thrower
         /// <param name="argument">The argument to check.</param>
         /// <param name="collection">The collection that must not contain given argument.</param>
         /// <exception cref="ThrowerException">
-        ///   <typeparamref name="TEx"/> has not a public or internal constructor with no
-        ///   parameters, or <typeparamref name="TEx"/> is abstract.
+        ///   <typeparamref name="TEx"/> has not a public or internal constructor with no parameters,
+        ///   or <typeparamref name="TEx"/> is abstract.
         /// </exception>
         /// <remarks>
-        ///   If <paramref name="argument"/> is contained, then an exception of type <typeparamref
-        ///   name="TEx"/> will be thrown. <br/> In order to do that, <typeparamref name="TEx"/>
-        ///   must have a constructor which doesn't take any arguments.
+        ///   If <paramref name="argument"/> is contained, then an exception of type
+        ///   <typeparamref name="TEx"/> will be thrown. <br/> In order to do that,
+        ///   <typeparamref name="TEx"/> must have a constructor which doesn't take any arguments.
         /// </remarks>
 #if (NET45 || NET46)
         [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
@@ -779,26 +780,26 @@ namespace PommaLabs.Thrower
         }
 
         /// <summary>
-        ///   Throws an exception of type <typeparamref name="TEx"/> with given message <paramref
-        ///   name="message"/> if and only if specified argument is contained in given collection.
+        ///   Throws an exception of type <typeparamref name="TEx"/> with given message
+        ///   <paramref name="message"/> if and only if specified argument is contained in given collection.
         /// </summary>
         /// <param name="argument">The argument to check.</param>
         /// <param name="collection">The collection that must not contain given argument.</param>
         /// <param name="message">The message the thrown exception will have.</param>
         /// <exception cref="ThrowerException">
         ///   <typeparamref name="TEx"/> has not a public or internal constructor which takes, as
-        ///   parameters, either a <see cref="string"/> or a <see cref="string"/> and an <see
-        ///   cref="System.Exception"/>. The same exception is thrown when <typeparamref
-        ///   name="TEx"/> is abstract.
+        ///   parameters, either a <see cref="string"/> or a <see cref="string"/> and an
+        ///   <see cref="System.Exception"/>. The same exception is thrown when
+        ///   <typeparamref name="TEx"/> is abstract.
         /// </exception>
         /// <remarks>
-        ///   If <paramref name="argument"/> is contained, then an exception of type <typeparamref
-        ///   name="TEx"/>, with the message specified by <paramref name="message"/>, will be
-        ///   thrown. <br/> In order to do that, <typeparamref name="TEx"/> must have either a
-        ///   constructor which takes a <see cref="string"/> and an <see cref="System.Exception"/>
+        ///   If <paramref name="argument"/> is contained, then an exception of type
+        ///   <typeparamref name="TEx"/>, with the message specified by <paramref name="message"/>,
+        ///   will be thrown. <br/> In order to do that, <typeparamref name="TEx"/> must have either
+        ///   a constructor which takes a <see cref="string"/> and an <see cref="System.Exception"/>
         ///   as arguments, or a constructor which takes a <see cref="string"/> as only parameter.
-        ///   <br/> If both constructors are available, then the one which takes a <see
-        ///   cref="string"/> and an <see cref="System.Exception"/> will be used to throw the exception.
+        ///   <br/> If both constructors are available, then the one which takes a
+        ///   <see cref="string"/> and an <see cref="System.Exception"/> will be used to throw the exception.
         /// </remarks>
 #if (NET45 || NET46)
         [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
@@ -820,13 +821,13 @@ namespace PommaLabs.Thrower
         /// <param name="argument">The argument to check.</param>
         /// <param name="collection">The collection that must contain given argument.</param>
         /// <exception cref="ThrowerException">
-        ///   <typeparamref name="TEx"/> has not a public or internal constructor with no
-        ///   parameters, or <typeparamref name="TEx"/> is abstract.
+        ///   <typeparamref name="TEx"/> has not a public or internal constructor with no parameters,
+        ///   or <typeparamref name="TEx"/> is abstract.
         /// </exception>
         /// <remarks>
         ///   If <paramref name="argument"/> is not contained, then an exception of type
-        ///   <typeparamref name="TEx"/> will be thrown. <br/> In order to do that, <typeparamref
-        ///   name="TEx"/> must have a constructor which doesn't take any arguments.
+        ///   <typeparamref name="TEx"/> will be thrown. <br/> In order to do that,
+        ///   <typeparamref name="TEx"/> must have a constructor which doesn't take any arguments.
         /// </remarks>
 #if (NET45 || NET46)
         [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
@@ -842,17 +843,17 @@ namespace PommaLabs.Thrower
         }
 
         /// <summary>
-        ///   Throws an exception of type <typeparamref name="TEx"/> with given message <paramref
-        ///   name="message"/> if and only if specified argument is not contained in given collection.
+        ///   Throws an exception of type <typeparamref name="TEx"/> with given message
+        ///   <paramref name="message"/> if and only if specified argument is not contained in given collection.
         /// </summary>
         /// <param name="argument">The argument to check.</param>
         /// <param name="collection">The collection that must contain given argument.</param>
         /// <param name="message">The message the thrown exception will have.</param>
         /// <exception cref="ThrowerException">
         ///   <typeparamref name="TEx"/> has not a public or internal constructor which takes, as
-        ///   parameters, either a <see cref="string"/> or a <see cref="string"/> and an <see
-        ///   cref="System.Exception"/>. The same exception is thrown when <typeparamref
-        ///   name="TEx"/> is abstract.
+        ///   parameters, either a <see cref="string"/> or a <see cref="string"/> and an
+        ///   <see cref="System.Exception"/>. The same exception is thrown when
+        ///   <typeparamref name="TEx"/> is abstract.
         /// </exception>
         /// <remarks>
         ///   If <paramref name="argument"/> is not contained, then an exception of type
@@ -860,8 +861,8 @@ namespace PommaLabs.Thrower
         ///   will be thrown. <br/> In order to do that, <typeparamref name="TEx"/> must have either
         ///   a constructor which takes a <see cref="string"/> and an <see cref="System.Exception"/>
         ///   as arguments, or a constructor which takes a <see cref="string"/> as only parameter.
-        ///   <br/> If both constructors are available, then the one which takes a <see
-        ///   cref="string"/> and an <see cref="System.Exception"/> will be used to throw the exception.
+        ///   <br/> If both constructors are available, then the one which takes a
+        ///   <see cref="string"/> and an <see cref="System.Exception"/> will be used to throw the exception.
         /// </remarks>
 #if (NET45 || NET46)
         [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
@@ -883,13 +884,13 @@ namespace PommaLabs.Thrower
         /// <param name="arg">The argument to check.</param>
         /// <param name="collection">The collection that must not contain given argument.</param>
         /// <exception cref="ThrowerException">
-        ///   <typeparamref name="TEx"/> has not a public or internal constructor with no
-        ///   parameters, or <typeparamref name="TEx"/> is abstract.
+        ///   <typeparamref name="TEx"/> has not a public or internal constructor with no parameters,
+        ///   or <typeparamref name="TEx"/> is abstract.
         /// </exception>
         /// <remarks>
-        ///   If <paramref name="arg"/> is contained, then an exception of type <typeparamref
-        ///   name="TEx"/> will be thrown. <br/> In order to do that, <typeparamref name="TEx"/>
-        ///   must have a constructor which doesn't take any arguments.
+        ///   If <paramref name="arg"/> is contained, then an exception of type
+        ///   <typeparamref name="TEx"/> will be thrown. <br/> In order to do that,
+        ///   <typeparamref name="TEx"/> must have a constructor which doesn't take any arguments.
         /// </remarks>
 #if (NET45 || NET46)
         [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
@@ -905,26 +906,26 @@ namespace PommaLabs.Thrower
         }
 
         /// <summary>
-        ///   Throws an exception of type <typeparamref name="TEx"/> with given message <paramref
-        ///   name="message"/> if and only if specified argument is contained in given collection.
+        ///   Throws an exception of type <typeparamref name="TEx"/> with given message
+        ///   <paramref name="message"/> if and only if specified argument is contained in given collection.
         /// </summary>
         /// <param name="arg">The argument to check.</param>
         /// <param name="collection">The collection that must not contain given argument.</param>
         /// <param name="message">The message the thrown exception will have.</param>
         /// <exception cref="ThrowerException">
         ///   <typeparamref name="TEx"/> has not a public or internal constructor which takes, as
-        ///   parameters, either a <see cref="string"/> or a <see cref="string"/> and an <see
-        ///   cref="System.Exception"/>. The same exception is thrown when <typeparamref
-        ///   name="TEx"/> is abstract.
+        ///   parameters, either a <see cref="string"/> or a <see cref="string"/> and an
+        ///   <see cref="System.Exception"/>. The same exception is thrown when
+        ///   <typeparamref name="TEx"/> is abstract.
         /// </exception>
         /// <remarks>
-        ///   If <paramref name="arg"/> is contained, then an exception of type <typeparamref
-        ///   name="TEx"/>, with the message specified by <paramref name="message"/>, will be
-        ///   thrown. <br/> In order to do that, <typeparamref name="TEx"/> must have either a
-        ///   constructor which takes a <see cref="string"/> and an <see cref="System.Exception"/>
+        ///   If <paramref name="arg"/> is contained, then an exception of type
+        ///   <typeparamref name="TEx"/>, with the message specified by <paramref name="message"/>,
+        ///   will be thrown. <br/> In order to do that, <typeparamref name="TEx"/> must have either
+        ///   a constructor which takes a <see cref="string"/> and an <see cref="System.Exception"/>
         ///   as arguments, or a constructor which takes a <see cref="string"/> as only parameter.
-        ///   <br/> If both constructors are available, then the one which takes a <see
-        ///   cref="string"/> and an <see cref="System.Exception"/> will be used to throw the exception.
+        ///   <br/> If both constructors are available, then the one which takes a
+        ///   <see cref="string"/> and an <see cref="System.Exception"/> will be used to throw the exception.
         /// </remarks>
 #if (NET45 || NET46)
         [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
@@ -946,13 +947,13 @@ namespace PommaLabs.Thrower
         /// <param name="arg">The argument to check.</param>
         /// <param name="collection">The collection that must contain given argument.</param>
         /// <exception cref="ThrowerException">
-        ///   <typeparamref name="TEx"/> has not a public or internal constructor with no
-        ///   parameters, or <typeparamref name="TEx"/> is abstract.
+        ///   <typeparamref name="TEx"/> has not a public or internal constructor with no parameters,
+        ///   or <typeparamref name="TEx"/> is abstract.
         /// </exception>
         /// <remarks>
-        ///   If <paramref name="arg"/> is not contained, then an exception of type <typeparamref
-        ///   name="TEx"/> will be thrown. <br/> In order to do that, <typeparamref name="TEx"/>
-        ///   must have a constructor which doesn't take any arguments.
+        ///   If <paramref name="arg"/> is not contained, then an exception of type
+        ///   <typeparamref name="TEx"/> will be thrown. <br/> In order to do that,
+        ///   <typeparamref name="TEx"/> must have a constructor which doesn't take any arguments.
         /// </remarks>
 #if (NET45 || NET46)
         [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
@@ -968,26 +969,26 @@ namespace PommaLabs.Thrower
         }
 
         /// <summary>
-        ///   Throws an exception of type <typeparamref name="TEx"/> with given message <paramref
-        ///   name="message"/> if and only if specified argument is not contained in given collection.
+        ///   Throws an exception of type <typeparamref name="TEx"/> with given message
+        ///   <paramref name="message"/> if and only if specified argument is not contained in given collection.
         /// </summary>
         /// <param name="arg">The argument to check.</param>
         /// <param name="collection">The collection that must contain given argument.</param>
         /// <param name="message">The message the thrown exception will have.</param>
         /// <exception cref="ThrowerException">
         ///   <typeparamref name="TEx"/> has not a public or internal constructor which takes, as
-        ///   parameters, either a <see cref="string"/> or a <see cref="string"/> and an <see
-        ///   cref="System.Exception"/>. The same exception is thrown when <typeparamref
-        ///   name="TEx"/> is abstract.
+        ///   parameters, either a <see cref="string"/> or a <see cref="string"/> and an
+        ///   <see cref="System.Exception"/>. The same exception is thrown when
+        ///   <typeparamref name="TEx"/> is abstract.
         /// </exception>
         /// <remarks>
-        ///   If <paramref name="arg"/> is not contained, then an exception of type <typeparamref
-        ///   name="TEx"/>, with the message specified by <paramref name="message"/>, will be
-        ///   thrown. <br/> In order to do that, <typeparamref name="TEx"/> must have either a
-        ///   constructor which takes a <see cref="string"/> and an <see cref="System.Exception"/>
+        ///   If <paramref name="arg"/> is not contained, then an exception of type
+        ///   <typeparamref name="TEx"/>, with the message specified by <paramref name="message"/>,
+        ///   will be thrown. <br/> In order to do that, <typeparamref name="TEx"/> must have either
+        ///   a constructor which takes a <see cref="string"/> and an <see cref="System.Exception"/>
         ///   as arguments, or a constructor which takes a <see cref="string"/> as only parameter.
-        ///   <br/> If both constructors are available, then the one which takes a <see
-        ///   cref="string"/> and an <see cref="System.Exception"/> will be used to throw the exception.
+        ///   <br/> If both constructors are available, then the one which takes a
+        ///   <see cref="string"/> and an <see cref="System.Exception"/> will be used to throw the exception.
         /// </remarks>
 #if (NET45 || NET46)
         [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
@@ -1009,13 +1010,13 @@ namespace PommaLabs.Thrower
         /// <param name="arg">The argument to check.</param>
         /// <param name="dictionary">The dictionary that must not contain given argument.</param>
         /// <exception cref="ThrowerException">
-        ///   <typeparamref name="TEx"/> has not a public or internal constructor with no
-        ///   parameters, or <typeparamref name="TEx"/> is abstract.
+        ///   <typeparamref name="TEx"/> has not a public or internal constructor with no parameters,
+        ///   or <typeparamref name="TEx"/> is abstract.
         /// </exception>
         /// <remarks>
-        ///   If <paramref name="arg"/> is contained, then an exception of type <typeparamref
-        ///   name="TEx"/> will be thrown. <br/> In order to do that, <typeparamref name="TEx"/>
-        ///   must have a constructor which doesn't take any arguments.
+        ///   If <paramref name="arg"/> is contained, then an exception of type
+        ///   <typeparamref name="TEx"/> will be thrown. <br/> In order to do that,
+        ///   <typeparamref name="TEx"/> must have a constructor which doesn't take any arguments.
         /// </remarks>
 #if (NET45 || NET46)
         [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
@@ -1031,26 +1032,27 @@ namespace PommaLabs.Thrower
         }
 
         /// <summary>
-        ///   Throws an exception of type <typeparamref name="TEx"/> with given message <paramref
-        ///   name="message"/> if and only if specified argument is contained in given dictionary keys.
+        ///   Throws an exception of type <typeparamref name="TEx"/> with given message
+        ///   <paramref name="message"/> if and only if specified argument is contained in given
+        ///   dictionary keys.
         /// </summary>
         /// <param name="arg">The argument to check.</param>
         /// <param name="dictionary">The dictionary that must not contain given argument.</param>
         /// <param name="message">The message the thrown exception will have.</param>
         /// <exception cref="ThrowerException">
         ///   <typeparamref name="TEx"/> has not a public or internal constructor which takes, as
-        ///   parameters, either a <see cref="string"/> or a <see cref="string"/> and an <see
-        ///   cref="System.Exception"/>. The same exception is thrown when <typeparamref
-        ///   name="TEx"/> is abstract.
+        ///   parameters, either a <see cref="string"/> or a <see cref="string"/> and an
+        ///   <see cref="System.Exception"/>. The same exception is thrown when
+        ///   <typeparamref name="TEx"/> is abstract.
         /// </exception>
         /// <remarks>
-        ///   If <paramref name="arg"/> is contained, then an exception of type <typeparamref
-        ///   name="TEx"/>, with the message specified by <paramref name="message"/>, will be
-        ///   thrown. <br/> In order to do that, <typeparamref name="TEx"/> must have either a
-        ///   constructor which takes a <see cref="string"/> and an <see cref="System.Exception"/>
+        ///   If <paramref name="arg"/> is contained, then an exception of type
+        ///   <typeparamref name="TEx"/>, with the message specified by <paramref name="message"/>,
+        ///   will be thrown. <br/> In order to do that, <typeparamref name="TEx"/> must have either
+        ///   a constructor which takes a <see cref="string"/> and an <see cref="System.Exception"/>
         ///   as arguments, or a constructor which takes a <see cref="string"/> as only parameter.
-        ///   <br/> If both constructors are available, then the one which takes a <see
-        ///   cref="string"/> and an <see cref="System.Exception"/> will be used to throw the exception.
+        ///   <br/> If both constructors are available, then the one which takes a
+        ///   <see cref="string"/> and an <see cref="System.Exception"/> will be used to throw the exception.
         /// </remarks>
 #if (NET45 || NET46)
         [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
@@ -1072,13 +1074,13 @@ namespace PommaLabs.Thrower
         /// <param name="arg">The argument to check.</param>
         /// <param name="dictionary">The dictionary that must contain given argument.</param>
         /// <exception cref="ThrowerException">
-        ///   <typeparamref name="TEx"/> has not a public or internal constructor with no
-        ///   parameters, or <typeparamref name="TEx"/> is abstract.
+        ///   <typeparamref name="TEx"/> has not a public or internal constructor with no parameters,
+        ///   or <typeparamref name="TEx"/> is abstract.
         /// </exception>
         /// <remarks>
-        ///   If <paramref name="arg"/> is not contained, then an exception of type <typeparamref
-        ///   name="TEx"/> will be thrown. <br/> In order to do that, <typeparamref name="TEx"/>
-        ///   must have a constructor which doesn't take any arguments.
+        ///   If <paramref name="arg"/> is not contained, then an exception of type
+        ///   <typeparamref name="TEx"/> will be thrown. <br/> In order to do that,
+        ///   <typeparamref name="TEx"/> must have a constructor which doesn't take any arguments.
         /// </remarks>
 #if (NET45 || NET46)
         [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
@@ -1094,8 +1096,8 @@ namespace PommaLabs.Thrower
         }
 
         /// <summary>
-        ///   Throws an exception of type <typeparamref name="TEx"/> with given message <paramref
-        ///   name="message"/> if and only if specified argument is not contained in given
+        ///   Throws an exception of type <typeparamref name="TEx"/> with given message
+        ///   <paramref name="message"/> if and only if specified argument is not contained in given
         ///   dictionary keys.
         /// </summary>
         /// <param name="arg">The argument to check.</param>
@@ -1103,18 +1105,18 @@ namespace PommaLabs.Thrower
         /// <param name="message">The message the thrown exception will have.</param>
         /// <exception cref="ThrowerException">
         ///   <typeparamref name="TEx"/> has not a public or internal constructor which takes, as
-        ///   parameters, either a <see cref="string"/> or a <see cref="string"/> and an <see
-        ///   cref="System.Exception"/>. The same exception is thrown when <typeparamref
-        ///   name="TEx"/> is abstract.
+        ///   parameters, either a <see cref="string"/> or a <see cref="string"/> and an
+        ///   <see cref="System.Exception"/>. The same exception is thrown when
+        ///   <typeparamref name="TEx"/> is abstract.
         /// </exception>
         /// <remarks>
-        ///   If <paramref name="arg"/> is not contained, then an exception of type <typeparamref
-        ///   name="TEx"/>, with the message specified by <paramref name="message"/>, will be
-        ///   thrown. <br/> In order to do that, <typeparamref name="TEx"/> must have either a
-        ///   constructor which takes a <see cref="string"/> and an <see cref="System.Exception"/>
+        ///   If <paramref name="arg"/> is not contained, then an exception of type
+        ///   <typeparamref name="TEx"/>, with the message specified by <paramref name="message"/>,
+        ///   will be thrown. <br/> In order to do that, <typeparamref name="TEx"/> must have either
+        ///   a constructor which takes a <see cref="string"/> and an <see cref="System.Exception"/>
         ///   as arguments, or a constructor which takes a <see cref="string"/> as only parameter.
-        ///   <br/> If both constructors are available, then the one which takes a <see
-        ///   cref="string"/> and an <see cref="System.Exception"/> will be used to throw the exception.
+        ///   <br/> If both constructors are available, then the one which takes a
+        ///   <see cref="string"/> and an <see cref="System.Exception"/> will be used to throw the exception.
         /// </remarks>
 #if (NET45 || NET46)
         [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
@@ -1137,13 +1139,13 @@ namespace PommaLabs.Thrower
         /// <param name="arg2">The value argument to check.</param>
         /// <param name="dictionary">The dictionary that must not contain given arguments.</param>
         /// <exception cref="ThrowerException">
-        ///   <typeparamref name="TEx"/> has not a public or internal constructor with no
-        ///   parameters, or <typeparamref name="TEx"/> is abstract.
+        ///   <typeparamref name="TEx"/> has not a public or internal constructor with no parameters,
+        ///   or <typeparamref name="TEx"/> is abstract.
         /// </exception>
         /// <remarks>
-        ///   If <paramref name="arg1"/> and <paramref name="arg2"/> are contained, then an
-        ///   exception of type <typeparamref name="TEx"/> will be thrown. <br/> In order to do
-        ///   that, <typeparamref name="TEx"/> must have a constructor which doesn't take any arguments.
+        ///   If <paramref name="arg1"/> and <paramref name="arg2"/> are contained, then an exception
+        ///   of type <typeparamref name="TEx"/> will be thrown. <br/> In order to do that,
+        ///   <typeparamref name="TEx"/> must have a constructor which doesn't take any arguments.
         /// </remarks>
 #if (NET45 || NET46)
         [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
@@ -1159,8 +1161,9 @@ namespace PommaLabs.Thrower
         }
 
         /// <summary>
-        ///   Throws an exception of type <typeparamref name="TEx"/> with given message <paramref
-        ///   name="message"/> if and only if specified arguments are contained in given dictionary pairs.
+        ///   Throws an exception of type <typeparamref name="TEx"/> with given message
+        ///   <paramref name="message"/> if and only if specified arguments are contained in given
+        ///   dictionary pairs.
         /// </summary>
         /// <param name="arg1">The key argument to check.</param>
         /// <param name="arg2">The value argument to check.</param>
@@ -1168,19 +1171,19 @@ namespace PommaLabs.Thrower
         /// <param name="message">The message the thrown exception will have.</param>
         /// <exception cref="ThrowerException">
         ///   <typeparamref name="TEx"/> has not a public or internal constructor which takes, as
-        ///   parameters, either a <see cref="string"/> or a <see cref="string"/> and an <see
-        ///   cref="System.Exception"/>. The same exception is thrown when <typeparamref
-        ///   name="TEx"/> is abstract.
+        ///   parameters, either a <see cref="string"/> or a <see cref="string"/> and an
+        ///   <see cref="System.Exception"/>. The same exception is thrown when
+        ///   <typeparamref name="TEx"/> is abstract.
         /// </exception>
         /// <remarks>
-        ///   If <paramref name="arg1"/> and <paramref name="arg2"/> are contained, then an
-        ///   exception of type <typeparamref name="TEx"/>, with the message specified by <paramref
-        ///   name="message"/>, will be thrown. <br/> In order to do that, <typeparamref
-        ///   name="TEx"/> must have either a constructor which takes a <see cref="string"/> and an
-        ///   <see cref="System.Exception"/> as arguments, or a constructor which takes a <see
-        ///   cref="string"/> as only parameter. <br/> If both constructors are available, then the
-        ///   one which takes a <see cref="string"/> and an <see cref="System.Exception"/> will be
-        ///   used to throw the exception.
+        ///   If <paramref name="arg1"/> and <paramref name="arg2"/> are contained, then an exception
+        ///   of type <typeparamref name="TEx"/>, with the message specified by
+        ///   <paramref name="message"/>, will be thrown. <br/> In order to do that,
+        ///   <typeparamref name="TEx"/> must have either a constructor which takes a
+        ///   <see cref="string"/> and an <see cref="System.Exception"/> as arguments, or a
+        ///   constructor which takes a <see cref="string"/> as only parameter. <br/> If both
+        ///   constructors are available, then the one which takes a <see cref="string"/> and an
+        ///   <see cref="System.Exception"/> will be used to throw the exception.
         /// </remarks>
 #if (NET45 || NET46)
         [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
@@ -1204,13 +1207,13 @@ namespace PommaLabs.Thrower
         /// <param name="arg2">The value argument to check.</param>
         /// <param name="dictionary">The dictionary that must contain given argument.</param>
         /// <exception cref="ThrowerException">
-        ///   <typeparamref name="TEx"/> has not a public or internal constructor with no
-        ///   parameters, or <typeparamref name="TEx"/> is abstract.
+        ///   <typeparamref name="TEx"/> has not a public or internal constructor with no parameters,
+        ///   or <typeparamref name="TEx"/> is abstract.
         /// </exception>
         /// <remarks>
         ///   If <paramref name="arg1"/> and <paramref name="arg2"/> are not contained, then an
-        ///   exception of type <typeparamref name="TEx"/> will be thrown. <br/> In order to do
-        ///   that, <typeparamref name="TEx"/> must have a constructor which doesn't take any arguments.
+        ///   exception of type <typeparamref name="TEx"/> will be thrown. <br/> In order to do that,
+        ///   <typeparamref name="TEx"/> must have a constructor which doesn't take any arguments.
         /// </remarks>
 #if (NET45 || NET46)
         [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
@@ -1226,9 +1229,9 @@ namespace PommaLabs.Thrower
         }
 
         /// <summary>
-        ///   Throws an exception of type <typeparamref name="TEx"/> with given message <paramref
-        ///   name="message"/> if and only if specified arguments are not contained in given
-        ///   dictionary pairs.
+        ///   Throws an exception of type <typeparamref name="TEx"/> with given message
+        ///   <paramref name="message"/> if and only if specified arguments are not contained in
+        ///   given dictionary pairs.
         /// </summary>
         /// <param name="arg1">The key argument to check.</param>
         /// <param name="arg2">The value argument to check.</param>
@@ -1236,19 +1239,19 @@ namespace PommaLabs.Thrower
         /// <param name="message">The message the thrown exception will have.</param>
         /// <exception cref="ThrowerException">
         ///   <typeparamref name="TEx"/> has not a public or internal constructor which takes, as
-        ///   parameters, either a <see cref="string"/> or a <see cref="string"/> and an <see
-        ///   cref="System.Exception"/>. The same exception is thrown when <typeparamref
-        ///   name="TEx"/> is abstract.
+        ///   parameters, either a <see cref="string"/> or a <see cref="string"/> and an
+        ///   <see cref="System.Exception"/>. The same exception is thrown when
+        ///   <typeparamref name="TEx"/> is abstract.
         /// </exception>
         /// <remarks>
         ///   If <paramref name="arg1"/> and <paramref name="arg2"/> are not contained, then an
-        ///   exception of type <typeparamref name="TEx"/>, with the message specified by <paramref
-        ///   name="message"/>, will be thrown. <br/> In order to do that, <typeparamref
-        ///   name="TEx"/> must have either a constructor which takes a <see cref="string"/> and an
-        ///   <see cref="System.Exception"/> as arguments, or a constructor which takes a <see
-        ///   cref="string"/> as only parameter. <br/> If both constructors are available, then the
-        ///   one which takes a <see cref="string"/> and an <see cref="System.Exception"/> will be
-        ///   used to throw the exception.
+        ///   exception of type <typeparamref name="TEx"/>, with the message specified by
+        ///   <paramref name="message"/>, will be thrown. <br/> In order to do that,
+        ///   <typeparamref name="TEx"/> must have either a constructor which takes a
+        ///   <see cref="string"/> and an <see cref="System.Exception"/> as arguments, or a
+        ///   constructor which takes a <see cref="string"/> as only parameter. <br/> If both
+        ///   constructors are available, then the one which takes a <see cref="string"/> and an
+        ///   <see cref="System.Exception"/> will be used to throw the exception.
         /// </remarks>
 #if (NET45 || NET46)
         [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
@@ -1270,13 +1273,13 @@ namespace PommaLabs.Thrower
         /// </summary>
         /// <param name="valueToCheck">The string to check for emptiness.</param>
         /// <exception cref="ThrowerException">
-        ///   <typeparamref name="TEx"/> has not a public or internal constructor with no
-        ///   parameters, or <typeparamref name="TEx"/> is abstract.
+        ///   <typeparamref name="TEx"/> has not a public or internal constructor with no parameters,
+        ///   or <typeparamref name="TEx"/> is abstract.
         /// </exception>
         /// <remarks>
-        ///   If <paramref name="valueToCheck"/> is empty, then an exception of type <typeparamref
-        ///   name="TEx"/> will be thrown. <br/> In order to do that, <typeparamref name="TEx"/>
-        ///   must have a constructor which doesn't take any arguments.
+        ///   If <paramref name="valueToCheck"/> is empty, then an exception of type
+        ///   <typeparamref name="TEx"/> will be thrown. <br/> In order to do that,
+        ///   <typeparamref name="TEx"/> must have a constructor which doesn't take any arguments.
         /// </remarks>
 #if (NET45 || NET46)
         [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
@@ -1292,26 +1295,26 @@ namespace PommaLabs.Thrower
         }
 
         /// <summary>
-        ///   Throws an exception of type <typeparamref name="TEx"/> with given message <paramref
-        ///   name="message"/> if and only if specified string is is null, empty, or consists only
-        ///   of white-space characters.
+        ///   Throws an exception of type <typeparamref name="TEx"/> with given message
+        ///   <paramref name="message"/> if and only if specified string is is null, empty, or
+        ///   consists only of white-space characters.
         /// </summary>
         /// <param name="valueToCheck">The string to check for emptiness.</param>
         /// <param name="message">The message the thrown exception will have.</param>
         /// <exception cref="ThrowerException">
         ///   <typeparamref name="TEx"/> has not a public or internal constructor which takes, as
-        ///   parameters, either a <see cref="string"/> or a <see cref="string"/> and an <see
-        ///   cref="System.Exception"/>. The same exception is thrown when <typeparamref
-        ///   name="TEx"/> is abstract.
+        ///   parameters, either a <see cref="string"/> or a <see cref="string"/> and an
+        ///   <see cref="System.Exception"/>. The same exception is thrown when
+        ///   <typeparamref name="TEx"/> is abstract.
         /// </exception>
         /// <remarks>
-        ///   If <paramref name="valueToCheck"/> is empty, then an exception of type <typeparamref
-        ///   name="TEx"/>, with the message specified by <paramref name="message"/>, will be
-        ///   thrown. <br/> In order to do that, <typeparamref name="TEx"/> must have either a
-        ///   constructor which takes a <see cref="string"/> and an <see cref="System.Exception"/>
+        ///   If <paramref name="valueToCheck"/> is empty, then an exception of type
+        ///   <typeparamref name="TEx"/>, with the message specified by <paramref name="message"/>,
+        ///   will be thrown. <br/> In order to do that, <typeparamref name="TEx"/> must have either
+        ///   a constructor which takes a <see cref="string"/> and an <see cref="System.Exception"/>
         ///   as arguments, or a constructor which takes a <see cref="string"/> as only parameter.
-        ///   <br/> If both constructors are available, then the one which takes a <see
-        ///   cref="string"/> and an <see cref="System.Exception"/> will be used to throw the exception.
+        ///   <br/> If both constructors are available, then the one which takes a
+        ///   <see cref="string"/> and an <see cref="System.Exception"/> will be used to throw the exception.
         /// </remarks>
 #if (NET45 || NET46)
         [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
@@ -1332,13 +1335,13 @@ namespace PommaLabs.Thrower
         /// </summary>
         /// <param name="valueToCheck">The string to check for emptiness.</param>
         /// <exception cref="ThrowerException">
-        ///   <typeparamref name="TEx"/> has not a public or internal constructor with no
-        ///   parameters, or <typeparamref name="TEx"/> is abstract.
+        ///   <typeparamref name="TEx"/> has not a public or internal constructor with no parameters,
+        ///   or <typeparamref name="TEx"/> is abstract.
         /// </exception>
         /// <remarks>
         ///   If <paramref name="valueToCheck"/> is not empty, then an exception of type
-        ///   <typeparamref name="TEx"/> will be thrown. <br/> In order to do that, <typeparamref
-        ///   name="TEx"/> must have a constructor which doesn't take any arguments.
+        ///   <typeparamref name="TEx"/> will be thrown. <br/> In order to do that,
+        ///   <typeparamref name="TEx"/> must have a constructor which doesn't take any arguments.
         /// </remarks>
 #if (NET45 || NET46)
         [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
@@ -1354,17 +1357,17 @@ namespace PommaLabs.Thrower
         }
 
         /// <summary>
-        ///   Throws an exception of type <typeparamref name="TEx"/> with given message <paramref
-        ///   name="message"/> if and only if specified string is not null, empty, or does not
-        ///   consist only of white-space characters.
+        ///   Throws an exception of type <typeparamref name="TEx"/> with given message
+        ///   <paramref name="message"/> if and only if specified string is not null, empty, or does
+        ///   not consist only of white-space characters.
         /// </summary>
         /// <param name="valueToCheck">The string to check for emptiness.</param>
         /// <param name="message">The message the thrown exception will have.</param>
         /// <exception cref="ThrowerException">
         ///   <typeparamref name="TEx"/> has not a public or internal constructor which takes, as
-        ///   parameters, either a <see cref="string"/> or a <see cref="string"/> and an <see
-        ///   cref="System.Exception"/>. The same exception is thrown when <typeparamref
-        ///   name="TEx"/> is abstract.
+        ///   parameters, either a <see cref="string"/> or a <see cref="string"/> and an
+        ///   <see cref="System.Exception"/>. The same exception is thrown when
+        ///   <typeparamref name="TEx"/> is abstract.
         /// </exception>
         /// <remarks>
         ///   If <paramref name="valueToCheck"/> is not empty, then an exception of type
@@ -1372,8 +1375,8 @@ namespace PommaLabs.Thrower
         ///   will be thrown. <br/> In order to do that, <typeparamref name="TEx"/> must have either
         ///   a constructor which takes a <see cref="string"/> and an <see cref="System.Exception"/>
         ///   as arguments, or a constructor which takes a <see cref="string"/> as only parameter.
-        ///   <br/> If both constructors are available, then the one which takes a <see
-        ///   cref="string"/> and an <see cref="System.Exception"/> will be used to throw the exception.
+        ///   <br/> If both constructors are available, then the one which takes a
+        ///   <see cref="string"/> and an <see cref="System.Exception"/> will be used to throw the exception.
         /// </remarks>
 #if (NET45 || NET46)
         [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
@@ -1394,13 +1397,13 @@ namespace PommaLabs.Thrower
         /// </summary>
         /// <param name="collection">The collection to check for emptiness.</param>
         /// <exception cref="ThrowerException">
-        ///   <typeparamref name="TEx"/> has not a public or internal constructor with no
-        ///   parameters, or <typeparamref name="TEx"/> is abstract.
+        ///   <typeparamref name="TEx"/> has not a public or internal constructor with no parameters,
+        ///   or <typeparamref name="TEx"/> is abstract.
         /// </exception>
         /// <remarks>
         ///   If <paramref name="collection"/> is null or empty, then an exception of type
-        ///   <typeparamref name="TEx"/> will be thrown. <br/> In order to do that, <typeparamref
-        ///   name="TEx"/> must have a constructor which doesn't take any arguments.
+        ///   <typeparamref name="TEx"/> will be thrown. <br/> In order to do that,
+        ///   <typeparamref name="TEx"/> must have a constructor which doesn't take any arguments.
         /// </remarks>
 #if (NET45 || NET46)
         [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
@@ -1416,16 +1419,16 @@ namespace PommaLabs.Thrower
         }
 
         /// <summary>
-        ///   Throws an exception of type <typeparamref name="TEx"/> with given message <paramref
-        ///   name="message"/> if and only if specified collection is null or empty.
+        ///   Throws an exception of type <typeparamref name="TEx"/> with given message
+        ///   <paramref name="message"/> if and only if specified collection is null or empty.
         /// </summary>
         /// <param name="collection">The collection to check for emptiness.</param>
         /// <param name="message">The message the thrown exception will have.</param>
         /// <exception cref="ThrowerException">
         ///   <typeparamref name="TEx"/> has not a public or internal constructor which takes, as
-        ///   parameters, either a <see cref="string"/> or a <see cref="string"/> and an <see
-        ///   cref="System.Exception"/>. The same exception is thrown when <typeparamref
-        ///   name="TEx"/> is abstract.
+        ///   parameters, either a <see cref="string"/> or a <see cref="string"/> and an
+        ///   <see cref="System.Exception"/>. The same exception is thrown when
+        ///   <typeparamref name="TEx"/> is abstract.
         /// </exception>
         /// <remarks>
         ///   If <paramref name="collection"/> is null or empty, then an exception of type
@@ -1433,8 +1436,8 @@ namespace PommaLabs.Thrower
         ///   will be thrown. <br/> In order to do that, <typeparamref name="TEx"/> must have either
         ///   a constructor which takes a <see cref="string"/> and an <see cref="System.Exception"/>
         ///   as arguments, or a constructor which takes a <see cref="string"/> as only parameter.
-        ///   <br/> If both constructors are available, then the one which takes a <see
-        ///   cref="string"/> and an <see cref="System.Exception"/> will be used to throw the exception.
+        ///   <br/> If both constructors are available, then the one which takes a
+        ///   <see cref="string"/> and an <see cref="System.Exception"/> will be used to throw the exception.
         /// </remarks>
 #if (NET45 || NET46)
         [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
@@ -1455,13 +1458,13 @@ namespace PommaLabs.Thrower
         /// </summary>
         /// <param name="collection">The collection to check for emptiness.</param>
         /// <exception cref="ThrowerException">
-        ///   <typeparamref name="TEx"/> has not a public or internal constructor with no
-        ///   parameters, or <typeparamref name="TEx"/> is abstract.
+        ///   <typeparamref name="TEx"/> has not a public or internal constructor with no parameters,
+        ///   or <typeparamref name="TEx"/> is abstract.
         /// </exception>
         /// <remarks>
         ///   If <paramref name="collection"/> is null or not empty, then an exception of type
-        ///   <typeparamref name="TEx"/> will be thrown. <br/> In order to do that, <typeparamref
-        ///   name="TEx"/> must have a constructor which doesn't take any arguments.
+        ///   <typeparamref name="TEx"/> will be thrown. <br/> In order to do that,
+        ///   <typeparamref name="TEx"/> must have a constructor which doesn't take any arguments.
         /// </remarks>
 #if (NET45 || NET46)
         [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
@@ -1477,16 +1480,16 @@ namespace PommaLabs.Thrower
         }
 
         /// <summary>
-        ///   Throws an exception of type <typeparamref name="TEx"/> with given message <paramref
-        ///   name="message"/> if and only if specified collection is null or not empty.
+        ///   Throws an exception of type <typeparamref name="TEx"/> with given message
+        ///   <paramref name="message"/> if and only if specified collection is null or not empty.
         /// </summary>
         /// <param name="collection">The collection to check for emptiness.</param>
         /// <param name="message">The message the thrown exception will have.</param>
         /// <exception cref="ThrowerException">
         ///   <typeparamref name="TEx"/> has not a public or internal constructor which takes, as
-        ///   parameters, either a <see cref="string"/> or a <see cref="string"/> and an <see
-        ///   cref="System.Exception"/>. The same exception is thrown when <typeparamref
-        ///   name="TEx"/> is abstract.
+        ///   parameters, either a <see cref="string"/> or a <see cref="string"/> and an
+        ///   <see cref="System.Exception"/>. The same exception is thrown when
+        ///   <typeparamref name="TEx"/> is abstract.
         /// </exception>
         /// <remarks>
         ///   If <paramref name="collection"/> is null or not empty, then an exception of type
@@ -1494,8 +1497,8 @@ namespace PommaLabs.Thrower
         ///   will be thrown. <br/> In order to do that, <typeparamref name="TEx"/> must have either
         ///   a constructor which takes a <see cref="string"/> and an <see cref="System.Exception"/>
         ///   as arguments, or a constructor which takes a <see cref="string"/> as only parameter.
-        ///   <br/> If both constructors are available, then the one which takes a <see
-        ///   cref="string"/> and an <see cref="System.Exception"/> will be used to throw the exception.
+        ///   <br/> If both constructors are available, then the one which takes a
+        ///   <see cref="string"/> and an <see cref="System.Exception"/> will be used to throw the exception.
         /// </remarks>
 #if (NET45 || NET46)
         [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
@@ -1516,13 +1519,13 @@ namespace PommaLabs.Thrower
         /// </summary>
         /// <param name="collection">The collection to check for emptiness.</param>
         /// <exception cref="ThrowerException">
-        ///   <typeparamref name="TEx"/> has not a public or internal constructor with no
-        ///   parameters, or <typeparamref name="TEx"/> is abstract.
+        ///   <typeparamref name="TEx"/> has not a public or internal constructor with no parameters,
+        ///   or <typeparamref name="TEx"/> is abstract.
         /// </exception>
         /// <remarks>
         ///   If <paramref name="collection"/> is null or empty, then an exception of type
-        ///   <typeparamref name="TEx"/> will be thrown. <br/> In order to do that, <typeparamref
-        ///   name="TEx"/> must have a constructor which doesn't take any arguments.
+        ///   <typeparamref name="TEx"/> will be thrown. <br/> In order to do that,
+        ///   <typeparamref name="TEx"/> must have a constructor which doesn't take any arguments.
         /// </remarks>
 #if (NET45 || NET46)
         [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
@@ -1538,16 +1541,16 @@ namespace PommaLabs.Thrower
         }
 
         /// <summary>
-        ///   Throws an exception of type <typeparamref name="TEx"/> with given message <paramref
-        ///   name="message"/> if and only if specified collection is null or empty.
+        ///   Throws an exception of type <typeparamref name="TEx"/> with given message
+        ///   <paramref name="message"/> if and only if specified collection is null or empty.
         /// </summary>
         /// <param name="collection">The collection to check for emptiness.</param>
         /// <param name="message">The message the thrown exception will have.</param>
         /// <exception cref="ThrowerException">
         ///   <typeparamref name="TEx"/> has not a public or internal constructor which takes, as
-        ///   parameters, either a <see cref="string"/> or a <see cref="string"/> and an <see
-        ///   cref="System.Exception"/>. The same exception is thrown when <typeparamref
-        ///   name="TEx"/> is abstract.
+        ///   parameters, either a <see cref="string"/> or a <see cref="string"/> and an
+        ///   <see cref="System.Exception"/>. The same exception is thrown when
+        ///   <typeparamref name="TEx"/> is abstract.
         /// </exception>
         /// <remarks>
         ///   If <paramref name="collection"/> is null or empty, then an exception of type
@@ -1555,8 +1558,8 @@ namespace PommaLabs.Thrower
         ///   will be thrown. <br/> In order to do that, <typeparamref name="TEx"/> must have either
         ///   a constructor which takes a <see cref="string"/> and an <see cref="System.Exception"/>
         ///   as arguments, or a constructor which takes a <see cref="string"/> as only parameter.
-        ///   <br/> If both constructors are available, then the one which takes a <see
-        ///   cref="string"/> and an <see cref="System.Exception"/> will be used to throw the exception.
+        ///   <br/> If both constructors are available, then the one which takes a
+        ///   <see cref="string"/> and an <see cref="System.Exception"/> will be used to throw the exception.
         /// </remarks>
 #if (NET45 || NET46)
         [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
@@ -1577,13 +1580,13 @@ namespace PommaLabs.Thrower
         /// </summary>
         /// <param name="collection">The collection to check for emptiness.</param>
         /// <exception cref="ThrowerException">
-        ///   <typeparamref name="TEx"/> has not a public or internal constructor with no
-        ///   parameters, or <typeparamref name="TEx"/> is abstract.
+        ///   <typeparamref name="TEx"/> has not a public or internal constructor with no parameters,
+        ///   or <typeparamref name="TEx"/> is abstract.
         /// </exception>
         /// <remarks>
         ///   If <paramref name="collection"/> is null or not empty, then an exception of type
-        ///   <typeparamref name="TEx"/> will be thrown. <br/> In order to do that, <typeparamref
-        ///   name="TEx"/> must have a constructor which doesn't take any arguments.
+        ///   <typeparamref name="TEx"/> will be thrown. <br/> In order to do that,
+        ///   <typeparamref name="TEx"/> must have a constructor which doesn't take any arguments.
         /// </remarks>
 #if (NET45 || NET46)
         [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
@@ -1599,16 +1602,16 @@ namespace PommaLabs.Thrower
         }
 
         /// <summary>
-        ///   Throws an exception of type <typeparamref name="TEx"/> with given message <paramref
-        ///   name="message"/> if and only if specified collection is null or not empty.
+        ///   Throws an exception of type <typeparamref name="TEx"/> with given message
+        ///   <paramref name="message"/> if and only if specified collection is null or not empty.
         /// </summary>
         /// <param name="collection">The collection to check for emptiness.</param>
         /// <param name="message">The message the thrown exception will have.</param>
         /// <exception cref="ThrowerException">
         ///   <typeparamref name="TEx"/> has not a public or internal constructor which takes, as
-        ///   parameters, either a <see cref="string"/> or a <see cref="string"/> and an <see
-        ///   cref="System.Exception"/>. The same exception is thrown when <typeparamref
-        ///   name="TEx"/> is abstract.
+        ///   parameters, either a <see cref="string"/> or a <see cref="string"/> and an
+        ///   <see cref="System.Exception"/>. The same exception is thrown when
+        ///   <typeparamref name="TEx"/> is abstract.
         /// </exception>
         /// <remarks>
         ///   If <paramref name="collection"/> is null or not empty, then an exception of type
@@ -1616,8 +1619,8 @@ namespace PommaLabs.Thrower
         ///   will be thrown. <br/> In order to do that, <typeparamref name="TEx"/> must have either
         ///   a constructor which takes a <see cref="string"/> and an <see cref="System.Exception"/>
         ///   as arguments, or a constructor which takes a <see cref="string"/> as only parameter.
-        ///   <br/> If both constructors are available, then the one which takes a <see
-        ///   cref="string"/> and an <see cref="System.Exception"/> will be used to throw the exception.
+        ///   <br/> If both constructors are available, then the one which takes a
+        ///   <see cref="string"/> and an <see cref="System.Exception"/> will be used to throw the exception.
         /// </remarks>
 #if (NET45 || NET46)
         [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
@@ -1639,13 +1642,13 @@ namespace PommaLabs.Thrower
         /// <param name="instance">The object to test.</param>
         /// <param name="type">The type the object must have.</param>
         /// <exception cref="ThrowerException">
-        ///   <typeparamref name="TEx"/> has not a public or internal constructor with no
-        ///   parameters, or <typeparamref name="TEx"/> is abstract.
+        ///   <typeparamref name="TEx"/> has not a public or internal constructor with no parameters,
+        ///   or <typeparamref name="TEx"/> is abstract.
         /// </exception>
         /// <remarks>
-        ///   If <paramref name="instance"/> has given type, then an exception of type <typeparamref
-        ///   name="TEx"/> will be thrown. <br/> In order to do that, <typeparamref name="TEx"/>
-        ///   must have a constructor which doesn't take any arguments.
+        ///   If <paramref name="instance"/> has given type, then an exception of type
+        ///   <typeparamref name="TEx"/> will be thrown. <br/> In order to do that,
+        ///   <typeparamref name="TEx"/> must have a constructor which doesn't take any arguments.
         /// </remarks>
 #if (NET45 || NET46)
         [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
@@ -1661,26 +1664,26 @@ namespace PommaLabs.Thrower
         }
 
         /// <summary>
-        ///   Throws an exception of type <typeparamref name="TEx"/> with given message <paramref
-        ///   name="message"/> if and only if specified object has given type.
+        ///   Throws an exception of type <typeparamref name="TEx"/> with given message
+        ///   <paramref name="message"/> if and only if specified object has given type.
         /// </summary>
         /// <param name="instance">The object to test.</param>
         /// <param name="type">The type the object must have.</param>
         /// <param name="message">The message the thrown exception will have.</param>
         /// <exception cref="ThrowerException">
         ///   <typeparamref name="TEx"/> has not a public or internal constructor which takes, as
-        ///   parameters, either a <see cref="string"/> or a <see cref="string"/> and an <see
-        ///   cref="System.Exception"/>. The same exception is thrown when <typeparamref
-        ///   name="TEx"/> is abstract.
+        ///   parameters, either a <see cref="string"/> or a <see cref="string"/> and an
+        ///   <see cref="System.Exception"/>. The same exception is thrown when
+        ///   <typeparamref name="TEx"/> is abstract.
         /// </exception>
         /// <remarks>
-        ///   If <paramref name="instance"/> has given type, then an exception of type <typeparamref
-        ///   name="TEx"/>, with the message specified by <paramref name="message"/>, will be
-        ///   thrown. <br/> In order to do that, <typeparamref name="TEx"/> must have either a
-        ///   constructor which takes a <see cref="string"/> and an <see cref="System.Exception"/>
+        ///   If <paramref name="instance"/> has given type, then an exception of type
+        ///   <typeparamref name="TEx"/>, with the message specified by <paramref name="message"/>,
+        ///   will be thrown. <br/> In order to do that, <typeparamref name="TEx"/> must have either
+        ///   a constructor which takes a <see cref="string"/> and an <see cref="System.Exception"/>
         ///   as arguments, or a constructor which takes a <see cref="string"/> as only parameter.
-        ///   <br/> If both constructors are available, then the one which takes a <see
-        ///   cref="string"/> and an <see cref="System.Exception"/> will be used to throw the exception.
+        ///   <br/> If both constructors are available, then the one which takes a
+        ///   <see cref="string"/> and an <see cref="System.Exception"/> will be used to throw the exception.
         /// </remarks>
 #if (NET45 || NET46)
         [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
@@ -1702,13 +1705,13 @@ namespace PommaLabs.Thrower
         /// <typeparam name="TType">The type the object must have.</typeparam>
         /// <param name="instance">The object to test.</param>
         /// <exception cref="ThrowerException">
-        ///   <typeparamref name="TEx"/> has not a public or internal constructor with no
-        ///   parameters, or <typeparamref name="TEx"/> is abstract.
+        ///   <typeparamref name="TEx"/> has not a public or internal constructor with no parameters,
+        ///   or <typeparamref name="TEx"/> is abstract.
         /// </exception>
         /// <remarks>
-        ///   If <paramref name="instance"/> has given type, then an exception of type <typeparamref
-        ///   name="TEx"/> will be thrown. <br/> In order to do that, <typeparamref name="TEx"/>
-        ///   must have a constructor which doesn't take any arguments.
+        ///   If <paramref name="instance"/> has given type, then an exception of type
+        ///   <typeparamref name="TEx"/> will be thrown. <br/> In order to do that,
+        ///   <typeparamref name="TEx"/> must have a constructor which doesn't take any arguments.
         /// </remarks>
 #if (NET45 || NET46)
         [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
@@ -1725,26 +1728,26 @@ namespace PommaLabs.Thrower
         }
 
         /// <summary>
-        ///   Throws an exception of type <typeparamref name="TEx"/> with given message <paramref
-        ///   name="message"/> if and only if specified object has given type.
+        ///   Throws an exception of type <typeparamref name="TEx"/> with given message
+        ///   <paramref name="message"/> if and only if specified object has given type.
         /// </summary>
         /// <typeparam name="TType">The type the object must have.</typeparam>
         /// <param name="instance">The object to test.</param>
         /// <param name="message">The message the thrown exception will have.</param>
         /// <exception cref="ThrowerException">
         ///   <typeparamref name="TEx"/> has not a public or internal constructor which takes, as
-        ///   parameters, either a <see cref="string"/> or a <see cref="string"/> and an <see
-        ///   cref="System.Exception"/>. The same exception is thrown when <typeparamref
-        ///   name="TEx"/> is abstract.
+        ///   parameters, either a <see cref="string"/> or a <see cref="string"/> and an
+        ///   <see cref="System.Exception"/>. The same exception is thrown when
+        ///   <typeparamref name="TEx"/> is abstract.
         /// </exception>
         /// <remarks>
-        ///   If <paramref name="instance"/> has given type, then an exception of type <typeparamref
-        ///   name="TEx"/>, with the message specified by <paramref name="message"/>, will be
-        ///   thrown. <br/> In order to do that, <typeparamref name="TEx"/> must have either a
-        ///   constructor which takes a <see cref="string"/> and an <see cref="System.Exception"/>
+        ///   If <paramref name="instance"/> has given type, then an exception of type
+        ///   <typeparamref name="TEx"/>, with the message specified by <paramref name="message"/>,
+        ///   will be thrown. <br/> In order to do that, <typeparamref name="TEx"/> must have either
+        ///   a constructor which takes a <see cref="string"/> and an <see cref="System.Exception"/>
         ///   as arguments, or a constructor which takes a <see cref="string"/> as only parameter.
-        ///   <br/> If both constructors are available, then the one which takes a <see
-        ///   cref="string"/> and an <see cref="System.Exception"/> will be used to throw the exception.
+        ///   <br/> If both constructors are available, then the one which takes a
+        ///   <see cref="string"/> and an <see cref="System.Exception"/> will be used to throw the exception.
         /// </remarks>
 #if (NET45 || NET46)
         [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
@@ -1767,13 +1770,13 @@ namespace PommaLabs.Thrower
         /// <param name="instance">The object to test.</param>
         /// <param name="type">The type the object must not have.</param>
         /// <exception cref="ThrowerException">
-        ///   <typeparamref name="TEx"/> has not a public or internal constructor with no
-        ///   parameters, or <typeparamref name="TEx"/> is abstract.
+        ///   <typeparamref name="TEx"/> has not a public or internal constructor with no parameters,
+        ///   or <typeparamref name="TEx"/> is abstract.
         /// </exception>
         /// <remarks>
         ///   If <paramref name="instance"/> has not given type, then an exception of type
-        ///   <typeparamref name="TEx"/> will be thrown. <br/> In order to do that, <typeparamref
-        ///   name="TEx"/> must have a constructor which doesn't take any arguments.
+        ///   <typeparamref name="TEx"/> will be thrown. <br/> In order to do that,
+        ///   <typeparamref name="TEx"/> must have a constructor which doesn't take any arguments.
         /// </remarks>
 #if (NET45 || NET46)
         [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
@@ -1789,17 +1792,17 @@ namespace PommaLabs.Thrower
         }
 
         /// <summary>
-        ///   Throws an exception of type <typeparamref name="TEx"/> with given message <paramref
-        ///   name="message"/> if and only if specified object has not given type.
+        ///   Throws an exception of type <typeparamref name="TEx"/> with given message
+        ///   <paramref name="message"/> if and only if specified object has not given type.
         /// </summary>
         /// <param name="instance">The object to test.</param>
         /// <param name="type">The type the object must not have.</param>
         /// <param name="message">The message the thrown exception will have.</param>
         /// <exception cref="ThrowerException">
         ///   <typeparamref name="TEx"/> has not a public or internal constructor which takes, as
-        ///   parameters, either a <see cref="string"/> or a <see cref="string"/> and an <see
-        ///   cref="System.Exception"/>. The same exception is thrown when <typeparamref
-        ///   name="TEx"/> is abstract.
+        ///   parameters, either a <see cref="string"/> or a <see cref="string"/> and an
+        ///   <see cref="System.Exception"/>. The same exception is thrown when
+        ///   <typeparamref name="TEx"/> is abstract.
         /// </exception>
         /// <remarks>
         ///   If <paramref name="instance"/> has not given type, then an exception of type
@@ -1807,8 +1810,8 @@ namespace PommaLabs.Thrower
         ///   will be thrown. <br/> In order to do that, <typeparamref name="TEx"/> must have either
         ///   a constructor which takes a <see cref="string"/> and an <see cref="System.Exception"/>
         ///   as arguments, or a constructor which takes a <see cref="string"/> as only parameter.
-        ///   <br/> If both constructors are available, then the one which takes a <see
-        ///   cref="string"/> and an <see cref="System.Exception"/> will be used to throw the exception.
+        ///   <br/> If both constructors are available, then the one which takes a
+        ///   <see cref="string"/> and an <see cref="System.Exception"/> will be used to throw the exception.
         /// </remarks>
 #if (NET45 || NET46)
         [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
@@ -1830,13 +1833,13 @@ namespace PommaLabs.Thrower
         /// <typeparam name="TType">The type the object must not have.</typeparam>
         /// <param name="instance">The object to test.</param>
         /// <exception cref="ThrowerException">
-        ///   <typeparamref name="TEx"/> has not a public or internal constructor with no
-        ///   parameters, or <typeparamref name="TEx"/> is abstract.
+        ///   <typeparamref name="TEx"/> has not a public or internal constructor with no parameters,
+        ///   or <typeparamref name="TEx"/> is abstract.
         /// </exception>
         /// <remarks>
         ///   If <paramref name="instance"/> has not given type, then an exception of type
-        ///   <typeparamref name="TEx"/> will be thrown. <br/> In order to do that, <typeparamref
-        ///   name="TEx"/> must have a constructor which doesn't take any arguments.
+        ///   <typeparamref name="TEx"/> will be thrown. <br/> In order to do that,
+        ///   <typeparamref name="TEx"/> must have a constructor which doesn't take any arguments.
         /// </remarks>
 #if (NET45 || NET46)
         [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
@@ -1853,17 +1856,17 @@ namespace PommaLabs.Thrower
         }
 
         /// <summary>
-        ///   Throws an exception of type <typeparamref name="TEx"/> with given message <paramref
-        ///   name="message"/> if and only if specified object has not given type.
+        ///   Throws an exception of type <typeparamref name="TEx"/> with given message
+        ///   <paramref name="message"/> if and only if specified object has not given type.
         /// </summary>
         /// <typeparam name="TType">The type the object must not have.</typeparam>
         /// <param name="instance">The object to test.</param>
         /// <param name="message">The message the thrown exception will have.</param>
         /// <exception cref="ThrowerException">
         ///   <typeparamref name="TEx"/> has not a public or internal constructor which takes, as
-        ///   parameters, either a <see cref="string"/> or a <see cref="string"/> and an <see
-        ///   cref="System.Exception"/>. The same exception is thrown when <typeparamref
-        ///   name="TEx"/> is abstract.
+        ///   parameters, either a <see cref="string"/> or a <see cref="string"/> and an
+        ///   <see cref="System.Exception"/>. The same exception is thrown when
+        ///   <typeparamref name="TEx"/> is abstract.
         /// </exception>
         /// <remarks>
         ///   If <paramref name="instance"/> has not given type, then an exception of type
@@ -1871,8 +1874,8 @@ namespace PommaLabs.Thrower
         ///   will be thrown. <br/> In order to do that, <typeparamref name="TEx"/> must have either
         ///   a constructor which takes a <see cref="string"/> and an <see cref="System.Exception"/>
         ///   as arguments, or a constructor which takes a <see cref="string"/> as only parameter.
-        ///   <br/> If both constructors are available, then the one which takes a <see
-        ///   cref="string"/> and an <see cref="System.Exception"/> will be used to throw the exception.
+        ///   <br/> If both constructors are available, then the one which takes a
+        ///   <see cref="string"/> and an <see cref="System.Exception"/> will be used to throw the exception.
         /// </remarks>
 #if (NET45 || NET46)
         [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
@@ -1894,13 +1897,13 @@ namespace PommaLabs.Thrower
         /// </summary>
         /// <param name="number">The double to test for <see cref="double.NaN"/> equality.</param>
         /// <exception cref="ThrowerException">
-        ///   <typeparamref name="TEx"/> has not a public or internal constructor with no
-        ///   parameters, or <typeparamref name="TEx"/> is abstract.
+        ///   <typeparamref name="TEx"/> has not a public or internal constructor with no parameters,
+        ///   or <typeparamref name="TEx"/> is abstract.
         /// </exception>
         /// <remarks>
         ///   If <paramref name="number"/> is <see cref="double.NaN"/>, then an exception of type
-        ///   <typeparamref name="TEx"/> will be thrown. <br/> In order to do that, <typeparamref
-        ///   name="TEx"/> must have a constructor which doesn't take any arguments.
+        ///   <typeparamref name="TEx"/> will be thrown. <br/> In order to do that,
+        ///   <typeparamref name="TEx"/> must have a constructor which doesn't take any arguments.
         /// </remarks>
 #if (NET45 || NET46)
         [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
@@ -1916,16 +1919,16 @@ namespace PommaLabs.Thrower
         }
 
         /// <summary>
-        ///   Throws an exception of type <typeparamref name="TEx"/> with given message <paramref
-        ///   name="message"/> if and only if specified double is <see cref="double.NaN"/>.
+        ///   Throws an exception of type <typeparamref name="TEx"/> with given message
+        ///   <paramref name="message"/> if and only if specified double is <see cref="double.NaN"/>.
         /// </summary>
         /// <param name="number">The double to test for <see cref="double.NaN"/> equality.</param>
         /// <param name="message">The message the thrown exception will have.</param>
         /// <exception cref="ThrowerException">
         ///   <typeparamref name="TEx"/> has not a public or internal constructor which takes, as
-        ///   parameters, either a <see cref="string"/> or a <see cref="string"/> and an <see
-        ///   cref="System.Exception"/>. The same exception is thrown when <typeparamref
-        ///   name="TEx"/> is abstract.
+        ///   parameters, either a <see cref="string"/> or a <see cref="string"/> and an
+        ///   <see cref="System.Exception"/>. The same exception is thrown when
+        ///   <typeparamref name="TEx"/> is abstract.
         /// </exception>
         /// <remarks>
         ///   If <paramref name="number"/> is <see cref="double.NaN"/>, then an exception of type
@@ -1933,8 +1936,8 @@ namespace PommaLabs.Thrower
         ///   will be thrown. <br/> In order to do that, <typeparamref name="TEx"/> must have either
         ///   a constructor which takes a <see cref="string"/> and an <see cref="System.Exception"/>
         ///   as arguments, or a constructor which takes a <see cref="string"/> as only parameter.
-        ///   <br/> If both constructors are available, then the one which takes a <see
-        ///   cref="string"/> and an <see cref="System.Exception"/> will be used to throw the exception.
+        ///   <br/> If both constructors are available, then the one which takes a
+        ///   <see cref="string"/> and an <see cref="System.Exception"/> will be used to throw the exception.
         /// </remarks>
 #if (NET45 || NET46)
         [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
@@ -1955,12 +1958,12 @@ namespace PommaLabs.Thrower
         /// </summary>
         /// <param name="number">The double to test for <see cref="double.NaN"/> equality.</param>
         /// <exception cref="ThrowerException">
-        ///   <typeparamref name="TEx"/> has not a public or internal constructor with no
-        ///   parameters, or <typeparamref name="TEx"/> is abstract.
+        ///   <typeparamref name="TEx"/> has not a public or internal constructor with no parameters,
+        ///   or <typeparamref name="TEx"/> is abstract.
         /// </exception>
         /// <remarks>
-        ///   If <paramref name="number"/> is not <see cref="double.NaN"/>, then an exception of
-        ///   type <typeparamref name="TEx"/> will be thrown. <br/> In order to do that,
+        ///   If <paramref name="number"/> is not <see cref="double.NaN"/>, then an exception of type
+        ///   <typeparamref name="TEx"/> will be thrown. <br/> In order to do that,
         ///   <typeparamref name="TEx"/> must have a constructor which doesn't take any arguments.
         /// </remarks>
 #if (NET45 || NET46)
@@ -1977,26 +1980,25 @@ namespace PommaLabs.Thrower
         }
 
         /// <summary>
-        ///   Throws an exception of type <typeparamref name="TEx"/> with given message <paramref
-        ///   name="message"/> if and only if specified double is not <see cref="double.NaN"/>.
+        ///   Throws an exception of type <typeparamref name="TEx"/> with given message
+        ///   <paramref name="message"/> if and only if specified double is not <see cref="double.NaN"/>.
         /// </summary>
         /// <param name="number">The double to test for <see cref="double.NaN"/> equality.</param>
         /// <param name="message">The message the thrown exception will have.</param>
         /// <exception cref="ThrowerException">
         ///   <typeparamref name="TEx"/> has not a public or internal constructor which takes, as
-        ///   parameters, either a <see cref="string"/> or a <see cref="string"/> and an <see
-        ///   cref="System.Exception"/>. The same exception is thrown when <typeparamref
-        ///   name="TEx"/> is abstract.
+        ///   parameters, either a <see cref="string"/> or a <see cref="string"/> and an
+        ///   <see cref="System.Exception"/>. The same exception is thrown when
+        ///   <typeparamref name="TEx"/> is abstract.
         /// </exception>
         /// <remarks>
-        ///   If <paramref name="number"/> is not <see cref="double.NaN"/>, then an exception of
-        ///   type <typeparamref name="TEx"/>, with the message specified by <paramref
-        ///   name="message"/>, will be thrown. <br/> In order to do that, <typeparamref
-        ///   name="TEx"/> must have either a constructor which takes a <see cref="string"/> and an
-        ///   <see cref="System.Exception"/> as arguments, or a constructor which takes a <see
-        ///   cref="string"/> as only parameter. <br/> If both constructors are available, then the
-        ///   one which takes a <see cref="string"/> and an <see cref="System.Exception"/> will be
-        ///   used to throw the exception.
+        ///   If <paramref name="number"/> is not <see cref="double.NaN"/>, then an exception of type
+        ///   <typeparamref name="TEx"/>, with the message specified by <paramref name="message"/>,
+        ///   will be thrown. <br/> In order to do that, <typeparamref name="TEx"/> must have either
+        ///   a constructor which takes a <see cref="string"/> and an <see cref="System.Exception"/>
+        ///   as arguments, or a constructor which takes a <see cref="string"/> as only parameter.
+        ///   <br/> If both constructors are available, then the one which takes a
+        ///   <see cref="string"/> and an <see cref="System.Exception"/> will be used to throw the exception.
         /// </remarks>
 #if (NET45 || NET46)
         [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
@@ -2017,13 +2019,13 @@ namespace PommaLabs.Thrower
         /// </summary>
         /// <param name="arg">The argument to test for nullity.</param>
         /// <exception cref="ThrowerException">
-        ///   <typeparamref name="TEx"/> has not a public or internal constructor with no
-        ///   parameters, or <typeparamref name="TEx"/> is abstract.
+        ///   <typeparamref name="TEx"/> has not a public or internal constructor with no parameters,
+        ///   or <typeparamref name="TEx"/> is abstract.
         /// </exception>
         /// <remarks>
-        ///   If <paramref name="arg"/> is null, then an exception of type <typeparamref
-        ///   name="TEx"/> will be thrown. <br/> In order to do that, <typeparamref name="TEx"/>
-        ///   must have a constructor which doesn't take any arguments.
+        ///   If <paramref name="arg"/> is null, then an exception of type <typeparamref name="TEx"/>
+        ///   will be thrown. <br/> In order to do that, <typeparamref name="TEx"/> must have a
+        ///   constructor which doesn't take any arguments.
         /// </remarks>
 #if (NET45 || NET46)
         [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
@@ -2039,25 +2041,25 @@ namespace PommaLabs.Thrower
         }
 
         /// <summary>
-        ///   Throws an exception of type <typeparamref name="TEx"/> with given message <paramref
-        ///   name="message"/> if and only if specified argument is null.
+        ///   Throws an exception of type <typeparamref name="TEx"/> with given message
+        ///   <paramref name="message"/> if and only if specified argument is null.
         /// </summary>
         /// <param name="arg">The argument to test for nullity.</param>
         /// <param name="message">The message the thrown exception will have.</param>
         /// <exception cref="ThrowerException">
         ///   <typeparamref name="TEx"/> has not a public or internal constructor which takes, as
-        ///   parameters, either a <see cref="string"/> or a <see cref="string"/> and an <see
-        ///   cref="System.Exception"/>. The same exception is thrown when <typeparamref
-        ///   name="TEx"/> is abstract.
+        ///   parameters, either a <see cref="string"/> or a <see cref="string"/> and an
+        ///   <see cref="System.Exception"/>. The same exception is thrown when
+        ///   <typeparamref name="TEx"/> is abstract.
         /// </exception>
         /// <remarks>
-        ///   If <paramref name="arg"/> is null, then an exception of type <typeparamref
-        ///   name="TEx"/>, with the message specified by <paramref name="message"/>, will be
-        ///   thrown. <br/> In order to do that, <typeparamref name="TEx"/> must have either a
-        ///   constructor which takes a <see cref="string"/> and an <see cref="System.Exception"/>
+        ///   If <paramref name="arg"/> is null, then an exception of type
+        ///   <typeparamref name="TEx"/>, with the message specified by <paramref name="message"/>,
+        ///   will be thrown. <br/> In order to do that, <typeparamref name="TEx"/> must have either
+        ///   a constructor which takes a <see cref="string"/> and an <see cref="System.Exception"/>
         ///   as arguments, or a constructor which takes a <see cref="string"/> as only parameter.
-        ///   <br/> If both constructors are available, then the one which takes a <see
-        ///   cref="string"/> and an <see cref="System.Exception"/> will be used to throw the exception.
+        ///   <br/> If both constructors are available, then the one which takes a
+        ///   <see cref="string"/> and an <see cref="System.Exception"/> will be used to throw the exception.
         /// </remarks>
 #if (NET45 || NET46)
         [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
@@ -2078,13 +2080,13 @@ namespace PommaLabs.Thrower
         /// </summary>
         /// <param name="arg">The argument to test for nullity.</param>
         /// <exception cref="ThrowerException">
-        ///   <typeparamref name="TEx"/> has not a public or internal constructor with no
-        ///   parameters, or <typeparamref name="TEx"/> is abstract.
+        ///   <typeparamref name="TEx"/> has not a public or internal constructor with no parameters,
+        ///   or <typeparamref name="TEx"/> is abstract.
         /// </exception>
         /// <remarks>
-        ///   If <paramref name="arg"/> is null, then an exception of type <typeparamref
-        ///   name="TEx"/> will be thrown. <br/> In order to do that, <typeparamref name="TEx"/>
-        ///   must have a constructor which doesn't take any arguments.
+        ///   If <paramref name="arg"/> is null, then an exception of type <typeparamref name="TEx"/>
+        ///   will be thrown. <br/> In order to do that, <typeparamref name="TEx"/> must have a
+        ///   constructor which doesn't take any arguments.
         /// </remarks>
 #if (NET45 || NET46)
         [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
@@ -2100,25 +2102,25 @@ namespace PommaLabs.Thrower
         }
 
         /// <summary>
-        ///   Throws an exception of type <typeparamref name="TEx"/> with given message <paramref
-        ///   name="message"/> if and only if specified argument is not null.
+        ///   Throws an exception of type <typeparamref name="TEx"/> with given message
+        ///   <paramref name="message"/> if and only if specified argument is not null.
         /// </summary>
         /// <param name="arg">The argument to test for nullity.</param>
         /// <param name="message">The message the thrown exception will have.</param>
         /// <exception cref="ThrowerException">
         ///   <typeparamref name="TEx"/> has not a public or internal constructor which takes, as
-        ///   parameters, either a <see cref="string"/> or a <see cref="string"/> and an <see
-        ///   cref="System.Exception"/>. The same exception is thrown when <typeparamref
-        ///   name="TEx"/> is abstract.
+        ///   parameters, either a <see cref="string"/> or a <see cref="string"/> and an
+        ///   <see cref="System.Exception"/>. The same exception is thrown when
+        ///   <typeparamref name="TEx"/> is abstract.
         /// </exception>
         /// <remarks>
-        ///   If <paramref name="arg"/> is not null, then an exception of type <typeparamref
-        ///   name="TEx"/>, with the message specified by <paramref name="message"/>, will be
-        ///   thrown. <br/> In order to do that, <typeparamref name="TEx"/> must have either a
-        ///   constructor which takes a <see cref="string"/> and an <see cref="System.Exception"/>
+        ///   If <paramref name="arg"/> is not null, then an exception of type
+        ///   <typeparamref name="TEx"/>, with the message specified by <paramref name="message"/>,
+        ///   will be thrown. <br/> In order to do that, <typeparamref name="TEx"/> must have either
+        ///   a constructor which takes a <see cref="string"/> and an <see cref="System.Exception"/>
         ///   as arguments, or a constructor which takes a <see cref="string"/> as only parameter.
-        ///   <br/> If both constructors are available, then the one which takes a <see
-        ///   cref="string"/> and an <see cref="System.Exception"/> will be used to throw the exception.
+        ///   <br/> If both constructors are available, then the one which takes a
+        ///   <see cref="string"/> and an <see cref="System.Exception"/> will be used to throw the exception.
         /// </remarks>
 #if (NET45 || NET46)
         [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]

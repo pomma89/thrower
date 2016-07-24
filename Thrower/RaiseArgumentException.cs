@@ -186,9 +186,7 @@ namespace PommaLabs.Thrower
         ///   Throws <see cref="ArgumentException"/> if given string is not a valid email address.
         /// </summary>
         /// <param name="emailAddress">An email address.</param>
-        /// <param name="validatorOptions">
-        ///   Customizations for the validation process.
-        /// </param>
+        /// <param name="validatorOptions">Customizations for the validation process.</param>
 #if (NET45 || NET46)
         [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
 #endif
@@ -229,9 +227,7 @@ namespace PommaLabs.Thrower
         /// </summary>
         /// <param name="emailAddress">An email address.</param>
         /// <param name="argumentName">The name of the argument.</param>
-        /// <param name="validatorOptions">
-        ///   Customizations for the validation process.
-        /// </param>
+        /// <param name="validatorOptions">Customizations for the validation process.</param>
         /// <param name="message">The message.</param>
         /// <remarks>
         ///   <paramref name="message"/> and <paramref name="argumentName"/> are strictly required arguments.
