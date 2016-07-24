@@ -7,8 +7,30 @@ RestorePackages()
 // Properties
 let buildMode    = getBuildParamOrDefault "buildMode" "Debug"
 let artifactsDir = "./.artifacts/"
-let testDir      = "./Platform Specific/Thrower.UnitTests.*/bin/" + buildMode + "/"
+let testDir      = "./Platform Specific/Thrower.UnitTests.*/bin/{0}/"
 let testDll      = "PommaLabs.Thrower.UnitTests.dll"
+
+// Common - Build
+let myBuild target buildMode =
+    let setParams defaults = 
+      { defaults with
+          Verbosity = Some(Quiet)
+          Targets = [target]
+          Properties = 
+            [
+              "Configuration", buildMode
+            ]
+      }
+    build setParams "./Thrower.sln" |> DoNothing
+
+// Common - Test
+let myTest (buildMode: string) =
+    !! (System.String.Format(testDir, buildMode) + testDll)
+      |> NUnit (fun p -> 
+        { p with
+            DisableShadowCopy = true;
+            OutputFile = artifactsDir + "test-results.xml" 
+        })
 
 // Targets
 Target "Clean" (fun _ ->
@@ -16,46 +38,47 @@ Target "Clean" (fun _ ->
     
     CleanDirs [artifactsDir]
 
-    let setParams defaults = 
-      { defaults with
-          Verbosity = Some(Quiet)
-          Targets = ["Clean"]
-      }
-    build setParams "./Thrower.sln" |> DoNothing
+    myBuild "Clean" "Debug"
+    myBuild "Clean" "Release"
+    myBuild "Clean" "Publish"
 )
 
-Target "Build" (fun _ ->
-    trace "Building..."
-    let setParams defaults = 
-      { defaults with
-          Verbosity = Some(Quiet)
-          Targets = ["Build"]
-          Properties = 
-            [
-              "Configuration", buildMode
-            ]
-      }
-    build setParams "./Thrower.sln" |> DoNothing
+Target "BuildDebug" (fun _ ->
+    trace "Building for DEBUG..."
+    myBuild "Build" "Debug"
 )
 
-Target "Test" (fun _ ->
-    trace "Testing..."
-    !! (testDir + testDll)
-      |> NUnit (fun p -> 
-        { p with
-            DisableShadowCopy = true;
-            OutputFile = artifactsDir + "test-results.xml" 
-        })
+Target "BuildRelease" (fun _ ->
+    trace "Building for RELEASE..."
+    myBuild "Build" "Release"
+)
+
+Target "BuildPublish" (fun _ ->
+    trace "Building for PUBLISH..."
+    myBuild "Build" "Publish"
+)
+
+Target "TestDebug" (fun _ ->
+    trace "Testing for DEBUG..."
+    myTest "Debug"
+)
+
+Target "TestRelease" (fun _ ->
+    trace "Testing for RELEASE..."
+    myTest "Release"
 )
 
 Target "Default" (fun _ ->
-    trace "Hello World from FAKE"
+    trace "Building and publishing Thrower..."
 )
 
 // Dependencies
 "Clean"
-  ==> "Build"
-  ==> "Test"
+  ==> "BuildDebug"
+  ==> "TestDebug"
+  ==> "BuildRelease"
+  ==> "TestRelease"
+  ==> "BuildPublish"
   ==> "Default"
 
 // Start build
