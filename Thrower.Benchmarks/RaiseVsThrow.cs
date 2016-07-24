@@ -149,5 +149,65 @@ namespace PommaLabs.Thrower.Benchmarks
         }
 
         #endregion ArgumentOutOfRangeException
+
+        #region NotSupportedException
+
+        [Benchmark]
+#pragma warning disable CC0091 // Use static method
+        public Exception Raise_NotSupportedException()
+#pragma warning restore CC0091 // Use static method
+        {
+            try
+            {
+                var b = Identity(Environment.TickCount % 2 == 0);
+                Raise.NotSupportedException.If(b, Environment.UserDomainName);
+            }
+            catch (Exception ex)
+            {
+                return ex;
+            }
+            return default(Exception);
+        }
+
+        [Benchmark]
+#pragma warning disable CC0091 // Use static method
+        public Exception RaiseStatic_NotSupportedException()
+#pragma warning restore CC0091 // Use static method
+        {
+            try
+            {
+                var b = Identity(Environment.TickCount % 2 == 0);
+#pragma warning disable CS0618 // Type or member is obsolete
+                RaiseNotSupportedException.If(b, Environment.UserDomainName);
+#pragma warning restore CS0618 // Type or member is obsolete
+            }
+            catch (Exception ex)
+            {
+                return ex;
+            }
+            return default(Exception);
+        }
+
+        [Benchmark]
+#pragma warning disable CC0091 // Use static method
+        public Exception Throw_NotSupportedException()
+#pragma warning restore CC0091 // Use static method
+        {
+            try
+            {
+                var b = Identity(Environment.TickCount % 2 == 0);
+                if (b)
+                {
+                    throw new NotSupportedException(Environment.UserDomainName);
+                }
+            }
+            catch (Exception ex)
+            {
+                return ex;
+            }
+            return default(Exception);
+        }
+
+        #endregion NotSupportedException
     }
 }

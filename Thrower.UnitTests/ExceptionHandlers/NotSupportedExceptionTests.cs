@@ -1,4 +1,4 @@
-﻿// File name: RaiseNotSupportedExceptionTests.cs
+﻿// File name: Raise.NotSupportedExceptionTests.cs
 // 
 // Author(s): Alessio Parma <alessio.parma@gmail.com>
 // 
@@ -24,56 +24,56 @@
 using NUnit.Framework;
 using System;
 
-namespace PommaLabs.Thrower.UnitTests
+namespace PommaLabs.Thrower.UnitTests.ExceptionHandlers
 {
-    internal sealed class RaiseNotSupportedExceptionTests : AbstractTests
+    internal sealed class NotSupportedExceptionTests : AbstractTests
     {
         [Test, ExpectedException(typeof(NotSupportedException))]
         public void If_TrueShouldThrow()
         {
-            RaiseNotSupportedException.If(true);
+            Raise.NotSupportedException.If(true);
         }
 
         [Test, ExpectedException(typeof(NotSupportedException), ExpectedMessage = TestMessage)]
         public void If_TrueShouldThrow_WithMessage()
         {
-            RaiseNotSupportedException.If(true, TestMessage);
+            Raise.NotSupportedException.If(true, TestMessage);
         }
 
         [Test]
         public void If_FalseShouldNotThrow()
         {
-            RaiseNotSupportedException.If(false);
+            Raise.NotSupportedException.If(false);
         }
 
         [Test]
         public void If_FalseShouldNotThrow_WithMessage()
         {
-            RaiseNotSupportedException.If(false, TestMessage);
+            Raise.NotSupportedException.If(false, TestMessage);
         }
 
         [Test, ExpectedException(typeof(NotSupportedException))]
         public void IfNot_FalseShouldThrow()
         {
-            RaiseNotSupportedException.IfNot(false);
+            Raise.NotSupportedException.IfNot(false);
         }
 
         [Test, ExpectedException(typeof(NotSupportedException), ExpectedMessage = TestMessage)]
         public void IfNot_FalseShouldThrow_WithMessage()
         {
-            RaiseNotSupportedException.IfNot(false, TestMessage);
+            Raise.NotSupportedException.IfNot(false, TestMessage);
         }
 
         [Test]
         public void IfNot_TrueShouldNotThrow()
         {
-            RaiseNotSupportedException.IfNot(true);
+            Raise.NotSupportedException.IfNot(true);
         }
 
         [Test]
         public void IfNot_TrueShouldNotThrow_WithMessage()
         {
-            RaiseNotSupportedException.IfNot(true, TestMessage);
+            Raise.NotSupportedException.IfNot(true, TestMessage);
         }
     }
 }

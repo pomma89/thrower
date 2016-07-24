@@ -123,7 +123,7 @@ namespace PommaLabs.Thrower
         ///   <typeparamref name="TEx"/> will be thrown. <br/> In order to do that,
         ///   <typeparamref name="TEx"/> must have a constructor which doesn't take any arguments.
         /// </remarks>
-#if (NET45 || NET46)
+#if (NET45 || NET46 || PORTABLE)
         [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
 #endif
 
@@ -157,7 +157,7 @@ namespace PommaLabs.Thrower
         ///   <br/> If both constructors are available, then the one which takes a
         ///   <see cref="string"/> and an <see cref="System.Exception"/> will be used to throw the exception.
         /// </remarks>
-#if (NET45 || NET46)
+#if (NET45 || NET46 || PORTABLE)
         [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
 #endif
 
@@ -184,7 +184,7 @@ namespace PommaLabs.Thrower
         ///   <typeparamref name="TEx"/> will be thrown. <br/> In order to do that,
         ///   <typeparamref name="TEx"/> must have a constructor which doesn't take any arguments.
         /// </remarks>
-#if (NET45 || NET46)
+#if (NET45 || NET46 || PORTABLE)
         [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
 #endif
 
@@ -218,7 +218,7 @@ namespace PommaLabs.Thrower
         ///   <br/> If both constructors are available, then the one which takes a
         ///   <see cref="string"/> and an <see cref="System.Exception"/> will be used to throw the exception.
         /// </remarks>
-#if (NET45 || NET46)
+#if (NET45 || NET46 || PORTABLE)
         [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
 #endif
 
@@ -246,7 +246,7 @@ namespace PommaLabs.Thrower
         ///   thrown. <br/> In order to do that, <typeparamref name="TEx"/> must have a constructor
         ///   which doesn't take any arguments.
         /// </remarks>
-#if (NET45 || NET46)
+#if (NET45 || NET46 || PORTABLE)
         [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
 #endif
 
@@ -281,7 +281,7 @@ namespace PommaLabs.Thrower
         ///   constructors are available, then the one which takes a <see cref="string"/> and an
         ///   <see cref="System.Exception"/> will be used to throw the exception.
         /// </remarks>
-#if (NET45 || NET46)
+#if (NET45 || NET46 || PORTABLE)
         [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
 #endif
 
@@ -309,7 +309,7 @@ namespace PommaLabs.Thrower
         ///   be thrown. <br/> In order to do that, <typeparamref name="TEx"/> must have a
         ///   constructor which doesn't take any arguments.
         /// </remarks>
-#if (NET45 || NET46)
+#if (NET45 || NET46 || PORTABLE)
         [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
 #endif
 
@@ -344,7 +344,7 @@ namespace PommaLabs.Thrower
         ///   constructors are available, then the one which takes a <see cref="string"/> and an
         ///   <see cref="System.Exception"/> will be used to throw the exception.
         /// </remarks>
-#if (NET45 || NET46)
+#if (NET45 || NET46 || PORTABLE)
         [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
 #endif
 
@@ -372,7 +372,7 @@ namespace PommaLabs.Thrower
         ///   <typeparamref name="TEx"/> will be thrown. <br/> In order to do that,
         ///   <typeparamref name="TEx"/> must have a constructor which doesn't take any arguments.
         /// </remarks>
-#if (NET45 || NET46)
+#if (NET45 || NET46 || PORTABLE)
         [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
 #endif
 
@@ -407,7 +407,7 @@ namespace PommaLabs.Thrower
         ///   <br/> If both constructors are available, then the one which takes a
         ///   <see cref="string"/> and an <see cref="System.Exception"/> will be used to throw the exception.
         /// </remarks>
-#if (NET45 || NET46)
+#if (NET45 || NET46 || PORTABLE)
         [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
 #endif
 
@@ -435,7 +435,7 @@ namespace PommaLabs.Thrower
         ///   <typeparamref name="TEx"/> will be thrown. <br/> In order to do that,
         ///   <typeparamref name="TEx"/> must have a constructor which doesn't take any arguments.
         /// </remarks>
-#if (NET45 || NET46)
+#if (NET45 || NET46 || PORTABLE)
         [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
 #endif
 
@@ -470,7 +470,7 @@ namespace PommaLabs.Thrower
         ///   <br/> If both constructors are available, then the one which takes a
         ///   <see cref="string"/> and an <see cref="System.Exception"/> will be used to throw the exception.
         /// </remarks>
-#if (NET45 || NET46)
+#if (NET45 || NET46 || PORTABLE)
         [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
 #endif
 
@@ -498,7 +498,7 @@ namespace PommaLabs.Thrower
         ///   type <typeparamref name="TEx"/> will be thrown. <br/> In order to do that,
         ///   <typeparamref name="TEx"/> must have a constructor which doesn't take any arguments.
         /// </remarks>
-#if (NET45 || NET46)
+#if (NET45 || NET46 || PORTABLE)
         [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
 #endif
 
@@ -535,7 +535,7 @@ namespace PommaLabs.Thrower
         ///   constructors are available, then the one which takes a <see cref="string"/> and an
         ///   <see cref="System.Exception"/> will be used to throw the exception.
         /// </remarks>
-#if (NET45 || NET46)
+#if (NET45 || NET46 || PORTABLE)
         [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
 #endif
 
@@ -563,7 +563,7 @@ namespace PommaLabs.Thrower
         ///   type <typeparamref name="TEx"/> will be thrown. <br/> In order to do that,
         ///   <typeparamref name="TEx"/> must have a constructor which doesn't take any arguments.
         /// </remarks>
-#if (NET45 || NET46)
+#if (NET45 || NET46 || PORTABLE)
         [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
 #endif
 
@@ -601,7 +601,7 @@ namespace PommaLabs.Thrower
         ///   constructors are available, then the one which takes a <see cref="string"/> and an
         ///   <see cref="System.Exception"/> will be used to throw the exception.
         /// </remarks>
-#if (NET45 || NET46)
+#if (NET45 || NET46 || PORTABLE)
         [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
 #endif
 
@@ -630,7 +630,7 @@ namespace PommaLabs.Thrower
         ///   of type <typeparamref name="TEx"/> will be thrown. <br/> In order to do that,
         ///   <typeparamref name="TEx"/> must have a constructor which doesn't take any arguments.
         /// </remarks>
-#if (NET45 || NET46)
+#if (NET45 || NET46 || PORTABLE)
         [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
 #endif
 
@@ -667,7 +667,7 @@ namespace PommaLabs.Thrower
         ///   constructors are available, then the one which takes a <see cref="string"/> and an
         ///   <see cref="System.Exception"/> will be used to throw the exception.
         /// </remarks>
-#if (NET45 || NET46)
+#if (NET45 || NET46 || PORTABLE)
         [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
 #endif
 
@@ -697,7 +697,7 @@ namespace PommaLabs.Thrower
         ///   of type <typeparamref name="TEx"/> will be thrown. <br/> In order to do that,
         ///   <typeparamref name="TEx"/> must have a constructor which doesn't take any arguments.
         /// </remarks>
-#if (NET45 || NET46)
+#if (NET45 || NET46 || PORTABLE)
         [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
 #endif
 
@@ -737,7 +737,7 @@ namespace PommaLabs.Thrower
         ///   constructors are available, then the one which takes a <see cref="string"/> and an
         ///   <see cref="System.Exception"/> will be used to throw the exception.
         /// </remarks>
-#if (NET45 || NET46)
+#if (NET45 || NET46 || PORTABLE)
         [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
 #endif
 
@@ -766,7 +766,7 @@ namespace PommaLabs.Thrower
         ///   <typeparamref name="TEx"/> will be thrown. <br/> In order to do that,
         ///   <typeparamref name="TEx"/> must have a constructor which doesn't take any arguments.
         /// </remarks>
-#if (NET45 || NET46)
+#if (NET45 || NET46 || PORTABLE)
         [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
 #endif
 
@@ -801,7 +801,7 @@ namespace PommaLabs.Thrower
         ///   <br/> If both constructors are available, then the one which takes a
         ///   <see cref="string"/> and an <see cref="System.Exception"/> will be used to throw the exception.
         /// </remarks>
-#if (NET45 || NET46)
+#if (NET45 || NET46 || PORTABLE)
         [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
 #endif
 
@@ -829,7 +829,7 @@ namespace PommaLabs.Thrower
         ///   <typeparamref name="TEx"/> will be thrown. <br/> In order to do that,
         ///   <typeparamref name="TEx"/> must have a constructor which doesn't take any arguments.
         /// </remarks>
-#if (NET45 || NET46)
+#if (NET45 || NET46 || PORTABLE)
         [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
 #endif
 
@@ -864,7 +864,7 @@ namespace PommaLabs.Thrower
         ///   <br/> If both constructors are available, then the one which takes a
         ///   <see cref="string"/> and an <see cref="System.Exception"/> will be used to throw the exception.
         /// </remarks>
-#if (NET45 || NET46)
+#if (NET45 || NET46 || PORTABLE)
         [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
 #endif
 
@@ -892,7 +892,7 @@ namespace PommaLabs.Thrower
         ///   <typeparamref name="TEx"/> will be thrown. <br/> In order to do that,
         ///   <typeparamref name="TEx"/> must have a constructor which doesn't take any arguments.
         /// </remarks>
-#if (NET45 || NET46)
+#if (NET45 || NET46 || PORTABLE)
         [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
 #endif
 
@@ -927,7 +927,7 @@ namespace PommaLabs.Thrower
         ///   <br/> If both constructors are available, then the one which takes a
         ///   <see cref="string"/> and an <see cref="System.Exception"/> will be used to throw the exception.
         /// </remarks>
-#if (NET45 || NET46)
+#if (NET45 || NET46 || PORTABLE)
         [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
 #endif
 
@@ -955,7 +955,7 @@ namespace PommaLabs.Thrower
         ///   <typeparamref name="TEx"/> will be thrown. <br/> In order to do that,
         ///   <typeparamref name="TEx"/> must have a constructor which doesn't take any arguments.
         /// </remarks>
-#if (NET45 || NET46)
+#if (NET45 || NET46 || PORTABLE)
         [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
 #endif
 
@@ -990,7 +990,7 @@ namespace PommaLabs.Thrower
         ///   <br/> If both constructors are available, then the one which takes a
         ///   <see cref="string"/> and an <see cref="System.Exception"/> will be used to throw the exception.
         /// </remarks>
-#if (NET45 || NET46)
+#if (NET45 || NET46 || PORTABLE)
         [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
 #endif
 
@@ -1018,7 +1018,7 @@ namespace PommaLabs.Thrower
         ///   <typeparamref name="TEx"/> will be thrown. <br/> In order to do that,
         ///   <typeparamref name="TEx"/> must have a constructor which doesn't take any arguments.
         /// </remarks>
-#if (NET45 || NET46)
+#if (NET45 || NET46 || PORTABLE)
         [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
 #endif
 
@@ -1054,7 +1054,7 @@ namespace PommaLabs.Thrower
         ///   <br/> If both constructors are available, then the one which takes a
         ///   <see cref="string"/> and an <see cref="System.Exception"/> will be used to throw the exception.
         /// </remarks>
-#if (NET45 || NET46)
+#if (NET45 || NET46 || PORTABLE)
         [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
 #endif
 
@@ -1082,7 +1082,7 @@ namespace PommaLabs.Thrower
         ///   <typeparamref name="TEx"/> will be thrown. <br/> In order to do that,
         ///   <typeparamref name="TEx"/> must have a constructor which doesn't take any arguments.
         /// </remarks>
-#if (NET45 || NET46)
+#if (NET45 || NET46 || PORTABLE)
         [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
 #endif
 
@@ -1118,7 +1118,7 @@ namespace PommaLabs.Thrower
         ///   <br/> If both constructors are available, then the one which takes a
         ///   <see cref="string"/> and an <see cref="System.Exception"/> will be used to throw the exception.
         /// </remarks>
-#if (NET45 || NET46)
+#if (NET45 || NET46 || PORTABLE)
         [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
 #endif
 
@@ -1147,7 +1147,7 @@ namespace PommaLabs.Thrower
         ///   of type <typeparamref name="TEx"/> will be thrown. <br/> In order to do that,
         ///   <typeparamref name="TEx"/> must have a constructor which doesn't take any arguments.
         /// </remarks>
-#if (NET45 || NET46)
+#if (NET45 || NET46 || PORTABLE)
         [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
 #endif
 
@@ -1185,7 +1185,7 @@ namespace PommaLabs.Thrower
         ///   constructors are available, then the one which takes a <see cref="string"/> and an
         ///   <see cref="System.Exception"/> will be used to throw the exception.
         /// </remarks>
-#if (NET45 || NET46)
+#if (NET45 || NET46 || PORTABLE)
         [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
 #endif
 
@@ -1215,7 +1215,7 @@ namespace PommaLabs.Thrower
         ///   exception of type <typeparamref name="TEx"/> will be thrown. <br/> In order to do that,
         ///   <typeparamref name="TEx"/> must have a constructor which doesn't take any arguments.
         /// </remarks>
-#if (NET45 || NET46)
+#if (NET45 || NET46 || PORTABLE)
         [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
 #endif
 
@@ -1253,7 +1253,7 @@ namespace PommaLabs.Thrower
         ///   constructors are available, then the one which takes a <see cref="string"/> and an
         ///   <see cref="System.Exception"/> will be used to throw the exception.
         /// </remarks>
-#if (NET45 || NET46)
+#if (NET45 || NET46 || PORTABLE)
         [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
 #endif
 
@@ -1281,7 +1281,7 @@ namespace PommaLabs.Thrower
         ///   <typeparamref name="TEx"/> will be thrown. <br/> In order to do that,
         ///   <typeparamref name="TEx"/> must have a constructor which doesn't take any arguments.
         /// </remarks>
-#if (NET45 || NET46)
+#if (NET45 || NET46 || PORTABLE)
         [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
 #endif
 
@@ -1316,7 +1316,7 @@ namespace PommaLabs.Thrower
         ///   <br/> If both constructors are available, then the one which takes a
         ///   <see cref="string"/> and an <see cref="System.Exception"/> will be used to throw the exception.
         /// </remarks>
-#if (NET45 || NET46)
+#if (NET45 || NET46 || PORTABLE)
         [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
 #endif
 
@@ -1343,7 +1343,7 @@ namespace PommaLabs.Thrower
         ///   <typeparamref name="TEx"/> will be thrown. <br/> In order to do that,
         ///   <typeparamref name="TEx"/> must have a constructor which doesn't take any arguments.
         /// </remarks>
-#if (NET45 || NET46)
+#if (NET45 || NET46 || PORTABLE)
         [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
 #endif
 
@@ -1378,7 +1378,7 @@ namespace PommaLabs.Thrower
         ///   <br/> If both constructors are available, then the one which takes a
         ///   <see cref="string"/> and an <see cref="System.Exception"/> will be used to throw the exception.
         /// </remarks>
-#if (NET45 || NET46)
+#if (NET45 || NET46 || PORTABLE)
         [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
 #endif
 
@@ -1405,7 +1405,7 @@ namespace PommaLabs.Thrower
         ///   <typeparamref name="TEx"/> will be thrown. <br/> In order to do that,
         ///   <typeparamref name="TEx"/> must have a constructor which doesn't take any arguments.
         /// </remarks>
-#if (NET45 || NET46)
+#if (NET45 || NET46 || PORTABLE)
         [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
 #endif
 
@@ -1439,7 +1439,7 @@ namespace PommaLabs.Thrower
         ///   <br/> If both constructors are available, then the one which takes a
         ///   <see cref="string"/> and an <see cref="System.Exception"/> will be used to throw the exception.
         /// </remarks>
-#if (NET45 || NET46)
+#if (NET45 || NET46 || PORTABLE)
         [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
 #endif
 
@@ -1466,7 +1466,7 @@ namespace PommaLabs.Thrower
         ///   <typeparamref name="TEx"/> will be thrown. <br/> In order to do that,
         ///   <typeparamref name="TEx"/> must have a constructor which doesn't take any arguments.
         /// </remarks>
-#if (NET45 || NET46)
+#if (NET45 || NET46 || PORTABLE)
         [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
 #endif
 
@@ -1500,7 +1500,7 @@ namespace PommaLabs.Thrower
         ///   <br/> If both constructors are available, then the one which takes a
         ///   <see cref="string"/> and an <see cref="System.Exception"/> will be used to throw the exception.
         /// </remarks>
-#if (NET45 || NET46)
+#if (NET45 || NET46 || PORTABLE)
         [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
 #endif
 
@@ -1527,7 +1527,7 @@ namespace PommaLabs.Thrower
         ///   <typeparamref name="TEx"/> will be thrown. <br/> In order to do that,
         ///   <typeparamref name="TEx"/> must have a constructor which doesn't take any arguments.
         /// </remarks>
-#if (NET45 || NET46)
+#if (NET45 || NET46 || PORTABLE)
         [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
 #endif
 
@@ -1561,7 +1561,7 @@ namespace PommaLabs.Thrower
         ///   <br/> If both constructors are available, then the one which takes a
         ///   <see cref="string"/> and an <see cref="System.Exception"/> will be used to throw the exception.
         /// </remarks>
-#if (NET45 || NET46)
+#if (NET45 || NET46 || PORTABLE)
         [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
 #endif
 
@@ -1588,7 +1588,7 @@ namespace PommaLabs.Thrower
         ///   <typeparamref name="TEx"/> will be thrown. <br/> In order to do that,
         ///   <typeparamref name="TEx"/> must have a constructor which doesn't take any arguments.
         /// </remarks>
-#if (NET45 || NET46)
+#if (NET45 || NET46 || PORTABLE)
         [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
 #endif
 
@@ -1622,7 +1622,7 @@ namespace PommaLabs.Thrower
         ///   <br/> If both constructors are available, then the one which takes a
         ///   <see cref="string"/> and an <see cref="System.Exception"/> will be used to throw the exception.
         /// </remarks>
-#if (NET45 || NET46)
+#if (NET45 || NET46 || PORTABLE)
         [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
 #endif
 
@@ -1650,7 +1650,7 @@ namespace PommaLabs.Thrower
         ///   <typeparamref name="TEx"/> will be thrown. <br/> In order to do that,
         ///   <typeparamref name="TEx"/> must have a constructor which doesn't take any arguments.
         /// </remarks>
-#if (NET45 || NET46)
+#if (NET45 || NET46 || PORTABLE)
         [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
 #endif
 
@@ -1685,7 +1685,7 @@ namespace PommaLabs.Thrower
         ///   <br/> If both constructors are available, then the one which takes a
         ///   <see cref="string"/> and an <see cref="System.Exception"/> will be used to throw the exception.
         /// </remarks>
-#if (NET45 || NET46)
+#if (NET45 || NET46 || PORTABLE)
         [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
 #endif
 
@@ -1713,7 +1713,7 @@ namespace PommaLabs.Thrower
         ///   <typeparamref name="TEx"/> will be thrown. <br/> In order to do that,
         ///   <typeparamref name="TEx"/> must have a constructor which doesn't take any arguments.
         /// </remarks>
-#if (NET45 || NET46)
+#if (NET45 || NET46 || PORTABLE)
         [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
 #endif
 
@@ -1749,7 +1749,7 @@ namespace PommaLabs.Thrower
         ///   <br/> If both constructors are available, then the one which takes a
         ///   <see cref="string"/> and an <see cref="System.Exception"/> will be used to throw the exception.
         /// </remarks>
-#if (NET45 || NET46)
+#if (NET45 || NET46 || PORTABLE)
         [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
 #endif
 
@@ -1778,7 +1778,7 @@ namespace PommaLabs.Thrower
         ///   <typeparamref name="TEx"/> will be thrown. <br/> In order to do that,
         ///   <typeparamref name="TEx"/> must have a constructor which doesn't take any arguments.
         /// </remarks>
-#if (NET45 || NET46)
+#if (NET45 || NET46 || PORTABLE)
         [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
 #endif
 
@@ -1813,7 +1813,7 @@ namespace PommaLabs.Thrower
         ///   <br/> If both constructors are available, then the one which takes a
         ///   <see cref="string"/> and an <see cref="System.Exception"/> will be used to throw the exception.
         /// </remarks>
-#if (NET45 || NET46)
+#if (NET45 || NET46 || PORTABLE)
         [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
 #endif
 
@@ -1841,7 +1841,7 @@ namespace PommaLabs.Thrower
         ///   <typeparamref name="TEx"/> will be thrown. <br/> In order to do that,
         ///   <typeparamref name="TEx"/> must have a constructor which doesn't take any arguments.
         /// </remarks>
-#if (NET45 || NET46)
+#if (NET45 || NET46 || PORTABLE)
         [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
 #endif
 
@@ -1877,7 +1877,7 @@ namespace PommaLabs.Thrower
         ///   <br/> If both constructors are available, then the one which takes a
         ///   <see cref="string"/> and an <see cref="System.Exception"/> will be used to throw the exception.
         /// </remarks>
-#if (NET45 || NET46)
+#if (NET45 || NET46 || PORTABLE)
         [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
 #endif
 
@@ -1905,7 +1905,7 @@ namespace PommaLabs.Thrower
         ///   <typeparamref name="TEx"/> will be thrown. <br/> In order to do that,
         ///   <typeparamref name="TEx"/> must have a constructor which doesn't take any arguments.
         /// </remarks>
-#if (NET45 || NET46)
+#if (NET45 || NET46 || PORTABLE)
         [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
 #endif
 
@@ -1939,7 +1939,7 @@ namespace PommaLabs.Thrower
         ///   <br/> If both constructors are available, then the one which takes a
         ///   <see cref="string"/> and an <see cref="System.Exception"/> will be used to throw the exception.
         /// </remarks>
-#if (NET45 || NET46)
+#if (NET45 || NET46 || PORTABLE)
         [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
 #endif
 
@@ -1966,7 +1966,7 @@ namespace PommaLabs.Thrower
         ///   <typeparamref name="TEx"/> will be thrown. <br/> In order to do that,
         ///   <typeparamref name="TEx"/> must have a constructor which doesn't take any arguments.
         /// </remarks>
-#if (NET45 || NET46)
+#if (NET45 || NET46 || PORTABLE)
         [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
 #endif
 
@@ -2000,7 +2000,7 @@ namespace PommaLabs.Thrower
         ///   <br/> If both constructors are available, then the one which takes a
         ///   <see cref="string"/> and an <see cref="System.Exception"/> will be used to throw the exception.
         /// </remarks>
-#if (NET45 || NET46)
+#if (NET45 || NET46 || PORTABLE)
         [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
 #endif
 
@@ -2027,7 +2027,7 @@ namespace PommaLabs.Thrower
         ///   will be thrown. <br/> In order to do that, <typeparamref name="TEx"/> must have a
         ///   constructor which doesn't take any arguments.
         /// </remarks>
-#if (NET45 || NET46)
+#if (NET45 || NET46 || PORTABLE)
         [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
 #endif
 
@@ -2061,7 +2061,7 @@ namespace PommaLabs.Thrower
         ///   <br/> If both constructors are available, then the one which takes a
         ///   <see cref="string"/> and an <see cref="System.Exception"/> will be used to throw the exception.
         /// </remarks>
-#if (NET45 || NET46)
+#if (NET45 || NET46 || PORTABLE)
         [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
 #endif
 
@@ -2088,7 +2088,7 @@ namespace PommaLabs.Thrower
         ///   will be thrown. <br/> In order to do that, <typeparamref name="TEx"/> must have a
         ///   constructor which doesn't take any arguments.
         /// </remarks>
-#if (NET45 || NET46)
+#if (NET45 || NET46 || PORTABLE)
         [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
 #endif
 
@@ -2122,7 +2122,7 @@ namespace PommaLabs.Thrower
         ///   <br/> If both constructors are available, then the one which takes a
         ///   <see cref="string"/> and an <see cref="System.Exception"/> will be used to throw the exception.
         /// </remarks>
-#if (NET45 || NET46)
+#if (NET45 || NET46 || PORTABLE)
         [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
 #endif
 
@@ -2146,7 +2146,7 @@ namespace PommaLabs.Thrower
                     select c).FirstOrDefault();
         }
 
-#if (NET45 || NET46)
+#if (NET45 || NET46 || PORTABLE)
         [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
 #endif
 
@@ -2165,7 +2165,7 @@ namespace PommaLabs.Thrower
             throw (TEx) NoArgsCtor.Invoke(new object[0]);
         }
 
-#if (NET45 || NET46)
+#if (NET45 || NET46 || PORTABLE)
         [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
 #endif
 

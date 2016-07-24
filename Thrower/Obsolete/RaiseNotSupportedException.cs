@@ -1,4 +1,4 @@
-﻿// File name: RaiseObjectDisposedException.cs
+﻿// File name: RaiseNotSupportedException.cs
 //
 // Author(s): Alessio Parma <alessio.parma@gmail.com>
 //
@@ -26,25 +26,42 @@ using System;
 namespace PommaLabs.Thrower
 {
     /// <summary>
-    ///   Utility methods which can be used to handle bad object states.
+    ///   Utility methods which can be used to handle unsupported operations.
     /// </summary>
-    public sealed class RaiseObjectDisposedException : RaiseBase
+    [Obsolete("Please use Raise.NotSupportedException.If* overloads, this class has been deprecated")]
+    public sealed class RaiseNotSupportedException : RaiseBase
     {
         /// <summary>
-        ///   Throws <see cref="ObjectDisposedException"/> if the object has been disposed.
+        ///   Throws <see cref="NotSupportedException"/> if given condition is true.
         /// </summary>
-        /// <param name="disposed">Whether the object has been disposed or not.</param>
-        /// <param name="objectName">The required object name.</param>
+        /// <param name="condition">The condition.</param>
         /// <param name="message">The optional message.</param>
 #if (NET45 || NET46 || PORTABLE)
         [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
 #endif
 
-        public static void If(bool disposed, string objectName, string message = null)
+        public static void If(bool condition, string message = null)
         {
-            if (disposed)
+            if (condition)
             {
-                throw string.IsNullOrEmpty(message) ? new ObjectDisposedException(objectName) : new ObjectDisposedException(objectName, message);
+                throw string.IsNullOrEmpty(message) ? new NotSupportedException() : new NotSupportedException(message);
+            }
+        }
+
+        /// <summary>
+        ///   Throws <see cref="NotSupportedException"/> if given condition is false.
+        /// </summary>
+        /// <param name="condition">The condition.</param>
+        /// <param name="message">The optional message.</param>
+#if (NET45 || NET46 || PORTABLE)
+        [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
+#endif
+
+        public static void IfNot(bool condition, string message = null)
+        {
+            if (!condition)
+            {
+                throw string.IsNullOrEmpty(message) ? new NotSupportedException() : new NotSupportedException(message);
             }
         }
     }

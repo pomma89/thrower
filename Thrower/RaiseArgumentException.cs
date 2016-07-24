@@ -40,7 +40,7 @@ namespace PommaLabs.Thrower
         ///   Throws <see cref="ArgumentException"/> if given condition is true.
         /// </summary>
         /// <param name="condition">The condition.</param>
-#if (NET45 || NET46)
+#if (NET45 || NET46 || PORTABLE)
         [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
 #endif
 
@@ -61,7 +61,7 @@ namespace PommaLabs.Thrower
         /// <remarks>
         ///   <paramref name="message"/> and <paramref name="argumentName"/> are strictly required arguments.
         /// </remarks>
-#if (NET45 || NET46)
+#if (NET45 || NET46 || PORTABLE)
         [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
 #endif
 
@@ -81,7 +81,7 @@ namespace PommaLabs.Thrower
         ///   Throws <see cref="ArgumentException"/> if given condition is false.
         /// </summary>
         /// <param name="condition">The condition.</param>
-#if (NET45 || NET46)
+#if (NET45 || NET46 || PORTABLE)
         [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
 #endif
 
@@ -102,7 +102,7 @@ namespace PommaLabs.Thrower
         /// <remarks>
         ///   <paramref name="message"/> and <paramref name="argumentName"/> are strictly required arguments.
         /// </remarks>
-#if (NET45 || NET46)
+#if (NET45 || NET46 || PORTABLE)
         [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
 #endif
 
@@ -123,7 +123,7 @@ namespace PommaLabs.Thrower
         /// </summary>
         /// <typeparam name="TArg">The type of the argument.</typeparam>
         /// <param name="argument">The argument.</param>
-#if (NET45 || NET46)
+#if (NET45 || NET46 || PORTABLE)
         [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
 #endif
 
@@ -146,7 +146,7 @@ namespace PommaLabs.Thrower
         /// <remarks>
         ///   <paramref name="message"/> and <paramref name="argumentName"/> are strictly required arguments.
         /// </remarks>
-#if (NET45 || NET46)
+#if (NET45 || NET46 || PORTABLE)
         [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
 #endif
 
@@ -169,7 +169,7 @@ namespace PommaLabs.Thrower
         ///   Throws <see cref="ArgumentException"/> if given string is not a valid email address.
         /// </summary>
         /// <param name="emailAddress">An email address.</param>
-#if (NET45 || NET46)
+#if (NET45 || NET46 || PORTABLE)
         [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
 #endif
 
@@ -187,7 +187,7 @@ namespace PommaLabs.Thrower
         /// </summary>
         /// <param name="emailAddress">An email address.</param>
         /// <param name="validatorOptions">Customizations for the validation process.</param>
-#if (NET45 || NET46)
+#if (NET45 || NET46 || PORTABLE)
         [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
 #endif
 
@@ -209,7 +209,7 @@ namespace PommaLabs.Thrower
         /// <remarks>
         ///   <paramref name="message"/> and <paramref name="argumentName"/> are strictly required arguments.
         /// </remarks>
-#if (NET45 || NET46)
+#if (NET45 || NET46 || PORTABLE)
         [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
 #endif
 
@@ -232,7 +232,7 @@ namespace PommaLabs.Thrower
         /// <remarks>
         ///   <paramref name="message"/> and <paramref name="argumentName"/> are strictly required arguments.
         /// </remarks>
-#if (NET45 || NET46)
+#if (NET45 || NET46 || PORTABLE)
         [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
 #endif
 
@@ -255,7 +255,7 @@ namespace PommaLabs.Thrower
         ///   Throws <see cref="ArgumentException"/> if given string is not a valid phone number.
         /// </summary>
         /// <param name="phoneNumber">A phone number.</param>
-#if (NET45 || NET46)
+#if (NET45 || NET46 || PORTABLE)
         [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
 #endif
 
@@ -277,7 +277,7 @@ namespace PommaLabs.Thrower
         /// <remarks>
         ///   <paramref name="message"/> and <paramref name="argumentName"/> are strictly required arguments.
         /// </remarks>
-#if (NET45 || NET46)
+#if (NET45 || NET46 || PORTABLE)
         [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
 #endif
 
@@ -301,7 +301,7 @@ namespace PommaLabs.Thrower
         ///   Throws <see cref="ArgumentException"/> if given string is null or empty.
         /// </summary>
         /// <param name="value">The string value.</param>
-#if (NET45 || NET46)
+#if (NET45 || NET46 || PORTABLE)
         [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
 #endif
 
@@ -322,7 +322,7 @@ namespace PommaLabs.Thrower
         /// <remarks>
         ///   <paramref name="message"/> and <paramref name="argumentName"/> are strictly required arguments.
         /// </remarks>
-#if (NET45 || NET46)
+#if (NET45 || NET46 || PORTABLE)
         [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
 #endif
 
@@ -338,7 +338,7 @@ namespace PommaLabs.Thrower
         ///   Throws <see cref="ArgumentException"/> if given string is null, empty or blank.
         /// </summary>
         /// <param name="value">The string value.</param>
-#if (NET45 || NET46)
+#if (NET45 || NET46 || PORTABLE)
         [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
 #endif
 
@@ -359,7 +359,7 @@ namespace PommaLabs.Thrower
         /// <remarks>
         ///   <paramref name="message"/> and <paramref name="argumentName"/> are strictly required arguments.
         /// </remarks>
-#if (NET45 || NET46)
+#if (NET45 || NET46 || PORTABLE)
         [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
 #endif
 
@@ -382,7 +382,7 @@ namespace PommaLabs.Thrower
         /// </summary>
         /// <typeparam name="TItem">The type of the items contained in the collection.</typeparam>
         /// <param name="value">The collection.</param>
-#if (NET45 || NET46)
+#if (NET45 || NET46 || PORTABLE)
         [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
 #endif
 
@@ -404,7 +404,7 @@ namespace PommaLabs.Thrower
         /// <remarks>
         ///   <paramref name="message"/> and <paramref name="argumentName"/> are strictly required arguments.
         /// </remarks>
-#if (NET45 || NET46)
+#if (NET45 || NET46 || PORTABLE)
         [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
 #endif
 

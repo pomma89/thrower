@@ -10,7 +10,10 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="$(MSBuildThisFileDirectory)ExceptionHandlers\ArgumentNullExceptionHandler.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ExceptionHandlers\GenericExceptionHandler.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ExceptionHandlers\NotSupportedExceptionHandler.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Obsolete\RaiseArgumentNullException.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Obsolete\RaiseNotSupportedException.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)RaiseHttpException.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)RaiseNew.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)RaiseObjectDisposedException.cs" />
@@ -24,7 +27,6 @@
     <Compile Include="$(MSBuildThisFileDirectory)RaiseArgumentException.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)RaiseIndexOutOfRangeException.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)RaiseArgumentOutOfRangeException.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)RaiseNotSupportedException.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)RaiseInvalidOperationException.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Validation\EmailAddressValidator.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Validation\ObjectValidator.cs" />

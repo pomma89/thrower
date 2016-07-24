@@ -10,6 +10,8 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="$(MSBuildThisFileDirectory)AbstractTests.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ExceptionHandlers\ArgumentNullExceptionTests.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ExceptionHandlers\NotSupportedExceptionTests.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)IfAreEqualTests.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)IfAreSameTests.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)IfIsAssignableFromTests.cs" />
@@ -19,10 +21,8 @@
     <Compile Include="$(MSBuildThisFileDirectory)IfIsNaNTests.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)IfIsNullTests.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)RaiseArgumentExceptionTests.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)ArgumentNullExceptionTests.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)RaiseHttpExceptionTests.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)RaiseObjectDisposedExceptionTests.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)RaiseNotSupportedExceptionTests.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)RaiseInvalidOperationExceptionTests.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)RaiseTests.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Reflection\FastMember\ObjectAccessorTests.cs" />

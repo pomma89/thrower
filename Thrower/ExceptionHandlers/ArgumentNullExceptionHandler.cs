@@ -1,4 +1,4 @@
-﻿// File name: ArgumentNullHandler.cs
+﻿// File name: ArgumentNullExceptionHandler.cs
 //
 // Author(s): Alessio Parma <alessio.parma@gmail.com>
 //
@@ -31,7 +31,7 @@ namespace PommaLabs.Thrower.ExceptionHandlers
     /// </summary>
     public sealed class ArgumentNullExceptionHandler
     {
-        private const string DefaultMessage = "Argument, or an inner object, is null";
+        private const string DefaultMessage = "Argument, or a nested object, is null";
 
         #region If
 
@@ -39,7 +39,7 @@ namespace PommaLabs.Thrower.ExceptionHandlers
         ///   Throws <see cref="ArgumentNullException"/> if given condition is true.
         /// </summary>
         /// <param name="condition">The condition.</param>
-#if (NET45 || NET46)
+#if (NET45 || NET46 || PORTABLE)
         [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
 #endif
 
@@ -60,7 +60,7 @@ namespace PommaLabs.Thrower.ExceptionHandlers
         /// <remarks>
         ///   <paramref name="message"/> and <paramref name="argumentName"/> are strictly required arguments.
         /// </remarks>
-#if (NET45 || NET46)
+#if (NET45 || NET46 || PORTABLE)
         [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
 #endif
 
@@ -81,7 +81,7 @@ namespace PommaLabs.Thrower.ExceptionHandlers
         /// </summary>
         /// <typeparam name="TArg">The type of the argument.</typeparam>
         /// <param name="argument">The argument.</param>
-#if (NET45 || NET46)
+#if (NET45 || NET46 || PORTABLE)
         [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
 #endif
 
@@ -100,7 +100,7 @@ namespace PommaLabs.Thrower.ExceptionHandlers
         /// <param name="argument">The argument.</param>
         /// <param name="argumentName">The name of the argument.</param>
         /// <param name="message">The message that should be put into the exception.</param>
-#if (NET45 || NET46)
+#if (NET45 || NET46 || PORTABLE)
         [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
 #endif
 
@@ -121,7 +121,7 @@ namespace PommaLabs.Thrower.ExceptionHandlers
         /// </summary>
         /// <typeparam name="TArg">The type of the nullable argument.</typeparam>
         /// <param name="argument">The argument.</param>
-#if (NET45 || NET46)
+#if (NET45 || NET46 || PORTABLE)
         [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
 #endif
 
@@ -139,7 +139,7 @@ namespace PommaLabs.Thrower.ExceptionHandlers
         /// </summary>
         /// <typeparam name="TArg">The type of the nullable argument.</typeparam>
         /// <param name="argument">The argument, by reference.</param>
-#if (NET45 || NET46)
+#if (NET45 || NET46 || PORTABLE)
         [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
 #endif
 
@@ -159,7 +159,7 @@ namespace PommaLabs.Thrower.ExceptionHandlers
         /// <param name="argument">The argument.</param>
         /// <param name="argumentName">The name of the argument.</param>
         /// <param name="message">The message that should be put into the exception.</param>
-#if (NET45 || NET46)
+#if (NET45 || NET46 || PORTABLE)
         [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
 #endif
 
@@ -179,7 +179,7 @@ namespace PommaLabs.Thrower.ExceptionHandlers
         /// <param name="argument">The argument, by reference.</param>
         /// <param name="argumentName">The name of the argument.</param>
         /// <param name="message">The message that should be put into the exception.</param>
-#if (NET45 || NET46)
+#if (NET45 || NET46 || PORTABLE)
         [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
 #endif
 

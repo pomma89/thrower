@@ -1,4 +1,4 @@
-﻿// File name: RaiseNotSupportedException.cs
+﻿// File name: GenericExceptionHandler.cs
 //
 // Author(s): Alessio Parma <alessio.parma@gmail.com>
 //
@@ -23,45 +23,62 @@
 
 using System;
 
-namespace PommaLabs.Thrower
+namespace PommaLabs.Thrower.ExceptionHandlers
 {
     /// <summary>
-    ///   Utility methods which can be used to handle unsupported operations.
+    ///   Generic handler used for common exceptions like <see cref="NotSupportedException"/>.
     /// </summary>
-    public sealed class RaiseNotSupportedException : RaiseBase
+    /// <typeparam name="TException">The type of the handled exception.</typeparam>
+    public abstract class GenericExceptionHandler<TException>
+        where TException : Exception, new()
     {
+        #region Abstract members
+
         /// <summary>
-        ///   Throws <see cref="NotSupportedException"/> if given condition is true.
+        ///   Creates an exception with given message.
+        /// </summary>
+        /// <param name="message">The message used by the exception.</param>
+        /// <returns>An exception with given message.</returns>
+        protected abstract TException NewWithMessage(string message);
+
+        #endregion Abstract members
+
+        #region Public members
+
+        /// <summary>
+        ///   Throws <typeparamref name="TException"/> if given condition is true.
         /// </summary>
         /// <param name="condition">The condition.</param>
         /// <param name="message">The optional message.</param>
-#if (NET45 || NET46)
+#if (NET45 || NET46 || PORTABLE)
+
         [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
 #endif
-
-        public static void If(bool condition, string message = null)
+        public void If(bool condition, string message = null)
         {
             if (condition)
             {
-                throw string.IsNullOrEmpty(message) ? new NotSupportedException() : new NotSupportedException(message);
+                throw string.IsNullOrEmpty(message) ? new TException() : NewWithMessage(message);
             }
         }
 
         /// <summary>
-        ///   Throws <see cref="NotSupportedException"/> if given condition is false.
+        ///   Throws <typeparamref name="TException"/> if given condition is false.
         /// </summary>
         /// <param name="condition">The condition.</param>
         /// <param name="message">The optional message.</param>
-#if (NET45 || NET46)
+#if (NET45 || NET46 || PORTABLE)
+
         [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
 #endif
-
-        public static void IfNot(bool condition, string message = null)
+        public void IfNot(bool condition, string message = null)
         {
             if (!condition)
             {
-                throw string.IsNullOrEmpty(message) ? new NotSupportedException() : new NotSupportedException(message);
+                throw string.IsNullOrEmpty(message) ? new TException() : NewWithMessage(message);
             }
         }
+
+        #endregion Public members
     }
 }

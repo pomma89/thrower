@@ -24,7 +24,7 @@
 using NUnit.Framework;
 using System;
 
-namespace PommaLabs.Thrower.UnitTests
+namespace PommaLabs.Thrower.UnitTests.ExceptionHandlers
 {
     internal sealed class ArgumentNullExceptionTests : AbstractTests
     {

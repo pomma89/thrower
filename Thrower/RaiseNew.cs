@@ -26,7 +26,7 @@ using PommaLabs.Thrower.ExceptionHandlers;
 namespace PommaLabs.Thrower
 {
     /// <summary>
-    ///   New exception handling mechanism.
+    ///   New exception handling mechanism, which is more fluent than the old ones.
     /// </summary>
     public static class Raise
     {
@@ -34,5 +34,10 @@ namespace PommaLabs.Thrower
         ///   Handler for <see cref="System.ArgumentNullException"/>
         /// </summary>
         public static ArgumentNullExceptionHandler ArgumentNullException { get; } = new ArgumentNullExceptionHandler();
+
+        /// <summary>
+        ///   Handler for <see cref="System.NotSupportedException"/>
+        /// </summary>
+        public static NotSupportedExceptionHandler NotSupportedException { get; } = new NotSupportedExceptionHandler();
     }
 }

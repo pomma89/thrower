@@ -9,6 +9,8 @@ let buildMode    = getBuildParamOrDefault "buildMode" "Debug"
 let artifactsDir = "./.artifacts/"
 let testDir      = "./Platform Specific/Thrower.UnitTests.*/bin/{0}/"
 let testDll      = "PommaLabs.Thrower.UnitTests.dll"
+let perfDir      = "./Thrower.Benchmarks/bin/Release/"
+let perfExe      = "PommaLabs.Thrower.Benchmarks.exe"
 
 // Common - Build
 let myBuild target buildMode =
@@ -68,6 +70,13 @@ Target "TestRelease" (fun _ ->
     myTest "Release"
 )
 
+Target "PerfRelease" (fun _ ->
+    trace "Testing performance..."
+    directExec (fun info ->
+      info.FileName <- perfDir + perfExe
+      info.WorkingDirectory <- perfDir) |> ignore
+)
+
 Target "Default" (fun _ ->
     trace "Building and publishing Thrower..."
 )
@@ -78,6 +87,7 @@ Target "Default" (fun _ ->
   ==> "TestDebug"
   ==> "BuildRelease"
   ==> "TestRelease"
+  ==> "PerfRelease"
   ==> "BuildPublish"
   ==> "Default"
 

@@ -37,7 +37,7 @@ namespace PommaLabs.Thrower
         /// </summary>
         /// <param name="condition">The condition.</param>
         /// <param name="argumentName">The optional name of the argument.</param>
-#if (NET45 || NET46)
+#if (NET45 || NET46 || PORTABLE)
         [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
 #endif
 
@@ -58,7 +58,7 @@ namespace PommaLabs.Thrower
         /// <remarks>
         ///   <paramref name="message"/> and <paramref name="argumentName"/> are strictly required arguments.
         /// </remarks>
-#if (NET45 || NET46)
+#if (NET45 || NET46 || PORTABLE)
         [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
 #endif
 
@@ -79,7 +79,7 @@ namespace PommaLabs.Thrower
         /// </summary>
         /// <param name="condition">The condition.</param>
         /// <param name="argumentName">The optional name of the argument.</param>
-#if (NET45 || NET46)
+#if (NET45 || NET46 || PORTABLE)
         [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
 #endif
 
@@ -100,7 +100,7 @@ namespace PommaLabs.Thrower
         /// <remarks>
         ///   <paramref name="message"/> and <paramref name="argumentName"/> are strictly required arguments.
         /// </remarks>
-#if (NET45 || NET46)
+#if (NET45 || NET46 || PORTABLE)
         [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
 #endif
 
@@ -123,7 +123,7 @@ namespace PommaLabs.Thrower
         /// <typeparam name="TArg">The type of the arguments.</typeparam>
         /// <param name="argument1">The left side argument.</param>
         /// <param name="argument2">The right side argument.</param>
-#if (NET45 || NET46)
+#if (NET45 || NET46 || PORTABLE)
         [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
 #endif
 
@@ -142,7 +142,7 @@ namespace PommaLabs.Thrower
         /// </summary>
         /// <param name="argument1">The left side argument.</param>
         /// <param name="argument2">The right side argument.</param>
-#if (NET45 || NET46)
+#if (NET45 || NET46 || PORTABLE)
         [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
 #endif
 
@@ -166,7 +166,7 @@ namespace PommaLabs.Thrower
         /// <param name="argument1">The left side argument.</param>
         /// <param name="argument2">The right side argument.</param>
         /// <param name="argumentName">The name of the argument.</param>
-#if (NET45 || NET46)
+#if (NET45 || NET46 || PORTABLE)
         [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
 #endif
 
@@ -186,7 +186,7 @@ namespace PommaLabs.Thrower
         /// <param name="argument1">The left side argument.</param>
         /// <param name="argument2">The right side argument.</param>
         /// <param name="argumentName">The name of the argument.</param>
-#if (NET45 || NET46)
+#if (NET45 || NET46 || PORTABLE)
         [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
 #endif
 
@@ -211,7 +211,7 @@ namespace PommaLabs.Thrower
         /// <param name="argument2">The right side argument.</param>
         /// <param name="argumentName">The name of the argument.</param>
         /// <param name="message">The message that should be put into the exception.</param>
-#if (NET45 || NET46)
+#if (NET45 || NET46 || PORTABLE)
         [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
 #endif
 
@@ -232,7 +232,7 @@ namespace PommaLabs.Thrower
         /// <param name="argument2">The right side argument.</param>
         /// <param name="argumentName">The name of the argument.</param>
         /// <param name="message">The message that should be put into the exception.</param>
-#if (NET45 || NET46)
+#if (NET45 || NET46 || PORTABLE)
         [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
 #endif
 
@@ -255,7 +255,7 @@ namespace PommaLabs.Thrower
         /// <typeparam name="TArg">The type of the arguments.</typeparam>
         /// <param name="argument1">The left side argument.</param>
         /// <param name="argument2">The right side argument.</param>
-#if (NET45 || NET46)
+#if (NET45 || NET46 || PORTABLE)
         [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
 #endif
 
@@ -274,7 +274,7 @@ namespace PommaLabs.Thrower
         /// </summary>
         /// <param name="argument1">The left side argument.</param>
         /// <param name="argument2">The right side argument.</param>
-#if (NET45 || NET46)
+#if (NET45 || NET46 || PORTABLE)
         [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
 #endif
 
@@ -298,7 +298,7 @@ namespace PommaLabs.Thrower
         /// <param name="argument1">The left side argument.</param>
         /// <param name="argument2">The right side argument.</param>
         /// <param name="argumentName">The name of the argument.</param>
-#if (NET45 || NET46)
+#if (NET45 || NET46 || PORTABLE)
         [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
 #endif
 
@@ -318,7 +318,7 @@ namespace PommaLabs.Thrower
         /// <param name="argument1">The left side argument.</param>
         /// <param name="argument2">The right side argument.</param>
         /// <param name="argumentName">The name of the argument.</param>
-#if (NET45 || NET46)
+#if (NET45 || NET46 || PORTABLE)
         [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
 #endif
 
@@ -343,7 +343,7 @@ namespace PommaLabs.Thrower
         /// <param name="argument2">The right side argument.</param>
         /// <param name="argumentName">The name of the argument.</param>
         /// <param name="message">The message that should be put into the exception.</param>
-#if (NET45 || NET46)
+#if (NET45 || NET46 || PORTABLE)
         [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
 #endif
 
@@ -364,7 +364,7 @@ namespace PommaLabs.Thrower
         /// <param name="argument2">The right side argument.</param>
         /// <param name="argumentName">The name of the argument.</param>
         /// <param name="message">The message that should be put into the exception.</param>
-#if (NET45 || NET46)
+#if (NET45 || NET46 || PORTABLE)
         [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
 #endif
 
@@ -387,7 +387,7 @@ namespace PommaLabs.Thrower
         /// <typeparam name="TArg">The type of the arguments.</typeparam>
         /// <param name="argument1">The left side argument.</param>
         /// <param name="argument2">The right side argument.</param>
-#if (NET45 || NET46)
+#if (NET45 || NET46 || PORTABLE)
         [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
 #endif
 
@@ -406,7 +406,7 @@ namespace PommaLabs.Thrower
         /// </summary>
         /// <param name="argument1">The left side argument.</param>
         /// <param name="argument2">The right side argument.</param>
-#if (NET45 || NET46)
+#if (NET45 || NET46 || PORTABLE)
         [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
 #endif
 
@@ -430,7 +430,7 @@ namespace PommaLabs.Thrower
         /// <param name="argument1">The left side argument.</param>
         /// <param name="argument2">The right side argument.</param>
         /// <param name="argumentName">The name of the argument.</param>
-#if (NET45 || NET46)
+#if (NET45 || NET46 || PORTABLE)
         [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
 #endif
 
@@ -450,7 +450,7 @@ namespace PommaLabs.Thrower
         /// <param name="argument1">The left side argument.</param>
         /// <param name="argument2">The right side argument.</param>
         /// <param name="argumentName">The name of the argument.</param>
-#if (NET45 || NET46)
+#if (NET45 || NET46 || PORTABLE)
         [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
 #endif
 
@@ -475,7 +475,7 @@ namespace PommaLabs.Thrower
         /// <param name="argument2">The right side argument.</param>
         /// <param name="argumentName">The name of the argument.</param>
         /// <param name="message">The message that should be put into the exception.</param>
-#if (NET45 || NET46)
+#if (NET45 || NET46 || PORTABLE)
         [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
 #endif
 
@@ -496,7 +496,7 @@ namespace PommaLabs.Thrower
         /// <param name="argument2">The right side argument.</param>
         /// <param name="argumentName">The name of the argument.</param>
         /// <param name="message">The message that should be put into the exception.</param>
-#if (NET45 || NET46)
+#if (NET45 || NET46 || PORTABLE)
         [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
 #endif
 
@@ -519,7 +519,7 @@ namespace PommaLabs.Thrower
         /// <typeparam name="TArg">The type of the arguments.</typeparam>
         /// <param name="argument1">The left side argument.</param>
         /// <param name="argument2">The right side argument.</param>
-#if (NET45 || NET46)
+#if (NET45 || NET46 || PORTABLE)
         [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
 #endif
 
@@ -538,7 +538,7 @@ namespace PommaLabs.Thrower
         /// </summary>
         /// <param name="argument1">The left side argument.</param>
         /// <param name="argument2">The right side argument.</param>
-#if (NET45 || NET46)
+#if (NET45 || NET46 || PORTABLE)
         [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
 #endif
 
@@ -562,7 +562,7 @@ namespace PommaLabs.Thrower
         /// <param name="argument1">The left side argument.</param>
         /// <param name="argument2">The right side argument.</param>
         /// <param name="argumentName">The name of the argument.</param>
-#if (NET45 || NET46)
+#if (NET45 || NET46 || PORTABLE)
         [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
 #endif
 
@@ -582,7 +582,7 @@ namespace PommaLabs.Thrower
         /// <param name="argument1">The left side argument.</param>
         /// <param name="argument2">The right side argument.</param>
         /// <param name="argumentName">The name of the argument.</param>
-#if (NET45 || NET46)
+#if (NET45 || NET46 || PORTABLE)
         [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
 #endif
 
@@ -607,7 +607,7 @@ namespace PommaLabs.Thrower
         /// <param name="argument2">The right side argument.</param>
         /// <param name="argumentName">The name of the argument.</param>
         /// <param name="message">The message that should be put into the exception.</param>
-#if (NET45 || NET46)
+#if (NET45 || NET46 || PORTABLE)
         [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
 #endif
 
@@ -628,7 +628,7 @@ namespace PommaLabs.Thrower
         /// <param name="argument2">The right side argument.</param>
         /// <param name="argumentName">The name of the argument.</param>
         /// <param name="message">The message that should be put into the exception.</param>
-#if (NET45 || NET46)
+#if (NET45 || NET46 || PORTABLE)
         [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
 #endif
 
@@ -651,7 +651,7 @@ namespace PommaLabs.Thrower
         /// <typeparam name="TArg">The type of the arguments.</typeparam>
         /// <param name="argument1">The left side argument.</param>
         /// <param name="argument2">The right side argument.</param>
-#if (NET45 || NET46)
+#if (NET45 || NET46 || PORTABLE)
         [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
 #endif
 
@@ -670,7 +670,7 @@ namespace PommaLabs.Thrower
         /// </summary>
         /// <param name="argument1">The left side argument.</param>
         /// <param name="argument2">The right side argument.</param>
-#if (NET45 || NET46)
+#if (NET45 || NET46 || PORTABLE)
         [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
 #endif
 
@@ -694,7 +694,7 @@ namespace PommaLabs.Thrower
         /// <param name="argument1">The left side argument.</param>
         /// <param name="argument2">The right side argument.</param>
         /// <param name="argumentName">The name of the argument.</param>
-#if (NET45 || NET46)
+#if (NET45 || NET46 || PORTABLE)
         [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
 #endif
 
@@ -714,7 +714,7 @@ namespace PommaLabs.Thrower
         /// <param name="argument1">The left side argument.</param>
         /// <param name="argument2">The right side argument.</param>
         /// <param name="argumentName">The name of the argument.</param>
-#if (NET45 || NET46)
+#if (NET45 || NET46 || PORTABLE)
         [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
 #endif
 
@@ -739,7 +739,7 @@ namespace PommaLabs.Thrower
         /// <param name="argument2">The right side argument.</param>
         /// <param name="argumentName">The name of the argument.</param>
         /// <param name="message">The message that should be put into the exception.</param>
-#if (NET45 || NET46)
+#if (NET45 || NET46 || PORTABLE)
         [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
 #endif
 
@@ -760,7 +760,7 @@ namespace PommaLabs.Thrower
         /// <param name="argument2">The right side argument.</param>
         /// <param name="argumentName">The name of the argument.</param>
         /// <param name="message">The message that should be put into the exception.</param>
-#if (NET45 || NET46)
+#if (NET45 || NET46 || PORTABLE)
         [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
 #endif
 
@@ -783,7 +783,7 @@ namespace PommaLabs.Thrower
         /// <typeparam name="TArg">The type of the arguments.</typeparam>
         /// <param name="argument1">The left side argument.</param>
         /// <param name="argument2">The right side argument.</param>
-#if (NET45 || NET46)
+#if (NET45 || NET46 || PORTABLE)
         [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
 #endif
 
@@ -802,7 +802,7 @@ namespace PommaLabs.Thrower
         /// </summary>
         /// <param name="argument1">The left side argument.</param>
         /// <param name="argument2">The right side argument.</param>
-#if (NET45 || NET46)
+#if (NET45 || NET46 || PORTABLE)
         [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
 #endif
 
@@ -826,7 +826,7 @@ namespace PommaLabs.Thrower
         /// <param name="argument1">The left side argument.</param>
         /// <param name="argument2">The right side argument.</param>
         /// <param name="argumentName">The name of the argument.</param>
-#if (NET45 || NET46)
+#if (NET45 || NET46 || PORTABLE)
         [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
 #endif
 
@@ -846,7 +846,7 @@ namespace PommaLabs.Thrower
         /// <param name="argument1">The left side argument.</param>
         /// <param name="argument2">The right side argument.</param>
         /// <param name="argumentName">The name of the argument.</param>
-#if (NET45 || NET46)
+#if (NET45 || NET46 || PORTABLE)
         [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
 #endif
 
@@ -871,7 +871,7 @@ namespace PommaLabs.Thrower
         /// <param name="argument2">The right side argument.</param>
         /// <param name="argumentName">The name of the argument.</param>
         /// <param name="message">The message that should be put into the exception.</param>
-#if (NET45 || NET46)
+#if (NET45 || NET46 || PORTABLE)
         [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
 #endif
 
@@ -892,7 +892,7 @@ namespace PommaLabs.Thrower
         /// <param name="argument2">The right side argument.</param>
         /// <param name="argumentName">The name of the argument.</param>
         /// <param name="message">The message that should be put into the exception.</param>
-#if (NET45 || NET46)
+#if (NET45 || NET46 || PORTABLE)
         [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
 #endif
 

@@ -38,7 +38,7 @@ namespace PommaLabs.Thrower
         /// <param name="condition">The condition.</param>
         /// <param name="httpStatusCode">The HTTP status code corresponding to the error.</param>
         /// <param name="message">The optional message.</param>
-#if (NET45 || NET46)
+#if (NET45 || NET46 || PORTABLE)
         [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
 #endif
 
@@ -57,7 +57,7 @@ namespace PommaLabs.Thrower
         /// <param name="httpStatusCode">The HTTP status code corresponding to the error.</param>
         /// <param name="message">The required message.</param>
         /// <param name="additionalInfo">Additional exception info.</param>
-#if (NET45 || NET46)
+#if (NET45 || NET46 || PORTABLE)
         [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
 #endif
 
@@ -75,7 +75,7 @@ namespace PommaLabs.Thrower
         /// <param name="condition">The condition.</param>
         /// <param name="httpStatusCode">The HTTP status code corresponding to the error.</param>
         /// <param name="message">The optional message.</param>
-#if (NET45 || NET46)
+#if (NET45 || NET46 || PORTABLE)
         [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
 #endif
 
@@ -94,7 +94,7 @@ namespace PommaLabs.Thrower
         /// <param name="httpStatusCode">The HTTP status code corresponding to the error.</param>
         /// <param name="message">The required message.</param>
         /// <param name="additionalInfo">Additional exception info.</param>
-#if (NET45 || NET46)
+#if (NET45 || NET46 || PORTABLE)
         [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
 #endif
 

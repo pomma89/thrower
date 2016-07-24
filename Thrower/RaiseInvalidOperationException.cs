@@ -35,7 +35,7 @@ namespace PommaLabs.Thrower
         /// </summary>
         /// <param name="condition">The condition.</param>
         /// <param name="message">The optional message.</param>
-#if (NET45 || NET46)
+#if (NET45 || NET46 || PORTABLE)
         [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
 #endif
 
@@ -52,7 +52,7 @@ namespace PommaLabs.Thrower
         /// </summary>
         /// <param name="condition">The condition.</param>
         /// <param name="message">The optional message.</param>
-#if (NET45 || NET46)
+#if (NET45 || NET46 || PORTABLE)
         [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
 #endif
 
