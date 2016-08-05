@@ -36,7 +36,10 @@ namespace PommaLabs.Thrower.Examples
         /// </summary>
         internal sealed class MyBank
         {
-            private bool isOpen;
+            /// <summary>
+            ///   Stores whether this bank is open or not.
+            /// </summary>
+            private bool _isOpen;
 
             /// <summary>
             ///   The amount held into the bank.
@@ -50,7 +53,9 @@ namespace PommaLabs.Thrower.Examples
             /// <exception cref="ArgumentException">The hello message is null or blank.</exception>
             public void SayHello(string helloMsg)
             {
+                // Preconditions
                 Raise.ArgumentException.IfIsNullOrWhiteSpace(helloMsg, nameof(helloMsg), "Hello message is null or blank");
+
                 Console.WriteLine(helloMsg);
             }
 
@@ -63,9 +68,11 @@ namespace PommaLabs.Thrower.Examples
             /// <exception cref="OverNineThousandException">Amount is over nine thousand!</exception>
             public void Deposit(decimal amount)
             {
-                Raise.InvalidOperationException.IfNot(isOpen, "Bank is still closed");
+                // Preconditions
+                Raise.InvalidOperationException.IfNot(_isOpen, "Bank is still closed");
                 Raise.ArgumentOutOfRangeException.IfIsLessOrEqual(amount, 0, nameof(amount), "Zero or negative amount");
-                Raise<OverNineThousandException>.If(amount > 9000M, "You are very rich!");
+                Raise<OverNineThousandException>.If(amount > 9000M, "You are too rich!");
+
                 Amount += amount;
             }
 
@@ -80,9 +87,11 @@ namespace PommaLabs.Thrower.Examples
             /// </exception>
             public void SendMail(string fromAddress, string toAddress, string body)
             {
-                Raise.ArgumentException.IfIsNotValidEmailAddress(fromAddress, argumentName: nameof(fromAddress), validatorOptions: EmailAddressValidator.Options.AllowTopLevelDomains);
-                Raise.ArgumentException.IfIsNotValidEmailAddress(toAddress, argumentName: nameof(toAddress), validatorOptions: EmailAddressValidator.Options.AllowInternational);
+                // Preconditions
+                Raise.ArgumentException.IfIsNotValidEmailAddress(fromAddress, nameof(fromAddress), EmailAddressValidator.Options.AllowTopLevelDomains);
+                Raise.ArgumentException.IfIsNotValidEmailAddress(toAddress, nameof(toAddress), EmailAddressValidator.Options.AllowInternational);
                 Raise.ArgumentException.IfIsNullOrWhiteSpace(body, nameof(body), "The email body cannot be blank");
+
                 Console.WriteLine($"From: {fromAddress}");
                 Console.WriteLine($"To: {toAddress}");
                 Console.WriteLine($"Message: {body}");
@@ -93,7 +102,7 @@ namespace PommaLabs.Thrower.Examples
             /// </summary>
             public void Open()
             {
-                isOpen = true;
+                _isOpen = true;
             }
         }
 
