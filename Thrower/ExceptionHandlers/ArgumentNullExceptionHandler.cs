@@ -24,6 +24,8 @@
 using PommaLabs.Thrower.Reflection;
 using System;
 
+#pragma warning disable CC0091 // Use static method
+
 namespace PommaLabs.Thrower.ExceptionHandlers
 {
     /// <summary>
@@ -39,10 +41,7 @@ namespace PommaLabs.Thrower.ExceptionHandlers
         ///   Throws <see cref="ArgumentNullException"/> if given condition is true.
         /// </summary>
         /// <param name="condition">The condition.</param>
-#if (NET45 || NET46 || PORTABLE)
-        [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
-#endif
-
+        /// <exception cref="ArgumentNullException">If given condition is true.</exception>
         public void If(bool condition)
         {
             if (condition)
@@ -57,13 +56,10 @@ namespace PommaLabs.Thrower.ExceptionHandlers
         /// <param name="condition">The condition.</param>
         /// <param name="argumentName">The name of the argument.</param>
         /// <param name="message">The message.</param>
+        /// <exception cref="ArgumentNullException">If given condition is true.</exception>
         /// <remarks>
         ///   <paramref name="message"/> and <paramref name="argumentName"/> are strictly required arguments.
         /// </remarks>
-#if (NET45 || NET46 || PORTABLE)
-        [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
-#endif
-
         public void If(bool condition, string argumentName, string message = null)
         {
             if (condition)
@@ -81,10 +77,7 @@ namespace PommaLabs.Thrower.ExceptionHandlers
         /// </summary>
         /// <typeparam name="TArg">The type of the argument.</typeparam>
         /// <param name="argument">The argument.</param>
-#if (NET45 || NET46 || PORTABLE)
-        [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
-#endif
-
+        /// <exception cref="ArgumentNullException">If given argument is null.</exception>
         public void IfIsNull<TArg>(TArg argument)
         {
             if (!PortableTypeInfo.IsValueType(typeof(TArg)) && ReferenceEquals(argument, null))
@@ -100,10 +93,7 @@ namespace PommaLabs.Thrower.ExceptionHandlers
         /// <param name="argument">The argument.</param>
         /// <param name="argumentName">The name of the argument.</param>
         /// <param name="message">The message that should be put into the exception.</param>
-#if (NET45 || NET46 || PORTABLE)
-        [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
-#endif
-
+        /// <exception cref="ArgumentNullException">If given argument is null.</exception>
         public void IfIsNull<TArg>(TArg argument, string argumentName, string message = null)
         {
             if (!PortableTypeInfo.IsValueType(typeof(TArg)) && ReferenceEquals(argument, null))
@@ -121,10 +111,7 @@ namespace PommaLabs.Thrower.ExceptionHandlers
         /// </summary>
         /// <typeparam name="TArg">The type of the nullable argument.</typeparam>
         /// <param name="argument">The argument.</param>
-#if (NET45 || NET46 || PORTABLE)
-        [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
-#endif
-
+        /// <exception cref="ArgumentNullException">If given argument has no value.</exception>
         public void IfIsNull<TArg>(TArg? argument)
             where TArg : struct
         {
@@ -139,10 +126,7 @@ namespace PommaLabs.Thrower.ExceptionHandlers
         /// </summary>
         /// <typeparam name="TArg">The type of the nullable argument.</typeparam>
         /// <param name="argument">The argument, by reference.</param>
-#if (NET45 || NET46 || PORTABLE)
-        [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
-#endif
-
+        /// <exception cref="ArgumentNullException">If given argument has no value.</exception>
         public void IfIsNull<TArg>(ref TArg? argument)
             where TArg : struct
         {
@@ -159,10 +143,7 @@ namespace PommaLabs.Thrower.ExceptionHandlers
         /// <param name="argument">The argument.</param>
         /// <param name="argumentName">The name of the argument.</param>
         /// <param name="message">The message that should be put into the exception.</param>
-#if (NET45 || NET46 || PORTABLE)
-        [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
-#endif
-
+        /// <exception cref="ArgumentNullException">If given argument has no value.</exception>
         public void IfIsNull<TArg>(TArg? argument, string argumentName, string message = null)
             where TArg : struct
         {
@@ -179,10 +160,7 @@ namespace PommaLabs.Thrower.ExceptionHandlers
         /// <param name="argument">The argument, by reference.</param>
         /// <param name="argumentName">The name of the argument.</param>
         /// <param name="message">The message that should be put into the exception.</param>
-#if (NET45 || NET46 || PORTABLE)
-        [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
-#endif
-
+        /// <exception cref="ArgumentNullException">If given argument has no value.</exception>
         public void IfIsNull<TArg>(ref TArg? argument, string argumentName, string message = null)
             where TArg : struct
         {
@@ -195,3 +173,5 @@ namespace PommaLabs.Thrower.ExceptionHandlers
         #endregion Nullable structs
     }
 }
+
+#pragma warning restore CC0091 // Use static method

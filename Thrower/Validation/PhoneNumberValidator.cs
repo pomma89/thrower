@@ -10,7 +10,7 @@ namespace PommaLabs.Thrower.Validation
     /// <remarks>A phone number validator.</remarks>
     public static class PhoneNumberValidator
     {
-        private static Regex PhoneNumberRegex = CreatePhoneNumberRegex();
+        private static readonly Regex PhoneNumberRegex = CreatePhoneNumberRegex();
 
         /// <summary>
         ///   Validates the specified phone number.
@@ -22,7 +22,7 @@ namespace PommaLabs.Thrower.Validation
             // Preconditions
             RaiseArgumentException.IfIsNullOrWhiteSpace(phoneNumber, nameof(phoneNumber));
 
-            return PhoneNumberRegex.Match(phoneNumber).Length > 0;
+            return PhoneNumberRegex.IsMatch(phoneNumber);
         }
 
         private static Regex CreatePhoneNumberRegex()

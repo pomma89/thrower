@@ -50,10 +50,9 @@ namespace PommaLabs.Thrower.ExceptionHandlers
         /// </summary>
         /// <param name="condition">The condition.</param>
         /// <param name="message">The optional message.</param>
-#if (NET45 || NET46 || PORTABLE)
-
-        [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
-#endif
+        /// <exception cref="Exception">
+        ///   If given condition is true, an exception of type <typeparamref name="TException"/> is thrown.
+        /// </exception>
         public void If(bool condition, string message = null)
         {
             if (condition)
@@ -67,10 +66,9 @@ namespace PommaLabs.Thrower.ExceptionHandlers
         /// </summary>
         /// <param name="condition">The condition.</param>
         /// <param name="message">The optional message.</param>
-#if (NET45 || NET46 || PORTABLE)
-
-        [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
-#endif
+        /// <exception cref="Exception">
+        ///   If given condition is true, an exception of type <typeparamref name="TException"/> is thrown.
+        /// </exception>
         public void IfNot(bool condition, string message = null)
         {
             if (!condition)

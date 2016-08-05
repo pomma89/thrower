@@ -23,6 +23,7 @@
 
 using PommaLabs.Thrower.Reflection;
 using System;
+using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Reflection;
@@ -2139,11 +2140,29 @@ namespace PommaLabs.Thrower
         {
             return (from c in PortableTypeInfo.GetConstructors(typeof(TEx))
                     let args = c.GetParameters()
-                    let zipArgs = args.Zip(ctorTypes, (argType, ctorType) => new { argType, ctorType })
+                    let zipArgs = MyZip(args, ctorTypes, (argType, ctorType) => new { argType, ctorType })
                     where args.Length == ctorTypes.Count &&
                           (c.IsPublic || c.IsAssembly) &&
                           zipArgs.All(t => ReferenceEquals(t.argType.ParameterType, t.ctorType))
                     select c).FirstOrDefault();
+        }
+
+        private static IEnumerable<TResult> MyZip<TFirst, TSecond, TResult>(IEnumerable<TFirst> first, IEnumerable<TSecond> second, Func<TFirst, TSecond, TResult> resultSelector)
+        {
+            Raise.ArgumentNullException.IfIsNull(first, nameof(first));
+            Raise.ArgumentNullException.IfIsNull(second, nameof(second));
+            Raise.ArgumentNullException.IfIsNull(resultSelector, nameof(resultSelector));
+
+            using (IEnumerator<TFirst> e1 = first.GetEnumerator())
+            using (IEnumerator<TSecond> e2 = second.GetEnumerator())
+            {
+                while (e1.MoveNext() && e2.MoveNext())
+                {
+#pragma warning disable CC0031 // Check for null before calling a delegate
+                    yield return resultSelector(e1.Current, e2.Current);
+#pragma warning restore CC0031 // Check for null before calling a delegate
+                }
+            }
         }
 
 #if (NET45 || NET46 || PORTABLE)
