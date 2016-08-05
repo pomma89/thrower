@@ -5,6 +5,7 @@
 * Completed the implementation of a more fluent validation.
 * Added a build script based on FAKE.
 * Updated examples and doc comments.
+* HttpException is now a proper .NET exception.
 
 ### v2.2.4 (2016-06-12) ###
 

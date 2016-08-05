@@ -24,12 +24,14 @@
 using PommaLabs.Thrower.Validation;
 using System;
 using System.Net;
+using System.Runtime.Serialization;
 
 namespace PommaLabs.Thrower
 {
     /// <summary>
     ///   Additional info which will be included into <see cref="HttpException"/>.
     /// </summary>
+    [Serializable]
     public struct HttpExceptionInfo
     {
         /// <summary>
@@ -60,6 +62,7 @@ namespace PommaLabs.Thrower
     ///   Represents an exception which contains an error message that should be delivered through
     ///   the HTTP response, using given status code.
     /// </summary>
+    [Serializable]
     public sealed class HttpException : Exception
     {
         /// <summary>
@@ -133,6 +136,58 @@ namespace PommaLabs.Thrower
             ErrorCode = additionalInfo.ErrorCode ?? DefaultErrorCode;
             UserMessage = additionalInfo.UserMessage ?? DefaultUserMessage;
         }
+
+#if !PORTABLE
+
+        /// <summary>
+        ///   Initializes a new instance of the <see cref="HttpException"/> class with serialized data.
+        /// </summary>
+        /// <param name="info">
+        ///   The <see cref="SerializationInfo"/> that holds the serialized object data about the
+        ///   exception being thrown.
+        /// </param>
+        /// <param name="context">
+        ///   The <see cref="StreamingContext"/> that contains contextual information about the
+        ///   source or destination.
+        /// </param>
+        private HttpException(SerializationInfo info, StreamingContext context)
+            : base(info, context)
+        {
+            HttpStatusCode = (HttpStatusCode) info.GetInt32(nameof(HttpStatusCode));
+            ErrorCode = info.GetString(nameof(ErrorCode));
+            UserMessage = info.GetString(nameof(UserMessage));
+        }
+
+        /// <summary>
+        ///   When overridden in a derived class, sets the <see cref="SerializationInfo"/> with
+        ///   information about the exception.
+        /// </summary>
+        /// <param name="info">
+        ///   The <see cref="SerializationInfo"/> that holds the serialized object data about the
+        ///   exception being thrown.
+        /// </param>
+        /// <param name="context">
+        ///   The <see cref="StreamingContext"/> that contains contextual information about the
+        ///   source or destination.
+        /// </param>
+        /// <exception cref="ArgumentNullException">
+        ///   The <paramref name="info"/> parameter is a null reference (Nothing in Visual Basic).
+        /// </exception>
+        [System.Security.Permissions.SecurityPermissionAttribute(System.Security.Permissions.SecurityAction.Demand, SerializationFormatter = true)]
+        public override void GetObjectData(SerializationInfo info, StreamingContext context)
+        {
+            // Preconditions
+            Raise.ArgumentNullException.IfIsNull(info, nameof(info));
+
+            info.AddValue(nameof(HttpStatusCode), (int) HttpStatusCode);
+            info.AddValue(nameof(ErrorCode), ErrorCode?.ToString() ?? string.Empty);
+            info.AddValue(nameof(UserMessage), UserMessage ?? string.Empty);
+
+            // MUST call through to the base class to let it save its own state.
+            base.GetObjectData(info, context);
+        }
+
+#endif
 
         /// <summary>
         ///   The HTTP status code assigned to this exception.
