@@ -1,4 +1,4 @@
-﻿// File name: RaiseHttpExceptionTests.cs
+﻿// File name: HttpExceptionTests.cs
 // 
 // Author(s): Alessio Parma <alessio.parma@gmail.com>
 // 
@@ -25,14 +25,14 @@ using NUnit.Framework;
 using System;
 using System.Net;
 
-namespace PommaLabs.Thrower.UnitTests
+namespace PommaLabs.Thrower.UnitTests.ExceptionHandlers
 {
-    internal sealed class RaiseHttpExceptionTests : AbstractTests
+    internal sealed class HttpExceptionTests : AbstractTests
     {
         [Test, ExpectedException(typeof(HttpException))]
         public void If_TrueShouldThrow()
         {
-            RaiseHttpException.If(true, HttpStatusCode.BadRequest);
+            Raise.HttpException.If(true, HttpStatusCode.BadRequest);
         }
 
         [Test]
@@ -40,7 +40,7 @@ namespace PommaLabs.Thrower.UnitTests
         {
             try
             {
-                RaiseHttpException.If(true, HttpStatusCode.BadRequest, TestMessage);
+                Raise.HttpException.If(true, HttpStatusCode.BadRequest, TestMessage);
             }
             catch (HttpException ex)
             {
@@ -55,7 +55,7 @@ namespace PommaLabs.Thrower.UnitTests
             }
             try
             {
-                RaiseHttpException.If(true, HttpStatusCode.BadRequest, TestMessage, new HttpExceptionInfo(TestMessage + "0", TestMessage + "1"));
+                Raise.HttpException.If(true, HttpStatusCode.BadRequest, TestMessage, new HttpExceptionInfo(TestMessage + "0", TestMessage + "1"));
             }
             catch (HttpException ex)
             {
@@ -73,25 +73,25 @@ namespace PommaLabs.Thrower.UnitTests
         [Test, ExpectedException(typeof(HttpException), ExpectedMessage = TestMessage)]
         public void If_TrueShouldThrow_WithMessage()
         {
-            RaiseHttpException.If(true, HttpStatusCode.BadRequest, TestMessage);
+            Raise.HttpException.If(true, HttpStatusCode.BadRequest, TestMessage);
         }
 
         [Test]
         public void If_FalseShouldNotThrow()
         {
-            RaiseHttpException.If(false, HttpStatusCode.BadRequest);
+            Raise.HttpException.If(false, HttpStatusCode.BadRequest);
         }
 
         [Test]
         public void If_FalseShouldNotThrow_WithMessage()
         {
-            RaiseHttpException.If(false, HttpStatusCode.BadRequest, TestMessage);
+            Raise.HttpException.If(false, HttpStatusCode.BadRequest, TestMessage);
         }
 
         [Test, ExpectedException(typeof(HttpException))]
         public void IfNot_FalseShouldThrow()
         {
-            RaiseHttpException.IfNot(false, HttpStatusCode.BadRequest);
+            Raise.HttpException.IfNot(false, HttpStatusCode.BadRequest);
         }
 
         [Test]
@@ -99,7 +99,7 @@ namespace PommaLabs.Thrower.UnitTests
         {
             try
             {
-                RaiseHttpException.IfNot(false, HttpStatusCode.BadRequest, TestMessage);
+                Raise.HttpException.IfNot(false, HttpStatusCode.BadRequest, TestMessage);
             }
             catch (HttpException ex)
             {
@@ -114,7 +114,7 @@ namespace PommaLabs.Thrower.UnitTests
             }
             try
             {
-                RaiseHttpException.IfNot(false, HttpStatusCode.BadRequest, TestMessage, new HttpExceptionInfo(TestMessage + "0", TestMessage + "1"));
+                Raise.HttpException.IfNot(false, HttpStatusCode.BadRequest, TestMessage, new HttpExceptionInfo(TestMessage + "0", TestMessage + "1"));
             }
             catch (HttpException ex)
             {
@@ -132,19 +132,19 @@ namespace PommaLabs.Thrower.UnitTests
         [Test, ExpectedException(typeof(HttpException), ExpectedMessage = TestMessage)]
         public void IfNot_FalseShouldThrow_WithMessage()
         {
-            RaiseHttpException.IfNot(false, HttpStatusCode.BadRequest, TestMessage);
+            Raise.HttpException.IfNot(false, HttpStatusCode.BadRequest, TestMessage);
         }
 
         [Test]
         public void IfNot_TrueShouldNotThrow()
         {
-            RaiseHttpException.IfNot(true, HttpStatusCode.BadRequest);
+            Raise.HttpException.IfNot(true, HttpStatusCode.BadRequest);
         }
 
         [Test]
         public void IfNot_TrueShouldNotThrow_WithMessage()
         {
-            RaiseHttpException.IfNot(true, HttpStatusCode.BadRequest, TestMessage);
+            Raise.HttpException.IfNot(true, HttpStatusCode.BadRequest, TestMessage);
         }
     }
 }

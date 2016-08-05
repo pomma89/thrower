@@ -1,4 +1,4 @@
-﻿// File name: RaiseArgumentExceptionTests.cs
+﻿// File name: ArgumentExceptionTests.cs
 //
 // Author(s): Alessio Parma <alessio.parma@gmail.com>
 //
@@ -22,14 +22,15 @@
 // OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 using NUnit.Framework;
+using PommaLabs.Thrower.ExceptionHandlers;
 using PommaLabs.Thrower.Validation;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace PommaLabs.Thrower.UnitTests
+namespace PommaLabs.Thrower.UnitTests.ExceptionHandlers
 {
-    internal sealed class RaiseArgumentExceptionTests : AbstractTests
+    internal sealed class ArgumentExceptionTests : AbstractTests
     {
         #region IfIsNotValidEmailAddress
 
@@ -92,17 +93,17 @@ namespace PommaLabs.Thrower.UnitTests
         {
             try
             {
-                RaiseArgumentException.IfIsNotValidEmailAddress(email);
+                Raise.ArgumentException.IfIsNotValidEmailAddress(email);
             }
             catch (Exception)
             {
                 // If we get here, then we must ensure that the mail address is a top level domain.
                 // Otherwise, we should mark this unit test as failed.
-                RaiseArgumentException.IfIsNotValidEmailAddress(email, EmailAddressValidator.Options.AllowTopLevelDomains);
+                Raise.ArgumentException.IfIsNotValidEmailAddress(email, EmailAddressValidator.Options.AllowTopLevelDomains);
             }
 
-            RaiseArgumentException.IfIsNotValidEmailAddress(email, EmailAddressValidator.Options.AllowTopLevelDomains);
-            RaiseArgumentException.IfIsNotValidEmailAddress(email, EmailAddressValidator.Options.AllowInternational | EmailAddressValidator.Options.AllowTopLevelDomains);
+            Raise.ArgumentException.IfIsNotValidEmailAddress(email, EmailAddressValidator.Options.AllowTopLevelDomains);
+            Raise.ArgumentException.IfIsNotValidEmailAddress(email, EmailAddressValidator.Options.AllowInternational | EmailAddressValidator.Options.AllowTopLevelDomains);
         }
 
         [TestCase("伊昭傑@郵件.商務")]
@@ -115,26 +116,26 @@ namespace PommaLabs.Thrower.UnitTests
             var hasThrown = false;
             try
             {
-                RaiseArgumentException.IfIsNotValidEmailAddress(email);
+                Raise.ArgumentException.IfIsNotValidEmailAddress(email);
             }
             catch (ArgumentException)
             {
                 hasThrown = true;
             }
-            RaiseArgumentException.IfNot(hasThrown);
+            Raise.ArgumentException.IfNot(hasThrown);
 
             hasThrown = false;
             try
             {
-                RaiseArgumentException.IfIsNotValidEmailAddress(email, EmailAddressValidator.Options.AllowTopLevelDomains);
+                Raise.ArgumentException.IfIsNotValidEmailAddress(email, EmailAddressValidator.Options.AllowTopLevelDomains);
             }
             catch (ArgumentException)
             {
                 hasThrown = true;
             }
-            RaiseArgumentException.IfNot(hasThrown);
+            Raise.ArgumentException.IfNot(hasThrown);
 
-            RaiseArgumentException.IfIsNotValidEmailAddress(email, EmailAddressValidator.Options.AllowInternational | EmailAddressValidator.Options.AllowTopLevelDomains);
+            Raise.ArgumentException.IfIsNotValidEmailAddress(email, EmailAddressValidator.Options.AllowInternational | EmailAddressValidator.Options.AllowTopLevelDomains);
         }
 
         [TestCase("ab.c")]
@@ -147,35 +148,35 @@ namespace PommaLabs.Thrower.UnitTests
             var hasThrown = false;
             try
             {
-                RaiseArgumentException.IfIsNotValidEmailAddress(email);
+                Raise.ArgumentException.IfIsNotValidEmailAddress(email);
             }
             catch (ArgumentException)
             {
                 hasThrown = true;
             }
-            RaiseArgumentException.IfNot(hasThrown);
+            Raise.ArgumentException.IfNot(hasThrown);
 
             hasThrown = false;
             try
             {
-                RaiseArgumentException.IfIsNotValidEmailAddress(email, EmailAddressValidator.Options.None);
+                Raise.ArgumentException.IfIsNotValidEmailAddress(email, EmailAddressValidator.Options.None);
             }
             catch (ArgumentException)
             {
                 hasThrown = true;
             }
-            RaiseArgumentException.IfNot(hasThrown);
+            Raise.ArgumentException.IfNot(hasThrown);
 
             hasThrown = false;
             try
             {
-                RaiseArgumentException.IfIsNotValidEmailAddress(email, EmailAddressValidator.Options.AllowInternational);
+                Raise.ArgumentException.IfIsNotValidEmailAddress(email, EmailAddressValidator.Options.AllowInternational);
             }
             catch (ArgumentException)
             {
                 hasThrown = true;
             }
-            RaiseArgumentException.IfNot(hasThrown);
+            Raise.ArgumentException.IfNot(hasThrown);
         }
 
         [TestCase("伊昭傑@@郵件.商務")]
@@ -188,35 +189,35 @@ namespace PommaLabs.Thrower.UnitTests
             var hasThrown = false;
             try
             {
-                RaiseArgumentException.IfIsNotValidEmailAddress(email);
+                Raise.ArgumentException.IfIsNotValidEmailAddress(email);
             }
             catch (ArgumentException)
             {
                 hasThrown = true;
             }
-            RaiseArgumentException.IfNot(hasThrown);
+            Raise.ArgumentException.IfNot(hasThrown);
 
             hasThrown = false;
             try
             {
-                RaiseArgumentException.IfIsNotValidEmailAddress(email, EmailAddressValidator.Options.None);
+                Raise.ArgumentException.IfIsNotValidEmailAddress(email, EmailAddressValidator.Options.None);
             }
             catch (ArgumentException)
             {
                 hasThrown = true;
             }
-            RaiseArgumentException.IfNot(hasThrown);
+            Raise.ArgumentException.IfNot(hasThrown);
 
             hasThrown = false;
             try
             {
-                RaiseArgumentException.IfIsNotValidEmailAddress(email, EmailAddressValidator.Options.AllowInternational);
+                Raise.ArgumentException.IfIsNotValidEmailAddress(email, EmailAddressValidator.Options.AllowInternational);
             }
             catch (ArgumentException)
             {
                 hasThrown = true;
             }
-            RaiseArgumentException.IfNot(hasThrown);
+            Raise.ArgumentException.IfNot(hasThrown);
         }
 
         #endregion IfIsNotValidEmailAddress
@@ -238,8 +239,8 @@ namespace PommaLabs.Thrower.UnitTests
         [TestCase("39 010 096 60")]
         public void IfIsNotValidPhoneNumber_ValidPhone(string phone)
         {
-            RaiseArgumentException.IfIsNotValidPhoneNumber(phone);
-            RaiseArgumentException.IfIsNotValidPhoneNumber(phone, nameof(phone), "TEST");
+            Raise.ArgumentException.IfIsNotValidPhoneNumber(phone);
+            Raise.ArgumentException.IfIsNotValidPhoneNumber(phone, nameof(phone), "TEST");
         }
 
         [TestCase("ab.c")]
@@ -253,24 +254,24 @@ namespace PommaLabs.Thrower.UnitTests
             var hasThrown = false;
             try
             {
-                RaiseArgumentException.IfIsNotValidPhoneNumber(phone);
+                Raise.ArgumentException.IfIsNotValidPhoneNumber(phone);
             }
             catch (ArgumentException)
             {
                 hasThrown = true;
             }
-            RaiseArgumentException.IfNot(hasThrown);
+            Raise.ArgumentException.IfNot(hasThrown);
 
             hasThrown = false;
             try
             {
-                RaiseArgumentException.IfIsNotValidPhoneNumber(phone, nameof(phone), "TEST");
+                Raise.ArgumentException.IfIsNotValidPhoneNumber(phone, nameof(phone), "TEST");
             }
             catch (ArgumentException)
             {
                 hasThrown = true;
             }
-            RaiseArgumentException.IfNot(hasThrown);
+            Raise.ArgumentException.IfNot(hasThrown);
         }
 
         #endregion IfIsNotValidPhoneNumber
@@ -283,7 +284,7 @@ namespace PommaLabs.Thrower.UnitTests
         public void IfIsEmpty_FullList(int itemCount)
         {
             var list = Enumerable.Range(0, itemCount).ToList();
-            RaiseArgumentException.IfIsNullOrEmpty(list);
+            Raise.ArgumentException.IfIsNullOrEmpty(list);
         }
 
         [TestCase(1)]
@@ -292,35 +293,35 @@ namespace PommaLabs.Thrower.UnitTests
         public void IfIsEmpty_FullDictionary(int itemCount)
         {
             var dict = Enumerable.Range(0, itemCount).ToDictionary(k => k, v => v.ToString());
-            RaiseArgumentException.IfIsNullOrEmpty(dict);
+            Raise.ArgumentException.IfIsNullOrEmpty(dict);
         }
 
-        [Test, ExpectedException(typeof(ArgumentException), ExpectedMessage = RaiseArgumentException.CollectionIsNullOrEmptyMessage, MatchType = MessageMatch.Contains)]
+        [Test, ExpectedException(typeof(ArgumentException), ExpectedMessage = ArgumentExceptionHandler.CollectionIsNullOrEmptyMessage, MatchType = MessageMatch.Contains)]
         public void IfIsEmpty_NullList()
         {
             List<string> list = null;
-            RaiseArgumentException.IfIsNullOrEmpty(list);
+            Raise.ArgumentException.IfIsNullOrEmpty(list);
         }
 
-        [Test, ExpectedException(typeof(ArgumentException), ExpectedMessage = RaiseArgumentException.CollectionIsNullOrEmptyMessage, MatchType = MessageMatch.Contains)]
+        [Test, ExpectedException(typeof(ArgumentException), ExpectedMessage = ArgumentExceptionHandler.CollectionIsNullOrEmptyMessage, MatchType = MessageMatch.Contains)]
         public void IfIsEmpty_NullDictionary()
         {
             Dictionary<string, int> dict = null;
-            RaiseArgumentException.IfIsNullOrEmpty(dict);
+            Raise.ArgumentException.IfIsNullOrEmpty(dict);
         }
 
-        [Test, ExpectedException(typeof(ArgumentException), ExpectedMessage = RaiseArgumentException.CollectionIsNullOrEmptyMessage, MatchType = MessageMatch.Contains)]
+        [Test, ExpectedException(typeof(ArgumentException), ExpectedMessage = ArgumentExceptionHandler.CollectionIsNullOrEmptyMessage, MatchType = MessageMatch.Contains)]
         public void IfIsEmpty_EmptyList()
         {
             var list = new List<string>();
-            RaiseArgumentException.IfIsNullOrEmpty(list);
+            Raise.ArgumentException.IfIsNullOrEmpty(list);
         }
 
-        [Test, ExpectedException(typeof(ArgumentException), ExpectedMessage = RaiseArgumentException.CollectionIsNullOrEmptyMessage, MatchType = MessageMatch.Contains)]
+        [Test, ExpectedException(typeof(ArgumentException), ExpectedMessage = ArgumentExceptionHandler.CollectionIsNullOrEmptyMessage, MatchType = MessageMatch.Contains)]
         public void IfIsEmpty_EmptyDictionary()
         {
             var dict = new Dictionary<string, int>();
-            RaiseArgumentException.IfIsNullOrEmpty(dict);
+            Raise.ArgumentException.IfIsNullOrEmpty(dict);
         }
 
         #endregion IfIsEmpty - Collection

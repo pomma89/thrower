@@ -33,6 +33,8 @@ namespace PommaLabs.Thrower.Benchmarks
     [Config(typeof(Config))]
     public class RaiseVsThrow
     {
+        private static readonly Random Rnd = new Random();
+
         private static T Identity<T>(T value) => value;
 
         private class Config : ManualConfig
@@ -111,6 +113,24 @@ namespace PommaLabs.Thrower.Benchmarks
 
         [Benchmark]
 #pragma warning disable CC0091 // Use static method
+        public Exception Raise_ArgumentOutOfRangeException_Integers()
+#pragma warning restore CC0091 // Use static method
+        {
+            try
+            {
+                var x = Identity(21);
+                var y = Identity(3);
+                Raise.ArgumentOutOfRangeException.IfIsGreaterOrEqual(x, y, nameof(x));
+            }
+            catch (Exception ex)
+            {
+                return ex;
+            }
+            return default(Exception);
+        }
+
+        [Benchmark]
+#pragma warning disable CC0091 // Use static method
         public Exception RaiseStatic_ArgumentOutOfRangeException_Integers()
 #pragma warning restore CC0091 // Use static method
         {
@@ -118,7 +138,9 @@ namespace PommaLabs.Thrower.Benchmarks
             {
                 var x = Identity(21);
                 var y = Identity(3);
+#pragma warning disable CS0618 // Type or member is obsolete
                 RaiseArgumentOutOfRangeException.IfIsGreaterOrEqual(x, y, nameof(x));
+#pragma warning restore CS0618 // Type or member is obsolete
             }
             catch (Exception ex)
             {
@@ -159,7 +181,7 @@ namespace PommaLabs.Thrower.Benchmarks
         {
             try
             {
-                var b = Identity(Environment.TickCount % 2 == 0);
+                var b = Identity(Rnd.Next() % 2 == 0);
                 Raise.NotSupportedException.If(b, Environment.UserDomainName);
             }
             catch (Exception ex)
@@ -176,7 +198,7 @@ namespace PommaLabs.Thrower.Benchmarks
         {
             try
             {
-                var b = Identity(Environment.TickCount % 2 == 0);
+                var b = Identity(Rnd.Next() % 2 == 0);
 #pragma warning disable CS0618 // Type or member is obsolete
                 RaiseNotSupportedException.If(b, Environment.UserDomainName);
 #pragma warning restore CS0618 // Type or member is obsolete
@@ -195,7 +217,7 @@ namespace PommaLabs.Thrower.Benchmarks
         {
             try
             {
-                var b = Identity(Environment.TickCount % 2 == 0);
+                var b = Identity(Rnd.Next() % 2 == 0);
                 if (b)
                 {
                     throw new NotSupportedException(Environment.UserDomainName);

@@ -13,6 +13,9 @@
     <Compile Include="$(MSBuildThisFileDirectory)ExceptionHandlers\ArgumentNullExceptionTests.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ExceptionHandlers\NotSupportedExceptionTests.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ExceptionHandlers\InvalidOperationExceptionTests.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ExceptionHandlers\ObjectDisposedExceptionTests.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ExceptionHandlers\ArgumentExceptionTests.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ExceptionHandlers\HttpExceptionTests.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)IfAreEqualTests.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)IfAreSameTests.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)IfIsAssignableFromTests.cs" />
@@ -21,9 +24,6 @@
     <Compile Include="$(MSBuildThisFileDirectory)IfIsInstanceOfTests.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)IfIsNaNTests.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)IfIsNullTests.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)RaiseArgumentExceptionTests.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)RaiseHttpExceptionTests.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)RaiseObjectDisposedExceptionTests.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)RaiseTests.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Reflection\FastMember\ObjectAccessorTests.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Reflection\PortableTypeInfoTests.cs" />

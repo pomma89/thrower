@@ -20,7 +20,7 @@ namespace PommaLabs.Thrower.Validation
         public static bool Validate(string phoneNumber)
         {
             // Preconditions
-            RaiseArgumentException.IfIsNullOrWhiteSpace(phoneNumber, nameof(phoneNumber));
+            Raise.ArgumentException.IfIsNullOrWhiteSpace(phoneNumber, nameof(phoneNumber));
 
             return PhoneNumberRegex.IsMatch(phoneNumber);
         }

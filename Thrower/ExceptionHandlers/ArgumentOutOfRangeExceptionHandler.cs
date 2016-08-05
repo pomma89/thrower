@@ -1,4 +1,4 @@
-﻿// File name: RaiseArgumentOutOfRangeException.cs
+﻿// File name: ArgumentOutOfRangeExceptionHandler.cs
 //
 // Author(s): Alessio Parma <alessio.parma@gmail.com>
 //
@@ -23,12 +23,14 @@
 
 using System;
 
-namespace PommaLabs.Thrower
+#pragma warning disable CC0091 // Use static method
+
+namespace PommaLabs.Thrower.ExceptionHandlers
 {
     /// <summary>
-    ///   Utility methods which can be used to handle ranges.
+    ///   Handler for <see cref="System.ArgumentOutOfRangeException"/>
     /// </summary>
-    public sealed class RaiseArgumentOutOfRangeException : RaiseBase
+    public sealed class ArgumentOutOfRangeExceptionHandler
     {
         #region If
 
@@ -41,7 +43,7 @@ namespace PommaLabs.Thrower
         [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
 #endif
 
-        public static void If(bool condition, string argumentName = null)
+        public void If(bool condition, string argumentName = null)
         {
             if (condition)
             {
@@ -62,7 +64,7 @@ namespace PommaLabs.Thrower
         [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
 #endif
 
-        public static void If(bool condition, string argumentName, string message)
+        public void If(bool condition, string argumentName, string message)
         {
             if (condition)
             {
@@ -83,7 +85,7 @@ namespace PommaLabs.Thrower
         [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
 #endif
 
-        public static void IfNot(bool condition, string argumentName = null)
+        public void IfNot(bool condition, string argumentName = null)
         {
             if (!condition)
             {
@@ -104,7 +106,7 @@ namespace PommaLabs.Thrower
         [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
 #endif
 
-        public static void IfNot(bool condition, string argumentName, string message)
+        public void IfNot(bool condition, string argumentName, string message)
         {
             if (!condition)
             {
@@ -127,7 +129,7 @@ namespace PommaLabs.Thrower
         [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
 #endif
 
-        public static void IfIsLess<TArg>(TArg argument1, TArg argument2)
+        public void IfIsLess<TArg>(TArg argument1, TArg argument2)
             where TArg : IComparable<TArg>
         {
             if (ReferenceEquals(argument1, null) || argument1.CompareTo(argument2) < 0)
@@ -146,7 +148,7 @@ namespace PommaLabs.Thrower
         [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
 #endif
 
-        public static void IfIsLess(IComparable argument1, IComparable argument2)
+        public void IfIsLess(IComparable argument1, IComparable argument2)
         {
             if (ReferenceEquals(argument1, null) || argument1.CompareTo(argument2) < 0)
             {
@@ -170,7 +172,7 @@ namespace PommaLabs.Thrower
         [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
 #endif
 
-        public static void IfIsLess<TArg>(TArg argument1, TArg argument2, string argumentName)
+        public void IfIsLess<TArg>(TArg argument1, TArg argument2, string argumentName)
             where TArg : IComparable<TArg>
         {
             if (ReferenceEquals(argument1, null) || argument1.CompareTo(argument2) < 0)
@@ -190,7 +192,7 @@ namespace PommaLabs.Thrower
         [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
 #endif
 
-        public static void IfIsLess(IComparable argument1, IComparable argument2, string argumentName)
+        public void IfIsLess(IComparable argument1, IComparable argument2, string argumentName)
         {
             if (ReferenceEquals(argument1, null) || argument1.CompareTo(argument2) < 0)
             {
@@ -215,7 +217,7 @@ namespace PommaLabs.Thrower
         [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
 #endif
 
-        public static void IfIsLess<TArg>(TArg argument1, TArg argument2, string argumentName, string message)
+        public void IfIsLess<TArg>(TArg argument1, TArg argument2, string argumentName, string message)
             where TArg : IComparable<TArg>
         {
             if (ReferenceEquals(argument1, null) || argument1.CompareTo(argument2) < 0)
@@ -236,7 +238,7 @@ namespace PommaLabs.Thrower
         [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
 #endif
 
-        public static void IfIsLess(IComparable argument1, IComparable argument2, string argumentName, string message)
+        public void IfIsLess(IComparable argument1, IComparable argument2, string argumentName, string message)
         {
             if (ReferenceEquals(argument1, null) || argument1.CompareTo(argument2) < 0)
             {
@@ -259,7 +261,7 @@ namespace PommaLabs.Thrower
         [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
 #endif
 
-        public static void IfIsLessOrEqual<TArg>(TArg argument1, TArg argument2)
+        public void IfIsLessOrEqual<TArg>(TArg argument1, TArg argument2)
             where TArg : IComparable<TArg>
         {
             if (ReferenceEquals(argument1, null) || argument1.CompareTo(argument2) <= 0)
@@ -278,7 +280,7 @@ namespace PommaLabs.Thrower
         [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
 #endif
 
-        public static void IfIsLessOrEqual(IComparable argument1, IComparable argument2)
+        public void IfIsLessOrEqual(IComparable argument1, IComparable argument2)
         {
             if (ReferenceEquals(argument1, null) || argument1.CompareTo(argument2) <= 0)
             {
@@ -302,7 +304,7 @@ namespace PommaLabs.Thrower
         [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
 #endif
 
-        public static void IfIsLessOrEqual<TArg>(TArg argument1, TArg argument2, string argumentName)
+        public void IfIsLessOrEqual<TArg>(TArg argument1, TArg argument2, string argumentName)
             where TArg : IComparable<TArg>
         {
             if (ReferenceEquals(argument1, null) || argument1.CompareTo(argument2) <= 0)
@@ -322,7 +324,7 @@ namespace PommaLabs.Thrower
         [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
 #endif
 
-        public static void IfIsLessOrEqual(IComparable argument1, IComparable argument2, string argumentName)
+        public void IfIsLessOrEqual(IComparable argument1, IComparable argument2, string argumentName)
         {
             if (ReferenceEquals(argument1, null) || argument1.CompareTo(argument2) <= 0)
             {
@@ -347,7 +349,7 @@ namespace PommaLabs.Thrower
         [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
 #endif
 
-        public static void IfIsLessOrEqual<TArg>(TArg argument1, TArg argument2, string argumentName, string message)
+        public void IfIsLessOrEqual<TArg>(TArg argument1, TArg argument2, string argumentName, string message)
             where TArg : IComparable<TArg>
         {
             if (ReferenceEquals(argument1, null) || argument1.CompareTo(argument2) <= 0)
@@ -368,7 +370,7 @@ namespace PommaLabs.Thrower
         [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
 #endif
 
-        public static void IfIsLessOrEqual(IComparable argument1, IComparable argument2, string argumentName, string message)
+        public void IfIsLessOrEqual(IComparable argument1, IComparable argument2, string argumentName, string message)
         {
             if (ReferenceEquals(argument1, null) || argument1.CompareTo(argument2) <= 0)
             {
@@ -391,7 +393,7 @@ namespace PommaLabs.Thrower
         [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
 #endif
 
-        public static void IfIsGreater<TArg>(TArg argument1, TArg argument2)
+        public void IfIsGreater<TArg>(TArg argument1, TArg argument2)
             where TArg : IComparable<TArg>
         {
             if (ReferenceEquals(argument1, null) || argument1.CompareTo(argument2) > 0)
@@ -410,7 +412,7 @@ namespace PommaLabs.Thrower
         [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
 #endif
 
-        public static void IfIsGreater(IComparable argument1, IComparable argument2)
+        public void IfIsGreater(IComparable argument1, IComparable argument2)
         {
             if (ReferenceEquals(argument1, null) || argument1.CompareTo(argument2) > 0)
             {
@@ -434,7 +436,7 @@ namespace PommaLabs.Thrower
         [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
 #endif
 
-        public static void IfIsGreater<TArg>(TArg argument1, TArg argument2, string argumentName)
+        public void IfIsGreater<TArg>(TArg argument1, TArg argument2, string argumentName)
             where TArg : IComparable<TArg>
         {
             if (ReferenceEquals(argument1, null) || argument1.CompareTo(argument2) > 0)
@@ -454,7 +456,7 @@ namespace PommaLabs.Thrower
         [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
 #endif
 
-        public static void IfIsGreater(IComparable argument1, IComparable argument2, string argumentName)
+        public void IfIsGreater(IComparable argument1, IComparable argument2, string argumentName)
         {
             if (ReferenceEquals(argument1, null) || argument1.CompareTo(argument2) > 0)
             {
@@ -479,7 +481,7 @@ namespace PommaLabs.Thrower
         [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
 #endif
 
-        public static void IfIsGreater<TArg>(TArg argument1, TArg argument2, string argumentName, string message)
+        public void IfIsGreater<TArg>(TArg argument1, TArg argument2, string argumentName, string message)
             where TArg : IComparable<TArg>
         {
             if (ReferenceEquals(argument1, null) || argument1.CompareTo(argument2) > 0)
@@ -500,7 +502,7 @@ namespace PommaLabs.Thrower
         [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
 #endif
 
-        public static void IfIsGreater(IComparable argument1, IComparable argument2, string argumentName, string message)
+        public void IfIsGreater(IComparable argument1, IComparable argument2, string argumentName, string message)
         {
             if (ReferenceEquals(argument1, null) || argument1.CompareTo(argument2) > 0)
             {
@@ -523,7 +525,7 @@ namespace PommaLabs.Thrower
         [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
 #endif
 
-        public static void IfIsGreaterOrEqual<TArg>(TArg argument1, TArg argument2)
+        public void IfIsGreaterOrEqual<TArg>(TArg argument1, TArg argument2)
             where TArg : IComparable<TArg>
         {
             if (ReferenceEquals(argument1, null) || argument1.CompareTo(argument2) >= 0)
@@ -542,7 +544,7 @@ namespace PommaLabs.Thrower
         [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
 #endif
 
-        public static void IfIsGreaterOrEqual(IComparable argument1, IComparable argument2)
+        public void IfIsGreaterOrEqual(IComparable argument1, IComparable argument2)
         {
             if (ReferenceEquals(argument1, null) || argument1.CompareTo(argument2) >= 0)
             {
@@ -566,7 +568,7 @@ namespace PommaLabs.Thrower
         [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
 #endif
 
-        public static void IfIsGreaterOrEqual<TArg>(TArg argument1, TArg argument2, string argumentName)
+        public void IfIsGreaterOrEqual<TArg>(TArg argument1, TArg argument2, string argumentName)
             where TArg : IComparable<TArg>
         {
             if (ReferenceEquals(argument1, null) || argument1.CompareTo(argument2) >= 0)
@@ -586,7 +588,7 @@ namespace PommaLabs.Thrower
         [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
 #endif
 
-        public static void IfIsGreaterOrEqual(IComparable argument1, IComparable argument2, string argumentName)
+        public void IfIsGreaterOrEqual(IComparable argument1, IComparable argument2, string argumentName)
         {
             if (ReferenceEquals(argument1, null) || argument1.CompareTo(argument2) >= 0)
             {
@@ -611,7 +613,7 @@ namespace PommaLabs.Thrower
         [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
 #endif
 
-        public static void IfIsGreaterOrEqual<TArg>(TArg argument1, TArg argument2, string argumentName, string message)
+        public void IfIsGreaterOrEqual<TArg>(TArg argument1, TArg argument2, string argumentName, string message)
             where TArg : IComparable<TArg>
         {
             if (ReferenceEquals(argument1, null) || argument1.CompareTo(argument2) >= 0)
@@ -632,7 +634,7 @@ namespace PommaLabs.Thrower
         [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
 #endif
 
-        public static void IfIsGreaterOrEqual(IComparable argument1, IComparable argument2, string argumentName, string message)
+        public void IfIsGreaterOrEqual(IComparable argument1, IComparable argument2, string argumentName, string message)
         {
             if (ReferenceEquals(argument1, null) || argument1.CompareTo(argument2) >= 0)
             {
@@ -655,7 +657,7 @@ namespace PommaLabs.Thrower
         [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
 #endif
 
-        public static void IfIsEqual<TArg>(TArg argument1, TArg argument2)
+        public void IfIsEqual<TArg>(TArg argument1, TArg argument2)
             where TArg : IComparable<TArg>
         {
             if (ReferenceEquals(argument1, null) || argument1.CompareTo(argument2) == 0)
@@ -674,7 +676,7 @@ namespace PommaLabs.Thrower
         [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
 #endif
 
-        public static void IfIsEqual(IComparable argument1, IComparable argument2)
+        public void IfIsEqual(IComparable argument1, IComparable argument2)
         {
             if (ReferenceEquals(argument1, null) || argument1.CompareTo(argument2) == 0)
             {
@@ -698,7 +700,7 @@ namespace PommaLabs.Thrower
         [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
 #endif
 
-        public static void IfIsEqual<TArg>(TArg argument1, TArg argument2, string argumentName)
+        public void IfIsEqual<TArg>(TArg argument1, TArg argument2, string argumentName)
             where TArg : IComparable<TArg>
         {
             if (ReferenceEquals(argument1, null) || argument1.CompareTo(argument2) == 0)
@@ -718,7 +720,7 @@ namespace PommaLabs.Thrower
         [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
 #endif
 
-        public static void IfIsEqual(IComparable argument1, IComparable argument2, string argumentName)
+        public void IfIsEqual(IComparable argument1, IComparable argument2, string argumentName)
         {
             if (ReferenceEquals(argument1, null) || argument1.CompareTo(argument2) == 0)
             {
@@ -743,7 +745,7 @@ namespace PommaLabs.Thrower
         [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
 #endif
 
-        public static void IfIsEqual<TArg>(TArg argument1, TArg argument2, string argumentName, string message)
+        public void IfIsEqual<TArg>(TArg argument1, TArg argument2, string argumentName, string message)
             where TArg : IComparable<TArg>
         {
             if (ReferenceEquals(argument1, null) || argument1.CompareTo(argument2) == 0)
@@ -764,7 +766,7 @@ namespace PommaLabs.Thrower
         [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
 #endif
 
-        public static void IfIsEqual(IComparable argument1, IComparable argument2, string argumentName, string message)
+        public void IfIsEqual(IComparable argument1, IComparable argument2, string argumentName, string message)
         {
             if (ReferenceEquals(argument1, null) || argument1.CompareTo(argument2) == 0)
             {
@@ -787,7 +789,7 @@ namespace PommaLabs.Thrower
         [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
 #endif
 
-        public static void IfIsNotEqual<TArg>(TArg argument1, TArg argument2)
+        public void IfIsNotEqual<TArg>(TArg argument1, TArg argument2)
             where TArg : IComparable<TArg>
         {
             if (ReferenceEquals(argument1, null) || argument1.CompareTo(argument2) != 0)
@@ -806,7 +808,7 @@ namespace PommaLabs.Thrower
         [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
 #endif
 
-        public static void IfIsNotEqual(IComparable argument1, IComparable argument2)
+        public void IfIsNotEqual(IComparable argument1, IComparable argument2)
         {
             if (ReferenceEquals(argument1, null) || argument1.CompareTo(argument2) != 0)
             {
@@ -830,7 +832,7 @@ namespace PommaLabs.Thrower
         [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
 #endif
 
-        public static void IfIsNotEqual<TArg>(TArg argument1, TArg argument2, string argumentName)
+        public void IfIsNotEqual<TArg>(TArg argument1, TArg argument2, string argumentName)
             where TArg : IComparable<TArg>
         {
             if (ReferenceEquals(argument1, null) || argument1.CompareTo(argument2) != 0)
@@ -850,7 +852,7 @@ namespace PommaLabs.Thrower
         [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
 #endif
 
-        public static void IfIsNotEqual(IComparable argument1, IComparable argument2, string argumentName)
+        public void IfIsNotEqual(IComparable argument1, IComparable argument2, string argumentName)
         {
             if (ReferenceEquals(argument1, null) || argument1.CompareTo(argument2) != 0)
             {
@@ -875,7 +877,7 @@ namespace PommaLabs.Thrower
         [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
 #endif
 
-        public static void IfIsNotEqual<TArg>(TArg argument1, TArg argument2, string argumentName, string message)
+        public void IfIsNotEqual<TArg>(TArg argument1, TArg argument2, string argumentName, string message)
             where TArg : IComparable<TArg>
         {
             if (ReferenceEquals(argument1, null) || argument1.CompareTo(argument2) != 0)
@@ -896,7 +898,7 @@ namespace PommaLabs.Thrower
         [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
 #endif
 
-        public static void IfIsNotEqual(IComparable argument1, IComparable argument2, string argumentName, string message)
+        public void IfIsNotEqual(IComparable argument1, IComparable argument2, string argumentName, string message)
         {
             if (ReferenceEquals(argument1, null) || argument1.CompareTo(argument2) != 0)
             {
@@ -907,3 +909,5 @@ namespace PommaLabs.Thrower
         #endregion NotEqual - With parameter name, with message
     }
 }
+
+#pragma warning restore CC0091 // Use static method

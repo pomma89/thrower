@@ -1,4 +1,4 @@
-﻿// File name: Raise.cs
+﻿// File name: RaiseObjectDisposedException.cs
 //
 // Author(s): Alessio Parma <alessio.parma@gmail.com>
 //
@@ -21,28 +21,35 @@
 // DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT
 // OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
-using PommaLabs.Thrower.ExceptionHandlers;
+using System;
 
 namespace PommaLabs.Thrower
 {
     /// <summary>
-    ///   New exception handling mechanism, which is more fluent than the old ones.
+    ///   Utility methods which can be used to handle bad object states.
     /// </summary>
-    public static class Raise
+    /// <remarks>
+    ///   This class is no longer maintained.
+    /// </remarks>
+    [Obsolete("Please use Raise.ObjectDisposedException.If* overloads, this class has been deprecated")]
+    public sealed class RaiseObjectDisposedException : RaiseBase
     {
         /// <summary>
-        ///   Handler for <see cref="System.ArgumentNullException"/>
+        ///   Throws <see cref="ObjectDisposedException"/> if the object has been disposed.
         /// </summary>
-        public static ArgumentNullExceptionHandler ArgumentNullException { get; } = new ArgumentNullExceptionHandler();
+        /// <param name="disposed">Whether the object has been disposed or not.</param>
+        /// <param name="objectName">The required object name.</param>
+        /// <param name="message">The optional message.</param>
+#if (NET45 || NET46 || PORTABLE)
+        [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
+#endif
 
-        /// <summary>
-        ///   Handler for <see cref="System.InvalidOperationException"/>
-        /// </summary>
-        public static InvalidOperationExceptionHandler InvalidOperationException { get; } = new InvalidOperationExceptionHandler();
-
-        /// <summary>
-        ///   Handler for <see cref="System.NotSupportedException"/>
-        /// </summary>
-        public static NotSupportedExceptionHandler NotSupportedException { get; } = new NotSupportedExceptionHandler();
+        public static void If(bool disposed, string objectName, string message = null)
+        {
+            if (disposed)
+            {
+                throw string.IsNullOrEmpty(message) ? new ObjectDisposedException(objectName) : new ObjectDisposedException(objectName, message);
+            }
+        }
     }
 }

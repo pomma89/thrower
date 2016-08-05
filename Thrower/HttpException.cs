@@ -1,4 +1,4 @@
-﻿// File name: RaiseHttpException.cs
+﻿// File name: HttpException.cs
 //
 // Author(s): Alessio Parma <alessio.parma@gmail.com>
 //
@@ -27,86 +27,6 @@ using System.Net;
 
 namespace PommaLabs.Thrower
 {
-    /// <summary>
-    ///   Utility methods which can be used to handle error codes through HTTP.
-    /// </summary>
-    public static class RaiseHttpException
-    {
-        /// <summary>
-        ///   Throws <see cref="HttpException"/> if given condition is true.
-        /// </summary>
-        /// <param name="condition">The condition.</param>
-        /// <param name="httpStatusCode">The HTTP status code corresponding to the error.</param>
-        /// <param name="message">The optional message.</param>
-#if (NET45 || NET46 || PORTABLE)
-        [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
-#endif
-
-        public static void If(bool condition, HttpStatusCode httpStatusCode, string message = null)
-        {
-            if (condition)
-            {
-                throw string.IsNullOrEmpty(message) ? new HttpException(httpStatusCode) : new HttpException(httpStatusCode, message);
-            }
-        }
-
-        /// <summary>
-        ///   Throws <see cref="HttpException"/> if given condition is true.
-        /// </summary>
-        /// <param name="condition">The condition.</param>
-        /// <param name="httpStatusCode">The HTTP status code corresponding to the error.</param>
-        /// <param name="message">The required message.</param>
-        /// <param name="additionalInfo">Additional exception info.</param>
-#if (NET45 || NET46 || PORTABLE)
-        [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
-#endif
-
-        public static void If(bool condition, HttpStatusCode httpStatusCode, string message, HttpExceptionInfo additionalInfo)
-        {
-            if (condition)
-            {
-                throw new HttpException(httpStatusCode, message, additionalInfo);
-            }
-        }
-
-        /// <summary>
-        ///   Throws <see cref="HttpException"/> if given condition is false.
-        /// </summary>
-        /// <param name="condition">The condition.</param>
-        /// <param name="httpStatusCode">The HTTP status code corresponding to the error.</param>
-        /// <param name="message">The optional message.</param>
-#if (NET45 || NET46 || PORTABLE)
-        [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
-#endif
-
-        public static void IfNot(bool condition, HttpStatusCode httpStatusCode, string message = null)
-        {
-            if (!condition)
-            {
-                throw string.IsNullOrEmpty(message) ? new HttpException(httpStatusCode) : new HttpException(httpStatusCode, message);
-            }
-        }
-
-        /// <summary>
-        ///   Throws <see cref="HttpException"/> if given condition is false.
-        /// </summary>
-        /// <param name="condition">The condition.</param>
-        /// <param name="httpStatusCode">The HTTP status code corresponding to the error.</param>
-        /// <param name="message">The required message.</param>
-        /// <param name="additionalInfo">Additional exception info.</param>
-#if (NET45 || NET46 || PORTABLE)
-        [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
-#endif
-
-        public static void IfNot(bool condition, HttpStatusCode httpStatusCode, string message, HttpExceptionInfo additionalInfo)
-        {
-            if (!condition)
-            {
-                throw new HttpException(httpStatusCode, message, additionalInfo);
-            }
-        }
-    }
-
     /// <summary>
     ///   Additional info which will be included into <see cref="HttpException"/>.
     /// </summary>

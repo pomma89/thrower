@@ -28,6 +28,9 @@ namespace PommaLabs.Thrower
     /// <summary>
     ///   Utility methods which can be used to handle unsupported operations.
     /// </summary>
+    /// <remarks>
+    ///   This class is no longer maintained.
+    /// </remarks>
     [Obsolete("Please use Raise.NotSupportedException.If* overloads, this class has been deprecated")]
     public sealed class RaiseNotSupportedException : RaiseBase
     {

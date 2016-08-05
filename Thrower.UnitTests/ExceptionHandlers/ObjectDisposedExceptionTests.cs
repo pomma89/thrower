@@ -1,4 +1,4 @@
-﻿// File name: RaiseObjectDisposedExceptionTests.cs
+﻿// File name: ObjectDisposedExceptionTests.cs
 // 
 // Author(s): Alessio Parma <alessio.parma@gmail.com>
 // 
@@ -24,32 +24,32 @@
 using NUnit.Framework;
 using System;
 
-namespace PommaLabs.Thrower.UnitTests
+namespace PommaLabs.Thrower.UnitTests.ExceptionHandlers
 {
-    internal sealed class RaiseObjectDisposedExceptionTests : AbstractTests
+    internal sealed class ObjectDisposedExceptionTests : AbstractTests
     {
         [Test, ExpectedException(typeof(ObjectDisposedException))]
         public void If_TrueShouldThrow()
         {
-            RaiseObjectDisposedException.If(true, nameof(RaiseObjectDisposedExceptionTests));
+            Raise.ObjectDisposedException.If(true, nameof(ObjectDisposedExceptionTests));
         }
 
         [Test, ExpectedException(typeof(ObjectDisposedException), ExpectedMessage = TestMessage, MatchType = MessageMatch.StartsWith)]
         public void If_TrueShouldThrow_WithMessage()
         {
-            RaiseObjectDisposedException.If(true, nameof(RaiseObjectDisposedExceptionTests), TestMessage);
+            Raise.ObjectDisposedException.If(true, nameof(ObjectDisposedExceptionTests), TestMessage);
         }
 
         [Test]
         public void If_FalseShouldNotThrow()
         {
-            RaiseObjectDisposedException.If(false, nameof(RaiseObjectDisposedExceptionTests));
+            Raise.ObjectDisposedException.If(false, nameof(ObjectDisposedExceptionTests));
         }
 
         [Test]
         public void If_FalseShouldNotThrow_WithMessage()
         {
-            RaiseObjectDisposedException.If(false, nameof(RaiseObjectDisposedExceptionTests), TestMessage);
+            Raise.ObjectDisposedException.If(false, nameof(ObjectDisposedExceptionTests), TestMessage);
         }
     }
 }

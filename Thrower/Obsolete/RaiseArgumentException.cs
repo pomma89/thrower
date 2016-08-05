@@ -30,6 +30,10 @@ namespace PommaLabs.Thrower
     /// <summary>
     ///   Utility methods which can be used to handle bad arguments.
     /// </summary>
+    /// <remarks>
+    ///   This class is no longer maintained.
+    /// </remarks>
+    [Obsolete("Please use Raise.ArgumentException.If* overloads, this class has been deprecated")]
     public sealed class RaiseArgumentException : RaiseBase
     {
         #region If

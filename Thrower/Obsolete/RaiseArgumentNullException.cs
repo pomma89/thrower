@@ -29,6 +29,9 @@ namespace PommaLabs.Thrower
     /// <summary>
     ///   Utility methods which can be used to handle null references.
     /// </summary>
+    /// <remarks>
+    ///   This class is no longer maintained.
+    /// </remarks>
     [Obsolete("Please use Raise.ArgumentNullException.If* overloads, this class has been deprecated")]
     public sealed class RaiseArgumentNullException : RaiseBase
     {

@@ -23,6 +23,8 @@
 
 using System;
 
+#pragma warning disable CC0091 // Use static method
+
 namespace PommaLabs.Thrower.ExceptionHandlers
 {
     /// <summary>
@@ -38,3 +40,5 @@ namespace PommaLabs.Thrower.ExceptionHandlers
         protected override InvalidOperationException NewWithMessage(string message) => new InvalidOperationException(message);
     }
 }
+
+#pragma warning restore CC0091 // Use static method

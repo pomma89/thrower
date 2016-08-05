@@ -57,7 +57,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Thrower.UnitTests.NET45", "
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Thrower.Benchmarks", "Thrower.Benchmarks\Thrower.Benchmarks.csproj", "{94A2EF50-9DFE-467A-BEB4-E15472784703}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Thrower.NETSTD11", "Platform Specific\Thrower.NETSTD10\Thrower.NETSTD11.csproj", "{1986F56F-008E-49B5-B579-FAD50CDEDF57}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Thrower.NETSTD13", "Platform Specific\Thrower.NETSTD10\Thrower.NETSTD13.csproj", "{1986F56F-008E-49B5-B579-FAD50CDEDF57}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Thrower.UnitTests.NET46", "Platform Specific\Thrower.UnitTests.NET46\Thrower.UnitTests.NET46.csproj", "{77861B69-4372-4B0F-89DB-F97B1E2464AE}"
 EndProject
@@ -67,6 +67,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Thrower.UnitTests.NET35", "
 EndProject
 Global
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution
+		Thrower\Thrower.projitems*{1986f56f-008e-49b5-b579-fad50cdedf57}*SharedItemsImports = 4
 		Thrower\Thrower.projitems*{28b1254d-b6bb-4c2f-9094-6f0e1a0902ec}*SharedItemsImports = 4
 		Thrower\Thrower.projitems*{29830b44-1ffb-45a7-b1e6-21c392f406f7}*SharedItemsImports = 13
 		Thrower\Thrower.projitems*{595363fb-70cc-4042-8cf0-68b0af5ffe1d}*SharedItemsImports = 4
