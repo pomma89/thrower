@@ -262,7 +262,6 @@ namespace PommaLabs.Thrower.Reflection.FastMember
         ///   Returns an enumerator that iterates through the collection.
         /// </summary>
         /// <returns>An enumerator that can be used to iterate through the collection.</returns>
-        /// <filterpriority>1</filterpriority>
         public abstract IEnumerator<KeyValuePair<string, object>> GetEnumerator();
 
         /// <summary>
@@ -272,7 +271,6 @@ namespace PommaLabs.Thrower.Reflection.FastMember
         ///   An <see cref="T:System.Collections.IEnumerator"/> object that can be used to iterate
         ///   through the collection.
         /// </returns>
-        /// <filterpriority>2</filterpriority>
         IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();
 
         #endregion IDictionary<string, object> members
