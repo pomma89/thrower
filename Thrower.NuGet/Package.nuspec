@@ -44,6 +44,5 @@ For example, a validation against null becomes "Raise.ArgumentNullException.IfIs
     <files>
         <file src="lib\" target="lib" />
         <file src="LICENSE.md" target="LICENSE.md" />
-        <file src="refman.pdf" target="refman.pdf" />
     </files>
 </package>

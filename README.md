@@ -7,7 +7,9 @@
 
 * Latest release version: `v3.0.0`
 * Build status on [AppVeyor](https://ci.appveyor.com): [![Build status](https://ci.appveyor.com/api/projects/status/xjkp8gn0cf4s7qbg?svg=true)](https://ci.appveyor.com/project/pomma89/thrower)
-* [Doxygen](http://www.stack.nl/~dimitri/doxygen/index.html) documentation: https://goo.gl/iO6qZG
+* [Doxygen](http://www.stack.nl/~dimitri/doxygen/index.html) documentation: 
+    + [HTML](https://goo.gl/iO6qZG)
+    + [PDF](https://goo.gl/lZ7K9h)
 * [NuGet](https://www.nuget.org) package(s):
     + [PommaLabs.Thrower](https://nuget.org/packages/Thrower/)
 
@@ -180,6 +182,34 @@ internal static class BankExample
 ```
 
 As of now, I do not have plans to expand Thrower beyond what it currently is. There are many ways in which it can be improved, I know, but as of now the library suits my needs and I have not much time to improve it. If I will have time, I will try to make it better, of course.
+
+## Benchmarks ##
+
+```ini
+Host Process Environment Information:
+
+BenchmarkDotNet=v0.9.8.0
+OS=Microsoft Windows NT 6.1.7601 Service Pack 1
+Processor=Intel(R) Xeon(R) CPU X5650 2.67GHz, ProcessorCount=4
+Frequency=10000000 ticks, Resolution=100.0000 ns, Timer=UNKNOWN
+CLR=MS.NET 4.0.30319.42000, Arch=32-bit RELEASE
+GC=Concurrent Workstation
+JitModules=clrjit-v4.6.1590.0
+
+Type=RaiseVsThrow  Mode=Throughput  GarbageCollection=Concurrent Workstation  
+
+```
+                                           Method |     Median |    StdDev | Gen 0 | Gen 1 | Gen 2 | Bytes Allocated/Op |
+------------------------------------------------- |----------- |---------- |------ |------ |------ |------------------- |
+                      Raise_ArgumentNullException | 16.9288 us | 0.5162 us |     - |     - |     - |              95,69 |
+                RaiseStatic_ArgumentNullException | 21.9448 us | 0.4870 us |     - |     - |     - |             101,19 |
+                      Throw_ArgumentNullException | 21.0086 us | 0.2489 us |     - |     - |     - |             101,19 |
+       Raise_ArgumentOutOfRangeException_Integers | 16.1269 us | 0.2061 us |     - |     - |     - |              74,55 |
+ RaiseStatic_ArgumentOutOfRangeException_Integers | 16.1793 us | 0.3492 us |     - |     - |     - |              72,83 |
+       Throw_ArgumentOutOfRangeException_Integers | 16.0068 us | 0.2635 us |     - |     - |     - |              70,72 |
+                      Raise_NotSupportedException | 48.4379 us | 2.4541 us | 71.00 |     - |     - |           2.518,03 |
+                RaiseStatic_NotSupportedException | 47.8800 us | 4.5900 us | 73.82 |     - |     - |           2.583,65 |
+                      Throw_NotSupportedException | 31.5260 us | 1.8334 us | 36.67 |     - |     - |           1.299,64 |
 
 ## About this repository and its maintainer ##
 
