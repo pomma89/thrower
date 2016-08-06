@@ -1,6 +1,6 @@
 # Changelog for PommaLabs.Thrower #
 
-### v2.2.6 (2016-08-06) ###
+### v3.0.0 (2016-08-06) ###
 
 * Completed the implementation of a more fluent validation.
 * Added a build script based on FAKE.

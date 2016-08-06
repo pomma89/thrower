@@ -5,7 +5,7 @@ open Fake
 RestorePackages()
 
 // Properties
-let buildMode    = getBuildParamOrDefault "buildMode" "Debug"
+let solutionFile = "./Thrower.sln"
 let artifactsDir = "./.artifacts/"
 let testDir      = "./Platform Specific/Thrower.UnitTests.*/bin/{0}/"
 let testDll      = "PommaLabs.Thrower.UnitTests.dll"
@@ -25,7 +25,7 @@ let myBuild target buildMode =
               "Configuration", buildMode
             ]
       }
-    build setParams "./Thrower.sln" |> DoNothing
+    build setParams solutionFile |> DoNothing
 
 // Common - Test
 let myTest (buildMode: string) =

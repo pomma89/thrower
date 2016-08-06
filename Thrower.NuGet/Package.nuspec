@@ -3,7 +3,7 @@
 <package>
     <metadata>
         <id>Thrower</id>
-        <version>2.2.6</version>
+        <version>3.0.0</version>
         <title>Thrower - Compact preconditions helpers</title>
         <authors>Alessio Parma &lt;alessio.parma@gmail.com&gt;</authors>
         <owners>Alessio Parma &lt;alessio.parma@gmail.com&gt;</owners>
@@ -27,7 +27,6 @@ For example, a validation against null becomes "Raise.ArgumentNullException.IfIs
         <licenseUrl>http://opensource.org/licenses/MIT</licenseUrl>
         <copyright>Copyright (c) 2013-2016 Alessio Parma &lt;alessio.parma@gmail.com&gt;</copyright>
         <dependencies>
-            <group></group>
             <group targetFramework="net35"></group>
             <group targetFramework="net40"></group>
             <group targetFramework="net45"></group>
@@ -40,7 +39,7 @@ For example, a validation against null becomes "Raise.ArgumentNullException.IfIs
             <group targetFramework="portable-net45+win8+wp8+wpa81"></group>
         </dependencies>
         <references></references>
-        <tags>preconditions check integrity parameters fluent arguments validation portable dnx</tags>
+        <tags>preconditions check integrity parameters fluent arguments validation portable netstandard</tags>
     </metadata>
     <files>
         <file src="lib\" target="lib" />
