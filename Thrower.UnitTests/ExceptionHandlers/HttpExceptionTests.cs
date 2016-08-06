@@ -155,7 +155,7 @@ namespace PommaLabs.Thrower.UnitTests.ExceptionHandlers
         public void HttpException_IsProperlySerialized()
         {
             const HttpStatusCode statusCode = HttpStatusCode.MultipleChoices;
-            const TransportType errorCode = TransportType.Connectionless;
+            const TypeNameHandling errorCode = TypeNameHandling.Arrays;
             const string message = "Serialization test - Message";
             const string userMessage = "Serialization test - User message";
 
@@ -166,7 +166,9 @@ namespace PommaLabs.Thrower.UnitTests.ExceptionHandlers
             });
 
             var json = JsonConvert.SerializeObject(ex, Formatting.Indented);
+#if !PORTABLE
             Console.WriteLine(json);
+#endif
 
             var jobj = JsonConvert.DeserializeObject<JObject>(json)["Data"];
 
