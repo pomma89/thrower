@@ -57,7 +57,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Thrower.UnitTests.NET45", "
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Thrower.Benchmarks", "Thrower.Benchmarks\Thrower.Benchmarks.csproj", "{94A2EF50-9DFE-467A-BEB4-E15472784703}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Thrower.NETSTD13", "Platform Specific\Thrower.NETSTD10\Thrower.NETSTD13.csproj", "{1986F56F-008E-49B5-B579-FAD50CDEDF57}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Thrower.NETSTD11", "Platform Specific\Thrower.NETSTD10\Thrower.NETSTD11.csproj", "{1986F56F-008E-49B5-B579-FAD50CDEDF57}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Thrower.UnitTests.NET46", "Platform Specific\Thrower.UnitTests.NET46\Thrower.UnitTests.NET46.csproj", "{77861B69-4372-4B0F-89DB-F97B1E2464AE}"
 EndProject
