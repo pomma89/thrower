@@ -2277,24 +2277,4 @@ namespace PommaLabs.Thrower
 
         private static bool IsNullOrWhiteSpace(string value) => value == null || string.IsNullOrEmpty(value.Trim());
     }
-
-    /// <summary>
-    ///   Exception thrown by <see cref="Raise{TEx}"/> when the type parameter passed to that class
-    ///   has something invalid (missing constructors, etc).
-    /// </summary>
-    [SuppressMessage("Microsoft.Design", "CA1032:ImplementStandardExceptionConstructors")]
-    public sealed class ThrowerException : Exception
-    {
-        [SuppressMessage("Microsoft.Design", "CA1032:ImplementStandardExceptionConstructors")]
-        private ThrowerException(string message)
-            : base(message)
-        {
-        }
-
-        internal static ThrowerException AbstractEx => new ThrowerException("Given exception type is abstract");
-
-        internal static ThrowerException MissingNoArgsCtor => new ThrowerException("Given exception type has no parameterless constructor");
-
-        internal static ThrowerException MissingMsgCtor => new ThrowerException("Given exception type has not a valid message constructor");
-    }
 }

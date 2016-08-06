@@ -33,9 +33,10 @@
     <Compile Include="$(MSBuildThisFileDirectory)Reflection\FastMember\ObjectAccessor.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Reflection\FastMember\ObjectReader.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Reflection\FastMember\TypeAccessor.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Reflection\PortableSerialization.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Reflection\PortableSerializationAttributes.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Reflection\PortableTypeInfo.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)RaiseOld.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ThrowerException.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Validation\EmailAddressValidator.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Validation\ObjectValidator.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Validation\PhoneNumberValidator.cs" />

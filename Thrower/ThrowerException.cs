@@ -1,4 +1,4 @@
-﻿// File name: PortableSerialization.cs
+﻿// File name: ThrowerException.cs
 //
 // Author(s): Alessio Parma <alessio.parma@gmail.com>
 //
@@ -21,46 +21,29 @@
 // DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT
 // OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
-#if PORTABLE
+using System;
+using System.Diagnostics.CodeAnalysis;
 
-namespace System
+namespace PommaLabs.Thrower
 {
     /// <summary>
-    ///   Fake, this is used only to allow serialization on portable platforms.
+    ///   Exception thrown by <see cref="Raise{TEx}"/> when the type parameter passed to that class
+    ///   has something invalid (missing constructors, etc).
     /// </summary>
-    [AttributeUsage(AttributeTargets.Class | AttributeTargets.Struct, AllowMultiple = true, Inherited = false)]
-    public sealed class SerializableAttribute : Attribute
+    [Serializable]
+    [SuppressMessage("Microsoft.Design", "CA1032:ImplementStandardExceptionConstructors")]
+    public sealed class ThrowerException : Exception
     {
-        // This does nothing and should do nothing.
-    }
+        [SuppressMessage("Microsoft.Design", "CA1032:ImplementStandardExceptionConstructors")]
+        private ThrowerException(string message)
+            : base(message)
+        {
+        }
 
-    /// <summary>
-    ///   Indicates that a field of a serializable class should not be serialized. This class cannot be inherited.
-    /// </summary>
-    [AttributeUsage(AttributeTargets.Field, Inherited = false)]
-    public sealed class NonSerializedAttribute : Attribute
-    {
-        // This does nothing and should do nothing.
-    }
-}
+        internal static ThrowerException AbstractEx => new ThrowerException("Given exception type is abstract");
 
-#endif
+        internal static ThrowerException MissingNoArgsCtor => new ThrowerException("Given exception type has no parameterless constructor");
 
-#if (PORTABLE || NET35)
-
-namespace System.Runtime.Serialization
-{
-    /// <summary>
-    ///   Enables serialization of custom exception data in security-transparent code.
-    /// </summary>
-    public interface ISafeSerializationData
-    {
-        /// <summary>
-        ///   This method is called when the instance is deserialized.
-        /// </summary>
-        /// <param name="deserialized">An object that contains the state of the instance.</param>
-        void CompleteDeserialization(object deserialized);
+        internal static ThrowerException MissingMsgCtor => new ThrowerException("Given exception type has not a valid message constructor");
     }
 }
-
-#endif

@@ -23,6 +23,9 @@
 
 using PommaLabs.Thrower.Validation;
 using System;
+using System.Collections;
+using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.Net;
 using System.Runtime.Serialization;
 
@@ -63,14 +66,9 @@ namespace PommaLabs.Thrower
     ///   the HTTP response, using given status code.
     /// </summary>
     [Serializable]
+    [SuppressMessage("Microsoft.Design", "CA1032:ImplementStandardExceptionConstructors")]
     public sealed class HttpException : Exception
     {
-        /// <summary>
-        ///   The state of this exception.
-        /// </summary>
-        [NonSerialized]
-        private readonly State _state = new State();
-
         /// <summary>
         ///   Builds the exception using given status code.
         /// </summary>
@@ -87,13 +85,11 @@ namespace PommaLabs.Thrower
         /// <param name="additionalInfo">Additional exception info.</param>
         public HttpException(HttpStatusCode httpStatusCode, HttpExceptionInfo additionalInfo)
         {
-            _state.HttpStatusCode = httpStatusCode;
-            _state.ErrorCode = additionalInfo.ErrorCode ?? DefaultErrorCode;
-            _state.UserMessage = additionalInfo.UserMessage ?? DefaultUserMessage;
+            HttpStatusCode = httpStatusCode;
+            ErrorCode = additionalInfo.ErrorCode ?? DefaultErrorCode;
+            UserMessage = additionalInfo.UserMessage ?? DefaultUserMessage;
 
-            HResult = (int) _state.HttpStatusCode;
-
-            HandleSerializeObjectState();
+            CustomizeException();
         }
 
         /// <summary>
@@ -115,13 +111,11 @@ namespace PommaLabs.Thrower
         public HttpException(HttpStatusCode httpStatusCode, string message, HttpExceptionInfo additionalInfo)
             : base(message)
         {
-            _state.HttpStatusCode = httpStatusCode;
-            _state.ErrorCode = additionalInfo.ErrorCode ?? DefaultErrorCode;
-            _state.UserMessage = additionalInfo.UserMessage ?? DefaultUserMessage;
+            HttpStatusCode = httpStatusCode;
+            ErrorCode = additionalInfo.ErrorCode ?? DefaultErrorCode;
+            UserMessage = additionalInfo.UserMessage ?? DefaultUserMessage;
 
-            HResult = (int) _state.HttpStatusCode;
-
-            HandleSerializeObjectState();
+            CustomizeException();
         }
 
         /// <summary>
@@ -145,24 +139,22 @@ namespace PommaLabs.Thrower
         public HttpException(HttpStatusCode httpStatusCode, string message, Exception innerException, HttpExceptionInfo additionalInfo)
             : base(message, innerException)
         {
-            _state.HttpStatusCode = httpStatusCode;
-            _state.ErrorCode = additionalInfo.ErrorCode ?? DefaultErrorCode;
-            _state.UserMessage = additionalInfo.UserMessage ?? DefaultUserMessage;
+            HttpStatusCode = httpStatusCode;
+            ErrorCode = additionalInfo.ErrorCode ?? DefaultErrorCode;
+            UserMessage = additionalInfo.UserMessage ?? DefaultUserMessage;
 
-            HResult = (int) _state.HttpStatusCode;
-
-            HandleSerializeObjectState();
+            CustomizeException();
         }
 
         /// <summary>
         ///   The HTTP status code assigned to this exception.
         /// </summary>
-        public HttpStatusCode HttpStatusCode => _state.HttpStatusCode;
+        public HttpStatusCode HttpStatusCode { get; }
 
         /// <summary>
         ///   The application defined error code.
         /// </summary>
-        public object ErrorCode => _state.ErrorCode;
+        public object ErrorCode { get; }
 
         /// <summary>
         ///   The default application defined error code, used when none has been specified.
@@ -172,147 +164,20 @@ namespace PommaLabs.Thrower
         /// <summary>
         ///   An error message which can be shown to the user.
         /// </summary>
-        public string UserMessage => _state.UserMessage;
+        public string UserMessage { get; }
 
         /// <summary>
         ///   The default user message.
         /// </summary>
         public static string DefaultUserMessage { get; set; } = "unspecified";
 
-        #region Serialization
-
-#if NET35
-
-        /// <summary>
-        ///   Initializes a new instance of the <see cref="HttpException"/> class with serialized data.
-        /// </summary>
-        /// <param name="info">
-        ///   The <see cref="SerializationInfo"/> that holds the serialized object data about the
-        ///   exception being thrown.
-        /// </param>
-        /// <param name="context">
-        ///   The <see cref="StreamingContext"/> that contains contextual information about the
-        ///   source or destination.
-        /// </param>
-        private HttpException(SerializationInfo info, StreamingContext context)
-            : base(info, context)
+        private void CustomizeException()
         {
-            _state.HttpStatusCode = (HttpStatusCode) info.GetInt32(nameof(HttpStatusCode));
-            _state.ErrorCode = info.GetString(nameof(ErrorCode));
-            _state.UserMessage = info.GetString(nameof(UserMessage));
+            HResult = (int) HttpStatusCode;
 
-            HResult = (int) _state.HttpStatusCode;
-        }
-
-        /// <summary>
-        ///   When overridden in a derived class, sets the <see cref="SerializationInfo"/> with
-        ///   information about the exception.
-        /// </summary>
-        /// <param name="info">
-        ///   The <see cref="SerializationInfo"/> that holds the serialized object data about the
-        ///   exception being thrown.
-        /// </param>
-        /// <param name="context">
-        ///   The <see cref="StreamingContext"/> that contains contextual information about the
-        ///   source or destination.
-        /// </param>
-        /// <exception cref="ArgumentNullException">
-        ///   The <paramref name="info"/> parameter is a null reference (Nothing in Visual Basic).
-        /// </exception>
-        [System.Security.Permissions.SecurityPermissionAttribute(System.Security.Permissions.SecurityAction.Demand, SerializationFormatter = true)]
-        public override void GetObjectData(SerializationInfo info, StreamingContext context)
-        {
-            // Preconditions
-            Raise.ArgumentNullException.IfIsNull(info, nameof(info));
-
-            info.AddValue(nameof(HttpStatusCode), (int) HttpStatusCode);
-            info.AddValue(nameof(ErrorCode), ErrorCode?.ToString() ?? string.Empty);
-            info.AddValue(nameof(UserMessage), UserMessage ?? string.Empty);
-
-            // MUST call through to the base class to let it save its own state.
-            base.GetObjectData(info, context);
-        }
-
-        private static void HandleSerializeObjectState()
-        {
-            // Nothing to do.
-        }
-
-#elif PORTABLE
-
-        private static void HandleSerializeObjectState()
-        {
-            // Nothing to do.
-        }
-
-#else
-
-        /// <summary>
-        ///   Initializes a new instance of the <see cref="HttpException"/> class with serialized data.
-        /// </summary>
-        /// <param name="info">
-        ///   The <see cref="SerializationInfo"/> that holds the serialized object data about the
-        ///   exception being thrown.
-        /// </param>
-        /// <param name="context">
-        ///   The <see cref="StreamingContext"/> that contains contextual information about the
-        ///   source or destination.
-        /// </param>
-        private HttpException(SerializationInfo info, StreamingContext context)
-            : base(info, context)
-        {
-            //_state.HttpStatusCode = (HttpStatusCode) info.GetInt32(nameof(HttpStatusCode));
-            //_state.ErrorCode = info.GetString(nameof(ErrorCode));
-            //_state.UserMessage = info.GetString(nameof(UserMessage));
-
-            //HResult = (int) _state.HttpStatusCode;
-        }
-
-        private void HandleSerializeObjectState()
-        {
-            // In response to SerializeObjectState, we need to provide any state to serialize with
-            // the exception. In this case, since our state is already stored in an
-            // ISafeSerializationData implementation, we can just provide that.
-            SerializeObjectState += delegate (object exception, SafeSerializationEventArgs eventArgs)
-            {
-                eventArgs.AddSerializedState((exception as HttpException)._state);
-            };
-        }
-
-#endif
-
-        #endregion Serialization
-
-        /// <summary>
-        ///   The state of this exception.
-        /// </summary>
-        [Serializable]
-        private struct State : ISafeSerializationData
-        {
-            /// <summary>
-            ///   The HTTP status code assigned to this exception.
-            /// </summary>
-            public HttpStatusCode HttpStatusCode { get; set; }
-
-            /// <summary>
-            ///   The application defined error code.
-            /// </summary>
-            public object ErrorCode { get; set; }
-
-            /// <summary>
-            ///   An error message which can be shown to the user.
-            /// </summary>
-            public string UserMessage { get; set; }
-
-            public void CompleteDeserialization(object deserialized)
-            {
-                // Since the exception simply contains an instance of the exception state object, we
-                // can repopulate it with current properties values.
-                var state = (deserialized as HttpException)._state;
-                state.HttpStatusCode = HttpStatusCode;
-                state.ErrorCode = ErrorCode;
-                state.UserMessage = UserMessage;
-            }
+            Data.Add(nameof(HttpStatusCode), HttpStatusCode.ToString());
+            Data.Add(nameof(ErrorCode), ErrorCode?.ToString());
+            Data.Add(nameof(UserMessage), UserMessage);
         }
     }
 }
