@@ -180,7 +180,14 @@ namespace PommaLabs.Thrower.Reflection
         public static IList<PropertyInfo> GetPublicProperties(Type type)
         {
 #if PORTABLE
-            return IntrospectionExtensions.GetTypeInfo(type).DeclaredProperties.ToArray();
+            var properties = new List<PropertyInfo>();
+            while (type != null) 
+            {
+                var typeInfo = IntrospectionExtensions.GetTypeInfo(type);
+                properties.AddRange(typeInfo.DeclaredProperties.Where(p => p.GetMethod.IsPublic));
+                type = typeInfo.BaseType;
+            }
+            return properties;
 #else
             return type.GetProperties(PublicInstanceFlags);
 #endif

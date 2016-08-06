@@ -42,6 +42,7 @@ namespace PommaLabs.Thrower.ExceptionHandlers
         ///   Throws <see cref="ArgumentException"/> if given condition is true.
         /// </summary>
         /// <param name="condition">The condition.</param>
+        /// <exception cref="ArgumentException">If given condition is true.</exception>
         public void If(bool condition)
         {
             if (condition)
@@ -56,6 +57,7 @@ namespace PommaLabs.Thrower.ExceptionHandlers
         /// <param name="condition">The condition.</param>
         /// <param name="argumentName">The name of the argument.</param>
         /// <param name="message">The message.</param>
+        /// <exception cref="ArgumentException">If given condition is true.</exception>
         /// <remarks>
         ///   <paramref name="message"/> and <paramref name="argumentName"/> are strictly required arguments.
         /// </remarks>
@@ -75,6 +77,7 @@ namespace PommaLabs.Thrower.ExceptionHandlers
         ///   Throws <see cref="ArgumentException"/> if given condition is false.
         /// </summary>
         /// <param name="condition">The condition.</param>
+        /// <exception cref="ArgumentException">If given condition is false.</exception>
         public void IfNot(bool condition)
         {
             if (!condition)
@@ -89,6 +92,7 @@ namespace PommaLabs.Thrower.ExceptionHandlers
         /// <param name="condition">The condition.</param>
         /// <param name="argumentName">The name of the argument.</param>
         /// <param name="message">The message.</param>
+        /// <exception cref="ArgumentException">If given condition is false.</exception>
         /// <remarks>
         ///   <paramref name="message"/> and <paramref name="argumentName"/> are strictly required arguments.
         /// </remarks>
@@ -109,6 +113,7 @@ namespace PommaLabs.Thrower.ExceptionHandlers
         /// </summary>
         /// <typeparam name="TArg">The type of the argument.</typeparam>
         /// <param name="argument">The argument.</param>
+        /// <exception cref="ArgumentException">If given argument is not valid.</exception>
         public void IfIsNotValid<TArg>(TArg argument)
         {
             IList<ValidationError> validationErrors;
@@ -125,6 +130,7 @@ namespace PommaLabs.Thrower.ExceptionHandlers
         /// <param name="argument">The argument.</param>
         /// <param name="argumentName">The name of the argument.</param>
         /// <param name="message">The message.</param>
+        /// <exception cref="ArgumentException">If given argument is not valid.</exception>
         /// <remarks>
         ///   <paramref name="message"/> and <paramref name="argumentName"/> are strictly required arguments.
         /// </remarks>
@@ -147,6 +153,7 @@ namespace PommaLabs.Thrower.ExceptionHandlers
         ///   Throws <see cref="ArgumentException"/> if given string is not a valid email address.
         /// </summary>
         /// <param name="emailAddress">An email address.</param>
+        /// <exception cref="ArgumentException">If given string is not a valid email address.</exception>
         public void IfIsNotValidEmailAddress(string emailAddress)
         {
             if (!EmailAddressValidator.Validate(emailAddress))
@@ -161,6 +168,7 @@ namespace PommaLabs.Thrower.ExceptionHandlers
         /// </summary>
         /// <param name="emailAddress">An email address.</param>
         /// <param name="validatorOptions">Customizations for the validation process.</param>
+        /// <exception cref="ArgumentException">If given string is not a valid email address.</exception>
         public void IfIsNotValidEmailAddress(string emailAddress, EmailAddressValidator.Options validatorOptions)
         {
             if (!EmailAddressValidator.Validate(emailAddress, validatorOptions))
@@ -176,6 +184,7 @@ namespace PommaLabs.Thrower.ExceptionHandlers
         /// <param name="emailAddress">An email address.</param>
         /// <param name="argumentName">The name of the argument.</param>
         /// <param name="message">The message.</param>
+        /// <exception cref="ArgumentException">If given string is not a valid email address.</exception>
         /// <remarks>
         ///   <paramref name="message"/> and <paramref name="argumentName"/> are strictly required arguments.
         /// </remarks>
@@ -195,6 +204,7 @@ namespace PommaLabs.Thrower.ExceptionHandlers
         /// <param name="argumentName">The name of the argument.</param>
         /// <param name="validatorOptions">Customizations for the validation process.</param>
         /// <param name="message">The message.</param>
+        /// <exception cref="ArgumentException">If given string is not a valid email address.</exception>
         /// <remarks>
         ///   <paramref name="message"/> and <paramref name="argumentName"/> are strictly required arguments.
         /// </remarks>
@@ -217,6 +227,7 @@ namespace PommaLabs.Thrower.ExceptionHandlers
         ///   Throws <see cref="ArgumentException"/> if given string is not a valid phone number.
         /// </summary>
         /// <param name="phoneNumber">A phone number.</param>
+        /// <exception cref="ArgumentException">If given string is not a valid phone number.</exception>
         public void IfIsNotValidPhoneNumber(string phoneNumber)
         {
             if (!PhoneNumberValidator.Validate(phoneNumber))
@@ -232,6 +243,7 @@ namespace PommaLabs.Thrower.ExceptionHandlers
         /// <param name="phoneNumber">A phone number.</param>
         /// <param name="argumentName">The name of the argument.</param>
         /// <param name="message">The message.</param>
+        /// <exception cref="ArgumentException">If given string is not a valid phone number.</exception>
         /// <remarks>
         ///   <paramref name="message"/> and <paramref name="argumentName"/> are strictly required arguments.
         /// </remarks>
@@ -255,6 +267,7 @@ namespace PommaLabs.Thrower.ExceptionHandlers
         ///   Throws <see cref="ArgumentException"/> if given string is null or empty.
         /// </summary>
         /// <param name="value">The string value.</param>
+        /// <exception cref="ArgumentException">If given string is null or empty.</exception>
         public void IfIsNullOrEmpty(string value)
         {
             if (ReferenceEquals(value, null) || string.Empty.Equals(value))
@@ -269,6 +282,7 @@ namespace PommaLabs.Thrower.ExceptionHandlers
         /// <param name="value">The string value.</param>
         /// <param name="argumentName">The name of the argument.</param>
         /// <param name="message">The optional message.</param>
+        /// <exception cref="ArgumentException">If given string is null or empty.</exception>
         /// <remarks>
         ///   <paramref name="message"/> and <paramref name="argumentName"/> are strictly required arguments.
         /// </remarks>
@@ -284,6 +298,7 @@ namespace PommaLabs.Thrower.ExceptionHandlers
         ///   Throws <see cref="ArgumentException"/> if given string is null, empty or blank.
         /// </summary>
         /// <param name="value">The string value.</param>
+        /// <exception cref="ArgumentException">If given string is null, empty or blank.</exception>
         public void IfIsNullOrWhiteSpace(string value)
         {
             if (ReferenceEquals(value, null) || string.Empty.Equals(value.Trim()))
@@ -298,6 +313,7 @@ namespace PommaLabs.Thrower.ExceptionHandlers
         /// <param name="value">The string value.</param>
         /// <param name="argumentName">The name of the argument.</param>
         /// <param name="message">The optional message.</param>
+        /// <exception cref="ArgumentException">If given string is null, empty or blank.</exception>
         /// <remarks>
         ///   <paramref name="message"/> and <paramref name="argumentName"/> are strictly required arguments.
         /// </remarks>
@@ -320,6 +336,7 @@ namespace PommaLabs.Thrower.ExceptionHandlers
         /// </summary>
         /// <typeparam name="TItem">The type of the items contained in the collection.</typeparam>
         /// <param name="value">The collection.</param>
+        /// <exception cref="ArgumentException">If given collection is null or empty.</exception>
         public void IfIsNullOrEmpty<TItem>(ICollection<TItem> value)
         {
             if (ReferenceEquals(value, null) || value.Count == 0)
@@ -335,6 +352,7 @@ namespace PommaLabs.Thrower.ExceptionHandlers
         /// <param name="value">The collection.</param>
         /// <param name="argumentName">The name of the argument.</param>
         /// <param name="message">The optional message.</param>
+        /// <exception cref="ArgumentException">If given collection is null or empty.</exception>
         /// <remarks>
         ///   <paramref name="message"/> and <paramref name="argumentName"/> are strictly required arguments.
         /// </remarks>
