@@ -38,11 +38,7 @@ namespace PommaLabs.Thrower.ExceptionHandlers
         /// <param name="condition">The condition.</param>
         /// <param name="httpStatusCode">The HTTP status code corresponding to the error.</param>
         /// <param name="message">The optional message.</param>
-#if (NET45 || NET46 || PORTABLE)
-
-        [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
-#endif
-
+        /// <exception cref="HttpException">If given condition is true.</exception>
         public void If(bool condition, HttpStatusCode httpStatusCode, string message = null)
         {
             if (condition)
@@ -58,11 +54,7 @@ namespace PommaLabs.Thrower.ExceptionHandlers
         /// <param name="httpStatusCode">The HTTP status code corresponding to the error.</param>
         /// <param name="message">The required message.</param>
         /// <param name="additionalInfo">Additional exception info.</param>
-#if (NET45 || NET46 || PORTABLE)
-
-        [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
-#endif
-
+        /// <exception cref="HttpException">If given condition is true.</exception>
         public void If(bool condition, HttpStatusCode httpStatusCode, string message, HttpExceptionInfo additionalInfo)
         {
             if (condition)
@@ -77,11 +69,7 @@ namespace PommaLabs.Thrower.ExceptionHandlers
         /// <param name="condition">The condition.</param>
         /// <param name="httpStatusCode">The HTTP status code corresponding to the error.</param>
         /// <param name="message">The optional message.</param>
-#if (NET45 || NET46 || PORTABLE)
-
-        [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
-#endif
-
+        /// <exception cref="HttpException">If given condition is false.</exception>
         public void IfNot(bool condition, HttpStatusCode httpStatusCode, string message = null)
         {
             if (!condition)
@@ -97,11 +85,7 @@ namespace PommaLabs.Thrower.ExceptionHandlers
         /// <param name="httpStatusCode">The HTTP status code corresponding to the error.</param>
         /// <param name="message">The required message.</param>
         /// <param name="additionalInfo">Additional exception info.</param>
-#if (NET45 || NET46 || PORTABLE)
-
-        [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
-#endif
-
+        /// <exception cref="HttpException">If given condition is false.</exception>
         public void IfNot(bool condition, HttpStatusCode httpStatusCode, string message, HttpExceptionInfo additionalInfo)
         {
             if (!condition)

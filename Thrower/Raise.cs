@@ -22,6 +22,7 @@
 // OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 using PommaLabs.Thrower.ExceptionHandlers;
+using System.Diagnostics.CodeAnalysis;
 
 namespace PommaLabs.Thrower
 {
