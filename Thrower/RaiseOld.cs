@@ -2282,7 +2282,6 @@ namespace PommaLabs.Thrower
     ///   Exception thrown by <see cref="Raise{TEx}"/> when the type parameter passed to that class
     ///   has something invalid (missing constructors, etc).
     /// </summary>
-    [Serializable]
     [SuppressMessage("Microsoft.Design", "CA1032:ImplementStandardExceptionConstructors")]
     public sealed class ThrowerException : Exception
     {

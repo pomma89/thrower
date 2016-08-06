@@ -21,9 +21,12 @@
 // DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 using NUnit.Framework;
 using System;
 using System.Net;
+using System.Runtime.Serialization.Formatters;
 
 namespace PommaLabs.Thrower.UnitTests.ExceptionHandlers
 {
@@ -146,5 +149,52 @@ namespace PommaLabs.Thrower.UnitTests.ExceptionHandlers
         {
             Raise.HttpException.IfNot(true, HttpStatusCode.BadRequest, TestMessage);
         }
+
+        #region Serialization
+
+        [Test]
+        public void HttpException_IsProperlySerialized()
+        {
+            const HttpStatusCode statusCode = HttpStatusCode.MultipleChoices;
+            const TransportType errorCode = TransportType.Connectionless;
+            const string message = "Serialization test - Message";
+            const string userMessage = "Serialization test - User message";
+
+            var ex = new HttpException(statusCode, message, new HttpExceptionInfo
+            {
+                ErrorCode = errorCode,
+                UserMessage = userMessage
+            });
+
+            var json = JsonConvert.SerializeObject(ex, new JsonSerializerSettings
+            {
+                Formatting = Formatting.Indented,
+                TypeNameAssemblyFormat = FormatterAssemblyStyle.Simple,
+                TypeNameHandling = TypeNameHandling.Objects
+            });
+            JToken jobj = JsonConvert.DeserializeObject<JObject>(json);
+
+#if !NET35
+
+            // On .NET 3.5, properties are set at root level. Otherwise, they are stored here.
+            jobj = jobj["SafeSerializationManager"]["m_serializedStates"][0];
+
+#endif
+
+            Console.WriteLine(json);
+
+            Assert.That((jobj[nameof(HttpException.HttpStatusCode)] as JValue).Value, Is.EqualTo((int) statusCode));
+            Assert.That((jobj[nameof(HttpException.ErrorCode)] as JValue).Value, Is.EqualTo((int) errorCode));
+            Assert.That((jobj[nameof(HttpException.UserMessage)] as JValue).Value, Is.EqualTo(userMessage));
+
+            var newEx = JsonConvert.DeserializeObject<HttpException>(json);
+
+            Assert.That(newEx.HttpStatusCode, Is.EqualTo(statusCode));
+            Assert.That(newEx.ErrorCode, Is.EqualTo(errorCode));
+            Assert.That(newEx.Message, Is.EqualTo(message));
+            Assert.That(newEx.UserMessage, Is.EqualTo(userMessage));
+        }
+
+        #endregion
     }
 }
