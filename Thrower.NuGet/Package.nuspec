@@ -3,7 +3,7 @@
 <package>
     <metadata>
         <id>Thrower</id>
-        <version>2.2.4</version>
+        <version>3.0.1</version>
         <title>Thrower - Compact preconditions helpers</title>
         <authors>Alessio Parma &lt;alessio.parma@gmail.com&gt;</authors>
         <owners>Alessio Parma &lt;alessio.parma@gmail.com&gt;</owners>
@@ -13,8 +13,11 @@ Thrower allows to write preconditions in a pretty lean way, which reduces the cl
 For example, a validation against null becomes "Raise.ArgumentNullException.IfIsNull(myParam)", while a generic validation may be written as "Raise.ArgumentException.If(condition)".
         </description>
         <releaseNotes>
-* Updated internal EmailValidator, now validation has a flag to enable top level domains. All validation calls now allow the specification of that flag.
-* Started new implementation for more fluent validation.
+* Completed the implementation of a more fluent validation.
+* Added a build script based on FAKE.
+* Updated examples and doc comments.
+* HttpException properly serializes custom data.
+* Library for .NET Standard 1.1.
         </releaseNotes>
         <summary>Fully managed library providing convenience methods to perform argument checks.</summary>
         <language>en-US</language>
@@ -23,13 +26,23 @@ For example, a validation against null becomes "Raise.ArgumentNullException.IfIs
         <requireLicenseAcceptance>false</requireLicenseAcceptance>
         <licenseUrl>http://opensource.org/licenses/MIT</licenseUrl>
         <copyright>Copyright (c) 2013-2016 Alessio Parma &lt;alessio.parma@gmail.com&gt;</copyright>
-        <dependencies></dependencies>
+        <dependencies>
+            <group targetFramework="net35"></group>
+            <group targetFramework="net40"></group>
+            <group targetFramework="net45"></group>
+            <group targetFramework="net46"></group>
+            <group targetFramework="netstandard1.1">
+                <dependency id="System.Net.Http" version="4.1.0" />
+                <dependency id="System.Reflection" version="4.1.0" />
+                <dependency id="System.Text.RegularExpressions" version="4.1.0" />
+            </group>
+            <group targetFramework="portable-net45+win8+wp8+wpa81"></group>
+        </dependencies>
         <references></references>
-        <tags>preconditions check integrity parameters fluent arguments validation portable dnx</tags>
+        <tags>preconditions check integrity parameters fluent arguments validation portable netstandard</tags>
     </metadata>
     <files>
         <file src="lib\" target="lib" />
         <file src="LICENSE.md" target="LICENSE.md" />
-        <file src="refman.pdf" target="refman.pdf" />
     </files>
 </package>

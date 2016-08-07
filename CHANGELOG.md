@@ -1,5 +1,13 @@
 # Changelog for PommaLabs.Thrower #
 
+### v3.0.1 (2016-08-06) ###
+
+* Completed the implementation of a more fluent validation.
+* Added a build script based on FAKE.
+* Updated examples and doc comments.
+* HttpException properly serializes custom data.
+* Library for .NET Standard 1.1.
+
 ### v2.2.4 (2016-06-12) ###
 
 * Updated internal EmailValidator, now validation has a flag to enable top level domains.

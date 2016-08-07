@@ -1,10 +1,10 @@
 ﻿// Copyright 2013 Marc Gravell
-// 
+//
 // Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except
 // in compliance with the License. You may obtain a copy of the License at:
-// 
+//
 // "http://www.apache.org/licenses/LICENSE-2.0"
-// 
+//
 // Unless required by applicable law or agreed to in writing, software distributed under the License
 // is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express
 // or implied. See the License for the specific language governing permissions and limitations under
@@ -78,8 +78,8 @@ namespace PommaLabs.Thrower.Reflection.FastMember
         #region IDictionary<string, object> members
 
         /// <summary>
-        ///   Gets an <see cref="T:System.Collections.Generic.ICollection`1"/> containing the keys
-        ///   of the <see cref="T:System.Collections.Generic.IDictionary`2"/>.
+        ///   Gets an <see cref="T:System.Collections.Generic.ICollection`1"/> containing the keys of
+        ///   the <see cref="T:System.Collections.Generic.IDictionary`2"/>.
         /// </summary>
         /// <returns>
         ///   An <see cref="T:System.Collections.Generic.ICollection`1"/> containing the keys of the
@@ -104,8 +104,8 @@ namespace PommaLabs.Thrower.Reflection.FastMember
         public abstract int Count { get; }
 
         /// <summary>
-        ///   Gets a value indicating whether the <see
-        ///   cref="T:System.Collections.Generic.ICollection`1"/> is read-only.
+        ///   Gets a value indicating whether the
+        ///   <see cref="T:System.Collections.Generic.ICollection`1"/> is read-only.
         /// </summary>
         /// <returns>
         ///   true if the <see cref="T:System.Collections.Generic.ICollection`1"/> is read-only;
@@ -146,8 +146,8 @@ namespace PommaLabs.Thrower.Reflection.FastMember
         ///   Removes the element with the specified key from the <see cref="T:System.Collections.Generic.IDictionary`2"/>.
         /// </summary>
         /// <returns>
-        ///   true if the element is successfully removed; otherwise, false. This method also
-        ///   returns false if <paramref name="key"/> was not found in the original <see cref="T:System.Collections.Generic.IDictionary`2"/>.
+        ///   true if the element is successfully removed; otherwise, false. This method also returns
+        ///   false if <paramref name="key"/> was not found in the original <see cref="T:System.Collections.Generic.IDictionary`2"/>.
         /// </returns>
         /// <param name="key">The key of the element to remove.</param>
         /// <exception cref="T:System.ArgumentNullException"><paramref name="key"/> is null.</exception>
@@ -163,8 +163,8 @@ namespace PommaLabs.Thrower.Reflection.FastMember
         ///   Gets the value associated with the specified key.
         /// </summary>
         /// <returns>
-        ///   true if the object that implements <see
-        ///   cref="T:System.Collections.Generic.IDictionary`2"/> contains an element with the
+        ///   true if the object that implements
+        ///   <see cref="T:System.Collections.Generic.IDictionary`2"/> contains an element with the
         ///   specified key; otherwise, false.
         /// </returns>
         /// <param name="key">The key whose value to get.</param>
@@ -204,8 +204,8 @@ namespace PommaLabs.Thrower.Reflection.FastMember
         ///   contains a specific value.
         /// </summary>
         /// <returns>
-        ///   true if <paramref name="item"/> is found in the <see
-        ///   cref="T:System.Collections.Generic.ICollection`1"/>; otherwise, false.
+        ///   true if <paramref name="item"/> is found in the
+        ///   <see cref="T:System.Collections.Generic.ICollection`1"/>; otherwise, false.
         /// </returns>
         /// <param name="item">The object to locate in the <see cref="T:System.Collections.Generic.ICollection`1"/>.</param>
         public abstract bool Contains(KeyValuePair<string, object> item);
@@ -229,8 +229,8 @@ namespace PommaLabs.Thrower.Reflection.FastMember
         ///   <paramref name="arrayIndex"/> is less than 0.
         /// </exception>
         /// <exception cref="T:System.ArgumentException">
-        ///   The number of elements in the source <see
-        ///   cref="T:System.Collections.Generic.ICollection`1"/> is greater than the available
+        ///   The number of elements in the source
+        ///   <see cref="T:System.Collections.Generic.ICollection`1"/> is greater than the available
         ///   space from <paramref name="arrayIndex"/> to the end of the destination <paramref name="array"/>.
         /// </exception>
         public void CopyTo(KeyValuePair<string, object>[] array, int arrayIndex)
@@ -245,8 +245,8 @@ namespace PommaLabs.Thrower.Reflection.FastMember
         ///   Removes the first occurrence of a specific object from the <see cref="T:System.Collections.Generic.ICollection`1"/>.
         /// </summary>
         /// <returns>
-        ///   true if <paramref name="item"/> was successfully removed from the <see
-        ///   cref="T:System.Collections.Generic.ICollection`1"/>; otherwise, false. This method
+        ///   true if <paramref name="item"/> was successfully removed from the
+        ///   <see cref="T:System.Collections.Generic.ICollection`1"/>; otherwise, false. This method
         ///   also returns false if <paramref name="item"/> is not found in the original <see cref="T:System.Collections.Generic.ICollection`1"/>.
         /// </returns>
         /// <param name="item">The object to remove from the <see cref="T:System.Collections.Generic.ICollection`1"/>.</param>
@@ -262,7 +262,6 @@ namespace PommaLabs.Thrower.Reflection.FastMember
         ///   Returns an enumerator that iterates through the collection.
         /// </summary>
         /// <returns>An enumerator that can be used to iterate through the collection.</returns>
-        /// <filterpriority>1</filterpriority>
         public abstract IEnumerator<KeyValuePair<string, object>> GetEnumerator();
 
         /// <summary>
@@ -272,7 +271,6 @@ namespace PommaLabs.Thrower.Reflection.FastMember
         ///   An <see cref="T:System.Collections.IEnumerator"/> object that can be used to iterate
         ///   through the collection.
         /// </returns>
-        /// <filterpriority>2</filterpriority>
         IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();
 
         #endregion IDictionary<string, object> members
@@ -347,7 +345,7 @@ namespace PommaLabs.Thrower.Reflection.FastMember
 
             public override object Target { get; }
 
-            #region IDictionary<string, object> members
+        #region IDictionary<string, object> members
 
             public override ICollection<string> Keys
             {
@@ -384,7 +382,7 @@ namespace PommaLabs.Thrower.Reflection.FastMember
                 throw new NotSupportedException();
             }
 
-            #endregion IDictionary<string, object> members
+        #endregion IDictionary<string, object> members
         }
 #endif
     }

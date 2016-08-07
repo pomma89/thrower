@@ -74,13 +74,13 @@ namespace PommaLabs.Thrower.UnitTests.Validation
         [Test, ExpectedException(typeof(ArgumentException), ExpectedMessage = "Following paths failed the validation checks:", MatchType = MessageMatch.StartsWith)]
         public void IfIsNotValid_ParameterNameOnly()
         {
-            RaiseArgumentException.IfIsNotValid(new TestClass(), "TEST");
+            Raise.ArgumentException.IfIsNotValid(new TestClass(), "TEST");
         }
 
         [Test, ExpectedException(typeof(ArgumentException), ExpectedMessage = "Pino Gino Nino - Following paths failed the validation checks:", MatchType = MessageMatch.StartsWith)]
         public void IfIsNotValid_MessageAndParameterName()
         {
-            RaiseArgumentException.IfIsNotValid(new TestClass(), "TEST", "Pino Gino Nino");
+            Raise.ArgumentException.IfIsNotValid(new TestClass(), "TEST", "Pino Gino Nino");
         }
 
         public sealed class TestClass

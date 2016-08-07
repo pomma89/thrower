@@ -1,25 +1,25 @@
 ﻿// File name: PortableTypeInfo.cs
-// 
+//
 // Author(s): Alessio Parma <alessio.parma@gmail.com>
-// 
+//
 // The MIT License (MIT)
-// 
+//
 // Copyright (c) 2013-2016 Alessio Parma <alessio.parma@gmail.com>
-// 
+//
 // Permission is hereby granted, free of charge, to any person obtaining a copy of this software and
 // associated documentation files (the "Software"), to deal in the Software without restriction,
 // including without limitation the rights to use, copy, modify, merge, publish, distribute,
 // sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is
 // furnished to do so, subject to the following conditions:
-// 
+//
 // The above copyright notice and this permission notice shall be included in all copies or
 // substantial portions of the Software.
-// 
+//
 // THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT
 // NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
 // NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM,
-// DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-// OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+// DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT
+// OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 using System;
 using System.Collections.Generic;
@@ -54,7 +54,7 @@ namespace PommaLabs.Thrower.Reflection
         ///   True to search this member's inheritance chain to find the attributes; otherwise, false.
         /// </param>
         /// <returns>The custom attributes for given member.</returns>
-#if (NET45 || NET46)
+#if (NET45 || NET46 || PORTABLE)
         [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
 #endif
 
@@ -72,7 +72,7 @@ namespace PommaLabs.Thrower.Reflection
         /// </summary>
         /// <param name="type">The type.</param>
         /// <returns>The constructors for given type.</returns>
-#if (NET45 || NET46)
+#if (NET45 || NET46 || PORTABLE)
         [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
 #endif
 
@@ -90,7 +90,7 @@ namespace PommaLabs.Thrower.Reflection
         /// </summary>
         /// <typeparam name="T">The type.</typeparam>
         /// <returns>The constructors for given type.</returns>
-#if (NET45 || NET46)
+#if (NET45 || NET46 || PORTABLE)
         [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
 #endif
 
@@ -101,7 +101,7 @@ namespace PommaLabs.Thrower.Reflection
         /// </summary>
         /// <param name="type">The type.</param>
         /// <returns>The base type of given type.</returns>
-#if (NET45 || NET46)
+#if (NET45 || NET46 || PORTABLE)
         [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
 #endif
 
@@ -119,7 +119,7 @@ namespace PommaLabs.Thrower.Reflection
         /// </summary>
         /// <param name="type">The type.</param>
         /// <returns>The generic type definition of given type.</returns>
-#if (NET45 || NET46)
+#if (NET45 || NET46 || PORTABLE)
         [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
 #endif
 
@@ -137,7 +137,7 @@ namespace PommaLabs.Thrower.Reflection
         /// </summary>
         /// <param name="type">The type.</param>
         /// <returns>The generic type arguments of given type.</returns>
-#if (NET45 || NET46)
+#if (NET45 || NET46 || PORTABLE)
         [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
 #endif
 
@@ -155,7 +155,7 @@ namespace PommaLabs.Thrower.Reflection
         /// </summary>
         /// <param name="type">The type.</param>
         /// <returns>The interfaces for given type.</returns>
-#if (NET45 || NET46)
+#if (NET45 || NET46 || PORTABLE)
         [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
 #endif
 
@@ -173,14 +173,21 @@ namespace PommaLabs.Thrower.Reflection
         /// </summary>
         /// <param name="type">The type.</param>
         /// <returns>The public instance properties for given type.</returns>
-#if (NET45 || NET46)
+#if (NET45 || NET46 || PORTABLE)
         [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
 #endif
 
         public static IList<PropertyInfo> GetPublicProperties(Type type)
         {
 #if PORTABLE
-            return IntrospectionExtensions.GetTypeInfo(type).DeclaredProperties.ToArray();
+            var properties = new List<PropertyInfo>();
+            while (type != null) 
+            {
+                var typeInfo = IntrospectionExtensions.GetTypeInfo(type);
+                properties.AddRange(typeInfo.DeclaredProperties.Where(p => p.GetMethod.IsPublic));
+                type = typeInfo.BaseType;
+            }
+            return properties;
 #else
             return type.GetProperties(PublicInstanceFlags);
 #endif
@@ -191,7 +198,7 @@ namespace PommaLabs.Thrower.Reflection
         /// </summary>
         /// <typeparam name="T">The type.</typeparam>
         /// <returns>The instance properties for given type.</returns>
-#if (NET45 || NET46)
+#if (NET45 || NET46 || PORTABLE)
         [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
 #endif
 
@@ -205,14 +212,14 @@ namespace PommaLabs.Thrower.Reflection
         /// <param name="instance">The instance.</param>
         /// <param name="propertyInfo">The property info.</param>
         /// <returns>The value of given property on given instance.</returns>
-#if (NET45 || NET46)
+#if (NET45 || NET46 || PORTABLE)
         [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
 #endif
 
         public static object GetPublicPropertyValue(object instance, PropertyInfo propertyInfo)
         {
             Raise.ArgumentNullException.IfIsNull(instance, nameof(instance), "Instance cannot be null");
-            RaiseArgumentException.IfNot(propertyInfo.CanRead, nameof(propertyInfo), "Given property cannot be read");
+            Raise.ArgumentException.IfNot(propertyInfo.CanRead, nameof(propertyInfo), "Given property cannot be read");
             return propertyInfo.GetValue(instance, EmptyObjectArray);
         }
 
@@ -224,14 +231,14 @@ namespace PommaLabs.Thrower.Reflection
         /// <param name="instance">The instance.</param>
         /// <param name="propertyInfo">The property info.</param>
         /// <returns>The value of given property on given instance.</returns>
-#if (NET45 || NET46)
+#if (NET45 || NET46 || PORTABLE)
         [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
 #endif
 
         public static object GetPublicPropertyValue(TypeAccessor typeAccessor, object instance, PropertyInfo propertyInfo)
         {
             Raise.ArgumentNullException.IfIsNull(instance, nameof(instance), "Instance cannot be null");
-            RaiseArgumentException.IfNot(propertyInfo.CanRead, nameof(propertyInfo), "Given property cannot be read");
+            Raise.ArgumentException.IfNot(propertyInfo.CanRead, nameof(propertyInfo), "Given property cannot be read");
             return typeAccessor[instance, propertyInfo.Name];
         }
 
@@ -246,7 +253,7 @@ namespace PommaLabs.Thrower.Reflection
         /// </summary>
         /// <param name="type">The type.</param>
         /// <returns>Whether the specified type is abstract.</returns>
-#if (NET45 || NET46)
+#if (NET45 || NET46 || PORTABLE)
         [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
 #endif
 
@@ -264,7 +271,7 @@ namespace PommaLabs.Thrower.Reflection
         /// </summary>
         /// <typeparam name="T">The type.</typeparam>
         /// <returns>Whether the specified type is abstract.</returns>
-#if (NET45 || NET46)
+#if (NET45 || NET46 || PORTABLE)
         [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
 #endif
 
@@ -279,7 +286,7 @@ namespace PommaLabs.Thrower.Reflection
         /// </summary>
         /// <param name="type">The type.</param>
         /// <returns>Whether the specified type is a class.</returns>
-#if (NET45 || NET46)
+#if (NET45 || NET46 || PORTABLE)
         [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
 #endif
 
@@ -297,7 +304,7 @@ namespace PommaLabs.Thrower.Reflection
         /// </summary>
         /// <typeparam name="T">The type.</typeparam>
         /// <returns>Whether the specified type is a class.</returns>
-#if (NET45 || NET46)
+#if (NET45 || NET46 || PORTABLE)
         [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
 #endif
 
@@ -315,7 +322,7 @@ namespace PommaLabs.Thrower.Reflection
         ///   Whether an instance of the current <see cref="T:System.Type"/> can be assigned from an
         ///   instance of the specified Type.
         /// </returns>
-#if (NET45 || NET46)
+#if (NET45 || NET46 || PORTABLE)
         [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
 #endif
 
@@ -340,7 +347,7 @@ namespace PommaLabs.Thrower.Reflection
         /// </summary>
         /// <param name="type">The type.</param>
         /// <returns>Whether the specified type is an enumeration.</returns>
-#if (NET45 || NET46)
+#if (NET45 || NET46 || PORTABLE)
         [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
 #endif
 
@@ -358,7 +365,7 @@ namespace PommaLabs.Thrower.Reflection
         /// </summary>
         /// <typeparam name="T">The type.</typeparam>
         /// <returns>Whether the specified type is an enumeration.</returns>
-#if (NET45 || NET46)
+#if (NET45 || NET46 || PORTABLE)
         [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
 #endif
 
@@ -373,7 +380,7 @@ namespace PommaLabs.Thrower.Reflection
         /// </summary>
         /// <param name="type">The type.</param>
         /// <returns>Whether the specified type is a generic type.</returns>
-#if (NET45 || NET46)
+#if (NET45 || NET46 || PORTABLE)
         [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
 #endif
 
@@ -391,7 +398,7 @@ namespace PommaLabs.Thrower.Reflection
         /// </summary>
         /// <typeparam name="T">The type.</typeparam>
         /// <returns>Whether the specified type is a generic type.</returns>
-#if (NET45 || NET46)
+#if (NET45 || NET46 || PORTABLE)
         [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
 #endif
 
@@ -406,7 +413,7 @@ namespace PommaLabs.Thrower.Reflection
         /// </summary>
         /// <param name="type">The type.</param>
         /// <returns>Whether the specified type is a generic type definition.</returns>
-#if (NET45 || NET46)
+#if (NET45 || NET46 || PORTABLE)
         [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
 #endif
 
@@ -424,7 +431,7 @@ namespace PommaLabs.Thrower.Reflection
         /// </summary>
         /// <typeparam name="T">The type.</typeparam>
         /// <returns>Whether the specified type is a generic type definition.</returns>
-#if (NET45 || NET46)
+#if (NET45 || NET46 || PORTABLE)
         [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
 #endif
 
@@ -438,7 +445,7 @@ namespace PommaLabs.Thrower.Reflection
         /// <param name="obj">The object.</param>
         /// <param name="type">The type.</param>
         /// <returns>Whether the specified object is an instance of the current <see cref="T:System.Type"/>.</returns>
-#if (NET45 || NET46)
+#if (NET45 || NET46 || PORTABLE)
         [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
 #endif
 
@@ -463,7 +470,7 @@ namespace PommaLabs.Thrower.Reflection
         /// </summary>
         /// <param name="type">The type.</param>
         /// <returns>Whether the specified type is an interface.</returns>
-#if (NET45 || NET46)
+#if (NET45 || NET46 || PORTABLE)
         [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
 #endif
 
@@ -481,7 +488,7 @@ namespace PommaLabs.Thrower.Reflection
         /// </summary>
         /// <typeparam name="T">The type.</typeparam>
         /// <returns>Whether the specified type is an interface.</returns>
-#if (NET45 || NET46)
+#if (NET45 || NET46 || PORTABLE)
         [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
 #endif
 
@@ -496,7 +503,7 @@ namespace PommaLabs.Thrower.Reflection
         /// </summary>
         /// <param name="type">The type.</param>
         /// <returns>Whether the specified type is primitive.</returns>
-#if (NET45 || NET46)
+#if (NET45 || NET46 || PORTABLE)
         [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
 #endif
 
@@ -514,7 +521,7 @@ namespace PommaLabs.Thrower.Reflection
         /// </summary>
         /// <typeparam name="T">The type.</typeparam>
         /// <returns>Whether the specified type is primitive.</returns>
-#if (NET45 || NET46)
+#if (NET45 || NET46 || PORTABLE)
         [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
 #endif
 
@@ -529,7 +536,7 @@ namespace PommaLabs.Thrower.Reflection
         /// </summary>
         /// <param name="type">The type.</param>
         /// <returns>Whether the specified type is a value type.</returns>
-#if (NET45 || NET46)
+#if (NET45 || NET46 || PORTABLE)
         [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
 #endif
 
@@ -547,7 +554,7 @@ namespace PommaLabs.Thrower.Reflection
         /// </summary>
         /// <typeparam name="T">The type.</typeparam>
         /// <returns>Whether the specified type is a value type.</returns>
-#if (NET45 || NET46)
+#if (NET45 || NET46 || PORTABLE)
         [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
 #endif
 

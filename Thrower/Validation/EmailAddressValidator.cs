@@ -251,15 +251,14 @@ namespace PommaLabs.Thrower.Validation
         /// <remarks>
         ///   <para>Validates the syntax of an email address.</para>
         ///   <para>
-        ///     If <paramref name="options"/> contains <see cref="Options.AllowInternational"/>, then the validator
-        ///     will use the newer International Email standards for validating the email address.
+        ///     If <paramref name="options"/> contains <see cref="Options.AllowInternational"/>, then
+        ///     the validator will use the newer International Email standards for validating the
+        ///     email address.
         ///   </para>
         /// </remarks>
         /// <returns><c>true</c> if the email address is valid; otherwise <c>false</c>.</returns>
         /// <param name="emailAddress">An email address.</param>
-        /// <param name="options">
-        ///   Customizations for the validation process.
-        /// </param>
+        /// <param name="options">Customizations for the validation process.</param>
         /// <exception cref="System.ArgumentNullException">
         ///   <paramref name="emailAddress"/> is <c>null</c>.
         /// </exception>

@@ -9,23 +9,35 @@
     <Import_RootNamespace>PommaLabs.Thrower</Import_RootNamespace>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="$(MSBuildThisFileDirectory)ExceptionHandlers\ArgumentExceptionHandler.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ExceptionHandlers\ArgumentNullExceptionHandler.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ExceptionHandlers\ArgumentOutOfRangeExceptionHandler.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ExceptionHandlers\GenericExceptionHandler.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ExceptionHandlers\HttpExceptionHandler.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ExceptionHandlers\InvalidOperationExceptionHandler.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ExceptionHandlers\NotSupportedExceptionHandler.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ExceptionHandlers\ObjectDisposedExceptionHandler.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ExceptionHandlers\IndexOutOfRangeExceptionHandler.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)HttpException.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Obsolete\Raise.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Obsolete\RaiseArgumentException.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Obsolete\RaiseArgumentNullException.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)RaiseHttpException.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)RaiseNew.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)RaiseObjectDisposedException.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Obsolete\RaiseArgumentOutOfRangeException.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Obsolete\RaiseHttpException.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Obsolete\RaiseIndexOutOfRangeException.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Obsolete\RaiseInvalidOperationException.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Obsolete\RaiseNotSupportedException.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Obsolete\RaiseObjectDisposedException.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Raise.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Reflection\FastMember\CallSiteCache.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Reflection\FastMember\MemberSet.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Reflection\FastMember\ObjectAccessor.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Reflection\FastMember\ObjectReader.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Reflection\FastMember\TypeAccessor.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Reflection\PortableSerializationAttributes.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Reflection\PortableTypeInfo.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Raise.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)RaiseArgumentException.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)RaiseIndexOutOfRangeException.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)RaiseArgumentOutOfRangeException.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)RaiseNotSupportedException.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)RaiseInvalidOperationException.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)RaiseGeneric.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ThrowerException.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Validation\EmailAddressValidator.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Validation\ObjectValidator.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Validation\PhoneNumberValidator.cs" />

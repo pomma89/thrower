@@ -29,7 +29,10 @@ namespace PommaLabs.Thrower
     /// <summary>
     ///   Utility methods which can be used to handle null references.
     /// </summary>
-    [Obsolete("Please use Raise.ArgumentNullException.If* overloads")]
+    /// <remarks>
+    ///   This class is no longer maintained.
+    /// </remarks>
+    [Obsolete("Please use Raise.ArgumentNullException.If* overloads, this class has been deprecated")]
     public sealed class RaiseArgumentNullException : RaiseBase
     {
         #region Classes
@@ -39,7 +42,7 @@ namespace PommaLabs.Thrower
         /// </summary>
         /// <typeparam name="TArg">The type of the argument.</typeparam>
         /// <param name="argument">The argument.</param>
-#if (NET45 || NET46)
+#if (NET45 || NET46 || PORTABLE)
         [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
 #endif
 
@@ -57,7 +60,7 @@ namespace PommaLabs.Thrower
         /// <typeparam name="TArg">The type of the argument.</typeparam>
         /// <param name="argument">The argument.</param>
         /// <param name="argumentName">The name of the argument.</param>
-#if (NET45 || NET46)
+#if (NET45 || NET46 || PORTABLE)
         [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
 #endif
 
@@ -76,7 +79,7 @@ namespace PommaLabs.Thrower
         /// <param name="argument">The argument.</param>
         /// <param name="argumentName">The name of the argument.</param>
         /// <param name="message">The message that should be put into the exception.</param>
-#if (NET45 || NET46)
+#if (NET45 || NET46 || PORTABLE)
         [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
 #endif
 
@@ -97,7 +100,7 @@ namespace PommaLabs.Thrower
         /// </summary>
         /// <typeparam name="TArg">The type of the nullable argument.</typeparam>
         /// <param name="argument">The argument.</param>
-#if (NET45 || NET46)
+#if (NET45 || NET46 || PORTABLE)
         [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
 #endif
 
@@ -116,7 +119,7 @@ namespace PommaLabs.Thrower
         /// <typeparam name="TArg">The type of the nullable argument.</typeparam>
         /// <param name="argument">The argument.</param>
         /// <param name="argumentName">The name of the argument.</param>
-#if (NET45 || NET46)
+#if (NET45 || NET46 || PORTABLE)
         [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
 #endif
 
@@ -136,7 +139,7 @@ namespace PommaLabs.Thrower
         /// <param name="argument">The argument.</param>
         /// <param name="argumentName">The name of the argument.</param>
         /// <param name="message">The message that should be put into the exception.</param>
-#if (NET45 || NET46)
+#if (NET45 || NET46 || PORTABLE)
         [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
 #endif
 
@@ -150,6 +153,5 @@ namespace PommaLabs.Thrower
         }
 
         #endregion Nullable structs
-
     }
 }

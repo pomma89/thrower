@@ -49,27 +49,27 @@ namespace PommaLabs.Thrower.UnitTests
         [Test]
         public void IfIsNullOrEmpty_BlankString()
         {
-            RaiseArgumentException.IfIsNullOrEmpty(BlankString);
+            Raise.ArgumentException.IfIsNullOrEmpty(BlankString);
         }
 
         [Test]
         public void IfIsNullOrEmpty_BlankString_WithMsg()
         {
-            RaiseArgumentException.IfIsNullOrEmpty(BlankString, nameof(TestMessage), TestMessage);
+            Raise.ArgumentException.IfIsNullOrEmpty(BlankString, nameof(TestMessage), TestMessage);
         }
 
         [Test]
         [ExpectedException(typeof(ArgumentException))]
         public void IfIsNullOrWhiteSpace_BlankString()
         {
-            RaiseArgumentException.IfIsNullOrWhiteSpace(BlankString);
+            Raise.ArgumentException.IfIsNullOrWhiteSpace(BlankString);
         }
 
         [Test]
         [ExpectedException(typeof(ArgumentException), ExpectedMessage = TestMessage, MatchType = MessageMatch.StartsWith)]
         public void IfIsNullOrWhiteSpace_BlankString_WithMsg()
         {
-            RaiseArgumentException.IfIsNullOrWhiteSpace(BlankString, nameof(TestMessage), TestMessage);
+            Raise.ArgumentException.IfIsNullOrWhiteSpace(BlankString, nameof(TestMessage), TestMessage);
         }
 
         [Test]
@@ -104,28 +104,28 @@ namespace PommaLabs.Thrower.UnitTests
         [ExpectedException(typeof(ArgumentException))]
         public void IfIsNullOrEmpty_EmptyString()
         {
-            RaiseArgumentException.IfIsNullOrEmpty(string.Empty);
+            Raise.ArgumentException.IfIsNullOrEmpty(string.Empty);
         }
 
         [Test]
         [ExpectedException(typeof(ArgumentException), ExpectedMessage = TestMessage, MatchType = MessageMatch.StartsWith)]
         public void IfIsNullOrEmpty_EmptyString_WithMsg()
         {
-            RaiseArgumentException.IfIsNullOrEmpty(string.Empty, nameof(TestMessage), TestMessage);
+            Raise.ArgumentException.IfIsNullOrEmpty(string.Empty, nameof(TestMessage), TestMessage);
         }
 
         [Test]
         [ExpectedException(typeof(ArgumentException))]
         public void IfIsNullOrWhiteSpace_EmptyString()
         {
-            RaiseArgumentException.IfIsNullOrWhiteSpace(string.Empty);
+            Raise.ArgumentException.IfIsNullOrWhiteSpace(string.Empty);
         }
 
         [Test]
         [ExpectedException(typeof(ArgumentException), ExpectedMessage = TestMessage, MatchType = MessageMatch.StartsWith)]
         public void IfIsNullOrWhiteSpace_EmptyString_WithMsg()
         {
-            RaiseArgumentException.IfIsNullOrWhiteSpace(string.Empty, nameof(TestMessage), TestMessage);
+            Raise.ArgumentException.IfIsNullOrWhiteSpace(string.Empty, nameof(TestMessage), TestMessage);
         }
 
         [Test]
@@ -155,25 +155,25 @@ namespace PommaLabs.Thrower.UnitTests
         [Test]
         public void IfIsNullOrEmpty_FullString()
         {
-            RaiseArgumentException.IfIsNullOrEmpty("PINO");
+            Raise.ArgumentException.IfIsNullOrEmpty("PINO");
         }
 
         [Test]
         public void IfIsNullOrEmpty_FullString_WithMsg()
         {
-            RaiseArgumentException.IfIsNullOrEmpty("PINO", nameof(TestMessage), TestMessage);
+            Raise.ArgumentException.IfIsNullOrEmpty("PINO", nameof(TestMessage), TestMessage);
         }
 
         [Test]
         public void IfIsNullOrWhiteSpace_FullString()
         {
-            RaiseArgumentException.IfIsNullOrWhiteSpace("PINO");
+            Raise.ArgumentException.IfIsNullOrWhiteSpace("PINO");
         }
 
         [Test]
         public void IfIsNullOrWhiteSpace_FullString_WithMsg()
         {
-            RaiseArgumentException.IfIsNullOrWhiteSpace("PINO", nameof(TestMessage), TestMessage);
+            Raise.ArgumentException.IfIsNullOrWhiteSpace("PINO", nameof(TestMessage), TestMessage);
         }
 
         [Test]
