@@ -2,7 +2,10 @@
 #r @"packages\FAKE\tools\FakeLib.dll"
 open Fake
 
-RestorePackages()
+directExec (fun info ->
+  info.FileName <- ".nuget/NuGet.exe"
+  info.Arguments <- "restore"
+  info.WorkingDirectory <- ".")
 
 // Properties
 let solutionFile = "./Thrower.sln"
