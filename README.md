@@ -185,6 +185,12 @@ As of now, I do not have plans to expand Thrower beyond what it currently is. Th
 
 ## Benchmarks ##
 
+All benchmarks were implemented and run using the wonderful [BenchmarkDotNet](https://github.com/PerfDotNet/BenchmarkDotNet) library.
+
+### Raise VS Throw ###
+
+In this benchmark we try to understand how great is the speed difference between the .NET `throw` statement and our fluent syntax based on the `Raise` static class. As we can see by the results, the speed difference, if any, is really small.
+
 ```ini
 Host Process Environment Information:
 
