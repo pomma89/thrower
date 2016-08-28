@@ -37,6 +37,7 @@ namespace PommaLabs.Thrower.UnitTests.ExceptionHandlers.IO
         private static readonly string NotExistingFilePath = Path.Combine(Environment.CurrentDirectory, Guid.NewGuid() + ".test");
         private static readonly string MyTestMessage = $"{DateTime.UtcNow} - {Guid.NewGuid()}";
 
+        [Test]
         public void ShouldNotThrowIfFileExists()
         {
             try
@@ -50,6 +51,7 @@ namespace PommaLabs.Thrower.UnitTests.ExceptionHandlers.IO
             }
         }
 
+        [Test]
         public void ShouldThrowIfFileNotExistsAndShouldUseDefaultMessageIfNoneSpecified()
         {
             try
@@ -65,6 +67,7 @@ namespace PommaLabs.Thrower.UnitTests.ExceptionHandlers.IO
             Assert.Fail();
         }
 
+        [Test]
         public void ShouldThrowIfFileNotExistsAndShouldUseCustomMessageIfSpecified()
         {
             try
