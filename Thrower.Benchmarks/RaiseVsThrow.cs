@@ -26,7 +26,10 @@ using BenchmarkDotNet.Diagnostics.Windows;
 using BenchmarkDotNet.Exporters;
 using BenchmarkDotNet.Jobs;
 using System;
+using System.IO;
 using System.Linq;
+
+#pragma warning disable CC0091 // Use static method
 
 namespace PommaLabs.Thrower.Benchmarks
 {
@@ -41,7 +44,7 @@ namespace PommaLabs.Thrower.Benchmarks
         {
             public Config()
             {
-                Add(Job.Default);
+                Add(Job.AllJits);
                 Add(GetColumns().ToArray());
                 Add(CsvExporter.Default, HtmlExporter.Default, MarkdownExporter.GitHub, PlainExporter.Default);
                 Add(new MemoryDiagnoser());
@@ -175,9 +178,7 @@ namespace PommaLabs.Thrower.Benchmarks
         #region NotSupportedException
 
         [Benchmark]
-#pragma warning disable CC0091 // Use static method
         public Exception Raise_NotSupportedException()
-#pragma warning restore CC0091 // Use static method
         {
             try
             {
@@ -248,5 +249,44 @@ namespace PommaLabs.Thrower.Benchmarks
         }
 
         #endregion NotSupportedException
+
+        #region FileNotFoundException
+
+        private static readonly string NotExistingFilePath = Path.Combine(Environment.CurrentDirectory, Guid.NewGuid() + ".bench");
+
+        [Benchmark]
+        public FileNotFoundException Raise_FileNotFoundException()
+        {
+            try
+            {
+                Raise.FileNotFoundException.IfNotExists(NotExistingFilePath, NotExistingFilePath);
+            }
+            catch (FileNotFoundException ex)
+            {
+                return ex;
+            }
+            return default(FileNotFoundException);
+        }
+
+        [Benchmark]
+        public FileNotFoundException Throw_FileNotFoundException()
+        {
+            try
+            {
+                if (!File.Exists(NotExistingFilePath))
+                {
+                    throw new FileNotFoundException(NotExistingFilePath, NotExistingFilePath);
+                }
+            }
+            catch (FileNotFoundException ex)
+            {
+                return ex;
+            }
+            return default(FileNotFoundException);
+        }
+
+        #endregion FileNotFoundException
     }
 }
+
+#pragma warning restore CC0091 // Use static method

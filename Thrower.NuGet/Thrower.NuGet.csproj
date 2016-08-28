@@ -65,6 +65,7 @@
     <Folder Include="lib\net45\" />
     <Folder Include="lib\net46\" />
     <Folder Include="lib\netstandard1.1\" />
+    <Folder Include="lib\netstandard1.3\" />
     <Folder Include="lib\portable-net45+win8+wp8+wpa81\" />
   </ItemGroup>
   <ItemGroup>
@@ -119,10 +120,15 @@ copy "$(SolutionDir)Platform Specific\Thrower.Portable\bin\Release\PommaLabs.Thr
 copy "$(SolutionDir)Platform Specific\Thrower.Portable\bin\Release\PommaLabs.Thrower.pdb" "$(ProjectDir)lib\portable-net45+win8+wp8+wpa81"
 copy "$(SolutionDir)Platform Specific\Thrower.Portable\bin\Release\PommaLabs.Thrower.xml" "$(ProjectDir)lib\portable-net45+win8+wp8+wpa81"
 
-if not exist "$(ProjectDir)lib\dnxcore50" mkdir "$(ProjectDir)lib\netstandard1.1"
+if not exist "$(ProjectDir)lib\netstandard1.1" mkdir "$(ProjectDir)lib\netstandard1.1"
 copy "$(SolutionDir)Platform Specific\Thrower.NETSTD11\bin\Release\PommaLabs.Thrower.dll" "$(ProjectDir)lib\netstandard1.1"
 copy "$(SolutionDir)Platform Specific\Thrower.NETSTD11\bin\Release\PommaLabs.Thrower.pdb" "$(ProjectDir)lib\netstandard1.1"
 copy "$(SolutionDir)Platform Specific\Thrower.NETSTD11\bin\Release\PommaLabs.Thrower.xml" "$(ProjectDir)lib\netstandard1.1"
+
+if not exist "$(ProjectDir)lib\netstandard1.3" mkdir "$(ProjectDir)lib\netstandard1.3"
+copy "$(SolutionDir)Platform Specific\Thrower.NETSTD13\bin\Release\PommaLabs.Thrower.dll" "$(ProjectDir)lib\netstandard1.3"
+copy "$(SolutionDir)Platform Specific\Thrower.NETSTD13\bin\Release\PommaLabs.Thrower.pdb" "$(ProjectDir)lib\netstandard1.3"
+copy "$(SolutionDir)Platform Specific\Thrower.NETSTD13\bin\Release\PommaLabs.Thrower.xml" "$(ProjectDir)lib\netstandard1.3"
 </PreBuildEvent>
   </PropertyGroup>
 </Project>

@@ -27,7 +27,7 @@ using NUnit.Framework;
 using System;
 using System.Net;
 
-namespace PommaLabs.Thrower.UnitTests.ExceptionHandlers
+namespace PommaLabs.Thrower.UnitTests.ExceptionHandlers.Net
 {
     internal sealed class HttpExceptionTests : AbstractTests
     {
