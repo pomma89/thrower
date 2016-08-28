@@ -226,10 +226,15 @@ Raise.HttpException.IfNot(user.IsLoggedIn, HttpStatusCode.Unauthorized, "User sh
 
 ## Benchmarks ##
 
-Following benchmarks compare `Raise*` methods againt the common `if (true) throw exception` statements.
+All benchmarks were implemented and run using the wonderful [BenchmarkDotNet](https://github.com/PerfDotNet/BenchmarkDotNet) library.
 
-All benchmarks show that the time difference is really small and hardly noticeable;
-therefore, using Thrower does not impose a penalty on your application performance, even on hot paths.
+### Raise VS Throw ###
+
+In this benchmark we try to understand how great is the speed difference between the standard .NET `if (true) throw exception` statement
+and our fluent syntax based on the `Raise` static classes.
+
+As we can see by the results, the speed difference, if any, is really small.
+Therefore, using Thrower does not impose a penalty on your application performance, even on hot paths.
 
 ```ini
 
