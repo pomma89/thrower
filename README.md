@@ -7,7 +7,7 @@
 
 * Latest release version: `v3.0.2`
 * Build status on [AppVeyor](https://ci.appveyor.com): [![Build status](https://ci.appveyor.com/api/projects/status/xjkp8gn0cf4s7qbg?svg=true)](https://ci.appveyor.com/project/pomma89/thrower)
-* [Doxygen](http://www.stack.nl/~dimitri/doxygen/index.html) documentation: 
+* [Doxygen](http://www.stack.nl/~dimitri/doxygen/index.html) documentation:
     + [HTML](https://goo.gl/iO6qZG)
     + [PDF](https://goo.gl/lZ7K9h)
 * [NuGet](https://www.nuget.org) package(s):
@@ -18,6 +18,7 @@
 This library allows to write preconditions like the ones exposed in the following example:
 
 ```cs
+
 /// <summary>
 ///   Simple example for Thrower.
 /// </summary>
@@ -179,38 +180,112 @@ internal static class BankExample
         Console.Read();
     }
 }
+
 ```
 
-As of now, I do not have plans to expand Thrower beyond what it currently is. There are many ways in which it can be improved, I know, but as of now the library suits my needs and I have not much time to improve it. If I will have time, I will try to make it better, of course.
+You can find more examples under the [Thrower.Examples](https://github.com/pomma89/Thrower/tree/master/Thrower.Examples)
+and [Thrower.UnitTests](https://github.com/pomma89/Thrower/tree/master/Thrower.UnitTests) projects.
+In any case, usage of this library should be pretty straightforward.
+
+## Exception handlers ##
+
+`Raise` static class exposes an increasing number of what we call "exception handlers", that is,
+custom objects which allow writing preconditions as shown in above example.
+
+Each handler is tied to one specific exception and exposes methods to allow writing fluent preconditions
+depending on which exception it has been defined for.
+
+Let's see some examples.
+
+### System ###
+
+```cs
+
+Raise.ArgumentNullException.IfIsNull(session, nameof(session), "Session object is mandatory");
+Raise.ArgumentOutOfRangeException.IfIsGreater(loginAttemptCount, 5, nameof(loginAttemptCount), "Too many login attempts!");
+
+```
+
+### System.IO ###
+
+```cs
+
+Raise.FileNotFoundException.IfNotExists("C:\\temp.txt", "Cannot find temp file");
+Raise.DirectoryNotFoundException.IfNotExists("C:\\Users\\dev", "Cannot find 'dev' home directory");
+Raise.IOException.IfNot(outStream.CanWrite, "Specified output stream does not allow writing");
+
+```
+
+### System.Net ###
+
+```cs
+
+Raise.HttpException.IfNot(user.IsLoggedIn, HttpStatusCode.Unauthorized, "User should perform login");
+
+```
 
 ## Benchmarks ##
 
-```ini
-Host Process Environment Information:
+Following benchmarks compare `Raise*` methods againt the common `if (true) throw exception` statements.
 
-BenchmarkDotNet=v0.9.8.0
+All benchmarks show that the time difference is really small and hardly noticeable;
+therefore, using Thrower does not impose a penalty on your application performance, even on hot paths.
+
+```ini
+
+Host Process Environment Information:
+BenchmarkDotNet.Core=v0.9.9.0
 OS=Microsoft Windows NT 6.1.7601 Service Pack 1
-Processor=Intel(R) Xeon(R) CPU X5650 2.67GHz, ProcessorCount=4
-Frequency=10000000 ticks, Resolution=100.0000 ns, Timer=UNKNOWN
+Processor=Intel(R) Core(TM) i7-3630QM CPU 2.40GHz, ProcessorCount=8
+Frequency=2338505 ticks, Resolution=427.6236 ns, Timer=TSC
 CLR=MS.NET 4.0.30319.42000, Arch=32-bit RELEASE
 GC=Concurrent Workstation
 JitModules=clrjit-v4.6.1590.0
 
-Type=RaiseVsThrow  Mode=Throughput  GarbageCollection=Concurrent Workstation  
+Type=RaiseVsThrow  Mode=Throughput
 
 ```
-                                           Method |     Median |    StdDev | Gen 0 | Gen 1 | Gen 2 | Bytes Allocated/Op |
-------------------------------------------------- |----------- |---------- |------ |------ |------ |------------------- |
-                      Raise_ArgumentNullException | 16.9288 us | 0.5162 us |     - |     - |     - |              95,69 |
-                RaiseStatic_ArgumentNullException | 21.9448 us | 0.4870 us |     - |     - |     - |             101,19 |
-                      Throw_ArgumentNullException | 21.0086 us | 0.2489 us |     - |     - |     - |             101,19 |
-       Raise_ArgumentOutOfRangeException_Integers | 16.1269 us | 0.2061 us |     - |     - |     - |              74,55 |
- RaiseStatic_ArgumentOutOfRangeException_Integers | 16.1793 us | 0.3492 us |     - |     - |     - |              72,83 |
-       Throw_ArgumentOutOfRangeException_Integers | 16.0068 us | 0.2635 us |     - |     - |     - |              70,72 |
-                      Raise_NotSupportedException | 48.4379 us | 2.4541 us | 71.00 |     - |     - |           2.518,03 |
-                RaiseStatic_NotSupportedException | 47.8800 us | 4.5900 us | 73.82 |     - |     - |           2.583,65 |
-                      Throw_NotSupportedException | 31.5260 us | 1.8334 us | 36.67 |     - |     - |           1.299,64 |
+                                           Method | Platform |       Jit |     Median |    StdDev |  Gen 0 | Gen 1 | Gen 2 | Bytes Allocated/Op |
+------------------------------------------------- |--------- |---------- |----------- |---------- |------- |------ |------ |------------------- |
+                      Raise_ArgumentNullException |      X64 | LegacyJit | 14.6587 us | 0.1218 us |  10.10 |     - |     - |             185,59 |
+                RaiseStatic_ArgumentNullException |      X64 | LegacyJit | 17.5628 us | 0.1029 us |  14.36 |     - |     - |             256,63 |
+                      Throw_ArgumentNullException |      X64 | LegacyJit | 15.6713 us | 0.4333 us |   9.14 |     - |     - |             194,65 |
+       Raise_ArgumentOutOfRangeException_Integers |      X64 | LegacyJit | 11.2094 us | 0.1511 us |   7.62 |     - |     - |             137,79 |
+ RaiseStatic_ArgumentOutOfRangeException_Integers |      X64 | LegacyJit | 11.2630 us | 0.2221 us |   6.87 |     - |     - |             124,72 |
+       Throw_ArgumentOutOfRangeException_Integers |      X64 | LegacyJit | 11.6393 us | 0.2122 us |   7.25 |     - |     - |             131,22 |
+                      Raise_NotSupportedException |      X64 | LegacyJit | 38.5153 us | 1.0735 us | 142.07 |     - |     - |           2.639,01 |
+               RaiseGeneric_NotSupportedException |      X64 | LegacyJit | 42.3143 us | 0.5898 us | 169.05 |     - |     - |           3.139,10 |
+                RaiseStatic_NotSupportedException |      X64 | LegacyJit | 38.4069 us | 0.6297 us | 155.50 |     - |     - |           2.855,48 |
+                      Throw_NotSupportedException |      X64 | LegacyJit | 23.7628 us | 0.8847 us |  62.84 |     - |     - |           1.284,40 |
+                      Raise_FileNotFoundException |      X64 | LegacyJit | 53.2149 us | 0.9557 us |      - |     - |     - |             311,87 |
+                      Throw_FileNotFoundException |      X64 | LegacyJit | 50.6233 us | 0.3536 us |      - |     - |     - |             233,45 |
+                      Raise_ArgumentNullException |      X64 |    RyuJit | 13.6926 us | 0.0397 us |   9.25 |     - |     - |             170,65 |
+                RaiseStatic_ArgumentNullException |      X64 |    RyuJit | 15.7933 us | 0.2740 us |   8.52 |     - |     - |             181,26 |
+                      Throw_ArgumentNullException |      X64 |    RyuJit | 16.0593 us | 3.8467 us |   9.66 |     - |     - |             205,28 |
+       Raise_ArgumentOutOfRangeException_Integers |      X64 |    RyuJit | 13.2862 us | 0.0385 us |  10.57 |     - |     - |             198,03 |
+ RaiseStatic_ArgumentOutOfRangeException_Integers |      X64 |    RyuJit |  8.6512 us | 0.1483 us |   7.41 |     - |     - |             134,07 |
+       Throw_ArgumentOutOfRangeException_Integers |      X64 |    RyuJit |  8.6498 us | 0.1572 us |   7.17 |     - |     - |             129,52 |
+                      Raise_NotSupportedException |      X64 |    RyuJit | 27.9515 us | 1.0770 us | 135.89 |     - |     - |           2.523,74 |
+               RaiseGeneric_NotSupportedException |      X64 |    RyuJit | 29.9210 us | 0.8526 us | 148.00 |     - |     - |           2.761,79 |
+                RaiseStatic_NotSupportedException |      X64 |    RyuJit | 26.9868 us | 0.6985 us | 151.22 |     - |     - |           2.778,91 |
+                      Throw_NotSupportedException |      X64 |    RyuJit | 17.1639 us | 0.5002 us |  73.37 |     - |     - |           1.383,10 |
+                      Raise_FileNotFoundException |      X64 |    RyuJit | 39.5122 us | 0.3098 us |   8.13 |     - |     - |             247,48 |
+                      Throw_FileNotFoundException |      X64 |    RyuJit | 37.8486 us | 0.3952 us |   8.68 |     - |     - |             217,39 |
+                      Raise_ArgumentNullException |      X86 | LegacyJit | 13.3714 us | 0.1751 us |   4.16 |     - |     - |              80,93 |
+                RaiseStatic_ArgumentNullException |      X86 | LegacyJit | 16.7906 us | 0.2125 us |   5.00 |     - |     - |             110,53 |
+                      Throw_ArgumentNullException |      X86 | LegacyJit | 16.2845 us | 0.2783 us |   5.30 |     - |     - |             116,32 |
+       Raise_ArgumentOutOfRangeException_Integers |      X86 | LegacyJit | 12.8385 us | 0.0832 us |   4.54 |     - |     - |              89,78 |
+ RaiseStatic_ArgumentOutOfRangeException_Integers |      X86 | LegacyJit | 13.1328 us | 0.4223 us |      - |     - |     - |              65,74 |
+       Throw_ArgumentOutOfRangeException_Integers |      X86 | LegacyJit | 17.1409 us | 0.4553 us |      - |     - |     - |              61,00 |
+                      Raise_NotSupportedException |      X86 | LegacyJit | 43.6108 us | 0.7787 us | 127.21 |     - |     - |           2.401,45 |
+               RaiseGeneric_NotSupportedException |      X86 | LegacyJit | 43.7694 us | 1.9157 us | 130.03 |     - |     - |           2.462,43 |
+                RaiseStatic_NotSupportedException |      X86 | LegacyJit | 41.0660 us | 0.9476 us | 145.76 |     - |     - |           2.723,65 |
+                      Throw_NotSupportedException |      X86 | LegacyJit | 27.6131 us | 0.6346 us |  62.84 |     - |     - |           1.207,41 |
+                      Raise_FileNotFoundException |      X86 | LegacyJit | 61.6230 us | 1.3517 us |      - |     - |     - |             192,57 |
+                      Throw_FileNotFoundException |      X86 | LegacyJit | 45.0559 us | 0.5427 us |      - |     - |     - |             146,95 |
 
 ## About this repository and its maintainer ##
 
 Everything done on this repository is freely offered on the terms of the project license. You are free to do everything you want with the code and its related files, as long as you respect the license and use common sense while doing it :-)
+
+As of now, I do not have plans to expand Thrower much beyond what it currently is. There are many ways in which it can be improved, I know, but as of now the library suits my needs and I have not much time to improve it. If I will have time, I will try to make it better, of course.
