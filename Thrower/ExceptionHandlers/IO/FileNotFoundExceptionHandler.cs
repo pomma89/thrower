@@ -41,7 +41,10 @@ namespace PommaLabs.Thrower.ExceptionHandlers.IO
 
 #if (!PORTABLE && !NETSTD11)
 
-        private const string DefaultMessage = "Specified file does not exist or the caller does not have sufficient permissions to read the specified file";
+        /// <summary>
+        ///   The default message, used when none has been specified.
+        /// </summary>
+        internal const string DefaultMessage = "Specified file does not exist or the caller does not have sufficient permissions to read the specified file";
 
         /// <summary>
         ///   Throws <see cref="FileNotFoundException"/> if specified file does not exist or the

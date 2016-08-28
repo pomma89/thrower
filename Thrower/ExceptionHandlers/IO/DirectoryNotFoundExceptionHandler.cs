@@ -41,7 +41,10 @@ namespace PommaLabs.Thrower.ExceptionHandlers.IO
         /// <returns>An exception with given message.</returns>
         protected override DirectoryNotFoundException NewWithMessage(string message) => new DirectoryNotFoundException(message);
 
-        private const string DefaultMessage = "Specified directory does not exist";
+        /// <summary>
+        ///   The default message, used when none has been specified.
+        /// </summary>
+        internal const string DefaultMessage = "Specified directory does not exist";
 
         /// <summary>
         ///   Throws <see cref="DirectoryNotFoundException"/> if specified directory does not exist.
