@@ -3,7 +3,7 @@
 <package>
     <metadata>
         <id>Thrower</id>
-        <version>3.0.1</version>
+        <version>3.0.2</version>
         <title>Thrower - Compact preconditions helpers</title>
         <authors>Alessio Parma &lt;alessio.parma@gmail.com&gt;</authors>
         <owners>Alessio Parma &lt;alessio.parma@gmail.com&gt;</owners>
@@ -13,11 +13,14 @@ Thrower allows to write preconditions in a pretty lean way, which reduces the cl
 For example, a validation against null becomes "Raise.ArgumentNullException.IfIsNull(myParam)", while a generic validation may be written as "Raise.ArgumentException.If(condition)".
         </description>
         <releaseNotes>
-* Completed the implementation of a more fluent validation.
-* Added a build script based on FAKE.
-* Updated examples and doc comments.
-* HttpException properly serializes custom data.
-* Library for .NET Standard 1.1.
+* Added an exception handler for System.IO.DirectoryNotFoundException.
+* Added an exception handler for System.IO.FileNotFoundException.
+* Added an exception handler for System.IO.InvalidDataException.
+* Added an exception handler for System.IO.IOException.
+* Added a DLL compiled for .NET Standard 1.3.
+* Added some unit tests for new handlers.
+* Benchmarks are now executed against all JITs.
+* New benchmarks for Raise.FileNotFoundException.
         </releaseNotes>
         <summary>Fully managed library providing convenience methods to perform argument checks.</summary>
         <language>en-US</language>
