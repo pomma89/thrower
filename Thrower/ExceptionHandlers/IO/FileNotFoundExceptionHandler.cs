@@ -38,6 +38,30 @@ namespace PommaLabs.Thrower.ExceptionHandlers.IO
         /// <param name="message">The message used by the exception.</param>
         /// <returns>An exception with given message.</returns>
         protected override FileNotFoundException NewWithMessage(string message) => new FileNotFoundException(message);
+
+#if (!PORTABLE && !NETSTD11)
+
+        private const string DefaultMessage = "Specified file does not exist or the caller does not have sufficient permissions to read the specified file";
+
+        /// <summary>
+        ///   Throws <see cref="FileNotFoundException"/> if specified file does not exist or the
+        ///   caller does not have sufficient permissions to read the specified file.
+        /// </summary>
+        /// <param name="filePath">The path of the file that should exist.</param>
+        /// <param name="message">The optional message.</param>
+        /// <exception cref="FileNotFoundException">
+        ///   If specified file does not exist or the caller does not have sufficient permissions to
+        ///   read the specified file.
+        /// </exception>
+        public void IfNotExists(string filePath, string message = null)
+        {
+            if (!File.Exists(filePath))
+            {
+                throw new FileNotFoundException(message ?? DefaultMessage, filePath);
+            }
+        }
+
+#endif
     }
 }
 

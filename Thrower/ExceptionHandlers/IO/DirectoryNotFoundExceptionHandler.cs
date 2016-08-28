@@ -23,7 +23,6 @@
 
 #if (!PORTABLE && !NETSTD11)
 
-using System;
 using System.IO;
 
 #pragma warning disable CC0091 // Use static method
@@ -41,6 +40,23 @@ namespace PommaLabs.Thrower.ExceptionHandlers.IO
         /// <param name="message">The message used by the exception.</param>
         /// <returns>An exception with given message.</returns>
         protected override DirectoryNotFoundException NewWithMessage(string message) => new DirectoryNotFoundException(message);
+
+        private const string DefaultMessage = "Specified directory does not exist";
+
+        /// <summary>
+        ///   Throws <see cref="DirectoryNotFoundException"/> if specified directory does not exist.
+        /// </summary>
+        /// <param name="directoryPath">The path of the directory that should exist.</param>
+        /// <param name="message">The optional message.</param>
+        /// <exception cref="FileNotFoundException">If specified directory does not exist.</exception>
+        public void IfNotExists(string directoryPath, string message = null)
+        {
+            if (!Directory.Exists(directoryPath))
+            {
+                var exMsg = $@"{message ?? DefaultMessage} - ""{directoryPath}""";
+                throw new DirectoryNotFoundException(exMsg);
+            }
+        }
     }
 }
 
