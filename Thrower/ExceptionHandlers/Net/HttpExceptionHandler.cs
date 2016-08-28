@@ -25,7 +25,7 @@ using System.Net;
 
 #pragma warning disable CC0091 // Use static method
 
-namespace PommaLabs.Thrower.ExceptionHandlers
+namespace PommaLabs.Thrower.ExceptionHandlers.Net
 {
     /// <summary>
     ///   Handler for <see cref="HttpException"/>

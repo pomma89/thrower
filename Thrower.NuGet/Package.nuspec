@@ -36,6 +36,12 @@ For example, a validation against null becomes "Raise.ArgumentNullException.IfIs
                 <dependency id="System.Reflection" version="4.1.0" />
                 <dependency id="System.Text.RegularExpressions" version="4.1.0" />
             </group>
+            <group targetFramework="netstandard1.3">
+                <dependency id="System.IO.FileSystem" version="4.0.1" />
+                <dependency id="System.Net.Http" version="4.1.0" />
+                <dependency id="System.Reflection" version="4.1.0" />
+                <dependency id="System.Text.RegularExpressions" version="4.1.0" />
+            </group>
             <group targetFramework="portable-net45+win8+wp8+wpa81"></group>
         </dependencies>
         <references></references>

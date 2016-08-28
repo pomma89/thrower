@@ -22,7 +22,8 @@
 // OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 using PommaLabs.Thrower.ExceptionHandlers;
-using System.Diagnostics.CodeAnalysis;
+using PommaLabs.Thrower.ExceptionHandlers.IO;
+using PommaLabs.Thrower.ExceptionHandlers.Net;
 
 namespace PommaLabs.Thrower
 {
@@ -31,6 +32,8 @@ namespace PommaLabs.Thrower
     /// </summary>
     public static class Raise
     {
+        #region System
+
         /// <summary>
         ///   Handler for <see cref="System.ArgumentException"/>
         /// </summary>
@@ -47,15 +50,10 @@ namespace PommaLabs.Thrower
         public static ArgumentOutOfRangeExceptionHandler ArgumentOutOfRangeException { get; } = new ArgumentOutOfRangeExceptionHandler();
 
         /// <summary>
-        ///   Handler for <see cref="HttpException"/>
-        /// </summary>
-        public static HttpExceptionHandler HttpException { get; } = new HttpExceptionHandler();
-
-        /// <summary>
         ///   Handler for <see cref="System.IndexOutOfRangeException"/>
         /// </summary>
         public static IndexOutOfRangeExceptionHandler IndexOutOfRangeException { get; } = new IndexOutOfRangeExceptionHandler();
-        
+
         /// <summary>
         ///   Handler for <see cref="System.InvalidOperationException"/>
         /// </summary>
@@ -70,5 +68,44 @@ namespace PommaLabs.Thrower
         ///   Handler for <see cref="System.ObjectDisposedException"/>
         /// </summary>
         public static ObjectDisposedExceptionHandler ObjectDisposedException { get; } = new ObjectDisposedExceptionHandler();
+
+        #endregion System
+
+        #region System.IO
+
+#if (!PORTABLE && !NETSTD11)
+
+        /// <summary>
+        ///   Handler for <see cref="System.IO.DirectoryNotFoundException"/>
+        /// </summary>
+        public static DirectoryNotFoundExceptionHandler DirectoryNotFoundException { get; } = new DirectoryNotFoundExceptionHandler();
+
+#endif
+
+        /// <summary>
+        ///   Handler for <see cref="System.IO.FileNotFoundException"/>
+        /// </summary>
+        public static FileNotFoundExceptionHandler FileNotFoundException { get; } = new FileNotFoundExceptionHandler();
+
+        /// <summary>
+        ///   Handler for <see cref="System.IO.InvalidDataException"/>
+        /// </summary>
+        public static InvalidDataExceptionHandler InvalidDataException { get; } = new InvalidDataExceptionHandler();
+
+        /// <summary>
+        ///   Handler for <see cref="System.IO.IOException"/>
+        /// </summary>
+        public static IOExceptionHandler IOException { get; } = new IOExceptionHandler();
+
+        #endregion System.IO
+
+        #region System.Net
+
+        /// <summary>
+        ///   Handler for <see cref="HttpException"/>
+        /// </summary>
+        public static HttpExceptionHandler HttpException { get; } = new HttpExceptionHandler();
+
+        #endregion System.Net
     }
 }
