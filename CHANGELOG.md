@@ -1,5 +1,16 @@
 # Changelog for PommaLabs.Thrower #
 
+### v3.0.2 (2016-08-28) ###
+
+* Added an exception handler for System.IO.DirectoryNotFoundException.
+* Added an exception handler for System.IO.FileNotFoundException.
+* Added an exception handler for System.IO.InvalidDataException.
+* Added an exception handler for System.IO.IOException.
+* Added a DLL compiled for .NET Standard 1.3.
+* Added some unit tests for new handlers.
+* Benchmarks are now executed against all JITs.
+* New benchmarks for Raise.FileNotFoundException.
+
 ### v3.0.1 (2016-08-06) ###
 
 * Completed the implementation of a more fluent validation.
