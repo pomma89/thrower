@@ -1764,7 +1764,7 @@ namespace PommaLabs.Thrower
         [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
 #endif
 
-        [Obsolete("Please use Raise.* or Raise<TEx>.If(Not) overloads, this method has been deprecated and it will be removed in v4"), SuppressMessage("Microsoft.Design", "CA1000:DoNotDeclareStaticMembersOnGenericTypes")]
+        [Obsolete("Please use Raise.* or Raise<TEx>.If(Not) overloads, this method has been deprecated and it will be removed in v4", true), SuppressMessage("Microsoft.Design", "CA1000:DoNotDeclareStaticMembersOnGenericTypes")]
         public static void IfIsNaN(double number)
         {
             if (double.IsNaN(number))
@@ -1799,7 +1799,7 @@ namespace PommaLabs.Thrower
         [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
 #endif
 
-        [Obsolete("Please use Raise.* or Raise<TEx>.If(Not) overloads, this method has been deprecated and it will be removed in v4"), SuppressMessage("Microsoft.Design", "CA1000:DoNotDeclareStaticMembersOnGenericTypes")]
+        [Obsolete("Please use Raise.* or Raise<TEx>.If(Not) overloads, this method has been deprecated and it will be removed in v4", true), SuppressMessage("Microsoft.Design", "CA1000:DoNotDeclareStaticMembersOnGenericTypes")]
         public static void IfIsNaN(double number, string message)
         {
             if (double.IsNaN(number))

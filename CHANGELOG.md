@@ -4,6 +4,7 @@
 
 * All Raise[...]Exception classes have been marked as obsolete and should produce a compilation error when used. Please use new Raise.* handlers.
 * Added IfIsEqualTo and IfIsNotEqualTo to ArgumentExceptionHandler.
+* Added IfIsNaN, IfIsPositiveInfinity, IfIsNegativeInfinity to ArgumentOutOfRangeExceptionHandler.
 
 ### v3.0.2 (2016-08-28) ###
 
