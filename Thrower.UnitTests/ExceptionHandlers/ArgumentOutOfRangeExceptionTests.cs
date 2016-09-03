@@ -48,7 +48,7 @@ namespace PommaLabs.Thrower.UnitTests.ExceptionHandlers
         }
 
         [Test]
-        [ExpectedException(typeof(ArgumentOutOfRangeException), ExpectedMessage = TestMessage)]
+        [ExpectedException(typeof(ArgumentOutOfRangeException), ExpectedMessage = TestMessage, MatchType = MessageMatch.Contains)]
         public void IfIsNaN_NaN_WithMsg()
         {
             Raise.ArgumentOutOfRangeException.IfIsNaN(double.NaN, TestMessage);
@@ -74,7 +74,7 @@ namespace PommaLabs.Thrower.UnitTests.ExceptionHandlers
         }
 
         [Test]
-        [ExpectedException(typeof(ArgumentOutOfRangeException), ExpectedMessage = TestMessage)]
+        [ExpectedException(typeof(ArgumentOutOfRangeException), ExpectedMessage = TestMessage, MatchType = MessageMatch.Contains)]
         public void IfIsPositiveInfinity_PositiveInfinity_WithMsg()
         {
             Raise.ArgumentOutOfRangeException.IfIsPositiveInfinity(double.PositiveInfinity, TestMessage);
@@ -100,7 +100,7 @@ namespace PommaLabs.Thrower.UnitTests.ExceptionHandlers
         }
 
         [Test]
-        [ExpectedException(typeof(ArgumentOutOfRangeException), ExpectedMessage = TestMessage)]
+        [ExpectedException(typeof(ArgumentOutOfRangeException), ExpectedMessage = TestMessage, MatchType = MessageMatch.Contains)]
         public void IfIsNegativeInfinity_NegativeInfinity_WithMsg()
         {
             Raise.ArgumentOutOfRangeException.IfIsNegativeInfinity(double.NegativeInfinity, TestMessage);

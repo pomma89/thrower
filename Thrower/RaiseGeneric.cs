@@ -24,7 +24,6 @@
 using PommaLabs.Thrower.Reflection;
 using System;
 using System.Collections.Generic;
-using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Reflection;
 
@@ -36,26 +35,25 @@ namespace PommaLabs.Thrower
     public abstract class RaiseBase
     {
         /// <summary>
-        ///   Stores an empty array of <see cref="System.Type"/> used to seek constructors without parameters.
+        ///   Stores an empty array of <see cref="object"/> used to activate constructors without parameters.
         /// </summary>
-        [SuppressMessage("Microsoft.Naming", "CA1704:IdentifiersShouldBeSpelledCorrectly")]
-        [SuppressMessage("Microsoft.Security", "CA2105:ArrayFieldsShouldNotBeReadOnly")]
+        protected static readonly object[] NoCtorParams = new object[0];
+
+        /// <summary>
+        ///   Stores an empty array of <see cref="Type"/> used to seek constructors without parameters.
+        /// </summary>
         protected static readonly Type[] NoCtorTypes = new Type[0];
 
         /// <summary>
         ///   Stores the types needed to seek the constructor which takes a string and an exception
         ///   as parameters to instance the exception.
         /// </summary>
-        [SuppressMessage("Microsoft.Naming", "CA1704:IdentifiersShouldBeSpelledCorrectly")]
-        [SuppressMessage("Microsoft.Security", "CA2105:ArrayFieldsShouldNotBeReadOnly")]
         protected static readonly Type[] StrExCtorTypes = { typeof(string), typeof(Exception) };
 
         /// <summary>
         ///   Stores the type needed to seek the constructor which takes a string as parameter to
         ///   instance the exception.
         /// </summary>
-        [SuppressMessage("Microsoft.Naming", "CA1704:IdentifiersShouldBeSpelledCorrectly")]
-        [SuppressMessage("Microsoft.Security", "CA2105:ArrayFieldsShouldNotBeReadOnly")]
         protected static readonly Type[] StrCtorType = { typeof(string) };
     }
 
@@ -128,7 +126,6 @@ namespace PommaLabs.Thrower
         ///   <typeparamref name="TEx"/> will be thrown. <br/> In order to do that,
         ///   <typeparamref name="TEx"/> must have a constructor which doesn't take any arguments.
         /// </remarks>
-        [SuppressMessage("Microsoft.Design", "CA1000:DoNotDeclareStaticMembersOnGenericTypes")]
         public static void If(bool cond)
         {
             if (cond)
@@ -158,12 +155,40 @@ namespace PommaLabs.Thrower
         ///   <br/> If both constructors are available, then the one which takes a
         ///   <see cref="string"/> and an <see cref="System.Exception"/> will be used to throw the exception.
         /// </remarks>
-        [SuppressMessage("Microsoft.Design", "CA1000:DoNotDeclareStaticMembersOnGenericTypes")]
         public static void If(bool cond, string message)
         {
             if (cond)
             {
                 DoThrow(message);
+            }
+        }
+
+        /// <summary>
+        ///   Throws an exception of type <typeparamref name="TEx"/> if and only if specified
+        ///   condition is true.
+        /// </summary>
+        /// <param name="cond">The condition that determines whether an exception will be thrown.</param>
+        /// <param name="firstParam">
+        ///   The first parameter that will be used for the exception constructor, if needed.
+        /// </param>
+        /// <param name="otherParams">
+        ///   Other parameters that will be used for the exception constructor, if needed.
+        /// </param>
+        /// <exception cref="ThrowerException">
+        ///   <typeparamref name="TEx"/> has not a public or internal constructor with specified
+        ///   parameters, or <typeparamref name="TEx"/> is abstract.
+        /// </exception>
+        /// <remarks>
+        ///   If <paramref name="cond"/> is true, then an exception of type
+        ///   <typeparamref name="TEx"/> will be thrown. <br/> In order to do that,
+        ///   <typeparamref name="TEx"/> must have a constructor which takes specified arguments.
+        ///   Moreover, each specified argument must not be null, otherwise type inference will fail.
+        /// </remarks>
+        public static void If(bool cond, object firstParam, params object[] otherParams)
+        {
+            if (cond)
+            {
+                DoThrow(firstParam, otherParams);
             }
         }
 
@@ -181,7 +206,6 @@ namespace PommaLabs.Thrower
         ///   <typeparamref name="TEx"/> will be thrown. <br/> In order to do that,
         ///   <typeparamref name="TEx"/> must have a constructor which doesn't take any arguments.
         /// </remarks>
-        [SuppressMessage("Microsoft.Design", "CA1000:DoNotDeclareStaticMembersOnGenericTypes")]
         public static void IfNot(bool cond)
         {
             if (!cond)
@@ -211,7 +235,6 @@ namespace PommaLabs.Thrower
         ///   <br/> If both constructors are available, then the one which takes a
         ///   <see cref="string"/> and an <see cref="System.Exception"/> will be used to throw the exception.
         /// </remarks>
-        [SuppressMessage("Microsoft.Design", "CA1000:DoNotDeclareStaticMembersOnGenericTypes")]
         public static void IfNot(bool cond, string message)
         {
             if (!cond)
@@ -219,6 +242,37 @@ namespace PommaLabs.Thrower
                 DoThrow(message);
             }
         }
+
+        /// <summary>
+        ///   Throws an exception of type <typeparamref name="TEx"/> if and only if specified
+        ///   condition is false.
+        /// </summary>
+        /// <param name="cond">The condition that determines whether an exception will be thrown.</param>
+        /// <param name="firstParam">
+        ///   The first parameter that will be used for the exception constructor, if needed.
+        /// </param>
+        /// <param name="otherParams">
+        ///   Other parameters that will be used for the exception constructor, if needed.
+        /// </param>
+        /// <exception cref="ThrowerException">
+        ///   <typeparamref name="TEx"/> has not a public or internal constructor with specified
+        ///   parameters, or <typeparamref name="TEx"/> is abstract.
+        /// </exception>
+        /// <remarks>
+        ///   If <paramref name="cond"/> is false, then an exception of type
+        ///   <typeparamref name="TEx"/> will be thrown. <br/> In order to do that,
+        ///   <typeparamref name="TEx"/> must have a constructor which takes specified arguments.
+        ///   Moreover, each specified argument must not be null, otherwise type inference will fail.
+        /// </remarks>
+        public static void IfNot(bool cond, object firstParam, params object[] otherParams)
+        {
+            if (!cond)
+            {
+                DoThrow(firstParam, otherParams);
+            }
+        }
+
+        #region Private methods
 
         private static ConstructorInfo GetCtor(IList<Type> ctorTypes)
         {
@@ -256,12 +310,14 @@ namespace PommaLabs.Thrower
             {
                 throw ThrowerException.AbstractEx;
             }
+
             if (NoArgsCtor == null)
             {
-                throw ThrowerException.MissingNoArgsCtor;
+                throw ThrowerException.MissingNoParamsCtorEx;
             }
+
             // A proper constrctor exists: therefore, we can throw the exception.
-            throw (TEx) NoArgsCtor.Invoke(new object[0]);
+            throw (TEx) NoArgsCtor.Invoke(NoCtorParams);
         }
 
         private static void DoThrow(string message)
@@ -271,14 +327,63 @@ namespace PommaLabs.Thrower
             {
                 throw ThrowerException.AbstractEx;
             }
+
             if (MsgCtor == null)
             {
-                throw ExTypeIsAbstract ? ThrowerException.AbstractEx : ThrowerException.MissingMsgCtor;
+                throw ExTypeIsAbstract ? ThrowerException.AbstractEx : ThrowerException.MissingMsgCtorEx;
             }
+
             // A proper constrctor exists: therefore, we can throw the exception.
             var messageArgs = new object[MsgArgCount];
             messageArgs[0] = message;
             throw (TEx) MsgCtor.Invoke(messageArgs);
         }
+
+        private static void DoThrow(object firstParam, object[] otherParams)
+        {
+            // Checks whether the proper constructor exists. If not, then we produce an internal exception.
+            if (ExTypeIsAbstract)
+            {
+                throw ThrowerException.AbstractEx;
+            }
+
+            // Build required types and parameters list.
+            if (firstParam == null)
+            {
+                throw ThrowerException.NullArgEx;
+            }
+            var paramCount = 1 + otherParams?.Length ?? 0;
+            var ctorParams = new object[paramCount];
+            ctorParams[0] = firstParam;
+            var ctorTypes = new Type[paramCount];
+            ctorTypes[0] = firstParam.GetType();
+            if (paramCount > 1)
+            {
+                for (var i = 0; i < otherParams.Length; ++i)
+                {
+                    var p = otherParams[i];
+                    if (p == null)
+                    {
+                        throw ThrowerException.NullArgEx;
+                    }
+                    ctorParams[i + 1] = p;
+                    ctorTypes[i + 1] = p.GetType();
+                }
+            }
+
+            // Retrieve constructor.
+            var ctor = GetCtor(ctorTypes);
+
+            // If it does not exist, then try to use the parameterless one.
+            if (ctor == null)
+            {
+                DoThrow();
+            }
+
+            // Otherwise, invoke the costructor and throw the exception.
+            throw (TEx) ctor.Invoke(ctorParams);
+        }
+
+        #endregion Private methods
     }
 }

@@ -57,7 +57,6 @@
       <Link>pomma89.snk</Link>
     </None>
     <None Include="packages.config" />
-    <None Include="Thrower.ruleset" />
   </ItemGroup>
   <ItemGroup>
     <None Include="FodyWeavers.xml" />

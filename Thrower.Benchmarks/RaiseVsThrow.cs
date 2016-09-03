@@ -236,7 +236,7 @@ namespace PommaLabs.Thrower.Benchmarks
         {
             try
             {
-                Raise<FileNotFoundException>.IfNot(File.Exists(NotExistingFilePath), NotExistingFilePath);
+                Raise<FileNotFoundException>.IfNot(File.Exists(NotExistingFilePath), NotExistingFilePath, NotExistingFilePath);
             }
             catch (FileNotFoundException ex)
             {

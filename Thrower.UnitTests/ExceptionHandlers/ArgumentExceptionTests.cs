@@ -349,7 +349,7 @@ namespace PommaLabs.Thrower.UnitTests.ExceptionHandlers
         }
 
         [Test]
-        [ExpectedException(typeof(ArgumentException), ExpectedMessage = TestMessage)]
+        [ExpectedException(typeof(ArgumentException), ExpectedMessage = TestMessage, MatchType = MessageMatch.Contains)]
         public void IfIsNotEqualTo_DifferentIntegers_WithMsg()
         {
             var x = 5;
@@ -377,7 +377,7 @@ namespace PommaLabs.Thrower.UnitTests.ExceptionHandlers
         }
 
         [Test]
-        [ExpectedException(typeof(ArgumentException), ExpectedMessage = TestMessage)]
+        [ExpectedException(typeof(ArgumentException), ExpectedMessage = TestMessage, MatchType = MessageMatch.Contains)]
         public void IfIsEqualTo_SameIntegers_WithMsg()
         {
             var x = 5;
