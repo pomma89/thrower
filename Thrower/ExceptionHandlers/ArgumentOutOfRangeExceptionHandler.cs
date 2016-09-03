@@ -100,6 +100,128 @@ namespace PommaLabs.Thrower.ExceptionHandlers
 
         #endregion IfNot
 
+        #region IfIsNaN
+
+        /// <summary>
+        ///   Throws an exception of type <see cref="ArgumentOutOfRangeException"/> if and only if
+        ///   specified double is <see cref="double.NaN"/>.
+        /// </summary>
+        /// <param name="number">The double to be tested for <see cref="double.NaN"/> equality.</param>
+        /// <param name="argumentName">The optional argument name.</param>
+        /// <exception cref="ArgumentOutOfRangeException">Specified double is <see cref="double.NaN"/>.</exception>
+        public void IfIsNaN(double number, string argumentName = null)
+        {
+            if (double.IsNaN(number))
+            {
+                throw string.IsNullOrEmpty(argumentName) ? new ArgumentOutOfRangeException() : new ArgumentOutOfRangeException(argumentName);
+            }
+        }
+
+        /// <summary>
+        ///   Throws an exception of type <see cref="ArgumentOutOfRangeException"/> if and only if
+        ///   specified double is <see cref="double.NaN"/>.
+        /// </summary>
+        /// <param name="number">The double to be tested for <see cref="double.NaN"/> equality.</param>
+        /// <param name="argumentName">The argument name.</param>
+        /// <param name="message">The message the thrown exception will have.</param>
+        /// <exception cref="ArgumentOutOfRangeException">Specified double is <see cref="double.NaN"/>.</exception>
+        /// <remarks>
+        ///   <paramref name="message"/> and <paramref name="argumentName"/> are strictly required arguments.
+        /// </remarks>
+        public void IfIsNaN(double number, string argumentName, string message)
+        {
+            if (double.IsNaN(number))
+            {
+                throw new ArgumentOutOfRangeException(argumentName, message);
+            }
+        }
+
+        #endregion IfIsNaN
+
+        #region IfIsPositiveInfinity
+
+        /// <summary>
+        ///   Throws an exception of type <see cref="ArgumentOutOfRangeException"/> if and only if
+        ///   specified double is <see cref="double.PositiveInfinity"/>.
+        /// </summary>
+        /// <param name="number">
+        ///   The double to be tested for <see cref="double.PositiveInfinity"/> equality.
+        /// </param>
+        /// <param name="argumentName">The optional argument name.</param>
+        /// <exception cref="ArgumentOutOfRangeException">Specified double is <see cref="double.PositiveInfinity"/>.</exception>
+        public void IfIsPositiveInfinity(double number, string argumentName = null)
+        {
+            if (double.IsPositiveInfinity(number))
+            {
+                throw string.IsNullOrEmpty(argumentName) ? new ArgumentOutOfRangeException() : new ArgumentOutOfRangeException(argumentName);
+            }
+        }
+
+        /// <summary>
+        ///   Throws an exception of type <see cref="ArgumentOutOfRangeException"/> if and only if
+        ///   specified double is <see cref="double.PositiveInfinity"/>.
+        /// </summary>
+        /// <param name="number">
+        ///   The double to be tested for <see cref="double.PositiveInfinity"/> equality.
+        /// </param>
+        /// <param name="argumentName">The argument name.</param>
+        /// <param name="message">The message the thrown exception will have.</param>
+        /// <exception cref="ArgumentOutOfRangeException">Specified double is <see cref="double.PositiveInfinity"/>.</exception>
+        /// <remarks>
+        ///   <paramref name="message"/> and <paramref name="argumentName"/> are strictly required arguments.
+        /// </remarks>
+        public void IfIsPositiveInfinity(double number, string argumentName, string message)
+        {
+            if (double.IsPositiveInfinity(number))
+            {
+                throw new ArgumentOutOfRangeException(argumentName, message);
+            }
+        }
+
+        #endregion IfIsPositiveInfinity
+
+        #region IfIsNegativeInfinity
+
+        /// <summary>
+        ///   Throws an exception of type <see cref="ArgumentOutOfRangeException"/> if and only if
+        ///   specified double is <see cref="double.NegativeInfinity"/>.
+        /// </summary>
+        /// <param name="number">
+        ///   The double to be tested for <see cref="double.NegativeInfinity"/> equality.
+        /// </param>
+        /// <param name="argumentName">The optional argument name.</param>
+        /// <exception cref="ArgumentOutOfRangeException">Specified double is <see cref="double.NegativeInfinity"/>.</exception>
+        public void IfIsNegativeInfinity(double number, string argumentName = null)
+        {
+            if (double.IsNegativeInfinity(number))
+            {
+                throw string.IsNullOrEmpty(argumentName) ? new ArgumentOutOfRangeException() : new ArgumentOutOfRangeException(argumentName);
+            }
+        }
+
+        /// <summary>
+        ///   Throws an exception of type <see cref="ArgumentOutOfRangeException"/> if and only if
+        ///   specified double is <see cref="double.NegativeInfinity"/>.
+        /// </summary>
+        /// <param name="number">
+        ///   The double to be tested for <see cref="double.NegativeInfinity"/> equality.
+        /// </param>
+        /// <param name="argumentName">The argument name.</param>
+        /// <param name="message">The message the thrown exception will have.</param>
+        /// <exception cref="ArgumentOutOfRangeException">Specified double is <see cref="double.NegativeInfinity"/>.</exception>
+        /// <remarks>
+        ///   <paramref name="message"/> and <paramref name="argumentName"/> are strictly required arguments.
+        /// </remarks>
+        public void IfIsNegativeInfinity(double number, string argumentName, string message)
+        {
+            if (double.IsNegativeInfinity(number))
+            {
+                throw new ArgumentOutOfRangeException(argumentName, message);
+            }
+        }
+
+        #endregion IfIsNegativeInfinity
+
         #region Less - Without parameter name, without message
 
         /// <summary>

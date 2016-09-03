@@ -28,6 +28,7 @@ using BenchmarkDotNet.Jobs;
 using System;
 using System.IO;
 using System.Linq;
+using System.Runtime.CompilerServices;
 
 #pragma warning disable CC0091 // Use static method
 
@@ -38,6 +39,7 @@ namespace PommaLabs.Thrower.Benchmarks
     {
         private static readonly Random Rnd = new Random();
 
+        [MethodImpl(MethodImplOptions.NoInlining)]
         private static T Identity<T>(T value) => value;
 
         private class Config : ManualConfig
@@ -55,9 +57,7 @@ namespace PommaLabs.Thrower.Benchmarks
         #region ArgumentNullException
 
         [Benchmark]
-#pragma warning disable CC0091 // Use static method
         public Exception Raise_ArgumentNullException()
-#pragma warning restore CC0091 // Use static method
         {
             try
             {
@@ -72,16 +72,12 @@ namespace PommaLabs.Thrower.Benchmarks
         }
 
         [Benchmark]
-#pragma warning disable CC0091 // Use static method
-        public Exception RaiseStatic_ArgumentNullException()
-#pragma warning restore CC0091 // Use static method
+        public Exception RaiseGeneric_ArgumentNullException()
         {
             try
             {
                 var nullString = Identity<string>(null);
-#pragma warning disable CS0618 // Type or member is obsolete
-                RaiseArgumentNullException.IfIsNull(nullString, nameof(nullString));
-#pragma warning restore CS0618 // Type or member is obsolete
+                Raise<ArgumentNullException>.If(nullString == null, nameof(nullString));
             }
             catch (Exception ex)
             {
@@ -91,9 +87,7 @@ namespace PommaLabs.Thrower.Benchmarks
         }
 
         [Benchmark]
-#pragma warning disable CC0091 // Use static method
         public Exception Throw_ArgumentNullException()
-#pragma warning restore CC0091 // Use static method
         {
             try
             {
@@ -115,9 +109,7 @@ namespace PommaLabs.Thrower.Benchmarks
         #region ArgumentOutOfRangeException
 
         [Benchmark]
-#pragma warning disable CC0091 // Use static method
         public Exception Raise_ArgumentOutOfRangeException_Integers()
-#pragma warning restore CC0091 // Use static method
         {
             try
             {
@@ -133,17 +125,13 @@ namespace PommaLabs.Thrower.Benchmarks
         }
 
         [Benchmark]
-#pragma warning disable CC0091 // Use static method
-        public Exception RaiseStatic_ArgumentOutOfRangeException_Integers()
-#pragma warning restore CC0091 // Use static method
+        public Exception RaiseGeneric_ArgumentOutOfRangeException_Integers()
         {
             try
             {
                 var x = Identity(21);
                 var y = Identity(3);
-#pragma warning disable CS0618 // Type or member is obsolete
-                RaiseArgumentOutOfRangeException.IfIsGreaterOrEqual(x, y, nameof(x));
-#pragma warning restore CS0618 // Type or member is obsolete
+                Raise<ArgumentOutOfRangeException>.If(x >= y, nameof(x));
             }
             catch (Exception ex)
             {
@@ -153,9 +141,7 @@ namespace PommaLabs.Thrower.Benchmarks
         }
 
         [Benchmark]
-#pragma warning disable CC0091 // Use static method
         public Exception Throw_ArgumentOutOfRangeException_Integers()
-#pragma warning restore CC0091 // Use static method
         {
             try
             {
@@ -193,9 +179,7 @@ namespace PommaLabs.Thrower.Benchmarks
         }
 
         [Benchmark]
-#pragma warning disable CC0091 // Use static method
         public Exception RaiseGeneric_NotSupportedException()
-#pragma warning restore CC0091 // Use static method
         {
             try
             {
@@ -210,28 +194,7 @@ namespace PommaLabs.Thrower.Benchmarks
         }
 
         [Benchmark]
-#pragma warning disable CC0091 // Use static method
-        public Exception RaiseStatic_NotSupportedException()
-#pragma warning restore CC0091 // Use static method
-        {
-            try
-            {
-                var b = Identity(Rnd.Next() % 2 == 0);
-#pragma warning disable CS0618 // Type or member is obsolete
-                RaiseNotSupportedException.If(b, Environment.UserDomainName);
-#pragma warning restore CS0618 // Type or member is obsolete
-            }
-            catch (Exception ex)
-            {
-                return ex;
-            }
-            return default(Exception);
-        }
-
-        [Benchmark]
-#pragma warning disable CC0091 // Use static method
         public Exception Throw_NotSupportedException()
-#pragma warning restore CC0091 // Use static method
         {
             try
             {
@@ -260,6 +223,20 @@ namespace PommaLabs.Thrower.Benchmarks
             try
             {
                 Raise.FileNotFoundException.IfNotExists(NotExistingFilePath, NotExistingFilePath);
+            }
+            catch (FileNotFoundException ex)
+            {
+                return ex;
+            }
+            return default(FileNotFoundException);
+        }
+
+        [Benchmark]
+        public FileNotFoundException RaiseGeneric_FileNotFoundException()
+        {
+            try
+            {
+                Raise<FileNotFoundException>.IfNot(File.Exists(NotExistingFilePath), NotExistingFilePath, NotExistingFilePath);
             }
             catch (FileNotFoundException ex)
             {

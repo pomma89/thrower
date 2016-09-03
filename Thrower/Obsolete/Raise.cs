@@ -53,7 +53,7 @@ namespace PommaLabs.Thrower
         [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
 #endif
 
-        [SuppressMessage("Microsoft.Design", "CA1000:DoNotDeclareStaticMembersOnGenericTypes")]
+        [Obsolete("Please use Raise.* or Raise<TEx>.If(Not) overloads, this method has been deprecated and it will be removed in v4", true), SuppressMessage("Microsoft.Design", "CA1000:DoNotDeclareStaticMembersOnGenericTypes")]
         public static void IfAreEqual<TArg1, TArg2>(TArg1 arg1, TArg2 arg2)
         {
             if (Equals(arg1, arg2))
@@ -89,7 +89,7 @@ namespace PommaLabs.Thrower
         [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
 #endif
 
-        [SuppressMessage("Microsoft.Design", "CA1000:DoNotDeclareStaticMembersOnGenericTypes")]
+        [Obsolete("Please use Raise.* or Raise<TEx>.If(Not) overloads, this method has been deprecated and it will be removed in v4", true), SuppressMessage("Microsoft.Design", "CA1000:DoNotDeclareStaticMembersOnGenericTypes")]
         public static void IfAreEqual<TArg1, TArg2>(TArg1 arg1, TArg2 arg2, string message)
         {
             if (Equals(arg1, arg2))
@@ -118,7 +118,7 @@ namespace PommaLabs.Thrower
         [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
 #endif
 
-        [SuppressMessage("Microsoft.Design", "CA1000:DoNotDeclareStaticMembersOnGenericTypes")]
+        [Obsolete("Please use Raise.* or Raise<TEx>.If(Not) overloads, this method has been deprecated and it will be removed in v4", true), SuppressMessage("Microsoft.Design", "CA1000:DoNotDeclareStaticMembersOnGenericTypes")]
         public static void IfAreNotEqual<TArg1, TArg2>(TArg1 arg1, TArg2 arg2)
         {
             if (!Equals(arg1, arg2))
@@ -154,7 +154,7 @@ namespace PommaLabs.Thrower
         [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
 #endif
 
-        [SuppressMessage("Microsoft.Design", "CA1000:DoNotDeclareStaticMembersOnGenericTypes")]
+        [Obsolete("Please use Raise.* or Raise<TEx>.If(Not) overloads, this method has been deprecated and it will be removed in v4", true), SuppressMessage("Microsoft.Design", "CA1000:DoNotDeclareStaticMembersOnGenericTypes")]
         public static void IfAreNotEqual<TArg1, TArg2>(TArg1 arg1, TArg2 arg2, string message)
         {
             if (!Equals(arg1, arg2))
@@ -183,7 +183,7 @@ namespace PommaLabs.Thrower
         [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
 #endif
 
-        [SuppressMessage("Microsoft.Design", "CA1000:DoNotDeclareStaticMembersOnGenericTypes")]
+        [Obsolete("Please use Raise.* or Raise<TEx>.If(Not) overloads, this method has been deprecated and it will be removed in v4"), SuppressMessage("Microsoft.Design", "CA1000:DoNotDeclareStaticMembersOnGenericTypes")]
         public static void IfAreSame<TArg1, TArg2>(TArg1 arg1, TArg2 arg2)
         {
             if (ReferenceEquals(arg1, arg2))
@@ -219,7 +219,7 @@ namespace PommaLabs.Thrower
         [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
 #endif
 
-        [SuppressMessage("Microsoft.Design", "CA1000:DoNotDeclareStaticMembersOnGenericTypes")]
+        [Obsolete("Please use Raise.* or Raise<TEx>.If(Not) overloads, this method has been deprecated and it will be removed in v4"), SuppressMessage("Microsoft.Design", "CA1000:DoNotDeclareStaticMembersOnGenericTypes")]
         public static void IfAreSame<TArg1, TArg2>(TArg1 arg1, TArg2 arg2, string message)
         {
             if (ReferenceEquals(arg1, arg2))
@@ -248,7 +248,7 @@ namespace PommaLabs.Thrower
         [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
 #endif
 
-        [SuppressMessage("Microsoft.Design", "CA1000:DoNotDeclareStaticMembersOnGenericTypes")]
+        [Obsolete("Please use Raise.* or Raise<TEx>.If(Not) overloads, this method has been deprecated and it will be removed in v4"), SuppressMessage("Microsoft.Design", "CA1000:DoNotDeclareStaticMembersOnGenericTypes")]
         public static void IfAreNotSame<TArg1, TArg2>(TArg1 arg1, TArg2 arg2)
         {
             if (!ReferenceEquals(arg1, arg2))
@@ -284,7 +284,7 @@ namespace PommaLabs.Thrower
         [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
 #endif
 
-        [SuppressMessage("Microsoft.Design", "CA1000:DoNotDeclareStaticMembersOnGenericTypes")]
+        [Obsolete("Please use Raise.* or Raise<TEx>.If(Not) overloads, this method has been deprecated and it will be removed in v4"), SuppressMessage("Microsoft.Design", "CA1000:DoNotDeclareStaticMembersOnGenericTypes")]
         public static void IfAreNotSame<TArg1, TArg2>(TArg1 arg1, TArg2 arg2, string message)
         {
             if (!ReferenceEquals(arg1, arg2))
@@ -313,7 +313,7 @@ namespace PommaLabs.Thrower
         [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
 #endif
 
-        [SuppressMessage("Microsoft.Design", "CA1000:DoNotDeclareStaticMembersOnGenericTypes")]
+        [Obsolete("Please use Raise.* or Raise<TEx>.If(Not) overloads, this method has been deprecated and it will be removed in v4"), SuppressMessage("Microsoft.Design", "CA1000:DoNotDeclareStaticMembersOnGenericTypes")]
         public static void IfIsAssignableFrom(object instance, Type type)
         {
             if (PortableTypeInfo.IsAssignableFrom(instance, type))
@@ -351,7 +351,7 @@ namespace PommaLabs.Thrower
         [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
 #endif
 
-        [SuppressMessage("Microsoft.Design", "CA1000:DoNotDeclareStaticMembersOnGenericTypes")]
+        [Obsolete("Please use Raise.* or Raise<TEx>.If(Not) overloads, this method has been deprecated and it will be removed in v4"), SuppressMessage("Microsoft.Design", "CA1000:DoNotDeclareStaticMembersOnGenericTypes")]
         public static void IfIsAssignableFrom(object instance, Type type, string message)
         {
             if (ReferenceEquals(instance, null) || PortableTypeInfo.IsAssignableFrom(instance, type))
@@ -380,7 +380,7 @@ namespace PommaLabs.Thrower
         [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
 #endif
 
-        [SuppressMessage("Microsoft.Design", "CA1000:DoNotDeclareStaticMembersOnGenericTypes")]
+        [Obsolete("Please use Raise.* or Raise<TEx>.If(Not) overloads, this method has been deprecated and it will be removed in v4"), SuppressMessage("Microsoft.Design", "CA1000:DoNotDeclareStaticMembersOnGenericTypes")]
         [SuppressMessage("Microsoft.Design", "CA1004:GenericMethodsShouldProvideTypeParameter")]
         public static void IfIsAssignableFrom<TType>(object instance)
         {
@@ -419,7 +419,7 @@ namespace PommaLabs.Thrower
         [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
 #endif
 
-        [SuppressMessage("Microsoft.Design", "CA1000:DoNotDeclareStaticMembersOnGenericTypes")]
+        [Obsolete("Please use Raise.* or Raise<TEx>.If(Not) overloads, this method has been deprecated and it will be removed in v4"), SuppressMessage("Microsoft.Design", "CA1000:DoNotDeclareStaticMembersOnGenericTypes")]
         [SuppressMessage("Microsoft.Design", "CA1004:GenericMethodsShouldProvideTypeParameter")]
         public static void IfIsAssignableFrom<TType>(object instance, string message)
         {
@@ -449,7 +449,7 @@ namespace PommaLabs.Thrower
         [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
 #endif
 
-        [SuppressMessage("Microsoft.Design", "CA1000:DoNotDeclareStaticMembersOnGenericTypes")]
+        [Obsolete("Please use Raise.* or Raise<TEx>.If(Not) overloads, this method has been deprecated and it will be removed in v4"), SuppressMessage("Microsoft.Design", "CA1000:DoNotDeclareStaticMembersOnGenericTypes")]
         public static void IfIsNotAssignableFrom(object instance, Type type)
         {
             if (ReferenceEquals(instance, null) || !PortableTypeInfo.IsAssignableFrom(instance, type))
@@ -487,7 +487,7 @@ namespace PommaLabs.Thrower
         [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
 #endif
 
-        [SuppressMessage("Microsoft.Design", "CA1000:DoNotDeclareStaticMembersOnGenericTypes")]
+        [Obsolete("Please use Raise.* or Raise<TEx>.If(Not) overloads, this method has been deprecated and it will be removed in v4"), SuppressMessage("Microsoft.Design", "CA1000:DoNotDeclareStaticMembersOnGenericTypes")]
         public static void IfIsNotAssignableFrom(object instance, Type type, string message)
         {
             if (ReferenceEquals(instance, null) || !PortableTypeInfo.IsAssignableFrom(instance, type))
@@ -518,7 +518,7 @@ namespace PommaLabs.Thrower
         [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
 #endif
 
-        [SuppressMessage("Microsoft.Design", "CA1000:DoNotDeclareStaticMembersOnGenericTypes")]
+        [Obsolete("Please use Raise.* or Raise<TEx>.If(Not) overloads, this method has been deprecated and it will be removed in v4"), SuppressMessage("Microsoft.Design", "CA1000:DoNotDeclareStaticMembersOnGenericTypes")]
         [SuppressMessage("Microsoft.Design", "CA1004:GenericMethodsShouldProvideTypeParameter")]
         public static void IfIsNotAssignableFrom<TType>(object instance)
         {
@@ -559,7 +559,7 @@ namespace PommaLabs.Thrower
         [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
 #endif
 
-        [SuppressMessage("Microsoft.Design", "CA1000:DoNotDeclareStaticMembersOnGenericTypes")]
+        [Obsolete("Please use Raise.* or Raise<TEx>.If(Not) overloads, this method has been deprecated and it will be removed in v4"), SuppressMessage("Microsoft.Design", "CA1000:DoNotDeclareStaticMembersOnGenericTypes")]
         [SuppressMessage("Microsoft.Design", "CA1004:GenericMethodsShouldProvideTypeParameter")]
         public static void IfIsNotAssignableFrom<TType>(object instance, string message)
         {
@@ -589,7 +589,7 @@ namespace PommaLabs.Thrower
         [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
 #endif
 
-        [SuppressMessage("Microsoft.Design", "CA1000:DoNotDeclareStaticMembersOnGenericTypes")]
+        [Obsolete("Please use Raise.* or Raise<TEx>.If(Not) overloads, this method has been deprecated and it will be removed in v4"), SuppressMessage("Microsoft.Design", "CA1000:DoNotDeclareStaticMembersOnGenericTypes")]
         public static void IfIsContainedIn(object argument, System.Collections.IList collection)
         {
             if (ReferenceEquals(collection, null) || collection.Contains(argument))
@@ -625,7 +625,7 @@ namespace PommaLabs.Thrower
         [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
 #endif
 
-        [SuppressMessage("Microsoft.Design", "CA1000:DoNotDeclareStaticMembersOnGenericTypes")]
+        [Obsolete("Please use Raise.* or Raise<TEx>.If(Not) overloads, this method has been deprecated and it will be removed in v4"), SuppressMessage("Microsoft.Design", "CA1000:DoNotDeclareStaticMembersOnGenericTypes")]
         public static void IfIsContainedIn(object argument, System.Collections.IList collection, string message)
         {
             if (ReferenceEquals(collection, null) || collection.Contains(argument))
@@ -654,7 +654,7 @@ namespace PommaLabs.Thrower
         [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
 #endif
 
-        [SuppressMessage("Microsoft.Design", "CA1000:DoNotDeclareStaticMembersOnGenericTypes")]
+        [Obsolete("Please use Raise.* or Raise<TEx>.If(Not) overloads, this method has been deprecated and it will be removed in v4"), SuppressMessage("Microsoft.Design", "CA1000:DoNotDeclareStaticMembersOnGenericTypes")]
         public static void IfIsNotContainedIn(object argument, System.Collections.IList collection)
         {
             if (ReferenceEquals(collection, null) || !collection.Contains(argument))
@@ -690,7 +690,7 @@ namespace PommaLabs.Thrower
         [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
 #endif
 
-        [SuppressMessage("Microsoft.Design", "CA1000:DoNotDeclareStaticMembersOnGenericTypes")]
+        [Obsolete("Please use Raise.* or Raise<TEx>.If(Not) overloads, this method has been deprecated and it will be removed in v4"), SuppressMessage("Microsoft.Design", "CA1000:DoNotDeclareStaticMembersOnGenericTypes")]
         public static void IfIsNotContainedIn(object argument, System.Collections.IList collection, string message)
         {
             if (ReferenceEquals(collection, null) || !collection.Contains(argument))
@@ -719,7 +719,7 @@ namespace PommaLabs.Thrower
         [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
 #endif
 
-        [SuppressMessage("Microsoft.Design", "CA1000:DoNotDeclareStaticMembersOnGenericTypes")]
+        [Obsolete("Please use Raise.* or Raise<TEx>.If(Not) overloads, this method has been deprecated and it will be removed in v4"), SuppressMessage("Microsoft.Design", "CA1000:DoNotDeclareStaticMembersOnGenericTypes")]
         public static void IfIsContainedIn<TArg>(TArg arg, System.Collections.Generic.IEnumerable<TArg> collection)
         {
             if (ReferenceEquals(collection, null) || collection.Contains(arg))
@@ -755,7 +755,7 @@ namespace PommaLabs.Thrower
         [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
 #endif
 
-        [SuppressMessage("Microsoft.Design", "CA1000:DoNotDeclareStaticMembersOnGenericTypes")]
+        [Obsolete("Please use Raise.* or Raise<TEx>.If(Not) overloads, this method has been deprecated and it will be removed in v4"), SuppressMessage("Microsoft.Design", "CA1000:DoNotDeclareStaticMembersOnGenericTypes")]
         public static void IfIsContainedIn<TArg>(TArg arg, System.Collections.Generic.IEnumerable<TArg> collection, string message)
         {
             if (ReferenceEquals(collection, null) || collection.Contains(arg))
@@ -784,7 +784,7 @@ namespace PommaLabs.Thrower
         [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
 #endif
 
-        [SuppressMessage("Microsoft.Design", "CA1000:DoNotDeclareStaticMembersOnGenericTypes")]
+        [Obsolete("Please use Raise.* or Raise<TEx>.If(Not) overloads, this method has been deprecated and it will be removed in v4"), SuppressMessage("Microsoft.Design", "CA1000:DoNotDeclareStaticMembersOnGenericTypes")]
         public static void IfIsNotContainedIn<TArg>(TArg arg, System.Collections.Generic.IEnumerable<TArg> collection)
         {
             if (ReferenceEquals(collection, null) || !collection.Contains(arg))
@@ -820,7 +820,7 @@ namespace PommaLabs.Thrower
         [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
 #endif
 
-        [SuppressMessage("Microsoft.Design", "CA1000:DoNotDeclareStaticMembersOnGenericTypes")]
+        [Obsolete("Please use Raise.* or Raise<TEx>.If(Not) overloads, this method has been deprecated and it will be removed in v4"), SuppressMessage("Microsoft.Design", "CA1000:DoNotDeclareStaticMembersOnGenericTypes")]
         public static void IfIsNotContainedIn<TArg>(TArg arg, System.Collections.Generic.IEnumerable<TArg> collection, string message)
         {
             if (ReferenceEquals(collection, null) || !collection.Contains(arg))
@@ -849,7 +849,7 @@ namespace PommaLabs.Thrower
         [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
 #endif
 
-        [SuppressMessage("Microsoft.Design", "CA1000:DoNotDeclareStaticMembersOnGenericTypes")]
+        [Obsolete("Please use Raise.* or Raise<TEx>.If(Not) overloads, this method has been deprecated and it will be removed in v4"), SuppressMessage("Microsoft.Design", "CA1000:DoNotDeclareStaticMembersOnGenericTypes")]
         public static void IfIsContainedIn<TArg>(TArg arg, System.Collections.IDictionary dictionary)
         {
             if (ReferenceEquals(dictionary, null) || dictionary.Contains(arg))
@@ -886,7 +886,7 @@ namespace PommaLabs.Thrower
         [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
 #endif
 
-        [SuppressMessage("Microsoft.Design", "CA1000:DoNotDeclareStaticMembersOnGenericTypes")]
+        [Obsolete("Please use Raise.* or Raise<TEx>.If(Not) overloads, this method has been deprecated and it will be removed in v4"), SuppressMessage("Microsoft.Design", "CA1000:DoNotDeclareStaticMembersOnGenericTypes")]
         public static void IfIsContainedIn<TArg>(TArg arg, System.Collections.IDictionary dictionary, string message)
         {
             if (ReferenceEquals(dictionary, null) || dictionary.Contains(arg))
@@ -915,7 +915,7 @@ namespace PommaLabs.Thrower
         [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
 #endif
 
-        [SuppressMessage("Microsoft.Design", "CA1000:DoNotDeclareStaticMembersOnGenericTypes")]
+        [Obsolete("Please use Raise.* or Raise<TEx>.If(Not) overloads, this method has been deprecated and it will be removed in v4"), SuppressMessage("Microsoft.Design", "CA1000:DoNotDeclareStaticMembersOnGenericTypes")]
         public static void IfIsNotContainedIn<TArg>(TArg arg, System.Collections.IDictionary dictionary)
         {
             if (ReferenceEquals(dictionary, null) || !dictionary.Contains(arg))
@@ -952,7 +952,7 @@ namespace PommaLabs.Thrower
         [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
 #endif
 
-        [SuppressMessage("Microsoft.Design", "CA1000:DoNotDeclareStaticMembersOnGenericTypes")]
+        [Obsolete("Please use Raise.* or Raise<TEx>.If(Not) overloads, this method has been deprecated and it will be removed in v4"), SuppressMessage("Microsoft.Design", "CA1000:DoNotDeclareStaticMembersOnGenericTypes")]
         public static void IfIsNotContainedIn<TArg>(TArg arg, System.Collections.IDictionary dictionary, string message)
         {
             if (ReferenceEquals(dictionary, null) || !dictionary.Contains(arg))
@@ -982,7 +982,7 @@ namespace PommaLabs.Thrower
         [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
 #endif
 
-        [SuppressMessage("Microsoft.Design", "CA1000:DoNotDeclareStaticMembersOnGenericTypes")]
+        [Obsolete("Please use Raise.* or Raise<TEx>.If(Not) overloads, this method has been deprecated and it will be removed in v4"), SuppressMessage("Microsoft.Design", "CA1000:DoNotDeclareStaticMembersOnGenericTypes")]
         public static void IfIsContainedIn<TArg1, TArg2>(TArg1 arg1, TArg2 arg2, System.Collections.Generic.IDictionary<TArg1, TArg2> dictionary)
         {
             if (ReferenceEquals(dictionary, null) || dictionary.Contains(new System.Collections.Generic.KeyValuePair<TArg1, TArg2>(arg1, arg2)))
@@ -1021,7 +1021,7 @@ namespace PommaLabs.Thrower
         [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
 #endif
 
-        [SuppressMessage("Microsoft.Design", "CA1000:DoNotDeclareStaticMembersOnGenericTypes")]
+        [Obsolete("Please use Raise.* or Raise<TEx>.If(Not) overloads, this method has been deprecated and it will be removed in v4"), SuppressMessage("Microsoft.Design", "CA1000:DoNotDeclareStaticMembersOnGenericTypes")]
         public static void IfIsContainedIn<TArg1, TArg2>(TArg1 arg1, TArg2 arg2, System.Collections.Generic.IDictionary<TArg1, TArg2> dictionary,
             string message)
         {
@@ -1052,7 +1052,7 @@ namespace PommaLabs.Thrower
         [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
 #endif
 
-        [SuppressMessage("Microsoft.Design", "CA1000:DoNotDeclareStaticMembersOnGenericTypes")]
+        [Obsolete("Please use Raise.* or Raise<TEx>.If(Not) overloads, this method has been deprecated and it will be removed in v4"), SuppressMessage("Microsoft.Design", "CA1000:DoNotDeclareStaticMembersOnGenericTypes")]
         public static void IfIsNotContainedIn<TArg1, TArg2>(TArg1 arg1, TArg2 arg2, System.Collections.Generic.IDictionary<TArg1, TArg2> dictionary)
         {
             if (ReferenceEquals(dictionary, null) || !dictionary.Contains(new System.Collections.Generic.KeyValuePair<TArg1, TArg2>(arg1, arg2)))
@@ -1091,7 +1091,7 @@ namespace PommaLabs.Thrower
         [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
 #endif
 
-        [SuppressMessage("Microsoft.Design", "CA1000:DoNotDeclareStaticMembersOnGenericTypes")]
+        [Obsolete("Please use Raise.* or Raise<TEx>.If(Not) overloads, this method has been deprecated and it will be removed in v4"), SuppressMessage("Microsoft.Design", "CA1000:DoNotDeclareStaticMembersOnGenericTypes")]
         public static void IfIsNotContainedIn<TArg1, TArg2>(TArg1 arg1, TArg2 arg2, System.Collections.Generic.IDictionary<TArg1, TArg2> dictionary,
             string message)
         {
@@ -1120,7 +1120,7 @@ namespace PommaLabs.Thrower
         [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
 #endif
 
-        [SuppressMessage("Microsoft.Design", "CA1000:DoNotDeclareStaticMembersOnGenericTypes")]
+        [Obsolete("Please use Raise.* or Raise<TEx>.If(Not) overloads, this method has been deprecated and it will be removed in v4"), SuppressMessage("Microsoft.Design", "CA1000:DoNotDeclareStaticMembersOnGenericTypes")]
         public static void IfIsEmpty(string valueToCheck)
         {
             if (IsNullOrWhiteSpace(valueToCheck))
@@ -1156,7 +1156,7 @@ namespace PommaLabs.Thrower
         [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
 #endif
 
-        [SuppressMessage("Microsoft.Design", "CA1000:DoNotDeclareStaticMembersOnGenericTypes")]
+        [Obsolete("Please use Raise.* or Raise<TEx>.If(Not) overloads, this method has been deprecated and it will be removed in v4"), SuppressMessage("Microsoft.Design", "CA1000:DoNotDeclareStaticMembersOnGenericTypes")]
         public static void IfIsEmpty(string valueToCheck, string message)
         {
             if (IsNullOrWhiteSpace(valueToCheck))
@@ -1184,7 +1184,7 @@ namespace PommaLabs.Thrower
         [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
 #endif
 
-        [SuppressMessage("Microsoft.Design", "CA1000:DoNotDeclareStaticMembersOnGenericTypes")]
+        [Obsolete("Please use Raise.* or Raise<TEx>.If(Not) overloads, this method has been deprecated and it will be removed in v4"), SuppressMessage("Microsoft.Design", "CA1000:DoNotDeclareStaticMembersOnGenericTypes")]
         public static void IfIsNotEmpty(string valueToCheck)
         {
             if (!IsNullOrWhiteSpace(valueToCheck))
@@ -1220,7 +1220,7 @@ namespace PommaLabs.Thrower
         [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
 #endif
 
-        [SuppressMessage("Microsoft.Design", "CA1000:DoNotDeclareStaticMembersOnGenericTypes")]
+        [Obsolete("Please use Raise.* or Raise<TEx>.If(Not) overloads, this method has been deprecated and it will be removed in v4"), SuppressMessage("Microsoft.Design", "CA1000:DoNotDeclareStaticMembersOnGenericTypes")]
         public static void IfIsNotEmpty(string valueToCheck, string message)
         {
             if (!IsNullOrWhiteSpace(valueToCheck))
@@ -1248,7 +1248,7 @@ namespace PommaLabs.Thrower
         [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
 #endif
 
-        [SuppressMessage("Microsoft.Design", "CA1000:DoNotDeclareStaticMembersOnGenericTypes")]
+        [Obsolete("Please use Raise.* or Raise<TEx>.If(Not) overloads, this method has been deprecated and it will be removed in v4"), SuppressMessage("Microsoft.Design", "CA1000:DoNotDeclareStaticMembersOnGenericTypes")]
         public static void IfIsEmpty(System.Collections.ICollection collection)
         {
             if (ReferenceEquals(collection, null) || collection.Count == 0)
@@ -1283,7 +1283,7 @@ namespace PommaLabs.Thrower
         [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
 #endif
 
-        [SuppressMessage("Microsoft.Design", "CA1000:DoNotDeclareStaticMembersOnGenericTypes")]
+        [Obsolete("Please use Raise.* or Raise<TEx>.If(Not) overloads, this method has been deprecated and it will be removed in v4"), SuppressMessage("Microsoft.Design", "CA1000:DoNotDeclareStaticMembersOnGenericTypes")]
         public static void IfIsEmpty(System.Collections.ICollection collection, string message)
         {
             if (ReferenceEquals(collection, null) || collection.Count == 0)
@@ -1311,7 +1311,7 @@ namespace PommaLabs.Thrower
         [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
 #endif
 
-        [SuppressMessage("Microsoft.Design", "CA1000:DoNotDeclareStaticMembersOnGenericTypes")]
+        [Obsolete("Please use Raise.* or Raise<TEx>.If(Not) overloads, this method has been deprecated and it will be removed in v4"), SuppressMessage("Microsoft.Design", "CA1000:DoNotDeclareStaticMembersOnGenericTypes")]
         public static void IfIsNotEmpty(System.Collections.ICollection collection)
         {
             if (ReferenceEquals(collection, null) || collection.Count > 0)
@@ -1346,7 +1346,7 @@ namespace PommaLabs.Thrower
         [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
 #endif
 
-        [SuppressMessage("Microsoft.Design", "CA1000:DoNotDeclareStaticMembersOnGenericTypes")]
+        [Obsolete("Please use Raise.* or Raise<TEx>.If(Not) overloads, this method has been deprecated and it will be removed in v4"), SuppressMessage("Microsoft.Design", "CA1000:DoNotDeclareStaticMembersOnGenericTypes")]
         public static void IfIsNotEmpty(System.Collections.ICollection collection, string message)
         {
             if (ReferenceEquals(collection, null) || collection.Count > 0)
@@ -1374,7 +1374,7 @@ namespace PommaLabs.Thrower
         [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
 #endif
 
-        [SuppressMessage("Microsoft.Design", "CA1000:DoNotDeclareStaticMembersOnGenericTypes")]
+        [Obsolete("Please use Raise.* or Raise<TEx>.If(Not) overloads, this method has been deprecated and it will be removed in v4"), SuppressMessage("Microsoft.Design", "CA1000:DoNotDeclareStaticMembersOnGenericTypes")]
         public static void IfIsEmpty<TArg>(System.Collections.Generic.IEnumerable<TArg> collection)
         {
             if (ReferenceEquals(collection, null) || !collection.Any())
@@ -1409,7 +1409,7 @@ namespace PommaLabs.Thrower
         [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
 #endif
 
-        [SuppressMessage("Microsoft.Design", "CA1000:DoNotDeclareStaticMembersOnGenericTypes")]
+        [Obsolete("Please use Raise.* or Raise<TEx>.If(Not) overloads, this method has been deprecated and it will be removed in v4"), SuppressMessage("Microsoft.Design", "CA1000:DoNotDeclareStaticMembersOnGenericTypes")]
         public static void IfIsEmpty<TArg>(System.Collections.Generic.IEnumerable<TArg> collection, string message)
         {
             if (ReferenceEquals(collection, null) || !collection.Any())
@@ -1437,7 +1437,7 @@ namespace PommaLabs.Thrower
         [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
 #endif
 
-        [SuppressMessage("Microsoft.Design", "CA1000:DoNotDeclareStaticMembersOnGenericTypes")]
+        [Obsolete("Please use Raise.* or Raise<TEx>.If(Not) overloads, this method has been deprecated and it will be removed in v4"), SuppressMessage("Microsoft.Design", "CA1000:DoNotDeclareStaticMembersOnGenericTypes")]
         public static void IfIsNotEmpty<TArg>(System.Collections.Generic.IEnumerable<TArg> collection)
         {
             if (ReferenceEquals(collection, null) || collection.Any())
@@ -1472,7 +1472,7 @@ namespace PommaLabs.Thrower
         [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
 #endif
 
-        [SuppressMessage("Microsoft.Design", "CA1000:DoNotDeclareStaticMembersOnGenericTypes")]
+        [Obsolete("Please use Raise.* or Raise<TEx>.If(Not) overloads, this method has been deprecated and it will be removed in v4"), SuppressMessage("Microsoft.Design", "CA1000:DoNotDeclareStaticMembersOnGenericTypes")]
         public static void IfIsNotEmpty<TArg>(System.Collections.Generic.IEnumerable<TArg> collection, string message)
         {
             if (ReferenceEquals(collection, null) || collection.Any())
@@ -1501,7 +1501,7 @@ namespace PommaLabs.Thrower
         [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
 #endif
 
-        [SuppressMessage("Microsoft.Design", "CA1000:DoNotDeclareStaticMembersOnGenericTypes")]
+        [Obsolete("Please use Raise.* or Raise<TEx>.If(Not) overloads, this method has been deprecated and it will be removed in v4"), SuppressMessage("Microsoft.Design", "CA1000:DoNotDeclareStaticMembersOnGenericTypes")]
         public static void IfIsInstanceOf(object instance, Type type)
         {
             if (PortableTypeInfo.IsInstanceOf(instance, type))
@@ -1537,7 +1537,7 @@ namespace PommaLabs.Thrower
         [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
 #endif
 
-        [SuppressMessage("Microsoft.Design", "CA1000:DoNotDeclareStaticMembersOnGenericTypes")]
+        [Obsolete("Please use Raise.* or Raise<TEx>.If(Not) overloads, this method has been deprecated and it will be removed in v4"), SuppressMessage("Microsoft.Design", "CA1000:DoNotDeclareStaticMembersOnGenericTypes")]
         public static void IfIsInstanceOf(object instance, Type type, string message)
         {
             if (PortableTypeInfo.IsInstanceOf(instance, type))
@@ -1566,7 +1566,7 @@ namespace PommaLabs.Thrower
         [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
 #endif
 
-        [SuppressMessage("Microsoft.Design", "CA1000:DoNotDeclareStaticMembersOnGenericTypes")]
+        [Obsolete("Please use Raise.* or Raise<TEx>.If(Not) overloads, this method has been deprecated and it will be removed in v4"), SuppressMessage("Microsoft.Design", "CA1000:DoNotDeclareStaticMembersOnGenericTypes")]
         [SuppressMessage("Microsoft.Design", "CA1004:GenericMethodsShouldProvideTypeParameter")]
         public static void IfIsInstanceOf<TType>(object instance)
         {
@@ -1603,7 +1603,7 @@ namespace PommaLabs.Thrower
         [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
 #endif
 
-        [SuppressMessage("Microsoft.Design", "CA1000:DoNotDeclareStaticMembersOnGenericTypes")]
+        [Obsolete("Please use Raise.* or Raise<TEx>.If(Not) overloads, this method has been deprecated and it will be removed in v4"), SuppressMessage("Microsoft.Design", "CA1000:DoNotDeclareStaticMembersOnGenericTypes")]
         [SuppressMessage("Microsoft.Design", "CA1004:GenericMethodsShouldProvideTypeParameter")]
         public static void IfIsInstanceOf<TType>(object instance, string message)
         {
@@ -1633,7 +1633,7 @@ namespace PommaLabs.Thrower
         [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
 #endif
 
-        [SuppressMessage("Microsoft.Design", "CA1000:DoNotDeclareStaticMembersOnGenericTypes")]
+        [Obsolete("Please use Raise.* or Raise<TEx>.If(Not) overloads, this method has been deprecated and it will be removed in v4"), SuppressMessage("Microsoft.Design", "CA1000:DoNotDeclareStaticMembersOnGenericTypes")]
         public static void IfIsNotInstanceOf(object instance, Type type)
         {
             if (!PortableTypeInfo.IsInstanceOf(instance, type))
@@ -1669,7 +1669,7 @@ namespace PommaLabs.Thrower
         [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
 #endif
 
-        [SuppressMessage("Microsoft.Design", "CA1000:DoNotDeclareStaticMembersOnGenericTypes")]
+        [Obsolete("Please use Raise.* or Raise<TEx>.If(Not) overloads, this method has been deprecated and it will be removed in v4"), SuppressMessage("Microsoft.Design", "CA1000:DoNotDeclareStaticMembersOnGenericTypes")]
         public static void IfIsNotInstanceOf(object instance, Type type, string message)
         {
             if (!PortableTypeInfo.IsInstanceOf(instance, type))
@@ -1698,7 +1698,7 @@ namespace PommaLabs.Thrower
         [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
 #endif
 
-        [SuppressMessage("Microsoft.Design", "CA1000:DoNotDeclareStaticMembersOnGenericTypes")]
+        [Obsolete("Please use Raise.* or Raise<TEx>.If(Not) overloads, this method has been deprecated and it will be removed in v4"), SuppressMessage("Microsoft.Design", "CA1000:DoNotDeclareStaticMembersOnGenericTypes")]
         [SuppressMessage("Microsoft.Design", "CA1004:GenericMethodsShouldProvideTypeParameter")]
         public static void IfIsNotInstanceOf<TType>(object instance)
         {
@@ -1735,7 +1735,7 @@ namespace PommaLabs.Thrower
         [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
 #endif
 
-        [SuppressMessage("Microsoft.Design", "CA1000:DoNotDeclareStaticMembersOnGenericTypes")]
+        [Obsolete("Please use Raise.* or Raise<TEx>.If(Not) overloads, this method has been deprecated and it will be removed in v4"), SuppressMessage("Microsoft.Design", "CA1000:DoNotDeclareStaticMembersOnGenericTypes")]
         [SuppressMessage("Microsoft.Design", "CA1004:GenericMethodsShouldProvideTypeParameter")]
         public static void IfIsNotInstanceOf<TType>(object instance, string message)
         {
@@ -1764,7 +1764,7 @@ namespace PommaLabs.Thrower
         [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
 #endif
 
-        [SuppressMessage("Microsoft.Design", "CA1000:DoNotDeclareStaticMembersOnGenericTypes")]
+        [Obsolete("Please use Raise.* or Raise<TEx>.If(Not) overloads, this method has been deprecated and it will be removed in v4", true), SuppressMessage("Microsoft.Design", "CA1000:DoNotDeclareStaticMembersOnGenericTypes")]
         public static void IfIsNaN(double number)
         {
             if (double.IsNaN(number))
@@ -1799,7 +1799,7 @@ namespace PommaLabs.Thrower
         [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
 #endif
 
-        [SuppressMessage("Microsoft.Design", "CA1000:DoNotDeclareStaticMembersOnGenericTypes")]
+        [Obsolete("Please use Raise.* or Raise<TEx>.If(Not) overloads, this method has been deprecated and it will be removed in v4", true), SuppressMessage("Microsoft.Design", "CA1000:DoNotDeclareStaticMembersOnGenericTypes")]
         public static void IfIsNaN(double number, string message)
         {
             if (double.IsNaN(number))
@@ -1827,7 +1827,7 @@ namespace PommaLabs.Thrower
         [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
 #endif
 
-        [SuppressMessage("Microsoft.Design", "CA1000:DoNotDeclareStaticMembersOnGenericTypes")]
+        [Obsolete("Please use Raise.* or Raise<TEx>.If(Not) overloads, this method has been deprecated and it will be removed in v4"), SuppressMessage("Microsoft.Design", "CA1000:DoNotDeclareStaticMembersOnGenericTypes")]
         public static void IfIsNotNaN(double number)
         {
             if (!double.IsNaN(number))
@@ -1862,7 +1862,7 @@ namespace PommaLabs.Thrower
         [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
 #endif
 
-        [SuppressMessage("Microsoft.Design", "CA1000:DoNotDeclareStaticMembersOnGenericTypes")]
+        [Obsolete("Please use Raise.* or Raise<TEx>.If(Not) overloads, this method has been deprecated and it will be removed in v4"), SuppressMessage("Microsoft.Design", "CA1000:DoNotDeclareStaticMembersOnGenericTypes")]
         public static void IfIsNotNaN(double number, string message)
         {
             if (!double.IsNaN(number))
@@ -1890,7 +1890,7 @@ namespace PommaLabs.Thrower
         [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
 #endif
 
-        [SuppressMessage("Microsoft.Design", "CA1000:DoNotDeclareStaticMembersOnGenericTypes")]
+        [Obsolete("Please use Raise.* or Raise<TEx>.If(Not) overloads, this method has been deprecated and it will be removed in v4"), SuppressMessage("Microsoft.Design", "CA1000:DoNotDeclareStaticMembersOnGenericTypes")]
         public static void IfIsNull<TArg>(TArg arg)
         {
             if (!PortableTypeInfo.IsValueType(typeof(TArg)) && ReferenceEquals(arg, null))
@@ -1925,7 +1925,7 @@ namespace PommaLabs.Thrower
         [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
 #endif
 
-        [SuppressMessage("Microsoft.Design", "CA1000:DoNotDeclareStaticMembersOnGenericTypes")]
+        [Obsolete("Please use Raise.* or Raise<TEx>.If(Not) overloads, this method has been deprecated and it will be removed in v4"), SuppressMessage("Microsoft.Design", "CA1000:DoNotDeclareStaticMembersOnGenericTypes")]
         public static void IfIsNull<TArg>(TArg arg, string message)
         {
             if (!PortableTypeInfo.IsValueType(typeof(TArg)) && ReferenceEquals(arg, null))
@@ -1953,7 +1953,7 @@ namespace PommaLabs.Thrower
         [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
 #endif
 
-        [SuppressMessage("Microsoft.Design", "CA1000:DoNotDeclareStaticMembersOnGenericTypes")]
+        [Obsolete("Please use Raise.* or Raise<TEx>.If(Not) overloads, this method has been deprecated and it will be removed in v4"), SuppressMessage("Microsoft.Design", "CA1000:DoNotDeclareStaticMembersOnGenericTypes")]
         public static void IfIsNotNull<TArg>(TArg arg)
         {
             if (PortableTypeInfo.IsValueType(typeof(TArg)) || !ReferenceEquals(arg, null))
@@ -1988,7 +1988,7 @@ namespace PommaLabs.Thrower
         [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
 #endif
 
-        [SuppressMessage("Microsoft.Design", "CA1000:DoNotDeclareStaticMembersOnGenericTypes")]
+        [Obsolete("Please use Raise.* or Raise<TEx>.If(Not) overloads, this method has been deprecated and it will be removed in v4"), SuppressMessage("Microsoft.Design", "CA1000:DoNotDeclareStaticMembersOnGenericTypes")]
         public static void IfIsNotNull<TArg>(TArg arg, string message)
         {
             if (PortableTypeInfo.IsValueType(typeof(TArg)) || !ReferenceEquals(arg, null))

@@ -5,7 +5,7 @@
 
 ## Summary ##
 
-* Latest release version: `v3.0.2`
+* Latest release version: `v3.0.3`
 * Build status on [AppVeyor](https://ci.appveyor.com): [![Build status](https://ci.appveyor.com/api/projects/status/xjkp8gn0cf4s7qbg?svg=true)](https://ci.appveyor.com/project/pomma89/thrower)
 * [Doxygen](http://www.stack.nl/~dimitri/doxygen/index.html) documentation:
     + [HTML](https://goo.gl/iO6qZG)
@@ -195,6 +195,9 @@ custom objects which allow writing preconditions as shown in above example.
 Each handler is tied to one specific exception and exposes methods to allow writing fluent preconditions
 depending on which exception it has been defined for.
 
+If you need an exception handler for an exception which is defined inside the .NET Framework itself, please let me know.
+I will evaluate whether it can be added safely and, if possible, I will gladly add it.
+
 Let's see some examples.
 
 ### System ###
@@ -202,6 +205,7 @@ Let's see some examples.
 ```cs
 
 Raise.ArgumentNullException.IfIsNull(session, nameof(session), "Session object is mandatory");
+Raise.ArgumentException.IfIsNullOrWhiteSpace(userName, nameof(userName), "User name cannot be null, empty or blank");
 Raise.ArgumentOutOfRangeException.IfIsGreater(loginAttemptCount, 5, nameof(loginAttemptCount), "Too many login attempts!");
 
 ```
@@ -224,6 +228,31 @@ Raise.HttpException.IfNot(user.IsLoggedIn, HttpStatusCode.Unauthorized, "User sh
 
 ```
 
+## Generic exception handler ##
+
+If a standard handler has not been provided for an exception you would like to use, then you can try using the generic exception handler.
+Through the usage of reflection, it will try to discover required exception constructors and it will use them when it will need to create an exception object.
+
+Let's see some examples.
+
+```cs
+
+// If condition is true, given exception type will be thrown
+// using the empty constructor.
+Raise<FileNotFoundException>.If(condition);
+
+// If condition is true, given exception type will be thrown 
+// using a constructor which accepts a string as first and only argument,
+// or a constructor which accepts a string and an Exception as only arguments.
+Raise<FileNotFoundException>.If(condition, message);
+
+// If condition is true, given exception type will be thrown 
+// using a constructor which accepts all given parameters.
+// Types are read from objects themselves, therefore no nulls are allowed.
+Raise<FileNotFoundException>.If(condition, message, fileName);
+
+```
+
 ## Benchmarks ##
 
 All benchmarks were implemented and run using the wonderful [BenchmarkDotNet](https://github.com/PerfDotNet/BenchmarkDotNet) library.
@@ -240,54 +269,54 @@ Therefore, using Thrower does not impose a penalty on your application performan
 
 Host Process Environment Information:
 BenchmarkDotNet.Core=v0.9.9.0
-OS=Microsoft Windows NT 6.1.7601 Service Pack 1
-Processor=Intel(R) Core(TM) i7-3630QM CPU 2.40GHz, ProcessorCount=8
-Frequency=2338505 ticks, Resolution=427.6236 ns, Timer=TSC
+OS=Microsoft Windows NT 6.2.9200.0
+Processor=AMD A10 Extreme Edition Radeon R8, 4C+8G, ProcessorCount=4
+Frequency=1949466 ticks, Resolution=512.9610 ns, Timer=TSC
 CLR=MS.NET 4.0.30319.42000, Arch=32-bit RELEASE
 GC=Concurrent Workstation
-JitModules=clrjit-v4.6.1590.0
+JitModules=clrjit-v4.6.1586.0
 
-Type=RaiseVsThrow  Mode=Throughput
+Type=RaiseVsThrow  Mode=Throughput  
 
 ```
-                                           Method | Platform |       Jit |     Median |    StdDev |  Gen 0 | Gen 1 | Gen 2 | Bytes Allocated/Op |
-------------------------------------------------- |--------- |---------- |----------- |---------- |------- |------ |------ |------------------- |
-                      Raise_ArgumentNullException |      X64 | LegacyJit | 14.6587 us | 0.1218 us |  10.10 |     - |     - |             185,59 |
-                RaiseStatic_ArgumentNullException |      X64 | LegacyJit | 17.5628 us | 0.1029 us |  14.36 |     - |     - |             256,63 |
-                      Throw_ArgumentNullException |      X64 | LegacyJit | 15.6713 us | 0.4333 us |   9.14 |     - |     - |             194,65 |
-       Raise_ArgumentOutOfRangeException_Integers |      X64 | LegacyJit | 11.2094 us | 0.1511 us |   7.62 |     - |     - |             137,79 |
- RaiseStatic_ArgumentOutOfRangeException_Integers |      X64 | LegacyJit | 11.2630 us | 0.2221 us |   6.87 |     - |     - |             124,72 |
-       Throw_ArgumentOutOfRangeException_Integers |      X64 | LegacyJit | 11.6393 us | 0.2122 us |   7.25 |     - |     - |             131,22 |
-                      Raise_NotSupportedException |      X64 | LegacyJit | 38.5153 us | 1.0735 us | 142.07 |     - |     - |           2.639,01 |
-               RaiseGeneric_NotSupportedException |      X64 | LegacyJit | 42.3143 us | 0.5898 us | 169.05 |     - |     - |           3.139,10 |
-                RaiseStatic_NotSupportedException |      X64 | LegacyJit | 38.4069 us | 0.6297 us | 155.50 |     - |     - |           2.855,48 |
-                      Throw_NotSupportedException |      X64 | LegacyJit | 23.7628 us | 0.8847 us |  62.84 |     - |     - |           1.284,40 |
-                      Raise_FileNotFoundException |      X64 | LegacyJit | 53.2149 us | 0.9557 us |      - |     - |     - |             311,87 |
-                      Throw_FileNotFoundException |      X64 | LegacyJit | 50.6233 us | 0.3536 us |      - |     - |     - |             233,45 |
-                      Raise_ArgumentNullException |      X64 |    RyuJit | 13.6926 us | 0.0397 us |   9.25 |     - |     - |             170,65 |
-                RaiseStatic_ArgumentNullException |      X64 |    RyuJit | 15.7933 us | 0.2740 us |   8.52 |     - |     - |             181,26 |
-                      Throw_ArgumentNullException |      X64 |    RyuJit | 16.0593 us | 3.8467 us |   9.66 |     - |     - |             205,28 |
-       Raise_ArgumentOutOfRangeException_Integers |      X64 |    RyuJit | 13.2862 us | 0.0385 us |  10.57 |     - |     - |             198,03 |
- RaiseStatic_ArgumentOutOfRangeException_Integers |      X64 |    RyuJit |  8.6512 us | 0.1483 us |   7.41 |     - |     - |             134,07 |
-       Throw_ArgumentOutOfRangeException_Integers |      X64 |    RyuJit |  8.6498 us | 0.1572 us |   7.17 |     - |     - |             129,52 |
-                      Raise_NotSupportedException |      X64 |    RyuJit | 27.9515 us | 1.0770 us | 135.89 |     - |     - |           2.523,74 |
-               RaiseGeneric_NotSupportedException |      X64 |    RyuJit | 29.9210 us | 0.8526 us | 148.00 |     - |     - |           2.761,79 |
-                RaiseStatic_NotSupportedException |      X64 |    RyuJit | 26.9868 us | 0.6985 us | 151.22 |     - |     - |           2.778,91 |
-                      Throw_NotSupportedException |      X64 |    RyuJit | 17.1639 us | 0.5002 us |  73.37 |     - |     - |           1.383,10 |
-                      Raise_FileNotFoundException |      X64 |    RyuJit | 39.5122 us | 0.3098 us |   8.13 |     - |     - |             247,48 |
-                      Throw_FileNotFoundException |      X64 |    RyuJit | 37.8486 us | 0.3952 us |   8.68 |     - |     - |             217,39 |
-                      Raise_ArgumentNullException |      X86 | LegacyJit | 13.3714 us | 0.1751 us |   4.16 |     - |     - |              80,93 |
-                RaiseStatic_ArgumentNullException |      X86 | LegacyJit | 16.7906 us | 0.2125 us |   5.00 |     - |     - |             110,53 |
-                      Throw_ArgumentNullException |      X86 | LegacyJit | 16.2845 us | 0.2783 us |   5.30 |     - |     - |             116,32 |
-       Raise_ArgumentOutOfRangeException_Integers |      X86 | LegacyJit | 12.8385 us | 0.0832 us |   4.54 |     - |     - |              89,78 |
- RaiseStatic_ArgumentOutOfRangeException_Integers |      X86 | LegacyJit | 13.1328 us | 0.4223 us |      - |     - |     - |              65,74 |
-       Throw_ArgumentOutOfRangeException_Integers |      X86 | LegacyJit | 17.1409 us | 0.4553 us |      - |     - |     - |              61,00 |
-                      Raise_NotSupportedException |      X86 | LegacyJit | 43.6108 us | 0.7787 us | 127.21 |     - |     - |           2.401,45 |
-               RaiseGeneric_NotSupportedException |      X86 | LegacyJit | 43.7694 us | 1.9157 us | 130.03 |     - |     - |           2.462,43 |
-                RaiseStatic_NotSupportedException |      X86 | LegacyJit | 41.0660 us | 0.9476 us | 145.76 |     - |     - |           2.723,65 |
-                      Throw_NotSupportedException |      X86 | LegacyJit | 27.6131 us | 0.6346 us |  62.84 |     - |     - |           1.207,41 |
-                      Raise_FileNotFoundException |      X86 | LegacyJit | 61.6230 us | 1.3517 us |      - |     - |     - |             192,57 |
-                      Throw_FileNotFoundException |      X86 | LegacyJit | 45.0559 us | 0.5427 us |      - |     - |     - |             146,95 |
+                                            Method | Platform |       Jit |     Median |    StdDev |  Gen 0 | Gen 1 | Gen 2 | Bytes Allocated/Op |
+-------------------------------------------------- |--------- |---------- |----------- |---------- |------- |------ |------ |------------------- |
+                       Raise_ArgumentNullException |      X64 | LegacyJit | 19.4598 us | 2.2264 us |  70.26 |     - |     - |             202,91 |
+                RaiseGeneric_ArgumentNullException |      X64 | LegacyJit | 20.5114 us | 2.2677 us |  82.38 |     - |     - |             245,60 |
+                       Throw_ArgumentNullException |      X64 | LegacyJit | 21.2052 us | 1.8214 us |  76.53 |     - |     - |             221,82 |
+        Raise_ArgumentOutOfRangeException_Integers |      X64 | LegacyJit | 16.0512 us | 0.3671 us |  45.22 |     - |     - |             139,63 |
+ RaiseGeneric_ArgumentOutOfRangeException_Integers |      X64 | LegacyJit | 21.2193 us | 0.6900 us |  60.94 |     - |     - |             203,39 |
+        Throw_ArgumentOutOfRangeException_Integers |      X64 | LegacyJit | 16.7877 us | 0.5422 us |  36.41 |     - |     - |             112,75 |
+                       Raise_NotSupportedException |      X64 | LegacyJit | 68.8451 us | 2.6265 us | 850.26 |     - |     - |           2.707,33 |
+                RaiseGeneric_NotSupportedException |      X64 | LegacyJit | 69.1418 us | 2.2036 us | 832.85 |     - |     - |           2.675,19 |
+                       Throw_NotSupportedException |      X64 | LegacyJit | 37.9874 us | 1.2729 us | 463.49 |     - |     - |           1.491,24 |
+                       Raise_FileNotFoundException |      X64 | LegacyJit | 46.6647 us | 1.8406 us |  86.67 |     - |     - |             263,40 |
+                RaiseGeneric_FileNotFoundException |      X64 | LegacyJit | 58.1295 us | 1.8440 us | 322.36 |     - |     - |             971,09 |
+                       Throw_FileNotFoundException |      X64 | LegacyJit | 44.6001 us | 1.7770 us |  78.14 |     - |     - |             242,28 |
+                       Raise_ArgumentNullException |      X64 |    RyuJit | 19.3501 us | 0.3927 us |  59.06 |     - |     - |             172,85 |
+                RaiseGeneric_ArgumentNullException |      X64 |    RyuJit | 20.8158 us | 0.8918 us |  68.60 |     - |     - |             207,16 |
+                       Throw_ArgumentNullException |      X64 |    RyuJit | 21.2471 us | 0.4470 us |  58.42 |     - |     - |             170,82 |
+        Raise_ArgumentOutOfRangeException_Integers |      X64 |    RyuJit | 19.0926 us | 0.5794 us |  57.75 |     - |     - |             172,35 |
+ RaiseGeneric_ArgumentOutOfRangeException_Integers |      X64 |    RyuJit | 20.8386 us | 1.6873 us |  80.82 |     - |     - |             245,02 |
+        Throw_ArgumentOutOfRangeException_Integers |      X64 |    RyuJit | 16.4849 us | 1.5610 us |  36.56 |     - |     - |             113,32 |
+                       Raise_NotSupportedException |      X64 |    RyuJit | 64.9682 us | 6.1236 us | 964.69 |     - |     - |           3.065,50 |
+                RaiseGeneric_NotSupportedException |      X64 |    RyuJit | 66.7680 us | 6.4114 us | 851.00 |     - |     - |           2.737,36 |
+                       Throw_NotSupportedException |      X64 |    RyuJit | 36.4718 us | 4.1340 us | 499.68 |     - |     - |           1.603,28 |
+                       Raise_FileNotFoundException |      X64 |    RyuJit | 45.0476 us | 5.6415 us | 108.35 |     - |     - |             325,82 |
+                RaiseGeneric_FileNotFoundException |      X64 |    RyuJit | 54.6205 us | 6.0381 us | 268.42 |     - |     - |             810,22 |
+                       Throw_FileNotFoundException |      X64 |    RyuJit | 43.0069 us | 4.8986 us |  84.47 |     - |     - |             260,59 |
+                       Raise_ArgumentNullException |      X86 | LegacyJit | 28.5803 us | 2.6866 us |  26.08 |     - |     - |              83,76 |
+                RaiseGeneric_ArgumentNullException |      X86 | LegacyJit | 28.4951 us | 3.1659 us |  32.04 |     - |     - |             122,46 |
+                       Throw_ArgumentNullException |      X86 | LegacyJit | 30.1121 us | 1.6242 us |  24.62 |     - |     - |              94,57 |
+        Raise_ArgumentOutOfRangeException_Integers |      X86 | LegacyJit | 27.7911 us | 1.7208 us |  26.90 |     - |     - |              91,69 |
+ RaiseGeneric_ArgumentOutOfRangeException_Integers |      X86 | LegacyJit | 29.7994 us | 2.7528 us |  40.08 |     - |     - |             115,39 |
+        Throw_ArgumentOutOfRangeException_Integers |      X86 | LegacyJit | 26.9246 us | 2.3180 us |  21.48 |     - |     - |              75,81 |
+                       Raise_NotSupportedException |      X86 | LegacyJit | 84.1955 us | 6.2050 us | 901.09 |     - |     - |           2.856,95 |
+                RaiseGeneric_NotSupportedException |      X86 | LegacyJit | 81.5286 us | 8.9884 us | 885.70 |     - |     - |           2.822,94 |
+                       Throw_NotSupportedException |      X86 | LegacyJit | 44.1595 us | 5.8223 us | 366.13 |     - |     - |           1.181,60 |
+                       Raise_FileNotFoundException |      X86 | LegacyJit | 53.6902 us | 5.3819 us |  64.03 |     - |     - |             212,89 |
+                RaiseGeneric_FileNotFoundException |      X86 | LegacyJit | 65.1958 us | 6.4757 us | 215.12 |     - |     - |             655,93 |
+                       Throw_FileNotFoundException |      X86 | LegacyJit | 53.6464 us | 5.7552 us |  54.25 |     - |     - |             187,31 |
 
 ## About this repository and its maintainer ##
 

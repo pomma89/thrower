@@ -42,6 +42,8 @@ namespace PommaLabs.Thrower.UnitTests
 
         #endregion Setup/Teardown
 
+        protected const string BlankString = "   ";
+
         protected const string TestMessage = "A long and complicated error message...";
 
         protected class Base { }

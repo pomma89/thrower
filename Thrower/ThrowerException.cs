@@ -42,8 +42,10 @@ namespace PommaLabs.Thrower
 
         internal static ThrowerException AbstractEx => new ThrowerException("Given exception type is abstract");
 
-        internal static ThrowerException MissingNoArgsCtor => new ThrowerException("Given exception type has no parameterless constructor");
+        internal static ThrowerException MissingNoParamsCtorEx => new ThrowerException("Given exception type has no parameterless constructor");
 
-        internal static ThrowerException MissingMsgCtor => new ThrowerException("Given exception type has not a valid message constructor");
+        internal static ThrowerException MissingMsgCtorEx => new ThrowerException("Given exception type has not a valid message constructor");
+
+        internal static ThrowerException NullArgEx => new ThrowerException("One of given exception parameters is null, exception constructor inference cannot work");
     }
 }

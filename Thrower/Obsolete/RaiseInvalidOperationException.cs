@@ -31,7 +31,7 @@ namespace PommaLabs.Thrower
     /// <remarks>
     ///   This class is no longer maintained.
     /// </remarks>
-    [Obsolete("Please use Raise.InvalidOperationException.If* overloads, this class has been deprecated")]
+    [Obsolete("Please use Raise.InvalidOperationException.If* overloads, this class has been deprecated and it will be removed in v4", true)]
     public sealed class RaiseInvalidOperationException : RaiseBase
     {
         /// <summary>

@@ -106,6 +106,88 @@ namespace PommaLabs.Thrower.ExceptionHandlers
 
         #endregion IfNot
 
+        #region IfIsEqualTo
+
+        private const string DefaultIfIsEqualMessage = "Argument is equal to given value";
+
+        /// <summary>
+        ///   Throws <see cref="ArgumentException"/> if <paramref name="argument"/> is equal to <paramref name="comparand"/>.
+        /// </summary>
+        /// <param name="argument">First argument to be tested for equality.</param>
+        /// <param name="comparand">Second argument to be tested for equality.</param>
+        /// <exception cref="ArgumentException"><paramref name="argument"/> is equal to <paramref name="comparand"/>.</exception>
+        public void IfIsEqualTo<TArg1, TArg2>(TArg1 argument, TArg2 comparand)
+        {
+            if (Equals(argument, comparand))
+            {
+                throw new ArgumentException(DefaultIfIsEqualMessage);
+            }
+        }
+
+        /// <summary>
+        ///   Throws <see cref="ArgumentException"/> if <paramref name="argument"/> is equal to <paramref name="comparand"/>.
+        /// </summary>
+        /// <param name="argument">First argument to be tested for equality.</param>
+        /// <param name="comparand">Second argument to be tested for equality.</param>
+        /// <param name="argumentName">The name of the argument.</param>
+        /// <param name="message">The message.</param>
+        /// <exception cref="ArgumentException"><paramref name="argument"/> is equal to <paramref name="comparand"/>.</exception>
+        /// <remarks>
+        ///   <paramref name="message"/> and <paramref name="argumentName"/> are strictly required arguments.
+        /// </remarks>
+        public void IfIsEqualTo<TArg1, TArg2>(TArg1 argument, TArg2 comparand, string argumentName, string message = null)
+        {
+            if (Equals(argument, comparand))
+            {
+                throw new ArgumentException(message ?? DefaultIfIsEqualMessage, argumentName);
+            }
+        }
+
+        #endregion IfIsEqualTo
+
+        #region IfIsNotEqualTo
+
+        private const string DefaultIfIsNotEqualMessage = "Argument is not equal to given value";
+
+        /// <summary>
+        ///   Throws <see cref="ArgumentException"/> if <paramref name="argument"/> is not equal to <paramref name="comparand"/>.
+        /// </summary>
+        /// <param name="argument">First argument to be tested for equality.</param>
+        /// <param name="comparand">Second argument to be tested for equality.</param>
+        /// <exception cref="ArgumentException">
+        ///   <paramref name="argument"/> is not equal to <paramref name="comparand"/>.
+        /// </exception>
+        public void IfIsNotEqualTo<TArg1, TArg2>(TArg1 argument, TArg2 comparand)
+        {
+            if (!Equals(argument, comparand))
+            {
+                throw new ArgumentException(DefaultIfIsNotEqualMessage);
+            }
+        }
+
+        /// <summary>
+        ///   Throws <see cref="ArgumentException"/> if <paramref name="argument"/> is not equal to <paramref name="comparand"/>.
+        /// </summary>
+        /// <param name="argument">First argument to be tested for equality.</param>
+        /// <param name="comparand">Second argument to be tested for equality.</param>
+        /// <param name="argumentName">The name of the argument.</param>
+        /// <param name="message">The message.</param>
+        /// <exception cref="ArgumentException">
+        ///   <paramref name="argument"/> is not equal to <paramref name="comparand"/>.
+        /// </exception>
+        /// <remarks>
+        ///   <paramref name="message"/> and <paramref name="argumentName"/> are strictly required arguments.
+        /// </remarks>
+        public void IfIsNotEqualTo<TArg1, TArg2>(TArg1 argument, TArg2 comparand, string argumentName, string message = null)
+        {
+            if (!Equals(argument, comparand))
+            {
+                throw new ArgumentException(message ?? DefaultIfIsNotEqualMessage, argumentName);
+            }
+        }
+
+        #endregion IfIsNotEqualTo
+
         #region IfIsNotValid
 
         /// <summary>

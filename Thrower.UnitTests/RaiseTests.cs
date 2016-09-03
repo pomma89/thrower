@@ -23,7 +23,9 @@
 
 using NUnit.Framework;
 using System;
+using System.Collections.Generic;
 using System.Globalization;
+using System.IO;
 using System.Threading.Tasks;
 
 namespace PommaLabs.Thrower.UnitTests
@@ -89,6 +91,25 @@ namespace PommaLabs.Thrower.UnitTests
             public NoCtorException(int x) : base(x.ToString())
             {
             }
+        }
+
+        private sealed class BigCtorException : Exception
+        {
+            public BigCtorException(int x, decimal y, string z, KeyValuePair<string, string> t) : base(x.ToString())
+            {
+                X = x;
+                Y = y;
+                Z = z;
+                T = t;
+            }
+
+            public int X { get; }
+
+            public decimal Y { get; }
+
+            public string Z { get; }
+
+            public KeyValuePair<string, string> T { get; }
         }
 
         private sealed class PrivateCtorException : Exception
@@ -409,6 +430,170 @@ namespace PommaLabs.Thrower.UnitTests
             {
                 Assert.AreEqual("Pino", ex.Message);
                 throw;
+            }
+        }
+
+        [Test]
+        public void ExtendedConstructor_FileNotFoundException()
+        {
+            const string msg = "Test MSG";
+            const string path = "Test PATH";
+
+            try
+            {
+                Raise<FileNotFoundException>.If(false, msg, path);
+            }
+            catch (Exception ex)
+            {
+                Assert.Fail(ex.Message);
+            }
+
+            try
+            {
+                Raise<FileNotFoundException>.If(true, msg, path);
+            }
+            catch (FileNotFoundException fex)
+            {
+                Assert.That(fex.Message, Is.EqualTo(msg));
+                Assert.That(fex.FileName, Is.EqualTo(path));
+            }
+            catch (Exception ex)
+            {
+                Assert.Fail(ex.Message);
+            }
+        }
+
+        [Test]
+        public void ExtendedConstructor_FileNotFoundException_Not()
+        {
+            const string msg = "Test MSG";
+            const string path = "Test PATH";
+
+            try
+            {
+                Raise<FileNotFoundException>.IfNot(true, msg, path);
+            }
+            catch (Exception ex)
+            {
+                Assert.Fail(ex.Message);
+            }
+
+            try
+            {
+                Raise<FileNotFoundException>.IfNot(false, msg, path);
+            }
+            catch (FileNotFoundException fex)
+            {
+                Assert.That(fex.Message, Is.EqualTo(msg));
+                Assert.That(fex.FileName, Is.EqualTo(path));
+            }
+            catch (Exception ex)
+            {
+                Assert.Fail(ex.Message);
+            }
+        }
+
+        [Test]
+        public void ExtendedConstructor_BigCtorException()
+        {
+            var x = 3;
+            var y = decimal.MinValue;
+            var z = "ZZZ";
+            var t = new KeyValuePair<string, string>(z, z + z);
+
+            try
+            {
+                Raise<BigCtorException>.If(false, x, y, z, t);
+            }
+            catch (Exception ex)
+            {
+                Assert.Fail(ex.Message);
+            }
+
+            try
+            {
+                Raise<BigCtorException>.If(true, x, y, z, t);
+            }
+            catch (BigCtorException fex)
+            {
+                Assert.That(fex.Message, Is.EqualTo(x.ToString()));
+                Assert.That(fex.X, Is.EqualTo(x));
+                Assert.That(fex.Y, Is.EqualTo(y));
+                Assert.That(fex.Z, Is.EqualTo(z));
+                Assert.That(fex.T, Is.EqualTo(t));
+            }
+            catch (Exception ex)
+            {
+                Assert.Fail(ex.Message);
+            }
+        }
+
+        [Test]
+        public void ExtendedConstructor_BigCtorException_Not()
+        {
+            var x = 3;
+            var y = decimal.MinValue;
+            var z = "ZZZ";
+            var t = new KeyValuePair<string, string>(z, z + z);
+
+            try
+            {
+                Raise<BigCtorException>.IfNot(true, x, y, z, t);
+            }
+            catch (Exception ex)
+            {
+                Assert.Fail(ex.Message);
+            }
+
+            try
+            {
+                Raise<BigCtorException>.IfNot(false, x, y, z, t);
+            }
+            catch (BigCtorException fex)
+            {
+                Assert.That(fex.Message, Is.EqualTo(x.ToString()));
+                Assert.That(fex.X, Is.EqualTo(x));
+                Assert.That(fex.Y, Is.EqualTo(y));
+                Assert.That(fex.Z, Is.EqualTo(z));
+                Assert.That(fex.T, Is.EqualTo(t));
+            }
+            catch (Exception ex)
+            {
+                Assert.Fail(ex.Message);
+            }
+        }
+
+        [Test]
+        public void ExtendedConstructor_TooManyArgs()
+        {
+            try
+            {
+                Raise<ArgumentException>.If(true, 1, "snau", 3.14M);
+            }
+            catch (ArgumentException aex)
+            {
+                Assert.Pass(aex.Message);
+            }
+            catch (Exception ex)
+            {
+                Assert.Fail(ex.Message);
+            }
+        }
+
+        [Test]
+        public void ExtendedConstructor_TooManyArgs_Not()
+        {
+            try
+            {
+                Raise<ArgumentException>.IfNot(false, 1, "SNAFU", 3.14M);
+            }
+            catch (ArgumentException aex)
+            {
+                Assert.Pass(aex.Message);
+            }
+            catch (Exception ex)
+            {
+                Assert.Fail(ex.Message);
             }
         }
 

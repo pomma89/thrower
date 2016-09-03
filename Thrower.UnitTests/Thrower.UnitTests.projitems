@@ -11,6 +11,7 @@
   <ItemGroup>
     <Compile Include="$(MSBuildThisFileDirectory)AbstractTests.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ExceptionHandlers\ArgumentNullExceptionTests.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ExceptionHandlers\ArgumentOutOfRangeExceptionTests.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ExceptionHandlers\IO\DirectoryNotFoundExceptionTests.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ExceptionHandlers\IO\FileNotFoundExceptionTests.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ExceptionHandlers\Net\HttpExceptionTests.cs" />
@@ -18,14 +19,10 @@
     <Compile Include="$(MSBuildThisFileDirectory)ExceptionHandlers\InvalidOperationExceptionTests.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ExceptionHandlers\ObjectDisposedExceptionTests.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ExceptionHandlers\ArgumentExceptionTests.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)IfAreEqualTests.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)IfAreSameTests.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)IfIsAssignableFromTests.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)IfIsContainedInTests.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)IfIsEmptyTests.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)IfIsInstanceOfTests.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)IfIsNaNTests.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)IfIsNullTests.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)RaiseTests.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Reflection\FastMember\ObjectAccessorTests.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Reflection\PortableTypeInfoTests.cs" />
