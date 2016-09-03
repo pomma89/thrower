@@ -22,7 +22,6 @@
     <Compile Include="$(MSBuildThisFileDirectory)IfAreSameTests.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)IfIsAssignableFromTests.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)IfIsContainedInTests.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)IfIsEmptyTests.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)IfIsInstanceOfTests.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)RaiseTests.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Reflection\FastMember\ObjectAccessorTests.cs" />
