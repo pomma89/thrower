@@ -195,6 +195,9 @@ custom objects which allow writing preconditions as shown in above example.
 Each handler is tied to one specific exception and exposes methods to allow writing fluent preconditions
 depending on which exception it has been defined for.
 
+If you need an exception handler for an exception which is defined inside the .NET Framework itself, please let me know.
+I will evaluate whether it can be added safely and, if possible, I will gladly add it.
+
 Let's see some examples.
 
 ### System ###
@@ -202,6 +205,7 @@ Let's see some examples.
 ```cs
 
 Raise.ArgumentNullException.IfIsNull(session, nameof(session), "Session object is mandatory");
+Raise.ArgumentException.IfIsNullOrWhiteSpace(userName, nameof(userName), "User name cannot be null, empty or blank");
 Raise.ArgumentOutOfRangeException.IfIsGreater(loginAttemptCount, 5, nameof(loginAttemptCount), "Too many login attempts!");
 
 ```
@@ -221,6 +225,31 @@ Raise.IOException.IfNot(outStream.CanWrite, "Specified output stream does not al
 ```cs
 
 Raise.HttpException.IfNot(user.IsLoggedIn, HttpStatusCode.Unauthorized, "User should perform login");
+
+```
+
+## Generic exception handler ##
+
+If a standard handler has not been provided for an exception you would like to use, then you can try using the generic exception handler.
+Through the usage of reflection, it will try to discover required exception constructors and it will use them when it will need to create an exception object.
+
+Let's see some examples.
+
+```cs
+
+// If condition is true, given exception type will be thrown
+// using the empty constructor.
+Raise<FileNotFoundException>.If(condition);
+
+// If condition is true, given exception type will be thrown 
+// using a constructor which accepts a string as first and only argument,
+// or a constructor which accepts a string and an Exception as only arguments.
+Raise<FileNotFoundException>.If(condition, message);
+
+// If condition is true, given exception type will be thrown 
+// using a constructor which accepts all given parameters.
+// Types are read from objects themselves, therefore no nulls are allowed.
+Raise<FileNotFoundException>.If(condition, message, fileName);
 
 ```
 
