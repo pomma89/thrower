@@ -3,6 +3,7 @@
 ### v3.0.3 (2016-09-03) ###
 
 * All Raise[...]Exception classes have been marked as obsolete and should produce a compilation error when used. Please use new Raise.* handlers.
+* Added IfIsEqualTo and IfIsNotEqualTo to ArgumentExceptionHandler.
 
 ### v3.0.2 (2016-08-28) ###
 

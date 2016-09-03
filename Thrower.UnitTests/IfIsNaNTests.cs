@@ -53,31 +53,5 @@ namespace PommaLabs.Thrower.UnitTests
         {
             Raise<ArgumentOutOfRangeException>.IfIsNaN(double.NaN, TestMessage);
         }
-
-        [Test]
-        [ExpectedException(typeof(ArgumentOutOfRangeException))]
-        public void Not_CorrectDouble()
-        {
-            Raise<ArgumentOutOfRangeException>.IfIsNotNaN(5.0);
-        }
-
-        [Test]
-        [ExpectedException(typeof(ArgumentOutOfRangeException), ExpectedMessage = TestMessage)]
-        public void Not_CorrectDouble_WithMsg()
-        {
-            Raise<ArgumentOutOfRangeException>.IfIsNotNaN(5.0, TestMessage);
-        }
-
-        [Test]
-        public void Not_NaN()
-        {
-            Raise<ArgumentOutOfRangeException>.IfIsNotNaN(double.NaN);
-        }
-
-        [Test]
-        public void Not_NaN_WithMsg()
-        {
-            Raise<ArgumentOutOfRangeException>.IfIsNotNaN(double.NaN, TestMessage);
-        }
     }
 }

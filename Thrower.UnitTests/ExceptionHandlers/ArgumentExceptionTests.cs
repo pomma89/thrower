@@ -325,5 +325,65 @@ namespace PommaLabs.Thrower.UnitTests.ExceptionHandlers
         }
 
         #endregion IfIsEmpty - Collection
+
+        #region IfIs(Not)EqualTo
+
+        [Test]
+        public void IfIsEqualTo_DifferentIntegers()
+        {
+            Raise.ArgumentException.IfIsEqualTo(5, 50);
+        }
+
+        [Test]
+        public void IfIsEqualTo_DifferentIntegers_WithMsg()
+        {
+            var x = 5;
+            Raise.ArgumentException.IfIsEqualTo(x, 50, nameof(x), TestMessage);
+        }
+
+        [Test]
+        [ExpectedException(typeof(ArgumentException))]
+        public void IfIsNotEqualTo_DifferentIntegers()
+        {
+            Raise.ArgumentException.IfIsNotEqualTo(5, 50);
+        }
+
+        [Test]
+        [ExpectedException(typeof(ArgumentException), ExpectedMessage = TestMessage)]
+        public void IfIsNotEqualTo_DifferentIntegers_WithMsg()
+        {
+            var x = 5;
+            Raise.ArgumentException.IfIsNotEqualTo(x, 50, nameof(x), TestMessage);
+        }
+
+        [Test]
+        public void IfIsNotEqualTo_SameIntegers()
+        {
+            Raise.ArgumentException.IfIsNotEqualTo(5, 5);
+        }
+
+        [Test]
+        public void IfIsNotEqualTo_SameIntegers_WithMsg()
+        {
+            var x = 5;
+            Raise.ArgumentException.IfIsNotEqualTo(x, 5, nameof(x), TestMessage);
+        }
+
+        [Test]
+        [ExpectedException(typeof(ArgumentException))]
+        public void IfIsEqualTo_SameIntegers()
+        {
+            Raise.ArgumentException.IfIsEqualTo(5, 5);
+        }
+
+        [Test]
+        [ExpectedException(typeof(ArgumentException), ExpectedMessage = TestMessage)]
+        public void IfIsEqualTo_SameIntegers_WithMsg()
+        {
+            var x = 5;
+            Raise.ArgumentException.IfIsEqualTo(x, 5, nameof(x), TestMessage);
+        }
+
+        #endregion IfIs(Not)EqualTo
     }
 }
