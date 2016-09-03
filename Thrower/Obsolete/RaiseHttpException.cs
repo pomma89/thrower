@@ -30,7 +30,7 @@ namespace PommaLabs.Thrower
     ///   Utility methods which can be used to handle error codes through HTTP.
     /// </summary>
     /// <remarks>This class is no longer maintained.</remarks>
-    [Obsolete("Please use Raise.HttpException.If* overloads, this class has been deprecated")]
+    [Obsolete("Please use Raise.HttpException.If* overloads, this class has been deprecated and it will be removed in v4", true)]
     public static class RaiseHttpException
     {
         /// <summary>

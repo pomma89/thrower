@@ -220,7 +220,7 @@ namespace PommaLabs.Thrower
             }
         }
 
-        private static ConstructorInfo GetCtor(System.Collections.Generic.IList<Type> ctorTypes)
+        private static ConstructorInfo GetCtor(IList<Type> ctorTypes)
         {
             return (from c in PortableTypeInfo.GetConstructors(typeof(TEx))
                     let args = c.GetParameters()
