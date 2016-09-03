@@ -3,7 +3,7 @@
 <package>
     <metadata>
         <id>Thrower</id>
-        <version>3.0.2</version>
+        <version>3.0.3</version>
         <title>Thrower - Compact preconditions helpers</title>
         <authors>Alessio Parma &lt;alessio.parma@gmail.com&gt;</authors>
         <owners>Alessio Parma &lt;alessio.parma@gmail.com&gt;</owners>
@@ -13,14 +13,10 @@ Thrower allows to write preconditions in a pretty lean way, which reduces the cl
 For example, a validation against null becomes "Raise.ArgumentNullException.IfIsNull(myParam)", while a generic validation may be written as "Raise.ArgumentException.If(condition)".
         </description>
         <releaseNotes>
-* Added an exception handler for System.IO.DirectoryNotFoundException.
-* Added an exception handler for System.IO.FileNotFoundException.
-* Added an exception handler for System.IO.InvalidDataException.
-* Added an exception handler for System.IO.IOException.
-* Added a DLL compiled for .NET Standard 1.3.
-* Added some unit tests for new handlers.
-* Benchmarks are now executed against all JITs.
-* New benchmarks for Raise.FileNotFoundException.
+* All Raise[...]Exception classes have been marked as obsolete and should produce a compilation error when used. Please use new Raise.* handlers.
+* Added IfIsEqualTo and IfIsNotEqualTo to ArgumentExceptionHandler.
+* Added IfIsNaN, IfIsPositiveInfinity, IfIsNegativeInfinity to ArgumentOutOfRangeExceptionHandler.
+* Added a new method to Raise&lt;TExt&gt; which handles unknown constructors.
         </releaseNotes>
         <summary>Fully managed library providing convenience methods to perform argument checks.</summary>
         <language>en-US</language>
