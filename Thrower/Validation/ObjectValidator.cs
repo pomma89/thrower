@@ -94,7 +94,7 @@ namespace PommaLabs.Thrower.Validation
             // The list of errors which will be populated during the validation process.
             validationErrors = new List<ValidationError>();
 
-#if (!NET35 && !PORTABLE && !NETSTD13)
+#if !(NET35 || PORTABLE || NETSTD11 || NETSTD13)
 
             // Applies standard .NET validation.
             var netValidationErrors = new List<System.ComponentModel.DataAnnotations.ValidationResult>();
@@ -193,7 +193,7 @@ namespace PommaLabs.Thrower.Validation
                                where v != null
                                select new { PropertyInfo = p, Validation = v };
 
-#if !(PORTABLE || NETSTD13)
+#if !(PORTABLE || NETSTD11 || NETSTD13)
                 var typeAccessor = Reflection.FastMember.TypeAccessor.Create(objType);
 #endif
 
@@ -201,7 +201,7 @@ namespace PommaLabs.Thrower.Validation
                 {
                     var propertyInfo = rp.PropertyInfo;
 
-#if (PORTABLE || NETSTD13)
+#if (PORTABLE || NETSTD11 || NETSTD13)
                     var propertyValue = PortableTypeInfo.GetPublicPropertyValue(obj, propertyInfo);
 #else
                     var propertyValue = PortableTypeInfo.GetPublicPropertyValue(typeAccessor, obj, propertyInfo);

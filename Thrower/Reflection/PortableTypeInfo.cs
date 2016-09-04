@@ -26,7 +26,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 
-#if !(PORTABLE || NETSTD13)
+#if !(PORTABLE || NETSTD11 || NETSTD13)
 
 using PommaLabs.Thrower.Reflection.FastMember;
 
@@ -39,7 +39,7 @@ namespace PommaLabs.Thrower.Reflection
     /// </summary>
     public static class PortableTypeInfo
     {
-#if !(PORTABLE || NETSTD13)
+#if !(PORTABLE || NETSTD11 || NETSTD13)
         internal const BindingFlags PublicAndPrivateInstanceFlags = BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance;
         internal const BindingFlags PublicInstanceFlags = BindingFlags.Public | BindingFlags.Instance;
 #endif
@@ -56,7 +56,7 @@ namespace PommaLabs.Thrower.Reflection
         /// <returns>The custom attributes for given member.</returns>
         public static IList<Attribute> GetCustomAttributes(MemberInfo memberInfo, bool inherit)
         {
-#if (PORTABLE || NETSTD13)
+#if (PORTABLE || NETSTD11 || NETSTD13)
             return memberInfo.GetCustomAttributes(inherit).ToArray();
 #else
             return memberInfo.GetCustomAttributes(inherit).Cast<Attribute>().ToArray();
@@ -70,7 +70,7 @@ namespace PommaLabs.Thrower.Reflection
         /// <returns>The constructors for given type.</returns>
         public static IList<ConstructorInfo> GetConstructors(Type type)
         {
-#if (PORTABLE || NETSTD13)
+#if (PORTABLE || NETSTD11 || NETSTD13)
             return IntrospectionExtensions.GetTypeInfo(type).DeclaredConstructors.ToArray();
 #else
             return type.GetConstructors(PublicAndPrivateInstanceFlags);
@@ -91,7 +91,7 @@ namespace PommaLabs.Thrower.Reflection
         /// <returns>The base type of given type.</returns>
         public static Type GetBaseType(Type type)
         {
-#if (PORTABLE || NETSTD13)
+#if (PORTABLE || NETSTD11 || NETSTD13)
             return IntrospectionExtensions.GetTypeInfo(type).BaseType;
 #else
             return type.BaseType;
@@ -105,7 +105,7 @@ namespace PommaLabs.Thrower.Reflection
         /// <returns>The generic type definition of given type.</returns>
         public static Type GetGenericTypeDefinition(Type type)
         {
-#if (PORTABLE || NETSTD13)
+#if (PORTABLE || NETSTD11 || NETSTD13)
             return IntrospectionExtensions.GetTypeInfo(type).GetGenericTypeDefinition();
 #else
             return type.GetGenericTypeDefinition();
@@ -119,7 +119,7 @@ namespace PommaLabs.Thrower.Reflection
         /// <returns>The generic type arguments of given type.</returns>
         public static IList<Type> GetGenericTypeArguments(Type type)
         {
-#if (PORTABLE || NETSTD13)
+#if (PORTABLE || NETSTD11 || NETSTD13)
             return IntrospectionExtensions.GetTypeInfo(type).GenericTypeArguments;
 #else
             return type.GetGenericArguments();
@@ -133,7 +133,7 @@ namespace PommaLabs.Thrower.Reflection
         /// <returns>The interfaces for given type.</returns>
         public static IList<Type> GetInterfaces(Type type)
         {
-#if (PORTABLE || NETSTD13)
+#if (PORTABLE || NETSTD11 || NETSTD13)
             return IntrospectionExtensions.GetTypeInfo(type).ImplementedInterfaces.ToArray();
 #else
             return type.GetInterfaces();
@@ -147,7 +147,7 @@ namespace PommaLabs.Thrower.Reflection
         /// <returns>The public instance properties for given type.</returns>
         public static IList<PropertyInfo> GetPublicProperties(Type type)
         {
-#if (PORTABLE || NETSTD13)
+#if (PORTABLE || NETSTD11 || NETSTD13)
             var properties = new List<PropertyInfo>();
             while (type != null) 
             {
@@ -183,7 +183,7 @@ namespace PommaLabs.Thrower.Reflection
             return propertyInfo.GetValue(instance, EmptyObjectArray);
         }
 
-#if !(PORTABLE || NETSTD13)
+#if !(PORTABLE || NETSTD11 || NETSTD13)
         /// <summary>
         ///   Gets the value of given property on given instance.
         /// </summary>
@@ -211,7 +211,7 @@ namespace PommaLabs.Thrower.Reflection
         /// <returns>Whether the specified type is abstract.</returns>
         public static bool IsAbstract(Type type)
         {
-#if (PORTABLE || NETSTD13)
+#if (PORTABLE || NETSTD11 || NETSTD13)
             return IntrospectionExtensions.GetTypeInfo(type).IsAbstract;
 #else
             return type.IsAbstract;
@@ -236,7 +236,7 @@ namespace PommaLabs.Thrower.Reflection
         /// <returns>Whether the specified type is a class.</returns>
         public static bool IsClass(Type type)
         {
-#if (PORTABLE || NETSTD13)
+#if (PORTABLE || NETSTD11 || NETSTD13)
             return IntrospectionExtensions.GetTypeInfo(type).IsClass;
 #else
             return type.IsClass;
@@ -269,7 +269,7 @@ namespace PommaLabs.Thrower.Reflection
                 return false;
             }
 
-#if (PORTABLE || NETSTD13)
+#if (PORTABLE || NETSTD11 || NETSTD13)
             return IntrospectionExtensions.GetTypeInfo(obj.GetType()).IsAssignableFrom(IntrospectionExtensions.GetTypeInfo(type));
 #else
             return obj.GetType().IsAssignableFrom(type);
@@ -285,7 +285,7 @@ namespace PommaLabs.Thrower.Reflection
         /// <returns>Whether the specified type is an enumeration.</returns>
         public static bool IsEnum(Type type)
         {
-#if (PORTABLE || NETSTD13)
+#if (PORTABLE || NETSTD11 || NETSTD13)
             return IntrospectionExtensions.GetTypeInfo(type).IsEnum;
 #else
             return type.IsEnum;
@@ -310,7 +310,7 @@ namespace PommaLabs.Thrower.Reflection
         /// <returns>Whether the specified type is a generic type.</returns>
         public static bool IsGenericType(Type type)
         {
-#if (PORTABLE || NETSTD13)
+#if (PORTABLE || NETSTD11 || NETSTD13)
             return IntrospectionExtensions.GetTypeInfo(type).IsGenericType;
 #else
             return type.IsGenericType;
@@ -335,7 +335,7 @@ namespace PommaLabs.Thrower.Reflection
         /// <returns>Whether the specified type is a generic type definition.</returns>
         public static bool IsGenericTypeDefinition(Type type)
         {
-#if (PORTABLE || NETSTD13)
+#if (PORTABLE || NETSTD11 || NETSTD13)
             return IntrospectionExtensions.GetTypeInfo(type).IsGenericTypeDefinition;
 #else
             return type.IsGenericTypeDefinition;
@@ -364,7 +364,7 @@ namespace PommaLabs.Thrower.Reflection
                 return false;
             }
 
-#if (PORTABLE || NETSTD13)
+#if (PORTABLE || NETSTD11 || NETSTD13)
             return IntrospectionExtensions.GetTypeInfo(type).IsAssignableFrom(IntrospectionExtensions.GetTypeInfo(obj.GetType()));
 #else
             return type.IsInstanceOfType(obj);
@@ -380,7 +380,7 @@ namespace PommaLabs.Thrower.Reflection
         /// <returns>Whether the specified type is an interface.</returns>
         public static bool IsInterface(Type type)
         {
-#if (PORTABLE || NETSTD13)
+#if (PORTABLE || NETSTD11 || NETSTD13)
             return IntrospectionExtensions.GetTypeInfo(type).IsInterface;
 #else
             return type.IsInterface;
@@ -405,7 +405,7 @@ namespace PommaLabs.Thrower.Reflection
         /// <returns>Whether the specified type is primitive.</returns>
         public static bool IsPrimitive(Type type)
         {
-#if (PORTABLE || NETSTD13)
+#if (PORTABLE || NETSTD11 || NETSTD13)
             return IntrospectionExtensions.GetTypeInfo(type).IsPrimitive;
 #else
             return type.IsPrimitive;
@@ -430,7 +430,7 @@ namespace PommaLabs.Thrower.Reflection
         /// <returns>Whether the specified type is a value type.</returns>
         public static bool IsValueType(Type type)
         {
-#if (PORTABLE || NETSTD13)
+#if (PORTABLE || NETSTD11 || NETSTD13)
             return IntrospectionExtensions.GetTypeInfo(type).IsValueType;
 #else
             return type.IsValueType;
