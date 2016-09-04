@@ -10,7 +10,7 @@
 // or implied. See the License for the specific language governing permissions and limitations under
 // the License.
 
-#if !NET35 && !PORTABLE
+#if !(NET35 || PORTABLE || NETSTD11 || NETSTD13)
 
 using Microsoft.CSharp.RuntimeBinder;
 using System;

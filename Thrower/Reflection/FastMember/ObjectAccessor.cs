@@ -10,7 +10,7 @@
 // or implied. See the License for the specific language governing permissions and limitations under
 // the License.
 
-#if !PORTABLE
+#if !(PORTABLE || NETSTD11 || NETSTD13)
 
 using System;
 using System.Collections;
@@ -75,7 +75,7 @@ namespace PommaLabs.Thrower.Reflection.FastMember
             return new TypeAccessorWrapper(target, TypeAccessor.Create(target.GetType(), allowNonPublicAccessors));
         }
 
-        #region IDictionary<string, object> members
+#region IDictionary<string, object> members
 
         /// <summary>
         ///   Gets an <see cref="T:System.Collections.Generic.ICollection`1"/> containing the keys of
@@ -273,7 +273,7 @@ namespace PommaLabs.Thrower.Reflection.FastMember
         /// </returns>
         IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();
 
-        #endregion IDictionary<string, object> members
+#endregion IDictionary<string, object> members
 
         private sealed class TypeAccessorWrapper : ObjectAccessor, IDictionary<string, object>
         {
@@ -295,7 +295,7 @@ namespace PommaLabs.Thrower.Reflection.FastMember
 
             public override object Target { get; }
 
-            #region IDictionary<string, object> members
+#region IDictionary<string, object> members
 
             public override ICollection<string> Keys => _members.Select(x => x.Name).ToArray();
 
@@ -326,7 +326,7 @@ namespace PommaLabs.Thrower.Reflection.FastMember
                 }
             }
 
-            #endregion IDictionary<string, object> members
+#endregion IDictionary<string, object> members
         }
 
 #if !NET35
@@ -345,7 +345,7 @@ namespace PommaLabs.Thrower.Reflection.FastMember
 
             public override object Target { get; }
 
-        #region IDictionary<string, object> members
+#region IDictionary<string, object> members
 
             public override ICollection<string> Keys
             {
@@ -382,7 +382,7 @@ namespace PommaLabs.Thrower.Reflection.FastMember
                 throw new NotSupportedException();
             }
 
-        #endregion IDictionary<string, object> members
+#endregion IDictionary<string, object> members
         }
 #endif
     }

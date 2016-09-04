@@ -1,5 +1,10 @@
 # Changelog for PommaLabs.Thrower #
 
+### v3.0.4 (2016-09-04) ###
+
+* DLL for .NET Standard 1.3 was not properly generated. Now it is.
+* Fixed some build issues for .NET Standard 1.1 and 1.3.
+
 ### v3.0.3 (2016-09-03) ###
 
 * All Raise[...]Exception classes have been marked as obsolete and should produce a compilation error when used. Please use new Raise.* handlers.
