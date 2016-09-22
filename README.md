@@ -1,4 +1,4 @@
-![](https://googledrive.com/host/0B8v0ikF4z2BiR29YQmxfSlE1Sms/Progetti/Thrower/logo-64.png "Thrower Logo") Thrower
+![](http://pomma89.altervista.org/thrower/logo-64.png "Thrower Logo") Thrower
 ==================================================================================================================
 
 *Fully managed library providing convenience methods to perform argument checks.*
@@ -8,8 +8,9 @@
 * Latest release version: `v3.0.4`
 * Build status on [AppVeyor](https://ci.appveyor.com): [![Build status](https://ci.appveyor.com/api/projects/status/xjkp8gn0cf4s7qbg?svg=true)](https://ci.appveyor.com/project/pomma89/thrower)
 * [Doxygen](http://www.stack.nl/~dimitri/doxygen/index.html) documentation:
-    + [HTML](https://goo.gl/iO6qZG)
-    + [PDF](https://goo.gl/lZ7K9h)
+    + [HTML](http://pomma89.altervista.org/thrower/doc/html/index.html)
+    + [CHM](http://pomma89.altervista.org/thrower/doc/refman.chm)
+    + [PDF](http://pomma89.altervista.org/thrower/doc/refman.pdf)
 * [NuGet](https://www.nuget.org) package(s):
     + [PommaLabs.Thrower](https://nuget.org/packages/Thrower/)
 
