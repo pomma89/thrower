@@ -19,7 +19,7 @@ For example, a validation against null becomes "Raise.ArgumentNullException.IfIs
         <summary>Fully managed library providing convenience methods to perform argument checks.</summary>
         <language>en-US</language>
         <projectUrl>https://github.com/pomma89/Thrower</projectUrl>
-        <iconUrl>https://googledrive.com/host/0B8v0ikF4z2BiR29YQmxfSlE1Sms/Progetti/Thrower/logo-128.png</iconUrl>
+        <iconUrl>http://pomma89.altervista.org/thrower/logo-128.png</iconUrl>
         <requireLicenseAcceptance>false</requireLicenseAcceptance>
         <licenseUrl>http://opensource.org/licenses/MIT</licenseUrl>
         <copyright>Copyright (c) 2013-2016 Alessio Parma &lt;alessio.parma@gmail.com&gt;</copyright>
