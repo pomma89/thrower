@@ -88,7 +88,7 @@ namespace PommaLabs.Thrower.ExceptionHandlers
         ///   instance of given type can be assigned to specified object.
         /// </summary>
         /// <typeparam name="TType">The type whose instance must be assigned to given object.</typeparam>
-        /// <param name="instance">The object to test.</param>
+        /// <param name="instance">The object to be tested.</param>
         /// <param name="message">The optional message.</param>
         /// <exception cref="Exception">
         ///   If given condition is true, an exception of type <typeparamref name="TException"/> is thrown.
@@ -154,6 +154,80 @@ namespace PommaLabs.Thrower.ExceptionHandlers
         public void IfIsNotAssignableFrom(object instance, Type type, string message = null)
         {
             if (ReferenceEquals(instance, null) || !PortableTypeInfo.IsAssignableFrom(instance, type))
+            {
+                throw string.IsNullOrEmpty(message) ? new TException() : NewWithMessage(message);
+            }
+        }
+
+        /// <summary>
+        ///   Throws an exception of type <typeparamref name="TException"/> if and only if specified
+        ///   object has given type.
+        /// </summary>
+        /// <typeparam name="TType">The type the object must have.</typeparam>
+        /// <param name="instance">The object to be tested.</param>
+        /// <param name="message">The optional message.</param>
+        /// <exception cref="Exception">
+        ///   If given condition is true, an exception of type <typeparamref name="TException"/> is thrown.
+        /// </exception>
+        [SuppressMessage("Microsoft.Design", "CA1004:GenericMethodsShouldProvideTypeParameter")]
+        public void IfIsInstanceOf<TType>(object instance, string message = null)
+        {
+            if (instance is TType)
+            {
+                throw string.IsNullOrEmpty(message) ? new TException() : NewWithMessage(message);
+            }
+        }
+
+        /// <summary>
+        ///   Throws an exception of type <typeparamref name="TException"/> if and only if specified
+        ///   object has not given type.
+        /// </summary>
+        /// <typeparam name="TType">The type the object must not have.</typeparam>
+        /// <param name="instance">The object to be tested.</param>
+        /// <param name="message">The optional message.</param>
+        /// <exception cref="Exception">
+        ///   If given condition is true, an exception of type <typeparamref name="TException"/> is thrown.
+        /// </exception>
+        [SuppressMessage("Microsoft.Design", "CA1004:GenericMethodsShouldProvideTypeParameter")]
+        public void IfIsNotInstanceOf<TType>(object instance, string message = null)
+        {
+            if (!(instance is TType))
+            {
+                throw string.IsNullOrEmpty(message) ? new TException() : NewWithMessage(message);
+            }
+        }
+
+        /// <summary>
+        ///   Throws an exception of type <typeparamref name="TException"/> if and only if specified
+        ///   object has given type.
+        /// </summary>
+        /// <param name="instance">The object to be tested.</param>
+        /// <param name="type">The type the object must have.</param>
+        /// <param name="message">The optional message.</param>
+        /// <exception cref="Exception">
+        ///   If given condition is true, an exception of type <typeparamref name="TException"/> is thrown.
+        /// </exception>
+        public void IfIsInstanceOf(object instance, Type type, string message = null)
+        {
+            if (PortableTypeInfo.IsInstanceOf(instance, type))
+            {
+                throw string.IsNullOrEmpty(message) ? new TException() : NewWithMessage(message);
+            }
+        }
+
+        /// <summary>
+        ///   Throws an exception of type <typeparamref name="TException"/> if and only if specified
+        ///   object has not given type.
+        /// </summary>
+        /// <param name="instance">The object to be tested.</param>
+        /// <param name="type">The type the object must not have.</param>
+        /// <param name="message">The optional message.</param>
+        /// <exception cref="Exception">
+        ///   If given condition is true, an exception of type <typeparamref name="TException"/> is thrown.
+        /// </exception>
+        public void IfIsNotInstanceOf(object instance, Type type, string message = null)
+        {
+            if (!PortableTypeInfo.IsInstanceOf(instance, type))
             {
                 throw string.IsNullOrEmpty(message) ? new TException() : NewWithMessage(message);
             }
