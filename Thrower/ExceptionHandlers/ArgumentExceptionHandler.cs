@@ -24,6 +24,7 @@
 using PommaLabs.Thrower.Validation;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 #pragma warning disable CC0091 // Use static method
 
@@ -409,9 +410,10 @@ namespace PommaLabs.Thrower.ExceptionHandlers
 
         #endregion String validation
 
-        #region Collection validation
+        #region Collection and enumerable validation
 
         internal const string CollectionIsNullOrEmptyMessage = "Argument cannot be a null or empty collection";
+        internal const string EnumerableIsNullOrEmptyMessage = "Argument cannot be a null or empty enumerable";
 
         /// <summary>
         ///   Throws <see cref="ArgumentException"/> if given collection is null or empty.
@@ -446,7 +448,40 @@ namespace PommaLabs.Thrower.ExceptionHandlers
             }
         }
 
-        #endregion Collection validation
+        /// <summary>
+        ///   Throws <see cref="ArgumentException"/> if given enumerable is null or empty.
+        /// </summary>
+        /// <typeparam name="TItem">The type of the items contained in the enumerable.</typeparam>
+        /// <param name="value">The enumerable.</param>
+        /// <exception cref="ArgumentException">If given enumerable is null or empty.</exception>
+        public void IfIsNullOrEmpty<TItem>(IEnumerable<TItem> value)
+        {
+            if (ReferenceEquals(value, null) || !value.GetEnumerator().MoveNext())
+            {
+                throw new ArgumentException(CollectionIsNullOrEmptyMessage);
+            }
+        }
+
+        /// <summary>
+        ///   Throws <see cref="ArgumentException"/> if given enumerable is null or empty.
+        /// </summary>
+        /// <typeparam name="TItem">The type of the items contained in the enumerable.</typeparam>
+        /// <param name="value">The enumerable.</param>
+        /// <param name="argumentName">The name of the argument.</param>
+        /// <param name="message">The optional message.</param>
+        /// <exception cref="ArgumentException">If given enumerable is null or empty.</exception>
+        /// <remarks>
+        ///   <paramref name="message"/> and <paramref name="argumentName"/> are strictly required arguments.
+        /// </remarks>
+        public void IfIsNullOrEmpty<TItem>(IEnumerable<TItem> value, string argumentName, string message = null)
+        {
+            if (ReferenceEquals(value, null) || !value.GetEnumerator().MoveNext())
+            {
+                throw new ArgumentException(message ?? CollectionIsNullOrEmptyMessage, argumentName);
+            }
+        }
+
+        #endregion Collection and enumerable validation
     }
 }
 
