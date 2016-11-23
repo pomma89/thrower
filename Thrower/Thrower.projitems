@@ -19,6 +19,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)ExceptionHandlers\IO\IOExceptionHandler.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ExceptionHandlers\IO\FileNotFoundExceptionHandler.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ExceptionHandlers\Net\HttpExceptionHandler.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ExceptionHandlers\InvalidCastExceptionHandler.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ExceptionHandlers\NotSupportedExceptionHandler.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ExceptionHandlers\ObjectDisposedExceptionHandler.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ExceptionHandlers\IndexOutOfRangeExceptionHandler.cs" />

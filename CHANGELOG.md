@@ -1,5 +1,11 @@
 # Changelog for PommaLabs.Thrower #
 
+### v4.0.1 (2016-12-??) ###
+
+* All code marked as Obsolete in v3 has been removed.
+* Added new handler for InvalidCastException.
+* Moved many methods from RaiseGeneric to specific handlers.
+
 ### v3.0.4 (2016-09-04) ###
 
 * DLL for .NET Standard 1.3 was not properly generated. Now it is.

@@ -24,10 +24,10 @@ using BenchmarkDotNet.Attributes;
 using BenchmarkDotNet.Configs;
 using BenchmarkDotNet.Diagnostics.Windows;
 using BenchmarkDotNet.Exporters;
+using BenchmarkDotNet.Exporters.Csv;
 using BenchmarkDotNet.Jobs;
 using System;
 using System.IO;
-using System.Linq;
 using System.Runtime.CompilerServices;
 
 #pragma warning disable CC0091 // Use static method
@@ -46,8 +46,7 @@ namespace PommaLabs.Thrower.Benchmarks
         {
             public Config()
             {
-                Add(Job.AllJits);
-                Add(GetColumns().ToArray());
+                Add(Job.LegacyJitX86);
                 Add(CsvExporter.Default, HtmlExporter.Default, MarkdownExporter.GitHub, PlainExporter.Default);
                 Add(new MemoryDiagnoser());
                 Add(EnvironmentAnalyser.Default);

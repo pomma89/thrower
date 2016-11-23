@@ -55,6 +55,11 @@ namespace PommaLabs.Thrower
         public static IndexOutOfRangeExceptionHandler IndexOutOfRangeException { get; } = new IndexOutOfRangeExceptionHandler();
 
         /// <summary>
+        ///   Handler for <see cref="System.InvalidCastException"/>
+        /// </summary>
+        public static InvalidCastExceptionHandler InvalidCastException { get; } = new InvalidCastExceptionHandler();
+
+        /// <summary>
         ///   Handler for <see cref="System.InvalidOperationException"/>
         /// </summary>
         public static InvalidOperationExceptionHandler InvalidOperationException { get; } = new InvalidOperationExceptionHandler();

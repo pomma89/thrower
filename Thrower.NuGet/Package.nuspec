@@ -1,51 +1,60 @@
 <?xml version="1.0"?>
 
 <package>
-    <metadata>
-        <id>Thrower</id>
-        <version>3.0.4</version>
-        <title>Thrower - Compact preconditions helpers</title>
-        <authors>Alessio Parma &lt;alessio.parma@gmail.com&gt;</authors>
-        <owners>Alessio Parma &lt;alessio.parma@gmail.com&gt;</owners>
-        <description>
-Fully managed library providing convenience methods to perform argument checks.
-Thrower allows to write preconditions in a pretty lean way, which reduces the clutter at the beginning of each method by removing the need to use the cumbersome "if true then throw ex" required to validate parameters.
-For example, a validation against null becomes "Raise.ArgumentNullException.IfIsNull(myParam)", while a generic validation may be written as "Raise.ArgumentException.If(condition)".
-        </description>
-        <releaseNotes>
-* DLL for .NET Standard 1.3 was not properly generated. Now it is.
-* Fixed some build issues for .NET Standard 1.1 and 1.3.
-        </releaseNotes>
-        <summary>Fully managed library providing convenience methods to perform argument checks.</summary>
-        <language>en-US</language>
-        <projectUrl>https://github.com/pomma89/Thrower</projectUrl>
-        <iconUrl>http://pomma89.altervista.org/thrower/logo-128.png</iconUrl>
-        <requireLicenseAcceptance>false</requireLicenseAcceptance>
-        <licenseUrl>http://opensource.org/licenses/MIT</licenseUrl>
-        <copyright>Copyright (c) 2013-2016 Alessio Parma &lt;alessio.parma@gmail.com&gt;</copyright>
-        <dependencies>
-            <group targetFramework="net35"></group>
-            <group targetFramework="net40"></group>
-            <group targetFramework="net45"></group>
-            <group targetFramework="net46"></group>
-            <group targetFramework="netstandard1.1">
-                <dependency id="System.Net.Http" version="4.1.0" />
-                <dependency id="System.Reflection" version="4.1.0" />
-                <dependency id="System.Text.RegularExpressions" version="4.1.0" />
-            </group>
-            <group targetFramework="netstandard1.3">
-                <dependency id="System.IO.FileSystem" version="4.0.1" />
-                <dependency id="System.Net.Http" version="4.1.0" />
-                <dependency id="System.Reflection" version="4.1.0" />
-                <dependency id="System.Text.RegularExpressions" version="4.1.0" />
-            </group>
-            <group targetFramework="portable-net45+win8+wp8+wpa81"></group>
-        </dependencies>
-        <references></references>
-        <tags>preconditions check integrity parameters fluent arguments validation portable netstandard</tags>
-    </metadata>
-    <files>
-        <file src="lib\" target="lib" />
-        <file src="LICENSE.md" target="LICENSE.md" />
-    </files>
+  <metadata>
+    <id>Thrower</id>
+    <version>3.0.4</version>
+    <title>Thrower - Compact preconditions helpers</title>
+    <authors>Alessio Parma &lt;alessio.parma@gmail.com&gt;</authors>
+    <owners>Alessio Parma &lt;alessio.parma@gmail.com&gt;</owners>
+    <description>
+      Fully managed library providing convenience methods to perform argument checks.
+      Thrower allows to write preconditions in a pretty lean way, which reduces the clutter at the beginning of each method by removing the need to use the cumbersome "if true then throw ex" required to validate parameters.
+      For example, a validation against null becomes "Raise.ArgumentNullException.IfIsNull(myParam)", while a generic validation may be written as "Raise.ArgumentException.If(condition)".
+    </description>
+    <releaseNotes>
+      * DLL for .NET Standard 1.3 was not properly generated. Now it is.
+      * Fixed some build issues for .NET Standard 1.1 and 1.3.
+    </releaseNotes>
+    <summary>Fully managed library providing convenience methods to perform argument checks.</summary>
+    <language>en-US</language>
+    <projectUrl>https://github.com/pomma89/Thrower</projectUrl>
+    <iconUrl>http://pomma89.altervista.org/thrower/logo-128.png</iconUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <licenseUrl>http://opensource.org/licenses/MIT</licenseUrl>
+    <copyright>Copyright (c) 2013-2016 Alessio Parma &lt;alessio.parma@gmail.com&gt;</copyright>
+    <dependencies>
+      <group targetFramework="net35"></group>
+      <group targetFramework="net40"></group>
+      <group targetFramework="net45">
+        <dependency id="System.Net.Http" version="4.3.0" />
+        <dependency id="System.Reflection" version="4.3.0" />
+        <dependency id="System.Text.RegularExpressions" version="4.3.0" />
+      </group>
+      <group targetFramework="net46">
+        <dependency id="System.IO.FileSystem.Primitives" version="4.3.0" />
+        <dependency id="System.Net.Http" version="4.3.0" />
+        <dependency id="System.Reflection" version="4.3.0" />
+        <dependency id="System.Text.RegularExpressions" version="4.3.0" />
+      </group>
+      <group targetFramework="netstandard1.1">
+        <dependency id="System.Net.Http" version="4.3.0" />
+        <dependency id="System.Reflection" version="4.3.0" />
+        <dependency id="System.Text.RegularExpressions" version="4.3.0" />
+      </group>
+      <group targetFramework="netstandard1.3">
+        <dependency id="System.IO.FileSystem.Primitives" version="4.3.0" />
+        <dependency id="System.Net.Http" version="4.3.0" />
+        <dependency id="System.Reflection" version="4.3.0" />
+        <dependency id="System.Text.RegularExpressions" version="4.3.0" />
+      </group>
+      <group targetFramework="portable-net45+win8+wp8+wpa81"></group>
+    </dependencies>
+    <references></references>
+    <tags>preconditions check integrity parameters fluent arguments validation portable netstandard</tags>
+  </metadata>
+  <files>
+    <file src="lib\" target="lib" />
+    <file src="LICENSE.md" target="LICENSE.md" />
+  </files>
 </package>
