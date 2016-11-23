@@ -24,14 +24,6 @@
     <Compile Include="$(MSBuildThisFileDirectory)ExceptionHandlers\IndexOutOfRangeExceptionHandler.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)HttpException.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Obsolete\Raise.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Obsolete\RaiseArgumentException.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Obsolete\RaiseArgumentNullException.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Obsolete\RaiseArgumentOutOfRangeException.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Obsolete\RaiseHttpException.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Obsolete\RaiseIndexOutOfRangeException.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Obsolete\RaiseInvalidOperationException.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Obsolete\RaiseNotSupportedException.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Obsolete\RaiseObjectDisposedException.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Raise.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Reflection\FastMember\CallSiteCache.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Reflection\FastMember\MemberSet.cs" />
