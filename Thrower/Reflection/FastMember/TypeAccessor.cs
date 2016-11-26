@@ -10,7 +10,7 @@
 // or implied. See the License for the specific language governing permissions and limitations under
 // the License.
 
-#if !(PORTABLE || NETSTD11 || NETSTD13)
+#if !(PORTABLE || NETSTD11)
 
 using System;
 using System.Collections;
@@ -20,11 +20,19 @@ using System.Reflection.Emit;
 using System.Threading;
 
 #if !NET35
+
 using System.Dynamic;
+
 #endif
 
 namespace PommaLabs.Thrower.Reflection.FastMember
 {
+#if NET20
+    public delegate TResult Func<TResult>();
+    public delegate TResult Func<T1, T2, TResult>(T1 arg1, T2 arg2);
+    public delegate void Action<T1, T2, T3>(T1 arg1, T2 arg2, T3 arg3);
+#endif
+
     /// <summary>
     ///   Provides by-name member-access to objects of a given type.
     /// </summary>
@@ -100,21 +108,43 @@ namespace PommaLabs.Thrower.Reflection.FastMember
         public static TypeAccessor Create<T>(bool allowNonPublicAccessors) => Create(typeof(T), allowNonPublicAccessors);
 
 #if !NET35
-        sealed class DynamicAccessor : TypeAccessor
+
+        private sealed class DynamicAccessor : TypeAccessor
         {
             public static readonly DynamicAccessor Singleton = new DynamicAccessor();
-            private DynamicAccessor() { }
+
+            private DynamicAccessor()
+            {
+            }
+
             public override object this[object target, string name]
             {
                 get { return CallSiteCache.GetValue(name, target); }
                 set { CallSiteCache.SetValue(name, target, value); }
             }
         }
+
 #endif
 
         private static AssemblyBuilder assembly;
         private static ModuleBuilder module;
         private static int counter;
+
+#if NETSTD13
+        private static readonly object counterLock = new object();
+#endif
+
+        private static int GetNextCounterValue()
+        {
+#if NETSTD13
+            lock(counterLock)
+            {
+                return counter++;
+            }
+#else
+            return Interlocked.Increment(ref counter);
+#endif
+        }
 
         private static readonly MethodInfo tryGetValue = typeof(Dictionary<string, int>).GetMethod("TryGetValue");
 
@@ -159,49 +189,47 @@ namespace PommaLabs.Thrower.Reflection.FastMember
                 il.MarkLabel(labels[i]);
                 var member = members[i];
                 var isFail = true;
-                switch (member.MemberType)
+                FieldInfo field;
+                PropertyInfo prop;
+                if ((field = member as FieldInfo) != null)
                 {
-                    case MemberTypes.Field:
-                        var field = (FieldInfo) member;
+                    il.Emit(obj);
+                    Cast(il, type, true);
+                    if (isGet)
+                    {
+                        il.Emit(OpCodes.Ldfld, field);
+                        if (PortableTypeInfo.IsValueType(field.FieldType)) il.Emit(OpCodes.Box, field.FieldType);
+                    }
+                    else
+                    {
+                        il.Emit(value);
+                        Cast(il, field.FieldType, false);
+                        il.Emit(OpCodes.Stfld, field);
+                    }
+                    il.Emit(OpCodes.Ret);
+                    isFail = false;
+                }
+                else if ((prop = member as PropertyInfo) != null)
+                {
+                    MethodInfo accessor;
+                    if (prop.CanRead && (accessor = isGet ? prop.GetGetMethod(allowNonPublicAccessors) : prop.GetSetMethod(allowNonPublicAccessors)) != null)
+                    {
                         il.Emit(obj);
                         Cast(il, type, true);
                         if (isGet)
                         {
-                            il.Emit(OpCodes.Ldfld, field);
-                            if (field.FieldType.IsValueType) il.Emit(OpCodes.Box, field.FieldType);
+                            il.EmitCall(PortableTypeInfo.IsValueType(type) ? OpCodes.Call : OpCodes.Callvirt, accessor, null);
+                            if (PortableTypeInfo.IsValueType(prop.PropertyType)) il.Emit(OpCodes.Box, prop.PropertyType);
                         }
                         else
                         {
                             il.Emit(value);
-                            Cast(il, field.FieldType, false);
-                            il.Emit(OpCodes.Stfld, field);
+                            Cast(il, prop.PropertyType, false);
+                            il.EmitCall(PortableTypeInfo.IsValueType(type) ? OpCodes.Call : OpCodes.Callvirt, accessor, null);
                         }
                         il.Emit(OpCodes.Ret);
                         isFail = false;
-                        break;
-
-                    case MemberTypes.Property:
-                        var prop = (PropertyInfo) member;
-                        MethodInfo accessor;
-                        if (prop.CanRead && (accessor = isGet ? prop.GetGetMethod(allowNonPublicAccessors) : prop.GetSetMethod(allowNonPublicAccessors)) != null)
-                        {
-                            il.Emit(obj);
-                            Cast(il, type, true);
-                            if (isGet)
-                            {
-                                il.EmitCall(type.IsValueType ? OpCodes.Call : OpCodes.Callvirt, accessor, null);
-                                if (prop.PropertyType.IsValueType) il.Emit(OpCodes.Box, prop.PropertyType);
-                            }
-                            else
-                            {
-                                il.Emit(value);
-                                Cast(il, prop.PropertyType, false);
-                                il.EmitCall(type.IsValueType ? OpCodes.Call : OpCodes.Callvirt, accessor, null);
-                            }
-                            il.Emit(OpCodes.Ret);
-                            isFail = false;
-                        }
-                        break;
+                    }
                 }
                 if (isFail) il.Emit(OpCodes.Br, fail);
             }
@@ -222,7 +250,7 @@ namespace PommaLabs.Thrower.Reflection.FastMember
             /// <summary>
             ///   Can this type be queried for member availability?
             /// </summary>
-            public override bool GetMembersSupported => true;
+            public override bool GetMembersSupported { get; } = true;
 
             private MemberSet members;
 
@@ -239,6 +267,7 @@ namespace PommaLabs.Thrower.Reflection.FastMember
             private readonly Action<int, object, object> setter;
             private readonly Func<object> ctor;
             private readonly Type type;
+
             protected override Type Type => type;
 
             public DelegateAccessor(Dictionary<string, int> map, Func<int, object, object> getter, Action<int, object, object> setter, Func<object> ctor, Type type)
@@ -252,6 +281,9 @@ namespace PommaLabs.Thrower.Reflection.FastMember
 
             public override bool CreateNewSupported => ctor != null;
 
+            /// <summary>
+            ///   Create a new instance of this type.
+            /// </summary>
             public override object CreateNew() => ctor != null ? ctor() : base.CreateNew();
 
             public override object this[object target, string name]
@@ -273,8 +305,8 @@ namespace PommaLabs.Thrower.Reflection.FastMember
 
         private static bool IsFullyPublic(Type type, PropertyInfo[] props, bool allowNonPublicAccessors)
         {
-            while (type.IsNestedPublic) type = type.DeclaringType;
-            if (!type.IsPublic) return false;
+            while (PortableTypeInfo.IsNestedPublic(type)) type = type.DeclaringType;
+            if (!PortableTypeInfo.IsPublic(type)) return false;
 
             if (allowNonPublicAccessors)
             {
@@ -299,7 +331,7 @@ namespace PommaLabs.Thrower.Reflection.FastMember
 
             var props = type.GetProperties(BindingFlags.Public | BindingFlags.Instance);
             var fields = type.GetFields(BindingFlags.Public | BindingFlags.Instance);
-            var map = new Dictionary<string, int>(StringComparer.Ordinal);
+            var map = new Dictionary<string, int>();
             var members = new List<MemberInfo>(props.Length + fields.Length);
             var i = 0;
             foreach (var prop in props)
@@ -313,9 +345,9 @@ namespace PommaLabs.Thrower.Reflection.FastMember
             foreach (var field in fields) if (!map.ContainsKey(field.Name)) { map.Add(field.Name, i++); members.Add(field); }
 
             ConstructorInfo ctor = null;
-            if (type.IsClass && !type.IsAbstract)
+            if (PortableTypeInfo.IsClass(type) && !PortableTypeInfo.IsAbstract(type))
             {
-                ctor = type.GetConstructor(Type.EmptyTypes);
+                ctor = type.GetConstructor(PortableTypeInfo.EmptyTypes);
             }
             ILGenerator il;
             if (!IsFullyPublic(type, props, allowNonPublicAccessors))
@@ -327,7 +359,7 @@ namespace PommaLabs.Thrower.Reflection.FastMember
                 DynamicMethod dynCtor = null;
                 if (ctor != null)
                 {
-                    dynCtor = new DynamicMethod(type.FullName + "_ctor", typeof(object), Type.EmptyTypes, type, true);
+                    dynCtor = new DynamicMethod(type.FullName + "_ctor", typeof(object), PortableTypeInfo.EmptyTypes, type, true);
                     il = dynCtor.GetILGenerator();
                     il.Emit(OpCodes.Newobj, ctor);
                     il.Emit(OpCodes.Ret);
@@ -344,11 +376,20 @@ namespace PommaLabs.Thrower.Reflection.FastMember
             if (assembly == null)
             {
                 var name = new AssemblyName("FastMember_dynamic");
+#if NETSTD13
+                assembly = AssemblyBuilder.DefineDynamicAssembly(name, AssemblyBuilderAccess.Run);
+#else
                 assembly = AppDomain.CurrentDomain.DefineDynamicAssembly(name, AssemblyBuilderAccess.Run);
+#endif
                 module = assembly.DefineDynamicModule(name.Name);
             }
-            var tb = module.DefineType("FastMember_dynamic." + type.Name + "_" + Interlocked.Increment(ref counter),
-                (typeof(TypeAccessor).Attributes | TypeAttributes.Sealed | TypeAttributes.Public) & ~(TypeAttributes.Abstract | TypeAttributes.NotPublic), typeof(RuntimeTypeAccessor));
+#if NETSTD13
+            TypeAttributes attribs = typeof(TypeAccessor).GetTypeInfo().Attributes;
+#else
+            var attribs = typeof(TypeAccessor).Attributes;
+#endif
+            var tb = module.DefineType("FastMember_dynamic." + type.Name + "_" + GetNextCounterValue(),
+                (attribs | TypeAttributes.Sealed | TypeAttributes.Public) & ~(TypeAttributes.Abstract | TypeAttributes.NotPublic), typeof(RuntimeTypeAccessor));
 
             il = tb.DefineConstructor(MethodAttributes.Public, CallingConventions.Standard, new[] {
                 typeof(Dictionary<string,int>)
@@ -376,36 +417,42 @@ namespace PommaLabs.Thrower.Reflection.FastMember
             if (ctor != null)
             {
                 baseMethod = typeof(TypeAccessor).GetProperty(nameof(CreateNewSupported)).GetGetMethod();
-                body = tb.DefineMethod(baseMethod.Name, baseMethod.Attributes, baseMethod.ReturnType, Type.EmptyTypes);
+                body = tb.DefineMethod(baseMethod.Name, baseMethod.Attributes, baseMethod.ReturnType, PortableTypeInfo.EmptyTypes);
                 il = body.GetILGenerator();
                 il.Emit(OpCodes.Ldc_I4_1);
                 il.Emit(OpCodes.Ret);
                 tb.DefineMethodOverride(body, baseMethod);
 
                 baseMethod = typeof(TypeAccessor).GetMethod(nameof(CreateNew));
-                body = tb.DefineMethod(baseMethod.Name, baseMethod.Attributes, baseMethod.ReturnType, Type.EmptyTypes);
+                body = tb.DefineMethod(baseMethod.Name, baseMethod.Attributes, baseMethod.ReturnType, PortableTypeInfo.EmptyTypes);
                 il = body.GetILGenerator();
                 il.Emit(OpCodes.Newobj, ctor);
                 il.Emit(OpCodes.Ret);
                 tb.DefineMethodOverride(body, baseMethod);
             }
 
-            baseMethod = typeof(RuntimeTypeAccessor).GetProperty(nameof(Type), BindingFlags.NonPublic | BindingFlags.Instance).GetGetMethod(true);
-            body = tb.DefineMethod(baseMethod.Name, baseMethod.Attributes & ~MethodAttributes.Abstract, baseMethod.ReturnType, Type.EmptyTypes);
+            baseMethod = typeof(RuntimeTypeAccessor).GetProperty("Type", BindingFlags.NonPublic | BindingFlags.Instance).GetGetMethod(true);
+            body = tb.DefineMethod(baseMethod.Name, baseMethod.Attributes & ~MethodAttributes.Abstract, baseMethod.ReturnType, PortableTypeInfo.EmptyTypes);
             il = body.GetILGenerator();
             il.Emit(OpCodes.Ldtoken, type);
             il.Emit(OpCodes.Call, typeof(Type).GetMethod("GetTypeFromHandle"));
             il.Emit(OpCodes.Ret);
             tb.DefineMethodOverride(body, baseMethod);
 
-            var accessor = (TypeAccessor) Activator.CreateInstance(tb.CreateType(), map);
+#if NETSTD13
+            var typeToBeCreated = tb.CreateTypeInfo().AsType();
+#else
+            var typeToBeCreated = tb.CreateType();
+#endif
+
+            var accessor = (TypeAccessor) Activator.CreateInstance(typeToBeCreated, map);
             return accessor;
         }
 
         private static void Cast(ILGenerator il, Type type, bool valueAsPointer)
         {
             if (type == typeof(object)) { }
-            else if (type.IsValueType)
+            else if (PortableTypeInfo.IsValueType(type))
             {
                 if (valueAsPointer)
                 {

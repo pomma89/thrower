@@ -1,4 +1,4 @@
-<?xml version="1.0"?>
+﻿<?xml version="1.0"?>
 
 <package>
   <metadata>
@@ -27,28 +27,51 @@
       <group targetFramework="net35"></group>
       <group targetFramework="net40"></group>
       <group targetFramework="net45">
+        <dependency id="Microsoft.CSharp" version="4.3.0" />
         <dependency id="System.Net.Http" version="4.3.0" />
         <dependency id="System.Reflection" version="4.3.0" />
+        <dependency id="System.Reflection.Emit" version="4.3.0" />
+        <dependency id="System.Reflection.Emit.ILGeneration" version="4.3.0" />
+        <dependency id="System.Reflection.Emit.Lightweight" version="4.3.0" />
         <dependency id="System.Text.RegularExpressions" version="4.3.0" />
       </group>
       <group targetFramework="net46">
+        <dependency id="Microsoft.CSharp" version="4.3.0" />
+        <dependency id="System.Collections.NonGeneric" version="4.3.0" />
+        <dependency id="System.Data.Common" version="4.3.0" />
         <dependency id="System.IO.FileSystem.Primitives" version="4.3.0" />
         <dependency id="System.Net.Http" version="4.3.0" />
         <dependency id="System.Reflection" version="4.3.0" />
+        <dependency id="System.Reflection.Emit" version="4.3.0" />
+        <dependency id="System.Reflection.Emit.ILGeneration" version="4.3.0" />
+        <dependency id="System.Reflection.Emit.Lightweight" version="4.3.0" />
+        <dependency id="System.Reflection.TypeExtensions" version="4.3.0" />
         <dependency id="System.Text.RegularExpressions" version="4.3.0" />
       </group>
       <group targetFramework="netstandard1.1">
+        <dependency id="Microsoft.CSharp" version="4.3.0" />
         <dependency id="System.Net.Http" version="4.3.0" />
         <dependency id="System.Reflection" version="4.3.0" />
         <dependency id="System.Text.RegularExpressions" version="4.3.0" />
       </group>
       <group targetFramework="netstandard1.3">
+        <dependency id="Microsoft.CSharp" version="4.3.0" />
+        <dependency id="System.Collections.NonGeneric" version="4.3.0" />
+        <dependency id="System.Data.Common" version="4.3.0" />
         <dependency id="System.IO.FileSystem.Primitives" version="4.3.0" />
         <dependency id="System.Net.Http" version="4.3.0" />
         <dependency id="System.Reflection" version="4.3.0" />
+        <dependency id="System.Reflection.Emit" version="4.3.0" />
+        <dependency id="System.Reflection.Emit.ILGeneration" version="4.3.0" />
+        <dependency id="System.Reflection.Emit.Lightweight" version="4.3.0" />
+        <dependency id="System.Reflection.TypeExtensions" version="4.3.0" />
         <dependency id="System.Text.RegularExpressions" version="4.3.0" />
       </group>
-      <group targetFramework="portable-net45+win8+wp8+wpa81"></group>
+      <group targetFramework="portable-net45+win8+wp8+wpa81">
+        <dependency id="Microsoft.CSharp" version="4.3.0" />
+        <dependency id="System.Reflection" version="4.3.0" />
+        <dependency id="System.Text.RegularExpressions" version="4.3.0" />
+      </group>
     </dependencies>
     <references></references>
     <tags>preconditions check integrity parameters fluent arguments validation portable netstandard</tags>

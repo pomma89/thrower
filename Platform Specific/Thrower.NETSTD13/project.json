@@ -2,12 +2,18 @@
   "supports": {},
   "dependencies": {
     "Fody": "1.30.0-beta01",
+    "Microsoft.CSharp": "4.3.0",
     "Microsoft.NETCore.Portable.Compatibility": "1.0.1",
     "NETStandard.Library": "1.6.1",
     "Stamp.Fody": "1.2.5",
+    "System.Collections.NonGeneric": "4.3.0",
+    "System.Data.Common": "4.3.0",
     "System.IO.FileSystem.Primitives": "4.3.0",
     "System.Net.Http": "4.3.0",
     "System.Reflection": "4.3.0",
+    "System.Reflection.Emit": "4.3.0",
+    "System.Reflection.Emit.Lightweight": "4.3.0",
+    "System.Reflection.TypeExtensions": "4.3.0",
     "System.Text.RegularExpressions": "4.3.0"
   },
   "frameworks": {

@@ -10,53 +10,56 @@
 // or implied. See the License for the specific language governing permissions and limitations under
 // the License.
 
-#if !(PORTABLE || NETSTD11 || NETSTD13)
+#if !(PORTABLE || NETSTD11)
 
 using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Data;
+using System.Data.Common;
 
 namespace PommaLabs.Thrower.Reflection.FastMember
 {
     /// <summary>
     ///   Provides a means of reading a sequence of objects as a data-reader, for example for use
-    ///   with SqlBulkCopy or other data-base oriented code
+    ///   with SqlBulkCopy or other data-base oriented code.
     /// </summary>
-    internal class ObjectReader : IDataReader
+    public class ObjectReader : DbDataReader
     {
-        private IEnumerator source;
-        private readonly TypeAccessor accessor;
-        private readonly string[] memberNames;
-        private readonly Type[] effectiveTypes;
-        private readonly BitArray allowNull;
+        private readonly TypeAccessor _accessor;
+        private readonly string[] _memberNames;
+        private readonly Type[] _effectiveTypes;
+        private readonly BitArray _allowNull;
+        private IEnumerator _source;
+        private object _current;
+        private bool _active = true;
 
         /// <summary>
-        ///   Creates a new ObjectReader instance for reading the supplied data
+        ///   Creates a new ObjectReader instance for reading the supplied data.
         /// </summary>
-        /// <param name="source">The sequence of objects to represent</param>
-        /// <param name="members">The members that should be exposed to the reader</param>
+        /// <param name="source">The sequence of objects to represent.</param>
+        /// <param name="members">The members that should be exposed to the reader.</param>
         public static ObjectReader Create<T>(IEnumerable<T> source, params string[] members)
         {
             return new ObjectReader(typeof(T), source, members);
         }
 
         /// <summary>
-        ///   Creates a new ObjectReader instance for reading the supplied data
+        ///   Creates a new ObjectReader instance for reading the supplied data.
         /// </summary>
-        /// <param name="type">The expected Type of the information to be read</param>
-        /// <param name="source">The sequence of objects to represent</param>
-        /// <param name="members">The members that should be exposed to the reader</param>
+        /// <param name="type">The expected Type of the information to be read.</param>
+        /// <param name="source">The sequence of objects to represent.</param>
+        /// <param name="members">The members that should be exposed to the reader.</param>
         public ObjectReader(Type type, IEnumerable source, params string[] members)
         {
             if (source == null) throw new ArgumentOutOfRangeException(nameof(source));
 
             var allMembers = members == null || members.Length == 0;
 
-            this.accessor = TypeAccessor.Create(type);
-            if (accessor.GetMembersSupported)
+            this._accessor = TypeAccessor.Create(type);
+            if (_accessor.GetMembersSupported)
             {
-                var typeMembers = this.accessor.GetMembers();
+                var typeMembers = this._accessor.GetMembers();
 
                 if (allMembers)
                 {
@@ -67,8 +70,8 @@ namespace PommaLabs.Thrower.Reflection.FastMember
                     }
                 }
 
-                this.allowNull = new BitArray(members.Length);
-                this.effectiveTypes = new Type[members.Length];
+                this._allowNull = new BitArray(members.Length);
+                this._effectiveTypes = new Type[members.Length];
                 for (int i = 0; i < members.Length; i++)
                 {
                     Type memberType = null;
@@ -83,7 +86,7 @@ namespace PommaLabs.Thrower.Reflection.FastMember
                                 var tmp = member.Type;
                                 memberType = Nullable.GetUnderlyingType(tmp) ?? tmp;
 
-                                allowNull = !(memberType.IsValueType && memberType == tmp);
+                                allowNull = !(PortableTypeInfo.IsValueType(memberType) && memberType == tmp);
 
                                 // but keep checking, in case of duplicates
                             }
@@ -94,8 +97,8 @@ namespace PommaLabs.Thrower.Reflection.FastMember
                             }
                         }
                     }
-                    this.allowNull[i] = allowNull;
-                    this.effectiveTypes[i] = memberType ?? typeof(object);
+                    this._allowNull[i] = allowNull;
+                    this._effectiveTypes[i] = memberType ?? typeof(object);
                 }
             }
             else if (allMembers)
@@ -103,25 +106,31 @@ namespace PommaLabs.Thrower.Reflection.FastMember
                 throw new InvalidOperationException("Member information is not available for this type; the required members must be specified explicitly");
             }
 
-            this.current = null;
-            this.memberNames = (string[]) members.Clone();
+            this._current = null;
+            this._memberNames = (string[]) members.Clone();
 
-            this.source = source.GetEnumerator();
+            this._source = source.GetEnumerator();
         }
 
-        private object current;
-
-        void IDataReader.Close()
-        {
-            Dispose();
-        }
-
-        int IDataReader.Depth
+        /// <summary>
+        ///   Gets a value indicating the depth of nesting for the current row.
+        /// </summary>
+        /// <returns>The depth of nesting for the current row.</returns>
+        public override int Depth
         {
             get { return 0; }
         }
 
-        DataTable IDataReader.GetSchemaTable()
+#if !NETSTD13
+
+        /// <summary>
+        ///   Returns a <see cref="DataTable"/> that describes the column metadata of the <see cref="DbDataReader"/>.
+        /// </summary>
+        /// <returns>A <see cref="DataTable"/> that describes the column metadata.</returns>
+        /// <exception cref="InvalidOperationException">
+        ///   The <see cref="DbDataReader"/> is closed.
+        /// </exception>
+        public override DataTable GetSchemaTable()
         {
             // these are the columns used by DataTable load
             var table = new DataTable
@@ -136,72 +145,136 @@ namespace PommaLabs.Thrower.Reflection.FastMember
                 }
             };
             var rowData = new object[5];
-            for (int i = 0; i < memberNames.Length; i++)
+            for (int i = 0; i < _memberNames.Length; i++)
             {
                 rowData[0] = i;
-                rowData[1] = memberNames[i];
-                rowData[2] = effectiveTypes == null ? typeof(object) : effectiveTypes[i];
+                rowData[1] = _memberNames[i];
+                rowData[2] = _effectiveTypes == null ? typeof(object) : _effectiveTypes[i];
                 rowData[3] = -1;
-                rowData[4] = allowNull == null ? true : allowNull[i];
+                rowData[4] = _allowNull == null ? true : _allowNull[i];
                 table.Rows.Add(rowData);
             }
             return table;
         }
 
-        bool IDataReader.IsClosed
+        /// <summary>
+        ///   Closes the <see cref="DbDataReader"/> object.
+        /// </summary>
+        public override void Close()
         {
-            get { return source == null; }
+            Shutdown();
         }
 
-        bool IDataReader.NextResult()
+#endif
+
+        /// <summary>
+        ///   Gets a value that indicates whether this <see cref="DbDataReader"/> contains one or
+        ///   more rows.
+        /// </summary>
+        /// <returns>
+        ///   true if the <see cref="DbDataReader"/> contains one or more rows; otherwise false.
+        /// </returns>
+        public override bool HasRows => _active;
+
+        /// <summary>
+        ///   Advances the reader to the next result when reading the results of a batch of statements.
+        /// </summary>
+        /// <returns>true if there are more result sets; otherwise false.</returns>
+        public override bool NextResult()
         {
+            _active = false;
             return false;
-        }
-
-        bool IDataReader.Read()
-        {
-            var tmp = source;
-            if (tmp != null && tmp.MoveNext())
-            {
-                current = tmp.Current;
-                return true;
-            }
-            current = null;
-            return false;
-        }
-
-        int IDataReader.RecordsAffected
-        {
-            get { return 0; }
         }
 
         /// <summary>
-        ///   Releases all resources used by the ObjectReader
+        ///   Advances the reader to the next record in a result set.
         /// </summary>
-        public void Dispose()
+        /// <returns>true if there are more rows; otherwise false.</returns>
+        public override bool Read()
         {
-            current = null;
-            var tmp = source as IDisposable;
-            source = null;
+            if (_active)
+            {
+                var tmp = _source;
+                if (tmp != null && tmp.MoveNext())
+                {
+                    _current = tmp.Current;
+                    return true;
+                }
+                else
+                {
+                    _active = false;
+                }
+            }
+            _current = null;
+            return false;
+        }
+
+        /// <summary>
+        ///   Gets the number of rows changed, inserted, or deleted by execution of the SQL statement.
+        /// </summary>
+        /// <returns>
+        ///   The number of rows changed, inserted, or deleted. -1 for SELECT statements; 0 if no
+        ///   rows were affected or the statement failed.
+        /// </returns>
+        public override int RecordsAffected { get; } = 0;
+
+        /// <summary>
+        ///   Releases the managed resources used by the <see cref="DbDataReader"/> and optionally
+        ///   releases the unmanaged resources.
+        /// </summary>
+        /// <param name="disposing">
+        ///   true to release managed and unmanaged resources; false to release only unmanaged resources.
+        /// </param>
+        protected override void Dispose(bool disposing)
+        {
+            base.Dispose(disposing);
+            if (disposing) Shutdown();
+        }
+
+        private void Shutdown()
+        {
+            _active = false;
+            _current = null;
+            var tmp = _source as IDisposable;
+            _source = null;
             if (tmp != null) tmp.Dispose();
         }
 
-        int IDataRecord.FieldCount
+        /// <summary>
+        ///   Gets the number of columns in the current row.
+        /// </summary>
+        /// <returns>The number of columns in the current row.</returns>
+        /// <exception cref="NotSupportedException">
+        ///   There is no current connection to an instance of SQL Server.
+        /// </exception>
+        public override int FieldCount => _memberNames.Length;
+
+        /// <summary>
+        ///   Gets a value indicating whether the <see cref="DbDataReader"/> is closed.
+        /// </summary>
+        /// <returns>true if the <see cref="DbDataReader"/> is closed; otherwise false.</returns>
+        /// <exception cref="InvalidOperationException">
+        ///   The <see cref="DbDataReader"/> is closed.
+        /// </exception>
+        public override bool IsClosed => _source == null;
+
+        /// <summary>
+        ///   Gets the value of the specified column as a Boolean.
+        /// </summary>
+        /// <returns>The value of the specified column.</returns>
+        /// <param name="ordinal">The zero-based column ordinal.</param>
+        /// <exception cref="InvalidCastException">The specified cast is not valid.</exception>
+        public override bool GetBoolean(int ordinal)
         {
-            get { return memberNames.Length; }
+            return (bool) this[ordinal];
         }
 
-        bool IDataRecord.GetBoolean(int i)
+        public override byte GetByte(int ordinal)
         {
-            return (bool) this[i];
+            return (byte) this[ordinal];
         }
 
-        byte IDataRecord.GetByte(int i)
-        {
-            return (byte) this[i];
-        }
-
-        long IDataRecord.GetBytes(int i, long fieldOffset, byte[] buffer, int bufferoffset, int length)
+        public override long GetBytes(int i, long fieldOffset, byte[] buffer, int bufferoffset, int length)
         {
             var s = (byte[]) this[i];
             var available = s.Length - (int) fieldOffset;
@@ -212,12 +285,12 @@ namespace PommaLabs.Thrower.Reflection.FastMember
             return count;
         }
 
-        char IDataRecord.GetChar(int i)
+        public override char GetChar(int i)
         {
             return (char) this[i];
         }
 
-        long IDataRecord.GetChars(int i, long fieldoffset, char[] buffer, int bufferoffset, int length)
+        public override long GetChars(int i, long fieldoffset, char[] buffer, int bufferoffset, int length)
         {
             var s = (string) this[i];
             var available = s.Length - (int) fieldoffset;
@@ -228,109 +301,118 @@ namespace PommaLabs.Thrower.Reflection.FastMember
             return count;
         }
 
-        IDataReader IDataRecord.GetData(int i)
+        protected override DbDataReader GetDbDataReader(int i)
         {
             throw new NotSupportedException();
         }
 
-        string IDataRecord.GetDataTypeName(int i)
+        public override string GetDataTypeName(int i)
         {
-            return (effectiveTypes == null ? typeof(object) : effectiveTypes[i]).Name;
+            return (_effectiveTypes == null ? typeof(object) : _effectiveTypes[i]).Name;
         }
 
-        DateTime IDataRecord.GetDateTime(int i)
+        public override DateTime GetDateTime(int i)
         {
             return (DateTime) this[i];
         }
 
-        decimal IDataRecord.GetDecimal(int i)
+        public override decimal GetDecimal(int i)
         {
             return (decimal) this[i];
         }
 
-        double IDataRecord.GetDouble(int i)
+        public override double GetDouble(int i)
         {
             return (double) this[i];
         }
 
-        Type IDataRecord.GetFieldType(int i)
+        public override Type GetFieldType(int i)
         {
-            return effectiveTypes == null ? typeof(object) : effectiveTypes[i];
+            return _effectiveTypes == null ? typeof(object) : _effectiveTypes[i];
         }
 
-        float IDataRecord.GetFloat(int i)
+        public override float GetFloat(int i)
         {
             return (float) this[i];
         }
 
-        Guid IDataRecord.GetGuid(int i)
+        public override Guid GetGuid(int i)
         {
             return (Guid) this[i];
         }
 
-        short IDataRecord.GetInt16(int i)
+        public override short GetInt16(int i)
         {
             return (short) this[i];
         }
 
-        int IDataRecord.GetInt32(int i)
+        public override int GetInt32(int i)
         {
             return (int) this[i];
         }
 
-        long IDataRecord.GetInt64(int i)
+        public override long GetInt64(int i)
         {
             return (long) this[i];
         }
 
-        string IDataRecord.GetName(int i)
+        public override string GetName(int i)
         {
-            return memberNames[i];
+            return _memberNames[i];
         }
 
-        int IDataRecord.GetOrdinal(string name)
+        public override int GetOrdinal(string name)
         {
-            return Array.IndexOf(memberNames, name);
+            return Array.IndexOf(_memberNames, name);
         }
 
-        string IDataRecord.GetString(int i)
+        public override string GetString(int i)
         {
             return (string) this[i];
         }
 
-        object IDataRecord.GetValue(int i)
+        public override object GetValue(int i)
         {
             return this[i];
         }
 
-        int IDataRecord.GetValues(object[] values)
+        public override IEnumerator GetEnumerator()
+        {
+#if NETSTD13
+            throw new NotImplementedException(); // https://github.com/dotnet/corefx/issues/4646
+#else
+            return new DbEnumerator(this);
+#endif
+        }
+
+        public override int GetValues(object[] values)
         {
             // duplicate the key fields on the stack
-            var members = this.memberNames;
-            var current = this.current;
-            var accessor = this.accessor;
+            var members = this._memberNames;
+            var current = this._current;
+            var accessor = this._accessor;
 
             var count = Math.Min(values.Length, members.Length);
             for (int i = 0; i < count; i++) values[i] = accessor[current, members[i]] ?? DBNull.Value;
             return count;
         }
 
-        bool IDataRecord.IsDBNull(int i)
+        public override bool IsDBNull(int ordinal)
         {
-            return this[i] is DBNull;
+            return this[ordinal] is DBNull;
         }
 
-        object IDataRecord.this[string name]
+        public override object this[string name]
         {
-            get { return accessor[current, name] ?? DBNull.Value; }
+            get { return _accessor[_current, name] ?? DBNull.Value; }
         }
 
         /// <summary>
-        ///   Gets the value of the current object in the member specified
+        ///   Gets the value of the current object in the member specified.
         /// </summary>
-        public object this[int i]
+        public override object this[int i]
         {
-            get { return accessor[current, memberNames[i]] ?? DBNull.Value; }
+            get { return _accessor[_current, _memberNames[i]] ?? DBNull.Value; }
         }
     }
 }

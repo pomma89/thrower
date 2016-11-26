@@ -347,11 +347,12 @@ namespace PommaLabs.Thrower
                 throw ThrowerException.AbstractEx;
             }
 
-            // Build required types and parameters list.
             if (firstParam == null)
             {
                 throw ThrowerException.NullArgEx;
             }
+
+            // Build required types and parameters list.
             var paramCount = 1 + otherParams?.Length ?? 0;
             var ctorParams = new object[paramCount];
             ctorParams[0] = firstParam;

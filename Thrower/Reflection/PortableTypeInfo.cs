@@ -26,12 +26,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 
-#if !(PORTABLE || NETSTD11 || NETSTD13)
-
-using PommaLabs.Thrower.Reflection.FastMember;
-
-#endif
-
 namespace PommaLabs.Thrower.Reflection
 {
     /// <summary>
@@ -39,12 +33,17 @@ namespace PommaLabs.Thrower.Reflection
     /// </summary>
     public static class PortableTypeInfo
     {
-#if !(PORTABLE || NETSTD11 || NETSTD13)
+#if !(PORTABLE || NETSTD11)
         internal const BindingFlags PublicAndPrivateInstanceFlags = BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance;
         internal const BindingFlags PublicInstanceFlags = BindingFlags.Public | BindingFlags.Instance;
 #endif
 
         private static readonly object[] EmptyObjectArray = new object[0];
+
+        /// <summary>
+        ///   Represents an empty array of type <see cref="Type"/>. This property is read-only.
+        /// </summary>
+        public static Type[] EmptyTypes { get; } = new Type[0];
 
         /// <summary>
         ///   Gets the custom attributes for given member.
@@ -149,7 +148,7 @@ namespace PommaLabs.Thrower.Reflection
         {
 #if (PORTABLE || NETSTD11 || NETSTD13)
             var properties = new List<PropertyInfo>();
-            while (type != null) 
+            while (type != null)
             {
                 var typeInfo = IntrospectionExtensions.GetTypeInfo(type);
                 properties.AddRange(typeInfo.DeclaredProperties.Where(p => p.GetMethod.IsPublic));
@@ -183,7 +182,8 @@ namespace PommaLabs.Thrower.Reflection
             return propertyInfo.GetValue(instance, EmptyObjectArray);
         }
 
-#if !(PORTABLE || NETSTD11 || NETSTD13)
+#if !(PORTABLE || NETSTD11)
+
         /// <summary>
         ///   Gets the value of given property on given instance.
         /// </summary>
@@ -191,7 +191,7 @@ namespace PommaLabs.Thrower.Reflection
         /// <param name="instance">The instance.</param>
         /// <param name="propertyInfo">The property info.</param>
         /// <returns>The value of given property on given instance.</returns>
-        public static object GetPublicPropertyValue(TypeAccessor typeAccessor, object instance, PropertyInfo propertyInfo)
+        public static object GetPublicPropertyValue(FastMember.TypeAccessor typeAccessor, object instance, PropertyInfo propertyInfo)
         {
             Raise.ArgumentNullException.IfIsNull(instance, nameof(instance), "Instance cannot be null");
             Raise.ArgumentException.IfNot(propertyInfo.CanRead, nameof(propertyInfo), "Given property cannot be read");
@@ -253,14 +253,14 @@ namespace PommaLabs.Thrower.Reflection
         #endregion IsClass
 
         /// <summary>
-        ///   Determines whether an instance of the current <see cref="T:System.Type"/> can be
-        ///   assigned from an instance of the specified Type.
+        ///   Determines whether an instance of the current <see cref="Type"/> can be assigned from
+        ///   an instance of the specified Type.
         /// </summary>
         /// <param name="obj">The object.</param>
         /// <param name="type">The type.</param>
         /// <returns>
-        ///   Whether an instance of the current <see cref="T:System.Type"/> can be assigned from an
-        ///   instance of the specified Type.
+        ///   Whether an instance of the current <see cref="Type"/> can be assigned from an instance
+        ///   of the specified Type.
         /// </returns>
         public static bool IsAssignableFrom(object obj, Type type)
         {
@@ -352,11 +352,11 @@ namespace PommaLabs.Thrower.Reflection
         #endregion IsGenericTypeDefinition
 
         /// <summary>
-        ///   Determines whether the specified object is an instance of the current <see cref="T:System.Type"/>.
+        ///   Determines whether the specified object is an instance of the current <see cref="Type"/>.
         /// </summary>
         /// <param name="obj">The object.</param>
         /// <param name="type">The type.</param>
-        /// <returns>Whether the specified object is an instance of the current <see cref="T:System.Type"/>.</returns>
+        /// <returns>Whether the specified object is an instance of the current <see cref="Type"/>.</returns>
         public static bool IsInstanceOf(object obj, Type type)
         {
             if (ReferenceEquals(obj, null) || ReferenceEquals(type, null))
@@ -445,5 +445,51 @@ namespace PommaLabs.Thrower.Reflection
         public static bool IsValueType<T>() => IsValueType(typeof(T));
 
         #endregion IsValueType
+
+        #region IsPublic
+
+        /// <summary>
+        ///   Determines whether the specified type is public.
+        /// </summary>
+        /// <param name="type">The type.</param>
+        /// <returns>Whether the specified type is public.</returns>
+        public static bool IsPublic(Type type)
+        {
+#if (PORTABLE || NETSTD11 || NETSTD13)
+            return type.GetTypeInfo().IsPublic;
+#else
+            return type.IsPublic;
+#endif
+        }
+
+        /// <summary>
+        ///   Determines whether the specified type is public.
+        /// </summary>
+        /// <typeparam name="T">The type.</typeparam>
+        /// <returns>Whether the specified type is public.</returns>
+        public static bool IsPublic<T>() => IsPublic(typeof(T));
+
+        /// <summary>
+        ///   Determines whether the specified type is nested public.
+        /// </summary>
+        /// <param name="type">The type.</param>
+        /// <returns>Whether the specified type is nested public.</returns>
+        public static bool IsNestedPublic(Type type)
+        {
+#if (PORTABLE || NETSTD11 || NETSTD13)
+            return type.GetTypeInfo().IsNestedPublic;
+#else
+            return type.IsNestedPublic;
+#endif
+        }
+
+        /// <summary>
+        ///   Determines whether the specified type is nested public.
+        /// </summary>
+        /// <typeparam name="T">The type.</typeparam>
+        /// <returns>Whether the specified type is nested public.</returns>
+        public static bool IsNestedPublic<T>() => IsNestedPublic(typeof(T));
+
+        #endregion IsPublic
     }
 }
