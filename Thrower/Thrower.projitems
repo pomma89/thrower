@@ -35,8 +35,10 @@
     <Compile Include="$(MSBuildThisFileDirectory)Reflection\PortableTypeInfo.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)RaiseGeneric.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ThrowerException.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Validation\EmailAddressAttribute.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Validation\EmailAddressValidator.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Validation\ObjectValidator.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Validation\PhoneNumberAttribute.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Validation\PhoneNumberValidator.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Validation\ValidateAttribute.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Validation\ValidationError.cs" />

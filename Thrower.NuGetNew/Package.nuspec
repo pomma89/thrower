@@ -28,6 +28,7 @@
       <group targetFramework="net40"></group>
       <group targetFramework="net45">
         <dependency id="Microsoft.CSharp" version="4.3.0" />
+        <dependency id="System.ComponentModel.Annotations" version="4.3.0" />
         <dependency id="System.Net.Http" version="4.3.0" />
         <dependency id="System.Reflection" version="4.3.0" />
         <dependency id="System.Reflection.Emit" version="4.3.0" />
@@ -38,6 +39,7 @@
       <group targetFramework="net46">
         <dependency id="Microsoft.CSharp" version="4.3.0" />
         <dependency id="System.Collections.NonGeneric" version="4.3.0" />
+        <dependency id="System.ComponentModel.Annotations" version="4.3.0" />
         <dependency id="System.Data.Common" version="4.3.0" />
         <dependency id="System.IO.FileSystem.Primitives" version="4.3.0" />
         <dependency id="System.Net.Http" version="4.3.0" />
@@ -50,6 +52,7 @@
       </group>
       <group targetFramework="netstandard1.1">
         <dependency id="Microsoft.CSharp" version="4.3.0" />
+        <dependency id="System.ComponentModel.Annotations" version="4.3.0" />
         <dependency id="System.Net.Http" version="4.3.0" />
         <dependency id="System.Reflection" version="4.3.0" />
         <dependency id="System.Text.RegularExpressions" version="4.3.0" />
@@ -57,6 +60,7 @@
       <group targetFramework="netstandard1.3">
         <dependency id="Microsoft.CSharp" version="4.3.0" />
         <dependency id="System.Collections.NonGeneric" version="4.3.0" />
+        <dependency id="System.ComponentModel.Annotations" version="4.3.0" />
         <dependency id="System.Data.Common" version="4.3.0" />
         <dependency id="System.IO.FileSystem.Primitives" version="4.3.0" />
         <dependency id="System.Net.Http" version="4.3.0" />

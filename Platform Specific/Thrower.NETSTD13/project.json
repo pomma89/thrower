@@ -7,6 +7,7 @@
     "NETStandard.Library": "1.6.1",
     "Stamp.Fody": "1.2.5",
     "System.Collections.NonGeneric": "4.3.0",
+    "System.ComponentModel.Annotations": "4.3.0",
     "System.Data.Common": "4.3.0",
     "System.IO.FileSystem.Primitives": "4.3.0",
     "System.Net.Http": "4.3.0",
