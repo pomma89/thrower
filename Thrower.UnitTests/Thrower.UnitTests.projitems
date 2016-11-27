@@ -26,6 +26,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)RaiseTests.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Reflection\FastMember\Anons.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Reflection\FastMember\BasicTests.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Reflection\FastMember\DynamicTests.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Reflection\FastMember\ObjectAccessorTests.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Reflection\PortableTypeInfoTests.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Validation\ObjectValidatorTests.cs" />
