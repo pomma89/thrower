@@ -269,25 +269,48 @@ namespace PommaLabs.Thrower.Reflection.FastMember
             return (bool) this[ordinal];
         }
 
+        /// <summary>
+        ///   Gets the value of the specified column as a byte.
+        /// </summary>
+        /// <returns>The value of the specified column.</returns>
+        /// <param name="ordinal">The zero-based column ordinal.</param>
+        /// <exception cref="InvalidCastException">The specified cast is not valid.</exception>
         public override byte GetByte(int ordinal)
         {
             return (byte) this[ordinal];
         }
 
-        public override long GetBytes(int i, long fieldOffset, byte[] buffer, int bufferoffset, int length)
+        /// <summary>
+        ///   Reads a stream of bytes from the specified column, starting at location indicated by
+        ///   <paramref name="dataOffset"/>, into the buffer, starting at the location indicated by <paramref name="bufferOffset"/>.
+        /// </summary>
+        /// <returns>The actual number of bytes read.</returns>
+        /// <param name="ordinal">The zero-based column ordinal.</param>
+        /// <param name="dataOffset">The index within the row from which to begin the read operation.</param>
+        /// <param name="buffer">The buffer into which to copy the data.</param>
+        /// <param name="bufferOffset">The index with the buffer to which the data will be copied.</param>
+        /// <param name="length">The maximum number of characters to read.</param>
+        /// <exception cref="InvalidCastException">The specified cast is not valid.</exception>
+        public override long GetBytes(int ordinal, long dataOffset, byte[] buffer, int bufferOffset, int length)
         {
-            var s = (byte[]) this[i];
-            var available = s.Length - (int) fieldOffset;
+            var s = (byte[]) this[ordinal];
+            var available = s.Length - (int) dataOffset;
             if (available <= 0) return 0;
 
             var count = Math.Min(length, available);
-            Buffer.BlockCopy(s, (int) fieldOffset, buffer, bufferoffset, count);
+            Buffer.BlockCopy(s, (int) dataOffset, buffer, bufferOffset, count);
             return count;
         }
 
-        public override char GetChar(int i)
+        /// <summary>
+        ///   Gets the value of the specified column as a single character.
+        /// </summary>
+        /// <returns>The value of the specified column.</returns>
+        /// <param name="ordinal">The zero-based column ordinal.</param>
+        /// <exception cref="InvalidCastException">The specified cast is not valid.</exception>
+        public override char GetChar(int ordinal)
         {
-            return (char) this[i];
+            return (char) this[ordinal];
         }
 
         public override long GetChars(int i, long fieldoffset, char[] buffer, int bufferoffset, int length)
