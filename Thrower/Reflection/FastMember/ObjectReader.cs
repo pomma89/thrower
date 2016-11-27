@@ -216,7 +216,7 @@ namespace PommaLabs.Thrower.Reflection.FastMember
         ///   The number of rows changed, inserted, or deleted. -1 for SELECT statements; 0 if no
         ///   rows were affected or the statement failed.
         /// </returns>
-        public override int RecordsAffected { get; } = 0;
+        public override int RecordsAffected => 0;
 
         /// <summary>
         ///   Releases the managed resources used by the <see cref="DbDataReader"/> and optionally

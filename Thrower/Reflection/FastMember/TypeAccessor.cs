@@ -250,7 +250,7 @@ namespace PommaLabs.Thrower.Reflection.FastMember
             /// <summary>
             ///   Can this type be queried for member availability?
             /// </summary>
-            public override bool GetMembersSupported { get; } = true;
+            public override bool GetMembersSupported => true;
 
             private MemberSet members;
 
