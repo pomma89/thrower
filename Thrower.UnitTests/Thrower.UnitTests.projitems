@@ -24,6 +24,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)IfIsContainedInTests.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)IfIsInstanceOfTests.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)RaiseTests.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Reflection\FastMember\Anons.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Reflection\FastMember\BasicTests.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Reflection\FastMember\ObjectAccessorTests.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Reflection\PortableTypeInfoTests.cs" />
