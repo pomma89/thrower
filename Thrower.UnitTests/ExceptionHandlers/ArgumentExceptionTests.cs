@@ -538,7 +538,7 @@ namespace PommaLabs.Thrower.UnitTests.ExceptionHandlers
         }
 
         [Test]
-        [ExpectedException(typeof(ArgumentException), ExpectedMessage = TestMessage)]
+        [ExpectedException(typeof(ArgumentException), ExpectedMessage = TestMessage, MatchType = MessageMatch.StartsWith)]
         public void IfIsNotSameAs_DifferentObjects_WithMsg()
         {
             Raise.ArgumentException.IfIsNotSameAs(new object(), new object(), "X", TestMessage);
@@ -567,7 +567,7 @@ namespace PommaLabs.Thrower.UnitTests.ExceptionHandlers
         }
 
         [Test]
-        [ExpectedException(typeof(ArgumentException), ExpectedMessage = TestMessage)]
+        [ExpectedException(typeof(ArgumentException), ExpectedMessage = TestMessage, MatchType = MessageMatch.StartsWith)]
         public void IfIsSameAs_SameObjects_WithMsg()
         {
             var obj = new object();
