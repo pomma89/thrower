@@ -24,7 +24,6 @@
 using PommaLabs.Thrower.Validation;
 using System;
 using System.Collections.Generic;
-using System.Linq;
 
 #pragma warning disable CC0091 // Use static method
 
@@ -188,6 +187,96 @@ namespace PommaLabs.Thrower.ExceptionHandlers
         }
 
         #endregion IfIsNotEqualTo
+
+        #region IfIsSameAs
+
+        private const string DefaultIfIsSameMessage = "Argument is the same object as given value";
+
+        /// <summary>
+        ///   Throws an exception of type <see cref="ArgumentException"/> if and only if specified
+        ///   arguments reference the same object.
+        /// </summary>
+        /// <param name="argument">First argument to test for reference equality.</param>
+        /// <param name="comparand">Second argument to test for reference equality.</param>
+        /// <exception cref="ArgumentException">
+        ///   <paramref name="argument"/> is the same object as <paramref name="comparand"/>.
+        /// </exception>
+        public void IfIsSameAs<TArg1, TArg2>(TArg1 argument, TArg2 comparand)
+        {
+            if (ReferenceEquals(argument, comparand))
+            {
+                throw new ArgumentException(DefaultIfIsSameMessage);
+            }
+        }
+
+        /// <summary>
+        ///   Throws an exception of type <see cref="ArgumentException"/> with given message
+        ///   <paramref name="message"/> if and only if specified arguments reference the same object.
+        /// </summary>
+        /// <param name="argument">First argument to test for reference equality.</param>
+        /// <param name="comparand">Second argument to test for reference equality.</param>
+        /// <param name="argumentName">The name of the argument.</param>
+        /// <param name="message">The message the thrown exception will have.</param>
+        /// <exception cref="ArgumentException">
+        ///   <paramref name="argument"/> is the same object as <paramref name="comparand"/>.
+        /// </exception>
+        /// <remarks>
+        ///   <paramref name="message"/> and <paramref name="argumentName"/> are strictly required arguments.
+        /// </remarks>
+        public void IfIsSameAs<TArg1, TArg2>(TArg1 argument, TArg2 comparand, string argumentName, string message = null)
+        {
+            if (ReferenceEquals(argument, comparand))
+            {
+                throw new ArgumentException(message ?? DefaultIfIsSameMessage, argumentName);
+            }
+        }
+
+        #endregion IfIsSameAs
+
+        #region IfIsNotSameAs
+
+        private const string DefaultIfIsNotSameMessage = "Argument is not the same object as given value";
+
+        /// <summary>
+        ///   Throws an exception of type <see cref="ArgumentException"/> if and only if specified
+        ///   arguments do not reference the same object.
+        /// </summary>
+        /// <param name="argument">First argument to test for reference equality.</param>
+        /// <param name="comparand">Second argument to test for reference equality.</param>
+        /// <exception cref="ArgumentException">
+        ///   <paramref name="argument"/> is not the same object as <paramref name="comparand"/>.
+        /// </exception>
+        public void IfIsNotSameAs<TArg1, TArg2>(TArg1 argument, TArg2 comparand)
+        {
+            if (!ReferenceEquals(argument, comparand))
+            {
+                throw new ArgumentException(DefaultIfIsNotSameMessage);
+            }
+        }
+
+        /// <summary>
+        ///   Throws an exception of type <see cref="ArgumentException"/> with given message
+        ///   <paramref name="message"/> if and only if specified arguments do not reference the same object.
+        /// </summary>
+        /// <param name="argument">First argument to test for reference equality.</param>
+        /// <param name="comparand">Second argument to test for reference equality.</param>
+        /// <param name="argumentName">The name of the argument.</param>
+        /// <param name="message">The message the thrown exception will have.</param>
+        /// <exception cref="ArgumentException">
+        ///   <paramref name="argument"/> is not the same object as <paramref name="comparand"/>.
+        /// </exception>
+        /// <remarks>
+        ///   <paramref name="message"/> and <paramref name="argumentName"/> are strictly required arguments.
+        /// </remarks>
+        public void IfIsNotSameAs<TArg1, TArg2>(TArg1 argument, TArg2 comparand, string argumentName, string message = null)
+        {
+            if (!ReferenceEquals(argument, comparand))
+            {
+                throw new ArgumentException(message ?? DefaultIfIsNotSameMessage, argumentName);
+            }
+        }
+
+        #endregion IfIsNotSameAs
 
         #region IfIsNotValid
 

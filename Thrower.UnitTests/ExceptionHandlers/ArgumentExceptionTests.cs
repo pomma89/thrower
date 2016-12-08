@@ -515,5 +515,65 @@ namespace PommaLabs.Thrower.UnitTests.ExceptionHandlers
         }
 
         #endregion IfIs(Not)EqualTo
+
+        #region IfIs(Not)SameAs
+
+        [Test]
+        public void IfIsSameAs_DifferentObjects()
+        {
+            Raise.ArgumentException.IfIsSameAs(new object(), new object());
+        }
+
+        [Test]
+        public void IfIsSameAs_DifferentObjects_WithMsg()
+        {
+            Raise.ArgumentException.IfIsSameAs(new object(), new object(), "X", TestMessage);
+        }
+
+        [Test]
+        [ExpectedException(typeof(ArgumentException))]
+        public void IfIsNotSameAs_DifferentObjects()
+        {
+            Raise.ArgumentException.IfIsNotSameAs(new object(), new object());
+        }
+
+        [Test]
+        [ExpectedException(typeof(ArgumentException), ExpectedMessage = TestMessage)]
+        public void IfIsNotSameAs_DifferentObjects_WithMsg()
+        {
+            Raise.ArgumentException.IfIsNotSameAs(new object(), new object(), "X", TestMessage);
+        }
+
+        [Test]
+        public void IfIsNotSameAs_SameObjects()
+        {
+            var obj = new object();
+            Raise.ArgumentException.IfIsNotSameAs(obj, obj);
+        }
+
+        [Test]
+        public void IfIsNotSameAs_SameObjects_WithMsg()
+        {
+            var obj = new object();
+            Raise.ArgumentException.IfIsNotSameAs(obj, obj, "X", TestMessage);
+        }
+
+        [Test]
+        [ExpectedException(typeof(ArgumentException))]
+        public void IfIsSameAs_SameObjects()
+        {
+            var obj = new object();
+            Raise.ArgumentException.IfIsSameAs(obj, obj);
+        }
+
+        [Test]
+        [ExpectedException(typeof(ArgumentException), ExpectedMessage = TestMessage)]
+        public void IfIsSameAs_SameObjects_WithMsg()
+        {
+            var obj = new object();
+            Raise.ArgumentException.IfIsSameAs(obj, obj, "X", TestMessage);
+        }
+
+        #endregion IfIs(Not)SameAs
     }
 }

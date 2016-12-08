@@ -19,7 +19,6 @@
     <Compile Include="$(MSBuildThisFileDirectory)ExceptionHandlers\InvalidOperationExceptionTests.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ExceptionHandlers\ObjectDisposedExceptionTests.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ExceptionHandlers\ArgumentExceptionTests.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)IfAreSameTests.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)IfIsAssignableFromTests.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)IfIsContainedInTests.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)IfIsInstanceOfTests.cs" />
