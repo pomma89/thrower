@@ -384,7 +384,7 @@ namespace PommaLabs.Thrower.Reflection.FastMember
                 module = assembly.DefineDynamicModule(name.Name);
             }
 #if NETSTD13
-            TypeAttributes attribs = typeof(TypeAccessor).GetTypeInfo().Attributes;
+            var attribs = typeof(TypeAccessor).GetTypeInfo().Attributes;
 #else
             var attribs = typeof(TypeAccessor).Attributes;
 #endif

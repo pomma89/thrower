@@ -39,10 +39,9 @@ namespace PommaLabs.Thrower.Reflection.FastMember
         /// </summary>
         /// <param name="source">The sequence of objects to represent.</param>
         /// <param name="members">The members that should be exposed to the reader.</param>
-        public static ObjectReader Create<T>(IEnumerable<T> source, params string[] members)
-        {
-            return new ObjectReader(typeof(T), source, members);
-        }
+#pragma warning disable CC0022 // Should dispose object
+        public static ObjectReader Create<T>(IEnumerable<T> source, params string[] members) => new ObjectReader(typeof(T), source, members);
+#pragma warning restore CC0022 // Should dispose object
 
         /// <summary>
         ///   Creates a new ObjectReader instance for reading the supplied data.
@@ -116,10 +115,7 @@ namespace PommaLabs.Thrower.Reflection.FastMember
         ///   Gets a value indicating the depth of nesting for the current row.
         /// </summary>
         /// <returns>The depth of nesting for the current row.</returns>
-        public override int Depth
-        {
-            get { return 0; }
-        }
+        public override int Depth => 0;
 
 #if !NETSTD13
 
@@ -151,7 +147,7 @@ namespace PommaLabs.Thrower.Reflection.FastMember
                 rowData[1] = _memberNames[i];
                 rowData[2] = _effectiveTypes == null ? typeof(object) : _effectiveTypes[i];
                 rowData[3] = -1;
-                rowData[4] = _allowNull == null ? true : _allowNull[i];
+                rowData[4] = _allowNull == null || _allowNull[i];
                 table.Rows.Add(rowData);
             }
             return table;
@@ -264,10 +260,7 @@ namespace PommaLabs.Thrower.Reflection.FastMember
         /// <returns>The value of the specified column.</returns>
         /// <param name="ordinal">The zero-based column ordinal.</param>
         /// <exception cref="InvalidCastException">The specified cast is not valid.</exception>
-        public override bool GetBoolean(int ordinal)
-        {
-            return (bool) this[ordinal];
-        }
+        public override bool GetBoolean(int ordinal) => (bool) this[ordinal];
 
         /// <summary>
         ///   Gets the value of the specified column as a byte.
@@ -275,10 +268,7 @@ namespace PommaLabs.Thrower.Reflection.FastMember
         /// <returns>The value of the specified column.</returns>
         /// <param name="ordinal">The zero-based column ordinal.</param>
         /// <exception cref="InvalidCastException">The specified cast is not valid.</exception>
-        public override byte GetByte(int ordinal)
-        {
-            return (byte) this[ordinal];
-        }
+        public override byte GetByte(int ordinal) => (byte) this[ordinal];
 
         /// <summary>
         ///   Reads a stream of bytes from the specified column, starting at location indicated by
@@ -308,106 +298,169 @@ namespace PommaLabs.Thrower.Reflection.FastMember
         /// <returns>The value of the specified column.</returns>
         /// <param name="ordinal">The zero-based column ordinal.</param>
         /// <exception cref="InvalidCastException">The specified cast is not valid.</exception>
-        public override char GetChar(int ordinal)
-        {
-            return (char) this[ordinal];
-        }
+        public override char GetChar(int ordinal) => (char) this[ordinal];
 
-        public override long GetChars(int i, long fieldoffset, char[] buffer, int bufferoffset, int length)
+        /// <summary>
+        ///   Reads a stream of characters from the specified column, starting at location indicated
+        ///   by <paramref name="dataOffset"/>, into the buffer, starting at the location indicated
+        ///   by <paramref name="bufferOffset"/>.
+        /// </summary>
+        /// <returns>The actual number of characters read.</returns>
+        /// <param name="ordinal">The zero-based column ordinal.</param>
+        /// <param name="dataOffset">The index within the row from which to begin the read operation.</param>
+        /// <param name="buffer">The buffer into which to copy the data.</param>
+        /// <param name="bufferOffset">The index with the buffer to which the data will be copied.</param>
+        /// <param name="length">The maximum number of characters to read.</param>
+        public override long GetChars(int ordinal, long dataOffset, char[] buffer, int bufferOffset, int length)
         {
-            var s = (string) this[i];
-            var available = s.Length - (int) fieldoffset;
+            var s = (string) this[ordinal];
+            var available = s.Length - (int) dataOffset;
             if (available <= 0) return 0;
 
             var count = Math.Min(length, available);
-            s.CopyTo((int) fieldoffset, buffer, bufferoffset, count);
+            s.CopyTo((int) dataOffset, buffer, bufferOffset, count);
             return count;
         }
 
-        protected override DbDataReader GetDbDataReader(int i)
+        /// <summary>
+        ///   Returns a <see cref="DbDataReader"/> object for the requested column ordinal that can
+        ///   be overridden with a provider-specific implementation.
+        /// </summary>
+        /// <returns>A <see cref="DbDataReader"/> object.</returns>
+        /// <param name="ordinal">The zero-based column ordinal.</param>
+        protected override DbDataReader GetDbDataReader(int ordinal)
         {
             throw new NotSupportedException();
         }
 
-        public override string GetDataTypeName(int i)
-        {
-            return (_effectiveTypes == null ? typeof(object) : _effectiveTypes[i]).Name;
-        }
+        /// <summary>
+        ///   Gets name of the data type of the specified column.
+        /// </summary>
+        /// <returns>A string representing the name of the data type.</returns>
+        /// <param name="ordinal">The zero-based column ordinal.</param>
+        /// <exception cref="InvalidCastException">The specified cast is not valid.</exception>
+        public override string GetDataTypeName(int ordinal) => (_effectiveTypes == null ? typeof(object) : _effectiveTypes[ordinal]).Name;
 
-        public override DateTime GetDateTime(int i)
-        {
-            return (DateTime) this[i];
-        }
+        /// <summary>
+        ///   Gets the value of the specified column as a <see cref="DateTime"/> object.
+        /// </summary>
+        /// <returns>The value of the specified column.</returns>
+        /// <param name="ordinal">The zero-based column ordinal.</param>
+        /// <exception cref="InvalidCastException">The specified cast is not valid.</exception>
+        public override DateTime GetDateTime(int ordinal) => (DateTime) this[ordinal];
 
-        public override decimal GetDecimal(int i)
-        {
-            return (decimal) this[i];
-        }
+        /// <summary>
+        ///   Gets the value of the specified column as a <see cref="decimal"/> object.
+        /// </summary>
+        /// <returns>The value of the specified column.</returns>
+        /// <param name="ordinal">The zero-based column ordinal.</param>
+        /// <exception cref="InvalidCastException">The specified cast is not valid.</exception>
+        public override decimal GetDecimal(int ordinal) => (decimal) this[ordinal];
 
-        public override double GetDouble(int i)
-        {
-            return (double) this[i];
-        }
+        /// <summary>
+        ///   Gets the value of the specified column as a double-precision floating point number.
+        /// </summary>
+        /// <returns>The value of the specified column.</returns>
+        /// <param name="ordinal">The zero-based column ordinal.</param>
+        /// <exception cref="InvalidCastException">The specified cast is not valid.</exception>
+        public override double GetDouble(int ordinal) => (double) this[ordinal];
 
-        public override Type GetFieldType(int i)
-        {
-            return _effectiveTypes == null ? typeof(object) : _effectiveTypes[i];
-        }
+        /// <summary>
+        ///   Gets the data type of the specified column.
+        /// </summary>
+        /// <returns>The data type of the specified column.</returns>
+        /// <param name="ordinal">The zero-based column ordinal.</param>
+        /// <exception cref="InvalidCastException">The specified cast is not valid.</exception>
+        public override Type GetFieldType(int ordinal) => _effectiveTypes == null ? typeof(object) : _effectiveTypes[ordinal];
 
-        public override float GetFloat(int i)
-        {
-            return (float) this[i];
-        }
+        /// <summary>
+        ///   Gets the value of the specified column as a single-precision floating point number.
+        /// </summary>
+        /// <returns>The value of the specified column.</returns>
+        /// <param name="ordinal">The zero-based column ordinal.</param>
+        /// <exception cref="InvalidCastException">The specified cast is not valid.</exception>
+        public override float GetFloat(int ordinal) => (float) this[ordinal];
 
-        public override Guid GetGuid(int i)
-        {
-            return (Guid) this[i];
-        }
+        /// <summary>
+        ///   Gets the value of the specified column as a globally-unique identifier (GUID).
+        /// </summary>
+        /// <returns>The value of the specified column.</returns>
+        /// <param name="ordinal">The zero-based column ordinal.</param>
+        /// <exception cref="InvalidCastException">The specified cast is not valid.</exception>
+        public override Guid GetGuid(int ordinal) => (Guid) this[ordinal];
 
-        public override short GetInt16(int i)
-        {
-            return (short) this[i];
-        }
+        /// <summary>
+        ///   Gets the value of the specified column as a 16-bit signed integer.
+        /// </summary>
+        /// <returns>The value of the specified column.</returns>
+        /// <param name="ordinal">The zero-based column ordinal.</param>
+        /// <exception cref="InvalidCastException">The specified cast is not valid.</exception>
+        public override short GetInt16(int ordinal) => (short) this[ordinal];
 
-        public override int GetInt32(int i)
-        {
-            return (int) this[i];
-        }
+        /// <summary>
+        ///   Gets the value of the specified column as a 32-bit signed integer.
+        /// </summary>
+        /// <returns>The value of the specified column.</returns>
+        /// <param name="ordinal">The zero-based column ordinal.</param>
+        /// <exception cref="InvalidCastException">The specified cast is not valid.</exception>
+        public override int GetInt32(int ordinal) => (int) this[ordinal];
 
-        public override long GetInt64(int i)
-        {
-            return (long) this[i];
-        }
+        /// <summary>
+        ///   Gets the value of the specified column as a 64-bit signed integer.
+        /// </summary>
+        /// <returns>The value of the specified column.</returns>
+        /// <param name="ordinal">The zero-based column ordinal.</param>
+        /// <exception cref="InvalidCastException">The specified cast is not valid.</exception>
+        public override long GetInt64(int ordinal) => (long) this[ordinal];
 
-        public override string GetName(int i)
-        {
-            return _memberNames[i];
-        }
+        /// <summary>
+        ///   Gets the name of the column, given the zero-based column ordinal.
+        /// </summary>
+        /// <returns>The name of the specified column.</returns>
+        /// <param name="ordinal">The zero-based column ordinal.</param>
+        public override string GetName(int ordinal) => _memberNames[ordinal];
 
-        public override int GetOrdinal(string name)
-        {
-            return Array.IndexOf(_memberNames, name);
-        }
+        /// <summary>
+        ///   Gets the column ordinal given the name of the column.
+        /// </summary>
+        /// <returns>The zero-based column ordinal.</returns>
+        /// <param name="name">The name of the column.</param>
+        /// <exception cref="IndexOutOfRangeException">
+        ///   The name specified is not a valid column name.
+        /// </exception>
+        public override int GetOrdinal(string name) => Array.IndexOf(_memberNames, name);
 
-        public override string GetString(int i)
-        {
-            return (string) this[i];
-        }
+        /// <summary>
+        ///   Gets the value of the specified column as an instance of <see cref="string"/>.
+        /// </summary>
+        /// <returns>The value of the specified column.</returns>
+        /// <param name="ordinal">The zero-based column ordinal.</param>
+        /// <exception cref="InvalidCastException">The specified cast is not valid.</exception>
+        public override string GetString(int ordinal) => (string) this[ordinal];
 
-        public override object GetValue(int i)
-        {
-            return this[i];
-        }
+        /// <summary>
+        ///   Gets the value of the specified column as an instance of <see cref="object"/>.
+        /// </summary>
+        /// <returns>The value of the specified column.</returns>
+        /// <param name="ordinal">The zero-based column ordinal.</param>
+        public override object GetValue(int ordinal) => this[ordinal];
 
-        public override IEnumerator GetEnumerator()
-        {
-#if NETSTD13
-            throw new NotImplementedException(); // https://github.com/dotnet/corefx/issues/4646
-#else
-            return new DbEnumerator(this);
-#endif
-        }
+        /// <summary>
+        ///   Returns an <see cref="IEnumerator"/> that can be used to iterate through the rows in
+        ///   the data reader.
+        /// </summary>
+        /// <returns>
+        ///   An <see cref="IEnumerator"/> that can be used to iterate through the rows in the data reader.
+        /// </returns>
+        public override IEnumerator GetEnumerator() => new DbEnumerator(this, false);
 
+        /// <summary>
+        ///   Populates an array of objects with the column values of the current row.
+        /// </summary>
+        /// <returns>The number of instances of <see cref="object"/> in the array.</returns>
+        /// <param name="values">
+        ///   An array of <see cref="object"/> into which to copy the attribute columns.
+        /// </param>
         public override int GetValues(object[] values)
         {
             // duplicate the key fields on the stack
@@ -420,23 +473,26 @@ namespace PommaLabs.Thrower.Reflection.FastMember
             return count;
         }
 
-        public override bool IsDBNull(int ordinal)
-        {
-            return this[ordinal] is DBNull;
-        }
-
-        public override object this[string name]
-        {
-            get { return _accessor[_current, name] ?? DBNull.Value; }
-        }
+        /// <summary>
+        ///   Gets a value that indicates whether the column contains nonexistent or missing values.
+        /// </summary>
+        /// <returns>
+        ///   true if the specified column is equivalent to <see cref="DBNull"/>; otherwise false.
+        /// </returns>
+        /// <param name="ordinal">The zero-based column ordinal.</param>
+        public override bool IsDBNull(int ordinal) => this[ordinal] is DBNull;
 
         /// <summary>
         ///   Gets the value of the current object in the member specified.
         /// </summary>
-        public override object this[int i]
-        {
-            get { return _accessor[_current, _memberNames[i]] ?? DBNull.Value; }
-        }
+        /// <param name="name">Member name.</param>
+        public override object this[string name] => _accessor[_current, name] ?? DBNull.Value;
+
+        /// <summary>
+        ///   Gets the value of the current object in the member specified.
+        /// </summary>
+        /// <param name="ordinal">Member ordinal.</param>
+        public override object this[int ordinal] => _accessor[_current, _memberNames[ordinal]] ?? DBNull.Value;
     }
 }
 
