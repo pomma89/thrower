@@ -20,7 +20,6 @@
     <Compile Include="$(MSBuildThisFileDirectory)ExceptionHandlers\ObjectDisposedExceptionTests.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ExceptionHandlers\ArgumentExceptionTests.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)IfIsAssignableFromTests.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)IfIsContainedInTests.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)IfIsInstanceOfTests.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)RaiseTests.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Reflection\FastMember\Anons.cs" />
@@ -28,6 +27,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Reflection\FastMember\DynamicTests.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Reflection\FastMember\ObjectAccessorTests.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Reflection\PortableTypeInfoTests.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Validation\EmailAddressValidatorTests.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Validation\ObjectValidatorTests.cs" />
   </ItemGroup>
 </Project>

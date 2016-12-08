@@ -24,7 +24,6 @@
     <Compile Include="$(MSBuildThisFileDirectory)ExceptionHandlers\ObjectDisposedExceptionHandler.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ExceptionHandlers\IndexOutOfRangeExceptionHandler.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)HttpException.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Obsolete\Raise.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Raise.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Reflection\FastMember\CallSiteCache.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Reflection\FastMember\MemberSet.cs" />
