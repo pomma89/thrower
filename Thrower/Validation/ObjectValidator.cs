@@ -94,11 +94,15 @@ namespace PommaLabs.Thrower.Validation
             // The list of errors which will be populated during the validation process.
             validationErrors = new List<ValidationError>();
 
-#if !(NET35 || PORTABLE || NETSTD11)
+#if !(NET35 || PORTABLE)
 
             // Applies standard .NET validation.
             var netValidationErrors = new List<System.ComponentModel.DataAnnotations.ValidationResult>();
+#if NET40
             var netValidationContext = new System.ComponentModel.DataAnnotations.ValidationContext(obj, null, null);
+#else
+            var netValidationContext = new System.ComponentModel.DataAnnotations.ValidationContext(obj);
+#endif
             if (!System.ComponentModel.DataAnnotations.Validator.TryValidateObject(obj, netValidationContext, netValidationErrors, true))
             {
                 foreach (var netValidationError in netValidationErrors)
