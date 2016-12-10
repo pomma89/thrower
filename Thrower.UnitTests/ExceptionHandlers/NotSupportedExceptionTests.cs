@@ -22,22 +22,23 @@
 // OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 using NUnit.Framework;
+using Shouldly;
 using System;
 
 namespace PommaLabs.Thrower.UnitTests.ExceptionHandlers
 {
     internal sealed class NotSupportedExceptionTests : AbstractTests
     {
-        [Test, ExpectedException(typeof(NotSupportedException))]
+        [Test]
         public void If_TrueShouldThrow()
         {
-            Raise.NotSupportedException.If(true);
+            Should.Throw<NotSupportedException>(() => Raise.NotSupportedException.If(true));
         }
 
-        [Test, ExpectedException(typeof(NotSupportedException), ExpectedMessage = TestMessage)]
+        [Test]
         public void If_TrueShouldThrow_WithMessage()
         {
-            Raise.NotSupportedException.If(true, TestMessage);
+            Should.Throw<NotSupportedException>(() => Raise.NotSupportedException.If(true, TestMessage));
         }
 
         [Test]
@@ -52,16 +53,16 @@ namespace PommaLabs.Thrower.UnitTests.ExceptionHandlers
             Raise.NotSupportedException.If(false, TestMessage);
         }
 
-        [Test, ExpectedException(typeof(NotSupportedException))]
+        [Test]
         public void IfNot_FalseShouldThrow()
         {
-            Raise.NotSupportedException.IfNot(false);
+            Should.Throw<NotSupportedException>(() => Raise.NotSupportedException.IfNot(false));
         }
 
-        [Test, ExpectedException(typeof(NotSupportedException), ExpectedMessage = TestMessage)]
+        [Test]
         public void IfNot_FalseShouldThrow_WithMessage()
         {
-            Raise.NotSupportedException.IfNot(false, TestMessage);
+            Should.Throw<NotSupportedException>(() => Raise.NotSupportedException.IfNot(false, TestMessage));
         }
 
         [Test]

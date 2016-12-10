@@ -99,7 +99,7 @@ namespace PommaLabs.Thrower.UnitTests.Reflection
             Assert.AreEqual(x.B, PortableTypeInfo.GetPublicPropertyValue(x, props.First(p => p.Name == nameof(MyStruct.B))));
             Assert.AreEqual(x.C, PortableTypeInfo.GetPublicPropertyValue(x, props.First(p => p.Name == nameof(MyStruct.C))));
 
-#if !PORTABLE
+#if !(PORTABLE || NETSTD11)
             var typeAccessor = Thrower.Reflection.FastMember.TypeAccessor.Create<MyStruct>();
             Assert.AreEqual(x.A, PortableTypeInfo.GetPublicPropertyValue(typeAccessor, x, props.First(p => p.Name == nameof(MyStruct.A))));
             Assert.AreEqual(x.B, PortableTypeInfo.GetPublicPropertyValue(typeAccessor, x, props.First(p => p.Name == nameof(MyStruct.B))));
@@ -125,7 +125,7 @@ namespace PommaLabs.Thrower.UnitTests.Reflection
             Assert.AreEqual(x.C, PortableTypeInfo.GetPublicPropertyValue(x, props.First(p => p.Name == nameof(MyClass.C))));
             Assert.AreEqual(x.D, PortableTypeInfo.GetPublicPropertyValue(x, props.First(p => p.Name == nameof(MyClass.D))));
 
-#if !PORTABLE
+#if !(PORTABLE || NETSTD11)
             var typeAccessor = Thrower.Reflection.FastMember.TypeAccessor.Create<MyClass>();
             Assert.AreEqual(x.A, PortableTypeInfo.GetPublicPropertyValue(typeAccessor, x, props.First(p => p.Name == nameof(MyClass.A))));
             Assert.AreEqual(x.B, PortableTypeInfo.GetPublicPropertyValue(typeAccessor, x, props.First(p => p.Name == nameof(MyClass.B))));

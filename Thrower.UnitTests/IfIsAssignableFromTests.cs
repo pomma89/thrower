@@ -22,6 +22,7 @@
 // OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 using NUnit.Framework;
+using Shouldly;
 using System;
 
 namespace PommaLabs.Thrower.UnitTests
@@ -77,31 +78,27 @@ namespace PommaLabs.Thrower.UnitTests
         }
 
         [Test]
-        [ExpectedException(typeof(InvalidOperationException))]
         public void DerivedType()
         {
-            Raise.InvalidOperationException.IfIsAssignableFrom(new Base(), typeof(Derived));
+            Should.Throw<InvalidOperationException>(() => Raise.InvalidOperationException.IfIsAssignableFrom(new Base(), typeof(Derived)));
         }
 
         [Test]
-        [ExpectedException(typeof(InvalidOperationException))]
         public void DerivedType_Generic()
         {
-            Raise.InvalidOperationException.IfIsAssignableFrom<Derived>(new Base());
+            Should.Throw<InvalidOperationException>(() => Raise.InvalidOperationException.IfIsAssignableFrom<Derived>(new Base()));
         }
 
         [Test]
-        [ExpectedException(typeof(InvalidOperationException), ExpectedMessage = TestMessage)]
         public void DerivedType_WithMsg()
         {
-            Raise.InvalidOperationException.IfIsAssignableFrom(new Base(), typeof(Derived), TestMessage);
+            Should.Throw<InvalidOperationException>(() => Raise.InvalidOperationException.IfIsAssignableFrom(new Base(), typeof(Derived), TestMessage));
         }
 
         [Test]
-        [ExpectedException(typeof(InvalidOperationException), ExpectedMessage = TestMessage)]
         public void DerivedType_WithMsg_Generic()
         {
-            Raise.InvalidOperationException.IfIsAssignableFrom<Derived>(new Base(), TestMessage);
+            Should.Throw<InvalidOperationException>(() => Raise.InvalidOperationException.IfIsAssignableFrom<Derived>(new Base(), TestMessage));
         }
 
         [Test]
@@ -129,59 +126,51 @@ namespace PommaLabs.Thrower.UnitTests
         }
 
         [Test]
-        [ExpectedException(typeof(InvalidOperationException))]
         public void Not_BaseType()
         {
-            Raise.InvalidOperationException.IfIsNotAssignableFrom(new Derived(), typeof(Base));
+            Should.Throw<InvalidOperationException>(() => Raise.InvalidOperationException.IfIsNotAssignableFrom(new Derived(), typeof(Base)));
         }
 
         [Test]
-        [ExpectedException(typeof(InvalidOperationException))]
         public void Not_BaseType_Generic()
         {
-            Raise.InvalidOperationException.IfIsNotAssignableFrom<Base>(new Derived());
+            Should.Throw<InvalidOperationException>(() => Raise.InvalidOperationException.IfIsNotAssignableFrom<Base>(new Derived()));
         }
 
         [Test]
-        [ExpectedException(typeof(InvalidOperationException), ExpectedMessage = TestMessage)]
         public void Not_BaseType_WithMsg()
         {
-            Raise.InvalidOperationException.IfIsNotAssignableFrom(new Derived(), typeof(Base), TestMessage);
+            Should.Throw<InvalidOperationException>(() => Raise.InvalidOperationException.IfIsNotAssignableFrom(new Derived(), typeof(Base), TestMessage));
         }
 
         [Test]
-        [ExpectedException(typeof(InvalidOperationException), ExpectedMessage = TestMessage)]
         public void Not_BaseType_WithMsg_Generic()
         {
-            Raise.InvalidOperationException.IfIsNotAssignableFrom<Base>(new Derived(), TestMessage);
+            Should.Throw<InvalidOperationException>(() => Raise.InvalidOperationException.IfIsNotAssignableFrom<Base>(new Derived(), TestMessage));
         }
 
         [Test]
-        [ExpectedException(typeof(InvalidCastException))]
         public void Not_ConvertibleType()
         {
-            Raise.InvalidCastException.IfIsNotAssignableFrom(new Base(), typeof(Convertible));
+            Should.Throw<InvalidCastException>(() => Raise.InvalidCastException.IfIsNotAssignableFrom(new Base(), typeof(Convertible)));
         }
 
         [Test]
-        [ExpectedException(typeof(InvalidCastException))]
         public void Not_ConvertibleType_Generic()
         {
-            Raise.InvalidCastException.IfIsNotAssignableFrom<Convertible>(new Base());
+            Should.Throw<InvalidCastException>(() => Raise.InvalidCastException.IfIsNotAssignableFrom<Convertible>(new Base()));
         }
 
         [Test]
-        [ExpectedException(typeof(InvalidCastException), ExpectedMessage = TestMessage)]
         public void Not_ConvertibleType_WithMsg()
         {
-            Raise.InvalidCastException.IfIsNotAssignableFrom(new Base(), typeof(Convertible), TestMessage);
+            Should.Throw<InvalidCastException>(() => Raise.InvalidCastException.IfIsNotAssignableFrom(new Base(), typeof(Convertible), TestMessage));
         }
 
         [Test]
-        [ExpectedException(typeof(InvalidCastException), ExpectedMessage = TestMessage)]
         public void Not_ConvertibleType_WithMsg_Generic()
         {
-            Raise.InvalidCastException.IfIsNotAssignableFrom<Convertible>(new Base(), TestMessage);
+            Should.Throw<InvalidCastException>(() => Raise.InvalidCastException.IfIsNotAssignableFrom<Convertible>(new Base(), TestMessage));
         }
 
         [Test]
@@ -209,31 +198,27 @@ namespace PommaLabs.Thrower.UnitTests
         }
 
         [Test]
-        [ExpectedException(typeof(InvalidOperationException))]
         public void Not_DifferentType()
         {
-            Raise.InvalidOperationException.IfIsNotAssignableFrom(5, typeof(string));
+            Should.Throw<InvalidOperationException>(() => Raise.InvalidOperationException.IfIsNotAssignableFrom(5, typeof(string)));
         }
 
         [Test]
-        [ExpectedException(typeof(InvalidOperationException))]
         public void Not_DifferentType_Generic()
         {
-            Raise.InvalidOperationException.IfIsNotAssignableFrom<string>(5);
+            Should.Throw<InvalidOperationException>(() => Raise.InvalidOperationException.IfIsNotAssignableFrom<string>(5));
         }
 
         [Test]
-        [ExpectedException(typeof(InvalidOperationException), ExpectedMessage = TestMessage)]
         public void Not_DifferentType_WithMsg()
         {
-            Raise.InvalidOperationException.IfIsNotAssignableFrom(5, typeof(string), TestMessage);
+            Should.Throw<InvalidOperationException>(() => Raise.InvalidOperationException.IfIsNotAssignableFrom(5, typeof(string), TestMessage));
         }
 
         [Test]
-        [ExpectedException(typeof(InvalidOperationException), ExpectedMessage = TestMessage)]
         public void Not_DifferentType_WithMsg_Generic()
         {
-            Raise.InvalidOperationException.IfIsNotAssignableFrom<string>(5, TestMessage);
+            Should.Throw<InvalidOperationException>(() => Raise.InvalidOperationException.IfIsNotAssignableFrom<string>(5, TestMessage));
         }
 
         [Test]
@@ -285,59 +270,51 @@ namespace PommaLabs.Thrower.UnitTests
         }
 
         [Test]
-        [ExpectedException(typeof(InvalidCastException))]
         public void ReferenceType_ToObject()
         {
-            Raise.InvalidCastException.IfIsAssignableFrom(new object(), typeof(string));
+            Should.Throw<InvalidCastException>(() => Raise.InvalidCastException.IfIsAssignableFrom(new object(), typeof(string)));
         }
 
         [Test]
-        [ExpectedException(typeof(InvalidCastException))]
         public void ReferenceType_ToObject_Generic()
         {
-            Raise.InvalidCastException.IfIsAssignableFrom<string>(new object());
+            Should.Throw<InvalidCastException>(() => Raise.InvalidCastException.IfIsAssignableFrom<string>(new object()));
         }
 
         [Test]
-        [ExpectedException(typeof(InvalidCastException), ExpectedMessage = TestMessage)]
         public void ReferenceType_ToObject_WithMsg()
         {
-            Raise.InvalidCastException.IfIsAssignableFrom(new object(), typeof(string), TestMessage);
+            Should.Throw<InvalidCastException>(() => Raise.InvalidCastException.IfIsAssignableFrom(new object(), typeof(string), TestMessage));
         }
 
         [Test]
-        [ExpectedException(typeof(InvalidCastException), ExpectedMessage = TestMessage)]
         public void ReferenceType_ToObject_WithMsg_Generic()
         {
-            Raise.InvalidCastException.IfIsAssignableFrom<string>(new object(), TestMessage);
+            Should.Throw<InvalidCastException>(() => Raise.InvalidCastException.IfIsAssignableFrom<string>(new object(), TestMessage));
         }
 
         [Test]
-        [ExpectedException(typeof(InvalidOperationException))]
         public void SameType()
         {
-            Raise.InvalidOperationException.IfIsAssignableFrom(new object(), typeof(object));
+            Should.Throw<InvalidOperationException>(() => Raise.InvalidOperationException.IfIsAssignableFrom(new object(), typeof(object)));
         }
 
         [Test]
-        [ExpectedException(typeof(InvalidOperationException))]
         public void SameType_Generic()
         {
-            Raise.InvalidOperationException.IfIsAssignableFrom<object>(new object());
+            Should.Throw<InvalidOperationException>(() => Raise.InvalidOperationException.IfIsAssignableFrom<object>(new object()));
         }
 
         [Test]
-        [ExpectedException(typeof(InvalidOperationException), ExpectedMessage = TestMessage)]
         public void SameType_WithMsg()
         {
-            Raise.InvalidOperationException.IfIsAssignableFrom(new object(), typeof(object), TestMessage);
+            Should.Throw<InvalidOperationException>(() => Raise.InvalidOperationException.IfIsAssignableFrom(new object(), typeof(object), TestMessage));
         }
 
         [Test]
-        [ExpectedException(typeof(InvalidOperationException), ExpectedMessage = TestMessage)]
         public void SameType_WithMsg_Generic()
         {
-            Raise.InvalidOperationException.IfIsAssignableFrom<object>(new object(), TestMessage);
+            Should.Throw<InvalidOperationException>(() => Raise.InvalidOperationException.IfIsAssignableFrom<object>(new object(), TestMessage));
         }
     }
 }

@@ -56,8 +56,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Thrower.UnitTests.NET40", "
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Thrower.UnitTests.NET35", "Platform Specific\Thrower.UnitTests.NET35\Thrower.UnitTests.NET35.csproj", "{7A2D1E66-B95F-4D23-9248-4DB45A898C90}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Thrower.UnitTests.Portable", "Platform Specific\Thrower.UnitTests.Portable\Thrower.UnitTests.Portable.csproj", "{46F3FCFA-5343-4DB5-B89E-ED6C2E2CCDEB}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Thrower.NETSTD13", "Platform Specific\Thrower.NETSTD13\Thrower.NETSTD13.csproj", "{78478085-1D3B-4935-A32A-58203E8FBA8F}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Thrower.NuGet", "Thrower.NuGetNew\Thrower.NuGet.csproj", "{E050FE51-58A7-4F37-AF18-BEA4DCDC0156}"
@@ -71,12 +69,19 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Thrower.NuGet", "Thrower.Nu
 		{595363FB-70CC-4042-8CF0-68B0AF5FFE1D} = {595363FB-70CC-4042-8CF0-68B0AF5FFE1D}
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Thrower.UnitTests.Portable", "Platform Specific\Thrower.UnitTests.Portable\Thrower.UnitTests.Portable.csproj", "{155A90FD-3119-44F5-B0AD-10918B29BC8E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Thrower.UnitTests.NETSTD11", "Platform Specific\Thrower.UnitTests.NETSTD11\Thrower.UnitTests.NETSTD11.csproj", "{4C0CF0B4-B7FD-4651-B8BA-9C31F527DAFA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Thrower.UnitTests.NETSTD13", "Platform Specific\Thrower.UnitTests.NETSTD13\Thrower.UnitTests.NETSTD13.csproj", "{D7B789FC-DEB3-4A35-A896-CD2E2E7347B7}"
+EndProject
 Global
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution
+		Thrower.UnitTests\Thrower.UnitTests.projitems*{155a90fd-3119-44f5-b0ad-10918b29bc8e}*SharedItemsImports = 4
 		Thrower\Thrower.projitems*{1986f56f-008e-49b5-b579-fad50cdedf57}*SharedItemsImports = 4
 		Thrower\Thrower.projitems*{28b1254d-b6bb-4c2f-9094-6f0e1a0902ec}*SharedItemsImports = 4
 		Thrower\Thrower.projitems*{29830b44-1ffb-45a7-b1e6-21c392f406f7}*SharedItemsImports = 13
-		Thrower.UnitTests\Thrower.UnitTests.projitems*{46f3fcfa-5343-4db5-b89e-ed6c2e2ccdeb}*SharedItemsImports = 4
+		Thrower.UnitTests\Thrower.UnitTests.projitems*{4c0cf0b4-b7fd-4651-b8ba-9c31f527dafa}*SharedItemsImports = 4
 		Thrower\Thrower.projitems*{595363fb-70cc-4042-8cf0-68b0af5ffe1d}*SharedItemsImports = 4
 		Thrower.UnitTests\Thrower.UnitTests.projitems*{72704abb-2170-441d-b1a1-98e327923f8c}*SharedItemsImports = 4
 		Thrower.UnitTests\Thrower.UnitTests.projitems*{77861b69-4372-4b0f-89db-f97b1e2464ae}*SharedItemsImports = 4
@@ -86,6 +91,7 @@ Global
 		Thrower.UnitTests\Thrower.UnitTests.projitems*{9736d097-5148-44a2-953d-d26f934710a6}*SharedItemsImports = 4
 		Thrower\Thrower.projitems*{9f7a183b-9a44-4418-9425-a63d50850255}*SharedItemsImports = 4
 		Thrower\Thrower.projitems*{a7f28ab3-4b28-4856-9aa8-61bc71e0c466}*SharedItemsImports = 4
+		Thrower.UnitTests\Thrower.UnitTests.projitems*{d7b789fc-deb3-4a35-a896-cd2e2e7347b7}*SharedItemsImports = 4
 		Thrower.UnitTests\Thrower.UnitTests.projitems*{f52d0e79-5776-48fd-8822-94650733f081}*SharedItemsImports = 13
 	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -141,10 +147,6 @@ Global
 		{7A2D1E66-B95F-4D23-9248-4DB45A898C90}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7A2D1E66-B95F-4D23-9248-4DB45A898C90}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7A2D1E66-B95F-4D23-9248-4DB45A898C90}.Release|Any CPU.Build.0 = Release|Any CPU
-		{46F3FCFA-5343-4DB5-B89E-ED6C2E2CCDEB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{46F3FCFA-5343-4DB5-B89E-ED6C2E2CCDEB}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{46F3FCFA-5343-4DB5-B89E-ED6C2E2CCDEB}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{46F3FCFA-5343-4DB5-B89E-ED6C2E2CCDEB}.Release|Any CPU.Build.0 = Release|Any CPU
 		{78478085-1D3B-4935-A32A-58203E8FBA8F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{78478085-1D3B-4935-A32A-58203E8FBA8F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{78478085-1D3B-4935-A32A-58203E8FBA8F}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -152,6 +154,18 @@ Global
 		{E050FE51-58A7-4F37-AF18-BEA4DCDC0156}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{E050FE51-58A7-4F37-AF18-BEA4DCDC0156}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E050FE51-58A7-4F37-AF18-BEA4DCDC0156}.Release|Any CPU.Build.0 = Release|Any CPU
+		{155A90FD-3119-44F5-B0AD-10918B29BC8E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{155A90FD-3119-44F5-B0AD-10918B29BC8E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{155A90FD-3119-44F5-B0AD-10918B29BC8E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{155A90FD-3119-44F5-B0AD-10918B29BC8E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4C0CF0B4-B7FD-4651-B8BA-9C31F527DAFA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4C0CF0B4-B7FD-4651-B8BA-9C31F527DAFA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4C0CF0B4-B7FD-4651-B8BA-9C31F527DAFA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4C0CF0B4-B7FD-4651-B8BA-9C31F527DAFA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D7B789FC-DEB3-4A35-A896-CD2E2E7347B7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D7B789FC-DEB3-4A35-A896-CD2E2E7347B7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D7B789FC-DEB3-4A35-A896-CD2E2E7347B7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D7B789FC-DEB3-4A35-A896-CD2E2E7347B7}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -167,7 +181,9 @@ Global
 		{77861B69-4372-4B0F-89DB-F97B1E2464AE} = {902A5981-10FF-4C05-9055-C07A72AF2A28}
 		{9736D097-5148-44A2-953D-D26F934710A6} = {902A5981-10FF-4C05-9055-C07A72AF2A28}
 		{7A2D1E66-B95F-4D23-9248-4DB45A898C90} = {902A5981-10FF-4C05-9055-C07A72AF2A28}
-		{46F3FCFA-5343-4DB5-B89E-ED6C2E2CCDEB} = {902A5981-10FF-4C05-9055-C07A72AF2A28}
 		{78478085-1D3B-4935-A32A-58203E8FBA8F} = {902A5981-10FF-4C05-9055-C07A72AF2A28}
+		{155A90FD-3119-44F5-B0AD-10918B29BC8E} = {902A5981-10FF-4C05-9055-C07A72AF2A28}
+		{4C0CF0B4-B7FD-4651-B8BA-9C31F527DAFA} = {902A5981-10FF-4C05-9055-C07A72AF2A28}
+		{D7B789FC-DEB3-4A35-A896-CD2E2E7347B7} = {902A5981-10FF-4C05-9055-C07A72AF2A28}
 	EndGlobalSection
 EndGlobal

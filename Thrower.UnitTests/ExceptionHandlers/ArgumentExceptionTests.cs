@@ -24,6 +24,7 @@
 using NUnit.Framework;
 using PommaLabs.Thrower.ExceptionHandlers;
 using PommaLabs.Thrower.Validation;
+using Shouldly;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -311,7 +312,7 @@ namespace PommaLabs.Thrower.UnitTests.ExceptionHandlers
         [TestCase(FlagsEnum.Two | FlagsEnum.Four | (FlagsEnum) 128)]
         public void IfIsNotValidEnum_InvalidFlags_Combined(object enumValue)
         {
-            Assert.Throws<ArgumentException>(() => Raise.ArgumentException.IfIsNotValidEnum((FlagsEnum) enumValue));
+            Should.Throw<ArgumentException>(() => Raise.ArgumentException.IfIsNotValidEnum((FlagsEnum) enumValue));
         }
 
         [Flags]
@@ -329,17 +330,15 @@ namespace PommaLabs.Thrower.UnitTests.ExceptionHandlers
         #region IfIsNullOrEmpty
 
         [Test]
-        [ExpectedException(typeof(ArgumentException))]
         public void IfIsNullOrWhiteSpace_BlankString()
         {
-            Raise.ArgumentException.IfIsNullOrWhiteSpace(BlankString);
+            Should.Throw<ArgumentException>(() => Raise.ArgumentException.IfIsNullOrWhiteSpace(BlankString));
         }
 
         [Test]
-        [ExpectedException(typeof(ArgumentException), ExpectedMessage = TestMessage, MatchType = MessageMatch.StartsWith)]
         public void IfIsNullOrWhiteSpace_BlankString_WithMsg()
         {
-            Raise.ArgumentException.IfIsNullOrWhiteSpace(BlankString, nameof(BlankString), TestMessage);
+            Should.Throw<ArgumentException>(() => Raise.ArgumentException.IfIsNullOrWhiteSpace(BlankString, nameof(BlankString), TestMessage));
         }
 
         [Test]
@@ -355,45 +354,39 @@ namespace PommaLabs.Thrower.UnitTests.ExceptionHandlers
         }
 
         [Test]
-        [ExpectedException(typeof(ArgumentException))]
         public void IfIsNullOrEmpty_EmptyIntegerCollection()
         {
-            Raise.ArgumentException.IfIsNullOrEmpty(new List<int>());
+            Should.Throw<ArgumentException>(() => Raise.ArgumentException.IfIsNullOrEmpty(new List<int>()));
         }
 
         [Test]
-        [ExpectedException(typeof(ArgumentException), ExpectedMessage = TestMessage, MatchType = MessageMatch.StartsWith)]
         public void IfIsNullOrEmpty_EmptyIntegerCollection_WithMsg()
         {
-            Raise.ArgumentException.IfIsNullOrEmpty(new List<int>(), "MyList", TestMessage);
+            Should.Throw<ArgumentException>(() => Raise.ArgumentException.IfIsNullOrEmpty(new List<int>(), "MyList", TestMessage));
         }
 
         [Test]
-        [ExpectedException(typeof(ArgumentException))]
         public void IfIsNullOrEmpty_EmptyString()
         {
-            Raise.ArgumentException.IfIsNullOrEmpty(string.Empty);
+            Should.Throw<ArgumentException>(() => Raise.ArgumentException.IfIsNullOrEmpty(string.Empty));
         }
 
         [Test]
-        [ExpectedException(typeof(ArgumentException), ExpectedMessage = TestMessage, MatchType = MessageMatch.StartsWith)]
         public void IfIsNullOrEmpty_EmptyString_WithMsg()
         {
-            Raise.ArgumentException.IfIsNullOrEmpty(string.Empty, nameof(string.Empty), TestMessage);
+            Should.Throw<ArgumentException>(() => Raise.ArgumentException.IfIsNullOrEmpty(string.Empty, nameof(string.Empty), TestMessage));
         }
 
         [Test]
-        [ExpectedException(typeof(ArgumentException))]
         public void IfIsNullOrWhiteSpace_EmptyString()
         {
-            Raise.ArgumentException.IfIsNullOrWhiteSpace(string.Empty);
+            Should.Throw<ArgumentException>(() => Raise.ArgumentException.IfIsNullOrWhiteSpace(string.Empty));
         }
 
         [Test]
-        [ExpectedException(typeof(ArgumentException), ExpectedMessage = TestMessage, MatchType = MessageMatch.StartsWith)]
         public void IfIsNullOrWhiteSpace_EmptyString_WithMsg()
         {
-            Raise.ArgumentException.IfIsNullOrWhiteSpace(string.Empty, nameof(string.Empty), TestMessage);
+            Should.Throw<ArgumentException>(() => Raise.ArgumentException.IfIsNullOrWhiteSpace(string.Empty, nameof(string.Empty), TestMessage));
         }
 
         [Test]
@@ -433,17 +426,15 @@ namespace PommaLabs.Thrower.UnitTests.ExceptionHandlers
         }
 
         [Test]
-        [ExpectedException(typeof(ArgumentException))]
         public void IfIsNullOrEmpty_Dict_EmptyIntegerCollection()
         {
-            Raise.ArgumentException.IfIsNullOrEmpty(new Dictionary<int, int>());
+            Should.Throw<ArgumentException>(() => Raise.ArgumentException.IfIsNullOrEmpty(new Dictionary<int, int>()));
         }
 
         [Test]
-        [ExpectedException(typeof(ArgumentException), ExpectedMessage = TestMessage, MatchType = MessageMatch.StartsWith)]
         public void IfIsNullOrEmpty_Dict_EmptyIntegerCollection_WithMsg()
         {
-            Raise.ArgumentException.IfIsNullOrEmpty(new Dictionary<int, int>(), "MyDict", TestMessage);
+            Should.Throw<ArgumentException>(() => Raise.ArgumentException.IfIsNullOrEmpty(new Dictionary<int, int>(), "MyDict", TestMessage));
         }
 
         [Test]
@@ -476,32 +467,32 @@ namespace PommaLabs.Thrower.UnitTests.ExceptionHandlers
             Raise.ArgumentException.IfIsNullOrEmpty(dict);
         }
 
-        [Test, ExpectedException(typeof(ArgumentException), ExpectedMessage = ArgumentExceptionHandler.CollectionIsNullOrEmptyMessage, MatchType = MessageMatch.Contains)]
+        [Test]
         public void IfIsNullOrEmpty_NullList()
         {
             List<string> list = null;
-            Raise.ArgumentException.IfIsNullOrEmpty(list);
+            Should.Throw<ArgumentException>(() => Raise.ArgumentException.IfIsNullOrEmpty(list));
         }
 
-        [Test, ExpectedException(typeof(ArgumentException), ExpectedMessage = ArgumentExceptionHandler.CollectionIsNullOrEmptyMessage, MatchType = MessageMatch.Contains)]
+        [Test]
         public void IfIsNullOrEmpty_NullDictionary()
         {
             Dictionary<string, int> dict = null;
-            Raise.ArgumentException.IfIsNullOrEmpty(dict);
+            Should.Throw<ArgumentException>(() => Raise.ArgumentException.IfIsNullOrEmpty(dict));
         }
 
-        [Test, ExpectedException(typeof(ArgumentException), ExpectedMessage = ArgumentExceptionHandler.CollectionIsNullOrEmptyMessage, MatchType = MessageMatch.Contains)]
+        [Test]
         public void IfIsNullOrEmpty_EmptyList()
         {
             var list = new List<string>();
-            Raise.ArgumentException.IfIsNullOrEmpty(list);
+            Should.Throw<ArgumentException>(() => Raise.ArgumentException.IfIsNullOrEmpty(list));
         }
 
-        [Test, ExpectedException(typeof(ArgumentException), ExpectedMessage = ArgumentExceptionHandler.CollectionIsNullOrEmptyMessage, MatchType = MessageMatch.Contains)]
+        [Test]
         public void IfIsNullOrEmpty_EmptyDictionary()
         {
             var dict = new Dictionary<string, int>();
-            Raise.ArgumentException.IfIsNullOrEmpty(dict);
+            Should.Throw<ArgumentException>(() => Raise.ArgumentException.IfIsNullOrEmpty(dict));
         }
 
         #endregion IfIsNullOrEmpty
@@ -522,18 +513,16 @@ namespace PommaLabs.Thrower.UnitTests.ExceptionHandlers
         }
 
         [Test]
-        [ExpectedException(typeof(ArgumentException))]
         public void IfIsNotEqualTo_DifferentIntegers()
         {
-            Raise.ArgumentException.IfIsNotEqualTo(5, 50);
+            Should.Throw<ArgumentException>(() => Raise.ArgumentException.IfIsNotEqualTo(5, 50));
         }
 
         [Test]
-        [ExpectedException(typeof(ArgumentException), ExpectedMessage = TestMessage, MatchType = MessageMatch.Contains)]
         public void IfIsNotEqualTo_DifferentIntegers_WithMsg()
         {
             var x = 5;
-            Raise.ArgumentException.IfIsNotEqualTo(x, 50, nameof(x), TestMessage);
+            Should.Throw<ArgumentException>(() => Raise.ArgumentException.IfIsNotEqualTo(x, 50, nameof(x), TestMessage));
         }
 
         [Test]
@@ -550,18 +539,16 @@ namespace PommaLabs.Thrower.UnitTests.ExceptionHandlers
         }
 
         [Test]
-        [ExpectedException(typeof(ArgumentException))]
         public void IfIsEqualTo_SameIntegers()
         {
-            Raise.ArgumentException.IfIsEqualTo(5, 5);
+            Should.Throw<ArgumentException>(() => Raise.ArgumentException.IfIsEqualTo(5, 5));
         }
 
         [Test]
-        [ExpectedException(typeof(ArgumentException), ExpectedMessage = TestMessage, MatchType = MessageMatch.Contains)]
         public void IfIsEqualTo_SameIntegers_WithMsg()
         {
             var x = 5;
-            Raise.ArgumentException.IfIsEqualTo(x, 5, nameof(x), TestMessage);
+            Should.Throw<ArgumentException>(() => Raise.ArgumentException.IfIsEqualTo(x, 5, nameof(x), TestMessage));
         }
 
         #endregion IfIs(Not)EqualTo
@@ -581,17 +568,15 @@ namespace PommaLabs.Thrower.UnitTests.ExceptionHandlers
         }
 
         [Test]
-        [ExpectedException(typeof(ArgumentException))]
         public void IfIsNotSameAs_DifferentObjects()
         {
-            Raise.ArgumentException.IfIsNotSameAs(new object(), new object());
+            Should.Throw<ArgumentException>(() => Raise.ArgumentException.IfIsNotSameAs(new object(), new object()));
         }
 
         [Test]
-        [ExpectedException(typeof(ArgumentException), ExpectedMessage = TestMessage, MatchType = MessageMatch.StartsWith)]
         public void IfIsNotSameAs_DifferentObjects_WithMsg()
         {
-            Raise.ArgumentException.IfIsNotSameAs(new object(), new object(), "X", TestMessage);
+            Should.Throw<ArgumentException>(() => Raise.ArgumentException.IfIsNotSameAs(new object(), new object(), "X", TestMessage));
         }
 
         [Test]
@@ -609,19 +594,17 @@ namespace PommaLabs.Thrower.UnitTests.ExceptionHandlers
         }
 
         [Test]
-        [ExpectedException(typeof(ArgumentException))]
         public void IfIsSameAs_SameObjects()
         {
             var obj = new object();
-            Raise.ArgumentException.IfIsSameAs(obj, obj);
+            Should.Throw<ArgumentException>(() => Raise.ArgumentException.IfIsSameAs(obj, obj));
         }
 
         [Test]
-        [ExpectedException(typeof(ArgumentException), ExpectedMessage = TestMessage, MatchType = MessageMatch.StartsWith)]
         public void IfIsSameAs_SameObjects_WithMsg()
         {
             var obj = new object();
-            Raise.ArgumentException.IfIsSameAs(obj, obj, "X", TestMessage);
+            Should.Throw<ArgumentException>(() => Raise.ArgumentException.IfIsSameAs(obj, obj, "X", TestMessage));
         }
 
         #endregion IfIs(Not)SameAs
