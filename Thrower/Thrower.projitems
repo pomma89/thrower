@@ -36,6 +36,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)ThrowerException.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Validation\EmailAddressAttribute.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Validation\EmailAddressValidator.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Validation\EnumerationValidator.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Validation\ObjectValidator.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Validation\PhoneNumberAttribute.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Validation\PhoneNumberValidator.cs" />

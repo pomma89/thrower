@@ -276,6 +276,56 @@ namespace PommaLabs.Thrower.UnitTests.ExceptionHandlers
 
         #endregion IfIsNotValidPhoneNumber
 
+        #region IfIsNotValidEnum
+
+        [TestCase(FlagsEnum.Zero)]
+        [TestCase(FlagsEnum.One)]
+        [TestCase(FlagsEnum.Two)]
+        [TestCase(FlagsEnum.Four)]
+        [TestCase(FlagsEnum.Seven)]
+        [TestCase(FlagsEnum.Seven | FlagsEnum.One)]
+        [TestCase(FlagsEnum.Seven | FlagsEnum.Two)]
+        [TestCase(FlagsEnum.Seven | FlagsEnum.Four)]
+        [TestCase(FlagsEnum.One | FlagsEnum.Two | FlagsEnum.Four)]
+        public void IfIsNotValidEnum_ValidFlags_Simple(object enumValue)
+        {
+            Raise.ArgumentException.IfIsNotValidEnum((FlagsEnum) enumValue);
+        }
+
+        [TestCase(FlagsEnum.Zero | FlagsEnum.One)]
+        [TestCase(FlagsEnum.Zero | FlagsEnum.Two)]
+        [TestCase(FlagsEnum.Zero | FlagsEnum.Four)]
+        [TestCase(FlagsEnum.One | FlagsEnum.Two)]
+        [TestCase(FlagsEnum.One | FlagsEnum.Four)]
+        [TestCase(FlagsEnum.Two | FlagsEnum.Four)]
+        public void IfIsNotValidEnum_ValidFlags_Combined(object enumValue)
+        {
+            Raise.ArgumentException.IfIsNotValidEnum((FlagsEnum) enumValue);
+        }
+
+        [TestCase(FlagsEnum.Zero | FlagsEnum.One | (FlagsEnum) 8)]
+        [TestCase(FlagsEnum.Zero | FlagsEnum.Two | (FlagsEnum) 16)]
+        [TestCase(FlagsEnum.Zero | FlagsEnum.Four | (FlagsEnum) 11)]
+        [TestCase(FlagsEnum.One | FlagsEnum.Two | (FlagsEnum) 9)]
+        [TestCase(FlagsEnum.One | FlagsEnum.Four | (FlagsEnum) 10)]
+        [TestCase(FlagsEnum.Two | FlagsEnum.Four | (FlagsEnum) 128)]
+        public void IfIsNotValidEnum_InvalidFlags_Combined(object enumValue)
+        {
+            Assert.Throws<ArgumentException>(() => Raise.ArgumentException.IfIsNotValidEnum((FlagsEnum) enumValue));
+        }
+
+        [Flags]
+        private enum FlagsEnum
+        {
+            Zero = 0,
+            One = 1,
+            Two = 2,
+            Four = 4,
+            Seven = 7
+        }
+
+        #endregion IfIsNotValidEnum
+
         #region IfIsNullOrEmpty
 
         [Test]

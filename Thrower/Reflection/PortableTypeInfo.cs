@@ -24,6 +24,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Reflection;
 
 namespace PommaLabs.Thrower.Reflection
@@ -44,6 +45,23 @@ namespace PommaLabs.Thrower.Reflection
         ///   Represents an empty array of type <see cref="Type"/>. This property is read-only.
         /// </summary>
         public static Type[] EmptyTypes { get; } = new Type[0];
+
+        /// <summary>
+        ///   Gets the custom attributes for given type.
+        /// </summary>
+        /// <param name="type">The type.</param>
+        /// <param name="inherit">
+        ///   True to search this type's inheritance chain to find the attributes; otherwise, false.
+        /// </param>
+        /// <returns>The custom attributes for given type.</returns>
+        public static IList<Attribute> GetCustomAttributes(Type type, bool inherit)
+        {
+#if (PORTABLE || NETSTD11 || NETSTD13)
+            return IntrospectionExtensions.GetTypeInfo(type).GetCustomAttributes().ToArray();
+#else
+            return type.GetCustomAttributes(inherit).Cast<Attribute>().ToArray();
+#endif
+        }
 
         /// <summary>
         ///   Gets the custom attributes for given member.
@@ -491,5 +509,40 @@ namespace PommaLabs.Thrower.Reflection
         public static bool IsNestedPublic<T>() => IsNestedPublic(typeof(T));
 
         #endregion IsPublic
+
+        #region CastTo
+
+        /// <summary>
+        ///   Class to cast to type <typeparamref name="T"/>.
+        /// </summary>
+        /// <typeparam name="T">Target type.</typeparam>
+        /// <remarks>Found on StackOverflow: "http://stackoverflow.com/a/23391746/1880086".</remarks>
+        public static class CastTo<T>
+        {
+            /// <summary>
+            ///   Casts <typeparamref name="S"/> to <typeparamref name="T"/>. This does not cause
+            ///   boxing for value types. Useful in generic methods.
+            /// </summary>
+            /// <param name="s">The value that should be cast.</param>
+            /// <typeparam name="S">Source type to cast from. Usually a generic type.</typeparam>
+            public static T From<S>(S s)
+            {
+                return Cache<S>.caster(s);
+            }
+
+            private static class Cache<S>
+            {
+                public static readonly Func<S, T> caster = Get();
+
+                private static Func<S, T> Get()
+                {
+                    var p = Expression.Parameter(typeof(S), "s");
+                    var c = Expression.ConvertChecked(p, typeof(T));
+                    return Expression.Lambda<Func<S, T>>(c, p).Compile();
+                }
+            }
+        }
+
+        #endregion CastTo
     }
 }
