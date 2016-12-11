@@ -287,7 +287,7 @@ namespace PommaLabs.Thrower.Reflection.FastMember
             var available = s.Length - (int) dataOffset;
             if (available <= 0) return 0;
 
-            var count = Math.Min(length, available);
+            var count = Min(length, available);
             Buffer.BlockCopy(s, (int) dataOffset, buffer, bufferOffset, count);
             return count;
         }
@@ -317,7 +317,7 @@ namespace PommaLabs.Thrower.Reflection.FastMember
             var available = s.Length - (int) dataOffset;
             if (available <= 0) return 0;
 
-            var count = Math.Min(length, available);
+            var count = Min(length, available);
             s.CopyTo((int) dataOffset, buffer, bufferOffset, count);
             return count;
         }
@@ -468,7 +468,7 @@ namespace PommaLabs.Thrower.Reflection.FastMember
             var current = this._current;
             var accessor = this._accessor;
 
-            var count = Math.Min(values.Length, members.Length);
+            var count = Min(values.Length, members.Length);
             for (int i = 0; i < count; i++) values[i] = accessor[current, members[i]] ?? DBNull.Value;
             return count;
         }
@@ -493,6 +493,14 @@ namespace PommaLabs.Thrower.Reflection.FastMember
         /// </summary>
         /// <param name="ordinal">Member ordinal.</param>
         public override object this[int ordinal] => _accessor[_current, _memberNames[ordinal]] ?? DBNull.Value;
+
+        /// <summary>
+        ///   This avoids a reference to a library for .NET standard.
+        /// </summary>
+        /// <param name="x">X.</param>
+        /// <param name="y">Y.</param>
+        /// <returns>Minimum.</returns>
+        private static int Min(int x, int y) => x < y ? x : y;
     }
 }
 

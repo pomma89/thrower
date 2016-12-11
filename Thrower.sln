@@ -73,8 +73,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Thrower.UnitTests.Portable"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Thrower.UnitTests.NETSTD11", "Platform Specific\Thrower.UnitTests.NETSTD11\Thrower.UnitTests.NETSTD11.csproj", "{4C0CF0B4-B7FD-4651-B8BA-9C31F527DAFA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Thrower.UnitTests.NETSTD13", "Platform Specific\Thrower.UnitTests.NETSTD13\Thrower.UnitTests.NETSTD13.csproj", "{D7B789FC-DEB3-4A35-A896-CD2E2E7347B7}"
-EndProject
 Global
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution
 		Thrower.UnitTests\Thrower.UnitTests.projitems*{155a90fd-3119-44f5-b0ad-10918b29bc8e}*SharedItemsImports = 4
@@ -91,7 +89,6 @@ Global
 		Thrower.UnitTests\Thrower.UnitTests.projitems*{9736d097-5148-44a2-953d-d26f934710a6}*SharedItemsImports = 4
 		Thrower\Thrower.projitems*{9f7a183b-9a44-4418-9425-a63d50850255}*SharedItemsImports = 4
 		Thrower\Thrower.projitems*{a7f28ab3-4b28-4856-9aa8-61bc71e0c466}*SharedItemsImports = 4
-		Thrower.UnitTests\Thrower.UnitTests.projitems*{d7b789fc-deb3-4a35-a896-cd2e2e7347b7}*SharedItemsImports = 4
 		Thrower.UnitTests\Thrower.UnitTests.projitems*{f52d0e79-5776-48fd-8822-94650733f081}*SharedItemsImports = 13
 	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -162,10 +159,6 @@ Global
 		{4C0CF0B4-B7FD-4651-B8BA-9C31F527DAFA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4C0CF0B4-B7FD-4651-B8BA-9C31F527DAFA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4C0CF0B4-B7FD-4651-B8BA-9C31F527DAFA}.Release|Any CPU.Build.0 = Release|Any CPU
-		{D7B789FC-DEB3-4A35-A896-CD2E2E7347B7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{D7B789FC-DEB3-4A35-A896-CD2E2E7347B7}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{D7B789FC-DEB3-4A35-A896-CD2E2E7347B7}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{D7B789FC-DEB3-4A35-A896-CD2E2E7347B7}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -184,6 +177,5 @@ Global
 		{78478085-1D3B-4935-A32A-58203E8FBA8F} = {902A5981-10FF-4C05-9055-C07A72AF2A28}
 		{155A90FD-3119-44F5-B0AD-10918B29BC8E} = {902A5981-10FF-4C05-9055-C07A72AF2A28}
 		{4C0CF0B4-B7FD-4651-B8BA-9C31F527DAFA} = {902A5981-10FF-4C05-9055-C07A72AF2A28}
-		{D7B789FC-DEB3-4A35-A896-CD2E2E7347B7} = {902A5981-10FF-4C05-9055-C07A72AF2A28}
 	EndGlobalSection
 EndGlobal

@@ -1,6 +1,7 @@
 // include Fake lib
 #r @"packages\FAKE\tools\FakeLib.dll"
 open Fake
+open Fake.Testing
 
 directExec (fun info ->
   info.FileName <- ".nuget/NuGet.exe"
@@ -19,11 +20,11 @@ let perfResDst   = artifactsDir + "perf-results"
 
 // Common - Build
 let myBuild target buildMode =
-    let setParams defaults = 
+    let setParams defaults =
       { defaults with
           Verbosity = Some(Quiet)
           Targets = [target]
-          Properties = 
+          Properties =
             [
               "Configuration", buildMode
             ]
@@ -33,21 +34,21 @@ let myBuild target buildMode =
 // Common - Test
 let myTest (buildMode: string) =
     !! (System.String.Format(testDir, buildMode) + testDll)
-      |> NUnit (fun p -> 
+      |> NUnit3 (fun p ->
         { p with
-            DisableShadowCopy = true;
-            OutputFile = artifactsDir + "test-results.xml" 
+            ShadowCopy = true;
+            OutputDir = artifactsDir + "test-results.xml"
+            ResultSpecs  = [ ]
         })
 
 // Targets
 Target "Clean" (fun _ ->
     trace "Cleaning..."
-    
+
     CleanDirs [artifactsDir]
 
     myBuild "Clean" "Debug"
     myBuild "Clean" "Release"
-    myBuild "Clean" "Publish"
 )
 
 Target "BuildDebug" (fun _ ->
@@ -58,11 +59,6 @@ Target "BuildDebug" (fun _ ->
 Target "BuildRelease" (fun _ ->
     trace "Building for RELEASE..."
     myBuild "Build" "Release"
-)
-
-Target "BuildPublish" (fun _ ->
-    trace "Building for PUBLISH..."
-    myBuild "Build" "Publish"
 )
 
 Target "TestDebug" (fun _ ->
@@ -94,7 +90,6 @@ Target "Default" (fun _ ->
   ==> "BuildRelease"
   ==> "TestRelease"
   ==> "PerfRelease"
-  ==> "BuildPublish"
   ==> "Default"
 
 // Start build
