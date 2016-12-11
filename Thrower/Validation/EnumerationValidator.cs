@@ -27,9 +27,37 @@ using System.Linq;
 
 namespace PommaLabs.Thrower.Validation
 {
+    /// <summary>
+    ///   An enumeration validator which ensures given enumeration value is defined in specified
+    ///   enumeration type. This also works when enumeration has been decorated with <see cref="FlagsAttribute"/>.
+    /// </summary>
     public static class EnumerationValidator
     {
-        public static bool IsDefined<TEnum>(TEnum value)
+        /// <summary>
+        ///   Ensures given enumeration value is defined in specified enumeration type.
+        /// </summary>
+        /// <typeparam name="TEnum">The enumeration type.</typeparam>
+        /// <param name="value">The enumeration value.</param>
+        /// <returns>
+        ///   True if given enumeration value is defined in specified enumeration type, false otherwise.
+        /// </returns>
+        /// <remarks>This also works when enumeration has been decorated with <see cref="FlagsAttribute"/>.</remarks>
+        public static bool Validate<TEnum>(TEnum? value)
+            where TEnum : struct
+        {
+            return value.HasValue ? Validate(value.Value) : true;
+        }
+
+        /// <summary>
+        ///   Ensures given enumeration value is defined in specified enumeration type.
+        /// </summary>
+        /// <typeparam name="TEnum">The enumeration type.</typeparam>
+        /// <param name="value">The enumeration value.</param>
+        /// <returns>
+        ///   True if given enumeration value is defined in specified enumeration type, false otherwise.
+        /// </returns>
+        /// <remarks>This also works when enumeration has been decorated with <see cref="FlagsAttribute"/>.</remarks>
+        public static bool Validate<TEnum>(TEnum value)
             where TEnum : struct
         {
             if (Enum.IsDefined(CachedEnumValidator<TEnum>.EnumType, value))
@@ -41,6 +69,40 @@ namespace PommaLabs.Thrower.Validation
                 var intValue = PortableTypeInfo.CastTo<int>.From(value);
                 return (CachedEnumValidator<TEnum>.Mask & intValue) == intValue;
             }
+            return false;
+        }
+
+        /// <summary>
+        ///   Ensures given enumeration value is defined in specified enumeration type.
+        /// </summary>
+        /// <param name="enumType">The enumeration type.</param>
+        /// <param name="value">The enumeration value.</param>
+        /// <returns>
+        ///   True if given enumeration value is defined in specified enumeration type, false otherwise.
+        /// </returns>
+        /// <remarks>This also works when enumeration has been decorated with <see cref="FlagsAttribute"/>.</remarks>
+        public static bool Validate(Type enumType, object value)
+        {
+            if (Enum.IsDefined(enumType, value))
+            {
+                return true;
+            }
+
+            var hasFlagsAttribute = PortableTypeInfo
+                .GetCustomAttributes(enumType, true)
+                ?.Any(a => a is FlagsAttribute) ?? false;
+
+            if (hasFlagsAttribute)
+            {
+                var mask = 0;
+                foreach (var enumValue in Enum.GetValues(enumType))
+                {
+                    mask = mask | (int) enumValue;
+                }
+                var intValue = (int) value;
+                return (mask & intValue) == intValue;
+            }
+
             return false;
         }
 

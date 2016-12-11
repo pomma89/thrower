@@ -21,7 +21,6 @@
 // DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT
 // OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
-using PommaLabs.Thrower.Reflection;
 using PommaLabs.Thrower.Validation;
 using System;
 using System.Collections.Generic;
@@ -331,7 +330,7 @@ namespace PommaLabs.Thrower.ExceptionHandlers
         public void IfIsNotValidEnum<TEnum>(TEnum argument)
             where TEnum : struct
         {
-            if (PortableTypeInfo.IsEnum<TEnum>() && !EnumerationValidator.IsDefined(argument))
+            if (!EnumerationValidator.Validate(argument))
             {
                 var exceptionMsg = string.Format(DefaultIfIsNotValidEnumMessage, argument, typeof(TEnum).Name);
                 throw new ArgumentException(exceptionMsg);
@@ -352,9 +351,88 @@ namespace PommaLabs.Thrower.ExceptionHandlers
         public void IfIsNotValidEnum<TEnum>(TEnum argument, string argumentName, string message = null)
             where TEnum : struct
         {
-            if (PortableTypeInfo.IsEnum<TEnum>() && !EnumerationValidator.IsDefined(argument))
+            if (!EnumerationValidator.Validate(argument))
             {
                 var exceptionMsg = message ?? string.Format(DefaultIfIsNotValidEnumMessage, argument, typeof(TEnum).Name);
+                throw new ArgumentException(exceptionMsg, argumentName);
+            }
+        }
+
+        /// <summary>
+        ///   Throws <see cref="ArgumentException"/> if given enumeration argument is not defined.
+        /// </summary>
+        /// <typeparam name="TEnum">The type of the enumeration argument.</typeparam>
+        /// <param name="argument">The enumeration argument.</param>
+        /// <exception cref="ArgumentException">If given enumeration argument is not defined.</exception>
+        public void IfIsNotValidEnum<TEnum>(TEnum? argument)
+            where TEnum : struct
+        {
+            if (!EnumerationValidator.Validate(argument))
+            {
+                var exceptionMsg = string.Format(DefaultIfIsNotValidEnumMessage, argument, typeof(TEnum).Name);
+                throw new ArgumentException(exceptionMsg);
+            }
+        }
+
+        /// <summary>
+        ///   Throws <see cref="ArgumentException"/> if given enumeration argument is not defined.
+        /// </summary>
+        /// <typeparam name="TEnum">The type of the enumeration argument.</typeparam>
+        /// <param name="argument">The enumeration argument.</param>
+        /// <param name="argumentName">The name of the enumeration argument.</param>
+        /// <param name="message">The message.</param>
+        /// <exception cref="ArgumentException">If given enumeration argument is not defined.</exception>
+        /// <remarks>
+        ///   <paramref name="message"/> and <paramref name="argumentName"/> are strictly required arguments.
+        /// </remarks>
+        public void IfIsNotValidEnum<TEnum>(TEnum? argument, string argumentName, string message = null)
+            where TEnum : struct
+        {
+            if (!EnumerationValidator.Validate(argument))
+            {
+                var exceptionMsg = message ?? string.Format(DefaultIfIsNotValidEnumMessage, argument, typeof(TEnum).Name);
+                throw new ArgumentException(exceptionMsg, argumentName);
+            }
+        }
+
+        /// <summary>
+        ///   Throws <see cref="ArgumentException"/> if given enumeration argument is not defined.
+        /// </summary>
+        /// <param name="enumType">The enumeration type.</param>
+        /// <param name="argument">The enumeration argument.</param>
+        /// <exception cref="ArgumentException">If given enumeration argument is not defined.</exception>
+        /// <remarks>
+        ///   This methid is slower than <see cref="IfIsNotValidEnum{TEnum}(TEnum)"/>, please use
+        ///   that one if possible.
+        /// </remarks>
+        public void IfIsNotValidEnum(Type enumType, object argument)
+        {
+            if (!EnumerationValidator.Validate(enumType, argument))
+            {
+                var exceptionMsg = string.Format(DefaultIfIsNotValidEnumMessage, argument, enumType.Name);
+                throw new ArgumentException(exceptionMsg);
+            }
+        }
+
+        /// <summary>
+        ///   Throws <see cref="ArgumentException"/> if given enumeration argument is not defined.
+        /// </summary>
+        /// <param name="enumType">The enumeration type.</param>
+        /// <param name="argument">The enumeration argument.</param>
+        /// <param name="argumentName">The name of the enumeration argument.</param>
+        /// <param name="message">The message.</param>
+        /// <exception cref="ArgumentException">If given enumeration argument is not defined.</exception>
+        /// <remarks>
+        ///   <paramref name="message"/> and <paramref name="argumentName"/> are strictly required arguments.
+        ///
+        ///   This methid is slower than
+        ///   <see cref="IfIsNotValidEnum{TEnum}(TEnum, string, string)"/>, please use that one if possible.
+        /// </remarks>
+        public void IfIsNotValidEnum(Type enumType, object argument, string argumentName, string message = null)
+        {
+            if (!EnumerationValidator.Validate(enumType, argument))
+            {
+                var exceptionMsg = message ?? string.Format(DefaultIfIsNotValidEnumMessage, argument, enumType.Name);
                 throw new ArgumentException(exceptionMsg, argumentName);
             }
         }

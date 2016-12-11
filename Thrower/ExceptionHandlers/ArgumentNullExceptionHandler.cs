@@ -21,7 +21,6 @@
 // DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT
 // OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
-using PommaLabs.Thrower.Reflection;
 using System;
 
 #pragma warning disable CC0091 // Use static method
@@ -35,7 +34,7 @@ namespace PommaLabs.Thrower.ExceptionHandlers
     {
         private const string DefaultMessage = "Argument, or a nested object, is null";
 
-        #region If
+        #region If(Not)
 
         /// <summary>
         ///   Throws <see cref="ArgumentNullException"/> if given condition is true.
@@ -68,7 +67,38 @@ namespace PommaLabs.Thrower.ExceptionHandlers
             }
         }
 
-        #endregion If
+        /// <summary>
+        ///   Throws <see cref="ArgumentNullException"/> if given condition is false.
+        /// </summary>
+        /// <param name="condition">The condition.</param>
+        /// <exception cref="ArgumentNullException">If given condition is false.</exception>
+        public void IfNot(bool condition)
+        {
+            if (!condition)
+            {
+                throw new ArgumentNullException();
+            }
+        }
+
+        /// <summary>
+        ///   Throws <see cref="ArgumentException"/> if given condition is false.
+        /// </summary>
+        /// <param name="condition">The condition.</param>
+        /// <param name="argumentName">The name of the argument.</param>
+        /// <param name="message">The message.</param>
+        /// <exception cref="ArgumentNullException">If given condition is false.</exception>
+        /// <remarks>
+        ///   <paramref name="message"/> and <paramref name="argumentName"/> are strictly required arguments.
+        /// </remarks>
+        public void IfNot(bool condition, string argumentName, string message = null)
+        {
+            if (!condition)
+            {
+                throw new ArgumentNullException(argumentName, message ?? DefaultMessage);
+            }
+        }
+
+        #endregion If(Not)
 
         #region Classes
 
@@ -79,8 +109,9 @@ namespace PommaLabs.Thrower.ExceptionHandlers
         /// <param name="argument">The argument.</param>
         /// <exception cref="ArgumentNullException">If given argument is null.</exception>
         public void IfIsNull<TArg>(TArg argument)
+            where TArg : class
         {
-            if (!PortableTypeInfo.IsValueType(typeof(TArg)) && ReferenceEquals(argument, null))
+            if (ReferenceEquals(argument, null))
             {
                 throw new ArgumentNullException();
             }
@@ -95,8 +126,9 @@ namespace PommaLabs.Thrower.ExceptionHandlers
         /// <param name="message">The message that should be put into the exception.</param>
         /// <exception cref="ArgumentNullException">If given argument is null.</exception>
         public void IfIsNull<TArg>(TArg argument, string argumentName, string message = null)
+            where TArg : class
         {
-            if (!PortableTypeInfo.IsValueType(typeof(TArg)) && ReferenceEquals(argument, null))
+            if (ReferenceEquals(argument, null))
             {
                 throw new ArgumentNullException(argumentName, message ?? DefaultMessage);
             }

@@ -290,7 +290,22 @@ namespace PommaLabs.Thrower.UnitTests.ExceptionHandlers
         [TestCase(FlagsEnum.One | FlagsEnum.Two | FlagsEnum.Four)]
         public void IfIsNotValidEnum_ValidFlags_Simple(object enumValue)
         {
-            Raise.ArgumentException.IfIsNotValidEnum((FlagsEnum) enumValue);
+            Raise.ArgumentException.IfIsNotValidEnum(typeof(FlagsEnum), enumValue);
+        }
+
+        [TestCase(FlagsEnum.Zero)]
+        [TestCase(FlagsEnum.One)]
+        [TestCase(FlagsEnum.Two)]
+        [TestCase(FlagsEnum.Four)]
+        [TestCase(FlagsEnum.Seven)]
+        [TestCase(FlagsEnum.Seven | FlagsEnum.One)]
+        [TestCase(FlagsEnum.Seven | FlagsEnum.Two)]
+        [TestCase(FlagsEnum.Seven | FlagsEnum.Four)]
+        [TestCase(FlagsEnum.One | FlagsEnum.Two | FlagsEnum.Four)]
+        [TestCase(null)]
+        public void IfIsNotValidEnum_ValidFlags_SimpleAndNullable(object enumValue)
+        {
+            Raise.ArgumentException.IfIsNotValidEnum(typeof(FlagsEnum?), enumValue);
         }
 
         [TestCase(FlagsEnum.Zero | FlagsEnum.One)]
@@ -301,7 +316,18 @@ namespace PommaLabs.Thrower.UnitTests.ExceptionHandlers
         [TestCase(FlagsEnum.Two | FlagsEnum.Four)]
         public void IfIsNotValidEnum_ValidFlags_Combined(object enumValue)
         {
-            Raise.ArgumentException.IfIsNotValidEnum((FlagsEnum) enumValue);
+            Raise.ArgumentException.IfIsNotValidEnum(typeof(FlagsEnum), enumValue);
+        }
+
+        [TestCase((FlagsEnum) 8)]
+        [TestCase((FlagsEnum) 16)]
+        [TestCase((FlagsEnum) 11)]
+        [TestCase((FlagsEnum) 9)]
+        [TestCase((FlagsEnum) 10)]
+        [TestCase((FlagsEnum) 128)]
+        public void IfIsNotValidEnum_InvalidFlags_Simple(object enumValue)
+        {
+            Should.Throw<ArgumentException>(() => Raise.ArgumentException.IfIsNotValidEnum(typeof(FlagsEnum), enumValue));
         }
 
         [TestCase(FlagsEnum.Zero | FlagsEnum.One | (FlagsEnum) 8)]
@@ -312,7 +338,114 @@ namespace PommaLabs.Thrower.UnitTests.ExceptionHandlers
         [TestCase(FlagsEnum.Two | FlagsEnum.Four | (FlagsEnum) 128)]
         public void IfIsNotValidEnum_InvalidFlags_Combined(object enumValue)
         {
+            Should.Throw<ArgumentException>(() => Raise.ArgumentException.IfIsNotValidEnum(typeof(FlagsEnum), enumValue));
+        }
+
+        [TestCase(FlagsEnum.Zero | FlagsEnum.One | (FlagsEnum) 8)]
+        [TestCase(FlagsEnum.Zero | FlagsEnum.Two | (FlagsEnum) 16)]
+        [TestCase(FlagsEnum.Zero | FlagsEnum.Four | (FlagsEnum) 11)]
+        [TestCase(FlagsEnum.One | FlagsEnum.Two | (FlagsEnum) 9)]
+        [TestCase(FlagsEnum.One | FlagsEnum.Four | (FlagsEnum) 10)]
+        [TestCase(FlagsEnum.Two | FlagsEnum.Four | (FlagsEnum) 128)]
+        public void IfIsNotValidEnum_InvalidFlags_CombinedAndNullable(object enumValue)
+        {
+            Should.Throw<ArgumentException>(() => Raise.ArgumentException.IfIsNotValidEnum(typeof(FlagsEnum?), enumValue));
+        }
+
+        [TestCase(FlagsEnum.Zero)]
+        [TestCase(FlagsEnum.One)]
+        [TestCase(FlagsEnum.Two)]
+        [TestCase(FlagsEnum.Four)]
+        [TestCase(FlagsEnum.Seven)]
+        [TestCase(FlagsEnum.Seven | FlagsEnum.One)]
+        [TestCase(FlagsEnum.Seven | FlagsEnum.Two)]
+        [TestCase(FlagsEnum.Seven | FlagsEnum.Four)]
+        [TestCase(FlagsEnum.One | FlagsEnum.Two | FlagsEnum.Four)]
+        public void IfIsNotValidEnum_Generic_ValidFlags_Simple(object enumValue)
+        {
+            Raise.ArgumentException.IfIsNotValidEnum((FlagsEnum) enumValue);
+        }
+
+        [TestCase(FlagsEnum.Zero)]
+        [TestCase(FlagsEnum.One)]
+        [TestCase(FlagsEnum.Two)]
+        [TestCase(FlagsEnum.Four)]
+        [TestCase(FlagsEnum.Seven)]
+        [TestCase(FlagsEnum.Seven | FlagsEnum.One)]
+        [TestCase(FlagsEnum.Seven | FlagsEnum.Two)]
+        [TestCase(FlagsEnum.Seven | FlagsEnum.Four)]
+        [TestCase(FlagsEnum.One | FlagsEnum.Two | FlagsEnum.Four)]
+        [TestCase(null)]
+        public void IfIsNotValidEnum_Generic_ValidFlags_SimpleAndNullable(object enumValue)
+        {
+            Raise.ArgumentException.IfIsNotValidEnum((FlagsEnum?) enumValue);
+        }
+
+        [TestCase(FlagsEnum.Zero | FlagsEnum.One)]
+        [TestCase(FlagsEnum.Zero | FlagsEnum.Two)]
+        [TestCase(FlagsEnum.Zero | FlagsEnum.Four)]
+        [TestCase(FlagsEnum.One | FlagsEnum.Two)]
+        [TestCase(FlagsEnum.One | FlagsEnum.Four)]
+        [TestCase(FlagsEnum.Two | FlagsEnum.Four)]
+        public void IfIsNotValidEnum_Generic_ValidFlags_Combined(object enumValue)
+        {
+            Raise.ArgumentException.IfIsNotValidEnum((FlagsEnum) enumValue);
+        }
+
+        [TestCase(FlagsEnum.Zero | FlagsEnum.One)]
+        [TestCase(FlagsEnum.Zero | FlagsEnum.Two)]
+        [TestCase(FlagsEnum.Zero | FlagsEnum.Four)]
+        [TestCase(FlagsEnum.One | FlagsEnum.Two)]
+        [TestCase(FlagsEnum.One | FlagsEnum.Four)]
+        [TestCase(FlagsEnum.Two | FlagsEnum.Four)]
+        [TestCase(null)]
+        public void IfIsNotValidEnum_Generic_ValidFlags_CombinedAndNullable(object enumValue)
+        {
+            Raise.ArgumentException.IfIsNotValidEnum((FlagsEnum?) enumValue);
+        }
+
+        [TestCase((FlagsEnum) 8)]
+        [TestCase((FlagsEnum) 16)]
+        [TestCase((FlagsEnum) 11)]
+        [TestCase((FlagsEnum) 9)]
+        [TestCase((FlagsEnum) 10)]
+        [TestCase((FlagsEnum) 128)]
+        public void IfIsNotValidEnum_Generic_InvalidFlags_Simple(object enumValue)
+        {
             Should.Throw<ArgumentException>(() => Raise.ArgumentException.IfIsNotValidEnum((FlagsEnum) enumValue));
+        }
+
+        [TestCase((FlagsEnum) 8)]
+        [TestCase((FlagsEnum) 16)]
+        [TestCase((FlagsEnum) 11)]
+        [TestCase((FlagsEnum) 9)]
+        [TestCase((FlagsEnum) 10)]
+        [TestCase((FlagsEnum) 128)]
+        public void IfIsNotValidEnum_Generic_InvalidFlags_SimpleAndNullable(object enumValue)
+        {
+            Should.Throw<ArgumentException>(() => Raise.ArgumentException.IfIsNotValidEnum((FlagsEnum?) enumValue));
+        }
+
+        [TestCase(FlagsEnum.Zero | FlagsEnum.One | (FlagsEnum) 8)]
+        [TestCase(FlagsEnum.Zero | FlagsEnum.Two | (FlagsEnum) 16)]
+        [TestCase(FlagsEnum.Zero | FlagsEnum.Four | (FlagsEnum) 11)]
+        [TestCase(FlagsEnum.One | FlagsEnum.Two | (FlagsEnum) 9)]
+        [TestCase(FlagsEnum.One | FlagsEnum.Four | (FlagsEnum) 10)]
+        [TestCase(FlagsEnum.Two | FlagsEnum.Four | (FlagsEnum) 128)]
+        public void IfIsNotValidEnum_Generic_InvalidFlags_Combined(object enumValue)
+        {
+            Should.Throw<ArgumentException>(() => Raise.ArgumentException.IfIsNotValidEnum((FlagsEnum) enumValue));
+        }
+
+        [TestCase(FlagsEnum.Zero | FlagsEnum.One | (FlagsEnum) 8)]
+        [TestCase(FlagsEnum.Zero | FlagsEnum.Two | (FlagsEnum) 16)]
+        [TestCase(FlagsEnum.Zero | FlagsEnum.Four | (FlagsEnum) 11)]
+        [TestCase(FlagsEnum.One | FlagsEnum.Two | (FlagsEnum) 9)]
+        [TestCase(FlagsEnum.One | FlagsEnum.Four | (FlagsEnum) 10)]
+        [TestCase(FlagsEnum.Two | FlagsEnum.Four | (FlagsEnum) 128)]
+        public void IfIsNotValidEnum_Generic_InvalidFlags_CombinedAndNullable(object enumValue)
+        {
+            Should.Throw<ArgumentException>(() => Raise.ArgumentException.IfIsNotValidEnum((FlagsEnum?) enumValue));
         }
 
         [Flags]

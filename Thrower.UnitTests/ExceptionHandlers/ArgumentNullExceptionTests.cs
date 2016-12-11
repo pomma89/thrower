@@ -30,6 +30,21 @@ namespace PommaLabs.Thrower.UnitTests.ExceptionHandlers
     internal sealed class ArgumentNullExceptionTests : AbstractTests
     {
         [Test]
+        public void NotNullArgument_Interface()
+        {
+            IInterface i = new Base();
+            Raise.ArgumentNullException.IfIsNull(i);
+        }
+
+        [Test]
+        public void NotNullArgument_Interface_WithMsg()
+
+        {
+            IInterface i = new Base();
+            Raise.ArgumentNullException.IfIsNull(i, nameof(i), nameof(i));
+        }
+
+        [Test]
         public void NotNullArgument_String()
         {
             Raise.ArgumentNullException.IfIsNull("PINO");
@@ -39,24 +54,6 @@ namespace PommaLabs.Thrower.UnitTests.ExceptionHandlers
         public void NotNullArgument_String_WithMsg()
         {
             Raise.ArgumentNullException.IfIsNull("PINO", "PINO", "GINO");
-        }
-
-        [Test]
-        public void NotNullArgument_Struct()
-        {
-            Raise.ArgumentNullException.IfIsNull(37M);
-        }
-
-        [Test]
-        public void NotNullArgument_Struct_WithArgName()
-        {
-            Raise.ArgumentNullException.IfIsNull(37M, "DECIMAL");
-        }
-
-        [Test]
-        public void NotNullArgument_Struct_WithMsg()
-        {
-            Raise.ArgumentNullException.IfIsNull(37M, "DECIMAL", "GINO");
         }
 
         [Test]

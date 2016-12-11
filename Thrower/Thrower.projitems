@@ -38,6 +38,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Validation\EmailAddressValidator.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Validation\EnumerationValidator.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Validation\ObjectValidator.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Validation\EnumerationAttribute.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Validation\PhoneNumberAttribute.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Validation\PhoneNumberValidator.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Validation\ValidateAttribute.cs" />
