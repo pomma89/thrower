@@ -97,17 +97,19 @@ namespace PommaLabs.Thrower.Validation
                 return false;
             }
 
-            if (ReferenceEquals(PortableTypeInfo.GetGenericTypeDefinition(enumType), typeof(Nullable<>)))
+            if (PortableTypeInfo.IsGenericType(enumType) && ReferenceEquals(PortableTypeInfo.GetGenericTypeDefinition(enumType), typeof(Nullable<>)))
             {
                 enumType = PortableTypeInfo.GetGenericTypeArguments(enumType)[0];
-                dynamic dynValue = value;
 
-                if (!dynValue.HasValue)
+                if (value.GetType() != enumType)
                 {
-                    return PortableTypeInfo.IsEnum(enumType);
+                    dynamic dynValue = value;
+                    if (!dynValue.HasValue)
+                    {
+                        return PortableTypeInfo.IsEnum(enumType);
+                    }
+                    value = dynValue.Value;
                 }
-
-                value = dynValue.Value;
             }
 
             if (!PortableTypeInfo.IsEnum(enumType))
