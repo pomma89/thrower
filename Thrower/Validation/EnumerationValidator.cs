@@ -45,6 +45,10 @@ namespace PommaLabs.Thrower.Validation
         public static bool Validate<TEnum>(TEnum? value)
             where TEnum : struct
         {
+            if (!PortableTypeInfo.IsEnum(CachedEnumValidator<TEnum>.EnumType))
+            {
+                return false;
+            }
             return value.HasValue ? Validate(value.Value) : true;
         }
 
@@ -60,6 +64,10 @@ namespace PommaLabs.Thrower.Validation
         public static bool Validate<TEnum>(TEnum value)
             where TEnum : struct
         {
+            if (!PortableTypeInfo.IsEnum(CachedEnumValidator<TEnum>.EnumType))
+            {
+                return false;
+            }
             if (Enum.IsDefined(CachedEnumValidator<TEnum>.EnumType, value))
             {
                 return true;
@@ -83,14 +91,35 @@ namespace PommaLabs.Thrower.Validation
         /// <remarks>This also works when enumeration has been decorated with <see cref="FlagsAttribute"/>.</remarks>
         public static bool Validate(Type enumType, object value)
         {
+            if (ReferenceEquals(value, null))
+            {
+                // Even nullable enums are always not null.
+                return false;
+            }
+
+            if (ReferenceEquals(PortableTypeInfo.GetGenericTypeDefinition(enumType), typeof(Nullable<>)))
+            {
+                enumType = PortableTypeInfo.GetGenericTypeArguments(enumType)[0];
+                dynamic dynValue = value;
+
+                if (!dynValue.HasValue)
+                {
+                    return PortableTypeInfo.IsEnum(enumType);
+                }
+
+                value = dynValue.Value;
+            }
+
+            if (!PortableTypeInfo.IsEnum(enumType))
+            {
+                return false;
+            }
             if (Enum.IsDefined(enumType, value))
             {
                 return true;
             }
 
-            var hasFlagsAttribute = PortableTypeInfo
-                .GetCustomAttributes(enumType, true)
-                ?.Any(a => a is FlagsAttribute) ?? false;
+            var hasFlagsAttribute = TypeHasFlagsAttribute(enumType);
 
             if (hasFlagsAttribute)
             {
@@ -106,6 +135,10 @@ namespace PommaLabs.Thrower.Validation
             return false;
         }
 
+        private static bool TypeHasFlagsAttribute(Type enumType) => PortableTypeInfo
+             .GetCustomAttributes(enumType, true)
+             ?.Any(a => a is FlagsAttribute) ?? false;
+
         private static class CachedEnumValidator<TEnum>
             where TEnum : struct
         {
@@ -113,9 +146,7 @@ namespace PommaLabs.Thrower.Validation
             {
                 EnumType = typeof(TEnum);
 
-                HasFlagsAttribute = PortableTypeInfo
-                    .GetCustomAttributes(EnumType, true)
-                    ?.Any(a => a is FlagsAttribute) ?? false;
+                HasFlagsAttribute = TypeHasFlagsAttribute(EnumType);
 
                 if (HasFlagsAttribute)
                 {
