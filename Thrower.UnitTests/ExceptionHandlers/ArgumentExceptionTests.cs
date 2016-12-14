@@ -305,7 +305,7 @@ namespace PommaLabs.Thrower.UnitTests.ExceptionHandlers
         [TestCase(null)]
         public void IfIsNotValidEnum_ValidFlags_SimpleAndNullable(object enumValue)
         {
-            Raise.ArgumentException.IfIsNotValidEnum(typeof(FlagsEnum?), (FlagsEnum?) enumValue);
+            Raise.ArgumentException.IfIsNotValidEnum(typeof(FlagsEnum?), enumValue ?? new FlagsEnum?());
         }
 
         [TestCase(FlagsEnum.Zero)]

@@ -191,6 +191,35 @@ namespace PommaLabs.Thrower.Reflection
         ///   Gets the value of given property on given instance.
         /// </summary>
         /// <param name="instance">The instance.</param>
+        /// <param name="propertyName">The property name.</param>
+        /// <returns>The value of given property on given instance.</returns>
+        public static object GetPublicPropertyValue(object instance, string propertyName)
+        {
+            // Preconditions
+            Raise.ArgumentNullException.IfIsNull(instance, nameof(instance), "Instance cannot be null");
+            Raise.ArgumentException.IfIsNullOrWhiteSpace(propertyName, nameof(propertyName), "Given property cannot be null, empty or blank");
+
+#if !(PORTABLE || NETSTD11)
+            return FastMember.ObjectAccessor.Create(instance)[propertyName];
+#else
+            var propertyInfo = GetPublicProperties(instance.GetType()).Single(p => p.Name == propertyName);
+            return GetPublicPropertyValue(instance, propertyInfo);
+#endif
+        }
+
+        /// <summary>
+        ///   Gets the value of given property on given instance.
+        /// </summary>
+        /// <typeparam name="TValue">The type of the property value.</typeparam>
+        /// <param name="instance">The instance.</param>
+        /// <param name="propertyName">The property name.</param>
+        /// <returns>The value of given property on given instance.</returns>
+        public static TValue GetPublicPropertyValue<TValue>(object instance, string propertyName) => (TValue) GetPublicPropertyValue(instance, propertyName);
+
+        /// <summary>
+        ///   Gets the value of given property on given instance.
+        /// </summary>
+        /// <param name="instance">The instance.</param>
         /// <param name="propertyInfo">The property info.</param>
         /// <returns>The value of given property on given instance.</returns>
         public static object GetPublicPropertyValue(object instance, PropertyInfo propertyInfo)

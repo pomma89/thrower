@@ -91,29 +91,37 @@ namespace PommaLabs.Thrower.Validation
         /// <remarks>This also works when enumeration has been decorated with <see cref="FlagsAttribute"/>.</remarks>
         public static bool Validate(Type enumType, object value)
         {
-            if (ReferenceEquals(value, null))
-            {
-                // Even nullable enums are always not null.
-                return false;
-            }
+            bool? isReallyAnEnum = null;
 
             if (PortableTypeInfo.IsGenericType(enumType) && ReferenceEquals(PortableTypeInfo.GetGenericTypeDefinition(enumType), typeof(Nullable<>)))
             {
-                enumType = PortableTypeInfo.GetGenericTypeArguments(enumType)[0];
+                var innerEnumType = PortableTypeInfo.GetGenericTypeArguments(enumType)[0];
+                isReallyAnEnum = PortableTypeInfo.IsEnum(innerEnumType);
 
-                if (value.GetType() != enumType)
+                if (isReallyAnEnum.Value && ReferenceEquals(value, null))
                 {
-                    dynamic dynValue = value;
-                    if (!dynValue.HasValue)
-                    {
-                        return PortableTypeInfo.IsEnum(enumType);
-                    }
-                    value = dynValue.Value;
+                    // Nullable enum with null value, OK.
+                    return true;
                 }
+
+                if (value.GetType() == enumType)
+                {
+                    if (!PortableTypeInfo.GetPublicPropertyValue<bool>(value, nameof(Nullable<byte>.HasValue)))
+                    {
+                        // OK if we are really handling an enumeration.
+                        return isReallyAnEnum.Value;
+                    }
+                    value = PortableTypeInfo.GetPublicPropertyValue(value, nameof(Nullable<byte>.Value));
+                }
+
+                // Overwrite enumeration type with the inner one, since we are sure that value has
+                // that type; in fact, above if ensures that condition.
+                enumType = innerEnumType;
             }
 
-            if (!PortableTypeInfo.IsEnum(enumType))
+            if ((isReallyAnEnum.HasValue && !isReallyAnEnum.Value) || !PortableTypeInfo.IsEnum(enumType))
             {
+                // If we are not handling an enum, then exit now.
                 return false;
             }
             if (Enum.IsDefined(enumType, value))
