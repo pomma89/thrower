@@ -109,7 +109,6 @@ namespace PommaLabs.Thrower.ExceptionHandlers
         /// <param name="argument">The argument.</param>
         /// <exception cref="ArgumentNullException">If given argument is null.</exception>
         public void IfIsNull<TArg>(TArg argument)
-            where TArg : class
         {
             if (ReferenceEquals(argument, null))
             {
@@ -126,7 +125,6 @@ namespace PommaLabs.Thrower.ExceptionHandlers
         /// <param name="message">The message that should be put into the exception.</param>
         /// <exception cref="ArgumentNullException">If given argument is null.</exception>
         public void IfIsNull<TArg>(TArg argument, string argumentName, string message = null)
-            where TArg : class
         {
             if (ReferenceEquals(argument, null))
             {

@@ -45,6 +45,18 @@ namespace PommaLabs.Thrower.UnitTests.ExceptionHandlers
         }
 
         [Test]
+        public void NotNullArgument_Struct_WithArgName()
+        {
+            Raise.ArgumentNullException.IfIsNull(37M, "DECIMAL");
+        }
+
+        [Test]
+        public void NotNullArgument_Struct_WithMsg()
+        {
+            Raise.ArgumentNullException.IfIsNull(37M, "DECIMAL", "GINO");
+        }
+
+        [Test]
         public void NotNullArgument_String()
         {
             Raise.ArgumentNullException.IfIsNull("PINO");
