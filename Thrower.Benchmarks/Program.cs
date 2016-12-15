@@ -42,12 +42,15 @@ namespace PommaLabs.Thrower.Benchmarks
             }
         }
 
-        public static void Main()
+        public static void Main(string[] args)
         {
-            BenchmarkRunner.Run<RaiseVsThrow_ArgumentNullException>();
-            BenchmarkRunner.Run<RaiseVsThrow_ArgumentOutOfRangeException>();
-            BenchmarkRunner.Run<RaiseVsThrow_FileNotFoundException>();
-            BenchmarkRunner.Run<RaiseVsThrow_NotSupportedException>();
+            new BenchmarkSwitcher(new[]
+            {
+                typeof(RaiseVsThrow_ArgumentNullException),
+                typeof(RaiseVsThrow_ArgumentOutOfRangeException),
+                typeof(RaiseVsThrow_FileNotFoundException),
+                typeof(RaiseVsThrow_NotSupportedException)
+            }).Run(args);
         }
     }
 }

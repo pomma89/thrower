@@ -14,8 +14,12 @@
       Moreover, this library embeds a portable copy of Marc Gravell's FastMember and Jeffrey Stedfast's EmailValidation libraries.
     </description>
     <releaseNotes>
-      * DLL for .NET Standard 1.3 was not properly generated. Now it is.
-      * Fixed some build issues for .NET Standard 1.1 and 1.3.
+      * All code marked as Obsolete in v3 has now been completely removed.
+      * Added a new exception handler for InvalidCastException.
+      * Moved many methods from RaiseGeneric to specific exception handlers.
+      * Updated embedded FastMember library - now it also works on .NET Standard 1.3.
+      * Added a new method to validate enumerations - it also works with flags.
+      * Added new validation attributes for email, phone number and enumerations.
     </releaseNotes>
     <summary>Fully managed library providing convenience methods to perform argument checks.</summary>
     <language>en-US</language>
