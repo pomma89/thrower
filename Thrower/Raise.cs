@@ -39,7 +39,7 @@ namespace PommaLabs.Thrower
         ///   Default implementation options for Raise methods.
         /// </summary>
 #if NET35 || NET40
-        internal const MethodImplOptions MethodImplOptions = 0;
+        internal const MethodImplOptions MethodImplOptions = default(System.Runtime.CompilerServices.MethodImplOptions);
 #else
         internal const MethodImplOptions MethodImplOptions = System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining;
 #endif
