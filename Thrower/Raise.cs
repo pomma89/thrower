@@ -24,6 +24,7 @@
 using PommaLabs.Thrower.ExceptionHandlers;
 using PommaLabs.Thrower.ExceptionHandlers.IO;
 using PommaLabs.Thrower.ExceptionHandlers.Net;
+using System.Runtime.CompilerServices;
 
 namespace PommaLabs.Thrower
 {
@@ -32,6 +33,19 @@ namespace PommaLabs.Thrower
     /// </summary>
     public static class Raise
     {
+        #region Constants
+
+        /// <summary>
+        ///   Default implementation options for Raise methods.
+        /// </summary>
+#if NET35 || NET40
+        internal const MethodImplOptions MethodImplOptions = 0;
+#else
+        internal const MethodImplOptions MethodImplOptions = System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining;
+#endif
+
+        #endregion Constants
+
         #region System
 
         /// <summary>

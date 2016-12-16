@@ -22,6 +22,7 @@
 // OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 using System;
+using System.Runtime.CompilerServices;
 
 #pragma warning disable CC0091 // Use static method
 
@@ -41,6 +42,7 @@ namespace PommaLabs.Thrower.ExceptionHandlers
         /// </summary>
         /// <param name="condition">The condition.</param>
         /// <exception cref="ArgumentNullException">If given condition is true.</exception>
+        [MethodImpl(Raise.MethodImplOptions)]
         public void If(bool condition)
         {
             if (condition)
@@ -59,6 +61,7 @@ namespace PommaLabs.Thrower.ExceptionHandlers
         /// <remarks>
         ///   <paramref name="message"/> and <paramref name="argumentName"/> are strictly required arguments.
         /// </remarks>
+        [MethodImpl(Raise.MethodImplOptions)]
         public void If(bool condition, string argumentName, string message = null)
         {
             if (condition)
@@ -72,6 +75,7 @@ namespace PommaLabs.Thrower.ExceptionHandlers
         /// </summary>
         /// <param name="condition">The condition.</param>
         /// <exception cref="ArgumentNullException">If given condition is false.</exception>
+        [MethodImpl(Raise.MethodImplOptions)]
         public void IfNot(bool condition)
         {
             if (!condition)
@@ -90,6 +94,7 @@ namespace PommaLabs.Thrower.ExceptionHandlers
         /// <remarks>
         ///   <paramref name="message"/> and <paramref name="argumentName"/> are strictly required arguments.
         /// </remarks>
+        [MethodImpl(Raise.MethodImplOptions)]
         public void IfNot(bool condition, string argumentName, string message = null)
         {
             if (!condition)
@@ -108,6 +113,7 @@ namespace PommaLabs.Thrower.ExceptionHandlers
         /// <typeparam name="TArg">The type of the argument.</typeparam>
         /// <param name="argument">The argument.</param>
         /// <exception cref="ArgumentNullException">If given argument is null.</exception>
+        [MethodImpl(Raise.MethodImplOptions)]
         public void IfIsNull<TArg>(TArg argument)
         {
             if (ReferenceEquals(argument, null))
@@ -124,6 +130,7 @@ namespace PommaLabs.Thrower.ExceptionHandlers
         /// <param name="argumentName">The name of the argument.</param>
         /// <param name="message">The message that should be put into the exception.</param>
         /// <exception cref="ArgumentNullException">If given argument is null.</exception>
+        [MethodImpl(Raise.MethodImplOptions)]
         public void IfIsNull<TArg>(TArg argument, string argumentName, string message = null)
         {
             if (ReferenceEquals(argument, null))
@@ -142,6 +149,7 @@ namespace PommaLabs.Thrower.ExceptionHandlers
         /// <typeparam name="TArg">The type of the nullable argument.</typeparam>
         /// <param name="argument">The argument.</param>
         /// <exception cref="ArgumentNullException">If given argument has no value.</exception>
+        [MethodImpl(Raise.MethodImplOptions)]
         public void IfIsNull<TArg>(TArg? argument)
             where TArg : struct
         {
@@ -157,6 +165,7 @@ namespace PommaLabs.Thrower.ExceptionHandlers
         /// <typeparam name="TArg">The type of the nullable argument.</typeparam>
         /// <param name="argument">The argument, by reference.</param>
         /// <exception cref="ArgumentNullException">If given argument has no value.</exception>
+        [MethodImpl(Raise.MethodImplOptions)]
         public void IfIsNull<TArg>(ref TArg? argument)
             where TArg : struct
         {
@@ -174,6 +183,7 @@ namespace PommaLabs.Thrower.ExceptionHandlers
         /// <param name="argumentName">The name of the argument.</param>
         /// <param name="message">The message that should be put into the exception.</param>
         /// <exception cref="ArgumentNullException">If given argument has no value.</exception>
+        [MethodImpl(Raise.MethodImplOptions)]
         public void IfIsNull<TArg>(TArg? argument, string argumentName, string message = null)
             where TArg : struct
         {
@@ -191,6 +201,7 @@ namespace PommaLabs.Thrower.ExceptionHandlers
         /// <param name="argumentName">The name of the argument.</param>
         /// <param name="message">The message that should be put into the exception.</param>
         /// <exception cref="ArgumentNullException">If given argument has no value.</exception>
+        [MethodImpl(Raise.MethodImplOptions)]
         public void IfIsNull<TArg>(ref TArg? argument, string argumentName, string message = null)
             where TArg : struct
         {
