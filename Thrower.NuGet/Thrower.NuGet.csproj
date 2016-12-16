@@ -54,9 +54,6 @@
     <Folder Include="lib\netstandard1.3\" />
     <Folder Include="lib\portable-net45+win8+wp8+wpa81\" />
   </ItemGroup>
-  <ItemGroup>
-    <Content Include="NuGet.exe" />
-  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>
@@ -65,8 +62,8 @@
   </Target>
   <PropertyGroup>
     <PostBuildEvent>cd $(ProjectDir)
-nuget.exe update -self
-nuget.exe pack Package.nuspec -symbol
+..\.nuget\nuget.exe update -self
+..\.nuget\nuget.exe pack Package.nuspec -symbol
 </PostBuildEvent>
   </PropertyGroup>
   <PropertyGroup>
