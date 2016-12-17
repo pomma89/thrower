@@ -22,13 +22,14 @@
 // OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 using System.Net;
+using System.Runtime.CompilerServices;
 
 #pragma warning disable CC0091 // Use static method
 
 namespace PommaLabs.Thrower.ExceptionHandlers.Net
 {
     /// <summary>
-    ///   Handler for <see cref="HttpException"/>
+    ///   Handler for <see cref="HttpException"/>.
     /// </summary>
     public sealed class HttpExceptionHandler
     {
@@ -39,6 +40,7 @@ namespace PommaLabs.Thrower.ExceptionHandlers.Net
         /// <param name="httpStatusCode">The HTTP status code corresponding to the error.</param>
         /// <param name="message">The optional message.</param>
         /// <exception cref="HttpException">If given condition is true.</exception>
+        [MethodImpl(Raise.MethodImplOptions)]
         public void If(bool condition, HttpStatusCode httpStatusCode, string message = null)
         {
             if (condition)
@@ -55,6 +57,7 @@ namespace PommaLabs.Thrower.ExceptionHandlers.Net
         /// <param name="message">The required message.</param>
         /// <param name="additionalInfo">Additional exception info.</param>
         /// <exception cref="HttpException">If given condition is true.</exception>
+        [MethodImpl(Raise.MethodImplOptions)]
         public void If(bool condition, HttpStatusCode httpStatusCode, string message, HttpExceptionInfo additionalInfo)
         {
             if (condition)
@@ -70,6 +73,7 @@ namespace PommaLabs.Thrower.ExceptionHandlers.Net
         /// <param name="httpStatusCode">The HTTP status code corresponding to the error.</param>
         /// <param name="message">The optional message.</param>
         /// <exception cref="HttpException">If given condition is false.</exception>
+        [MethodImpl(Raise.MethodImplOptions)]
         public void IfNot(bool condition, HttpStatusCode httpStatusCode, string message = null)
         {
             if (!condition)
@@ -86,6 +90,7 @@ namespace PommaLabs.Thrower.ExceptionHandlers.Net
         /// <param name="message">The required message.</param>
         /// <param name="additionalInfo">Additional exception info.</param>
         /// <exception cref="HttpException">If given condition is false.</exception>
+        [MethodImpl(Raise.MethodImplOptions)]
         public void IfNot(bool condition, HttpStatusCode httpStatusCode, string message, HttpExceptionInfo additionalInfo)
         {
             if (!condition)
