@@ -22,6 +22,7 @@
 // OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 using System;
+using System.Runtime.CompilerServices;
 
 #pragma warning disable CC0091 // Use static method
 
@@ -39,6 +40,7 @@ namespace PommaLabs.Thrower.ExceptionHandlers
         /// <param name="objectName">The required object name.</param>
         /// <param name="message">The optional message.</param>
         /// <exception cref="ObjectDisposedException">If the object has been disposed.</exception>
+        [MethodImpl(Raise.MethodImplOptions)]
         public void If(bool disposed, string objectName, string message = null)
         {
             if (disposed)

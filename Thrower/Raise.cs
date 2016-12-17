@@ -24,6 +24,7 @@
 using PommaLabs.Thrower.ExceptionHandlers;
 using PommaLabs.Thrower.ExceptionHandlers.IO;
 using PommaLabs.Thrower.ExceptionHandlers.Net;
+using System.Runtime.CompilerServices;
 
 namespace PommaLabs.Thrower
 {
@@ -32,6 +33,19 @@ namespace PommaLabs.Thrower
     /// </summary>
     public static class Raise
     {
+        #region Constants
+
+        /// <summary>
+        ///   Default implementation options for Raise methods.
+        /// </summary>
+#if NET35 || NET40
+        internal const MethodImplOptions MethodImplOptions = default(System.Runtime.CompilerServices.MethodImplOptions);
+#else
+        internal const MethodImplOptions MethodImplOptions = System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining;
+#endif
+
+        #endregion Constants
+
         #region System
 
         /// <summary>
@@ -53,6 +67,11 @@ namespace PommaLabs.Thrower
         ///   Handler for <see cref="System.IndexOutOfRangeException"/>
         /// </summary>
         public static IndexOutOfRangeExceptionHandler IndexOutOfRangeException { get; } = new IndexOutOfRangeExceptionHandler();
+
+        /// <summary>
+        ///   Handler for <see cref="System.InvalidCastException"/>
+        /// </summary>
+        public static InvalidCastExceptionHandler InvalidCastException { get; } = new InvalidCastExceptionHandler();
 
         /// <summary>
         ///   Handler for <see cref="System.InvalidOperationException"/>

@@ -10,7 +10,7 @@
 // or implied. See the License for the specific language governing permissions and limitations under
 // the License.
 
-#if !(PORTABLE || NETSTD11 || NETSTD13)
+#if !(PORTABLE || NETSTD11)
 
 using System;
 using System.Collections;
@@ -18,7 +18,9 @@ using System.Collections.Generic;
 using System.Linq;
 
 #if !NET35
+
 using System.Dynamic;
+
 #endif
 
 namespace PommaLabs.Thrower.Reflection.FastMember
@@ -61,7 +63,7 @@ namespace PommaLabs.Thrower.Reflection.FastMember
         public static ObjectAccessor Create(object target) => Create(target, false);
 
         /// <summary>
-        ///   Wraps an individual object, allowing by-name access to that instance
+        ///   Wraps an individual object, allowing by-name access to that instance.
         /// </summary>
         /// <param name="target">The target object.</param>
         /// <param name="allowNonPublicAccessors">Allow usage of non public accessors.</param>
@@ -75,67 +77,59 @@ namespace PommaLabs.Thrower.Reflection.FastMember
             return new TypeAccessorWrapper(target, TypeAccessor.Create(target.GetType(), allowNonPublicAccessors));
         }
 
-#region IDictionary<string, object> members
+        #region IDictionary<string, object> members
 
         /// <summary>
-        ///   Gets an <see cref="T:System.Collections.Generic.ICollection`1"/> containing the keys of
-        ///   the <see cref="T:System.Collections.Generic.IDictionary`2"/>.
+        ///   Gets an <see cref="ICollection{T}"/> containing the keys of the <see cref="IDictionary{TKey, TValue}"/>.
         /// </summary>
         /// <returns>
-        ///   An <see cref="T:System.Collections.Generic.ICollection`1"/> containing the keys of the
-        ///   object that implements <see cref="T:System.Collections.Generic.IDictionary`2"/>.
+        ///   An <see cref="ICollection{T}"/> containing the keys of the object that implements <see cref="IDictionary{TKey, TValue}"/>.
         /// </returns>
         public abstract ICollection<string> Keys { get; }
 
         /// <summary>
-        ///   Gets an <see cref="T:System.Collections.Generic.ICollection`1"/> containing the values
-        ///   in the <see cref="T:System.Collections.Generic.IDictionary`2"/>.
+        ///   Gets an <see cref="ICollection{T}"/> containing the values in the <see cref="IDictionary{TKey, TValue}"/>.
         /// </summary>
         /// <returns>
-        ///   An <see cref="T:System.Collections.Generic.ICollection`1"/> containing the values in
-        ///   the object that implements <see cref="T:System.Collections.Generic.IDictionary`2"/>.
+        ///   An <see cref="ICollection{T}"/> containing the values in the object that implements <see cref="IDictionary{TKey, TValue}"/>.
         /// </returns>
         public abstract ICollection<object> Values { get; }
 
         /// <summary>
-        ///   Gets the number of elements contained in the <see cref="T:System.Collections.Generic.ICollection`1"/>.
+        ///   Gets the number of elements contained in the <see cref="ICollection{T}"/>.
         /// </summary>
-        /// <returns>The number of elements contained in the <see cref="T:System.Collections.Generic.ICollection`1"/>.</returns>
+        /// <returns>The number of elements contained in the <see cref="ICollection{T}"/>.</returns>
         public abstract int Count { get; }
 
         /// <summary>
-        ///   Gets a value indicating whether the
-        ///   <see cref="T:System.Collections.Generic.ICollection`1"/> is read-only.
+        ///   Gets a value indicating whether the <see cref="ICollection{T}"/> is read-only.
         /// </summary>
-        /// <returns>
-        ///   true if the <see cref="T:System.Collections.Generic.ICollection`1"/> is read-only;
-        ///   otherwise, false.
-        /// </returns>
+        /// <returns>true if the <see cref="ICollection{T}"/> is read-only; otherwise, false.</returns>
         public bool IsReadOnly => true;
 
         /// <summary>
-        ///   Determines whether the <see cref="T:System.Collections.Generic.IDictionary`2"/>
-        ///   contains an element with the specified key.
+        ///   Determines whether the <see cref="IDictionary{TKey, TValue}"/> contains an element with
+        ///   the specified key.
         /// </summary>
         /// <returns>
-        ///   true if the <see cref="T:System.Collections.Generic.IDictionary`2"/> contains an
-        ///   element with the key; otherwise, false.
+        ///   true if the <see cref="IDictionary{TKey, TValue}"/> contains an element with the key;
+        ///   otherwise, false.
         /// </returns>
-        /// <param name="key">The key to locate in the <see cref="T:System.Collections.Generic.IDictionary`2"/>.</param>
-        /// <exception cref="T:System.ArgumentNullException"><paramref name="key"/> is null.</exception>
+        /// <param name="key">The key to locate in the <see cref="IDictionary{TKey, TValue}"/>.</param>
+        /// <exception cref="ArgumentNullException"><paramref name="key"/> is null.</exception>
         public abstract bool ContainsKey(string key);
 
         /// <summary>
-        ///   Adds an element with the provided key and value to the <see cref="T:System.Collections.Generic.IDictionary`2"/>.
+        ///   Adds an element with the provided key and value to the <see cref="IDictionary{TKey, TValue}"/>.
         /// </summary>
         /// <param name="key">The object to use as the key of the element to add.</param>
         /// <param name="value">The object to use as the value of the element to add.</param>
-        /// <exception cref="T:System.ArgumentNullException"><paramref name="key"/> is null.</exception>
-        /// <exception cref="T:System.ArgumentException">
-        ///   An element with the same key already exists in the <see cref="T:System.Collections.Generic.IDictionary`2"/>.
+        /// <exception cref="ArgumentNullException"><paramref name="key"/> is null.</exception>
+        /// <exception cref="ArgumentException">
+        ///   An element with the same key already exists in the <see cref="IDictionary{TKey, TValue}"/>.
         /// </exception>
-        /// <exception cref="T:System.NotSupportedException">
-        ///   The <see cref="T:System.Collections.Generic.IDictionary`2"/> is read-only.
+        /// <exception cref="NotSupportedException">
+        ///   The <see cref="IDictionary{TKey, TValue}"/> is read-only.
         /// </exception>
         public void Add(string key, object value)
         {
@@ -143,16 +137,16 @@ namespace PommaLabs.Thrower.Reflection.FastMember
         }
 
         /// <summary>
-        ///   Removes the element with the specified key from the <see cref="T:System.Collections.Generic.IDictionary`2"/>.
+        ///   Removes the element with the specified key from the <see cref="IDictionary{TKey, TValue}"/>.
         /// </summary>
         /// <returns>
         ///   true if the element is successfully removed; otherwise, false. This method also returns
-        ///   false if <paramref name="key"/> was not found in the original <see cref="T:System.Collections.Generic.IDictionary`2"/>.
+        ///   false if <paramref name="key"/> was not found in the original <see cref="IDictionary{TKey, TValue}"/>.
         /// </returns>
         /// <param name="key">The key of the element to remove.</param>
-        /// <exception cref="T:System.ArgumentNullException"><paramref name="key"/> is null.</exception>
-        /// <exception cref="T:System.NotSupportedException">
-        ///   The <see cref="T:System.Collections.Generic.IDictionary`2"/> is read-only.
+        /// <exception cref="ArgumentNullException"><paramref name="key"/> is null.</exception>
+        /// <exception cref="NotSupportedException">
+        ///   The <see cref="IDictionary{TKey, TValue}"/> is read-only.
         /// </exception>
         public bool Remove(string key)
         {
@@ -163,9 +157,8 @@ namespace PommaLabs.Thrower.Reflection.FastMember
         ///   Gets the value associated with the specified key.
         /// </summary>
         /// <returns>
-        ///   true if the object that implements
-        ///   <see cref="T:System.Collections.Generic.IDictionary`2"/> contains an element with the
-        ///   specified key; otherwise, false.
+        ///   true if the object that implements <see cref="IDictionary{TKey, TValue}"/> contains an
+        ///   element with the specified key; otherwise, false.
         /// </returns>
         /// <param name="key">The key whose value to get.</param>
         /// <param name="value">
@@ -173,15 +166,15 @@ namespace PommaLabs.Thrower.Reflection.FastMember
         ///   found; otherwise, the default value for the type of the <paramref name="value"/>
         ///   parameter. This parameter is passed uninitialized.
         /// </param>
-        /// <exception cref="T:System.ArgumentNullException"><paramref name="key"/> is null.</exception>
+        /// <exception cref="ArgumentNullException"><paramref name="key"/> is null.</exception>
         public abstract bool TryGetValue(string key, out object value);
 
         /// <summary>
-        ///   Adds an item to the <see cref="T:System.Collections.Generic.ICollection`1"/>.
+        ///   Adds an item to the <see cref="ICollection{T}"/>.
         /// </summary>
-        /// <param name="item">The object to add to the <see cref="T:System.Collections.Generic.ICollection`1"/>.</param>
-        /// <exception cref="T:System.NotSupportedException">
-        ///   The <see cref="T:System.Collections.Generic.ICollection`1"/> is read-only.
+        /// <param name="item">The object to add to the <see cref="ICollection{T}"/>.</param>
+        /// <exception cref="NotSupportedException">
+        ///   The <see cref="ICollection{T}"/> is read-only.
         /// </exception>
         public void Add(KeyValuePair<string, object> item)
         {
@@ -189,10 +182,10 @@ namespace PommaLabs.Thrower.Reflection.FastMember
         }
 
         /// <summary>
-        ///   Removes all items from the <see cref="T:System.Collections.Generic.ICollection`1"/>.
+        ///   Removes all items from the <see cref="ICollection{T}"/>.
         /// </summary>
-        /// <exception cref="T:System.NotSupportedException">
-        ///   The <see cref="T:System.Collections.Generic.ICollection`1"/> is read-only.
+        /// <exception cref="NotSupportedException">
+        ///   The <see cref="ICollection{T}"/> is read-only.
         /// </exception>
         public void Clear()
         {
@@ -200,38 +193,33 @@ namespace PommaLabs.Thrower.Reflection.FastMember
         }
 
         /// <summary>
-        ///   Determines whether the <see cref="T:System.Collections.Generic.ICollection`1"/>
-        ///   contains a specific value.
+        ///   Determines whether the <see cref="ICollection{T}"/> contains a specific value.
         /// </summary>
         /// <returns>
-        ///   true if <paramref name="item"/> is found in the
-        ///   <see cref="T:System.Collections.Generic.ICollection`1"/>; otherwise, false.
+        ///   true if <paramref name="item"/> is found in the <see cref="ICollection{T}"/>;
+        ///   otherwise, false.
         /// </returns>
-        /// <param name="item">The object to locate in the <see cref="T:System.Collections.Generic.ICollection`1"/>.</param>
+        /// <param name="item">The object to locate in the <see cref="ICollection{T}"/>.</param>
         public abstract bool Contains(KeyValuePair<string, object> item);
 
         /// <summary>
-        ///   Copies the elements of the <see cref="T:System.Collections.Generic.ICollection`1"/> to
-        ///   an <see cref="T:System.Array"/>, starting at a particular <see cref="T:System.Array"/> index.
+        ///   Copies the elements of the <see cref="ICollection{T}"/> to an <see cref="Array"/>,
+        ///   starting at a particular <see cref="Array"/> index.
         /// </summary>
         /// <param name="array">
-        ///   The one-dimensional <see cref="T:System.Array"/> that is the destination of the
-        ///   elements copied from <see cref="T:System.Collections.Generic.ICollection`1"/>. The
-        ///   <see cref="T:System.Array"/> must have zero-based indexing.
+        ///   The one-dimensional <see cref="Array"/> that is the destination of the elements copied
+        ///   from <see cref="ICollection{T}"/>. The <see cref="Array"/> must have zero-based indexing.
         /// </param>
         /// <param name="arrayIndex">
         ///   The zero-based index in <paramref name="array"/> at which copying begins.
         /// </param>
-        /// <exception cref="T:System.ArgumentNullException">
-        ///   <paramref name="array"/> is null.
-        /// </exception>
-        /// <exception cref="T:System.ArgumentOutOfRangeException">
+        /// <exception cref="ArgumentNullException"><paramref name="array"/> is null.</exception>
+        /// <exception cref="ArgumentOutOfRangeException">
         ///   <paramref name="arrayIndex"/> is less than 0.
         /// </exception>
-        /// <exception cref="T:System.ArgumentException">
-        ///   The number of elements in the source
-        ///   <see cref="T:System.Collections.Generic.ICollection`1"/> is greater than the available
-        ///   space from <paramref name="arrayIndex"/> to the end of the destination <paramref name="array"/>.
+        /// <exception cref="ArgumentException">
+        ///   The number of elements in the source <see cref="ICollection{T}"/> is greater than the
+        ///   available space from <paramref name="arrayIndex"/> to the end of the destination <paramref name="array"/>.
         /// </exception>
         public void CopyTo(KeyValuePair<string, object>[] array, int arrayIndex)
         {
@@ -242,16 +230,16 @@ namespace PommaLabs.Thrower.Reflection.FastMember
         }
 
         /// <summary>
-        ///   Removes the first occurrence of a specific object from the <see cref="T:System.Collections.Generic.ICollection`1"/>.
+        ///   Removes the first occurrence of a specific object from the <see cref="ICollection{T}"/>.
         /// </summary>
         /// <returns>
         ///   true if <paramref name="item"/> was successfully removed from the
-        ///   <see cref="T:System.Collections.Generic.ICollection`1"/>; otherwise, false. This method
-        ///   also returns false if <paramref name="item"/> is not found in the original <see cref="T:System.Collections.Generic.ICollection`1"/>.
+        ///   <see cref="ICollection{T}"/>; otherwise, false. This method also returns false if
+        ///   <paramref name="item"/> is not found in the original <see cref="ICollection{T}"/>.
         /// </returns>
-        /// <param name="item">The object to remove from the <see cref="T:System.Collections.Generic.ICollection`1"/>.</param>
-        /// <exception cref="T:System.NotSupportedException">
-        ///   The <see cref="T:System.Collections.Generic.ICollection`1"/> is read-only.
+        /// <param name="item">The object to remove from the <see cref="ICollection{T}"/>.</param>
+        /// <exception cref="NotSupportedException">
+        ///   The <see cref="ICollection{T}"/> is read-only.
         /// </exception>
         public bool Remove(KeyValuePair<string, object> item)
         {
@@ -268,14 +256,13 @@ namespace PommaLabs.Thrower.Reflection.FastMember
         ///   Returns an enumerator that iterates through a collection.
         /// </summary>
         /// <returns>
-        ///   An <see cref="T:System.Collections.IEnumerator"/> object that can be used to iterate
-        ///   through the collection.
+        ///   An <see cref="IEnumerator"/> object that can be used to iterate through the collection.
         /// </returns>
         IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();
 
-#endregion IDictionary<string, object> members
+        #endregion IDictionary<string, object> members
 
-        private sealed class TypeAccessorWrapper : ObjectAccessor, IDictionary<string, object>
+        private sealed class TypeAccessorWrapper : ObjectAccessor
         {
             private readonly TypeAccessor _accessor;
             private readonly MemberSet _members;
@@ -295,7 +282,7 @@ namespace PommaLabs.Thrower.Reflection.FastMember
 
             public override object Target { get; }
 
-#region IDictionary<string, object> members
+            #region IDictionary<string, object> members
 
             public override ICollection<string> Keys => _members.Select(x => x.Name).ToArray();
 
@@ -326,11 +313,12 @@ namespace PommaLabs.Thrower.Reflection.FastMember
                 }
             }
 
-#endregion IDictionary<string, object> members
+            #endregion IDictionary<string, object> members
         }
 
 #if !NET35
-        sealed class DynamicWrapper : ObjectAccessor
+
+        private sealed class DynamicWrapper : ObjectAccessor
         {
             public DynamicWrapper(IDynamicMetaObjectProvider target)
             {
@@ -342,10 +330,9 @@ namespace PommaLabs.Thrower.Reflection.FastMember
                 get { return CallSiteCache.GetValue(name, Target); }
                 set { CallSiteCache.SetValue(name, Target, value); }
             }
-
             public override object Target { get; }
 
-#region IDictionary<string, object> members
+            #region IDictionary<string, object> members
 
             public override ICollection<string> Keys
             {
@@ -382,8 +369,9 @@ namespace PommaLabs.Thrower.Reflection.FastMember
                 throw new NotSupportedException();
             }
 
-#endregion IDictionary<string, object> members
+            #endregion IDictionary<string, object> members
         }
+
 #endif
     }
 }

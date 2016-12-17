@@ -10,12 +10,17 @@
 // or implied. See the License for the specific language governing permissions and limitations under
 // the License.
 
-#if !(PORTABLE || NETSTD11 || NETSTD13)
+#if !(PORTABLE || NETSTD11)
 
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Reflection;
+
+#if !NET20
+
+using System.Linq;
+
+#endif
 
 namespace PommaLabs.Thrower.Reflection.FastMember
 {
@@ -28,12 +33,20 @@ namespace PommaLabs.Thrower.Reflection.FastMember
 
         internal MemberSet(Type type)
         {
+#if NET20
+            var properties = new List<MemberInfo>(type.GetProperties());
+            properties.AddRange(new List<MemberInfo>(type.GetFields()));
+            properties.Sort((p1, p2) => p1.Name.CompareTo(p2.Name));
+            members = properties.ConvertAll<Member>(mi => new Member(mi)).ToArray();
+#else
             members = type
                 .GetProperties()
                 .Cast<MemberInfo>()
-                .Concat(type.GetFields().Cast<MemberInfo>()).OrderBy(x => x.Name, StringComparer.InvariantCulture)
+                .Concat(type.GetFields().Cast<MemberInfo>())
+                .OrderBy(x => x.Name)
                 .Select(member => new Member(member))
                 .ToArray();
+#endif
         }
 
         /// <summary>
@@ -45,7 +58,7 @@ namespace PommaLabs.Thrower.Reflection.FastMember
         }
 
         /// <summary>
-        ///   Get a member by index
+        ///   Get a member by index.
         /// </summary>
         public Member this[int index] => members[index];
 
@@ -87,7 +100,21 @@ namespace PommaLabs.Thrower.Reflection.FastMember
             throw new NotSupportedException();
         }
 
-        bool ICollection<Member>.Contains(Member item) => members.Contains(item);
+        bool ICollection<Member>.Contains(Member item)
+        {
+#if NET20
+            foreach (var _item in members)
+            {
+                if (item == _item)
+                {
+                    return true;
+                }
+            }
+            return false;
+#else
+            return members.Contains(item);
+#endif
+        }
 
         void ICollection<Member>.CopyTo(Member[] array, int arrayIndex)
         {
@@ -123,23 +150,71 @@ namespace PommaLabs.Thrower.Reflection.FastMember
         {
             get
             {
-                switch (member.MemberType)
-                {
-                    case MemberTypes.Field: return ((FieldInfo) member).FieldType;
-                    case MemberTypes.Property: return ((PropertyInfo) member).PropertyType;
-                    default: throw new NotSupportedException(member.MemberType.ToString());
-                }
+                if (member is FieldInfo) return ((FieldInfo) member).FieldType;
+                if (member is PropertyInfo) return ((PropertyInfo) member).PropertyType;
+                throw new NotSupportedException(member.GetType().Name);
             }
         }
 
         /// <summary>
-        ///   Is the attribute specified defined on this type.
+        ///   Is the attribute specified defined on this type?
         /// </summary>
         /// <param name="attributeType">The attribute type.</param>
         public bool IsDefined(Type attributeType)
         {
             if (attributeType == null) throw new ArgumentNullException(nameof(attributeType));
+#if NETSTD13
+            foreach(var attrib in member.CustomAttributes)
+            {
+                if (attrib.AttributeType == attributeType) return true;
+            }
+            return false;
+#else
             return Attribute.IsDefined(member, attributeType);
+#endif
+        }
+
+        /// <summary>
+        ///   Gets attribute type.
+        /// </summary>
+        /// <param name="attributeType">The attribute type.</param>
+        /// <param name="inherit">
+        ///   If true, specifies to also search the ancestors of element for custom attributes.
+        /// </param>
+        public Attribute GetAttribute(Type attributeType, bool inherit) => PortableTypeInfo
+            .GetCustomAttributes(member, inherit)
+            .FirstOrDefault(a => PortableTypeInfo.IsInstanceOf(a, attributeType));
+
+        /// <summary>
+        ///   Property can write?
+        /// </summary>
+        public bool CanWrite
+        {
+            get
+            {
+                var property = member as PropertyInfo;
+                if (property == null)
+                {
+                    throw new NotSupportedException(member.GetType().Name);
+                }
+                return property.CanWrite;
+            }
+        }
+
+        /// <summary>
+        ///   Property can read?
+        /// </summary>
+        public bool CanRead
+        {
+            get
+            {
+                var property = member as PropertyInfo;
+                if (property == null)
+                {
+                    throw new NotSupportedException(member.GetType().Name);
+                }
+                return property.CanRead;
+            }
         }
     }
 }

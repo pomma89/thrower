@@ -1,27 +1,28 @@
 ﻿// File name: ArgumentOutOfRangeExceptionTests.cs
-// 
+//
 // Author(s): Alessio Parma <alessio.parma@gmail.com>
-// 
+//
 // The MIT License (MIT)
-// 
+//
 // Copyright (c) 2013-2016 Alessio Parma <alessio.parma@gmail.com>
-// 
+//
 // Permission is hereby granted, free of charge, to any person obtaining a copy of this software and
 // associated documentation files (the "Software"), to deal in the Software without restriction,
 // including without limitation the rights to use, copy, modify, merge, publish, distribute,
 // sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is
 // furnished to do so, subject to the following conditions:
-// 
+//
 // The above copyright notice and this permission notice shall be included in all copies or
 // substantial portions of the Software.
-// 
+//
 // THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT
 // NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
 // NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM,
-// DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-// OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+// DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT
+// OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 using NUnit.Framework;
+using Shouldly;
 using System;
 
 namespace PommaLabs.Thrower.UnitTests.ExceptionHandlers
@@ -41,17 +42,15 @@ namespace PommaLabs.Thrower.UnitTests.ExceptionHandlers
         }
 
         [Test]
-        [ExpectedException(typeof(ArgumentOutOfRangeException))]
         public void IfIsNaN_NaN()
         {
-            Raise.ArgumentOutOfRangeException.IfIsNaN(double.NaN);
+            Should.Throw<ArgumentOutOfRangeException>(() => Raise.ArgumentOutOfRangeException.IfIsNaN(double.NaN));
         }
 
         [Test]
-        [ExpectedException(typeof(ArgumentOutOfRangeException), ExpectedMessage = TestMessage, MatchType = MessageMatch.Contains)]
         public void IfIsNaN_NaN_WithMsg()
         {
-            Raise.ArgumentOutOfRangeException.IfIsNaN(double.NaN, TestMessage);
+            Should.Throw<ArgumentOutOfRangeException>(() => Raise.ArgumentOutOfRangeException.IfIsNaN(double.NaN, TestMessage));
         }
 
         [Test]
@@ -67,17 +66,15 @@ namespace PommaLabs.Thrower.UnitTests.ExceptionHandlers
         }
 
         [Test]
-        [ExpectedException(typeof(ArgumentOutOfRangeException))]
         public void IfIsPositiveInfinity_PositiveInfinity()
         {
-            Raise.ArgumentOutOfRangeException.IfIsPositiveInfinity(double.PositiveInfinity);
+            Should.Throw<ArgumentOutOfRangeException>(() => Raise.ArgumentOutOfRangeException.IfIsPositiveInfinity(double.PositiveInfinity));
         }
 
         [Test]
-        [ExpectedException(typeof(ArgumentOutOfRangeException), ExpectedMessage = TestMessage, MatchType = MessageMatch.Contains)]
         public void IfIsPositiveInfinity_PositiveInfinity_WithMsg()
         {
-            Raise.ArgumentOutOfRangeException.IfIsPositiveInfinity(double.PositiveInfinity, TestMessage);
+            Should.Throw<ArgumentOutOfRangeException>(() => Raise.ArgumentOutOfRangeException.IfIsPositiveInfinity(double.PositiveInfinity, TestMessage));
         }
 
         [Test]
@@ -93,17 +90,15 @@ namespace PommaLabs.Thrower.UnitTests.ExceptionHandlers
         }
 
         [Test]
-        [ExpectedException(typeof(ArgumentOutOfRangeException))]
         public void IfIsNegativeInfinity_NegativeInfinity()
         {
-            Raise.ArgumentOutOfRangeException.IfIsNegativeInfinity(double.NegativeInfinity);
+            Should.Throw<ArgumentOutOfRangeException>(() => Raise.ArgumentOutOfRangeException.IfIsNegativeInfinity(double.NegativeInfinity));
         }
 
         [Test]
-        [ExpectedException(typeof(ArgumentOutOfRangeException), ExpectedMessage = TestMessage, MatchType = MessageMatch.Contains)]
         public void IfIsNegativeInfinity_NegativeInfinity_WithMsg()
         {
-            Raise.ArgumentOutOfRangeException.IfIsNegativeInfinity(double.NegativeInfinity, TestMessage);
+            Should.Throw<ArgumentOutOfRangeException>(() => Raise.ArgumentOutOfRangeException.IfIsNegativeInfinity(double.NegativeInfinity, TestMessage));
         }
     }
 }

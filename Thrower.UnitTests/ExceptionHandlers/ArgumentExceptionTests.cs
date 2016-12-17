@@ -24,6 +24,7 @@
 using NUnit.Framework;
 using PommaLabs.Thrower.ExceptionHandlers;
 using PommaLabs.Thrower.Validation;
+using Shouldly;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -276,20 +277,215 @@ namespace PommaLabs.Thrower.UnitTests.ExceptionHandlers
 
         #endregion IfIsNotValidPhoneNumber
 
+        #region IfIsNotValidEnum
+
+        [TestCase(FlagsEnum.Zero)]
+        [TestCase(FlagsEnum.One)]
+        [TestCase(FlagsEnum.Two)]
+        [TestCase(FlagsEnum.Four)]
+        [TestCase(FlagsEnum.Seven)]
+        [TestCase(FlagsEnum.Seven | FlagsEnum.One)]
+        [TestCase(FlagsEnum.Seven | FlagsEnum.Two)]
+        [TestCase(FlagsEnum.Seven | FlagsEnum.Four)]
+        [TestCase(FlagsEnum.One | FlagsEnum.Two | FlagsEnum.Four)]
+        public void IfIsNotValidEnum_ValidFlags_Simple(object enumValue)
+        {
+            Raise.ArgumentException.IfIsNotValidEnum(typeof(FlagsEnum), enumValue);
+        }
+
+        [TestCase(FlagsEnum.Zero)]
+        [TestCase(FlagsEnum.One)]
+        [TestCase(FlagsEnum.Two)]
+        [TestCase(FlagsEnum.Four)]
+        [TestCase(FlagsEnum.Seven)]
+        [TestCase(FlagsEnum.Seven | FlagsEnum.One)]
+        [TestCase(FlagsEnum.Seven | FlagsEnum.Two)]
+        [TestCase(FlagsEnum.Seven | FlagsEnum.Four)]
+        [TestCase(FlagsEnum.One | FlagsEnum.Two | FlagsEnum.Four)]
+        [TestCase(null)]
+        public void IfIsNotValidEnum_ValidFlags_SimpleAndNullable(object enumValue)
+        {
+            Raise.ArgumentException.IfIsNotValidEnum(typeof(FlagsEnum?), enumValue ?? new FlagsEnum?());
+        }
+
+        [TestCase(FlagsEnum.Zero)]
+        [TestCase(FlagsEnum.One)]
+        [TestCase(FlagsEnum.Two)]
+        [TestCase(FlagsEnum.Four)]
+        [TestCase(FlagsEnum.Seven)]
+        [TestCase(FlagsEnum.Seven | FlagsEnum.One)]
+        [TestCase(FlagsEnum.Seven | FlagsEnum.Two)]
+        [TestCase(FlagsEnum.Seven | FlagsEnum.Four)]
+        [TestCase(FlagsEnum.One | FlagsEnum.Two | FlagsEnum.Four)]
+        public void IfIsNotValidEnum_ValidFlags_SimpleAndNullable_ButValueIsNotNullable(object enumValue)
+        {
+            Raise.ArgumentException.IfIsNotValidEnum(typeof(FlagsEnum?), (FlagsEnum) enumValue);
+        }
+
+        [TestCase(FlagsEnum.Zero | FlagsEnum.One)]
+        [TestCase(FlagsEnum.Zero | FlagsEnum.Two)]
+        [TestCase(FlagsEnum.Zero | FlagsEnum.Four)]
+        [TestCase(FlagsEnum.One | FlagsEnum.Two)]
+        [TestCase(FlagsEnum.One | FlagsEnum.Four)]
+        [TestCase(FlagsEnum.Two | FlagsEnum.Four)]
+        public void IfIsNotValidEnum_ValidFlags_Combined(object enumValue)
+        {
+            Raise.ArgumentException.IfIsNotValidEnum(typeof(FlagsEnum), enumValue);
+        }
+
+        [TestCase((FlagsEnum) 8)]
+        [TestCase((FlagsEnum) 16)]
+        [TestCase((FlagsEnum) 11)]
+        [TestCase((FlagsEnum) 9)]
+        [TestCase((FlagsEnum) 10)]
+        [TestCase((FlagsEnum) 128)]
+        public void IfIsNotValidEnum_InvalidFlags_Simple(object enumValue)
+        {
+            Should.Throw<ArgumentException>(() => Raise.ArgumentException.IfIsNotValidEnum(typeof(FlagsEnum), enumValue));
+        }
+
+        [TestCase(FlagsEnum.Zero | FlagsEnum.One | (FlagsEnum) 8)]
+        [TestCase(FlagsEnum.Zero | FlagsEnum.Two | (FlagsEnum) 16)]
+        [TestCase(FlagsEnum.Zero | FlagsEnum.Four | (FlagsEnum) 11)]
+        [TestCase(FlagsEnum.One | FlagsEnum.Two | (FlagsEnum) 9)]
+        [TestCase(FlagsEnum.One | FlagsEnum.Four | (FlagsEnum) 10)]
+        [TestCase(FlagsEnum.Two | FlagsEnum.Four | (FlagsEnum) 128)]
+        public void IfIsNotValidEnum_InvalidFlags_Combined(object enumValue)
+        {
+            Should.Throw<ArgumentException>(() => Raise.ArgumentException.IfIsNotValidEnum(typeof(FlagsEnum), enumValue));
+        }
+
+        [TestCase(FlagsEnum.Zero | FlagsEnum.One | (FlagsEnum) 8)]
+        [TestCase(FlagsEnum.Zero | FlagsEnum.Two | (FlagsEnum) 16)]
+        [TestCase(FlagsEnum.Zero | FlagsEnum.Four | (FlagsEnum) 11)]
+        [TestCase(FlagsEnum.One | FlagsEnum.Two | (FlagsEnum) 9)]
+        [TestCase(FlagsEnum.One | FlagsEnum.Four | (FlagsEnum) 10)]
+        [TestCase(FlagsEnum.Two | FlagsEnum.Four | (FlagsEnum) 128)]
+        public void IfIsNotValidEnum_InvalidFlags_CombinedAndNullable(object enumValue)
+        {
+            Should.Throw<ArgumentException>(() => Raise.ArgumentException.IfIsNotValidEnum(typeof(FlagsEnum?), enumValue));
+        }
+
+        [TestCase(FlagsEnum.Zero)]
+        [TestCase(FlagsEnum.One)]
+        [TestCase(FlagsEnum.Two)]
+        [TestCase(FlagsEnum.Four)]
+        [TestCase(FlagsEnum.Seven)]
+        [TestCase(FlagsEnum.Seven | FlagsEnum.One)]
+        [TestCase(FlagsEnum.Seven | FlagsEnum.Two)]
+        [TestCase(FlagsEnum.Seven | FlagsEnum.Four)]
+        [TestCase(FlagsEnum.One | FlagsEnum.Two | FlagsEnum.Four)]
+        public void IfIsNotValidEnum_Generic_ValidFlags_Simple(object enumValue)
+        {
+            Raise.ArgumentException.IfIsNotValidEnum((FlagsEnum) enumValue);
+        }
+
+        [TestCase(FlagsEnum.Zero)]
+        [TestCase(FlagsEnum.One)]
+        [TestCase(FlagsEnum.Two)]
+        [TestCase(FlagsEnum.Four)]
+        [TestCase(FlagsEnum.Seven)]
+        [TestCase(FlagsEnum.Seven | FlagsEnum.One)]
+        [TestCase(FlagsEnum.Seven | FlagsEnum.Two)]
+        [TestCase(FlagsEnum.Seven | FlagsEnum.Four)]
+        [TestCase(FlagsEnum.One | FlagsEnum.Two | FlagsEnum.Four)]
+        [TestCase(null)]
+        public void IfIsNotValidEnum_Generic_ValidFlags_SimpleAndNullable(object enumValue)
+        {
+            Raise.ArgumentException.IfIsNotValidEnum((FlagsEnum?) enumValue);
+        }
+
+        [TestCase(FlagsEnum.Zero | FlagsEnum.One)]
+        [TestCase(FlagsEnum.Zero | FlagsEnum.Two)]
+        [TestCase(FlagsEnum.Zero | FlagsEnum.Four)]
+        [TestCase(FlagsEnum.One | FlagsEnum.Two)]
+        [TestCase(FlagsEnum.One | FlagsEnum.Four)]
+        [TestCase(FlagsEnum.Two | FlagsEnum.Four)]
+        public void IfIsNotValidEnum_Generic_ValidFlags_Combined(object enumValue)
+        {
+            Raise.ArgumentException.IfIsNotValidEnum((FlagsEnum) enumValue);
+        }
+
+        [TestCase(FlagsEnum.Zero | FlagsEnum.One)]
+        [TestCase(FlagsEnum.Zero | FlagsEnum.Two)]
+        [TestCase(FlagsEnum.Zero | FlagsEnum.Four)]
+        [TestCase(FlagsEnum.One | FlagsEnum.Two)]
+        [TestCase(FlagsEnum.One | FlagsEnum.Four)]
+        [TestCase(FlagsEnum.Two | FlagsEnum.Four)]
+        [TestCase(null)]
+        public void IfIsNotValidEnum_Generic_ValidFlags_CombinedAndNullable(object enumValue)
+        {
+            Raise.ArgumentException.IfIsNotValidEnum((FlagsEnum?) enumValue);
+        }
+
+        [TestCase((FlagsEnum) 8)]
+        [TestCase((FlagsEnum) 16)]
+        [TestCase((FlagsEnum) 11)]
+        [TestCase((FlagsEnum) 9)]
+        [TestCase((FlagsEnum) 10)]
+        [TestCase((FlagsEnum) 128)]
+        public void IfIsNotValidEnum_Generic_InvalidFlags_Simple(object enumValue)
+        {
+            Should.Throw<ArgumentException>(() => Raise.ArgumentException.IfIsNotValidEnum((FlagsEnum) enumValue));
+        }
+
+        [TestCase((FlagsEnum) 8)]
+        [TestCase((FlagsEnum) 16)]
+        [TestCase((FlagsEnum) 11)]
+        [TestCase((FlagsEnum) 9)]
+        [TestCase((FlagsEnum) 10)]
+        [TestCase((FlagsEnum) 128)]
+        public void IfIsNotValidEnum_Generic_InvalidFlags_SimpleAndNullable(object enumValue)
+        {
+            Should.Throw<ArgumentException>(() => Raise.ArgumentException.IfIsNotValidEnum((FlagsEnum?) enumValue));
+        }
+
+        [TestCase(FlagsEnum.Zero | FlagsEnum.One | (FlagsEnum) 8)]
+        [TestCase(FlagsEnum.Zero | FlagsEnum.Two | (FlagsEnum) 16)]
+        [TestCase(FlagsEnum.Zero | FlagsEnum.Four | (FlagsEnum) 11)]
+        [TestCase(FlagsEnum.One | FlagsEnum.Two | (FlagsEnum) 9)]
+        [TestCase(FlagsEnum.One | FlagsEnum.Four | (FlagsEnum) 10)]
+        [TestCase(FlagsEnum.Two | FlagsEnum.Four | (FlagsEnum) 128)]
+        public void IfIsNotValidEnum_Generic_InvalidFlags_Combined(object enumValue)
+        {
+            Should.Throw<ArgumentException>(() => Raise.ArgumentException.IfIsNotValidEnum((FlagsEnum) enumValue));
+        }
+
+        [TestCase(FlagsEnum.Zero | FlagsEnum.One | (FlagsEnum) 8)]
+        [TestCase(FlagsEnum.Zero | FlagsEnum.Two | (FlagsEnum) 16)]
+        [TestCase(FlagsEnum.Zero | FlagsEnum.Four | (FlagsEnum) 11)]
+        [TestCase(FlagsEnum.One | FlagsEnum.Two | (FlagsEnum) 9)]
+        [TestCase(FlagsEnum.One | FlagsEnum.Four | (FlagsEnum) 10)]
+        [TestCase(FlagsEnum.Two | FlagsEnum.Four | (FlagsEnum) 128)]
+        public void IfIsNotValidEnum_Generic_InvalidFlags_CombinedAndNullable(object enumValue)
+        {
+            Should.Throw<ArgumentException>(() => Raise.ArgumentException.IfIsNotValidEnum((FlagsEnum?) enumValue));
+        }
+
+        [Flags]
+        private enum FlagsEnum
+        {
+            Zero = 0,
+            One = 1,
+            Two = 2,
+            Four = 4,
+            Seven = 7
+        }
+
+        #endregion IfIsNotValidEnum
+
         #region IfIsNullOrEmpty
 
         [Test]
-        [ExpectedException(typeof(ArgumentException))]
         public void IfIsNullOrWhiteSpace_BlankString()
         {
-            Raise.ArgumentException.IfIsNullOrWhiteSpace(BlankString);
+            Should.Throw<ArgumentException>(() => Raise.ArgumentException.IfIsNullOrWhiteSpace(BlankString));
         }
 
         [Test]
-        [ExpectedException(typeof(ArgumentException), ExpectedMessage = TestMessage, MatchType = MessageMatch.StartsWith)]
         public void IfIsNullOrWhiteSpace_BlankString_WithMsg()
         {
-            Raise.ArgumentException.IfIsNullOrWhiteSpace(BlankString, nameof(BlankString), TestMessage);
+            Should.Throw<ArgumentException>(() => Raise.ArgumentException.IfIsNullOrWhiteSpace(BlankString, nameof(BlankString), TestMessage));
         }
 
         [Test]
@@ -305,45 +501,39 @@ namespace PommaLabs.Thrower.UnitTests.ExceptionHandlers
         }
 
         [Test]
-        [ExpectedException(typeof(ArgumentException))]
         public void IfIsNullOrEmpty_EmptyIntegerCollection()
         {
-            Raise.ArgumentException.IfIsNullOrEmpty(new List<int>());
+            Should.Throw<ArgumentException>(() => Raise.ArgumentException.IfIsNullOrEmpty(new List<int>()));
         }
 
         [Test]
-        [ExpectedException(typeof(ArgumentException), ExpectedMessage = TestMessage, MatchType = MessageMatch.StartsWith)]
         public void IfIsNullOrEmpty_EmptyIntegerCollection_WithMsg()
         {
-            Raise.ArgumentException.IfIsNullOrEmpty(new List<int>(), "MyList", TestMessage);
+            Should.Throw<ArgumentException>(() => Raise.ArgumentException.IfIsNullOrEmpty(new List<int>(), "MyList", TestMessage));
         }
 
         [Test]
-        [ExpectedException(typeof(ArgumentException))]
         public void IfIsNullOrEmpty_EmptyString()
         {
-            Raise.ArgumentException.IfIsNullOrEmpty(string.Empty);
+            Should.Throw<ArgumentException>(() => Raise.ArgumentException.IfIsNullOrEmpty(string.Empty));
         }
 
         [Test]
-        [ExpectedException(typeof(ArgumentException), ExpectedMessage = TestMessage, MatchType = MessageMatch.StartsWith)]
         public void IfIsNullOrEmpty_EmptyString_WithMsg()
         {
-            Raise.ArgumentException.IfIsNullOrEmpty(string.Empty, nameof(string.Empty), TestMessage);
+            Should.Throw<ArgumentException>(() => Raise.ArgumentException.IfIsNullOrEmpty(string.Empty, nameof(string.Empty), TestMessage));
         }
 
         [Test]
-        [ExpectedException(typeof(ArgumentException))]
         public void IfIsNullOrWhiteSpace_EmptyString()
         {
-            Raise.ArgumentException.IfIsNullOrWhiteSpace(string.Empty);
+            Should.Throw<ArgumentException>(() => Raise.ArgumentException.IfIsNullOrWhiteSpace(string.Empty));
         }
 
         [Test]
-        [ExpectedException(typeof(ArgumentException), ExpectedMessage = TestMessage, MatchType = MessageMatch.StartsWith)]
         public void IfIsNullOrWhiteSpace_EmptyString_WithMsg()
         {
-            Raise.ArgumentException.IfIsNullOrWhiteSpace(string.Empty, nameof(string.Empty), TestMessage);
+            Should.Throw<ArgumentException>(() => Raise.ArgumentException.IfIsNullOrWhiteSpace(string.Empty, nameof(string.Empty), TestMessage));
         }
 
         [Test]
@@ -383,17 +573,15 @@ namespace PommaLabs.Thrower.UnitTests.ExceptionHandlers
         }
 
         [Test]
-        [ExpectedException(typeof(ArgumentException))]
         public void IfIsNullOrEmpty_Dict_EmptyIntegerCollection()
         {
-            Raise.ArgumentException.IfIsNullOrEmpty(new Dictionary<int, int>());
+            Should.Throw<ArgumentException>(() => Raise.ArgumentException.IfIsNullOrEmpty(new Dictionary<int, int>()));
         }
 
         [Test]
-        [ExpectedException(typeof(ArgumentException), ExpectedMessage = TestMessage, MatchType = MessageMatch.StartsWith)]
         public void IfIsNullOrEmpty_Dict_EmptyIntegerCollection_WithMsg()
         {
-            Raise.ArgumentException.IfIsNullOrEmpty(new Dictionary<int, int>(), "MyDict", TestMessage);
+            Should.Throw<ArgumentException>(() => Raise.ArgumentException.IfIsNullOrEmpty(new Dictionary<int, int>(), "MyDict", TestMessage));
         }
 
         [Test]
@@ -426,32 +614,32 @@ namespace PommaLabs.Thrower.UnitTests.ExceptionHandlers
             Raise.ArgumentException.IfIsNullOrEmpty(dict);
         }
 
-        [Test, ExpectedException(typeof(ArgumentException), ExpectedMessage = ArgumentExceptionHandler.CollectionIsNullOrEmptyMessage, MatchType = MessageMatch.Contains)]
+        [Test]
         public void IfIsNullOrEmpty_NullList()
         {
             List<string> list = null;
-            Raise.ArgumentException.IfIsNullOrEmpty(list);
+            Should.Throw<ArgumentException>(() => Raise.ArgumentException.IfIsNullOrEmpty(list));
         }
 
-        [Test, ExpectedException(typeof(ArgumentException), ExpectedMessage = ArgumentExceptionHandler.CollectionIsNullOrEmptyMessage, MatchType = MessageMatch.Contains)]
+        [Test]
         public void IfIsNullOrEmpty_NullDictionary()
         {
             Dictionary<string, int> dict = null;
-            Raise.ArgumentException.IfIsNullOrEmpty(dict);
+            Should.Throw<ArgumentException>(() => Raise.ArgumentException.IfIsNullOrEmpty(dict));
         }
 
-        [Test, ExpectedException(typeof(ArgumentException), ExpectedMessage = ArgumentExceptionHandler.CollectionIsNullOrEmptyMessage, MatchType = MessageMatch.Contains)]
+        [Test]
         public void IfIsNullOrEmpty_EmptyList()
         {
             var list = new List<string>();
-            Raise.ArgumentException.IfIsNullOrEmpty(list);
+            Should.Throw<ArgumentException>(() => Raise.ArgumentException.IfIsNullOrEmpty(list));
         }
 
-        [Test, ExpectedException(typeof(ArgumentException), ExpectedMessage = ArgumentExceptionHandler.CollectionIsNullOrEmptyMessage, MatchType = MessageMatch.Contains)]
+        [Test]
         public void IfIsNullOrEmpty_EmptyDictionary()
         {
             var dict = new Dictionary<string, int>();
-            Raise.ArgumentException.IfIsNullOrEmpty(dict);
+            Should.Throw<ArgumentException>(() => Raise.ArgumentException.IfIsNullOrEmpty(dict));
         }
 
         #endregion IfIsNullOrEmpty
@@ -472,18 +660,16 @@ namespace PommaLabs.Thrower.UnitTests.ExceptionHandlers
         }
 
         [Test]
-        [ExpectedException(typeof(ArgumentException))]
         public void IfIsNotEqualTo_DifferentIntegers()
         {
-            Raise.ArgumentException.IfIsNotEqualTo(5, 50);
+            Should.Throw<ArgumentException>(() => Raise.ArgumentException.IfIsNotEqualTo(5, 50));
         }
 
         [Test]
-        [ExpectedException(typeof(ArgumentException), ExpectedMessage = TestMessage, MatchType = MessageMatch.Contains)]
         public void IfIsNotEqualTo_DifferentIntegers_WithMsg()
         {
             var x = 5;
-            Raise.ArgumentException.IfIsNotEqualTo(x, 50, nameof(x), TestMessage);
+            Should.Throw<ArgumentException>(() => Raise.ArgumentException.IfIsNotEqualTo(x, 50, nameof(x), TestMessage));
         }
 
         [Test]
@@ -500,20 +686,74 @@ namespace PommaLabs.Thrower.UnitTests.ExceptionHandlers
         }
 
         [Test]
-        [ExpectedException(typeof(ArgumentException))]
         public void IfIsEqualTo_SameIntegers()
         {
-            Raise.ArgumentException.IfIsEqualTo(5, 5);
+            Should.Throw<ArgumentException>(() => Raise.ArgumentException.IfIsEqualTo(5, 5));
         }
 
         [Test]
-        [ExpectedException(typeof(ArgumentException), ExpectedMessage = TestMessage, MatchType = MessageMatch.Contains)]
         public void IfIsEqualTo_SameIntegers_WithMsg()
         {
             var x = 5;
-            Raise.ArgumentException.IfIsEqualTo(x, 5, nameof(x), TestMessage);
+            Should.Throw<ArgumentException>(() => Raise.ArgumentException.IfIsEqualTo(x, 5, nameof(x), TestMessage));
         }
 
         #endregion IfIs(Not)EqualTo
+
+        #region IfIs(Not)SameAs
+
+        [Test]
+        public void IfIsSameAs_DifferentObjects()
+        {
+            Raise.ArgumentException.IfIsSameAs(new object(), new object());
+        }
+
+        [Test]
+        public void IfIsSameAs_DifferentObjects_WithMsg()
+        {
+            Raise.ArgumentException.IfIsSameAs(new object(), new object(), "X", TestMessage);
+        }
+
+        [Test]
+        public void IfIsNotSameAs_DifferentObjects()
+        {
+            Should.Throw<ArgumentException>(() => Raise.ArgumentException.IfIsNotSameAs(new object(), new object()));
+        }
+
+        [Test]
+        public void IfIsNotSameAs_DifferentObjects_WithMsg()
+        {
+            Should.Throw<ArgumentException>(() => Raise.ArgumentException.IfIsNotSameAs(new object(), new object(), "X", TestMessage));
+        }
+
+        [Test]
+        public void IfIsNotSameAs_SameObjects()
+        {
+            var obj = new object();
+            Raise.ArgumentException.IfIsNotSameAs(obj, obj);
+        }
+
+        [Test]
+        public void IfIsNotSameAs_SameObjects_WithMsg()
+        {
+            var obj = new object();
+            Raise.ArgumentException.IfIsNotSameAs(obj, obj, "X", TestMessage);
+        }
+
+        [Test]
+        public void IfIsSameAs_SameObjects()
+        {
+            var obj = new object();
+            Should.Throw<ArgumentException>(() => Raise.ArgumentException.IfIsSameAs(obj, obj));
+        }
+
+        [Test]
+        public void IfIsSameAs_SameObjects_WithMsg()
+        {
+            var obj = new object();
+            Should.Throw<ArgumentException>(() => Raise.ArgumentException.IfIsSameAs(obj, obj, "X", TestMessage));
+        }
+
+        #endregion IfIs(Not)SameAs
     }
 }

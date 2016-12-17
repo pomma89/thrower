@@ -1,27 +1,28 @@
 ﻿// File name: RaiseTests.cs
-// 
+//
 // Author(s): Alessio Parma <alessio.parma@gmail.com>
-// 
+//
 // The MIT License (MIT)
-// 
+//
 // Copyright (c) 2013-2016 Alessio Parma <alessio.parma@gmail.com>
-// 
+//
 // Permission is hereby granted, free of charge, to any person obtaining a copy of this software and
 // associated documentation files (the "Software"), to deal in the Software without restriction,
 // including without limitation the rights to use, copy, modify, merge, publish, distribute,
 // sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is
 // furnished to do so, subject to the following conditions:
-// 
+//
 // The above copyright notice and this permission notice shall be included in all copies or
 // substantial portions of the Software.
-// 
+//
 // THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT
 // NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
 // NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM,
-// DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-// OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+// DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT
+// OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 using NUnit.Framework;
+using Shouldly;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
@@ -124,147 +125,135 @@ namespace PommaLabs.Thrower.UnitTests
         }
 
         [Test]
-        [ExpectedException(typeof(ThrowerException))]
         public void AbstractException1()
         {
-            Raise<AbstractException>.If(true);
+            Should.Throw<ThrowerException>(() => Raise<AbstractException>.If(true));
         }
 
         [Test]
-        [ExpectedException(typeof(ThrowerException))]
         public void AbstractException1_Not()
         {
-            Raise<AbstractException>.IfNot(false);
+            Should.Throw<ThrowerException>(() => Raise<AbstractException>.IfNot(false));
         }
 
         [Test]
-        [ExpectedException(typeof(ThrowerException))]
         public void AbstractException2()
         {
-            Raise<AbstractException>.If(true, "msg");
+            Should.Throw<ThrowerException>(() => Raise<AbstractException>.If(true, "msg"));
         }
 
         [Test]
-        [ExpectedException(typeof(ThrowerException))]
         public void AbstractException2_Not()
         {
-            Raise<AbstractException>.IfNot(false, "msg");
+            Should.Throw<ThrowerException>(() => Raise<AbstractException>.IfNot(false, "msg"));
         }
 
         [Test]
-        [ExpectedException(typeof(ArgumentException))]
         public void ArgumentException()
         {
-            Raise<ArgumentException>.If(true);
+            Should.Throw<ArgumentException>(() => Raise<ArgumentException>.If(true));
         }
 
         [Test]
-        [ExpectedException(typeof(ArgumentException))]
         public void ArgumentException_Not()
         {
-            Raise<ArgumentException>.IfNot(false);
+            Should.Throw<ArgumentException>(() => Raise<ArgumentException>.IfNot(false));
         }
 
         [Test]
-        [ExpectedException(typeof(ArgumentException))]
         public void ArgumentException_WithMsg()
         {
             try
             {
                 Raise<ArgumentException>.If(true, "Pino");
+                Assert.Fail();
             }
             catch (ArgumentException ex)
             {
                 Assert.AreEqual("Pino", ex.Message);
-                throw;
+                Assert.Pass();
             }
         }
 
         [Test]
-        [ExpectedException(typeof(ArgumentException))]
         public void ArgumentException_WithMsg_Not()
         {
             try
             {
                 Raise<ArgumentException>.IfNot(false, "Pino");
+                Assert.Fail();
             }
             catch (ArgumentException ex)
             {
                 Assert.AreEqual("Pino", ex.Message);
-                throw;
+                Assert.Pass();
             }
         }
 
         [Test]
-        [ExpectedException(typeof(ArgumentNullException))]
         public void ArgumentNullException()
         {
-            Raise<ArgumentNullException>.If(true);
+            Should.Throw<ArgumentNullException>(() => Raise<ArgumentNullException>.If(true));
         }
 
         [Test]
-        [ExpectedException(typeof(ArgumentNullException))]
         public void ArgumentNullException_Not()
         {
-            Raise<ArgumentNullException>.IfNot(false);
+            Should.Throw<ArgumentNullException>(() => Raise<ArgumentNullException>.IfNot(false));
         }
 
         [Test]
-        [ExpectedException(typeof(ArgumentNullException))]
         public void ArgumentNullException_WithMsg()
         {
             try
             {
                 Raise<ArgumentNullException>.If(true, "Pino");
+                Assert.Fail();
             }
             catch (ArgumentNullException ex)
             {
                 Assert.AreEqual("Pino", ex.Message);
-                throw;
+                Assert.Pass();
             }
         }
 
         [Test]
-        [ExpectedException(typeof(ArgumentNullException))]
         public void ArgumentNullException_WithMsg_Not()
         {
             try
             {
                 Raise<ArgumentNullException>.IfNot(false, "Pino");
+                Assert.Fail();
             }
             catch (ArgumentNullException ex)
             {
                 Assert.AreEqual("Pino", ex.Message);
-                throw;
+                Assert.Pass();
             }
         }
 
         [Test]
-        [ExpectedException(typeof(InternalCtorException))]
         public void ExceptionInternalConstructor1()
         {
-            Raise<InternalCtorException>.If(true);
+            Should.Throw<InternalCtorException>(() => Raise<InternalCtorException>.If(true));
         }
 
         [Test]
-        [ExpectedException(typeof(InternalCtorException))]
         public void ExceptionInternalConstructor1_Not()
         {
-            Raise<InternalCtorException>.IfNot(false);
+            Should.Throw<InternalCtorException>(() => Raise<InternalCtorException>.IfNot(false));
         }
 
         [Test]
-        [ExpectedException(typeof(InternalCtorException))]
         public void ExceptionInternalConstructor2()
         {
-            Raise<InternalCtorException>.If(true, "msg");
+            Should.Throw<InternalCtorException>(() => Raise<InternalCtorException>.If(true, "msg"));
         }
 
         [Test]
-        [ExpectedException(typeof(InternalCtorException))]
         public void ExceptionInternalConstructor2_Not()
         {
-            Raise<InternalCtorException>.IfNot(false, "msg");
+            Should.Throw<InternalCtorException>(() => Raise<InternalCtorException>.IfNot(false, "msg"));
         }
 
         [Test]
@@ -273,13 +262,13 @@ namespace PommaLabs.Thrower.UnitTests
             try
             {
                 Raise<ThrowerException>.If(true, "A RANDOM MSG");
+                Assert.Fail();
             }
             catch (ThrowerException ex)
             {
                 Assert.AreNotEqual("A RANDOM MSG", ex.Message);
                 Assert.Pass();
             }
-            Assert.Fail();
         }
 
         [Test]
@@ -288,60 +277,54 @@ namespace PommaLabs.Thrower.UnitTests
             try
             {
                 Raise<ThrowerException>.IfNot(false, "A RANDOM MSG");
+                Assert.Fail();
             }
             catch (ThrowerException ex)
             {
                 Assert.AreNotEqual("A RANDOM MSG", ex.Message);
                 Assert.Pass();
             }
-            Assert.Fail();
         }
 
         [Test]
-        [ExpectedException(typeof(ThrowerException))]
         public void ExceptionPrivateConstructor1()
         {
-            Raise<PrivateCtorException>.If(true);
+            Should.Throw<ThrowerException>(() => Raise<PrivateCtorException>.If(true));
         }
 
         [Test]
-        [ExpectedException(typeof(ThrowerException))]
         public void ExceptionPrivateConstructor1_Not()
         {
-            Raise<PrivateCtorException>.IfNot(false);
+            Should.Throw<ThrowerException>(() => Raise<PrivateCtorException>.IfNot(false));
         }
 
         [Test]
-        [ExpectedException(typeof(ThrowerException))]
         public void ExceptionPrivateConstructor2()
         {
-            Raise<PrivateCtorException>.If(true, "msg");
+            Should.Throw<ThrowerException>(() => Raise<PrivateCtorException>.If(true, "msg"));
         }
 
         [Test]
-        [ExpectedException(typeof(ThrowerException))]
         public void ExceptionPrivateConstructor2_Not()
         {
-            Raise<PrivateCtorException>.IfNot(false, "msg");
+            Should.Throw<ThrowerException>(() => Raise<PrivateCtorException>.IfNot(false, "msg"));
         }
 
         [Test]
-        [ExpectedException(typeof(ThrowerException))]
         public void ExceptionPrivateConstructor3()
         {
             try
             {
                 Raise<PrivateCtorException>.If(true, "msg");
+                Assert.Fail();
             }
             catch (ThrowerException)
             {
-                Raise<PrivateCtorException>.If(true, "msg");
+                Should.Throw<ThrowerException>(() => Raise<PrivateCtorException>.If(true, "msg"));
             }
-            Assert.Fail();
         }
 
         [Test]
-        [ExpectedException(typeof(ThrowerException))]
         public void ExceptionPrivateConstructor3_Not()
         {
             try
@@ -350,37 +333,32 @@ namespace PommaLabs.Thrower.UnitTests
             }
             catch (ThrowerException)
             {
-                Raise<PrivateCtorException>.IfNot(false, "msg");
+                Should.Throw<ThrowerException>(() => Raise<PrivateCtorException>.IfNot(false, "msg"));
             }
-            Assert.Fail();
         }
 
         [Test]
-        [ExpectedException(typeof(ThrowerException))]
         public void ExceptionWithoutConstructor1()
         {
-            Raise<NoCtorException>.If(true);
+            Should.Throw<ThrowerException>(() => Raise<NoCtorException>.If(true));
         }
 
         [Test]
-        [ExpectedException(typeof(ThrowerException))]
         public void ExceptionWithoutConstructor1_Not()
         {
-            Raise<NoCtorException>.IfNot(false);
+            Should.Throw<ThrowerException>(() => Raise<NoCtorException>.IfNot(false));
         }
 
         [Test]
-        [ExpectedException(typeof(ThrowerException))]
         public void ExceptionWithoutConstructor2()
         {
-            Raise<NoCtorException>.If(true, "msg");
+            Should.Throw<ThrowerException>(() => Raise<NoCtorException>.If(true, "msg"));
         }
 
         [Test]
-        [ExpectedException(typeof(ThrowerException))]
         public void ExceptionWithoutConstructor2_Not()
         {
-            Raise<NoCtorException>.IfNot(false, "msg");
+            Should.Throw<ThrowerException>(() => Raise<NoCtorException>.IfNot(false, "msg"));
         }
 
         [Test]
@@ -390,46 +368,44 @@ namespace PommaLabs.Thrower.UnitTests
         }
 
         [Test]
-        [ExpectedException(typeof(InvalidOperationException))]
         public void InvalidOperationException()
         {
-            Raise<InvalidOperationException>.If(true);
+            Should.Throw<InvalidOperationException>(() => Raise<InvalidOperationException>.If(true));
         }
 
         [Test]
-        [ExpectedException(typeof(InvalidOperationException))]
         public void InvalidOperationException_Not()
         {
-            Raise<InvalidOperationException>.IfNot(false);
+            Should.Throw<InvalidOperationException>(() => Raise<InvalidOperationException>.IfNot(false));
         }
 
         [Test]
-        [ExpectedException(typeof(InvalidOperationException))]
         public void InvalidOperationException_WithMsg()
         {
             try
             {
                 Raise<InvalidOperationException>.If(true, "Pino");
+                Assert.Fail();
             }
             catch (InvalidOperationException ex)
             {
                 Assert.AreEqual("Pino", ex.Message);
-                throw;
+                Assert.Pass();
             }
         }
 
         [Test]
-        [ExpectedException(typeof(InvalidOperationException))]
         public void InvalidOperationException_WithMsg_Not()
         {
             try
             {
                 Raise<InvalidOperationException>.IfNot(false, "Pino");
+                Assert.Fail();
             }
             catch (InvalidOperationException ex)
             {
                 Assert.AreEqual("Pino", ex.Message);
-                throw;
+                Assert.Pass();
             }
         }
 

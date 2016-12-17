@@ -1,4 +1,4 @@
-﻿// File name: RaiseObjectDisposedException.cs
+﻿// File name: InvalidCastExceptionHandler.cs
 //
 // Author(s): Alessio Parma <alessio.parma@gmail.com>
 //
@@ -23,33 +23,22 @@
 
 using System;
 
-namespace PommaLabs.Thrower
+#pragma warning disable CC0091 // Use static method
+
+namespace PommaLabs.Thrower.ExceptionHandlers
 {
     /// <summary>
-    ///   Utility methods which can be used to handle bad object states.
+    ///   Handler for <see cref="InvalidCastException"/>.
     /// </summary>
-    /// <remarks>
-    ///   This class is no longer maintained.
-    /// </remarks>
-    [Obsolete("Please use Raise.ObjectDisposedException.If* overloads, this class has been deprecated and it will be removed in v4", true)]
-    public sealed class RaiseObjectDisposedException : RaiseBase
+    public sealed class InvalidCastExceptionHandler : GenericExceptionHandler<InvalidCastException>
     {
         /// <summary>
-        ///   Throws <see cref="ObjectDisposedException"/> if the object has been disposed.
+        ///   Creates an exception with given message.
         /// </summary>
-        /// <param name="disposed">Whether the object has been disposed or not.</param>
-        /// <param name="objectName">The required object name.</param>
-        /// <param name="message">The optional message.</param>
-#if (NET45 || NET46 || PORTABLE)
-        [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
-#endif
-
-        public static void If(bool disposed, string objectName, string message = null)
-        {
-            if (disposed)
-            {
-                throw string.IsNullOrEmpty(message) ? new ObjectDisposedException(objectName) : new ObjectDisposedException(objectName, message);
-            }
-        }
+        /// <param name="message">The message used by the exception.</param>
+        /// <returns>An exception with given message.</returns>
+        protected override InvalidCastException NewWithMessage(string message) => new InvalidCastException(message);
     }
 }
+
+#pragma warning restore CC0091 // Use static method

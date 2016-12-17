@@ -26,6 +26,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
+using System.Runtime.CompilerServices;
 
 namespace PommaLabs.Thrower
 {
@@ -126,6 +127,7 @@ namespace PommaLabs.Thrower
         ///   <typeparamref name="TEx"/> will be thrown. <br/> In order to do that,
         ///   <typeparamref name="TEx"/> must have a constructor which doesn't take any arguments.
         /// </remarks>
+        [MethodImpl(Raise.MethodImplOptions)]
         public static void If(bool cond)
         {
             if (cond)
@@ -155,6 +157,7 @@ namespace PommaLabs.Thrower
         ///   <br/> If both constructors are available, then the one which takes a
         ///   <see cref="string"/> and an <see cref="System.Exception"/> will be used to throw the exception.
         /// </remarks>
+        [MethodImpl(Raise.MethodImplOptions)]
         public static void If(bool cond, string message)
         {
             if (cond)
@@ -184,6 +187,7 @@ namespace PommaLabs.Thrower
         ///   <typeparamref name="TEx"/> must have a constructor which takes specified arguments.
         ///   Moreover, each specified argument must not be null, otherwise type inference will fail.
         /// </remarks>
+        [MethodImpl(Raise.MethodImplOptions)]
         public static void If(bool cond, object firstParam, params object[] otherParams)
         {
             if (cond)
@@ -206,6 +210,7 @@ namespace PommaLabs.Thrower
         ///   <typeparamref name="TEx"/> will be thrown. <br/> In order to do that,
         ///   <typeparamref name="TEx"/> must have a constructor which doesn't take any arguments.
         /// </remarks>
+        [MethodImpl(Raise.MethodImplOptions)]
         public static void IfNot(bool cond)
         {
             if (!cond)
@@ -235,6 +240,7 @@ namespace PommaLabs.Thrower
         ///   <br/> If both constructors are available, then the one which takes a
         ///   <see cref="string"/> and an <see cref="System.Exception"/> will be used to throw the exception.
         /// </remarks>
+        [MethodImpl(Raise.MethodImplOptions)]
         public static void IfNot(bool cond, string message)
         {
             if (!cond)
@@ -264,6 +270,7 @@ namespace PommaLabs.Thrower
         ///   <typeparamref name="TEx"/> must have a constructor which takes specified arguments.
         ///   Moreover, each specified argument must not be null, otherwise type inference will fail.
         /// </remarks>
+        [MethodImpl(Raise.MethodImplOptions)]
         public static void IfNot(bool cond, object firstParam, params object[] otherParams)
         {
             if (!cond)
@@ -347,11 +354,12 @@ namespace PommaLabs.Thrower
                 throw ThrowerException.AbstractEx;
             }
 
-            // Build required types and parameters list.
             if (firstParam == null)
             {
                 throw ThrowerException.NullArgEx;
             }
+
+            // Build required types and parameters list.
             var paramCount = 1 + otherParams?.Length ?? 0;
             var ctorParams = new object[paramCount];
             ctorParams[0] = firstParam;

@@ -5,7 +5,7 @@
 
 ## Summary ##
 
-* Latest release version: `v3.0.4`
+* Latest release version: `v4.0.4`
 * Build status on [AppVeyor](https://ci.appveyor.com): [![Build status](https://ci.appveyor.com/api/projects/status/xjkp8gn0cf4s7qbg?svg=true)](https://ci.appveyor.com/project/pomma89/thrower)
 * [Doxygen](http://www.stack.nl/~dimitri/doxygen/index.html) documentation:
     + [HTML](http://pomma89.altervista.org/thrower/doc/html/index.html)
@@ -207,6 +207,8 @@ Let's see some examples.
 
 Raise.ArgumentNullException.IfIsNull(session, nameof(session), "Session object is mandatory");
 Raise.ArgumentException.IfIsNullOrWhiteSpace(userName, nameof(userName), "User name cannot be null, empty or blank");
+Raise.ArgumentException.IfIsNotValidEnum(enumValue, nameof(enumValue), "Given enum value is not defined");
+Raise.ArgumentException.IfIsNotValidEmailAddress(email, nameof(email), "Given email address is not formally correct");
 Raise.ArgumentOutOfRangeException.IfIsGreater(loginAttemptCount, 5, nameof(loginAttemptCount), "Too many login attempts!");
 
 ```
@@ -266,58 +268,93 @@ and our fluent syntax based on the `Raise` static classes.
 As we can see by the results, the speed difference, if any, is really small.
 Therefore, using Thrower does not impose a penalty on your application performance, even on hot paths.
 
-```ini
+#### ArgumentNullException ####
 
-Host Process Environment Information:
-BenchmarkDotNet.Core=v0.9.9.0
-OS=Microsoft Windows NT 6.2.9200.0
+![](http://pomma89.altervista.org/thrower/perf/RaiseVsThrow_ArgumentNullException-barplot.png "ArgumentNullException Barplot")
+
+``` ini
+
+BenchmarkDotNet=v0.10.1, OS=Microsoft Windows NT 6.2.9200.0
 Processor=AMD A10 Extreme Edition Radeon R8, 4C+8G, ProcessorCount=4
-Frequency=1949466 ticks, Resolution=512.9610 ns, Timer=TSC
-CLR=MS.NET 4.0.30319.42000, Arch=32-bit RELEASE
-GC=Concurrent Workstation
-JitModules=clrjit-v4.6.1586.0
+Frequency=1949466 Hz, Resolution=512.9610 ns, Timer=TSC
+  [Host]       : Clr 4.0.40319.42000, 32bit LegacyJIT-v4.6.1586.0
+  LegacyJitX86 : Clr 4.0.40319.42000, 32bit LegacyJIT-v4.6.1586.0
 
-Type=RaiseVsThrow  Mode=Throughput  
+Job=LegacyJitX86  Jit=LegacyJit  Platform=X86  
+Runtime=Clr  
 
 ```
-                                            Method | Platform |       Jit |     Median |    StdDev |  Gen 0 | Gen 1 | Gen 2 | Bytes Allocated/Op |
--------------------------------------------------- |--------- |---------- |----------- |---------- |------- |------ |------ |------------------- |
-                       Raise_ArgumentNullException |      X64 | LegacyJit | 19.4598 us | 2.2264 us |  70.26 |     - |     - |             202,91 |
-                RaiseGeneric_ArgumentNullException |      X64 | LegacyJit | 20.5114 us | 2.2677 us |  82.38 |     - |     - |             245,60 |
-                       Throw_ArgumentNullException |      X64 | LegacyJit | 21.2052 us | 1.8214 us |  76.53 |     - |     - |             221,82 |
-        Raise_ArgumentOutOfRangeException_Integers |      X64 | LegacyJit | 16.0512 us | 0.3671 us |  45.22 |     - |     - |             139,63 |
- RaiseGeneric_ArgumentOutOfRangeException_Integers |      X64 | LegacyJit | 21.2193 us | 0.6900 us |  60.94 |     - |     - |             203,39 |
-        Throw_ArgumentOutOfRangeException_Integers |      X64 | LegacyJit | 16.7877 us | 0.5422 us |  36.41 |     - |     - |             112,75 |
-                       Raise_NotSupportedException |      X64 | LegacyJit | 68.8451 us | 2.6265 us | 850.26 |     - |     - |           2.707,33 |
-                RaiseGeneric_NotSupportedException |      X64 | LegacyJit | 69.1418 us | 2.2036 us | 832.85 |     - |     - |           2.675,19 |
-                       Throw_NotSupportedException |      X64 | LegacyJit | 37.9874 us | 1.2729 us | 463.49 |     - |     - |           1.491,24 |
-                       Raise_FileNotFoundException |      X64 | LegacyJit | 46.6647 us | 1.8406 us |  86.67 |     - |     - |             263,40 |
-                RaiseGeneric_FileNotFoundException |      X64 | LegacyJit | 58.1295 us | 1.8440 us | 322.36 |     - |     - |             971,09 |
-                       Throw_FileNotFoundException |      X64 | LegacyJit | 44.6001 us | 1.7770 us |  78.14 |     - |     - |             242,28 |
-                       Raise_ArgumentNullException |      X64 |    RyuJit | 19.3501 us | 0.3927 us |  59.06 |     - |     - |             172,85 |
-                RaiseGeneric_ArgumentNullException |      X64 |    RyuJit | 20.8158 us | 0.8918 us |  68.60 |     - |     - |             207,16 |
-                       Throw_ArgumentNullException |      X64 |    RyuJit | 21.2471 us | 0.4470 us |  58.42 |     - |     - |             170,82 |
-        Raise_ArgumentOutOfRangeException_Integers |      X64 |    RyuJit | 19.0926 us | 0.5794 us |  57.75 |     - |     - |             172,35 |
- RaiseGeneric_ArgumentOutOfRangeException_Integers |      X64 |    RyuJit | 20.8386 us | 1.6873 us |  80.82 |     - |     - |             245,02 |
-        Throw_ArgumentOutOfRangeException_Integers |      X64 |    RyuJit | 16.4849 us | 1.5610 us |  36.56 |     - |     - |             113,32 |
-                       Raise_NotSupportedException |      X64 |    RyuJit | 64.9682 us | 6.1236 us | 964.69 |     - |     - |           3.065,50 |
-                RaiseGeneric_NotSupportedException |      X64 |    RyuJit | 66.7680 us | 6.4114 us | 851.00 |     - |     - |           2.737,36 |
-                       Throw_NotSupportedException |      X64 |    RyuJit | 36.4718 us | 4.1340 us | 499.68 |     - |     - |           1.603,28 |
-                       Raise_FileNotFoundException |      X64 |    RyuJit | 45.0476 us | 5.6415 us | 108.35 |     - |     - |             325,82 |
-                RaiseGeneric_FileNotFoundException |      X64 |    RyuJit | 54.6205 us | 6.0381 us | 268.42 |     - |     - |             810,22 |
-                       Throw_FileNotFoundException |      X64 |    RyuJit | 43.0069 us | 4.8986 us |  84.47 |     - |     - |             260,59 |
-                       Raise_ArgumentNullException |      X86 | LegacyJit | 28.5803 us | 2.6866 us |  26.08 |     - |     - |              83,76 |
-                RaiseGeneric_ArgumentNullException |      X86 | LegacyJit | 28.4951 us | 3.1659 us |  32.04 |     - |     - |             122,46 |
-                       Throw_ArgumentNullException |      X86 | LegacyJit | 30.1121 us | 1.6242 us |  24.62 |     - |     - |              94,57 |
-        Raise_ArgumentOutOfRangeException_Integers |      X86 | LegacyJit | 27.7911 us | 1.7208 us |  26.90 |     - |     - |              91,69 |
- RaiseGeneric_ArgumentOutOfRangeException_Integers |      X86 | LegacyJit | 29.7994 us | 2.7528 us |  40.08 |     - |     - |             115,39 |
-        Throw_ArgumentOutOfRangeException_Integers |      X86 | LegacyJit | 26.9246 us | 2.3180 us |  21.48 |     - |     - |              75,81 |
-                       Raise_NotSupportedException |      X86 | LegacyJit | 84.1955 us | 6.2050 us | 901.09 |     - |     - |           2.856,95 |
-                RaiseGeneric_NotSupportedException |      X86 | LegacyJit | 81.5286 us | 8.9884 us | 885.70 |     - |     - |           2.822,94 |
-                       Throw_NotSupportedException |      X86 | LegacyJit | 44.1595 us | 5.8223 us | 366.13 |     - |     - |           1.181,60 |
-                       Raise_FileNotFoundException |      X86 | LegacyJit | 53.6902 us | 5.3819 us |  64.03 |     - |     - |             212,89 |
-                RaiseGeneric_FileNotFoundException |      X86 | LegacyJit | 65.1958 us | 6.4757 us | 215.12 |     - |     - |             655,93 |
-                       Throw_FileNotFoundException |      X86 | LegacyJit | 53.6464 us | 5.7552 us |  54.25 |     - |     - |             187,31 |
+       Method |       Mean |    StdDev |  Gen 0 | Allocated |
+------------- |----------- |---------- |------- |---------- |
+        Raise | 27.6542 us | 0.3685 us |      - |     212 B |
+ RaiseGeneric | 28.3600 us | 0.8988 us | 0.1053 |     252 B |
+        Throw | 30.4583 us | 1.2295 us |      - |     244 B |
+
+#### ArgumentOutOfRangeException ####
+
+![](http://pomma89.altervista.org/thrower/perf/RaiseVsThrow_ArgumentOutOfRangeException-barplot.png "ArgumentOutOfRangeException Barplot")
+
+``` ini
+
+BenchmarkDotNet=v0.10.1, OS=Microsoft Windows NT 6.2.9200.0
+Processor=AMD A10 Extreme Edition Radeon R8, 4C+8G, ProcessorCount=4
+Frequency=1949466 Hz, Resolution=512.9610 ns, Timer=TSC
+  [Host]       : Clr 4.0.40319.42000, 32bit LegacyJIT-v4.6.1586.0
+  LegacyJitX86 : Clr 4.0.40319.42000, 32bit LegacyJIT-v4.6.1586.0
+
+Job=LegacyJitX86  Jit=LegacyJit  Platform=X86  
+Runtime=Clr  
+
+```
+       Method |       Mean |    StdDev |     Median | Allocated |
+------------- |----------- |---------- |----------- |---------- |
+        Raise | 26.9549 us | 1.5685 us | 27.4704 us |     216 B |
+ RaiseGeneric | 28.1284 us | 1.8190 us | 29.0754 us |     256 B |
+        Throw | 25.7824 us | 1.5455 us | 26.0318 us |     156 B |
+
+#### FileNotFoundException ####
+
+![](http://pomma89.altervista.org/thrower/perf/RaiseVsThrow_FileNotFoundException-barplot.png "FileNotFoundException Barplot")
+
+``` ini
+
+BenchmarkDotNet=v0.10.1, OS=Microsoft Windows NT 6.2.9200.0
+Processor=AMD A10 Extreme Edition Radeon R8, 4C+8G, ProcessorCount=4
+Frequency=1949466 Hz, Resolution=512.9610 ns, Timer=TSC
+  [Host]       : Clr 4.0.40319.42000, 32bit LegacyJIT-v4.6.1586.0
+  LegacyJitX86 : Clr 4.0.40319.42000, 32bit LegacyJIT-v4.6.1586.0
+
+Job=LegacyJitX86  Jit=LegacyJit  Platform=X86  
+Runtime=Clr  
+
+```
+       Method |       Mean |    StdDev |     Median |  Gen 0 | Allocated |
+------------- |----------- |---------- |----------- |------- |---------- |
+        Raise | 51.8919 us | 3.3312 us | 53.2313 us |      - |     440 B |
+ RaiseGeneric | 59.0017 us | 3.5695 us | 60.1856 us | 1.5400 |   1.36 kB |
+        Throw | 52.4837 us | 3.8547 us | 54.1780 us |      - |     380 B |
+
+#### NotSupportedException ####
+
+![](http://pomma89.altervista.org/thrower/perf/RaiseVsThrow_NotSupportedException-barplot.png "NotSupportedException Barplot")
+
+``` ini
+
+BenchmarkDotNet=v0.10.1, OS=Microsoft Windows NT 6.2.9200.0
+Processor=AMD A10 Extreme Edition Radeon R8, 4C+8G, ProcessorCount=4
+Frequency=1949466 Hz, Resolution=512.9610 ns, Timer=TSC
+  [Host]       : Clr 4.0.40319.42000, 32bit LegacyJIT-v4.6.1586.0
+  LegacyJitX86 : Clr 4.0.40319.42000, 32bit LegacyJIT-v4.6.1586.0
+
+Job=LegacyJitX86  Jit=LegacyJit  Platform=X86  
+Runtime=Clr  
+
+```
+       Method |       Mean |    StdDev |  Gen 0 | Allocated |
+------------- |----------- |---------- |------- |---------- |
+        Raise | 75.5129 us | 2.4288 us | 9.2773 |   5.53 kB |
+ RaiseGeneric | 77.2580 us | 2.9541 us | 7.8939 |   5.55 kB |
+        Throw | 45.8247 us | 1.6760 us | 4.0527 |    2.8 kB |
 
 ## About this repository and its maintainer ##
 

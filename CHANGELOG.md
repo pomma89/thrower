@@ -1,5 +1,14 @@
 # Changelog for PommaLabs.Thrower #
 
+### v4.0.4 (2016-12-17) ###
+
+* All code marked as Obsolete in v3 has now been completely removed.
+* Added a new exception handler for InvalidCastException.
+* Moved many methods from RaiseGeneric to specific exception handlers.
+* Updated embedded FastMember library - now it also works on .NET Standard 1.3.
+* Added a new method to validate enumerations - it also works with flags.
+* Added new validation attributes for email, phone number and enumerations.
+
 ### v3.0.4 (2016-09-04) ###
 
 * DLL for .NET Standard 1.3 was not properly generated. Now it is.

@@ -24,6 +24,7 @@
 #if !(PORTABLE || NETSTD11)
 
 using System.IO;
+using System.Runtime.CompilerServices;
 
 #pragma warning disable CC0091 // Use static method
 
@@ -52,6 +53,7 @@ namespace PommaLabs.Thrower.ExceptionHandlers.IO
         /// <param name="directoryPath">The path of the directory that should exist.</param>
         /// <param name="message">The optional message.</param>
         /// <exception cref="FileNotFoundException">If specified directory does not exist.</exception>
+        [MethodImpl(Raise.MethodImplOptions)]
         public void IfNotExists(string directoryPath, string message = null)
         {
             if (!Directory.Exists(directoryPath))

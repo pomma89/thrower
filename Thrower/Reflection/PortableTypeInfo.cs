@@ -24,13 +24,9 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Reflection;
-
-#if !(PORTABLE || NETSTD11 || NETSTD13)
-
-using PommaLabs.Thrower.Reflection.FastMember;
-
-#endif
+using System.Runtime.CompilerServices;
 
 namespace PommaLabs.Thrower.Reflection
 {
@@ -39,12 +35,35 @@ namespace PommaLabs.Thrower.Reflection
     /// </summary>
     public static class PortableTypeInfo
     {
-#if !(PORTABLE || NETSTD11 || NETSTD13)
+#if !(PORTABLE || NETSTD11)
         internal const BindingFlags PublicAndPrivateInstanceFlags = BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance;
         internal const BindingFlags PublicInstanceFlags = BindingFlags.Public | BindingFlags.Instance;
 #endif
 
         private static readonly object[] EmptyObjectArray = new object[0];
+
+        /// <summary>
+        ///   Represents an empty array of type <see cref="Type"/>. This property is read-only.
+        /// </summary>
+        public static Type[] EmptyTypes { get; } = new Type[0];
+
+        /// <summary>
+        ///   Gets the custom attributes for given type.
+        /// </summary>
+        /// <param name="type">The type.</param>
+        /// <param name="inherit">
+        ///   True to search this type's inheritance chain to find the attributes; otherwise, false.
+        /// </param>
+        /// <returns>The custom attributes for given type.</returns>
+        [MethodImpl(Raise.MethodImplOptions)]
+        public static IList<Attribute> GetCustomAttributes(Type type, bool inherit)
+        {
+#if (PORTABLE || NETSTD11 || NETSTD13)
+            return IntrospectionExtensions.GetTypeInfo(type).GetCustomAttributes().ToArray();
+#else
+            return type.GetCustomAttributes(inherit).Cast<Attribute>().ToArray();
+#endif
+        }
 
         /// <summary>
         ///   Gets the custom attributes for given member.
@@ -54,6 +73,7 @@ namespace PommaLabs.Thrower.Reflection
         ///   True to search this member's inheritance chain to find the attributes; otherwise, false.
         /// </param>
         /// <returns>The custom attributes for given member.</returns>
+        [MethodImpl(Raise.MethodImplOptions)]
         public static IList<Attribute> GetCustomAttributes(MemberInfo memberInfo, bool inherit)
         {
 #if (PORTABLE || NETSTD11 || NETSTD13)
@@ -68,6 +88,7 @@ namespace PommaLabs.Thrower.Reflection
         /// </summary>
         /// <param name="type">The type.</param>
         /// <returns>The constructors for given type.</returns>
+        [MethodImpl(Raise.MethodImplOptions)]
         public static IList<ConstructorInfo> GetConstructors(Type type)
         {
 #if (PORTABLE || NETSTD11 || NETSTD13)
@@ -82,6 +103,7 @@ namespace PommaLabs.Thrower.Reflection
         /// </summary>
         /// <typeparam name="T">The type.</typeparam>
         /// <returns>The constructors for given type.</returns>
+        [MethodImpl(Raise.MethodImplOptions)]
         public static IList<ConstructorInfo> GetConstructors<T>() => GetConstructors(typeof(T));
 
         /// <summary>
@@ -89,6 +111,7 @@ namespace PommaLabs.Thrower.Reflection
         /// </summary>
         /// <param name="type">The type.</param>
         /// <returns>The base type of given type.</returns>
+        [MethodImpl(Raise.MethodImplOptions)]
         public static Type GetBaseType(Type type)
         {
 #if (PORTABLE || NETSTD11 || NETSTD13)
@@ -103,6 +126,7 @@ namespace PommaLabs.Thrower.Reflection
         /// </summary>
         /// <param name="type">The type.</param>
         /// <returns>The generic type definition of given type.</returns>
+        [MethodImpl(Raise.MethodImplOptions)]
         public static Type GetGenericTypeDefinition(Type type)
         {
 #if (PORTABLE || NETSTD11 || NETSTD13)
@@ -117,6 +141,7 @@ namespace PommaLabs.Thrower.Reflection
         /// </summary>
         /// <param name="type">The type.</param>
         /// <returns>The generic type arguments of given type.</returns>
+        [MethodImpl(Raise.MethodImplOptions)]
         public static IList<Type> GetGenericTypeArguments(Type type)
         {
 #if (PORTABLE || NETSTD11 || NETSTD13)
@@ -131,6 +156,7 @@ namespace PommaLabs.Thrower.Reflection
         /// </summary>
         /// <param name="type">The type.</param>
         /// <returns>The interfaces for given type.</returns>
+        [MethodImpl(Raise.MethodImplOptions)]
         public static IList<Type> GetInterfaces(Type type)
         {
 #if (PORTABLE || NETSTD11 || NETSTD13)
@@ -145,11 +171,12 @@ namespace PommaLabs.Thrower.Reflection
         /// </summary>
         /// <param name="type">The type.</param>
         /// <returns>The public instance properties for given type.</returns>
+        [MethodImpl(Raise.MethodImplOptions)]
         public static IList<PropertyInfo> GetPublicProperties(Type type)
         {
 #if (PORTABLE || NETSTD11 || NETSTD13)
             var properties = new List<PropertyInfo>();
-            while (type != null) 
+            while (type != null)
             {
                 var typeInfo = IntrospectionExtensions.GetTypeInfo(type);
                 properties.AddRange(typeInfo.DeclaredProperties.Where(p => p.GetMethod.IsPublic));
@@ -166,6 +193,7 @@ namespace PommaLabs.Thrower.Reflection
         /// </summary>
         /// <typeparam name="T">The type.</typeparam>
         /// <returns>The instance properties for given type.</returns>
+        [MethodImpl(Raise.MethodImplOptions)]
         public static IList<PropertyInfo> GetPublicProperties<T>() => GetPublicProperties(typeof(T));
 
         #region GetPublicPropertyValue
@@ -174,8 +202,40 @@ namespace PommaLabs.Thrower.Reflection
         ///   Gets the value of given property on given instance.
         /// </summary>
         /// <param name="instance">The instance.</param>
+        /// <param name="propertyName">The property name.</param>
+        /// <returns>The value of given property on given instance.</returns>
+        [MethodImpl(Raise.MethodImplOptions)]
+        public static object GetPublicPropertyValue(object instance, string propertyName)
+        {
+            // Preconditions
+            Raise.ArgumentNullException.IfIsNull(instance, nameof(instance), "Instance cannot be null");
+            Raise.ArgumentException.IfIsNullOrWhiteSpace(propertyName, nameof(propertyName), "Given property cannot be null, empty or blank");
+
+#if !(PORTABLE || NETSTD11)
+            return FastMember.ObjectAccessor.Create(instance)[propertyName];
+#else
+            var propertyInfo = GetPublicProperties(instance.GetType()).Single(p => p.Name == propertyName);
+            return GetPublicPropertyValue(instance, propertyInfo);
+#endif
+        }
+
+        /// <summary>
+        ///   Gets the value of given property on given instance.
+        /// </summary>
+        /// <typeparam name="TValue">The type of the property value.</typeparam>
+        /// <param name="instance">The instance.</param>
+        /// <param name="propertyName">The property name.</param>
+        /// <returns>The value of given property on given instance.</returns>
+        [MethodImpl(Raise.MethodImplOptions)]
+        public static TValue GetPublicPropertyValue<TValue>(object instance, string propertyName) => (TValue) GetPublicPropertyValue(instance, propertyName);
+
+        /// <summary>
+        ///   Gets the value of given property on given instance.
+        /// </summary>
+        /// <param name="instance">The instance.</param>
         /// <param name="propertyInfo">The property info.</param>
         /// <returns>The value of given property on given instance.</returns>
+        [MethodImpl(Raise.MethodImplOptions)]
         public static object GetPublicPropertyValue(object instance, PropertyInfo propertyInfo)
         {
             Raise.ArgumentNullException.IfIsNull(instance, nameof(instance), "Instance cannot be null");
@@ -183,7 +243,8 @@ namespace PommaLabs.Thrower.Reflection
             return propertyInfo.GetValue(instance, EmptyObjectArray);
         }
 
-#if !(PORTABLE || NETSTD11 || NETSTD13)
+#if !(PORTABLE || NETSTD11)
+
         /// <summary>
         ///   Gets the value of given property on given instance.
         /// </summary>
@@ -191,7 +252,8 @@ namespace PommaLabs.Thrower.Reflection
         /// <param name="instance">The instance.</param>
         /// <param name="propertyInfo">The property info.</param>
         /// <returns>The value of given property on given instance.</returns>
-        public static object GetPublicPropertyValue(TypeAccessor typeAccessor, object instance, PropertyInfo propertyInfo)
+        [MethodImpl(Raise.MethodImplOptions)]
+        public static object GetPublicPropertyValue(FastMember.TypeAccessor typeAccessor, object instance, PropertyInfo propertyInfo)
         {
             Raise.ArgumentNullException.IfIsNull(instance, nameof(instance), "Instance cannot be null");
             Raise.ArgumentException.IfNot(propertyInfo.CanRead, nameof(propertyInfo), "Given property cannot be read");
@@ -209,6 +271,7 @@ namespace PommaLabs.Thrower.Reflection
         /// </summary>
         /// <param name="type">The type.</param>
         /// <returns>Whether the specified type is abstract.</returns>
+        [MethodImpl(Raise.MethodImplOptions)]
         public static bool IsAbstract(Type type)
         {
 #if (PORTABLE || NETSTD11 || NETSTD13)
@@ -223,6 +286,7 @@ namespace PommaLabs.Thrower.Reflection
         /// </summary>
         /// <typeparam name="T">The type.</typeparam>
         /// <returns>Whether the specified type is abstract.</returns>
+        [MethodImpl(Raise.MethodImplOptions)]
         public static bool IsAbstract<T>() => IsAbstract(typeof(T));
 
         #endregion IsAbstract
@@ -234,6 +298,7 @@ namespace PommaLabs.Thrower.Reflection
         /// </summary>
         /// <param name="type">The type.</param>
         /// <returns>Whether the specified type is a class.</returns>
+        [MethodImpl(Raise.MethodImplOptions)]
         public static bool IsClass(Type type)
         {
 #if (PORTABLE || NETSTD11 || NETSTD13)
@@ -248,20 +313,22 @@ namespace PommaLabs.Thrower.Reflection
         /// </summary>
         /// <typeparam name="T">The type.</typeparam>
         /// <returns>Whether the specified type is a class.</returns>
+        [MethodImpl(Raise.MethodImplOptions)]
         public static bool IsClass<T>() => IsClass(typeof(T));
 
         #endregion IsClass
 
         /// <summary>
-        ///   Determines whether an instance of the current <see cref="T:System.Type"/> can be
-        ///   assigned from an instance of the specified Type.
+        ///   Determines whether an instance of the current <see cref="Type"/> can be assigned from
+        ///   an instance of the specified Type.
         /// </summary>
         /// <param name="obj">The object.</param>
         /// <param name="type">The type.</param>
         /// <returns>
-        ///   Whether an instance of the current <see cref="T:System.Type"/> can be assigned from an
-        ///   instance of the specified Type.
+        ///   Whether an instance of the current <see cref="Type"/> can be assigned from an instance
+        ///   of the specified Type.
         /// </returns>
+        [MethodImpl(Raise.MethodImplOptions)]
         public static bool IsAssignableFrom(object obj, Type type)
         {
             if (ReferenceEquals(obj, null) || ReferenceEquals(type, null))
@@ -283,6 +350,7 @@ namespace PommaLabs.Thrower.Reflection
         /// </summary>
         /// <param name="type">The type.</param>
         /// <returns>Whether the specified type is an enumeration.</returns>
+        [MethodImpl(Raise.MethodImplOptions)]
         public static bool IsEnum(Type type)
         {
 #if (PORTABLE || NETSTD11 || NETSTD13)
@@ -297,6 +365,7 @@ namespace PommaLabs.Thrower.Reflection
         /// </summary>
         /// <typeparam name="T">The type.</typeparam>
         /// <returns>Whether the specified type is an enumeration.</returns>
+        [MethodImpl(Raise.MethodImplOptions)]
         public static bool IsEnum<T>() => IsEnum(typeof(T));
 
         #endregion IsEnum
@@ -308,6 +377,7 @@ namespace PommaLabs.Thrower.Reflection
         /// </summary>
         /// <param name="type">The type.</param>
         /// <returns>Whether the specified type is a generic type.</returns>
+        [MethodImpl(Raise.MethodImplOptions)]
         public static bool IsGenericType(Type type)
         {
 #if (PORTABLE || NETSTD11 || NETSTD13)
@@ -322,6 +392,7 @@ namespace PommaLabs.Thrower.Reflection
         /// </summary>
         /// <typeparam name="T">The type.</typeparam>
         /// <returns>Whether the specified type is a generic type.</returns>
+        [MethodImpl(Raise.MethodImplOptions)]
         public static bool IsGenericType<T>() => IsGenericType(typeof(T));
 
         #endregion IsGenericType
@@ -333,6 +404,7 @@ namespace PommaLabs.Thrower.Reflection
         /// </summary>
         /// <param name="type">The type.</param>
         /// <returns>Whether the specified type is a generic type definition.</returns>
+        [MethodImpl(Raise.MethodImplOptions)]
         public static bool IsGenericTypeDefinition(Type type)
         {
 #if (PORTABLE || NETSTD11 || NETSTD13)
@@ -347,16 +419,18 @@ namespace PommaLabs.Thrower.Reflection
         /// </summary>
         /// <typeparam name="T">The type.</typeparam>
         /// <returns>Whether the specified type is a generic type definition.</returns>
+        [MethodImpl(Raise.MethodImplOptions)]
         public static bool IsGenericTypeDefinition<T>() => IsGenericTypeDefinition(typeof(T));
 
         #endregion IsGenericTypeDefinition
 
         /// <summary>
-        ///   Determines whether the specified object is an instance of the current <see cref="T:System.Type"/>.
+        ///   Determines whether the specified object is an instance of the current <see cref="Type"/>.
         /// </summary>
         /// <param name="obj">The object.</param>
         /// <param name="type">The type.</param>
-        /// <returns>Whether the specified object is an instance of the current <see cref="T:System.Type"/>.</returns>
+        /// <returns>Whether the specified object is an instance of the current <see cref="Type"/>.</returns>
+        [MethodImpl(Raise.MethodImplOptions)]
         public static bool IsInstanceOf(object obj, Type type)
         {
             if (ReferenceEquals(obj, null) || ReferenceEquals(type, null))
@@ -378,6 +452,7 @@ namespace PommaLabs.Thrower.Reflection
         /// </summary>
         /// <param name="type">The type.</param>
         /// <returns>Whether the specified type is an interface.</returns>
+        [MethodImpl(Raise.MethodImplOptions)]
         public static bool IsInterface(Type type)
         {
 #if (PORTABLE || NETSTD11 || NETSTD13)
@@ -392,6 +467,7 @@ namespace PommaLabs.Thrower.Reflection
         /// </summary>
         /// <typeparam name="T">The type.</typeparam>
         /// <returns>Whether the specified type is an interface.</returns>
+        [MethodImpl(Raise.MethodImplOptions)]
         public static bool IsInterface<T>() => IsInterface(typeof(T));
 
         #endregion IsInterface
@@ -403,6 +479,7 @@ namespace PommaLabs.Thrower.Reflection
         /// </summary>
         /// <param name="type">The type.</param>
         /// <returns>Whether the specified type is primitive.</returns>
+        [MethodImpl(Raise.MethodImplOptions)]
         public static bool IsPrimitive(Type type)
         {
 #if (PORTABLE || NETSTD11 || NETSTD13)
@@ -417,6 +494,7 @@ namespace PommaLabs.Thrower.Reflection
         /// </summary>
         /// <typeparam name="T">The type.</typeparam>
         /// <returns>Whether the specified type is primitive.</returns>
+        [MethodImpl(Raise.MethodImplOptions)]
         public static bool IsPrimitive<T>() => IsPrimitive(typeof(T));
 
         #endregion IsPrimitive
@@ -428,6 +506,7 @@ namespace PommaLabs.Thrower.Reflection
         /// </summary>
         /// <param name="type">The type.</param>
         /// <returns>Whether the specified type is a value type.</returns>
+        [MethodImpl(Raise.MethodImplOptions)]
         public static bool IsValueType(Type type)
         {
 #if (PORTABLE || NETSTD11 || NETSTD13)
@@ -442,8 +521,95 @@ namespace PommaLabs.Thrower.Reflection
         /// </summary>
         /// <typeparam name="T">The type.</typeparam>
         /// <returns>Whether the specified type is a value type.</returns>
+        [MethodImpl(Raise.MethodImplOptions)]
         public static bool IsValueType<T>() => IsValueType(typeof(T));
 
         #endregion IsValueType
+
+        #region IsPublic
+
+        /// <summary>
+        ///   Determines whether the specified type is public.
+        /// </summary>
+        /// <param name="type">The type.</param>
+        /// <returns>Whether the specified type is public.</returns>
+        [MethodImpl(Raise.MethodImplOptions)]
+        public static bool IsPublic(Type type)
+        {
+#if (PORTABLE || NETSTD11 || NETSTD13)
+            return type.GetTypeInfo().IsPublic;
+#else
+            return type.IsPublic;
+#endif
+        }
+
+        /// <summary>
+        ///   Determines whether the specified type is public.
+        /// </summary>
+        /// <typeparam name="T">The type.</typeparam>
+        /// <returns>Whether the specified type is public.</returns>
+        [MethodImpl(Raise.MethodImplOptions)]
+        public static bool IsPublic<T>() => IsPublic(typeof(T));
+
+        /// <summary>
+        ///   Determines whether the specified type is nested public.
+        /// </summary>
+        /// <param name="type">The type.</param>
+        /// <returns>Whether the specified type is nested public.</returns>
+        [MethodImpl(Raise.MethodImplOptions)]
+        public static bool IsNestedPublic(Type type)
+        {
+#if (PORTABLE || NETSTD11 || NETSTD13)
+            return type.GetTypeInfo().IsNestedPublic;
+#else
+            return type.IsNestedPublic;
+#endif
+        }
+
+        /// <summary>
+        ///   Determines whether the specified type is nested public.
+        /// </summary>
+        /// <typeparam name="T">The type.</typeparam>
+        /// <returns>Whether the specified type is nested public.</returns>
+        [MethodImpl(Raise.MethodImplOptions)]
+        public static bool IsNestedPublic<T>() => IsNestedPublic(typeof(T));
+
+        #endregion IsPublic
+
+        #region CastTo
+
+        /// <summary>
+        ///   Class to cast to type <typeparamref name="T"/>.
+        /// </summary>
+        /// <typeparam name="T">Target type.</typeparam>
+        /// <remarks>Found on StackOverflow: "http://stackoverflow.com/a/23391746/1880086".</remarks>
+        public static class CastTo<T>
+        {
+            /// <summary>
+            ///   Casts <typeparamref name="S"/> to <typeparamref name="T"/>. This does not cause
+            ///   boxing for value types. Useful in generic methods.
+            /// </summary>
+            /// <param name="s">The value that should be cast.</param>
+            /// <typeparam name="S">Source type to cast from. Usually a generic type.</typeparam>
+            [MethodImpl(Raise.MethodImplOptions)]
+            public static T From<S>(S s)
+            {
+                return Cache<S>.caster(s);
+            }
+
+            private static class Cache<S>
+            {
+                public static readonly Func<S, T> caster = Get();
+
+                private static Func<S, T> Get()
+                {
+                    var p = Expression.Parameter(typeof(S), "s");
+                    var c = Expression.ConvertChecked(p, typeof(T));
+                    return Expression.Lambda<Func<S, T>>(c, p).Compile();
+                }
+            }
+        }
+
+        #endregion CastTo
     }
 }

@@ -22,6 +22,7 @@
 // OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 using NUnit.Framework;
+using Shouldly;
 using System;
 
 namespace PommaLabs.Thrower.UnitTests.ExceptionHandlers
@@ -29,21 +30,18 @@ namespace PommaLabs.Thrower.UnitTests.ExceptionHandlers
     internal sealed class ArgumentNullExceptionTests : AbstractTests
     {
         [Test]
-        public void NotNullArgument_String()
+        public void NotNullArgument_Interface()
         {
-            Raise.ArgumentNullException.IfIsNull("PINO");
+            IInterface i = new Base();
+            Raise.ArgumentNullException.IfIsNull(i);
         }
 
         [Test]
-        public void NotNullArgument_String_WithMsg()
-        {
-            Raise.ArgumentNullException.IfIsNull("PINO", "PINO", "GINO");
-        }
+        public void NotNullArgument_Interface_WithMsg()
 
-        [Test]
-        public void NotNullArgument_Struct()
         {
-            Raise.ArgumentNullException.IfIsNull(37M);
+            IInterface i = new Base();
+            Raise.ArgumentNullException.IfIsNull(i, nameof(i), nameof(i));
         }
 
         [Test]
@@ -56,6 +54,18 @@ namespace PommaLabs.Thrower.UnitTests.ExceptionHandlers
         public void NotNullArgument_Struct_WithMsg()
         {
             Raise.ArgumentNullException.IfIsNull(37M, "DECIMAL", "GINO");
+        }
+
+        [Test]
+        public void NotNullArgument_String()
+        {
+            Raise.ArgumentNullException.IfIsNull("PINO");
+        }
+
+        [Test]
+        public void NotNullArgument_String_WithMsg()
+        {
+            Raise.ArgumentNullException.IfIsNull("PINO", "PINO", "GINO");
         }
 
         [Test]
@@ -133,86 +143,75 @@ namespace PommaLabs.Thrower.UnitTests.ExceptionHandlers
         }
 
         [Test]
-        [ExpectedException(typeof(ArgumentNullException))]
         public void NullArgument_NullObject()
         {
-            Raise.ArgumentNullException.IfIsNull((object) null);
+            Should.Throw<ArgumentNullException>(() => Raise.ArgumentNullException.IfIsNull((object) null));
         }
 
         [Test]
-        [ExpectedException(typeof(ArgumentNullException), ExpectedMessage = TestMessage, MatchType = MessageMatch.StartsWith)]
         public void NullArgument_NullObject_WithMsg()
         {
-            Raise.ArgumentNullException.IfIsNull((object) null, "null", TestMessage);
+            Should.Throw<ArgumentNullException>(() => Raise.ArgumentNullException.IfIsNull((object) null, "null", TestMessage));
         }
 
         [Test]
-        [ExpectedException(typeof(ArgumentNullException))]
         public void NullArgument_NullableInt_WithoutValue()
         {
-            Raise.ArgumentNullException.IfIsNull(new int?());
+            Should.Throw<ArgumentNullException>(() => Raise.ArgumentNullException.IfIsNull(new int?()));
         }
 
         [Test]
-        [ExpectedException(typeof(ArgumentNullException))]
         public void NullArgument_NullableInt_WithoutValue_WithArgName()
         {
-            Raise.ArgumentNullException.IfIsNull(new int?(), "null");
+            Should.Throw<ArgumentNullException>(() => Raise.ArgumentNullException.IfIsNull(new int?(), "null"));
         }
 
         [Test]
-        [ExpectedException(typeof(ArgumentNullException), ExpectedMessage = TestMessage, MatchType = MessageMatch.StartsWith)]
         public void NullArgument_NullableInt_WithoutValue_WithMsg()
         {
-            Raise.ArgumentNullException.IfIsNull(new int?(), "null", TestMessage);
+            Should.Throw<ArgumentNullException>(() => Raise.ArgumentNullException.IfIsNull(new int?(), "null", TestMessage));
         }
 
         [Test]
-        [ExpectedException(typeof(ArgumentNullException))]
         public void NullArgument_NullableInt_WithoutValue_ByRef()
         {
             var x = new int?();
-            Raise.ArgumentNullException.IfIsNull(ref x, nameof(x));
+            Should.Throw<ArgumentNullException>(() => Raise.ArgumentNullException.IfIsNull(ref x, nameof(x)));
         }
 
         [Test]
-        [ExpectedException(typeof(ArgumentNullException))]
         public void NullArgument_NullableInt_WithoutValue_WithArgName_ByRef()
         {
             var x = new int?();
-            Raise.ArgumentNullException.IfIsNull(ref x, nameof(x));
+            Should.Throw<ArgumentNullException>(() => Raise.ArgumentNullException.IfIsNull(ref x, nameof(x)));
         }
 
         [Test]
-        [ExpectedException(typeof(ArgumentNullException), ExpectedMessage = TestMessage, MatchType = MessageMatch.StartsWith)]
         public void NullArgument_NullableInt_WithoutValue_WithMsg_ByRef()
         {
             var x = new int?();
-            Raise.ArgumentNullException.IfIsNull(ref x, nameof(x), TestMessage);
+            Should.Throw<ArgumentNullException>(() => Raise.ArgumentNullException.IfIsNull(ref x, nameof(x), TestMessage));
         }
 
         [Test]
-        [ExpectedException(typeof(ArgumentNullException))]
         public void NullArgument_BoxedNullableInt_WithoutValue()
         {
             object box = new int?();
-            Raise.ArgumentNullException.IfIsNull(box);
+            Should.Throw<ArgumentNullException>(() => Raise.ArgumentNullException.IfIsNull(box));
         }
 
         [Test]
-        [ExpectedException(typeof(ArgumentNullException))]
         public void NullArgument_BoxedNullableInt_WithoutValue_WithArgName()
         {
             object box = new int?();
-            Raise.ArgumentNullException.IfIsNull(box, "null");
+            Should.Throw<ArgumentNullException>(() => Raise.ArgumentNullException.IfIsNull(box, "null"));
         }
 
         [Test]
-        [ExpectedException(typeof(ArgumentNullException), ExpectedMessage = TestMessage, MatchType = MessageMatch.StartsWith)]
         public void NullArgument_BoxedNullableInt_WithoutValue_WithMsg()
         {
             object box = new int?();
-            Raise.ArgumentNullException.IfIsNull(box, "null", TestMessage);
+            Should.Throw<ArgumentNullException>(() => Raise.ArgumentNullException.IfIsNull(box, "null", TestMessage));
         }
     }
 }

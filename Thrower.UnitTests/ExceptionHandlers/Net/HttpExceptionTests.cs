@@ -24,6 +24,7 @@
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using NUnit.Framework;
+using Shouldly;
 using System;
 using System.Net;
 
@@ -31,10 +32,10 @@ namespace PommaLabs.Thrower.UnitTests.ExceptionHandlers.Net
 {
     internal sealed class HttpExceptionTests : AbstractTests
     {
-        [Test, ExpectedException(typeof(HttpException))]
+        [Test]
         public void If_TrueShouldThrow()
         {
-            Raise.HttpException.If(true, HttpStatusCode.BadRequest);
+            Should.Throw<HttpException>(() => Raise.HttpException.If(true, HttpStatusCode.BadRequest));
         }
 
         [Test]
@@ -72,10 +73,10 @@ namespace PommaLabs.Thrower.UnitTests.ExceptionHandlers.Net
             }
         }
 
-        [Test, ExpectedException(typeof(HttpException), ExpectedMessage = TestMessage)]
+        [Test]
         public void If_TrueShouldThrow_WithMessage()
         {
-            Raise.HttpException.If(true, HttpStatusCode.BadRequest, TestMessage);
+            Should.Throw<HttpException>(() => Raise.HttpException.If(true, HttpStatusCode.BadRequest, TestMessage));
         }
 
         [Test]
@@ -90,10 +91,10 @@ namespace PommaLabs.Thrower.UnitTests.ExceptionHandlers.Net
             Raise.HttpException.If(false, HttpStatusCode.BadRequest, TestMessage);
         }
 
-        [Test, ExpectedException(typeof(HttpException))]
+        [Test]
         public void IfNot_FalseShouldThrow()
         {
-            Raise.HttpException.IfNot(false, HttpStatusCode.BadRequest);
+            Should.Throw<HttpException>(() => Raise.HttpException.IfNot(false, HttpStatusCode.BadRequest));
         }
 
         [Test]
@@ -131,10 +132,10 @@ namespace PommaLabs.Thrower.UnitTests.ExceptionHandlers.Net
             }
         }
 
-        [Test, ExpectedException(typeof(HttpException), ExpectedMessage = TestMessage)]
+        [Test]
         public void IfNot_FalseShouldThrow_WithMessage()
         {
-            Raise.HttpException.IfNot(false, HttpStatusCode.BadRequest, TestMessage);
+            Should.Throw<HttpException>(() => Raise.HttpException.IfNot(false, HttpStatusCode.BadRequest, TestMessage));
         }
 
         [Test]
