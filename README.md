@@ -5,7 +5,7 @@
 
 ## Summary ##
 
-* Latest release version: `v4.0.3`
+* Latest release version: `v4.0.4`
 * Build status on [AppVeyor](https://ci.appveyor.com): [![Build status](https://ci.appveyor.com/api/projects/status/xjkp8gn0cf4s7qbg?svg=true)](https://ci.appveyor.com/project/pomma89/thrower)
 * [Doxygen](http://www.stack.nl/~dimitri/doxygen/index.html) documentation:
     + [HTML](http://pomma89.altervista.org/thrower/doc/html/index.html)
@@ -277,8 +277,8 @@ Therefore, using Thrower does not impose a penalty on your application performan
 BenchmarkDotNet=v0.10.1, OS=Microsoft Windows NT 6.2.9200.0
 Processor=AMD A10 Extreme Edition Radeon R8, 4C+8G, ProcessorCount=4
 Frequency=1949466 Hz, Resolution=512.9610 ns, Timer=TSC
-  [Host]       : Clr 4.0.30319.42000, 32bit LegacyJIT-v4.6.1586.0
-  LegacyJitX86 : Clr 4.0.30319.42000, 32bit LegacyJIT-v4.6.1586.0
+  [Host]       : Clr 4.0.40319.42000, 32bit LegacyJIT-v4.6.1586.0
+  LegacyJitX86 : Clr 4.0.40319.42000, 32bit LegacyJIT-v4.6.1586.0
 
 Job=LegacyJitX86  Jit=LegacyJit  Platform=X86  
 Runtime=Clr  
@@ -299,8 +299,8 @@ Runtime=Clr
 BenchmarkDotNet=v0.10.1, OS=Microsoft Windows NT 6.2.9200.0
 Processor=AMD A10 Extreme Edition Radeon R8, 4C+8G, ProcessorCount=4
 Frequency=1949466 Hz, Resolution=512.9610 ns, Timer=TSC
-  [Host]       : Clr 4.0.30319.42000, 32bit LegacyJIT-v4.6.1586.0
-  LegacyJitX86 : Clr 4.0.30319.42000, 32bit LegacyJIT-v4.6.1586.0
+  [Host]       : Clr 4.0.40319.42000, 32bit LegacyJIT-v4.6.1586.0
+  LegacyJitX86 : Clr 4.0.40319.42000, 32bit LegacyJIT-v4.6.1586.0
 
 Job=LegacyJitX86  Jit=LegacyJit  Platform=X86  
 Runtime=Clr  
@@ -321,8 +321,8 @@ Runtime=Clr
 BenchmarkDotNet=v0.10.1, OS=Microsoft Windows NT 6.2.9200.0
 Processor=AMD A10 Extreme Edition Radeon R8, 4C+8G, ProcessorCount=4
 Frequency=1949466 Hz, Resolution=512.9610 ns, Timer=TSC
-  [Host]       : Clr 4.0.30319.42000, 32bit LegacyJIT-v4.6.1586.0
-  LegacyJitX86 : Clr 4.0.30319.42000, 32bit LegacyJIT-v4.6.1586.0
+  [Host]       : Clr 4.0.40319.42000, 32bit LegacyJIT-v4.6.1586.0
+  LegacyJitX86 : Clr 4.0.40319.42000, 32bit LegacyJIT-v4.6.1586.0
 
 Job=LegacyJitX86  Jit=LegacyJit  Platform=X86  
 Runtime=Clr  
@@ -343,8 +343,8 @@ Runtime=Clr
 BenchmarkDotNet=v0.10.1, OS=Microsoft Windows NT 6.2.9200.0
 Processor=AMD A10 Extreme Edition Radeon R8, 4C+8G, ProcessorCount=4
 Frequency=1949466 Hz, Resolution=512.9610 ns, Timer=TSC
-  [Host]       : Clr 4.0.30319.42000, 32bit LegacyJIT-v4.6.1586.0
-  LegacyJitX86 : Clr 4.0.30319.42000, 32bit LegacyJIT-v4.6.1586.0
+  [Host]       : Clr 4.0.40319.42000, 32bit LegacyJIT-v4.6.1586.0
+  LegacyJitX86 : Clr 4.0.40319.42000, 32bit LegacyJIT-v4.6.1586.0
 
 Job=LegacyJitX86  Jit=LegacyJit  Platform=X86  
 Runtime=Clr  

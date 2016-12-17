@@ -1,6 +1,6 @@
 # Changelog for PommaLabs.Thrower #
 
-### v4.0.3 (2016-12-17) ###
+### v4.0.4 (2016-12-17) ###
 
 * All code marked as Obsolete in v3 has now been completely removed.
 * Added a new exception handler for InvalidCastException.
