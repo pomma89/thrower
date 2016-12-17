@@ -207,6 +207,8 @@ Let's see some examples.
 
 Raise.ArgumentNullException.IfIsNull(session, nameof(session), "Session object is mandatory");
 Raise.ArgumentException.IfIsNullOrWhiteSpace(userName, nameof(userName), "User name cannot be null, empty or blank");
+Raise.ArgumentException.IfIsNotValidEnum(enumValue, nameof(enumValue), "Given enum value is not defined");
+Raise.ArgumentException.IfIsNotValidEmailAddress(email, nameof(email), "Given email address is not formally correct");
 Raise.ArgumentOutOfRangeException.IfIsGreater(loginAttemptCount, 5, nameof(loginAttemptCount), "Too many login attempts!");
 
 ```
@@ -266,6 +268,10 @@ and our fluent syntax based on the `Raise` static classes.
 As we can see by the results, the speed difference, if any, is really small.
 Therefore, using Thrower does not impose a penalty on your application performance, even on hot paths.
 
+#### ArgumentNullException ####
+
+![](http://pomma89.altervista.org/thrower/perf/RaiseVsThrow_ArgumentNullException-barplot.png "ArgumentNullException Barplot")
+
 ``` ini
 
 BenchmarkDotNet=v0.10.1, OS=Microsoft Windows NT 6.2.9200.0
@@ -283,6 +289,10 @@ Runtime=Clr
         Raise | 27.6542 us | 0.3685 us |      - |     212 B |
  RaiseGeneric | 28.3600 us | 0.8988 us | 0.1053 |     252 B |
         Throw | 30.4583 us | 1.2295 us |      - |     244 B |
+
+#### ArgumentOutOfRangeException ####
+
+![](http://pomma89.altervista.org/thrower/perf/RaiseVsThrow_ArgumentOutOfRangeException-barplot.png "ArgumentOutOfRangeException Barplot")
 
 ``` ini
 
@@ -302,6 +312,10 @@ Runtime=Clr
  RaiseGeneric | 28.1284 us | 1.8190 us | 29.0754 us |     256 B |
         Throw | 25.7824 us | 1.5455 us | 26.0318 us |     156 B |
 
+#### FileNotFoundException ####
+
+![](http://pomma89.altervista.org/thrower/perf/RaiseVsThrow_FileNotFoundException-barplot.png "FileNotFoundException Barplot")
+
 ``` ini
 
 BenchmarkDotNet=v0.10.1, OS=Microsoft Windows NT 6.2.9200.0
@@ -319,6 +333,10 @@ Runtime=Clr
         Raise | 51.8919 us | 3.3312 us | 53.2313 us |      - |     440 B |
  RaiseGeneric | 59.0017 us | 3.5695 us | 60.1856 us | 1.5400 |   1.36 kB |
         Throw | 52.4837 us | 3.8547 us | 54.1780 us |      - |     380 B |
+
+#### NotSupportedException ####
+
+![](http://pomma89.altervista.org/thrower/perf/RaiseVsThrow_NotSupportedException-barplot.png "NotSupportedException Barplot")
 
 ``` ini
 

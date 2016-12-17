@@ -22,13 +22,14 @@
 // OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 using System;
+using System.Runtime.CompilerServices;
 
 #pragma warning disable CC0091 // Use static method
 
 namespace PommaLabs.Thrower.ExceptionHandlers
 {
     /// <summary>
-    ///   Handler for <see cref="System.IndexOutOfRangeException"/>
+    ///   Handler for <see cref="IndexOutOfRangeException"/>.
     /// </summary>
     public sealed class IndexOutOfRangeExceptionHandler
     {
@@ -41,6 +42,7 @@ namespace PommaLabs.Thrower.ExceptionHandlers
         /// <typeparam name="TArg">The type of the arguments.</typeparam>
         /// <param name="argument1">The left side argument.</param>
         /// <param name="argument2">The right side argument.</param>
+        [MethodImpl(Raise.MethodImplOptions)]
         public void IfIsLess<TArg>(TArg argument1, TArg argument2)
             where TArg : IComparable<TArg>
         {
@@ -56,6 +58,7 @@ namespace PommaLabs.Thrower.ExceptionHandlers
         /// </summary>
         /// <param name="argument1">The left side argument.</param>
         /// <param name="argument2">The right side argument.</param>
+        [MethodImpl(Raise.MethodImplOptions)]
         public void IfIsLess(IComparable argument1, IComparable argument2)
         {
             if (ReferenceEquals(argument1, null) || argument1.CompareTo(argument2) < 0)
@@ -76,6 +79,7 @@ namespace PommaLabs.Thrower.ExceptionHandlers
         /// <param name="argument1">The left side argument.</param>
         /// <param name="argument2">The right side argument.</param>
         /// <param name="message">The message that should be put into the exception.</param>
+        [MethodImpl(Raise.MethodImplOptions)]
         public void IfIsLess<TArg>(TArg argument1, TArg argument2, string message)
             where TArg : IComparable<TArg>
         {
@@ -92,6 +96,7 @@ namespace PommaLabs.Thrower.ExceptionHandlers
         /// <param name="argument1">The left side argument.</param>
         /// <param name="argument2">The right side argument.</param>
         /// <param name="message">The message that should be put into the exception.</param>
+        [MethodImpl(Raise.MethodImplOptions)]
         public void IfIsLess(IComparable argument1, IComparable argument2, string message)
         {
             if (ReferenceEquals(argument1, null) || argument1.CompareTo(argument2) < 0)
@@ -111,6 +116,7 @@ namespace PommaLabs.Thrower.ExceptionHandlers
         /// <typeparam name="TArg">The type of the arguments.</typeparam>
         /// <param name="argument1">The left side argument.</param>
         /// <param name="argument2">The right side argument.</param>
+        [MethodImpl(Raise.MethodImplOptions)]
         public void IfIsLessOrEqual<TArg>(TArg argument1, TArg argument2)
             where TArg : IComparable<TArg>
         {
@@ -126,6 +132,7 @@ namespace PommaLabs.Thrower.ExceptionHandlers
         /// </summary>
         /// <param name="argument1">The left side argument.</param>
         /// <param name="argument2">The right side argument.</param>
+        [MethodImpl(Raise.MethodImplOptions)]
         public void IfIsLessOrEqual(IComparable argument1, IComparable argument2)
         {
             if (ReferenceEquals(argument1, null) || argument1.CompareTo(argument2) <= 0)
@@ -146,6 +153,7 @@ namespace PommaLabs.Thrower.ExceptionHandlers
         /// <param name="argument1">The left side argument.</param>
         /// <param name="argument2">The right side argument.</param>
         /// <param name="message">The message that should be put into the exception.</param>
+        [MethodImpl(Raise.MethodImplOptions)]
         public void IfIsLessOrEqual<TArg>(TArg argument1, TArg argument2, string message)
             where TArg : IComparable<TArg>
         {
@@ -162,6 +170,7 @@ namespace PommaLabs.Thrower.ExceptionHandlers
         /// <param name="argument1">The left side argument.</param>
         /// <param name="argument2">The right side argument.</param>
         /// <param name="message">The message that should be put into the exception.</param>
+        [MethodImpl(Raise.MethodImplOptions)]
         public void IfIsLessOrEqual(IComparable argument1, IComparable argument2, string message)
         {
             if (ReferenceEquals(argument1, null) || argument1.CompareTo(argument2) <= 0)
@@ -181,6 +190,7 @@ namespace PommaLabs.Thrower.ExceptionHandlers
         /// <typeparam name="TArg">The type of the arguments.</typeparam>
         /// <param name="argument1">The left side argument.</param>
         /// <param name="argument2">The right side argument.</param>
+        [MethodImpl(Raise.MethodImplOptions)]
         public void IfIsGreater<TArg>(TArg argument1, TArg argument2)
             where TArg : IComparable<TArg>
         {
@@ -196,6 +206,7 @@ namespace PommaLabs.Thrower.ExceptionHandlers
         /// </summary>
         /// <param name="argument1">The left side argument.</param>
         /// <param name="argument2">The right side argument.</param>
+        [MethodImpl(Raise.MethodImplOptions)]
         public void IfIsGreater(IComparable argument1, IComparable argument2)
         {
             if (ReferenceEquals(argument1, null) || argument1.CompareTo(argument2) > 0)
@@ -216,6 +227,7 @@ namespace PommaLabs.Thrower.ExceptionHandlers
         /// <param name="argument1">The left side argument.</param>
         /// <param name="argument2">The right side argument.</param>
         /// <param name="message">The message that should be put into the exception.</param>
+        [MethodImpl(Raise.MethodImplOptions)]
         public void IfIsGreater<TArg>(TArg argument1, TArg argument2, string message)
             where TArg : IComparable<TArg>
         {
@@ -232,6 +244,7 @@ namespace PommaLabs.Thrower.ExceptionHandlers
         /// <param name="argument1">The left side argument.</param>
         /// <param name="argument2">The right side argument.</param>
         /// <param name="message">The message that should be put into the exception.</param>
+        [MethodImpl(Raise.MethodImplOptions)]
         public void IfIsGreater(IComparable argument1, IComparable argument2, string message)
         {
             if (ReferenceEquals(argument1, null) || argument1.CompareTo(argument2) > 0)
@@ -251,6 +264,7 @@ namespace PommaLabs.Thrower.ExceptionHandlers
         /// <typeparam name="TArg">The type of the arguments.</typeparam>
         /// <param name="argument1">The left side argument.</param>
         /// <param name="argument2">The right side argument.</param>
+        [MethodImpl(Raise.MethodImplOptions)]
         public void IfIsGreaterOrEqual<TArg>(TArg argument1, TArg argument2)
             where TArg : IComparable<TArg>
         {
@@ -266,6 +280,7 @@ namespace PommaLabs.Thrower.ExceptionHandlers
         /// </summary>
         /// <param name="argument1">The left side argument.</param>
         /// <param name="argument2">The right side argument.</param>
+        [MethodImpl(Raise.MethodImplOptions)]
         public void IfIsGreaterOrEqual(IComparable argument1, IComparable argument2)
         {
             if (ReferenceEquals(argument1, null) || argument1.CompareTo(argument2) >= 0)
@@ -286,6 +301,7 @@ namespace PommaLabs.Thrower.ExceptionHandlers
         /// <param name="argument1">The left side argument.</param>
         /// <param name="argument2">The right side argument.</param>
         /// <param name="message">The message that should be put into the exception.</param>
+        [MethodImpl(Raise.MethodImplOptions)]
         public void IfIsGreaterOrEqual<TArg>(TArg argument1, TArg argument2, string message)
             where TArg : IComparable<TArg>
         {
@@ -302,6 +318,7 @@ namespace PommaLabs.Thrower.ExceptionHandlers
         /// <param name="argument1">The left side argument.</param>
         /// <param name="argument2">The right side argument.</param>
         /// <param name="message">The message that should be put into the exception.</param>
+        [MethodImpl(Raise.MethodImplOptions)]
         public void IfIsGreaterOrEqual(IComparable argument1, IComparable argument2, string message)
         {
             if (ReferenceEquals(argument1, null) || argument1.CompareTo(argument2) >= 0)
@@ -321,6 +338,7 @@ namespace PommaLabs.Thrower.ExceptionHandlers
         /// <typeparam name="TArg">The type of the arguments.</typeparam>
         /// <param name="argument1">The left side argument.</param>
         /// <param name="argument2">The right side argument.</param>
+        [MethodImpl(Raise.MethodImplOptions)]
         public void IfIsEqual<TArg>(TArg argument1, TArg argument2)
             where TArg : IComparable<TArg>
         {
@@ -336,6 +354,7 @@ namespace PommaLabs.Thrower.ExceptionHandlers
         /// </summary>
         /// <param name="argument1">The left side argument.</param>
         /// <param name="argument2">The right side argument.</param>
+        [MethodImpl(Raise.MethodImplOptions)]
         public void IfIsEqual(IComparable argument1, IComparable argument2)
         {
             if (ReferenceEquals(argument1, null) || argument1.CompareTo(argument2) == 0)
@@ -356,6 +375,7 @@ namespace PommaLabs.Thrower.ExceptionHandlers
         /// <param name="argument1">The left side argument.</param>
         /// <param name="argument2">The right side argument.</param>
         /// <param name="message">The message that should be put into the exception.</param>
+        [MethodImpl(Raise.MethodImplOptions)]
         public void IfIsEqual<TArg>(TArg argument1, TArg argument2, string message)
             where TArg : IComparable<TArg>
         {
@@ -372,6 +392,7 @@ namespace PommaLabs.Thrower.ExceptionHandlers
         /// <param name="argument1">The left side argument.</param>
         /// <param name="argument2">The right side argument.</param>
         /// <param name="message">The message that should be put into the exception.</param>
+        [MethodImpl(Raise.MethodImplOptions)]
         public void IfIsEqual(IComparable argument1, IComparable argument2, string message)
         {
             if (ReferenceEquals(argument1, null) || argument1.CompareTo(argument2) == 0)
@@ -391,6 +412,7 @@ namespace PommaLabs.Thrower.ExceptionHandlers
         /// <typeparam name="TArg">The type of the arguments.</typeparam>
         /// <param name="argument1">The left side argument.</param>
         /// <param name="argument2">The right side argument.</param>
+        [MethodImpl(Raise.MethodImplOptions)]
         public void IfIsNotEqual<TArg>(TArg argument1, TArg argument2)
             where TArg : IComparable<TArg>
         {
@@ -406,6 +428,7 @@ namespace PommaLabs.Thrower.ExceptionHandlers
         /// </summary>
         /// <param name="argument1">The left side argument.</param>
         /// <param name="argument2">The right side argument.</param>
+        [MethodImpl(Raise.MethodImplOptions)]
         public void IfIsNotEqual(IComparable argument1, IComparable argument2)
         {
             if (ReferenceEquals(argument1, null) || argument1.CompareTo(argument2) != 0)
@@ -426,6 +449,7 @@ namespace PommaLabs.Thrower.ExceptionHandlers
         /// <param name="argument1">The left side argument.</param>
         /// <param name="argument2">The right side argument.</param>
         /// <param name="message">The message that should be put into the exception.</param>
+        [MethodImpl(Raise.MethodImplOptions)]
         public void IfIsNotEqual<TArg>(TArg argument1, TArg argument2, string message)
             where TArg : IComparable<TArg>
         {
@@ -442,6 +466,7 @@ namespace PommaLabs.Thrower.ExceptionHandlers
         /// <param name="argument1">The left side argument.</param>
         /// <param name="argument2">The right side argument.</param>
         /// <param name="message">The message that should be put into the exception.</param>
+        [MethodImpl(Raise.MethodImplOptions)]
         public void IfIsNotEqual(IComparable argument1, IComparable argument2, string message)
         {
             if (ReferenceEquals(argument1, null) || argument1.CompareTo(argument2) != 0)

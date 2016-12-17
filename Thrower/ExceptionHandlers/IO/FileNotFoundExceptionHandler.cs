@@ -22,6 +22,7 @@
 // OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 using System.IO;
+using System.Runtime.CompilerServices;
 
 #pragma warning disable CC0091 // Use static method
 
@@ -56,6 +57,7 @@ namespace PommaLabs.Thrower.ExceptionHandlers.IO
         ///   If specified file does not exist or the caller does not have sufficient permissions to
         ///   read the specified file.
         /// </exception>
+        [MethodImpl(Raise.MethodImplOptions)]
         public void IfNotExists(string filePath, string message = null)
         {
             if (!File.Exists(filePath))
