@@ -166,7 +166,7 @@ namespace PommaLabs.Thrower.UnitTests.Validation
 
         #region Standard .NET validation
 
-#if (!NET35 && !NET40 && !PORTABLE)
+#if (!NET35 && !PORTABLE)
 
         [Test]
         public void Validate_StandardNetValidation_ValidObject()
@@ -177,10 +177,27 @@ namespace PommaLabs.Thrower.UnitTests.Validation
                 RequiredString = "PINO",
                 OptionalEmail = "a@b.it",
                 OptionalPhone = "+393401234567",
+                RequiredEmail = "a@b.it",
+                RequiredPhone = "+393401234567",
                 RequiredInteger = 7
             }, out validationErrors);
 
             Assert.That(validationErrors.Count, Is.EqualTo(0));
+        }
+
+        [Test]
+        public void Validate_StandardNetValidation_NotValidObject_MissingRequiredEmailAndPhone()
+        {
+            IList<ValidationError> validationErrors;
+            ObjectValidator.Validate(new StandardNetValidationTestClass
+            {
+                RequiredString = "PINO",
+                OptionalEmail = "a@b.it",
+                OptionalPhone = "+393401234567",
+                RequiredInteger = 7
+            }, out validationErrors);
+
+            Assert.That(validationErrors.Count, Is.EqualTo(2));
         }
 
         [Test]
@@ -192,6 +209,8 @@ namespace PommaLabs.Thrower.UnitTests.Validation
                 RequiredString = null,
                 OptionalEmail = "a@b.it",
                 OptionalPhone = null,
+                RequiredEmail = "a@b.it",
+                RequiredPhone = "+393401234567",
                 RequiredInteger = 7
             }, out validationErrors);
 
@@ -207,6 +226,8 @@ namespace PommaLabs.Thrower.UnitTests.Validation
                 RequiredString = "PINO",
                 OptionalEmail = "123@123@a.it",
                 OptionalPhone = null,
+                RequiredEmail = "a@b.it",
+                RequiredPhone = "+393401234567",
                 RequiredInteger = 7
             }, out validationErrors);
 
@@ -222,6 +243,8 @@ namespace PommaLabs.Thrower.UnitTests.Validation
                 RequiredString = "PINO",
                 OptionalEmail = "123@a.it",
                 OptionalPhone = "ciao belli",
+                RequiredEmail = "a@b.it",
+                RequiredPhone = "+393401234567",
                 RequiredInteger = 7
             }, out validationErrors);
 
@@ -237,6 +260,8 @@ namespace PommaLabs.Thrower.UnitTests.Validation
                 RequiredString = "PINO",
                 OptionalEmail = "123@a.it",
                 OptionalPhone = "+393401234567",
+                RequiredEmail = "a@b.it",
+                RequiredPhone = "+393401234567",
                 RequiredInteger = 1
             }, out validationErrors);
 
@@ -252,6 +277,8 @@ namespace PommaLabs.Thrower.UnitTests.Validation
                 RequiredString = "PINO",
                 OptionalEmail = "123@a.it@snau",
                 OptionalPhone = "+wow123",
+                RequiredEmail = "a@b.it",
+                RequiredPhone = "+393401234567",
                 RequiredInteger = 1
             }, out validationErrors);
 
@@ -263,11 +290,17 @@ namespace PommaLabs.Thrower.UnitTests.Validation
             [System.ComponentModel.DataAnnotations.Required]
             public string RequiredString { get; set; }
 
-            [System.ComponentModel.DataAnnotations.EmailAddress]
+            [EmailAddress]
             public string OptionalEmail { get; set; }
 
-            [System.ComponentModel.DataAnnotations.Phone]
+            [PhoneNumber]
             public string OptionalPhone { get; set; }
+
+            [System.ComponentModel.DataAnnotations.Required, EmailAddress]
+            public string RequiredEmail { get; set; }
+
+            [System.ComponentModel.DataAnnotations.Required, PhoneNumber]
+            public string RequiredPhone { get; set; }
 
             [System.ComponentModel.DataAnnotations.Required, System.ComponentModel.DataAnnotations.Range(5, 10)]
             public int RequiredInteger { get; set; }

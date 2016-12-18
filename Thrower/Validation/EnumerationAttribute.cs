@@ -29,7 +29,7 @@ using System.ComponentModel.DataAnnotations;
 namespace PommaLabs.Thrower.Validation
 {
     /// <summary>
-    ///   Validates phone numbers stored as both <see cref="string"/>.
+    ///   Validates enumeration-typed members.
     /// </summary>
     [AttributeUsage(AttributeTargets.Property | AttributeTargets.Field | AttributeTargets.Parameter, AllowMultiple = false)]
     public class EnumerationAttribute : DataTypeAttribute
@@ -43,11 +43,11 @@ namespace PommaLabs.Thrower.Validation
         }
 
         /// <summary>
-        ///   Validates the phone number stored in <paramref name="value"/>.
+        ///   Validates the enumeration stored in <paramref name="value"/>.
         /// </summary>
-        /// <param name="value">The phone number that should be validated.</param>
+        /// <param name="value">The enumeration that should be validated.</param>
         /// <param name="validationContext">The validation context.</param>
-        /// <returns>True if given phone number is valid or null, false otherwise.</returns>
+        /// <returns>True if given enumeration is valid, false otherwise.</returns>
         protected override ValidationResult IsValid(object value, ValidationContext validationContext)
         {
             if (value != null)
@@ -56,6 +56,9 @@ namespace PommaLabs.Thrower.Validation
                     ? ValidationResult.Success
                     : new ValidationResult($"Given value '{value}' is not a valid enumeration value", new[] { validationContext.MemberName });
             }
+
+            // For this kind of attribute, null cannot be a valid value. Enumeration is a struct and
+            // there is no way to find a null enumeration member.
             return new ValidationResult("Given object is not a valid enumeration value", new[] { validationContext.MemberName });
         }
     }
