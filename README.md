@@ -5,7 +5,7 @@
 
 ## Summary ##
 
-* Latest release version: `v4.0.4`
+* Latest release version: `v4.0.5`
 * Build status on [AppVeyor](https://ci.appveyor.com): [![Build status](https://ci.appveyor.com/api/projects/status/xjkp8gn0cf4s7qbg?svg=true)](https://ci.appveyor.com/project/pomma89/thrower)
 * [Doxygen](http://www.stack.nl/~dimitri/doxygen/index.html) documentation:
     + [HTML](http://pomma89.altervista.org/thrower/doc/html/index.html)
