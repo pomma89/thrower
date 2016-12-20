@@ -166,7 +166,7 @@ namespace PommaLabs.Thrower.UnitTests.Validation
 
         #region Standard .NET validation
 
-#if (!NET35 && !PORTABLE)
+#if !NET35
 
         [Test]
         public void Validate_StandardNetValidation_ValidObject()
