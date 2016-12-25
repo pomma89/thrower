@@ -5,6 +5,7 @@
 * EnumerationAttribute doc comments contained a few mistakes.
 * EmailAddressAttribute and PhoneNumberAttribute now validate successfully null values.
 * Fixed and enriched unit tests for object validation. 
+* Validation attributes are now available for portable DLL thanks to Portable.DataAnnotations.
 
 ### v4.0.4 (2016-12-17) ###
 

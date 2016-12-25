@@ -102,6 +102,7 @@
       </group>
       <group targetFramework="portable-net45+win8+wp8+wpa81">
         <dependency id="Microsoft.CSharp" version="4.3.0" />
+        <dependency id="Portable-Strong.DataAnnotations" version="1.0.1" />
         <dependency id="System.Collections" version="4.3.0" />
         <dependency id="System.Diagnostics.Tools" version="4.3.0" />
         <dependency id="System.Linq" version="4.3.0" />
