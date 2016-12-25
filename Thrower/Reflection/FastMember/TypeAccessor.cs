@@ -130,20 +130,9 @@ namespace PommaLabs.Thrower.Reflection.FastMember
         private static ModuleBuilder module;
         private static int counter;
 
-#if NETSTD13
-        private static readonly object counterLock = new object();
-#endif
-
         private static int GetNextCounterValue()
         {
-#if NETSTD13
-            lock(counterLock)
-            {
-                return counter++;
-            }
-#else
             return Interlocked.Increment(ref counter);
-#endif
         }
 
         private static readonly MethodInfo tryGetValue = typeof(Dictionary<string, int>).GetMethod("TryGetValue");

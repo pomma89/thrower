@@ -176,7 +176,7 @@ namespace PommaLabs.Thrower.UnitTests.Validation
             Assert.Throws<ArgumentNullException>(() => EmailAddressValidator.Validate(null, EmailAddressValidator.Options.AllowInternational | EmailAddressValidator.Options.AllowTopLevelDomains), "Null Address");
         }
 
-#if !(NET35 || PORTABLE)
+#if !NET35
 
         [Test]
         public void TestValidationAttributeValidAddresses()

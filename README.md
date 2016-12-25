@@ -5,7 +5,7 @@
 
 ## Summary ##
 
-* Latest release version: `v4.0.4`
+* Latest release version: `v4.0.5`
 * Build status on [AppVeyor](https://ci.appveyor.com): [![Build status](https://ci.appveyor.com/api/projects/status/xjkp8gn0cf4s7qbg?svg=true)](https://ci.appveyor.com/project/pomma89/thrower)
 * [Doxygen](http://www.stack.nl/~dimitri/doxygen/index.html) documentation:
     + [HTML](http://pomma89.altervista.org/thrower/doc/html/index.html)
@@ -360,4 +360,6 @@ Runtime=Clr
 
 Everything done on this repository is freely offered on the terms of the project license. You are free to do everything you want with the code and its related files, as long as you respect the license and use common sense while doing it :-)
 
-As of now, I do not have plans to expand Thrower much beyond what it currently is. There are many ways in which it can be improved, I know, but as of now the library suits my needs and I have not much time to improve it. If I will have time, I will try to make it better, of course.
+I maintain this project during my spare time, so I can offer limited assistance and I can offer **no kind of warranty**.
+
+Development of this project is sponsored by [Finsa SpA](https://www.finsa.it), my current employer.

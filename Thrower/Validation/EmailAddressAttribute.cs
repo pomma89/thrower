@@ -21,7 +21,7 @@
 // DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT
 // OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
-#if !(NET35 || PORTABLE)
+#if !NET35
 
 using System;
 using System.ComponentModel.DataAnnotations;
@@ -55,6 +55,12 @@ namespace PommaLabs.Thrower.Validation
         /// <returns>True if given email address is valid or null, false otherwise.</returns>
         protected override ValidationResult IsValid(object value, ValidationContext validationContext)
         {
+            if (value == null)
+            {
+                // Null value is valid. If a member should be required, then it should also be
+                // decorated with the Required attribute.
+                return ValidationResult.Success;
+            }
             var str = value as string;
             if (str != null)
             {
@@ -62,6 +68,7 @@ namespace PommaLabs.Thrower.Validation
                     ? ValidationResult.Success
                     : new ValidationResult($"Given string '{str}' is not a valid email address", new[] { validationContext.MemberName });
             }
+
             return new ValidationResult("Given object is not a valid email address", new[] { validationContext.MemberName });
         }
     }
