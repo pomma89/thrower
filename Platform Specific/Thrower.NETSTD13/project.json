@@ -18,6 +18,7 @@
     "System.Reflection.Emit.Lightweight": "4.3.0",
     "System.Reflection.Extensions": "4.3.0",
     "System.Reflection.TypeExtensions": "4.3.0",
+    "System.Runtime.Serialization.Formatters": "4.3.0",
     "System.Text.RegularExpressions": "4.3.0",
     "System.Threading": "4.3.0"
   },

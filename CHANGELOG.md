@@ -1,5 +1,10 @@
 # Changelog for PommaLabs.Thrower #
 
+### v4.0.6 (2017-01-08) ###
+
+* SerializableAttribute is no more defined as a polyfill for .NET Standard 1.3; instead, it is taken from System.Runtime.Serialization.Formatters package.
+* Added new DLL for .NET Standard 1.2.
+
 ### v4.0.5 (2016-12-25) ###
 
 * EnumerationAttribute doc comments contained a few mistakes.

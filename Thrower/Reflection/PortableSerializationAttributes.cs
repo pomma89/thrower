@@ -21,7 +21,7 @@
 // DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT
 // OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
-#if (PORTABLE || NETSTD11 || NETSTD13)
+#if (PORTABLE || NETSTD11 || NETSTD12)
 
 namespace System
 {
@@ -35,7 +35,8 @@ namespace System
     }
 
     /// <summary>
-    ///   Indicates that a field of a serializable class should not be serialized. This class cannot be inherited.
+    ///   Indicates that a field of a serializable class should not be serialized. This class cannot
+    ///   be inherited.
     /// </summary>
     [AttributeUsage(AttributeTargets.Field, Inherited = false)]
     public sealed class NonSerializedAttribute : Attribute

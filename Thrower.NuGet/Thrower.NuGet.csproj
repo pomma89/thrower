@@ -50,6 +50,7 @@
     <Folder Include="lib\net45\" />
     <Folder Include="lib\net46\" />
     <Folder Include="lib\netstandard1.1\" />
+    <Folder Include="lib\netstandard1.2\" />
     <Folder Include="lib\netstandard1.3\" />
     <Folder Include="lib\portable-net45+win8+wp8+wpa81\" />
   </ItemGroup>

@@ -17,10 +17,7 @@
       Moreover, this library embeds a portable copy of Marc Gravell's FastMember and Jeffrey Stedfast's EmailValidation libraries.
     </description>
     <releaseNotes>
-      * EnumerationAttribute doc comments contained a few mistakes.
-      * EmailAddressAttribute and PhoneNumberAttribute now validate successfully null values.
-      * Fixed and enriched unit tests for object validation. 
-      * Validation attributes are now available for portable DLL thanks to Portable.DataAnnotations.
+      Check project site to find updated release notes.
     </releaseNotes>
     <summary>Fully managed library providing convenience methods to perform argument checks.</summary>
     <language>en-US</language>
@@ -64,10 +61,22 @@
         <dependency id="System.Reflection.Emit.Lightweight" version="4.3.0" />
         <dependency id="System.Reflection.Extensions" version="4.3.0" />
         <dependency id="System.Reflection.TypeExtensions" version="4.3.0" />
+        <dependency id="System.Runtime.Serialization.Formatters" version="4.3.0" />
         <dependency id="System.Text.RegularExpressions" version="4.3.0" />
         <dependency id="System.Threading" version="4.3.0" />
       </group>
       <group targetFramework="netstandard1.1">
+        <dependency id="Microsoft.CSharp" version="4.3.0" />
+        <dependency id="System.Collections" version="4.3.0" />
+        <dependency id="System.ComponentModel.Annotations" version="4.3.0" />
+        <dependency id="System.Diagnostics.Tools" version="4.3.0" />
+        <dependency id="System.Linq" version="4.3.0" />
+        <dependency id="System.Net.Primitives" version="4.3.0" />
+        <dependency id="System.Reflection" version="4.3.0" />
+        <dependency id="System.Reflection.Extensions" version="4.3.0" />
+        <dependency id="System.Text.RegularExpressions" version="4.3.0" />
+      </group>
+      <group targetFramework="netstandard1.2">
         <dependency id="Microsoft.CSharp" version="4.3.0" />
         <dependency id="System.Collections" version="4.3.0" />
         <dependency id="System.ComponentModel.Annotations" version="4.3.0" />
@@ -95,6 +104,7 @@
         <dependency id="System.Reflection.Emit.Lightweight" version="4.3.0" />
         <dependency id="System.Reflection.Extensions" version="4.3.0" />
         <dependency id="System.Reflection.TypeExtensions" version="4.3.0" />
+        <dependency id="System.Runtime.Serialization.Formatters" version="4.3.0" />
         <dependency id="System.Text.RegularExpressions" version="4.3.0" />
         <dependency id="System.Threading" version="4.3.0" />
       </group>
