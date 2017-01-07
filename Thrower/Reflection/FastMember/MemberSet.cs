@@ -15,6 +15,7 @@
 using System;
 using System.Collections.Generic;
 using System.Reflection;
+using System.Security;
 
 #if !NET20
 
@@ -27,6 +28,7 @@ namespace PommaLabs.Thrower.Reflection.FastMember
     /// <summary>
     ///   Represents an abstracted view of the members defined for a type.
     /// </summary>
+    [SecuritySafeCritical]
     public sealed class MemberSet : IEnumerable<Member>, IList<Member>
     {
         private Member[] members;

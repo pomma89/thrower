@@ -37,6 +37,7 @@ namespace PommaLabs.Thrower.Reflection.FastMember
     /// <summary>
     ///   Provides by-name member-access to objects of a given type.
     /// </summary>
+    [SecuritySafeCritical]
     public abstract class TypeAccessor
     {
         // hash-table has better read-without-locking semantics than dictionary
