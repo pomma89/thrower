@@ -17,7 +17,7 @@
       Moreover, this library embeds a portable copy of Marc Gravell's FastMember and Jeffrey Stedfast's EmailValidation libraries.
     </description>
     <releaseNotes>
-      Check project site to find updated release notes.
+      Please visit project site to find updated release notes.
     </releaseNotes>
     <summary>Fully managed library providing convenience methods to perform argument checks.</summary>
     <language>en-US</language>
