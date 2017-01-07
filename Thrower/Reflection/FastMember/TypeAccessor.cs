@@ -17,6 +17,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Reflection;
 using System.Reflection.Emit;
+using System.Security;
 using System.Threading;
 
 #if !NET35
@@ -309,6 +310,7 @@ namespace PommaLabs.Thrower.Reflection.FastMember
             return true;
         }
 
+        [SecuritySafeCritical]
         private static TypeAccessor CreateNew(Type type, bool allowNonPublicAccessors)
         {
 #if !NET35

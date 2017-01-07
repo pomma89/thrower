@@ -27,12 +27,14 @@ using System.Linq;
 using System.Linq.Expressions;
 using System.Reflection;
 using System.Runtime.CompilerServices;
+using System.Security;
 
 namespace PommaLabs.Thrower.Reflection
 {
     /// <summary>
     ///   Portable version of some useful reflection methods.
     /// </summary>
+    [SecuritySafeCritical]
     public static class PortableTypeInfo
     {
 #if !(PORTABLE || NETSTD11 || NETSTD12)
@@ -76,7 +78,7 @@ namespace PommaLabs.Thrower.Reflection
         [MethodImpl(Raise.MethodImplOptions)]
         public static IList<Attribute> GetCustomAttributes(MemberInfo memberInfo, bool inherit)
         {
-#if (PORTABLE || NETSTD11 || NETSTD12 || NETSTD13)
+#if (PORTABLE || NETSTD11 || NETSTD12)
             return memberInfo.GetCustomAttributes(inherit).ToArray();
 #else
             return memberInfo.GetCustomAttributes(inherit).Cast<Attribute>().ToArray();
@@ -91,7 +93,7 @@ namespace PommaLabs.Thrower.Reflection
         [MethodImpl(Raise.MethodImplOptions)]
         public static IList<ConstructorInfo> GetConstructors(Type type)
         {
-#if (PORTABLE || NETSTD11 || NETSTD12 || NETSTD13)
+#if (PORTABLE || NETSTD11 || NETSTD12)
             return IntrospectionExtensions.GetTypeInfo(type).DeclaredConstructors.ToArray();
 #else
             return type.GetConstructors(PublicAndPrivateInstanceFlags);
@@ -129,7 +131,7 @@ namespace PommaLabs.Thrower.Reflection
         [MethodImpl(Raise.MethodImplOptions)]
         public static Type GetGenericTypeDefinition(Type type)
         {
-#if (PORTABLE || NETSTD11 || NETSTD12 || NETSTD13)
+#if (PORTABLE || NETSTD11 || NETSTD12)
             return IntrospectionExtensions.GetTypeInfo(type).GetGenericTypeDefinition();
 #else
             return type.GetGenericTypeDefinition();
@@ -144,7 +146,7 @@ namespace PommaLabs.Thrower.Reflection
         [MethodImpl(Raise.MethodImplOptions)]
         public static IList<Type> GetGenericTypeArguments(Type type)
         {
-#if (PORTABLE || NETSTD11 || NETSTD12 || NETSTD13)
+#if (PORTABLE || NETSTD11 || NETSTD12)
             return IntrospectionExtensions.GetTypeInfo(type).GenericTypeArguments;
 #else
             return type.GetGenericArguments();
@@ -159,7 +161,7 @@ namespace PommaLabs.Thrower.Reflection
         [MethodImpl(Raise.MethodImplOptions)]
         public static IList<Type> GetInterfaces(Type type)
         {
-#if (PORTABLE || NETSTD11 || NETSTD12 || NETSTD13)
+#if (PORTABLE || NETSTD11 || NETSTD12)
             return IntrospectionExtensions.GetTypeInfo(type).ImplementedInterfaces.ToArray();
 #else
             return type.GetInterfaces();
@@ -174,7 +176,7 @@ namespace PommaLabs.Thrower.Reflection
         [MethodImpl(Raise.MethodImplOptions)]
         public static IList<PropertyInfo> GetPublicProperties(Type type)
         {
-#if (PORTABLE || NETSTD11 || NETSTD12 || NETSTD13)
+#if (PORTABLE || NETSTD11 || NETSTD12)
             var properties = new List<PropertyInfo>();
             while (type != null)
             {
@@ -243,7 +245,7 @@ namespace PommaLabs.Thrower.Reflection
             return propertyInfo.GetValue(instance, EmptyObjectArray);
         }
 
-#if !(PORTABLE || NETSTD11 || NETSTD12 || NETSTD12)
+#if !(PORTABLE || NETSTD11 || NETSTD12)
 
         /// <summary>
         ///   Gets the value of given property on given instance.
@@ -336,7 +338,7 @@ namespace PommaLabs.Thrower.Reflection
                 return false;
             }
 
-#if (PORTABLE || NETSTD11 || NETSTD12 || NETSTD13)
+#if (PORTABLE || NETSTD11 || NETSTD12)
             return IntrospectionExtensions.GetTypeInfo(obj.GetType()).IsAssignableFrom(IntrospectionExtensions.GetTypeInfo(type));
 #else
             return obj.GetType().IsAssignableFrom(type);
@@ -438,7 +440,7 @@ namespace PommaLabs.Thrower.Reflection
                 return false;
             }
 
-#if (PORTABLE || NETSTD11 || NETSTD12 || NETSTD13)
+#if (PORTABLE || NETSTD11 || NETSTD12)
             return IntrospectionExtensions.GetTypeInfo(type).IsAssignableFrom(IntrospectionExtensions.GetTypeInfo(obj.GetType()));
 #else
             return type.IsInstanceOfType(obj);
