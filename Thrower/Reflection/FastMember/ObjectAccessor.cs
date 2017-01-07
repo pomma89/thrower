@@ -10,7 +10,7 @@
 // or implied. See the License for the specific language governing permissions and limitations under
 // the License.
 
-#if !(PORTABLE || NETSTD11)
+#if !(PORTABLE || NETSTD11 || NETSTD12)
 
 using System;
 using System.Collections;
@@ -332,7 +332,7 @@ namespace PommaLabs.Thrower.Reflection.FastMember
             }
             public override object Target { get; }
 
-            #region IDictionary<string, object> members
+        #region IDictionary<string, object> members
 
             public override ICollection<string> Keys
             {
@@ -369,7 +369,7 @@ namespace PommaLabs.Thrower.Reflection.FastMember
                 throw new NotSupportedException();
             }
 
-            #endregion IDictionary<string, object> members
+        #endregion IDictionary<string, object> members
         }
 
 #endif
