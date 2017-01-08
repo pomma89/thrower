@@ -10,13 +10,14 @@
 // or implied. See the License for the specific language governing permissions and limitations under
 // the License.
 
-#if !(PORTABLE || NETSTD11)
+#if !(PORTABLE || NETSTD11 || NETSTD12)
 
 using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Reflection;
 using System.Reflection.Emit;
+using System.Security;
 using System.Threading;
 
 #if !NET35
@@ -36,6 +37,7 @@ namespace PommaLabs.Thrower.Reflection.FastMember
     /// <summary>
     ///   Provides by-name member-access to objects of a given type.
     /// </summary>
+    [SecuritySafeCritical]
     public abstract class TypeAccessor
     {
         // hash-table has better read-without-locking semantics than dictionary
@@ -309,6 +311,7 @@ namespace PommaLabs.Thrower.Reflection.FastMember
             return true;
         }
 
+        [SecuritySafeCritical]
         private static TypeAccessor CreateNew(Type type, bool allowNonPublicAccessors)
         {
 #if !NET35

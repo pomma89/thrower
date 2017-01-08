@@ -10,11 +10,12 @@
 // or implied. See the License for the specific language governing permissions and limitations under
 // the License.
 
-#if !(PORTABLE || NETSTD11)
+#if !(PORTABLE || NETSTD11 || NETSTD12)
 
 using System;
 using System.Collections.Generic;
 using System.Reflection;
+using System.Security;
 
 #if !NET20
 
@@ -27,6 +28,7 @@ namespace PommaLabs.Thrower.Reflection.FastMember
     /// <summary>
     ///   Represents an abstracted view of the members defined for a type.
     /// </summary>
+    [SecuritySafeCritical]
     public sealed class MemberSet : IEnumerable<Member>, IList<Member>
     {
         private Member[] members;
