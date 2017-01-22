@@ -14,8 +14,10 @@
 
 using NUnit.Framework;
 using PommaLabs.Thrower.Reflection.FastMember;
+using Shouldly;
 using System;
 using System.Data;
+using System.Linq;
 
 namespace PommaLabs.Thrower.UnitTests.Reflection.FastMember
 {
@@ -476,6 +478,30 @@ namespace PommaLabs.Thrower.UnitTests.Reflection.FastMember
         }
 
 #endif
+
+        public class HazStaticProperty
+        {
+            public int Foo { get; set; }
+            public static int Bar { get; set; }
+
+            public int Foo2 => 2;
+            public static int Bar2 => 4;
+        }
+
+        [Test]
+        public void IgnoresStaticProperty()
+        {
+            var obj = new HazStaticProperty();
+            var acc = TypeAccessor.Create(typeof(HazStaticProperty));
+
+            var memberNames = acc.GetMembers().Select(x => x.Name);
+
+            memberNames.ShouldContain(nameof(HazStaticProperty.Foo));
+            memberNames.ShouldContain(nameof(HazStaticProperty.Foo2));
+
+            memberNames.ShouldNotContain(nameof(HazStaticProperty.Bar));
+            memberNames.ShouldNotContain(nameof(HazStaticProperty.Bar2));
+        }
     }
 }
 

@@ -35,16 +35,18 @@ namespace PommaLabs.Thrower.Reflection.FastMember
 
         internal MemberSet(Type type)
         {
+            const BindingFlags publicInstance = BindingFlags.Public | BindingFlags.Instance;
+
 #if NET20
-            var properties = new List<MemberInfo>(type.GetProperties());
-            properties.AddRange(new List<MemberInfo>(type.GetFields()));
+            var properties = new List<MemberInfo>(type.GetProperties(publicInstance));
+            properties.AddRange(new List<MemberInfo>(type.GetFields(publicInstance)));
             properties.Sort((p1, p2) => p1.Name.CompareTo(p2.Name));
             members = properties.ConvertAll<Member>(mi => new Member(mi)).ToArray();
 #else
             members = type
-                .GetProperties()
+                .GetProperties(publicInstance)
                 .Cast<MemberInfo>()
-                .Concat(type.GetFields().Cast<MemberInfo>())
+                .Concat(type.GetFields(publicInstance).Cast<MemberInfo>())
                 .OrderBy(x => x.Name)
                 .Select(member => new Member(member))
                 .ToArray();
