@@ -1,5 +1,9 @@
 # Changelog for PommaLabs.Thrower #
 
+### v4.0.7 (2017-0?-??) ###
+
+* NuGet package references NETStandard.Library instead of many packages.
+
 ### v4.0.6 (2017-01-08) ###
 
 * SerializableAttribute is no more defined as a polyfill for .NET Standard 1.3; instead, it is taken from System.Runtime.Serialization.Formatters package.
