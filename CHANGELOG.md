@@ -1,6 +1,6 @@
 # Changelog for PommaLabs.Thrower #
 
-### v4.0.7 (2017-0?-??) ###
+### v4.0.7 (2017-01-22) ###
 
 * NuGet package references NETStandard.Library instead of many packages.
 * FastMember: static members are now correctly ignored.
