@@ -3,6 +3,7 @@
 ### v4.0.7 (2017-0?-??) ###
 
 * NuGet package references NETStandard.Library instead of many packages.
+* FastMember: static members are now correctly ignored.
 
 ### v4.0.6 (2017-01-08) ###
 
