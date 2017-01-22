@@ -37,20 +37,16 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="BenchmarkDotNet, Version=0.10.1.0, Culture=neutral, PublicKeyToken=aa0ca2f9092cefc4, processorArchitecture=MSIL">
-      <HintPath>..\packages\BenchmarkDotNet.0.10.1\lib\net45\BenchmarkDotNet.dll</HintPath>
-      <Private>True</Private>
+      <HintPath>..\packages\BenchmarkDotNet.0.10.2\lib\net45\BenchmarkDotNet.dll</HintPath>
     </Reference>
     <Reference Include="BenchmarkDotNet.Core, Version=0.10.1.0, Culture=neutral, PublicKeyToken=aa0ca2f9092cefc4, processorArchitecture=MSIL">
-      <HintPath>..\packages\BenchmarkDotNet.Core.0.10.1\lib\net45\BenchmarkDotNet.Core.dll</HintPath>
-      <Private>True</Private>
+      <HintPath>..\packages\BenchmarkDotNet.Core.0.10.2\lib\net45\BenchmarkDotNet.Core.dll</HintPath>
     </Reference>
     <Reference Include="BenchmarkDotNet.Diagnostics.Windows, Version=0.10.1.0, Culture=neutral, PublicKeyToken=aa0ca2f9092cefc4, processorArchitecture=MSIL">
-      <HintPath>..\packages\BenchmarkDotNet.Diagnostics.Windows.0.10.1\lib\net45\BenchmarkDotNet.Diagnostics.Windows.dll</HintPath>
-      <Private>True</Private>
+      <HintPath>..\packages\BenchmarkDotNet.Diagnostics.Windows.0.10.2\lib\net45\BenchmarkDotNet.Diagnostics.Windows.dll</HintPath>
     </Reference>
     <Reference Include="BenchmarkDotNet.Toolchains.Roslyn, Version=0.10.1.0, Culture=neutral, PublicKeyToken=aa0ca2f9092cefc4, processorArchitecture=MSIL">
-      <HintPath>..\packages\BenchmarkDotNet.Toolchains.Roslyn.0.10.1\lib\net45\BenchmarkDotNet.Toolchains.Roslyn.dll</HintPath>
-      <Private>True</Private>
+      <HintPath>..\packages\BenchmarkDotNet.Toolchains.Roslyn.0.10.2\lib\net45\BenchmarkDotNet.Toolchains.Roslyn.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Build" />
     <Reference Include="Microsoft.Build.Framework" />
