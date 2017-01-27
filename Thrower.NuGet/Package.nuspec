@@ -25,7 +25,7 @@
     <iconUrl>http://pomma89.altervista.org/thrower/logo-128.png</iconUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <licenseUrl>http://opensource.org/licenses/MIT</licenseUrl>
-    <copyright>Copyright (c) 2013-2016 Alessio Parma &lt;alessio.parma@gmail.com&gt;</copyright>
+    <copyright>Copyright (c) 2013-2018 Alessio Parma &lt;alessio.parma@gmail.com&gt;</copyright>
     <dependencies>
       <group targetFramework="net35"></group>
       <group targetFramework="net40"></group>
