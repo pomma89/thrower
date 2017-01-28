@@ -3,7 +3,7 @@
 <package>
   <metadata>
     <id>Thrower</id>
-    <version>4.0.6</version>
+    <version>4.0.7</version>
     <title>Thrower - Compact preconditions helpers</title>
     <authors>Alessio Parma &lt;alessio.parma@gmail.com&gt;</authors>
     <owners>Alessio Parma &lt;alessio.parma@gmail.com&gt;</owners>
@@ -25,99 +25,53 @@
     <iconUrl>http://pomma89.altervista.org/thrower/logo-128.png</iconUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <licenseUrl>http://opensource.org/licenses/MIT</licenseUrl>
-    <copyright>Copyright (c) 2013-2016 Alessio Parma &lt;alessio.parma@gmail.com&gt;</copyright>
+    <copyright>Copyright (c) 2013-2018 Alessio Parma &lt;alessio.parma@gmail.com&gt;</copyright>
     <dependencies>
       <group targetFramework="net35"></group>
       <group targetFramework="net40"></group>
       <group targetFramework="net45">
         <dependency id="Microsoft.CSharp" version="4.3.0" />
-        <dependency id="System.Collections" version="4.3.0" />
+        <dependency id="NETStandard.Library" version="1.6.1" />
         <dependency id="System.ComponentModel.Annotations" version="4.3.0" />
-        <dependency id="System.Diagnostics.Tools" version="4.3.0" />
-        <dependency id="System.Linq" version="4.3.0" />
-        <dependency id="System.Net.Primitives" version="4.3.0" />
-        <dependency id="System.Reflection" version="4.3.0" />
         <dependency id="System.Reflection.Emit" version="4.3.0" />
-        <dependency id="System.Reflection.Emit.ILGeneration" version="4.3.0" />
         <dependency id="System.Reflection.Emit.Lightweight" version="4.3.0" />
-        <dependency id="System.Reflection.Extensions" version="4.3.0" />
-        <dependency id="System.Text.RegularExpressions" version="4.3.0" />
-        <dependency id="System.Threading" version="4.3.0" />
       </group>
       <group targetFramework="net46">
         <dependency id="Microsoft.CSharp" version="4.3.0" />
-        <dependency id="System.Collections" version="4.3.0" />
+        <dependency id="NETStandard.Library" version="1.6.1" />
         <dependency id="System.Collections.NonGeneric" version="4.3.0" />
         <dependency id="System.ComponentModel.Annotations" version="4.3.0" />
         <dependency id="System.Data.Common" version="4.3.0" />
-        <dependency id="System.Diagnostics.Tools" version="4.3.0" />
-        <dependency id="System.IO.FileSystem" version="4.3.0" />
-        <dependency id="System.IO.FileSystem.Primitives" version="4.3.0" />
-        <dependency id="System.Linq" version="4.3.0" />
-        <dependency id="System.Net.Primitives" version="4.3.0" />
-        <dependency id="System.Reflection" version="4.3.0" />
         <dependency id="System.Reflection.Emit" version="4.3.0" />
-        <dependency id="System.Reflection.Emit.ILGeneration" version="4.3.0" />
         <dependency id="System.Reflection.Emit.Lightweight" version="4.3.0" />
-        <dependency id="System.Reflection.Extensions" version="4.3.0" />
         <dependency id="System.Reflection.TypeExtensions" version="4.3.0" />
         <dependency id="System.Runtime.Serialization.Formatters" version="4.3.0" />
-        <dependency id="System.Text.RegularExpressions" version="4.3.0" />
-        <dependency id="System.Threading" version="4.3.0" />
       </group>
       <group targetFramework="netstandard1.1">
         <dependency id="Microsoft.CSharp" version="4.3.0" />
-        <dependency id="System.Collections" version="4.3.0" />
+        <dependency id="NETStandard.Library" version="1.6.1" />
         <dependency id="System.ComponentModel.Annotations" version="4.3.0" />
-        <dependency id="System.Diagnostics.Tools" version="4.3.0" />
-        <dependency id="System.Linq" version="4.3.0" />
-        <dependency id="System.Net.Primitives" version="4.3.0" />
-        <dependency id="System.Reflection" version="4.3.0" />
-        <dependency id="System.Reflection.Extensions" version="4.3.0" />
-        <dependency id="System.Text.RegularExpressions" version="4.3.0" />
       </group>
       <group targetFramework="netstandard1.2">
         <dependency id="Microsoft.CSharp" version="4.3.0" />
-        <dependency id="System.Collections" version="4.3.0" />
+        <dependency id="NETStandard.Library" version="1.6.1" />
         <dependency id="System.ComponentModel.Annotations" version="4.3.0" />
-        <dependency id="System.Diagnostics.Tools" version="4.3.0" />
-        <dependency id="System.Linq" version="4.3.0" />
-        <dependency id="System.Net.Primitives" version="4.3.0" />
-        <dependency id="System.Reflection" version="4.3.0" />
-        <dependency id="System.Reflection.Extensions" version="4.3.0" />
-        <dependency id="System.Text.RegularExpressions" version="4.3.0" />
       </group>
       <group targetFramework="netstandard1.3">
         <dependency id="Microsoft.CSharp" version="4.3.0" />
-        <dependency id="System.Collections" version="4.3.0" />
+        <dependency id="NETStandard.Library" version="1.6.1" />
         <dependency id="System.Collections.NonGeneric" version="4.3.0" />
         <dependency id="System.ComponentModel.Annotations" version="4.3.0" />
         <dependency id="System.Data.Common" version="4.3.0" />
-        <dependency id="System.Diagnostics.Tools" version="4.3.0" />
-        <dependency id="System.IO.FileSystem" version="4.3.0" />
-        <dependency id="System.IO.FileSystem.Primitives" version="4.3.0" />
-        <dependency id="System.Linq" version="4.3.0" />
-        <dependency id="System.Net.Primitives" version="4.3.0" />
-        <dependency id="System.Reflection" version="4.3.0" />
         <dependency id="System.Reflection.Emit" version="4.3.0" />
-        <dependency id="System.Reflection.Emit.ILGeneration" version="4.3.0" />
         <dependency id="System.Reflection.Emit.Lightweight" version="4.3.0" />
-        <dependency id="System.Reflection.Extensions" version="4.3.0" />
         <dependency id="System.Reflection.TypeExtensions" version="4.3.0" />
         <dependency id="System.Runtime.Serialization.Formatters" version="4.3.0" />
-        <dependency id="System.Text.RegularExpressions" version="4.3.0" />
-        <dependency id="System.Threading" version="4.3.0" />
       </group>
       <group targetFramework="portable-net45+win8+wp8+wpa81">
         <dependency id="Microsoft.CSharp" version="4.3.0" />
+        <dependency id="NETStandard.Library" version="1.6.1" />
         <dependency id="Portable-Strong.DataAnnotations" version="1.0.1" />
-        <dependency id="System.Collections" version="4.3.0" />
-        <dependency id="System.Diagnostics.Tools" version="4.3.0" />
-        <dependency id="System.Linq" version="4.3.0" />
-        <dependency id="System.Net.Primitives" version="4.3.0" />
-        <dependency id="System.Reflection" version="4.3.0" />
-        <dependency id="System.Reflection.Extensions" version="4.3.0" />
-        <dependency id="System.Text.RegularExpressions" version="4.3.0" />
       </group>
     </dependencies>
     <references></references>

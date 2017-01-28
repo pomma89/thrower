@@ -1,5 +1,10 @@
 # Changelog for PommaLabs.Thrower #
 
+### v4.0.7 (2017-01-22) ###
+
+* NuGet package references NETStandard.Library instead of many packages.
+* FastMember: static members are now correctly ignored.
+
 ### v4.0.6 (2017-01-08) ###
 
 * SerializableAttribute is no more defined as a polyfill for .NET Standard 1.3; instead, it is taken from System.Runtime.Serialization.Formatters package.

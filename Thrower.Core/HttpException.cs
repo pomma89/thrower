@@ -21,7 +21,6 @@
 // DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT
 // OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
-using PommaLabs.Thrower.Validation;
 using System;
 using System.Diagnostics.CodeAnalysis;
 using System.Net;
@@ -48,13 +47,11 @@ namespace PommaLabs.Thrower
         /// <summary>
         ///   The application defined error code.
         /// </summary>
-        [Validate(Required = false)]
         public object ErrorCode { get; set; }
 
         /// <summary>
         ///   An error message which can be shown to user.
         /// </summary>
-        [Validate(Required = false)]
         public string UserMessage { get; set; }
     }
 
