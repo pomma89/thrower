@@ -1,0 +1,49 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFrameworks>netstandard1.1;netstandard1.2;netstandard1.3;net40;net45;net46</TargetFrameworks>
+    <RootNamespace>PommaLabs.Thrower</RootNamespace>
+    <AssemblyName>PommaLabs.Thrower</AssemblyName>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|AnyCPU' And '$(TargetFramework)' == 'netstandard1.1'">
+    <DefineConstants>TRACE;DEBUG;NETSTD11</DefineConstants>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|AnyCPU' And '$(TargetFramework)' == 'netstandard1.1'">
+    <DefineConstants>TRACE;NETSTD11</DefineConstants>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|AnyCPU' And '$(TargetFramework)' == 'netstandard1.2'">
+    <DefineConstants>TRACE;DEBUG;NETSTD12</DefineConstants>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|AnyCPU' And '$(TargetFramework)' == 'netstandard1.2'">
+    <DefineConstants>TRACE;NETSTD12</DefineConstants>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|AnyCPU' And '$(TargetFramework)' == 'netstandard1.3'">
+    <DefineConstants>TRACE;DEBUG;NETSTD13</DefineConstants>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|AnyCPU' And '$(TargetFramework)' == 'netstandard1.3'">
+    <DefineConstants>TRACE;NETSTD13</DefineConstants>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|AnyCPU' And '$(TargetFramework)' == 'net35'">
+    <DefineConstants>TRACE;DEBUG;NET35</DefineConstants>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|AnyCPU' And '$(TargetFramework)' == 'net35'">
+    <DefineConstants>TRACE;NET35</DefineConstants>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|AnyCPU' And '$(TargetFramework)' == 'net45'">
+    <DefineConstants>TRACE;DEBUG;NET45</DefineConstants>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|AnyCPU' And '$(TargetFramework)' == 'net45'">
+    <DefineConstants>TRACE;NET45</DefineConstants>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|AnyCPU' And '$(TargetFramework)' == 'net46'">
+    <DefineConstants>TRACE;DEBUG;NET46</DefineConstants>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|AnyCPU' And '$(TargetFramework)' == 'net46'">
+    <DefineConstants>TRACE;NET46</DefineConstants>
+  </PropertyGroup>
+  <ItemGroup Condition="'$(TargetFramework)' == 'net45'">
+    <PackageReference Include="NETStandard.Library" Version="1.6.1" />
+  </ItemGroup>
+  <ItemGroup Condition="'$(TargetFramework)' == 'net46'">
+    <PackageReference Include="NETStandard.Library" Version="1.6.1" />
+  </ItemGroup>
+</Project>
