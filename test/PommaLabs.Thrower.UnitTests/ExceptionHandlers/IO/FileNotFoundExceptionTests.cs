@@ -34,7 +34,7 @@ namespace PommaLabs.Thrower.UnitTests.ExceptionHandlers.IO
     internal sealed class FileNotFoundExceptionTests : AbstractTests
     {
         private static readonly string ExistingFilePath = typeof(FileNotFoundExceptionTests).Assembly.Location;
-        private static readonly string NotExistingFilePath = Path.Combine(Environment.CurrentDirectory, Guid.NewGuid() + ".test");
+        private static readonly string NotExistingFilePath = Path.Combine("C:\\", Guid.NewGuid() + ".test");
         private static readonly string MyTestMessage = $"{DateTime.UtcNow} - {Guid.NewGuid()}";
 
         [Test]

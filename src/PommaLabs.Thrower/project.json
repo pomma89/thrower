@@ -10,24 +10,8 @@
   "buildOptions": {
     "publicSign": true,
     "keyFile": "../../pomma89.snk",
-    "outputName": "PommaLabs.Thrower"
-  },
-
-  "configurations": {
-    "Debug": {
-      "buildOptions": {
-        "define": [ "DEBUG", "TRACE" ],
-        "optimize": false,
-        "xmlDoc": false
-      }
-    },
-    "Release": {
-      "buildOptions": {
-        "define": [ "TRACE" ],
-        "optimize": true,
-        "xmlDoc": false
-      }
-    }
+    "outputName": "PommaLabs.Thrower",
+    "xmlDoc": true
   },
 
   "packOptions": {

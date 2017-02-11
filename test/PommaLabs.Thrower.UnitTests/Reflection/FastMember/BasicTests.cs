@@ -391,7 +391,7 @@ namespace PommaLabs.Thrower.UnitTests.Reflection.FastMember
             public int? D { get; set; }
         }
 
-#if !NETSTD13
+#if !NETSTD16
 
         [Test]
         public void TestReaderAllColumns()
