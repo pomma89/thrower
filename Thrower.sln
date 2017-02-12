@@ -14,7 +14,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "root", "root", "{40BFDC8F-0
 		LICENSE.md = LICENSE.md
 		pomma89.snk = pomma89.snk
 		README.md = README.md
-		VERSION.md = VERSION.md
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{060B4ABE-390C-4E26-B83F-1A15FC5C87A7}"
