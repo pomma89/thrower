@@ -197,7 +197,7 @@ namespace PommaLabs.Thrower.Validation
                                where v != null
                                select new { PropertyInfo = p, Validation = v };
 
-#if !(PORTABLE || NETSTD11)
+#if !(PORTABLE || NETSTD10)
                 var typeAccessor = Reflection.FastMember.TypeAccessor.Create(objType);
 #endif
 
@@ -205,7 +205,7 @@ namespace PommaLabs.Thrower.Validation
                 {
                     var propertyInfo = rp.PropertyInfo;
 
-#if (PORTABLE || NETSTD11)
+#if (PORTABLE || NETSTD10)
                     var propertyValue = PortableTypeInfo.GetPublicPropertyValue(obj, propertyInfo);
 #else
                     var propertyValue = PortableTypeInfo.GetPublicPropertyValue(typeAccessor, obj, propertyInfo);

@@ -2,7 +2,8 @@
 
 ### v4.0.11 (2017-02-12) ###
 
-* Removed .NET 4.6 and .NET Standard 1.2 DLLs, since they were equivalent to .NET 4.5 and .NET Standard 1.1.
+* Added DLL for .NET Standard 1.0.
+* Removed .NET 4.6 and .NET Standard 1.1/1.2 DLLs, since they were equivalent to .NET 4.5 and .NET Standard 1.0.
 
 ### v4.0.10 (2017-02-12) ###
 

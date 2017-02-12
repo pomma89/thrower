@@ -33,9 +33,9 @@
   },
 
   "frameworks": {
-    "netstandard1.1": {
+    "netstandard1.0": {
       "imports": "dnxcore50",
-      "buildOptions": { "define": [ "NETSTD11" ] },
+      "buildOptions": { "define": [ "NETSTD10" ] },
       "dependencies": {
         "Microsoft.CSharp": "4.3.0",
         "System.ComponentModel.Annotations": "4.3.0"

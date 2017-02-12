@@ -92,7 +92,7 @@ namespace PommaLabs.Thrower
 
         #region System.IO
 
-#if !(PORTABLE || NETSTD11)
+#if !(PORTABLE || NETSTD10)
 
         /// <summary>
         ///   Handler for <see cref="System.IO.DirectoryNotFoundException"/>
