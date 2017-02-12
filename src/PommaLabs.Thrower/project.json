@@ -1,5 +1,5 @@
 ﻿{
-  "version": "4.0.8-*",
+  "version": "4.0.9-*",
   "title": "Thrower - Compact preconditions helpers",
   "description": "Fully managed library providing convenience methods to perform argument checks. Thrower allows to write preconditions in a pretty lean way, which reduces the clutter at the beginning of each method by removing the need to use the cumbersome 'if true then throw ex' required to validate parameters. For example, a validation against null becomes 'Raise.ArgumentNullException.IfIsNull(myParam)', while a generic validation may be written as 'Raise.ArgumentException.If(condition)'. Moreover, this library embeds a portable copy of Marc Gravell's FastMember and Jeffrey Stedfast's EmailValidation libraries.",
   "copyright": "Copyright (c) 2013-2018 Alessio Parma <alessio.parma@gmail.com>",
