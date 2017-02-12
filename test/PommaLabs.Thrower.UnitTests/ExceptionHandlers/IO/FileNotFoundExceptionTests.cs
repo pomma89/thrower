@@ -25,6 +25,7 @@
 
 using NUnit.Framework;
 using PommaLabs.Thrower.ExceptionHandlers.IO;
+using PommaLabs.Thrower.Reflection;
 using Shouldly;
 using System;
 using System.IO;
@@ -33,7 +34,7 @@ namespace PommaLabs.Thrower.UnitTests.ExceptionHandlers.IO
 {
     internal sealed class FileNotFoundExceptionTests : AbstractTests
     {
-        private static readonly string ExistingFilePath = typeof(FileNotFoundExceptionTests).Assembly.Location;
+        private static readonly string ExistingFilePath = PortableTypeInfo.GetTypeAssembly<FileNotFoundExceptionTests>().Location;
         private static readonly string NotExistingFilePath = Path.Combine("C:\\", Guid.NewGuid() + ".test");
         private static readonly string MyTestMessage = $"{DateTime.UtcNow} - {Guid.NewGuid()}";
 
@@ -60,7 +61,7 @@ namespace PommaLabs.Thrower.UnitTests.ExceptionHandlers.IO
             }
             catch (FileNotFoundException ex)
             {
-                ex.Message.ShouldBe(FileNotFoundExceptionHandler.DefaultMessage);
+                ex.Message.ShouldBe(FileNotFoundExceptionHandler.DefaultNotExistsMessage);
                 ex.FileName.ShouldBe(NotExistingFilePath);
                 Assert.Pass();
             }

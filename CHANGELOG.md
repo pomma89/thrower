@@ -3,6 +3,7 @@
 ### v4.0.9 (2017-02-12) ###
 
 * The project has been fully converted to .NET Core.
+* Added GetTypeAssembly to PortableTypeInfo.
 
 ### v4.0.7 (2017-01-22) ###
 

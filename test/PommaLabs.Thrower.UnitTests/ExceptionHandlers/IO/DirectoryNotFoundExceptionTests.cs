@@ -25,6 +25,7 @@
 
 using NUnit.Framework;
 using PommaLabs.Thrower.ExceptionHandlers.IO;
+using PommaLabs.Thrower.Reflection;
 using Shouldly;
 using System;
 using System.IO;
@@ -33,8 +34,8 @@ namespace PommaLabs.Thrower.UnitTests.ExceptionHandlers.IO
 {
     internal sealed class DirectoryNotFoundExceptionTests : AbstractTests
     {
-        private static readonly string ExistingDirPath = Path.GetDirectoryName(typeof(DirectoryNotFoundExceptionTests).Assembly.Location);
-        private static readonly string NotExistingFilePath = Path.Combine(Environment.CurrentDirectory, Guid.NewGuid().ToString());
+        private static readonly string ExistingDirPath = Path.GetDirectoryName(PortableTypeInfo.GetTypeAssembly<DirectoryNotFoundExceptionTests>().Location);
+        private static readonly string NotExistingFilePath = Path.Combine("C:\\", Guid.NewGuid().ToString());
         private static readonly string MyTestMessage = $"{DateTime.UtcNow} - {Guid.NewGuid()}";
 
         [Test]
@@ -60,7 +61,7 @@ namespace PommaLabs.Thrower.UnitTests.ExceptionHandlers.IO
             }
             catch (DirectoryNotFoundException ex)
             {
-                ex.Message.ShouldContain(DirectoryNotFoundExceptionHandler.DefaultMessage);
+                ex.Message.ShouldContain(DirectoryNotFoundExceptionHandler.DefaultNotExistsMessage);
                 ex.Message.ShouldContain(NotExistingFilePath);
                 Assert.Pass();
             }

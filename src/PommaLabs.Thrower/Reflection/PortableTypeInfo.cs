@@ -49,6 +49,33 @@ namespace PommaLabs.Thrower.Reflection
         /// </summary>
         public static Type[] EmptyTypes { get; } = new Type[0];
 
+        #region GetTypeAssembly
+
+        /// <summary>
+        ///   Returns the assembly to which given type belongs.
+        /// </summary>
+        /// <param name="type">The type.</param>
+        /// <returns>The assembly to which given type belongs.</returns>
+        [MethodImpl(Raise.MethodImplOptions)]
+        public static Assembly GetTypeAssembly(Type type)
+        {
+#if (PORTABLE || NETSTD11 || NETSTD12 || NETSTD13)
+            return IntrospectionExtensions.GetTypeInfo(type).Assembly;
+#else
+            return type.Assembly;
+#endif
+        }
+
+        /// <summary>
+        ///   Returns the assembly to which given type belongs.
+        /// </summary>
+        /// <typeparam name="T">The type.</typeparam>
+        /// <returns>The assembly to which given type belongs.</returns>
+        [MethodImpl(Raise.MethodImplOptions)]
+        public static Assembly GetTypeAssembly<T>() => GetTypeAssembly(typeof(T));
+
+        #endregion GetTypeAssembly
+
         /// <summary>
         ///   Gets the custom attributes for given type.
         /// </summary>

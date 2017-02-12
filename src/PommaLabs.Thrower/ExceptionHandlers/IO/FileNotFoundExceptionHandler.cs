@@ -43,9 +43,10 @@ namespace PommaLabs.Thrower.ExceptionHandlers.IO
 #if !(PORTABLE || NETSTD11 || NETSTD12)
 
         /// <summary>
-        ///   The default message, used when none has been specified.
+        ///   The default message for <see cref="IfNotExists(string, string)"/>, used when none has
+        ///   been specified.
         /// </summary>
-        internal const string DefaultMessage = "Specified file does not exist or the caller does not have sufficient permissions to read the specified file";
+        public static string DefaultNotExistsMessage { get; } = "Specified file does not exist or the caller does not have sufficient permissions to read the specified file";
 
         /// <summary>
         ///   Throws <see cref="FileNotFoundException"/> if specified file does not exist or the
@@ -62,7 +63,7 @@ namespace PommaLabs.Thrower.ExceptionHandlers.IO
         {
             if (!File.Exists(filePath))
             {
-                throw new FileNotFoundException(message ?? DefaultMessage, filePath);
+                throw new FileNotFoundException(message ?? DefaultNotExistsMessage, filePath);
             }
         }
 

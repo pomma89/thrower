@@ -43,9 +43,10 @@ namespace PommaLabs.Thrower.ExceptionHandlers.IO
         protected override DirectoryNotFoundException NewWithMessage(string message) => new DirectoryNotFoundException(message);
 
         /// <summary>
-        ///   The default message, used when none has been specified.
+        ///   The default message for <see cref="IfNotExists(string, string)"/>, used when none has
+        ///   been specified.
         /// </summary>
-        internal const string DefaultMessage = "Specified directory does not exist";
+        public static string DefaultNotExistsMessage { get; } = "Specified directory does not exist";
 
         /// <summary>
         ///   Throws <see cref="DirectoryNotFoundException"/> if specified directory does not exist.
@@ -58,7 +59,7 @@ namespace PommaLabs.Thrower.ExceptionHandlers.IO
         {
             if (!Directory.Exists(directoryPath))
             {
-                var exMsg = $@"{message ?? DefaultMessage} - ""{directoryPath}""";
+                var exMsg = $@"{message ?? DefaultNotExistsMessage} - ""{directoryPath}""";
                 throw new DirectoryNotFoundException(exMsg);
             }
         }
