@@ -10,7 +10,7 @@
       "type": "platform",
       "version": "1.1.0"
     },
-    "PommaLabs.Thrower": "4.0.7-*"
+    "PommaLabs.Thrower": "4.0.8-*"
   },
 
   "frameworks": {
