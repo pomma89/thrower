@@ -8,7 +8,6 @@
   "name": "Thrower", // For backward compatibility, original package name was Thrower.
 
   "buildOptions": {
-    "publicSign": true,
     "keyFile": "../../pomma89.snk",
     "outputName": "PommaLabs.Thrower",
     "xmlDoc": true

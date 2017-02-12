@@ -123,6 +123,7 @@ private void Test(string cfg, string[] unitTestDllPaths)
     {
         NUnit3(unitTestDllPath.Replace("{cfg}", cfg), new NUnit3Settings 
         {
+            NoResults = true,
             OutputFile = System.IO.Path.Combine(testOutputDir, cfg.ToLower() + ".xml")
         });
     }
