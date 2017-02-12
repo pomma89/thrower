@@ -1,6 +1,6 @@
 # Changelog for PommaLabs.Thrower #
 
-### v4.0.9 (2017-02-12) ###
+### v4.0.10 (2017-02-12) ###
 
 * The project has been fully converted to .NET Core.
 * Added GetTypeAssembly to PortableTypeInfo.
