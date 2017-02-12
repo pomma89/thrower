@@ -11,10 +11,8 @@ var target = Argument("target", "Default");
 //////////////////////////////////////////////////////////////////////
 
 var solutionFile = "./Thrower.sln";
-var projectPaths = new[] { "./src/PommaLabs.Thrower" };
 var artifactsDir = "./artifacts";
-var testOutputDir = artifactsDir + "/test-results";
-var testPaths = new[] { "./test/PommaLabs.Thrower.UnitTests/bin/{cfg}/*/PommaLabs.Thrower.UnitTests.dll" };
+var testResultsDir = artifactsDir + "/test-results";
 
 //////////////////////////////////////////////////////////////////////
 // TASKS
@@ -24,16 +22,14 @@ Task("Clean")
     .Does(() =>
 {
     CleanDirectory(artifactsDir);
-    CleanDirectory(testOutputDir);
-    Clean("Debug", projectPaths);
-    Clean("Release", projectPaths);
+    CleanDirectory(testResultsDir);
 });
 
 Task("Restore")
     .IsDependentOn("Clean")
     .Does(() =>
 {
-    NuGetRestore(solutionFile);
+    DotNetCoreRestore();
 });
 
 Task("Build-Debug")
@@ -47,7 +43,7 @@ Task("Test-Debug")
     .IsDependentOn("Build-Debug")
     .Does(() =>
 {
-    Test("Debug", testPaths);
+    Test("Debug");
 });
 
 Task("Build-Release")
@@ -61,14 +57,14 @@ Task("Test-Release")
     .IsDependentOn("Build-Release")
     .Does(() =>
 {
-    Test("Release", testPaths);
+    Test("Release");
 });
 
 Task("Pack-Release")
     .IsDependentOn("Test-Release")
     .Does(() => 
 {
-    Pack("Release", projectPaths);
+    Pack("Release");
 });
 
 //////////////////////////////////////////////////////////////////////
@@ -88,52 +84,32 @@ RunTarget(target);
 // HELPERS
 //////////////////////////////////////////////////////////////////////
 
-private void Clean(string cfg, string[] rootProjectPaths)
-{
-    foreach (var rootProjectPath in rootProjectPaths)
-    {
-        CleanDirectory(rootProjectPath + "/bin/" + cfg);
-    }
-}
-
 private void Build(string cfg)
 {
-    if (IsRunningOnWindows())
+    foreach(var project in GetFiles("./**/project.json"))
     {
-        // Use MSBuild
-        MSBuild(solutionFile, settings =>
+        DotNetCoreBuild(project.GetDirectory().FullPath, new DotNetCoreBuildSettings
         {
-            settings.SetConfiguration(cfg);
-            settings.SetMaxCpuCount(0); // Max parallelism
-        });
-    }
-    else
-    {
-        // Use XBuild
-        XBuild(solutionFile, settings =>
-        {
-            settings.SetConfiguration(cfg);
+            Configuration = cfg,
+            NoIncremental = true
         });
     }
 }
 
-private void Test(string cfg, string[] unitTestDllPaths)
+private void Test(string cfg)
 {
-    foreach (var unitTestDllPath in unitTestDllPaths)
+    NUnit3("./test/**/bin/{cfg}/*/*.UnitTests.dll".Replace("{cfg}", cfg), new NUnit3Settings 
     {
-        NUnit3(unitTestDllPath.Replace("{cfg}", cfg), new NUnit3Settings 
-        {
-            NoResults = true,
-            OutputFile = System.IO.Path.Combine(testOutputDir, cfg.ToLower() + ".xml")
-        });
-    }
+        NoResults = true,
+        OutputFile = testResultsDir + "/" + cfg.ToLower() + ".xml"
+    });
 }
 
-private void Pack(string cfg, string[] rootProjectPaths)
+private void Pack(string cfg)
 {
-    foreach (var rootProjectPath in rootProjectPaths)
+    foreach (var project in GetFiles("./src/**/project.json"))
     {
-        DotNetCorePack(rootProjectPath + "/project.json", new DotNetCorePackSettings
+        DotNetCorePack(project.FullPath, new DotNetCorePackSettings
         {
             Configuration = cfg,
             OutputDirectory = artifactsDir,
