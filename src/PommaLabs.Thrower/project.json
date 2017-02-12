@@ -1,0 +1,102 @@
+﻿{
+  "version": "4.0.10-*",
+  "title": "Thrower - Compact preconditions helpers",
+  "description": "Fully managed library providing convenience methods to perform argument checks. Thrower allows to write preconditions in a pretty lean way, which reduces the clutter at the beginning of each method by removing the need to use the cumbersome 'if true then throw ex' required to validate parameters. For example, a validation against null becomes 'Raise.ArgumentNullException.IfIsNull(myParam)', while a generic validation may be written as 'Raise.ArgumentException.If(condition)'. Moreover, this library embeds a portable copy of Marc Gravell's FastMember and Jeffrey Stedfast's EmailValidation libraries.",
+  "copyright": "Copyright (c) 2013-2018 Alessio Parma <alessio.parma@gmail.com>",
+  "authors": [ "Alessio Parma <alessio.parma@gmail.com>" ],
+
+  "name": "Thrower", // For backward compatibility, original package name was Thrower.
+
+  "buildOptions": {
+    "keyFile": "../../pomma89.snk",
+    "outputName": "PommaLabs.Thrower",
+    "xmlDoc": true
+  },
+
+  "packOptions": {
+    "summary": "Fully managed library providing convenience methods to perform argument checks.",
+    "tags": [ "preconditions", "check", "integrity", "parameters", "fluent", "arguments", "validation", "portable", "netstandard" ],
+    "owners": [ "doktorp" ],
+    "requireLicenseAcceptance": false,
+    "releaseNotes": "https://github.com/pomma89/Thrower",
+    "projectUrl": "https://github.com/pomma89/Thrower",
+    "licenseUrl": "http://opensource.org/licenses/MIT",
+    "iconUrl": "http://pomma89.altervista.org/thrower/logo-128.png",
+    "repository": {
+      "type": "git",
+      "url": "https://github.com/pomma89/Thrower"
+    }
+  },
+
+  "dependencies": {
+    "NETStandard.Library": "1.6.1"
+  },
+
+  "frameworks": {
+    "netstandard1.1": {
+      "imports": "dnxcore50",
+      "buildOptions": { "define": [ "NETSTD11" ] },
+      "dependencies": {
+        "Microsoft.CSharp": "4.3.0",
+        "System.ComponentModel.Annotations": "4.3.0"
+      }
+    },
+    "netstandard1.2": {
+      "imports": "dnxcore50",
+      "buildOptions": { "define": [ "NETSTD12" ] },
+      "dependencies": {
+        "Microsoft.CSharp": "4.3.0",
+        "System.ComponentModel.Annotations": "4.3.0"
+      }
+    },
+    "netstandard1.3": {
+      "imports": "dnxcore50",
+      "buildOptions": { "define": [ "NETSTD13" ] },
+      "dependencies": {
+        "Microsoft.CSharp": "4.3.0",
+        "System.Collections.NonGeneric": "4.3.0",
+        "System.ComponentModel.Annotations": "4.3.0",
+        "System.Data.Common": "4.3.0",
+        "System.Reflection.Emit": "4.3.0",
+        "System.Reflection.Emit.Lightweight": "4.3.0",
+        "System.Reflection.TypeExtensions": "4.3.0",
+        "System.Runtime.Serialization.Formatters": "4.3.0"
+      }
+    },
+    "net35": {
+      "buildOptions": { "define": [ "NET35" ] },
+      "frameworkAssemblies": {
+        "System.Data": "2.0.0.0"
+      }
+    },
+    "net40": {
+      "buildOptions": { "define": [ "NET40" ] },
+      "frameworkAssemblies": {
+        "System.ComponentModel.DataAnnotations": "4.0.0.0",
+        "System.Data": "4.0.0.0"
+      }
+    },
+    "net45": {
+      "buildOptions": { "define": [ "NET45" ] },
+      "frameworkAssemblies": {
+        "System.ComponentModel.DataAnnotations": "4.0.0.0",
+        "System.Data": "4.0.0.0"
+      }
+    },
+    "net46": {
+      "buildOptions": { "define": [ "NET46" ] },
+      "frameworkAssemblies": {
+        "System.ComponentModel.DataAnnotations": "4.0.0.0",
+        "System.Data": "4.0.0.0"
+      }
+    },
+    ".NETPortable,Version=v4.5,Profile=Profile259": {
+      "buildOptions": { "define": [ "PORTABLE" ] },
+      "frameworkAssemblies": {
+      },
+      "dependencies": {
+        "Portable-Strong.DataAnnotations": "1.0.1"
+      }
+    }
+  }
+}
