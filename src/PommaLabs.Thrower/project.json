@@ -41,14 +41,6 @@
         "System.ComponentModel.Annotations": "4.3.0"
       }
     },
-    "netstandard1.2": {
-      "imports": "dnxcore50",
-      "buildOptions": { "define": [ "NETSTD12" ] },
-      "dependencies": {
-        "Microsoft.CSharp": "4.3.0",
-        "System.ComponentModel.Annotations": "4.3.0"
-      }
-    },
     "netstandard1.3": {
       "imports": "dnxcore50",
       "buildOptions": { "define": [ "NETSTD13" ] },
@@ -83,17 +75,8 @@
         "System.Data": "4.0.0.0"
       }
     },
-    "net46": {
-      "buildOptions": { "define": [ "NET46" ] },
-      "frameworkAssemblies": {
-        "System.ComponentModel.DataAnnotations": "4.0.0.0",
-        "System.Data": "4.0.0.0"
-      }
-    },
     ".NETPortable,Version=v4.5,Profile=Profile259": {
       "buildOptions": { "define": [ "PORTABLE" ] },
-      "frameworkAssemblies": {
-      },
       "dependencies": {
         "Portable-Strong.DataAnnotations": "1.0.1"
       }

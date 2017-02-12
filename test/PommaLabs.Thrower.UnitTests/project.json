@@ -33,9 +33,6 @@
       "frameworkAssemblies": {
         "System.Xml": "4.0.0.0"
       }
-    },
-    "net46": {
-      "buildOptions": { "define": [ "NET46" ] }
     }
   }
 }
