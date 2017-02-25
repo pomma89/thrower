@@ -1,5 +1,9 @@
 # Changelog for PommaLabs.Thrower #
 
+### v4.0.12 (2017-02-25) ###
+
+* Added some useful classes.
+
 ### v4.0.11 (2017-02-12) ###
 
 * Added DLL for .NET Standard 1.0.
