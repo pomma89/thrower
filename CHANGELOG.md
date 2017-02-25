@@ -1,6 +1,6 @@
 # Changelog for PommaLabs.Thrower #
 
-### v4.0.12 (2017-02-25) ###
+### v4.0.13 (2017-02-25) ###
 
 * Added some useful classes.
 
