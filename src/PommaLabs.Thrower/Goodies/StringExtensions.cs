@@ -70,7 +70,7 @@ namespace PommaLabs.Thrower.Goodies
         /// </returns>
         public static IList<string> SplitAndTrim(this string str, params char[] separator)
         {
-            if (string.IsNullOrWhiteSpace(str))
+            if (string.IsNullOrEmpty(str))
             {
                 return NoSubstrings;
             }
@@ -107,7 +107,7 @@ namespace PommaLabs.Thrower.Goodies
         /// </returns>
         public static IList<string> SplitAndTrim(this string str, params string[] separator)
         {
-            if (string.IsNullOrWhiteSpace(str))
+            if (string.IsNullOrEmpty(str))
             {
                 return NoSubstrings;
             }

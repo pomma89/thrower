@@ -54,7 +54,7 @@ namespace PommaLabs.Thrower.Goodies
         ///   Returns a <see cref="string"/> that represents this instance.
         /// </summary>
         /// <returns>A <see cref="string"/> that represents this instance.</returns>
-        public override string ToString() => string.Join(", ", Enumerable.Select(GetFormattingMembers(), ComputeToString));
+        public override string ToString() => string.Join(", ", Enumerable.Select(GetFormattingMembers(), ComputeToString).ToArray());
 
         #endregion Object Methods
 
