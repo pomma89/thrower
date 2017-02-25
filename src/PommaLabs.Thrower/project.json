@@ -46,6 +46,7 @@
       "buildOptions": { "define": [ "NETSTD13" ] },
       "dependencies": {
         "Microsoft.CSharp": "4.3.0",
+        "System.AppContext": "4.3.0",
         "System.Collections.NonGeneric": "4.3.0",
         "System.ComponentModel.Annotations": "4.3.0",
         "System.Data.Common": "4.3.0",
