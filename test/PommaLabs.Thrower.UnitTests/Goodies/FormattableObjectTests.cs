@@ -32,30 +32,36 @@ namespace PommaLabs.Thrower.UnitTests.Goodies
     internal sealed class FormattableObjectTests : AbstractTests
     {
         [Test]
-        public void IntegerPropertyShouldProduceToStringWithoutSquareBrackets()
+        public void IntegerPropertyShouldProduceToStringWithoutBraces()
         {
             (new ClassWithInteger() { X = 7 }).ToString().ShouldBe("X: 7");
         }
 
         [Test]
-        public void StringPropertyShouldProduceToStringWithoutSquareBrackets()
+        public void StringPropertyShouldProduceToStringWithoutBraces()
         {
             (new ClassWithString() { X = "Pu <3 Pi" }).ToString().ShouldBe("X: \"Pu <3 Pi\"");
         }
 
         [Test]
-        public void NullStringPropertyShouldProduceToStringWithoutSquareBrackets()
+        public void NullStringPropertyShouldProduceToStringWithoutBraces()
         {
             (new ClassWithString() { X = null }).ToString().ShouldBe("X: null");
+        }
+
+        [Test]
+        public void ComplexPropertyShouldProduceToStringWithBraces()
+        {
+            (new ClassWithComplex() { X = new ClassWithInteger() { X = 7 } }).ToString().ShouldBe("X: {X: 7}");
         }
 
         private sealed class ClassWithInteger : FormattableObject
         {
             public int X { get; set; }
 
-            protected override IEnumerable<KeyValuePair<string, string>> GetFormattingMembers()
+            protected override IEnumerable<KeyValuePair<string, object>> GetFormattingMembers()
             {
-                yield return new KeyValuePair<string, string>(nameof(X), X.ToString());
+                yield return new KeyValuePair<string, object>(nameof(X), X);
             }
         }
 
@@ -63,9 +69,19 @@ namespace PommaLabs.Thrower.UnitTests.Goodies
         {
             public string X { get; set; }
 
-            protected override IEnumerable<KeyValuePair<string, string>> GetFormattingMembers()
+            protected override IEnumerable<KeyValuePair<string, object>> GetFormattingMembers()
             {
-                yield return new KeyValuePair<string, string>(nameof(X), X);
+                yield return new KeyValuePair<string, object>(nameof(X), X);
+            }
+        }
+
+        private sealed class ClassWithComplex : FormattableObject
+        {
+            public ClassWithInteger X { get; set; }
+
+            protected override IEnumerable<KeyValuePair<string, object>> GetFormattingMembers()
+            {
+                yield return new KeyValuePair<string, object>(nameof(X), X);
             }
         }
     }

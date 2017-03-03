@@ -21,6 +21,7 @@
 // DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT
 // OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
+using PommaLabs.Thrower.Reflection;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -44,7 +45,7 @@ namespace PommaLabs.Thrower.Goodies
         ///   All property (or field) values, along with their names, so that they can be used to
         ///   produce a meaningful <see cref="object.ToString"/>.
         /// </returns>
-        protected abstract IEnumerable<KeyValuePair<string, string>> GetFormattingMembers();
+        protected abstract IEnumerable<KeyValuePair<string, object>> GetFormattingMembers();
 
         #endregion Abstract Methods
 
@@ -65,26 +66,29 @@ namespace PommaLabs.Thrower.Goodies
         /// </summary>
         /// <param name="pair">Key-value pair.</param>
         /// <returns>Formatted key-value pair.</returns>
-        public static string ToString(KeyValuePair<string, string> pair)
+        public static string ToString(KeyValuePair<string, object> pair)
         {
             var k = pair.Key;
             var v = pair.Value;
-
-            // "{0}: [{1}]"
 
             if (v == null)
             {
                 return $"{k}: null";
             }
-            if (v.Length > 0)
+
+            var s = v as string;
+            if (s != null)
             {
-                var c = v[0];
-                if (c == '"' || char.IsDigit(c))
-                {
-                    return $"{k}: {v}";
-                }
+                return $"{k}: \"{s}\"";
             }
-            return $"{k}: [{v}]";
+
+            var t = v.GetType();
+            if (PortableTypeInfo.IsPrimitive(t))
+            {
+                return $"{k}: {v}";
+            }
+
+            return $"{k}: {{{v}}}";
         }
 
         #endregion Static Methods
