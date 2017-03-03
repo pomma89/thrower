@@ -1,5 +1,9 @@
 # Changelog for PommaLabs.Thrower #
 
+### v4.0.14 (2017-03-03) ###
+
+* Improved FormattableObject formatting.
+
 ### v4.0.13 (2017-02-25) ###
 
 * Added some useful classes.
