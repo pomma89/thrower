@@ -54,14 +54,39 @@ namespace PommaLabs.Thrower.Goodies
         ///   Returns a <see cref="string"/> that represents this instance.
         /// </summary>
         /// <returns>A <see cref="string"/> that represents this instance.</returns>
-        public override string ToString() => string.Join(", ", Enumerable.Select(GetFormattingMembers(), ComputeToString).ToArray());
+        public override string ToString() => string.Join(", ", Enumerable.Select(GetFormattingMembers(), ToString).ToArray());
 
         #endregion Object Methods
 
-        #region Private Methods
+        #region Static Methods
 
-        internal static string ComputeToString(KeyValuePair<string, string> pair) => string.Format("{0}: [{1}]", pair.Key, pair.Value);
+        /// <summary>
+        ///   Formats given key-value pair in order to use it for <see cref="object.ToString"/>.
+        /// </summary>
+        /// <param name="pair">Key-value pair.</param>
+        /// <returns>Formatted key-value pair.</returns>
+        public static string ToString(KeyValuePair<string, string> pair)
+        {
+            var k = pair.Key;
+            var v = pair.Value;
 
-        #endregion Private Methods
+            // "{0}: [{1}]"
+
+            if (v == null)
+            {
+                return $"{k}: null";
+            }
+            if (v.Length > 0)
+            {
+                var c = v[0];
+                if (c == '"' || char.IsDigit(c))
+                {
+                    return $"{k}: {v}";
+                }
+            }
+            return $"{k}: [{v}]";
+        }
+
+        #endregion Static Methods
     }
 }

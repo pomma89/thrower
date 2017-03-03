@@ -1,4 +1,4 @@
-﻿// File name: EnvironmentExtensionsTests.cs
+﻿// File name: FormattableObjectTests.cs
 //
 // Author(s): Alessio Parma <alessio.parma@gmail.com>
 //
@@ -23,50 +23,50 @@
 
 using NUnit.Framework;
 using PommaLabs.Thrower.Goodies;
+using Shouldly;
 using System;
-using System.IO;
+using System.Collections.Generic;
 
 namespace PommaLabs.Thrower.UnitTests.Goodies
 {
-    internal sealed class EnvironmentExtensionsTests : AbstractTests
+    internal sealed class FormattableObjectTests : AbstractTests
     {
         [Test]
-        public void MapPath_NullString()
+        public void IntegerPropertyShouldProduceToStringWithoutSquareBrackets()
         {
-            Assert.Throws<ArgumentNullException>(() => EnvironmentExtensions.MapPath(null));
+            (new ClassWithInteger() { X = 7 }).ToString().ShouldBe("X: 7");
         }
 
         [Test]
-        public void MapPath_EmptyOrBlankIsBasePath()
+        public void StringPropertyShouldProduceToStringWithoutSquareBrackets()
         {
-            var emptyMap = EnvironmentExtensions.MapPath(String.Empty);
-            var blankMap = EnvironmentExtensions.MapPath("   ");
-            var baseMap = EnvironmentExtensions.MapPath("~");
-            Assert.AreEqual(baseMap, emptyMap);
-            Assert.AreEqual(baseMap, blankMap);
+            (new ClassWithString() { X = "Pu <3 Pi" }).ToString().ShouldBe("X: \"Pu <3 Pi\"");
         }
 
         [Test]
-        public void MapPath_BasePathIsAppDomainDirectory()
+        public void NullStringPropertyShouldProduceToStringWithoutSquareBrackets()
         {
-            var basePath = EnvironmentExtensions.MapPath("~");
-            Assert.AreEqual(AppDomain.CurrentDomain.BaseDirectory, basePath);
+            (new ClassWithString() { X = null }).ToString().ShouldBe("X: null");
         }
 
-        [Test]
-        public void MapPath_RootedPathIsEqualToRelative()
+        private sealed class ClassWithInteger : FormattableObject
         {
-            var rootedPath = EnvironmentExtensions.MapPath("~/my/test");
-            var relativePath = EnvironmentExtensions.MapPath("my/test");
-            Assert.AreEqual(Path.GetFullPath(rootedPath), Path.GetFullPath(relativePath));
+            public int X { get; set; }
+
+            protected override IEnumerable<KeyValuePair<string, string>> GetFormattingMembers()
+            {
+                yield return new KeyValuePair<string, string>(nameof(X), X.ToString());
+            }
         }
 
-        [Test]
-        public void MapPath_MappedPathIsAlwaysRooted()
+        private sealed class ClassWithString : FormattableObject
         {
-            Assert.IsTrue(Path.IsPathRooted(EnvironmentExtensions.MapPath("~/my/test")));
-            Assert.IsTrue(Path.IsPathRooted(EnvironmentExtensions.MapPath("my/test")));
-            Assert.IsTrue(Path.IsPathRooted(EnvironmentExtensions.MapPath("C:/my/test")));
+            public string X { get; set; }
+
+            protected override IEnumerable<KeyValuePair<string, string>> GetFormattingMembers()
+            {
+                yield return new KeyValuePair<string, string>(nameof(X), X);
+            }
         }
     }
 }
