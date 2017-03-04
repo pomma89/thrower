@@ -3,6 +3,7 @@
 ### v4.0.14 (2017-03-03) ###
 
 * Improved FormattableObject formatting.
+* Added ToEnum extension methods for strings.
 
 ### v4.0.13 (2017-02-25) ###
 

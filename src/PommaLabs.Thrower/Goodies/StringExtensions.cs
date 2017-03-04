@@ -21,6 +21,7 @@
 // DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT
 // OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
+using PommaLabs.Thrower.Reflection;
 using System;
 using System.Collections.Generic;
 
@@ -31,6 +32,8 @@ namespace PommaLabs.Thrower.Goodies
     /// </summary>
     public static class StringExtensions
     {
+        #region String manipulation
+
         /// <summary>
         ///   Returned when there are no substrings.
         /// </summary>
@@ -126,5 +129,98 @@ namespace PommaLabs.Thrower.Goodies
 
             return result;
         }
+
+        #endregion String manipulation
+
+        #region Type conversion
+
+        /// <summary>
+        ///   Converts given string into the specified enumeration value, applying the specified
+        ///   filter on casing.
+        /// </summary>
+        /// <typeparam name="TEnum">The type of the enumeration.</typeparam>
+        /// <param name="enumString">The string value of one enumeration value.</param>
+        /// <param name="ignoreCase">Whether to consider casing or not while parsing the string.</param>
+        /// <returns>An enumeration value parsed from given string.</returns>
+        /// <exception cref="InvalidOperationException">
+        ///   Given type parameter <typeparamref name="TEnum"/> is not an enum.
+        /// </exception>
+        /// <exception cref="ArgumentException">
+        ///   Given value cannot be mapped to any enum value.
+        /// </exception>
+        public static TEnum ToEnum<TEnum>(this string enumString, bool ignoreCase)
+            where TEnum : struct
+        {
+            var enumType = typeof(TEnum);
+            Raise.InvalidOperationException.IfNot(PortableTypeInfo.IsEnum(enumType), "Given type is not an enumeration");
+
+            TEnum enumValue;
+            if (Enum.TryParse(enumString, ignoreCase, out enumValue))
+            {
+                return enumValue;
+            }
+
+            throw new ArgumentException($"Given value is not available for {enumType.Name}", nameof(enumString));
+        }
+
+        /// <summary>
+        ///   Converts given string into the specified enumeration value.
+        /// </summary>
+        /// <typeparam name="TEnum">The type of the enumeration.</typeparam>
+        /// <param name="enumString">The string value of one enumeration value.</param>
+        /// <returns>An enumeration value parsed from given string.</returns>
+        /// <exception cref="InvalidOperationException">
+        ///   Given type parameter <typeparamref name="TEnum"/> is not an enum.
+        /// </exception>
+        /// <exception cref="ArgumentException">
+        ///   Given value cannot be mapped to any enum value.
+        /// </exception>
+        public static TEnum ToEnum<TEnum>(this string enumString) where TEnum : struct => ToEnum<TEnum>(enumString, true);
+
+        /// <summary>
+        ///   Converts given string into the specified enumeration value, applying the specified
+        ///   filter on casing. If given string cannot be mapped to any enum value, then default
+        ///   value for <typeparamref name="TEnum"/> is returned.
+        /// </summary>
+        /// <typeparam name="TEnum">The type of the enumeration.</typeparam>
+        /// <param name="enumString">The string value of one enumeration value.</param>
+        /// <param name="ignoreCase">Whether to consider casing or not while parsing the string.</param>
+        /// <returns>
+        ///   An enumeration value parsed from given string or default enum value if that is not possible.
+        /// </returns>
+        /// <exception cref="InvalidOperationException">
+        ///   Given type parameter <typeparamref name="TEnum"/> is not an enum.
+        /// </exception>
+        public static TEnum ToEnumOrDefault<TEnum>(this string enumString, bool ignoreCase)
+            where TEnum : struct
+        {
+            var enumType = typeof(TEnum);
+            Raise.InvalidOperationException.IfNot(PortableTypeInfo.IsEnum(enumType), "Given type is not an enumeration");
+
+            TEnum enumValue;
+            if (Enum.TryParse(enumString, ignoreCase, out enumValue))
+            {
+                return enumValue;
+            }
+
+            // Not found, return default value.
+            return default(TEnum);
+        }
+
+        /// <summary>
+        ///   Converts given string into the specified enumeration value. If given string cannot be
+        ///   mapped to any enum value, then default value for <typeparamref name="TEnum"/> is returned.
+        /// </summary>
+        /// <typeparam name="TEnum">The type of the enumeration.</typeparam>
+        /// <param name="enumString">The string value of one enumeration value.</param>
+        /// <returns>
+        ///   An enumeration value parsed from given string or default enum value if that is not possible.
+        /// </returns>
+        /// <exception cref="InvalidOperationException">
+        ///   Given type parameter <typeparamref name="TEnum"/> is not an enum.
+        /// </exception>
+        public static TEnum ToEnumOrDefault<TEnum>(this string enumString) where TEnum : struct => ToEnumOrDefault<TEnum>(enumString, true);
+
+        #endregion Type conversion
     }
 }
