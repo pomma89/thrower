@@ -154,11 +154,19 @@ namespace PommaLabs.Thrower.Goodies
             var enumType = typeof(TEnum);
             Raise.InvalidOperationException.IfNot(PortableTypeInfo.IsEnum(enumType), "Given type is not an enumeration");
 
+#if NET35
+            var enumValue = Enum.Parse(enumType, enumString, ignoreCase);
+            if (Enum.IsDefined(enumType, enumValue))
+            {
+                return (TEnum) enumValue;
+            }
+#else
             TEnum enumValue;
             if (Enum.TryParse(enumString, ignoreCase, out enumValue))
             {
                 return enumValue;
             }
+#endif
 
             throw new ArgumentException($"Given value is not available for {enumType.Name}", nameof(enumString));
         }
@@ -197,11 +205,19 @@ namespace PommaLabs.Thrower.Goodies
             var enumType = typeof(TEnum);
             Raise.InvalidOperationException.IfNot(PortableTypeInfo.IsEnum(enumType), "Given type is not an enumeration");
 
+#if NET35
+            var enumValue = Enum.Parse(enumType, enumString, ignoreCase);
+            if (Enum.IsDefined(enumType, enumValue))
+            {
+                return (TEnum) enumValue;
+            }
+#else
             TEnum enumValue;
             if (Enum.TryParse(enumString, ignoreCase, out enumValue))
             {
                 return enumValue;
             }
+#endif
 
             // Not found, return default value.
             return default(TEnum);
