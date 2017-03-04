@@ -1,6 +1,6 @@
 # Changelog for PommaLabs.Thrower #
 
-### v4.0.14 (2017-03-03) ###
+### v4.0.15 (2017-03-04) ###
 
 * Improved FormattableObject formatting.
 * Added ToEnum extension methods for strings.
