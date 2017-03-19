@@ -1,5 +1,11 @@
 # Changelog for PommaLabs.Thrower #
 
+### v4.1.0 (2017-03-19) ###
+
+* Updated project to VS2017.
+* Removed Portable DLL, now we target .NET Standard.
+* Added logging capabilities via LibLog.
+
 ### v4.0.15 (2017-03-04) ###
 
 * Improved FormattableObject formatting.
