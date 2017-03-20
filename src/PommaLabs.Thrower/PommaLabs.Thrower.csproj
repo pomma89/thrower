@@ -1,5 +1,4 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
-
   <PropertyGroup>
     <AssemblyName>PommaLabs.Thrower</AssemblyName>
     <AssemblyTitle>Thrower - Compact preconditions helpers</AssemblyTitle>
