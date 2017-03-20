@@ -1,30 +1,34 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <Description>Fully managed library providing convenience methods to perform argument checks. Thrower allows to write preconditions in a pretty lean way, which reduces the clutter at the beginning of each method by removing the need to use the cumbersome 'if true then throw ex' required to validate parameters. For example, a validation against null becomes 'Raise.ArgumentNullException.IfIsNull(myParam)', while a generic validation may be written as 'Raise.ArgumentException.If(condition)'. Moreover, this library embeds a portable copy of Marc Gravell's FastMember and Jeffrey Stedfast's EmailValidation libraries.</Description>
-    <Copyright>Copyright (c) 2013-2018 Alessio Parma &lt;alessio.parma@gmail.com&gt;</Copyright>
+    <AssemblyName>PommaLabs.Thrower</AssemblyName>
     <AssemblyTitle>Thrower - Compact preconditions helpers</AssemblyTitle>
     <VersionPrefix>4.1.0</VersionPrefix>
-    <Authors>Alessio Parma &lt;alessio.parma@gmail.com&gt;</Authors>
     <TargetFrameworks>netstandard1.0;netstandard1.1;netstandard1.3;net35;net40;net45</TargetFrameworks>
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
-    <AssemblyName>PommaLabs.Thrower</AssemblyName>
     <AssemblyOriginatorKeyFile>../../pomma89.snk</AssemblyOriginatorKeyFile>
     <SignAssembly>true</SignAssembly>
     <PublicSign Condition=" '$(OS)' != 'Windows_NT' ">true</PublicSign>
-    <PackageId>Thrower</PackageId>
-    <PackageTags>preconditions;check;integrity;parameters;fluent;arguments;validation;portable;netstandard</PackageTags>
-    <PackageReleaseNotes>https://github.com/pomma89/Thrower</PackageReleaseNotes>
-    <PackageIconUrl>http://pomma89.altervista.org/thrower/logo-128.png</PackageIconUrl>
-    <PackageProjectUrl>https://github.com/pomma89/Thrower</PackageProjectUrl>
-    <PackageLicenseUrl>http://opensource.org/licenses/MIT</PackageLicenseUrl>
-    <RepositoryType>git</RepositoryType>
-    <RepositoryUrl>https://github.com/pomma89/Thrower</RepositoryUrl>
     <NetStandardImplicitPackageVersion>1.6.1</NetStandardImplicitPackageVersion>
     <GenerateAssemblyVersionAttribute>false</GenerateAssemblyVersionAttribute>
     <GenerateAssemblyConfigurationAttribute>false</GenerateAssemblyConfigurationAttribute>
     <GenerateAssemblyCompanyAttribute>false</GenerateAssemblyCompanyAttribute>
     <GenerateAssemblyProductAttribute>false</GenerateAssemblyProductAttribute>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <PackageId>Thrower</PackageId>
+    <Summary>Fully managed library providing convenience methods to perform argument checks.</Summary>
+    <Description>$(Summary) Thrower allows to write preconditions in a pretty lean way, which reduces the clutter at the beginning of each method by removing the need to use the cumbersome 'if true then throw ex' required to validate parameters. For example, a validation against null becomes 'Raise.ArgumentNullException.IfIsNull(myParam)', while a generic validation may be written as 'Raise.ArgumentException.If(condition)'. Moreover, this library embeds a portable copy of Marc Gravell's FastMember and Jeffrey Stedfast's EmailValidation libraries.</Description>
+    <Authors>Alessio Parma &lt;alessio.parma@gmail.com&gt;</Authors>
+    <Copyright>Copyright (c) 2013-2018 Alessio Parma &lt;alessio.parma@gmail.com&gt;</Copyright>
+    <PackageReleaseNotes>https://github.com/pomma89/Thrower</PackageReleaseNotes>
+    <PackageIconUrl>http://pomma89.altervista.org/thrower/logo-128.png</PackageIconUrl>
+    <PackageProjectUrl>https://github.com/pomma89/Thrower</PackageProjectUrl>
+    <PackageLicenseUrl>http://opensource.org/licenses/MIT</PackageLicenseUrl>
+    <PackageTags>preconditions;check;integrity;parameters;fluent;arguments;validation;portable;netstandard</PackageTags>
+    <RepositoryType>git</RepositoryType>
+    <RepositoryUrl>https://github.com/pomma89/Thrower</RepositoryUrl>
   </PropertyGroup>
 
   <PropertyGroup Condition=" '$(TargetFramework)' == 'netstandard1.0' ">
