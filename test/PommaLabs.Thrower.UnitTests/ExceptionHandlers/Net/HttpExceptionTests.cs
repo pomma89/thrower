@@ -167,10 +167,7 @@ namespace PommaLabs.Thrower.UnitTests.ExceptionHandlers.Net
             });
 
             var json = JsonConvert.SerializeObject(ex, Formatting.Indented);
-#if !PORTABLE
             Console.WriteLine(json);
-#endif
-
             var jobj = JsonConvert.DeserializeObject<JObject>(json)["Data"];
 
             Assert.That((jobj[nameof(HttpException.HttpStatusCode)] as JValue).Value, Is.EqualTo(statusCode.ToString()));

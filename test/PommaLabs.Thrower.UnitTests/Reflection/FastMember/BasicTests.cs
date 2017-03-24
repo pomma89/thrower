@@ -10,7 +10,7 @@
 // or implied. See the License for the specific language governing permissions and limitations under
 // the License.
 
-#if !(PORTABLE || NETSTD10)
+#if !(NETSTD10 || NETSTD11)
 
 using NUnit.Framework;
 using PommaLabs.Thrower.Reflection.FastMember;

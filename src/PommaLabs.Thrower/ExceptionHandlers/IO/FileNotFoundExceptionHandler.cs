@@ -40,7 +40,7 @@ namespace PommaLabs.Thrower.ExceptionHandlers.IO
         /// <returns>An exception with given message.</returns>
         protected override FileNotFoundException NewWithMessage(string message) => new FileNotFoundException(message);
 
-#if !(PORTABLE || NETSTD10)
+#if !(NETSTD10 || NETSTD11)
 
         /// <summary>
         ///   The default message for <see cref="IfNotExists(string, string)"/>, used when none has

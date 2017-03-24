@@ -42,7 +42,7 @@ namespace PommaLabs.Thrower.Goodies
         {
             get
             {
-#if !(PORTABLE || NETSTD10 || NETSTD13)
+#if !(NETSTD10 || NETSTD11 || NETSTD13)
                 return "web.config".Equals(Path.GetFileName(AppDomain.CurrentDomain.SetupInformation.ConfigurationFile), StringComparison.OrdinalIgnoreCase);
 #else
                 return false; // .NET Core does not use Web.config, right?
@@ -80,7 +80,7 @@ namespace PommaLabs.Thrower.Goodies
 
         private static string GetBaseDirectory()
         {
-#if (PORTABLE || NETSTD10)
+#if (NETSTD10 || NETSTD11)
             return string.Empty;
 #elif NETSTD13
             return AppContext.BaseDirectory;
