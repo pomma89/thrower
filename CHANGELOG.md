@@ -1,6 +1,6 @@
 # Changelog for PommaLabs.Thrower #
 
-### v4.1.1 (2017-03-25) ###
+### v4.1.2 (2017-03-25) ###
 
 * Improved Cake build system.
 
