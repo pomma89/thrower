@@ -1,23 +1,23 @@
 ﻿// File name: BankExample.cs
-// 
+//
 // Author(s): Alessio Parma <alessio.parma@gmail.com>
-// 
+//
 // Copyright (c) 2013-2018 Alessio Parma <alessio.parma@gmail.com>
-// 
+//
 // Permission is hereby granted, free of charge, to any person obtaining a copy of this software and
 // associated documentation files (the "Software"), to deal in the Software without restriction,
 // including without limitation the rights to use, copy, modify, merge, publish, distribute,
 // sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is
 // furnished to do so, subject to the following conditions:
-// 
+//
 // The above copyright notice and this permission notice shall be included in all copies or
 // substantial portions of the Software.
-// 
+//
 // THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT
 // NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
 // NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM,
-// DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-// OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+// DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT
+// OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 using PommaLabs.Thrower.Validation;
 using System;
@@ -79,8 +79,12 @@ namespace PommaLabs.Thrower.Examples
             /// <summary>
             ///   Sends an email address from and to given addresses using the specified body.
             /// </summary>
-            /// <param name="fromAddress">The address which sent the email. International characters are _not_ allowed.</param>
-            /// <param name="toAddress">The address which will receive the email. International characters are allowed.</param>
+            /// <param name="fromAddress">
+            ///   The address which sent the email. International characters are _not_ allowed.
+            /// </param>
+            /// <param name="toAddress">
+            ///   The address which will receive the email. International characters are allowed.
+            /// </param>
             /// <param name="body">The message body.</param>
             /// <exception cref="ArgumentException">
             ///   Given email addresses are not valid. Given body is null, empty or blank.
@@ -186,7 +190,7 @@ namespace PommaLabs.Thrower.Examples
 
             Console.Read();
         }
-    }    
+    }
 }
 
 #pragma warning restore CC0091 // Use static method
