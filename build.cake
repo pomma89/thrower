@@ -107,7 +107,7 @@ private void Test(string cfg)
     //    NoResults = true
     //});
 
-	const string flags = "--noresult";
+	const string flags = "--noheader --noresult";
 	const string errMsg = " - Unit test failure - ";
 
 	Parallel.ForEach(GetFiles("./test/**/bin/{cfg}/*/*.UnitTests.exe".Replace("{cfg}", cfg)), netExe => 
