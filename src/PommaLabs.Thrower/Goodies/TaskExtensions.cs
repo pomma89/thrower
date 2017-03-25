@@ -37,7 +37,14 @@ namespace PommaLabs.Thrower.Goodies
     /// </summary>
     public static class TaskExtensions
     {
+        /// <summary>
+        ///   The maximum number of concurrent fire and forget tasks. Default value is equal to <see cref="Environment.ProcessorCount"/>.
+        /// </summary>
+        public static int FireAndForgetLimit { get; set; } = Environment.ProcessorCount;
+
 #if !NET35
+
+        private const TaskContinuationOptions FireAndForgetFlags = TaskContinuationOptions.ExecuteSynchronously | TaskContinuationOptions.OnlyOnFaulted;
 
         private static readonly Action<Task> DefaultErrorContination = t =>
         {
@@ -45,78 +52,12 @@ namespace PommaLabs.Thrower.Goodies
             catch { }
         };
 
-        /// <summary>
-        ///   Fires given action on a dedicated task. Optional error handler is invoked when given
-        ///   action throws an exception; if no handler is specified, then the exception is swallowed.
-        /// </summary>
-        /// <param name="action">The action which should be fired and forgot.</param>
-        /// <param name="handler">The optional error handler.</param>
-        /// <remarks>
-        ///   This method ignores the <see cref="OptionalFireAndForgetLimit"/>, since this method is
-        ///   meant to run mandatory fire and forget tasks.
-        /// </remarks>
-        public static void FireAndForget(Action action, Action<Exception> handler = null)
-        {
-            Raise.ArgumentNullException.IfIsNull(action, nameof(action));
-
-            const TaskContinuationOptions flags = TaskContinuationOptions.ExecuteSynchronously | TaskContinuationOptions.OnlyOnFaulted;
-
-#if !NET40
-            var task = Task.Run(action);
-#else
-            var task = Task.Factory.StartNew(action, System.Threading.CancellationToken.None, TaskCreationOptions.None, TaskScheduler.Default);
-#endif
-
-            if (handler == null)
-            {
-                task.ContinueWith(DefaultErrorContination, flags);
-            }
-            else
-            {
-                task.ContinueWith(t => handler(t.Exception.GetBaseException()), flags);
-            }
-        }
-
-#else
-
-        /// <summary>
-        ///   Fires given action on a dedicated task. Optional error handler is invoked when given
-        ///   action throws an exception; if no handler is specified, then the exception is swallowed.
-        /// </summary>
-        /// <param name="action">The action which should be fired and forgot.</param>
-        /// <param name="handler">The optional error handler.</param>
-        /// <remarks>
-        ///   Since .NET 3.5 does not support tasks, this method is simply a stub which runs given
-        ///   action synchronously.
-        /// </remarks>
-        public static void FireAndForget(Action action, Action<Exception> handler = null)
-        {
-            Raise.ArgumentNullException.IfIsNull(action, nameof(action));
-
-            try
-            {
-                action?.Invoke();
-            }
-            catch (Exception ex)
-            {
-                handler?.Invoke(ex);
-            }
-        }
-
-#endif
-
-        private static int OptionalFireAndForgetCount;
-
-        /// <summary>
-        ///   The maximum number of concurrent optional fire and forget tasks. Default value is equal
-        ///   to half <see cref="Environment.ProcessorCount"/>.
-        /// </summary>
-        public static int OptionalFireAndForgetLimit { get; set; } = Math.Max(Environment.ProcessorCount / 2, 1);
+        private static int FireAndForgetCount;
 
         /// <summary>
         ///   Tries to fire given action on a dedicated task, but it ensures that the number of
-        ///   concurrent tasks is never greater than <see cref="OptionalFireAndForgetLimit"/>; if the
-        ///   number of concurrent tasks is already too high, then given action is not executed.
+        ///   concurrent tasks is never greater than <see cref="FireAndForgetLimit"/>; if the number
+        ///   of concurrent tasks is already too high, then given action is executed synchronously.
         ///
         ///   Optional error handler is invoked when given action throws an exception; if no handler
         ///   is specified, then the exception is swallowed.
@@ -126,25 +67,89 @@ namespace PommaLabs.Thrower.Goodies
         /// <returns>
         ///   True if given action has actually been fired and forgot; otherwise, it returns false.
         /// </returns>
-        public static bool OptionalFireAndForget(Action action, Action<Exception> handler = null)
+        public static bool TryFireAndForget(Action action, Action<Exception> handler = null)
         {
+            Raise.ArgumentNullException.IfIsNull(action, nameof(action));
+
             var count = 0;
             try
             {
-                count = Interlocked.Increment(ref OptionalFireAndForgetCount);
-                if (count <= OptionalFireAndForgetLimit)
+                count = Interlocked.Increment(ref FireAndForgetCount);
+                if (count <= FireAndForgetLimit)
                 {
-                    FireAndForget(action, handler);
+                    RunAsync(action, handler);
                     return true;
                 }
+
+                // Run sync, cannot start a new task.
+                RunSync(action, handler);
                 return false;
             }
             finally
             {
                 if (count != 0)
                 {
-                    Interlocked.Decrement(ref OptionalFireAndForgetCount);
+                    Interlocked.Decrement(ref FireAndForgetCount);
                 }
+            }
+        }
+
+        private static void RunAsync(Action action, Action<Exception> handler)
+        {
+#if !NET40
+            var task = Task.Run(action);
+#else
+            var task = Task.Factory.StartNew(action, System.Threading.CancellationToken.None, TaskCreationOptions.None, TaskScheduler.Default);
+#endif
+            if (handler == null)
+            {
+                task.ContinueWith(DefaultErrorContination, FireAndForgetFlags);
+            }
+            else
+            {
+                task.ContinueWith(t => handler(t.Exception.GetBaseException()), FireAndForgetFlags);
+            }
+        }
+
+#else
+
+        /// <summary>
+        ///   Tries to fire given action on a dedicated task, but it ensures that the number of
+        ///   concurrent tasks is never greater than <see cref="FireAndForgetLimit"/>; if the number
+        ///   of concurrent tasks is already too high, then given action is executed synchronously.
+        ///
+        ///   Optional error handler is invoked when given action throws an exception; if no handler
+        ///   is specified, then the exception is swallowed.
+        /// </summary>
+        /// <param name="action">The action which might be fired and forgot.</param>
+        /// <param name="handler">The optional error handler.</param>
+        /// <returns>
+        ///   True if given action has actually been fired and forgot; otherwise, it returns false.
+        /// </returns>
+        /// <remarks>
+        ///   Since .NET 3.5 does not support tasks, this method is simply a stub which runs given
+        ///   action synchronously.
+        /// </remarks>
+        public static bool TryFireAndForget(Action action, Action<Exception> handler = null)
+        {
+            Raise.ArgumentNullException.IfIsNull(action, nameof(action));
+
+            // Run sync, cannot start a new task.
+            RunSync(action, handler);
+            return false;
+        }
+
+#endif
+
+        private static void RunSync(Action action, Action<Exception> handler)
+        {
+            try
+            {
+                action?.Invoke();
+            }
+            catch (Exception ex)
+            {
+                handler?.Invoke(ex);
             }
         }
     }
