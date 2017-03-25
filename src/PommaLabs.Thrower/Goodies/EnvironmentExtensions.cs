@@ -27,7 +27,7 @@ using System.IO;
 namespace PommaLabs.Thrower.Goodies
 {
     /// <summary>
-    ///   Portable extesions for <see cref="Environment"/>.
+    ///   Portable extensions for <see cref="Environment"/>.
     /// </summary>
     public static class EnvironmentExtensions
     {
