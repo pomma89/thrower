@@ -71,27 +71,27 @@ namespace PommaLabs.Thrower.Goodies
         {
             Raise.ArgumentNullException.IfIsNull(action, nameof(action));
 
-            var count = 0;
-            try
+            if (FireAndForgetCount >= FireAndForgetLimit)
             {
-                count = Interlocked.Increment(ref FireAndForgetCount);
-                if (count <= FireAndForgetLimit)
-                {
-                    RunAsync(action, handler);
-                    return true;
-                }
-
                 // Run sync, cannot start a new task.
                 RunSync(action, handler);
                 return false;
             }
-            finally
+
+            if (Interlocked.Increment(ref FireAndForgetCount) > FireAndForgetLimit)
             {
-                if (count != 0)
-                {
-                    Interlocked.Decrement(ref FireAndForgetCount);
-                }
+                // Run sync, cannot start a new task.
+                RunSync(action, handler);
+                Interlocked.Decrement(ref FireAndForgetCount);
+                return false;
             }
+
+            RunAsync(() =>
+            {
+                action?.Invoke();
+                Interlocked.Decrement(ref FireAndForgetCount);
+            }, handler);
+            return true;
         }
 
         private static void RunAsync(Action action, Action<Exception> handler)
