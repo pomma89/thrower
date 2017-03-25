@@ -1,11 +1,10 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
-
   <PropertyGroup>
-    <TargetFramework>netcoreapp1.1</TargetFramework>
     <AssemblyName>PommaLabs.Thrower.Examples</AssemblyName>
-    <OutputType>Exe</OutputType>
     <PackageId>PommaLabs.Thrower.Examples</PackageId>
+    <TargetFramework>netcoreapp1.1</TargetFramework>
     <RuntimeFrameworkVersion>1.1.1</RuntimeFrameworkVersion>
+    <OutputType>Exe</OutputType>
     <PackageTargetFallback>$(PackageTargetFallback);dnxcore50</PackageTargetFallback>
     <GenerateAssemblyConfigurationAttribute>false</GenerateAssemblyConfigurationAttribute>
     <GenerateAssemblyCompanyAttribute>false</GenerateAssemblyCompanyAttribute>
@@ -15,5 +14,4 @@
   <ItemGroup>
     <ProjectReference Include="..\..\src\PommaLabs.Thrower\PommaLabs.Thrower.csproj" />
   </ItemGroup>
-
 </Project>

@@ -1,10 +1,10 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
-
   <PropertyGroup>
     <AssemblyName>PommaLabs.Thrower.UnitTests</AssemblyName>
     <PackageId>PommaLabs.Thrower.UnitTests</PackageId>
-    <TargetFrameworks>net35;net40;net45;net46</TargetFrameworks>
-    <NetStandardImplicitPackageVersion>1.6.1</NetStandardImplicitPackageVersion>
+    <TargetFrameworks>netcoreapp1.1;net35;net40;net45;net46</TargetFrameworks>
+    <RuntimeFrameworkVersion>1.1.1</RuntimeFrameworkVersion>
+    <OutputType>Exe</OutputType>
     <GenerateAssemblyConfigurationAttribute>false</GenerateAssemblyConfigurationAttribute>
     <GenerateAssemblyCompanyAttribute>false</GenerateAssemblyCompanyAttribute>
     <GenerateAssemblyProductAttribute>false</GenerateAssemblyProductAttribute>
@@ -17,7 +17,17 @@
   <ItemGroup>
     <PackageReference Include="Newtonsoft.Json" Version="10.0.1" />
     <PackageReference Include="NUnit" Version="3.6.1" />
+    <PackageReference Include="NUnitLite" Version="3.6.1" />
     <PackageReference Include="Shouldly" Version="2.8.2" />
+  </ItemGroup>
+
+  <PropertyGroup Condition=" '$(TargetFramework)' == 'netcoreapp1.1' ">
+    <DefineConstants>$(DefineConstants);NETSTD16</DefineConstants>
+    <PackageTargetFallback>$(PackageTargetFallback);dnxcore50</PackageTargetFallback>
+  </PropertyGroup>
+
+  <ItemGroup Condition=" '$(TargetFramework)' == 'netcoreapp1.1' ">
+    <PackageReference Include="System.Data.Common" Version="4.3.0" />
   </ItemGroup>
 
   <PropertyGroup Condition=" '$(TargetFramework)' == 'net35' ">
