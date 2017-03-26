@@ -28,7 +28,7 @@ namespace PommaLabs.Thrower.Validation
         private static Regex CreatePhoneNumberRegex()
         {
             const string pattern = @"^(\+\s?)?((?<!\+.*)\(\+?\d+([\s\-\/\.]?\d+)?\)|\d+)([\s\-\/\.]?(\(\d+([\s\-\/\.]?\d+)?\)|\d+))*(\s?(x|ext\.?)\s?\d+)?$";
-#if (PORTABLE || NETSTD11 || NETSTD12)
+#if (NETSTD10 || NETSTD11)
             const RegexOptions options = RegexOptions.IgnoreCase | RegexOptions.ExplicitCapture;
 #else
             const RegexOptions options = RegexOptions.Compiled | RegexOptions.IgnoreCase | RegexOptions.ExplicitCapture;

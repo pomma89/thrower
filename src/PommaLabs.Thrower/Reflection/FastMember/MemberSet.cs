@@ -10,7 +10,7 @@
 // or implied. See the License for the specific language governing permissions and limitations under
 // the License.
 
-#if !(PORTABLE || NETSTD11 || NETSTD12)
+#if !(NETSTD10 || NETSTD11)
 
 using System;
 using System.Collections.Generic;

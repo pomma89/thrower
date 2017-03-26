@@ -1,5 +1,29 @@
 # Changelog for PommaLabs.Thrower #
 
+### v4.1.2 (2017-03-25) ###
+
+* Improved Cake build system.
+
+### v4.1.0 (2017-03-19) ###
+
+* Updated project to VS2017.
+* Removed Portable DLL, now we target .NET Standard.
+* Added logging capabilities via LibLog.
+
+### v4.0.15 (2017-03-04) ###
+
+* Improved FormattableObject formatting.
+* Added ToEnum extension methods for strings.
+
+### v4.0.13 (2017-02-25) ###
+
+* Added some useful classes.
+
+### v4.0.11 (2017-02-12) ###
+
+* Added DLL for .NET Standard 1.0.
+* Removed .NET 4.6 and .NET Standard 1.1/1.2 DLLs, since they were equivalent to .NET 4.5 and .NET Standard 1.0.
+
 ### v4.0.10 (2017-02-12) ###
 
 * The project has been fully converted to .NET Core.

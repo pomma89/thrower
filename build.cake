@@ -1,4 +1,4 @@
-#tool nuget:?package=NUnit.ConsoleRunner&version=3.6.0
+#tool nuget:?package=NUnit.ConsoleRunner&version=3.6.1
 
 //////////////////////////////////////////////////////////////////////
 // ARGUMENTS
@@ -12,7 +12,6 @@ var target = Argument("target", "Default");
 
 var solutionFile = "./Thrower.sln";
 var artifactsDir = "./artifacts";
-var testResultsDir = artifactsDir + "/test-results";
 
 //////////////////////////////////////////////////////////////////////
 // TASKS
@@ -22,7 +21,6 @@ Task("Clean")
     .Does(() =>
 {
     CleanDirectory(artifactsDir);
-    CleanDirectory(testResultsDir);
 });
 
 Task("Restore")
@@ -86,34 +84,63 @@ RunTarget(target);
 
 private void Build(string cfg)
 {
-    foreach(var project in GetFiles("./**/project.json"))
-    {
-        DotNetCoreBuild(project.GetDirectory().FullPath, new DotNetCoreBuildSettings
-        {
-            Configuration = cfg,
-            NoIncremental = true
-        });
-    }
+    //foreach(var project in GetFiles("./**/*.csproj"))
+    //{
+    //    DotNetCoreBuild(project.GetDirectory().FullPath, new DotNetCoreBuildSettings
+    //    {
+    //        Configuration = cfg,
+    //        NoIncremental = true
+    //    });
+    //}
+	
+	MSBuild(solutionFile, settings =>
+	{
+        settings.SetConfiguration(cfg);
+		settings.SetMaxCpuCount(0);
+	});
 }
 
 private void Test(string cfg)
 {
-    NUnit3("./test/**/bin/{cfg}/*/*.UnitTests.dll".Replace("{cfg}", cfg), new NUnit3Settings 
-    {
-        NoResults = true,
-        OutputFile = testResultsDir + "/" + cfg.ToLower() + ".xml"
-    });
+    //NUnit3("./test/**/bin/{cfg}/*/*.UnitTests.dll".Replace("{cfg}", cfg), new NUnit3Settings 
+    //{
+    //    NoResults = true
+    //});
+
+	const string flags = "--noheader --noresult";
+	const string errMsg = " - Unit test failure - ";
+
+	Parallel.ForEach(GetFiles("./test/**/bin/{cfg}/*/*.UnitTests.exe".Replace("{cfg}", cfg)), netExe => 
+	{
+		if (StartProcess(netExe, flags) != 0)
+		{
+			throw new Exception(cfg + errMsg + netExe);
+		}
+	});
+
+	Parallel.ForEach(GetFiles("./test/**/bin/{cfg}/*/*.UnitTests.dll".Replace("{cfg}", cfg)), netCoreDll =>
+	{
+		DotNetCoreExecute(netCoreDll, flags);
+	});
 }
 
 private void Pack(string cfg)
 {
-    foreach (var project in GetFiles("./src/**/project.json"))
-    {
-        DotNetCorePack(project.FullPath, new DotNetCorePackSettings
-        {
-            Configuration = cfg,
-            OutputDirectory = artifactsDir,
-            NoBuild = true
-        });
-    }    
+	Parallel.ForEach(GetFiles("./src/**/*.csproj"), project =>
+	{
+        //DotNetCorePack(project.FullPath, new DotNetCorePackSettings
+        //{
+        //    Configuration = cfg,
+        //    OutputDirectory = artifactsDir,
+        //    NoBuild = true
+        //});
+
+		MSBuild(project, settings =>
+		{
+			settings.SetConfiguration(cfg);
+			settings.SetMaxCpuCount(0);
+			settings.WithTarget("pack");
+			settings.WithProperty("IncludeSymbols", new[] { "true" });
+		});
+	});
 }

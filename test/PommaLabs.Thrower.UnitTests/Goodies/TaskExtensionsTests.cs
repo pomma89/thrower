@@ -1,4 +1,4 @@
-﻿// File name: ObjectAccessorTests.cs
+﻿// File name: TaskExtensionsTests.cs
 //
 // Author(s): Alessio Parma <alessio.parma@gmail.com>
 //
@@ -21,43 +21,34 @@
 // DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT
 // OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
-#if !(NETSTD10 || NETSTD11)
-
 using NUnit.Framework;
-using PommaLabs.Thrower.Reflection.FastMember;
-using System.Collections.Generic;
+using Shouldly;
+using System.Collections.Concurrent;
 
-namespace PommaLabs.Thrower.UnitTests.Reflection.FastMember
+namespace PommaLabs.Thrower.UnitTests.Goodies
 {
-    internal sealed class ObjectAccessorTests : AbstractTests
+    internal sealed class TaskExtensionsTests : AbstractTests
     {
-        [Test]
-        public void Create_AsIDictionary()
+        [TestCase(1)]
+        [TestCase(10)]
+        [TestCase(100)]
+        public void AllFiredActionsShouldBeExecuted(int count)
         {
-            var myStruct = new MyStruct
+            var stack = new ConcurrentStack<int>();
+            for (var i = 0; i < count; ++i)
             {
-                A = 21,
-                B = "Pu <3 Pi",
-                C = 3.14M
-            };
+                var localIndex = i;
+                Thrower.Goodies.TaskExtensions.TryFireAndForget(() => stack.Push(localIndex));
+            }
 
-            var dict = ObjectAccessor.Create(myStruct) as IDictionary<string, object>;
+            var delay = 30 * count;
+#if (NET35 || NET40)
+            System.Threading.Thread.Sleep(delay);
+#else
+            System.Threading.Tasks.Task.Delay(delay).Wait();
+#endif
 
-            Assert.AreEqual(3, dict.Count);
-            Assert.IsTrue(dict.Keys.Contains(nameof(MyStruct.A)) && dict.Keys.Contains(nameof(MyStruct.B)) && dict.Keys.Contains(nameof(MyStruct.C)));
-            Assert.AreEqual(myStruct.A, dict[nameof(MyStruct.A)]);
-            Assert.AreEqual(myStruct.B, dict[nameof(MyStruct.B)]);
-            Assert.AreEqual(myStruct.C, dict[nameof(MyStruct.C)]);
-        }
-
-        public struct MyStruct
-        {
-            public int A { get; set; }
-            public string B { get; set; }
-            public decimal C { get; set; }
-            private bool P { get; set; }
+            stack.Count.ShouldBe(count);
         }
     }
 }
-
-#endif
