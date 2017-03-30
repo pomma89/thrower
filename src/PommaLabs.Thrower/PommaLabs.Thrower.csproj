@@ -22,7 +22,7 @@
     <Description>$(Summary) Thrower allows to write preconditions in a pretty lean way, which reduces the clutter at the beginning of each method by removing the need to use the cumbersome 'if true then throw ex' required to validate parameters. For example, a validation against null becomes 'Raise.ArgumentNullException.IfIsNull(myParam)', while a generic validation may be written as 'Raise.ArgumentException.If(condition)'. Moreover, this library embeds a portable copy of Marc Gravell's FastMember and Jeffrey Stedfast's EmailValidation libraries.</Description>
     <Authors>Alessio Parma &lt;alessio.parma@gmail.com&gt;</Authors>
     <Copyright>Copyright (c) 2013-2018 Alessio Parma &lt;alessio.parma@gmail.com&gt;</Copyright>
-    <PackageReleaseNotes>https://github.com/pomma89/Thrower</PackageReleaseNotes>
+    <PackageReleaseNotes>https://github.com/pomma89/Thrower/releases</PackageReleaseNotes>
     <PackageIconUrl>http://pomma89.altervista.org/thrower/logo-128.png</PackageIconUrl>
     <PackageProjectUrl>https://github.com/pomma89/Thrower</PackageProjectUrl>
     <PackageLicenseUrl>http://opensource.org/licenses/MIT</PackageLicenseUrl>
