@@ -142,5 +142,8 @@ private void Pack(string cfg)
 			settings.WithTarget("pack");
 			settings.WithProperty("IncludeSymbols", new[] { "true" });
 		});
+
+		var packDir = project.GetDirectory().Combine("bin").Combine(cfg);
+		MoveFiles(GetFiles(packDir + "/*.nupkg"), artifactsDir);
 	});
 }
