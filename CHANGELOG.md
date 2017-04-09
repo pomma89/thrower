@@ -1,5 +1,9 @@
 # Changelog for PommaLabs.Thrower #
 
+### v4.1.3 (2017-??-??) ###
+
+* Removed TaskExtensions class, added by mistake.
+
 ### v4.1.2 (2017-03-25) ###
 
 * Improved Cake build system.
