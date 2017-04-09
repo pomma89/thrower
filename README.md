@@ -1,7 +1,7 @@
 ![](http://pomma89.altervista.org/thrower/logo-64.png "Thrower Logo") Thrower
 ==================================================================================================================
 
-*Fully managed library providing convenience methods to perform argument checks.*
+Fully managed library providing convenience methods to perform argument checks.
 
 ## Summary ##
 
@@ -258,7 +258,7 @@ Raise<FileNotFoundException>.If(condition, message, fileName);
 
 ## Benchmarks ##
 
-All benchmarks were implemented and run using the wonderful [BenchmarkDotNet](https://github.com/PerfDotNet/BenchmarkDotNet) library.
+All benchmarks were implemented and run using the wonderful [BenchmarkDotNet](https://github.com/dotnet/BenchmarkDotNet) library.
 
 ### Raise VS Throw ###
 
