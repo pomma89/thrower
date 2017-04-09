@@ -1,7 +1,7 @@
 ![](http://pomma89.altervista.org/thrower/logo-64.png "Thrower Logo") Thrower
 ==================================================================================================================
 
-Fully managed library providing convenience methods to perform argument checks.
+*Fully managed library providing convenience methods to perform argument checks.*
 
 ## Summary ##
 
