@@ -35,7 +35,7 @@ namespace PommaLabs.Thrower.Benchmarks
         [MethodImpl(MethodImplOptions.NoInlining)]
         private static T Identity<T>(T value) => value;
 
-        [Benchmark]
+        [Benchmark(Baseline = true)]
         public Exception Raise()
         {
             try

@@ -184,8 +184,8 @@ internal static class BankExample
 
 ```
 
-You can find more examples under the [Thrower.Examples](https://github.com/pomma89/Thrower/tree/master/Thrower.Examples)
-and [Thrower.UnitTests](https://github.com/pomma89/Thrower/tree/master/Thrower.UnitTests) projects.
+You can find more examples under the [Examples](https://github.com/pomma89/Thrower/tree/master/test/PommaLabs.Thrower.Examples)
+and [Unit Tests](https://github.com/pomma89/Thrower/tree/master/test/PommaLabs.Thrower.UnitTests) projects.
 In any case, usage of this library should be pretty straightforward.
 
 ## Exception handlers ##
@@ -258,7 +258,7 @@ Raise<FileNotFoundException>.If(condition, message, fileName);
 
 ## Benchmarks ##
 
-All benchmarks were implemented and run using the wonderful [BenchmarkDotNet](https://github.com/PerfDotNet/BenchmarkDotNet) library.
+All benchmarks were implemented and run using the wonderful [BenchmarkDotNet](https://github.com/dotnet/BenchmarkDotNet) library.
 
 ### Raise VS Throw ###
 
@@ -270,91 +270,91 @@ Therefore, using Thrower does not impose a penalty on your application performan
 
 #### ArgumentNullException ####
 
-![](http://pomma89.altervista.org/thrower/perf/RaiseVsThrow_ArgumentNullException-barplot.png "ArgumentNullException Barplot")
-
 ``` ini
 
-BenchmarkDotNet=v0.10.1, OS=Microsoft Windows NT 6.2.9200.0
+BenchmarkDotNet=v0.10.3.0, OS=Microsoft Windows e 10.0.14393
 Processor=AMD A10 Extreme Edition Radeon R8, 4C+8G, ProcessorCount=4
 Frequency=1949466 Hz, Resolution=512.9610 ns, Timer=TSC
-  [Host]       : Clr 4.0.40319.42000, 32bit LegacyJIT-v4.6.1586.0
-  LegacyJitX86 : Clr 4.0.40319.42000, 32bit LegacyJIT-v4.6.1586.0
+dotnet cli version=1.0.2
+  [Host]    : .NET Core 4.6.25009.03, 64bit RyuJIT
+  RyuJitX64 : .NET Core 4.6.25009.03, 64bit RyuJIT
 
-Job=LegacyJitX86  Jit=LegacyJit  Platform=X86  
-Runtime=Clr  
+Job=RyuJitX64  Jit=RyuJit  Platform=X64  
 
 ```
-       Method |       Mean |    StdDev |  Gen 0 | Allocated |
-------------- |----------- |---------- |------- |---------- |
-        Raise | 27.6542 us | 0.3685 us |      - |     212 B |
- RaiseGeneric | 28.3600 us | 0.8988 us | 0.1053 |     252 B |
-        Throw | 30.4583 us | 1.2295 us |      - |     244 B |
+ |       Method |       Mean |    StdDev | Scaled | Scaled-StdDev |  Gen 0 | Allocated |
+ |------------- |----------- |---------- |------- |-------------- |------- |---------- |
+ |        Raise | 12.5168 us | 0.1798 us |   1.00 |          0.00 |      - |     351 B |
+ | RaiseGeneric | 13.5266 us | 0.1615 us |   1.08 |          0.02 | 0.1099 |     431 B |
+ |        Throw | 12.2255 us | 0.0628 us |   0.98 |          0.01 | 0.4130 |     407 B |
+
+![](http://pomma89.altervista.org/thrower/perf/RaiseVsThrow_ArgumentNullException-barplot.png "ArgumentNullException barplot")
 
 #### ArgumentOutOfRangeException ####
 
-![](http://pomma89.altervista.org/thrower/perf/RaiseVsThrow_ArgumentOutOfRangeException-barplot.png "ArgumentOutOfRangeException Barplot")
-
 ``` ini
 
-BenchmarkDotNet=v0.10.1, OS=Microsoft Windows NT 6.2.9200.0
+BenchmarkDotNet=v0.10.3.0, OS=Microsoft Windows e 10.0.14393
 Processor=AMD A10 Extreme Edition Radeon R8, 4C+8G, ProcessorCount=4
 Frequency=1949466 Hz, Resolution=512.9610 ns, Timer=TSC
-  [Host]       : Clr 4.0.40319.42000, 32bit LegacyJIT-v4.6.1586.0
-  LegacyJitX86 : Clr 4.0.40319.42000, 32bit LegacyJIT-v4.6.1586.0
+dotnet cli version=1.0.2
+  [Host]    : .NET Core 4.6.25009.03, 64bit RyuJIT
+  RyuJitX64 : .NET Core 4.6.25009.03, 64bit RyuJIT
 
-Job=LegacyJitX86  Jit=LegacyJit  Platform=X86  
-Runtime=Clr  
+Job=RyuJitX64  Jit=RyuJit  Platform=X64  
 
 ```
-       Method |       Mean |    StdDev |     Median | Allocated |
-------------- |----------- |---------- |----------- |---------- |
-        Raise | 26.9549 us | 1.5685 us | 27.4704 us |     216 B |
- RaiseGeneric | 28.1284 us | 1.8190 us | 29.0754 us |     256 B |
-        Throw | 25.7824 us | 1.5455 us | 26.0318 us |     156 B |
+ |       Method |       Mean |    StdDev | Scaled | Scaled-StdDev |  Gen 0 | Allocated |
+ |------------- |----------- |---------- |------- |-------------- |------- |---------- |
+ |        Raise | 10.4163 us | 0.1321 us |   1.00 |          0.00 | 0.0854 |     239 B |
+ | RaiseGeneric | 13.5999 us | 0.1581 us |   1.31 |          0.02 | 0.0936 |     439 B |
+ |        Throw | 10.3209 us | 0.0892 us |   0.99 |          0.01 | 0.0773 |     239 B |
+
+![](http://pomma89.altervista.org/thrower/perf/RaiseVsThrow_ArgumentOutOfRangeException-barplot.png "ArgumentOutOfRangeException barplot")
 
 #### FileNotFoundException ####
 
-![](http://pomma89.altervista.org/thrower/perf/RaiseVsThrow_FileNotFoundException-barplot.png "FileNotFoundException Barplot")
-
 ``` ini
 
-BenchmarkDotNet=v0.10.1, OS=Microsoft Windows NT 6.2.9200.0
+BenchmarkDotNet=v0.10.3.0, OS=Microsoft Windows e 10.0.14393
 Processor=AMD A10 Extreme Edition Radeon R8, 4C+8G, ProcessorCount=4
 Frequency=1949466 Hz, Resolution=512.9610 ns, Timer=TSC
-  [Host]       : Clr 4.0.40319.42000, 32bit LegacyJIT-v4.6.1586.0
-  LegacyJitX86 : Clr 4.0.40319.42000, 32bit LegacyJIT-v4.6.1586.0
+dotnet cli version=1.0.2
+  [Host]    : .NET Core 4.6.25009.03, 64bit RyuJIT
+  RyuJitX64 : .NET Core 4.6.25009.03, 64bit RyuJIT
 
-Job=LegacyJitX86  Jit=LegacyJit  Platform=X86  
-Runtime=Clr  
+Job=RyuJitX64  Jit=RyuJit  Platform=X64  
 
 ```
-       Method |       Mean |    StdDev |     Median |  Gen 0 | Allocated |
-------------- |----------- |---------- |----------- |------- |---------- |
-        Raise | 51.8919 us | 3.3312 us | 53.2313 us |      - |     440 B |
- RaiseGeneric | 59.0017 us | 3.5695 us | 60.1856 us | 1.5400 |   1.36 kB |
-        Throw | 52.4837 us | 3.8547 us | 54.1780 us |      - |     380 B |
+ |       Method |       Mean |    StdDev | Scaled | Scaled-StdDev |  Gen 0 | Allocated |
+ |------------- |----------- |---------- |------- |-------------- |------- |---------- |
+ |        Raise | 37.4708 us | 0.3631 us |   1.00 |          0.00 |      - |     248 B |
+ | RaiseGeneric | 46.9324 us | 0.5437 us |   1.25 |          0.02 | 2.6367 |   2.08 kB |
+ |        Throw | 37.4443 us | 0.3534 us |   1.00 |          0.01 |      - |     248 B |
+
+![](http://pomma89.altervista.org/thrower/perf/RaiseVsThrow_FileNotFoundException-barplot.png "FileNotFoundException barplot")
 
 #### NotSupportedException ####
 
-![](http://pomma89.altervista.org/thrower/perf/RaiseVsThrow_NotSupportedException-barplot.png "NotSupportedException Barplot")
-
 ``` ini
 
-BenchmarkDotNet=v0.10.1, OS=Microsoft Windows NT 6.2.9200.0
+BenchmarkDotNet=v0.10.3.0, OS=Microsoft Windows e 10.0.14393
 Processor=AMD A10 Extreme Edition Radeon R8, 4C+8G, ProcessorCount=4
 Frequency=1949466 Hz, Resolution=512.9610 ns, Timer=TSC
-  [Host]       : Clr 4.0.40319.42000, 32bit LegacyJIT-v4.6.1586.0
-  LegacyJitX86 : Clr 4.0.40319.42000, 32bit LegacyJIT-v4.6.1586.0
+dotnet cli version=1.0.2
+  [Host]    : .NET Core 4.6.25009.03, 64bit RyuJIT
+  RyuJitX64 : .NET Core 4.6.25009.03, 64bit RyuJIT
 
-Job=LegacyJitX86  Jit=LegacyJit  Platform=X86  
-Runtime=Clr  
+Job=RyuJitX64  Jit=RyuJit  Platform=X64  
 
 ```
-       Method |       Mean |    StdDev |  Gen 0 | Allocated |
-------------- |----------- |---------- |------- |---------- |
-        Raise | 75.5129 us | 2.4288 us | 9.2773 |   5.53 kB |
- RaiseGeneric | 77.2580 us | 2.9541 us | 7.8939 |   5.55 kB |
-        Throw | 45.8247 us | 1.6760 us | 4.0527 |    2.8 kB |
+ |       Method |      Mean |    StdDev | Scaled | Scaled-StdDev |  Gen 0 | Allocated |
+ |------------- |---------- |---------- |------- |-------------- |------- |---------- |
+ |        Raise | 6.2691 us | 0.0725 us |   1.00 |          0.00 |      - |     171 B |
+ | RaiseGeneric | 6.7478 us | 0.0627 us |   1.08 |          0.02 | 0.0468 |     211 B |
+ |        Throw | 5.3298 us | 0.0881 us |   0.85 |          0.02 | 0.0173 |     112 B |
+
+![](http://pomma89.altervista.org/thrower/perf/RaiseVsThrow_NotSupportedException-barplot.png "NotSupportedException barplot")
 
 ## About this repository and its maintainer ##
 
