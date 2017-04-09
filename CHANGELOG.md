@@ -1,6 +1,6 @@
 # Changelog for PommaLabs.Thrower #
 
-### v4.1.3 (2017-??-??) ###
+### v4.1.3 (2017-04-09) ###
 
 * Removed TaskExtensions class, added by mistake.
 
