@@ -32,7 +32,7 @@ namespace PommaLabs.Thrower.Benchmarks
     {
         private static readonly string NotExistingFilePath = Path.Combine("C:\\", Guid.NewGuid() + ".bench");
 
-        [Benchmark]
+        [Benchmark(Baseline = true)]
         public FileNotFoundException Raise()
         {
             try
