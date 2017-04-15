@@ -1,13 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <AssemblyName>PommaLabs.Thrower.UnitTests</AssemblyName>
-    <PackageId>PommaLabs.Thrower.UnitTests</PackageId>
     <TargetFrameworks>netcoreapp1.1;net35;net40;net45;net46</TargetFrameworks>
-    <RuntimeFrameworkVersion>1.1.1</RuntimeFrameworkVersion>
     <OutputType>Exe</OutputType>
-    <GenerateAssemblyConfigurationAttribute>false</GenerateAssemblyConfigurationAttribute>
-    <GenerateAssemblyCompanyAttribute>false</GenerateAssemblyCompanyAttribute>
-    <GenerateAssemblyProductAttribute>false</GenerateAssemblyProductAttribute>
   </PropertyGroup>
 
   <ItemGroup>
