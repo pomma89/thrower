@@ -3,15 +3,15 @@
     <AssemblyName>PommaLabs.Thrower</AssemblyName>
     <AssemblyTitle>Thrower - Compact preconditions helpers</AssemblyTitle>
     <VersionPrefix>4.1.3</VersionPrefix>
+    <AssemblyVersion>4.0.0</AssemblyVersion>
     <TargetFrameworks>netstandard1.0;netstandard1.1;netstandard1.3;net35;net40;net45</TargetFrameworks>
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
     <AssemblyOriginatorKeyFile>../../pomma89.snk</AssemblyOriginatorKeyFile>
     <SignAssembly>true</SignAssembly>
-    <PublicSign Condition=" '$(OS)' != 'Windows_NT' ">true</PublicSign>
     <GenerateAssemblyVersionAttribute>false</GenerateAssemblyVersionAttribute>
   </PropertyGroup>
 
-  <PropertyGroup>
+  <PropertyGroup Label="NuGet">
     <PackageId>Thrower</PackageId>
     <Title>Thrower - Compact preconditions helpers</Title>
     <Summary>Fully managed library providing convenience methods to perform argument checks.</Summary>
