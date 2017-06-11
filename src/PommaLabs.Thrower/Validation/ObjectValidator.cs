@@ -197,7 +197,7 @@ namespace PommaLabs.Thrower.Validation
                                where v != null
                                select new { PropertyInfo = p, Validation = v };
 
-#if !(NETSTD10 || NETSTD11)
+#if !(NETSTD10 || NETSTD11) && FAST_MEMBER
                 var typeAccessor = Reflection.FastMember.TypeAccessor.Create(objType);
 #endif
 
@@ -205,10 +205,10 @@ namespace PommaLabs.Thrower.Validation
                 {
                     var propertyInfo = rp.PropertyInfo;
 
-#if (NETSTD10 || NETSTD11)
-                    var propertyValue = PortableTypeInfo.GetPublicPropertyValue(obj, propertyInfo);
-#else
+#if !(NETSTD10 || NETSTD11) && FAST_MEMBER
                     var propertyValue = PortableTypeInfo.GetPublicPropertyValue(typeAccessor, obj, propertyInfo);
+#else
+                    var propertyValue = PortableTypeInfo.GetPublicPropertyValue(obj, propertyInfo);
 #endif
 
                     var newPath = $"{path}.{propertyInfo.Name}";

@@ -240,7 +240,7 @@ namespace PommaLabs.Thrower.Reflection
             Raise.ArgumentNullException.IfIsNull(instance, nameof(instance), "Instance cannot be null");
             Raise.ArgumentException.IfIsNullOrWhiteSpace(propertyName, nameof(propertyName), "Given property cannot be null, empty or blank");
 
-#if !(NETSTD10 || NETSTD11)
+#if !(NETSTD10 || NETSTD11) && FAST_MEMBER
             return FastMember.ObjectAccessor.Create(instance)[propertyName];
 #else
             var propertyInfo = GetPublicProperties(instance.GetType()).Single(p => p.Name == propertyName);
@@ -272,7 +272,7 @@ namespace PommaLabs.Thrower.Reflection
             return propertyInfo.GetValue(instance, EmptyObjectArray);
         }
 
-#if !(NETSTD10 || NETSTD11)
+#if !(NETSTD10 || NETSTD11) && FAST_MEMBER
 
         /// <summary>
         ///   Gets the value of given property on given instance.

@@ -10,14 +10,19 @@ namespace PommaLabs.Thrower.SourceCombiner
 {
     public static class Program
     {
-        private static readonly HashSet<string> SourceFilesToIgnore = new HashSet<string>
+        private static readonly HashSet<string> SourceFilesToIgnore = new HashSet<string>(StringComparer.OrdinalIgnoreCase)
         {
             "AssemblyInfo.cs",
             "LibLog.cs"
         };
 
+        private static readonly HashSet<string> SourceFoldersToIgnore = new HashSet<string>(StringComparer.OrdinalIgnoreCase)
+        {
+            "FastMember"
+        };
+
         private static readonly Regex IsUsingRegex = new Regex("^using .+;", RegexOptions.Compiled | RegexOptions.Singleline);
-        private static readonly Regex IsLicenseRegex = new Regex("\\/\\/(\\s+|$)", RegexOptions.Compiled | RegexOptions.Singleline);
+        private static readonly Regex IsLicenseRegex = new Regex("^\\/\\/(\\s+|$)", RegexOptions.Compiled | RegexOptions.Singleline);
         private static readonly Regex IsObjRegex = new Regex("[\\\\/]obj[\\\\/]", RegexOptions.Compiled | RegexOptions.Singleline);
 
         private static void Main(string[] args)
@@ -91,7 +96,7 @@ namespace PommaLabs.Thrower.SourceCombiner
                 {
                     continue;
                 }
-                if (!SourceFilesToIgnore.Contains(Path.GetFileName(item)))
+                if (!SourceFilesToIgnore.Contains(Path.GetFileName(item)) && !SourceFoldersToIgnore.Contains(new FileInfo(item).Directory.Name))
                 {
                     files.Add(item);
                 }
