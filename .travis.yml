@@ -1,4 +1,11 @@
 language: csharp
-solution: Thrower.sln
+dist: trusty
+sudo: required
+mono: none
+dotnet: 1.0.4
+install:
+  - export DOTNET_CLI_TELEMETRY_OUTPUT=1
+before_script:
+  - chmod a+x ./build.sh
 script:
   - ./build.sh
