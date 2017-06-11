@@ -1,7 +1,6 @@
 language: csharp
 dist: trusty
 sudo: required
-mono: none
 dotnet: 1.0.4
 install:
   - export DOTNET_CLI_TELEMETRY_OUTPUT=1
