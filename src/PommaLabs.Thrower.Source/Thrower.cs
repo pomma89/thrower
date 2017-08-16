@@ -4042,7 +4042,7 @@ namespace PommaLabs.Thrower.Reflection
     }
 }
 //*** SourceCombiner -> original file EmailAddressAttribute.cs ***
-#if !NET35
+#if !(NET35 || NETSTD10)
 namespace PommaLabs.Thrower.Validation
 {
     /// <summary>
@@ -4336,7 +4336,7 @@ namespace PommaLabs.Thrower.Validation
     }
 }
 //*** SourceCombiner -> original file EnumerationAttribute.cs ***
-#if !NET35
+#if !(NET35 || NETSTD10)
 namespace PommaLabs.Thrower.Validation
 {
     /// <summary>
@@ -4563,7 +4563,7 @@ namespace PommaLabs.Thrower.Validation
         public static bool Validate(object obj, out IList<ValidationError> validationErrors)
         {
             validationErrors = new List<ValidationError>();
-#if !NET35
+#if !(NET35 || NETSTD10)
             var netValidationErrors = new List<System.ComponentModel.DataAnnotations.ValidationResult>();
 #if NET40
             var netValidationContext = new System.ComponentModel.DataAnnotations.ValidationContext(obj, null, null);
@@ -4668,7 +4668,7 @@ namespace PommaLabs.Thrower.Validation
     }
 }
 //*** SourceCombiner -> original file PhoneNumberAttribute.cs ***
-#if !NET35
+#if !(NET35 || NETSTD10)
 namespace PommaLabs.Thrower.Validation
 {
     /// <summary>
