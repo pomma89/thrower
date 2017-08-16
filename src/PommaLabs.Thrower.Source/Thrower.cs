@@ -3093,7 +3093,7 @@ namespace PommaLabs.Thrower.Goodies
         {
             get
             {
-#if !(NETSTD10 || NETSTD11 || NETSTD13)
+#if !(NETSTD10 || NETSTD11 || NETSTD13 || NETSTD20)
                 return "web.config".Equals(Path.GetFileName(AppDomain.CurrentDomain.SetupInformation.ConfigurationFile), StringComparison.OrdinalIgnoreCase);
 #else
                 return false; // .NET Core does not use Web.config, right?
@@ -3128,7 +3128,7 @@ namespace PommaLabs.Thrower.Goodies
         {
 #if (NETSTD10 || NETSTD11)
             return string.Empty;
-#elif NETSTD13
+#elif (NETSTD13 || NETSTD20)
             return AppContext.BaseDirectory;
 #else
             return AppDomain.CurrentDomain.BaseDirectory;
