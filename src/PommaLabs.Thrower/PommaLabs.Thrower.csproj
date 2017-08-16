@@ -9,12 +9,6 @@
     <AssemblyOriginatorKeyFile>../../pomma89.snk</AssemblyOriginatorKeyFile>
     <SignAssembly>true</SignAssembly>
     <GenerateAssemblyVersionAttribute>false</GenerateAssemblyVersionAttribute>
-    <PreBuildEvent></PreBuildEvent>
-    <PostBuildEvent>
-      @echo off
-      cd "C:\Progetti\PommaLabs\Thrower\src\PommaLabs.Thrower"
-      dotnet SourceCombiner\PommaLabs.Thrower.SourceCombiner.dll PommaLabs.Thrower.csproj "..\PommaLabs.Thrower.Source\Thrower.cs"
-    </PostBuildEvent>
   </PropertyGroup>
 
   <PropertyGroup Label="NuGet">
