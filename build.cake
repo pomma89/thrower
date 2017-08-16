@@ -10,8 +10,8 @@ var target = Argument("target", "Default");
 // PREPARATION
 //////////////////////////////////////////////////////////////////////
 
-Func<string> solutionFile = () => "./Thrower.sln";
-Func<string> artifactsDir = () => "./artifacts";
+private string SolutionFile() { return "./Thrower.sln"; }
+private string ArtifactsDir() { return "./artifacts"; }
 
 //////////////////////////////////////////////////////////////////////
 // TASKS
@@ -20,7 +20,7 @@ Func<string> artifactsDir = () => "./artifacts";
 Task("Clean")
     .Does(() =>
 {
-    CleanDirectory(artifactsDir());
+    CleanDirectory(ArtifactsDir());
 });
 
 Task("Restore")
@@ -93,7 +93,7 @@ private void Build(string cfg)
     //    });
     //}
     
-    MSBuild(solutionFile(), settings =>
+    MSBuild(SolutionFile(), settings =>
     {
         settings.SetConfiguration(cfg);
         settings.SetMaxCpuCount(0);
@@ -131,7 +131,7 @@ private void Pack(string cfg)
         //DotNetCorePack(project.FullPath, new DotNetCorePackSettings
         //{
         //    Configuration = cfg,
-        //    OutputDirectory = artifactsDir(),
+        //    OutputDirectory = ArtifactsDir(),
         //    NoBuild = true
         //});
 
@@ -144,6 +144,6 @@ private void Pack(string cfg)
         });
 
         var packDir = project.GetDirectory().Combine("bin").Combine(cfg);
-        MoveFiles(GetFiles(packDir + "/*.nupkg"), artifactsDir());
+        MoveFiles(GetFiles(packDir + "/*.nupkg"), ArtifactsDir());
     });
 }
