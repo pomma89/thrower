@@ -12,6 +12,7 @@ var target = Argument("target", "Default");
 
 private string SolutionFile() { return "./Thrower.sln"; }
 private string ArtifactsDir() { return "./artifacts"; }
+private string MSBuildLinuxPath() { return @"/usr/lib/mono/msbuild/15.0/bin/MSBuild.dll"; }
 
 //////////////////////////////////////////////////////////////////////
 // TASKS
@@ -92,11 +93,15 @@ private void Build(string cfg)
     //        NoIncremental = true
     //    });
     //}
-    
     MSBuild(SolutionFile(), settings =>
     {
         settings.SetConfiguration(cfg);
         settings.SetMaxCpuCount(0);
+        if (!IsRunningOnWindows())
+        { 
+            // Hack for Linux bug - Missing MSBuild path.
+            settings.ToolPath = new FilePath(MSBuildLinuxPath());
+        }
     });
 }
 
@@ -141,6 +146,11 @@ private void Pack(string cfg)
             settings.SetMaxCpuCount(0);
             settings.WithTarget("pack");
             settings.WithProperty("IncludeSymbols", new[] { "true" });
+            if (!IsRunningOnWindows())
+            { 
+                // Hack for Linux bug - Missing MSBuild path.
+                settings.ToolPath = new FilePath(MSBuildLinuxPath());
+            }
         });
 
         var packDir = project.GetDirectory().Combine("bin").Combine(cfg);
