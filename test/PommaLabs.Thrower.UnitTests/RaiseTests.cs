@@ -27,7 +27,6 @@ using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.IO;
-using System.Threading.Tasks;
 
 namespace PommaLabs.Thrower.UnitTests
 {
@@ -574,37 +573,63 @@ namespace PommaLabs.Thrower.UnitTests
         }
 
         [Test]
+        public void TrueCond()
+        {
+            Raise<Exception>.IfNot(true);
+        }
+
+#if !NET35
+
+        [Test]
         public void ThreadedUsage1()
         {
-            var tasks = new Task[10];
-            for (var i = 0; i < tasks.Length; ++i)
+            System.Threading.Tasks.Parallel.For(0, 10, (i, s) =>
             {
-                tasks[i] = Task.Factory.StartNew(ThreadTest);
+                ThreadTest();
+            });
+        }
+
+        [Test]
+        public void ThreadedUsage2()
+        {
+            System.Threading.Tasks.Parallel.For(0, 10, (i, s) =>
+            {
+                if (i % 2 == 0) ThreadTest(); else WrongThreadTest();
+            });
+        }
+
+#else
+
+        [Test]
+        public void ThreadedUsage1()
+        {
+            var threads = new System.Threading.Thread[10];
+            for (var i = 0; i < threads.Length; ++i)
+            {
+                threads[i] = new System.Threading.Thread(ThreadTest);
+                threads[i].Start();
             }
-            for (var i = 0; i < tasks.Length; ++i)
+            for (var i = 0; i < threads.Length; ++i)
             {
-                tasks[i].Wait();
+                threads[i].Join();
             }
         }
 
         [Test]
         public void ThreadedUsage2()
         {
-            var tasks = new Task[10];
-            for (var i = 0; i < tasks.Length; ++i)
+            var threads = new System.Threading.Thread[10];
+            for (var i = 0; i < threads.Length; ++i)
             {
-                tasks[i] = (i % 2 == 0) ? Task.Factory.StartNew(ThreadTest) : Task.Factory.StartNew(WrongThreadTest);
+                threads[i] = (i % 2 == 0) ? new System.Threading.Thread(ThreadTest) : new System.Threading.Thread(WrongThreadTest);
+                threads[i].Start();
             }
-            for (var i = 0; i < tasks.Length; ++i)
+            for (var i = 0; i < threads.Length; ++i)
             {
-                tasks[i].Wait();
+                threads[i].Join();
             }
         }
 
-        [Test]
-        public void TrueCond()
-        {
-            Raise<Exception>.IfNot(true);
-        }
+#endif
     }
 }

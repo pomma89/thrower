@@ -1,4 +1,4 @@
-#tool nuget:?package=NUnit.ConsoleRunner&version=3.6.1
+#tool nuget:?package=NUnit.ConsoleRunner&version=3.7.0
 
 //////////////////////////////////////////////////////////////////////
 // ARGUMENTS
@@ -10,8 +10,9 @@ var target = Argument("target", "Default");
 // PREPARATION
 //////////////////////////////////////////////////////////////////////
 
-var solutionFile = "./Thrower.sln";
-var artifactsDir = "./artifacts";
+private string SolutionFile() { return "./Thrower.sln"; }
+private string ArtifactsDir() { return "./artifacts"; }
+private string MSBuildLinuxPath() { return @"/usr/lib/mono/msbuild/15.0/bin/MSBuild.dll"; }
 
 //////////////////////////////////////////////////////////////////////
 // TASKS
@@ -20,7 +21,7 @@ var artifactsDir = "./artifacts";
 Task("Clean")
     .Does(() =>
 {
-    CleanDirectory(artifactsDir);
+    CleanDirectory(ArtifactsDir());
 });
 
 Task("Restore")
@@ -37,32 +38,32 @@ Task("Build-Debug")
     Build("Debug");
 });
 
-Task("Test-Debug")
-    .IsDependentOn("Build-Debug")
-    .Does(() =>
-{
-    Test("Debug");
-});
-
 Task("Build-Release")
-    .IsDependentOn("Test-Debug")
+    .IsDependentOn("Build-Debug")
     .Does(() => 
 {
     Build("Release");
 });
 
-Task("Test-Release")
-    .IsDependentOn("Build-Release")
-    .Does(() =>
-{
-    Test("Release");
-});
-
 Task("Pack-Release")
-    .IsDependentOn("Test-Release")
+    .IsDependentOn("Build-Release")
     .Does(() => 
 {
     Pack("Release");
+});
+
+Task("Test-Debug")
+    .IsDependentOn("Pack-Release")
+    .Does(() =>
+{
+    Test("Debug");
+});
+
+Task("Test-Release")
+    .IsDependentOn("Test-Debug")
+    .Does(() =>
+{
+    Test("Release");
 });
 
 //////////////////////////////////////////////////////////////////////
@@ -70,7 +71,7 @@ Task("Pack-Release")
 //////////////////////////////////////////////////////////////////////
 
 Task("Default")
-    .IsDependentOn("Pack-Release");
+    .IsDependentOn("Test-Release");
 
 //////////////////////////////////////////////////////////////////////
 // EXECUTION
@@ -92,12 +93,18 @@ private void Build(string cfg)
     //        NoIncremental = true
     //    });
     //}
-	
-	MSBuild(solutionFile, settings =>
-	{
+
+    MSBuild(SolutionFile(), settings =>
+    {
         settings.SetConfiguration(cfg);
-		settings.SetMaxCpuCount(0);
-	});
+        settings.SetMaxCpuCount(0);
+        settings.SetVerbosity(Verbosity.Quiet);
+        if (!IsRunningOnWindows())
+        { 
+            // Hack for Linux bug - Missing MSBuild path.
+            settings.ToolPath = new FilePath(MSBuildLinuxPath());
+        }
+    });
 }
 
 private void Test(string cfg)
@@ -107,43 +114,49 @@ private void Test(string cfg)
     //    NoResults = true
     //});
 
-	const string flags = "--noheader --noresult";
-	const string errMsg = " - Unit test failure - ";
+    const string flags = "--noheader --noresult --stoponerror";
+    const string errMsg = " - Unit test failure - ";
 
-	Parallel.ForEach(GetFiles("./test/**/bin/{cfg}/*/*.UnitTests.exe".Replace("{cfg}", cfg)), netExe => 
-	{
-		if (StartProcess(netExe, flags) != 0)
-		{
-			throw new Exception(cfg + errMsg + netExe);
-		}
-	});
+    Parallel.ForEach(GetFiles("./test/*.UnitTests/**/bin/{cfg}/*/*.UnitTests.exe".Replace("{cfg}", cfg)), netExe => 
+    {
+        if (StartProcess(netExe, flags) != 0)
+        {
+            throw new Exception(cfg + errMsg + netExe);
+        }
+    });
 
-	Parallel.ForEach(GetFiles("./test/**/bin/{cfg}/*/*.UnitTests.dll".Replace("{cfg}", cfg)), netCoreDll =>
-	{
-		DotNetCoreExecute(netCoreDll, flags);
-	});
+    Parallel.ForEach(GetFiles("./test/*.UnitTests/**/bin/{cfg}/*/*.UnitTests.dll".Replace("{cfg}", cfg)), netCoreDll =>
+    {
+        DotNetCoreExecute(netCoreDll, flags);
+    });
 }
 
 private void Pack(string cfg)
 {
-	Parallel.ForEach(GetFiles("./src/**/*.csproj"), project =>
-	{
+    Parallel.ForEach(GetFiles("./src/**/*.csproj"), project =>
+    {
         //DotNetCorePack(project.FullPath, new DotNetCorePackSettings
         //{
         //    Configuration = cfg,
-        //    OutputDirectory = artifactsDir,
+        //    OutputDirectory = ArtifactsDir(),
         //    NoBuild = true
         //});
 
-		MSBuild(project, settings =>
-		{
-			settings.SetConfiguration(cfg);
-			settings.SetMaxCpuCount(0);
-			settings.WithTarget("pack");
-			settings.WithProperty("IncludeSymbols", new[] { "true" });
-		});
+        MSBuild(project, settings =>
+        {
+            settings.SetConfiguration(cfg);
+            settings.SetMaxCpuCount(0);
+            settings.SetVerbosity(Verbosity.Quiet);
+            settings.WithTarget("pack");
+            settings.WithProperty("IncludeSymbols", new[] { "true" });
+            if (!IsRunningOnWindows())
+            { 
+                // Hack for Linux bug - Missing MSBuild path.
+                settings.ToolPath = new FilePath(MSBuildLinuxPath());
+            }
+        });
 
-		var packDir = project.GetDirectory().Combine("bin").Combine(cfg);
-		MoveFiles(GetFiles(packDir + "/*.nupkg"), artifactsDir);
-	});
+        var packDir = project.GetDirectory().Combine("bin").Combine(cfg);
+        MoveFiles(GetFiles(packDir + "/*.nupkg"), ArtifactsDir());
+    });
 }

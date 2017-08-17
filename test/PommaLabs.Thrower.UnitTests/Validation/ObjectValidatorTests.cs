@@ -26,12 +26,49 @@ using PommaLabs.Thrower.Validation;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 
 namespace PommaLabs.Thrower.UnitTests.Validation
 {
     internal sealed class ObjectValidatorTests : AbstractTests
     {
+#if !NET35
+
+        [TestCase(1)]
+        [TestCase(10)]
+        [TestCase(100)]
+        [TestCase(1000)]
+        [TestCase(10000)]
+        public void Validate_TestClass_Concurrent(int threadCount)
+        {
+            System.Threading.Tasks.Parallel.For(0, threadCount, (i, s) =>
+            {
+                Validate_TestClass();
+            });
+        }
+
+#else
+
+        [TestCase(1)]
+        [TestCase(10)]
+        [TestCase(100)]
+        [TestCase(1000)]
+        [TestCase(10000)]
+        public void Validate_TestClass_Concurrent(int threadCount)
+        {
+            var threads = new System.Threading.Thread[threadCount];
+            for (var i = 0; i < threads.Length; ++i)
+            {
+                threads[i] = new System.Threading.Thread(Validate_TestClass);
+                threads[i].Start();
+            }
+            for (var i = 0; i < threads.Length; ++i)
+            {
+                threads[i].Join();
+            }
+        }
+
+#endif
+
         [Test]
         public void Validate_TestClass()
         {
@@ -51,24 +88,6 @@ namespace PommaLabs.Thrower.UnitTests.Validation
             Assert.AreEqual(1, validationErrors.Count(ve => ve.Path == r + "." + nameof(TestClass.RequiredEnumerableWithRequiredItemsWithNullProperty) + "[1]." + nameof(TestClass.MyTuple.RequiredNullableDouble)));
             Assert.AreEqual(1, validationErrors.Count(ve => ve.Path == r + "." + nameof(TestClass.OptionalCollectionWhichShouldNotBeEmpty)));
             Assert.AreEqual(1, validationErrors.Count(ve => ve.Path == r + "." + nameof(TestClass.OptionalCollectionWhichShouldBeSmaller)));
-        }
-
-        [TestCase(1)]
-        [TestCase(10)]
-        [TestCase(100)]
-        [TestCase(1000)]
-        [TestCase(10000)]
-        public void Validate_TestClass_Concurrent(int threadCount)
-        {
-            var tasks = new Task[threadCount];
-            for (var i = 0; i < tasks.Length; ++i)
-            {
-                tasks[i] = Task.Factory.StartNew(Validate_TestClass);
-            }
-            for (var i = 0; i < tasks.Length; ++i)
-            {
-                tasks[i].Wait();
-            }
         }
 
         [Test]

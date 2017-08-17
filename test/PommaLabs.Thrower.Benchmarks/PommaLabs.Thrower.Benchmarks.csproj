@@ -1,15 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
-
   <PropertyGroup>
-    <TargetFramework>netcoreapp1.1</TargetFramework>
-    <AssemblyName>PommaLabs.Thrower.Benchmarks</AssemblyName>
-    <OutputType>Exe</OutputType>
-    <PackageId>PommaLabs.Thrower.Benchmarks</PackageId>
-    <RuntimeFrameworkVersion>1.1.1</RuntimeFrameworkVersion>
-    <PackageTargetFallback>$(PackageTargetFallback);dnxcore50</PackageTargetFallback>
-    <GenerateAssemblyConfigurationAttribute>false</GenerateAssemblyConfigurationAttribute>
-    <GenerateAssemblyCompanyAttribute>false</GenerateAssemblyCompanyAttribute>
-    <GenerateAssemblyProductAttribute>false</GenerateAssemblyProductAttribute>
+    <TargetFramework>netcoreapp2.0</TargetFramework>
+    <OutputType>exe</OutputType>
   </PropertyGroup>
 
   <ItemGroup>
@@ -17,7 +9,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="BenchmarkDotNet" Version="0.10.3" />
+    <PackageReference Include="BenchmarkDotNet" Version="0.10.9" />
   </ItemGroup>
-
 </Project>

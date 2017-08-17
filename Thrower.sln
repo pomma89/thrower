@@ -1,13 +1,13 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.26403.0
+VisualStudioVersion = 15.0.26730.3
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "root", "root", "{40BFDC8F-025F-4E62-A6A2-EFA3FEB24059}"
 	ProjectSection(SolutionItems) = preProject
 		.gitattributes = .gitattributes
 		.gitignore = .gitignore
-		appveyor.yml = appveyor.yml
+		.travis.yml = .travis.yml
 		build.cake = build.cake
 		CHANGELOG.md = CHANGELOG.md
 		LICENSE.md = LICENSE.md
@@ -75,5 +75,8 @@ Global
 		{88CA4B1D-F511-4DA7-9BE1-71AC78026D39} = {CAFA8672-FBD1-4D46-AB48-CF4EB2F2AC02}
 		{E67A4C51-3C6B-4D85-9D0B-7E91434C5D93} = {CAFA8672-FBD1-4D46-AB48-CF4EB2F2AC02}
 		{99B9948A-E0E2-464C-AF42-982004AAFE4D} = {40BFDC8F-025F-4E62-A6A2-EFA3FEB24059}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {F79CE40E-E25C-4217-BC41-6D6EECDB2A92}
 	EndGlobalSection
 EndGlobal

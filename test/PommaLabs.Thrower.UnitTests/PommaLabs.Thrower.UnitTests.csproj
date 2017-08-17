@@ -1,13 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <AssemblyName>PommaLabs.Thrower.UnitTests</AssemblyName>
-    <PackageId>PommaLabs.Thrower.UnitTests</PackageId>
-    <TargetFrameworks>netcoreapp1.1;net35;net40;net45;net46</TargetFrameworks>
-    <RuntimeFrameworkVersion>1.1.1</RuntimeFrameworkVersion>
+    <TargetFrameworks>netcoreapp1.1;netcoreapp2.0;net35;net40;net45;net46</TargetFrameworks>
     <OutputType>Exe</OutputType>
-    <GenerateAssemblyConfigurationAttribute>false</GenerateAssemblyConfigurationAttribute>
-    <GenerateAssemblyCompanyAttribute>false</GenerateAssemblyCompanyAttribute>
-    <GenerateAssemblyProductAttribute>false</GenerateAssemblyProductAttribute>
   </PropertyGroup>
 
   <ItemGroup>
@@ -15,20 +9,26 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Newtonsoft.Json" Version="10.0.2" />
-    <PackageReference Include="NUnit" Version="3.6.1" />
-    <PackageReference Include="NUnit.ConsoleRunner" Version="3.6.1" />
-    <PackageReference Include="NUnitLite" Version="3.6.1" />
-    <PackageReference Include="Shouldly" Version="2.8.2" />
+    <PackageReference Include="Newtonsoft.Json" Version="10.0.3" />
+    <PackageReference Include="NUnit" Version="3.7.1" />
+    <PackageReference Include="NUnit.ConsoleRunner" Version="3.7.0" />
+    <PackageReference Include="NUnitLite" Version="3.7.2" />
+    <PackageReference Include="Shouldly" Version="2.8.3" />
   </ItemGroup>
 
   <PropertyGroup Condition=" '$(TargetFramework)' == 'netcoreapp1.1' ">
     <DefineConstants>$(DefineConstants);NETSTD16</DefineConstants>
-    <PackageTargetFallback>$(PackageTargetFallback);dnxcore50</PackageTargetFallback>
   </PropertyGroup>
 
   <ItemGroup Condition=" '$(TargetFramework)' == 'netcoreapp1.1' ">
     <PackageReference Include="System.Data.Common" Version="4.3.0" />
+  </ItemGroup>
+
+  <PropertyGroup Condition=" '$(TargetFramework)' == 'netcoreapp2.0' ">
+    <DefineConstants>$(DefineConstants);NETSTD20</DefineConstants>
+  </PropertyGroup>
+
+  <ItemGroup Condition=" '$(TargetFramework)' == 'netcoreapp2.0' ">
   </ItemGroup>
 
   <PropertyGroup Condition=" '$(TargetFramework)' == 'net35' ">
@@ -36,7 +36,6 @@
   </PropertyGroup>
 
   <ItemGroup Condition=" '$(TargetFramework)' == 'net35' ">
-    <PackageReference Include="System.Threading.dll" Version="1.0.2856" />
     <Reference Include="System" />
     <Reference Include="System.Xml" />
   </ItemGroup>

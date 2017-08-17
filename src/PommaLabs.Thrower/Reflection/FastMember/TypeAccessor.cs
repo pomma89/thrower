@@ -368,14 +368,14 @@ namespace PommaLabs.Thrower.Reflection.FastMember
             if (assembly == null)
             {
                 var name = new AssemblyName("FastMember_dynamic");
-#if NETSTD13
+#if (NETSTD13 || NETSTD20)
                 assembly = AssemblyBuilder.DefineDynamicAssembly(name, AssemblyBuilderAccess.Run);
 #else
                 assembly = AppDomain.CurrentDomain.DefineDynamicAssembly(name, AssemblyBuilderAccess.Run);
 #endif
                 module = assembly.DefineDynamicModule(name.Name);
             }
-#if NETSTD13
+#if (NETSTD13 || NETSTD20)
             var attribs = typeof(TypeAccessor).GetTypeInfo().Attributes;
 #else
             var attribs = typeof(TypeAccessor).Attributes;
@@ -431,7 +431,7 @@ namespace PommaLabs.Thrower.Reflection.FastMember
             il.Emit(OpCodes.Ret);
             tb.DefineMethodOverride(body, baseMethod);
 
-#if NETSTD13
+#if (NETSTD13 || NETSTD20)
             var typeToBeCreated = tb.CreateTypeInfo().AsType();
 #else
             var typeToBeCreated = tb.CreateType();

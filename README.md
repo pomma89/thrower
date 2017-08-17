@@ -5,8 +5,8 @@
 
 ## Summary ##
 
-* Latest release version: `v4.1.3`
-* Build status on [AppVeyor](https://ci.appveyor.com): [![Build status](https://ci.appveyor.com/api/projects/status/xjkp8gn0cf4s7qbg?svg=true)](https://ci.appveyor.com/project/pomma89/thrower)
+* Latest release version: `v4.2.0`
+* Build status on [Travis CI](https://travis-ci.org): [![Build Status](https://travis-ci.org/pomma89/Thrower.svg?branch=master)](https://travis-ci.org/pomma89/Thrower)
 * [Doxygen](http://www.stack.nl/~dimitri/doxygen/index.html) documentation:
     + [HTML](http://pomma89.altervista.org/thrower/doc/html/index.html)
     + [CHM](http://pomma89.altervista.org/thrower/doc/refman.chm)

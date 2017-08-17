@@ -2,20 +2,16 @@
   <PropertyGroup>
     <AssemblyName>PommaLabs.Thrower</AssemblyName>
     <AssemblyTitle>Thrower - Compact preconditions helpers</AssemblyTitle>
-    <VersionPrefix>4.1.3</VersionPrefix>
-    <TargetFrameworks>netstandard1.0;netstandard1.1;netstandard1.3;net35;net40;net45</TargetFrameworks>
+    <VersionPrefix>4.2.0</VersionPrefix>
+    <AssemblyVersion>4.0.0</AssemblyVersion>
+    <TargetFrameworks>netstandard1.0;netstandard1.1;netstandard1.3;netstandard2.0;net35;net40;net45</TargetFrameworks>
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
     <AssemblyOriginatorKeyFile>../../pomma89.snk</AssemblyOriginatorKeyFile>
     <SignAssembly>true</SignAssembly>
-    <PublicSign Condition=" '$(OS)' != 'Windows_NT' ">true</PublicSign>
-    <NetStandardImplicitPackageVersion>1.6.1</NetStandardImplicitPackageVersion>
     <GenerateAssemblyVersionAttribute>false</GenerateAssemblyVersionAttribute>
-    <GenerateAssemblyConfigurationAttribute>false</GenerateAssemblyConfigurationAttribute>
-    <GenerateAssemblyCompanyAttribute>false</GenerateAssemblyCompanyAttribute>
-    <GenerateAssemblyProductAttribute>false</GenerateAssemblyProductAttribute>
   </PropertyGroup>
 
-  <PropertyGroup>
+  <PropertyGroup Label="NuGet">
     <PackageId>Thrower</PackageId>
     <Title>Thrower - Compact preconditions helpers</Title>
     <Summary>Fully managed library providing convenience methods to perform argument checks.</Summary>
@@ -39,43 +35,50 @@
 
   <PropertyGroup Condition=" '$(TargetFramework)' == 'netstandard1.0' ">
     <DefineConstants>$(DefineConstants);NETSTD10;LIBLOG_PUBLIC;LIBLOG_PORTABLE</DefineConstants>
-    <PackageTargetFallback>$(PackageTargetFallback);dnxcore50</PackageTargetFallback>
   </PropertyGroup>
 
   <ItemGroup Condition=" '$(TargetFramework)' == 'netstandard1.0' ">
-    <PackageReference Include="Microsoft.CSharp" Version="4.3.0" />
-    <PackageReference Include="System.ComponentModel.Annotations" Version="4.3.0" />
+    <PackageReference Include="Microsoft.CSharp" Version="4.4.0" />
   </ItemGroup>
 
   <PropertyGroup Condition=" '$(TargetFramework)' == 'netstandard1.1' ">
     <DefineConstants>$(DefineConstants);NETSTD11;LIBLOG_PUBLIC;LIBLOG_PORTABLE</DefineConstants>
-    <PackageTargetFallback>$(PackageTargetFallback);dnxcore50</PackageTargetFallback>
   </PropertyGroup>
 
   <ItemGroup Condition=" '$(TargetFramework)' == 'netstandard1.1' ">
-    <PackageReference Include="Microsoft.CSharp" Version="4.3.0" />
-    <PackageReference Include="System.ComponentModel.Annotations" Version="4.3.0" />
+    <PackageReference Include="Microsoft.CSharp" Version="4.4.0" />
+    <PackageReference Include="System.ComponentModel.Annotations" Version="4.4.0" />
   </ItemGroup>
 
   <PropertyGroup Condition=" '$(TargetFramework)' == 'netstandard1.3' ">
-    <DefineConstants>$(DefineConstants);NETSTD13;LIBLOG_PUBLIC;LIBLOG_PORTABLE</DefineConstants>
-    <PackageTargetFallback>$(PackageTargetFallback);dnxcore50</PackageTargetFallback>
+    <DefineConstants>$(DefineConstants);NETSTD13;FAST_MEMBER;LIBLOG_PUBLIC;LIBLOG_PORTABLE</DefineConstants>
   </PropertyGroup>
 
   <ItemGroup Condition=" '$(TargetFramework)' == 'netstandard1.3' ">
-    <PackageReference Include="Microsoft.CSharp" Version="4.3.0" />
+    <PackageReference Include="Microsoft.CSharp" Version="4.4.0" />
     <PackageReference Include="System.AppContext" Version="4.3.0" />
     <PackageReference Include="System.Collections.NonGeneric" Version="4.3.0" />
-    <PackageReference Include="System.ComponentModel.Annotations" Version="4.3.0" />
+    <PackageReference Include="System.ComponentModel.Annotations" Version="4.4.0" />
     <PackageReference Include="System.Data.Common" Version="4.3.0" />
     <PackageReference Include="System.Reflection.Emit" Version="4.3.0" />
     <PackageReference Include="System.Reflection.Emit.Lightweight" Version="4.3.0" />
-    <PackageReference Include="System.Reflection.TypeExtensions" Version="4.3.0" />
+    <PackageReference Include="System.Reflection.TypeExtensions" Version="4.4.0" />
     <PackageReference Include="System.Runtime.Serialization.Formatters" Version="4.3.0" />
   </ItemGroup>
 
+  <PropertyGroup Condition=" '$(TargetFramework)' == 'netstandard2.0' ">
+    <DefineConstants>$(DefineConstants);NETSTD20;FAST_MEMBER;LIBLOG_PUBLIC</DefineConstants>
+  </PropertyGroup>
+
+  <ItemGroup Condition=" '$(TargetFramework)' == 'netstandard2.0' ">
+    <PackageReference Include="Microsoft.CSharp" Version="4.4.0" />
+    <PackageReference Include="System.ComponentModel.Annotations" Version="4.4.0" />
+    <PackageReference Include="System.Reflection.Emit" Version="4.3.0" />
+    <PackageReference Include="System.Reflection.Emit.Lightweight" Version="4.3.0" />
+  </ItemGroup>
+
   <PropertyGroup Condition=" '$(TargetFramework)' == 'net35' ">
-    <DefineConstants>$(DefineConstants);NET35;LIBLOG_PUBLIC</DefineConstants>
+    <DefineConstants>$(DefineConstants);NET35;FAST_MEMBER;LIBLOG_PUBLIC</DefineConstants>
   </PropertyGroup>
 
   <ItemGroup Condition=" '$(TargetFramework)' == 'net35' ">
@@ -84,7 +87,7 @@
   </ItemGroup>
 
   <PropertyGroup Condition=" '$(TargetFramework)' == 'net40' ">
-    <DefineConstants>$(DefineConstants);NET40;LIBLOG_PUBLIC</DefineConstants>
+    <DefineConstants>$(DefineConstants);NET40;FAST_MEMBER;LIBLOG_PUBLIC</DefineConstants>
   </PropertyGroup>
 
   <ItemGroup Condition=" '$(TargetFramework)' == 'net40' ">
@@ -95,13 +98,13 @@
   </ItemGroup>
 
   <PropertyGroup Condition=" '$(TargetFramework)' == 'net45' ">
-    <DefineConstants>$(DefineConstants);NET45;LIBLOG_PUBLIC</DefineConstants>
+    <DefineConstants>$(DefineConstants);NET45;FAST_MEMBER;LIBLOG_PUBLIC</DefineConstants>
   </PropertyGroup>
 
   <ItemGroup Condition=" '$(TargetFramework)' == 'net45' ">
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Data" />
-    <Reference Include="System" />
-    <Reference Include="Microsoft.CSharp" />
   </ItemGroup>
 </Project>
