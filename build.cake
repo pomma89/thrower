@@ -93,6 +93,7 @@ private void Build(string cfg)
     //        NoIncremental = true
     //    });
     //}
+
     MSBuild(SolutionFile(), settings =>
     {
         settings.SetConfiguration(cfg);
