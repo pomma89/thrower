@@ -576,29 +576,19 @@ namespace PommaLabs.Thrower.UnitTests
         [Test]
         public void ThreadedUsage1()
         {
-            var tasks = new Task[10];
-            for (var i = 0; i < tasks.Length; ++i)
+            Parallel.For(0, 10, (i, s) =>
             {
-                tasks[i] = Task.Factory.StartNew(ThreadTest);
-            }
-            for (var i = 0; i < tasks.Length; ++i)
-            {
-                tasks[i].Wait();
-            }
+                ThreadTest();
+            });
         }
 
         [Test]
         public void ThreadedUsage2()
         {
-            var tasks = new Task[10];
-            for (var i = 0; i < tasks.Length; ++i)
+            Parallel.For(0, 10, (i, s) =>
             {
-                tasks[i] = (i % 2 == 0) ? Task.Factory.StartNew(ThreadTest) : Task.Factory.StartNew(WrongThreadTest);
-            }
-            for (var i = 0; i < tasks.Length; ++i)
-            {
-                tasks[i].Wait();
-            }
+                if (i % 2 == 0) ThreadTest(); else WrongThreadTest();
+            });
         }
 
         [Test]
