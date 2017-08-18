@@ -28,7 +28,7 @@ Task("Restore")
     .IsDependentOn("Clean")
     .Does(() =>
 {
-    DotNetCoreRestore();
+    Restore();
 });
 
 Task("Build-Debug")
@@ -83,16 +83,30 @@ RunTarget(target);
 // HELPERS
 //////////////////////////////////////////////////////////////////////
 
+private void Restore()
+{
+    //DotNetCoreRestore();
+
+    MSBuild(SolutionFile(), settings =>
+    {
+        settings.SetMaxCpuCount(0);
+        settings.SetVerbosity(Verbosity.Quiet);
+        settings.WithTarget("restore");
+        if (!IsRunningOnWindows())
+        { 
+            // Hack for Linux bug - Missing MSBuild path.
+            settings.ToolPath = new FilePath(MSBuildLinuxPath());
+        }
+    });
+}
+
 private void Build(string cfg)
 {
-    //foreach(var project in GetFiles("./**/*.csproj"))
+    //DotNetCoreBuild(SolutionFile(), new DotNetCoreBuildSettings
     //{
-    //    DotNetCoreBuild(project.GetDirectory().FullPath, new DotNetCoreBuildSettings
-    //    {
-    //        Configuration = cfg,
-    //        NoIncremental = true
-    //    });
-    //}
+    //    Configuration = cfg,
+    //    NoIncremental = true
+    //});
 
     MSBuild(SolutionFile(), settings =>
     {
@@ -139,7 +153,9 @@ private void Pack(string cfg)
         //{
         //    Configuration = cfg,
         //    OutputDirectory = ArtifactsDir(),
-        //    NoBuild = true
+        //    NoBuild = true,
+        //    IncludeSource = true,
+        //    IncludeSymbols = true
         //});
 
         MSBuild(project, settings =>
@@ -148,6 +164,7 @@ private void Pack(string cfg)
             settings.SetMaxCpuCount(0);
             settings.SetVerbosity(Verbosity.Quiet);
             settings.WithTarget("pack");
+            settings.WithProperty("IncludeSource", new[] { "true" });
             settings.WithProperty("IncludeSymbols", new[] { "true" });
             if (!IsRunningOnWindows())
             { 
