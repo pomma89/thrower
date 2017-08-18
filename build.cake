@@ -66,12 +66,19 @@ Task("Test-Release")
     Test("Release");
 });
 
+Task("Docs")
+    .IsDependentOn("Test-Release")
+    .Does(() =>
+{
+    Docs();
+});
+
 //////////////////////////////////////////////////////////////////////
 // TASK TARGETS
 //////////////////////////////////////////////////////////////////////
 
 Task("Default")
-    .IsDependentOn("Test-Release");
+    .IsDependentOn("Docs");
 
 //////////////////////////////////////////////////////////////////////
 // EXECUTION
@@ -176,4 +183,14 @@ private void Pack(string cfg)
         var packDir = project.GetDirectory().Combine("bin").Combine(cfg);
         MoveFiles(GetFiles(packDir + "/*.nupkg"), ArtifactsDir());
     });
+}
+
+private void Docs()
+{
+    const string flags = "build -i pages -o docs";
+
+    if (IsRunningOnWindows())
+    {
+    
+    }
 }
