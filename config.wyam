@@ -1,0 +1,10 @@
+#recipe Docs
+
+// Customize your settings and add new ones here
+Settings[Keys.CleanOutputPath] = true;
+Settings[Keys.Host] = "pomma89.github.io";
+Settings[Keys.LinkRoot] = "/Thrower";
+Settings[Keys.LinksUseHttps] = true;
+Settings[DocsKeys.Title] = "PommaLabs.Thrower";
+
+// Add any pipeline customizations here
