@@ -21,6 +21,7 @@
 // DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT
 // OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
+using JetBrains.Annotations;
 using PommaLabs.Thrower.Reflection;
 using System;
 using System.Diagnostics.CodeAnalysis;
@@ -94,7 +95,7 @@ namespace PommaLabs.Thrower.ExceptionHandlers
         ///   If given condition is true, an exception of type <typeparamref name="TException"/> is thrown.
         /// </exception>
         [SuppressMessage("Microsoft.Design", "CA1004:GenericMethodsShouldProvideTypeParameter")]
-        public void IfIsAssignableFrom<TType>(object instance, string message = null)
+        public void IfIsAssignableFrom<TType>([NoEnumeration] object instance, string message = null)
         {
             if (ReferenceEquals(instance, null) || PortableTypeInfo.IsAssignableFrom(instance, typeof(TType)))
             {
@@ -115,7 +116,7 @@ namespace PommaLabs.Thrower.ExceptionHandlers
         ///   If given condition is true, an exception of type <typeparamref name="TException"/> is thrown.
         /// </exception>
         [SuppressMessage("Microsoft.Design", "CA1004:GenericMethodsShouldProvideTypeParameter")]
-        public void IfIsNotAssignableFrom<TType>(object instance, string message = null)
+        public void IfIsNotAssignableFrom<TType>([NoEnumeration] object instance, string message = null)
         {
             if (!PortableTypeInfo.IsAssignableFrom(instance, typeof(TType)))
             {
@@ -133,7 +134,7 @@ namespace PommaLabs.Thrower.ExceptionHandlers
         /// <exception cref="Exception">
         ///   If given condition is true, an exception of type <typeparamref name="TException"/> is thrown.
         /// </exception>
-        public void IfIsAssignableFrom(object instance, Type type, string message = null)
+        public void IfIsAssignableFrom([NoEnumeration] object instance, Type type, string message = null)
         {
             if (PortableTypeInfo.IsAssignableFrom(instance, type))
             {
@@ -151,7 +152,7 @@ namespace PommaLabs.Thrower.ExceptionHandlers
         /// <exception cref="Exception">
         ///   If given condition is true, an exception of type <typeparamref name="TException"/> is thrown.
         /// </exception>
-        public void IfIsNotAssignableFrom(object instance, Type type, string message = null)
+        public void IfIsNotAssignableFrom([NoEnumeration] object instance, Type type, string message = null)
         {
             if (ReferenceEquals(instance, null) || !PortableTypeInfo.IsAssignableFrom(instance, type))
             {
@@ -170,7 +171,7 @@ namespace PommaLabs.Thrower.ExceptionHandlers
         ///   If given condition is true, an exception of type <typeparamref name="TException"/> is thrown.
         /// </exception>
         [SuppressMessage("Microsoft.Design", "CA1004:GenericMethodsShouldProvideTypeParameter")]
-        public void IfIsInstanceOf<TType>(object instance, string message = null)
+        public void IfIsInstanceOf<TType>([NoEnumeration] object instance, string message = null)
         {
             if (instance is TType)
             {
@@ -189,7 +190,7 @@ namespace PommaLabs.Thrower.ExceptionHandlers
         ///   If given condition is true, an exception of type <typeparamref name="TException"/> is thrown.
         /// </exception>
         [SuppressMessage("Microsoft.Design", "CA1004:GenericMethodsShouldProvideTypeParameter")]
-        public void IfIsNotInstanceOf<TType>(object instance, string message = null)
+        public void IfIsNotInstanceOf<TType>([NoEnumeration] object instance, string message = null)
         {
             if (!(instance is TType))
             {
@@ -207,7 +208,7 @@ namespace PommaLabs.Thrower.ExceptionHandlers
         /// <exception cref="Exception">
         ///   If given condition is true, an exception of type <typeparamref name="TException"/> is thrown.
         /// </exception>
-        public void IfIsInstanceOf(object instance, Type type, string message = null)
+        public void IfIsInstanceOf([NoEnumeration] object instance, Type type, string message = null)
         {
             if (PortableTypeInfo.IsInstanceOf(instance, type))
             {
@@ -225,7 +226,7 @@ namespace PommaLabs.Thrower.ExceptionHandlers
         /// <exception cref="Exception">
         ///   If given condition is true, an exception of type <typeparamref name="TException"/> is thrown.
         /// </exception>
-        public void IfIsNotInstanceOf(object instance, Type type, string message = null)
+        public void IfIsNotInstanceOf([NoEnumeration] object instance, Type type, string message = null)
         {
             if (!PortableTypeInfo.IsInstanceOf(instance, type))
             {

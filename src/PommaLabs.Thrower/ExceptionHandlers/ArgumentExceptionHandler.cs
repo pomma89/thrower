@@ -21,6 +21,7 @@
 // DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT
 // OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
+using JetBrains.Annotations;
 using PommaLabs.Thrower.Validation;
 using System;
 using System.Collections.Generic;
@@ -122,7 +123,7 @@ namespace PommaLabs.Thrower.ExceptionHandlers
         /// <param name="comparand">Second argument to be tested for equality.</param>
         /// <exception cref="ArgumentException"><paramref name="argument"/> is equal to <paramref name="comparand"/>.</exception>
         [MethodImpl(Raise.MethodImplOptions)]
-        public void IfIsEqualTo<TArg1, TArg2>(TArg1 argument, TArg2 comparand)
+        public void IfIsEqualTo<TArg1, TArg2>([NoEnumeration] TArg1 argument, [NoEnumeration] TArg2 comparand)
         {
             if (Equals(argument, comparand))
             {
@@ -142,7 +143,7 @@ namespace PommaLabs.Thrower.ExceptionHandlers
         ///   <paramref name="message"/> and <paramref name="argumentName"/> are strictly required arguments.
         /// </remarks>
         [MethodImpl(Raise.MethodImplOptions)]
-        public void IfIsEqualTo<TArg1, TArg2>(TArg1 argument, TArg2 comparand, string argumentName, string message = null)
+        public void IfIsEqualTo<TArg1, TArg2>([NoEnumeration] TArg1 argument, [NoEnumeration] TArg2 comparand, string argumentName, string message = null)
         {
             if (Equals(argument, comparand))
             {
@@ -165,7 +166,7 @@ namespace PommaLabs.Thrower.ExceptionHandlers
         ///   <paramref name="argument"/> is not equal to <paramref name="comparand"/>.
         /// </exception>
         [MethodImpl(Raise.MethodImplOptions)]
-        public void IfIsNotEqualTo<TArg1, TArg2>(TArg1 argument, TArg2 comparand)
+        public void IfIsNotEqualTo<TArg1, TArg2>([NoEnumeration] TArg1 argument, [NoEnumeration] TArg2 comparand)
         {
             if (!Equals(argument, comparand))
             {
@@ -187,7 +188,7 @@ namespace PommaLabs.Thrower.ExceptionHandlers
         ///   <paramref name="message"/> and <paramref name="argumentName"/> are strictly required arguments.
         /// </remarks>
         [MethodImpl(Raise.MethodImplOptions)]
-        public void IfIsNotEqualTo<TArg1, TArg2>(TArg1 argument, TArg2 comparand, string argumentName, string message = null)
+        public void IfIsNotEqualTo<TArg1, TArg2>([NoEnumeration] TArg1 argument, [NoEnumeration] TArg2 comparand, string argumentName, string message = null)
         {
             if (!Equals(argument, comparand))
             {
@@ -211,7 +212,7 @@ namespace PommaLabs.Thrower.ExceptionHandlers
         ///   <paramref name="argument"/> is the same object as <paramref name="comparand"/>.
         /// </exception>
         [MethodImpl(Raise.MethodImplOptions)]
-        public void IfIsSameAs<TArg1, TArg2>(TArg1 argument, TArg2 comparand)
+        public void IfIsSameAs<TArg1, TArg2>([NoEnumeration] TArg1 argument, [NoEnumeration] TArg2 comparand)
         {
             if (ReferenceEquals(argument, comparand))
             {
@@ -234,7 +235,7 @@ namespace PommaLabs.Thrower.ExceptionHandlers
         ///   <paramref name="message"/> and <paramref name="argumentName"/> are strictly required arguments.
         /// </remarks>
         [MethodImpl(Raise.MethodImplOptions)]
-        public void IfIsSameAs<TArg1, TArg2>(TArg1 argument, TArg2 comparand, string argumentName, string message = null)
+        public void IfIsSameAs<TArg1, TArg2>([NoEnumeration] TArg1 argument, [NoEnumeration] TArg2 comparand, string argumentName, string message = null)
         {
             if (ReferenceEquals(argument, comparand))
             {
@@ -258,7 +259,7 @@ namespace PommaLabs.Thrower.ExceptionHandlers
         ///   <paramref name="argument"/> is not the same object as <paramref name="comparand"/>.
         /// </exception>
         [MethodImpl(Raise.MethodImplOptions)]
-        public void IfIsNotSameAs<TArg1, TArg2>(TArg1 argument, TArg2 comparand)
+        public void IfIsNotSameAs<TArg1, TArg2>([NoEnumeration] TArg1 argument, [NoEnumeration] TArg2 comparand)
         {
             if (!ReferenceEquals(argument, comparand))
             {
@@ -281,7 +282,7 @@ namespace PommaLabs.Thrower.ExceptionHandlers
         ///   <paramref name="message"/> and <paramref name="argumentName"/> are strictly required arguments.
         /// </remarks>
         [MethodImpl(Raise.MethodImplOptions)]
-        public void IfIsNotSameAs<TArg1, TArg2>(TArg1 argument, TArg2 comparand, string argumentName, string message = null)
+        public void IfIsNotSameAs<TArg1, TArg2>([NoEnumeration] TArg1 argument, [NoEnumeration] TArg2 comparand, string argumentName, string message = null)
         {
             if (!ReferenceEquals(argument, comparand))
             {
@@ -300,7 +301,7 @@ namespace PommaLabs.Thrower.ExceptionHandlers
         /// <param name="argument">The argument.</param>
         /// <exception cref="ArgumentException">If given argument is not valid.</exception>
         [MethodImpl(Raise.MethodImplOptions)]
-        public void IfIsNotValid<TArg>(TArg argument)
+        public void IfIsNotValid<TArg>([NoEnumeration] TArg argument)
         {
             IList<ValidationError> validationErrors;
             if (!ObjectValidator.Validate(argument, out validationErrors))
@@ -321,7 +322,7 @@ namespace PommaLabs.Thrower.ExceptionHandlers
         ///   <paramref name="message"/> and <paramref name="argumentName"/> are strictly required arguments.
         /// </remarks>
         [MethodImpl(Raise.MethodImplOptions)]
-        public void IfIsNotValid<TArg>(TArg argument, string argumentName, string message = null)
+        public void IfIsNotValid<TArg>([NoEnumeration] TArg argument, string argumentName, string message = null)
         {
             IList<ValidationError> validationErrors;
             if (!ObjectValidator.Validate(argument, out validationErrors))
@@ -699,7 +700,7 @@ namespace PommaLabs.Thrower.ExceptionHandlers
         /// <param name="value">The enumerable.</param>
         /// <exception cref="ArgumentException">If given enumerable is null or empty.</exception>
         [MethodImpl(Raise.MethodImplOptions)]
-        public void IfIsNullOrEmpty<TItem>(IEnumerable<TItem> value)
+        public void IfIsNullOrEmpty<TItem>([NoEnumeration] IEnumerable<TItem> value)
         {
             if (ReferenceEquals(value, null) || !value.GetEnumerator().MoveNext())
             {
@@ -719,7 +720,7 @@ namespace PommaLabs.Thrower.ExceptionHandlers
         ///   <paramref name="message"/> and <paramref name="argumentName"/> are strictly required arguments.
         /// </remarks>
         [MethodImpl(Raise.MethodImplOptions)]
-        public void IfIsNullOrEmpty<TItem>(IEnumerable<TItem> value, string argumentName, string message = null)
+        public void IfIsNullOrEmpty<TItem>([NoEnumeration] IEnumerable<TItem> value, string argumentName, string message = null)
         {
             if (ReferenceEquals(value, null) || !value.GetEnumerator().MoveNext())
             {

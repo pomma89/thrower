@@ -21,6 +21,7 @@
 // DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT
 // OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
+using JetBrains.Annotations;
 using System;
 using System.Runtime.CompilerServices;
 
@@ -114,7 +115,7 @@ namespace PommaLabs.Thrower.ExceptionHandlers
         /// <param name="argument">The argument.</param>
         /// <exception cref="ArgumentNullException">If given argument is null.</exception>
         [MethodImpl(Raise.MethodImplOptions)]
-        public void IfIsNull<TArg>(TArg argument)
+        public void IfIsNull<TArg>([NoEnumeration] TArg argument)
         {
             if (ReferenceEquals(argument, null))
             {
@@ -131,7 +132,7 @@ namespace PommaLabs.Thrower.ExceptionHandlers
         /// <param name="message">The message that should be put into the exception.</param>
         /// <exception cref="ArgumentNullException">If given argument is null.</exception>
         [MethodImpl(Raise.MethodImplOptions)]
-        public void IfIsNull<TArg>(TArg argument, string argumentName, string message = null)
+        public void IfIsNull<TArg>([NoEnumeration] TArg argument, string argumentName, string message = null)
         {
             if (ReferenceEquals(argument, null))
             {
