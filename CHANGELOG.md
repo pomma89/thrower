@@ -1,5 +1,9 @@
 # Changelog for PommaLabs.Thrower #
 
+### v4.2.1 (2017-09-13)
+
+* Added support for R# NoEnumeration attribute (issue #3).
+
 ### v4.2.0 (2017-08-16)
 
 * Added support for .NET Standard 2.0.
