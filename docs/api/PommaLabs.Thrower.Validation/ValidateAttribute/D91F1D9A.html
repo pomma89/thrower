@@ -108,7 +108,7 @@
             } else {					
                 for(var i = 0; i < results.length; ++i){
                     var res = results[i];
-                    listHtml += "<li><a href='" + res.url + "'>" + res.title + "</a></li>";
+                    listHtml += "<li><a href='" + res.url + "'>" + htmlEscape(res.title) + "</a></li>";
                 }				
             }
             listHtml += "</ul>";				
@@ -120,6 +120,13 @@
                 runSearch($("#search").val());
             });
         });
+
+        function htmlEscape(html) {
+            return document.createElement('div')
+                .appendChild(document.createTextNode(html))
+                .parentNode
+                .innerHTML;
+        }
     </script>
 	
     <hr>
@@ -158,7 +165,7 @@
 	
 		<h1 id="Summary">Summary</h1>
 	<div class="lead">
-       If the property is an <code class="cs">System.Collections.IEnumerable</code>, then this flag controls whether its
+       If the property is an <code class="cs"><a href="/Thrower">IEnumerable</a></code>, then this flag controls whether its
        items are required or not.
     
        Default value is false.

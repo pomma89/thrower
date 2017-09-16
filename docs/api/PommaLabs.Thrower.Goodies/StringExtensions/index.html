@@ -108,7 +108,7 @@
             } else {					
                 for(var i = 0; i < results.length; ++i){
                     var res = results[i];
-                    listHtml += "<li><a href='" + res.url + "'>" + res.title + "</a></li>";
+                    listHtml += "<li><a href='" + res.url + "'>" + htmlEscape(res.title) + "</a></li>";
                 }				
             }
             listHtml += "</ul>";				
@@ -120,6 +120,13 @@
                 runSearch($("#search").val());
             });
         });
+
+        function htmlEscape(html) {
+            return document.createElement('div')
+                .appendChild(document.createTextNode(html))
+                .parentNode
+                .innerHTML;
+        }
     </script>
 	
     <hr>
@@ -215,7 +222,7 @@ class Type type-node
 						</thead>
 							<tbody><tr>
 								<td><a href="/Thrower/api/PommaLabs.Thrower.Goodies/StringExtensions/10C02AB9">SplitAndTrim<wbr>(string, <wbr>char[])<wbr></a></td>
-								<td>IList<wbr>&lt;string&gt;<wbr></td>
+								<td>IList<wbr>&lt;T&gt;<wbr></td>
 								<td>
 									<div>
       Returns a string array that contains the substrings in this string that are delimited
@@ -227,7 +234,7 @@ class Type type-node
 							</tr>
 							<tr>
 								<td><a href="/Thrower/api/PommaLabs.Thrower.Goodies/StringExtensions/524109C4">SplitAndTrim<wbr>(string, <wbr>string[])<wbr></a></td>
-								<td>IList<wbr>&lt;string&gt;<wbr></td>
+								<td>IList<wbr>&lt;T&gt;<wbr></td>
 								<td>
 									<div>
       Returns a string array that contains the substrings in this string that are delimited

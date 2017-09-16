@@ -111,7 +111,7 @@
             } else {					
                 for(var i = 0; i < results.length; ++i){
                     var res = results[i];
-                    listHtml += "<li><a href='" + res.url + "'>" + res.title + "</a></li>";
+                    listHtml += "<li><a href='" + res.url + "'>" + htmlEscape(res.title) + "</a></li>";
                 }				
             }
             listHtml += "</ul>";				
@@ -123,6 +123,13 @@
                 runSearch($("#search").val());
             });
         });
+
+        function htmlEscape(html) {
+            return document.createElement('div')
+                .appendChild(document.createTextNode(html))
+                .parentNode
+                .innerHTML;
+        }
     </script>
 	
     <hr>
@@ -262,7 +269,7 @@ public void IfIsNullOrEmpty&lt;TItem&gt;(IEnumerable&lt;TItem&gt; value)</code><
 				</thead>
 					<tbody><tr>
 						<td>value</td>
-						<td>IEnumerable<wbr>&lt;TItem&gt;<wbr></td>
+						<td>IEnumerable<wbr>&lt;T&gt;<wbr></td>
 						<td>The enumerable.</td>
 					</tr>
 			</tbody></table>

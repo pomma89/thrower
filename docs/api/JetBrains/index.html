@@ -8,7 +8,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="shortcut icon" href="/Thrower/assets/img/favicon.ico" type="image/x-icon">
         <link rel="icon" href="/Thrower/assets/img/favicon.ico" type="image/x-icon">
-        <title>PommaLabs.Thrower - API - PommaLabs.Thrower.Logging.LogProviders Namespace</title>
+        <title>PommaLabs.Thrower - API - JetBrains Namespace</title>
         <link href="/Thrower/assets/css/mermaid.css" rel="stylesheet">
         <link href="/Thrower/assets/css/highlight.css" rel="stylesheet">
         <link href="/Thrower/assets/css/bootstrap/bootstrap.css" rel="stylesheet" />
@@ -106,7 +106,7 @@
             } else {					
                 for(var i = 0; i < results.length; ++i){
                     var res = results[i];
-                    listHtml += "<li><a href='" + res.url + "'>" + res.title + "</a></li>";
+                    listHtml += "<li><a href='" + res.url + "'>" + htmlEscape(res.title) + "</a></li>";
                 }				
             }
             listHtml += "</ul>";				
@@ -118,6 +118,13 @@
                 runSearch($("#search").val());
             });
         });
+
+        function htmlEscape(html) {
+            return document.createElement('div')
+                .appendChild(document.createTextNode(html))
+                .parentNode
+                .innerHTML;
+        }
     </script>
 	
     <hr />
@@ -126,12 +133,13 @@
                         
 	<li class="header">Namespaces</li>   
 			<li><a href="/Thrower/api/global">global</a></li>
+			<li class=" selected"><a href="/Thrower/api/JetBrains">JetBrains</a></li>
 
-				<li class="treeview active">
+				<li class="treeview">
 				<a href="/Thrower/api/PommaLabs">PommaLabs</a> <a href="#" class="expand"></a>
 				<ul class="treeview-menu">
 			
-				<li class="treeview active">
+				<li class="treeview">
 				<a href="/Thrower/api/PommaLabs.Thrower">PommaLabs<wbr>.Thrower</a> <a href="#" class="expand"></a>
 				<ul class="treeview-menu">
 			
@@ -141,12 +149,8 @@
 						<li><a href="/Thrower/api/PommaLabs.Thrower.ExceptionHandlers.IO">PommaLabs<wbr>.Thrower<wbr>.ExceptionHandlers<wbr>.IO</a></li>
 			<li><a href="/Thrower/api/PommaLabs.Thrower.ExceptionHandlers.Net">PommaLabs<wbr>.Thrower<wbr>.ExceptionHandlers<wbr>.Net</a></li>
 </ul></li>			<li><a href="/Thrower/api/PommaLabs.Thrower.Goodies">PommaLabs<wbr>.Thrower<wbr>.Goodies</a></li>
+			<li><a href="/Thrower/api/PommaLabs.Thrower.Logging">PommaLabs<wbr>.Thrower<wbr>.Logging</a></li>
 
-				<li class="treeview active">
-				<a href="/Thrower/api/PommaLabs.Thrower.Logging">PommaLabs<wbr>.Thrower<wbr>.Logging</a> <a href="#" class="expand"></a>
-				<ul class="treeview-menu">
-						<li class=" selected"><a href="/Thrower/api/PommaLabs.Thrower.Logging.LogProviders">PommaLabs<wbr>.Thrower<wbr>.Logging<wbr>.LogProviders</a></li>
-</ul></li>
 				<li class="treeview">
 				<a href="/Thrower/api/PommaLabs.Thrower.Reflection">PommaLabs<wbr>.Thrower<wbr>.Reflection</a> <a href="#" class="expand"></a>
 				<ul class="treeview-menu">
@@ -165,7 +169,7 @@
 
 
 <section class="content-header">
-	<h1>PommaLabs<wbr>.Thrower<wbr>.Logging<wbr>.LogProviders <small>Namespace</small></h1>
+	<h1>JetBrains <small>Namespace</small></h1>
 </section>
 <section class="content">
 	

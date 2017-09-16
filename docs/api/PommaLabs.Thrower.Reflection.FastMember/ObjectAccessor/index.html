@@ -109,7 +109,7 @@
             } else {					
                 for(var i = 0; i < results.length; ++i){
                     var res = results[i];
-                    listHtml += "<li><a href='" + res.url + "'>" + res.title + "</a></li>";
+                    listHtml += "<li><a href='" + res.url + "'>" + htmlEscape(res.title) + "</a></li>";
                 }				
             }
             listHtml += "</ul>";				
@@ -121,6 +121,13 @@
                 runSearch($("#search").val());
             });
         });
+
+        function htmlEscape(html) {
+            return document.createElement('div')
+                .appendChild(document.createTextNode(html))
+                .parentNode
+                .innerHTML;
+        }
     </script>
 	
     <hr>
@@ -171,9 +178,9 @@
 								<dt>Interfaces</dt>
 								<dd>
 									<ul class="list-unstyled">
-											<li>IDictionary<wbr>&lt;string, <wbr>object&gt;<wbr></li>								
-											<li>ICollection<wbr>&lt;KeyValuePair<wbr>&lt;string, <wbr>object&gt;<wbr>&gt;<wbr></li>								
-											<li>IEnumerable<wbr>&lt;KeyValuePair<wbr>&lt;string, <wbr>object&gt;<wbr>&gt;<wbr></li>								
+											<li>IDictionary<wbr>&lt;TKey, <wbr>TValue&gt;<wbr></li>								
+											<li>ICollection<wbr>&lt;T&gt;<wbr></li>								
+											<li>IEnumerable<wbr>&lt;T&gt;<wbr></li>								
 											<li>IEnumerable</li>								
 									</ul>
 								</dd>
@@ -192,9 +199,9 @@
 						<div class="mermaid">
 							graph TD
 	Base0["object"]--&gt;Type
-	Interface0["IDictionary&lt;string, object&gt;"]-.-&gt;Type
-	Interface1["ICollection&lt;KeyValuePair&lt;string, object&gt;&gt;"]-.-&gt;Type
-	Interface2["IEnumerable&lt;KeyValuePair&lt;string, object&gt;&gt;"]-.-&gt;Type
+	Interface0["IDictionary&lt;TKey, TValue&gt;"]-.-&gt;Type
+	Interface1["ICollection&lt;T&gt;"]-.-&gt;Type
+	Interface2["IEnumerable&lt;T&gt;"]-.-&gt;Type
 	Interface3["IEnumerable"]-.-&gt;Type
 	Type["ObjectAccessor"]
 class Type type-node
@@ -234,7 +241,7 @@ class Type type-node
 								<td>int</td>
 								<td>
 									<div>
-      Gets the number of elements contained in the <code class="cs">System.Collections.Generic.ICollection`1</code>.
+      Gets the number of elements contained in the <code class="cs"><a href="/Thrower">ICollection&lt;T&gt;</a></code>.
     </div>
 								</td>
 							</tr>
@@ -243,16 +250,16 @@ class Type type-node
 								<td>bool</td>
 								<td>
 									<div>
-      Gets a value indicating whether the <code class="cs">System.Collections.Generic.ICollection`1</code> is read-only.
+      Gets a value indicating whether the <code class="cs"><a href="/Thrower">ICollection&lt;T&gt;</a></code> is read-only.
     </div>
 								</td>
 							</tr>
 							<tr>
 								<td><a href="/Thrower/api/PommaLabs.Thrower.Reflection.FastMember/ObjectAccessor/A859D21F">Keys</a></td>
-								<td>ICollection<wbr>&lt;string&gt;<wbr></td>
+								<td>ICollection<wbr>&lt;T&gt;<wbr></td>
 								<td>
 									<div>
-      Gets an <code class="cs">System.Collections.Generic.ICollection`1</code> containing the keys of the <code class="cs">System.Collections.Generic.IDictionary`2</code>.
+      Gets an <code class="cs"><a href="/Thrower">ICollection&lt;T&gt;</a></code> containing the keys of the <code class="cs"><a href="/Thrower">IDictionary&lt;TKey, TValue&gt;</a></code>.
     </div>
 								</td>
 							</tr>
@@ -276,10 +283,10 @@ class Type type-node
 							</tr>
 							<tr>
 								<td><a href="/Thrower/api/PommaLabs.Thrower.Reflection.FastMember/ObjectAccessor/6201B4CD">Values</a></td>
-								<td>ICollection<wbr>&lt;object&gt;<wbr></td>
+								<td>ICollection<wbr>&lt;T&gt;<wbr></td>
 								<td>
 									<div>
-      Gets an <code class="cs">System.Collections.Generic.ICollection`1</code> containing the values in the <code class="cs">System.Collections.Generic.IDictionary`2</code>.
+      Gets an <code class="cs"><a href="/Thrower">ICollection&lt;T&gt;</a></code> containing the values in the <code class="cs"><a href="/Thrower">IDictionary&lt;TKey, TValue&gt;</a></code>.
     </div>
 								</td>
 							</tr>
@@ -304,7 +311,7 @@ class Type type-node
 								<td>void</td>
 								<td>
 									<div>
-      Adds an item to the <code class="cs">System.Collections.Generic.ICollection`1</code>.
+      Adds an item to the <code class="cs"><a href="/Thrower">ICollection&lt;T&gt;</a></code>.
     </div>
 								</td>
 							</tr>
@@ -313,7 +320,7 @@ class Type type-node
 								<td>void</td>
 								<td>
 									<div>
-      Adds an element with the provided key and value to the <code class="cs">System.Collections.Generic.IDictionary`2</code>.
+      Adds an element with the provided key and value to the <code class="cs"><a href="/Thrower">IDictionary&lt;TKey, TValue&gt;</a></code>.
     </div>
 								</td>
 							</tr>
@@ -322,7 +329,7 @@ class Type type-node
 								<td>void</td>
 								<td>
 									<div>
-      Removes all items from the <code class="cs">System.Collections.Generic.ICollection`1</code>.
+      Removes all items from the <code class="cs"><a href="/Thrower">ICollection&lt;T&gt;</a></code>.
     </div>
 								</td>
 							</tr>
@@ -331,7 +338,7 @@ class Type type-node
 								<td>bool</td>
 								<td>
 									<div>
-      Determines whether the <code class="cs">System.Collections.Generic.ICollection`1</code> contains a specific value.
+      Determines whether the <code class="cs"><a href="/Thrower">ICollection&lt;T&gt;</a></code> contains a specific value.
     </div>
 								</td>
 							</tr>
@@ -340,7 +347,7 @@ class Type type-node
 								<td>bool</td>
 								<td>
 									<div>
-      Determines whether the <code class="cs">System.Collections.Generic.IDictionary`2</code> contains an element with
+      Determines whether the <code class="cs"><a href="/Thrower">IDictionary&lt;TKey, TValue&gt;</a></code> contains an element with
       the specified key.
     </div>
 								</td>
@@ -350,7 +357,7 @@ class Type type-node
 								<td>void</td>
 								<td>
 									<div>
-      Copies the elements of the <code class="cs">System.Collections.Generic.ICollection`1</code> to an <code class="cs">System.Array</code>,
+      Copies the elements of the <code class="cs"><a href="/Thrower">ICollection&lt;T&gt;</a></code> to an <code class="cs">System.Array</code>,
       starting at a particular <code class="cs">System.Array</code> index.
     </div>
 								</td>
@@ -386,7 +393,7 @@ class Type type-node
 							</tr>
 							<tr>
 								<td><a href="/Thrower/api/PommaLabs.Thrower.Reflection.FastMember/ObjectAccessor/4F094D13">GetEnumerator<wbr>()<wbr></a></td>
-								<td>IEnumerator<wbr>&lt;KeyValuePair<wbr>&lt;string, <wbr>object&gt;<wbr>&gt;<wbr></td>
+								<td>IEnumerator<wbr>&lt;T&gt;<wbr></td>
 								<td>
 									<div>
       Returns an enumerator that iterates through the collection.
@@ -407,7 +414,7 @@ class Type type-node
 								<td>bool</td>
 								<td>
 									<div>
-      Removes the first occurrence of a specific object from the <code class="cs">System.Collections.Generic.ICollection`1</code>.
+      Removes the first occurrence of a specific object from the <code class="cs"><a href="/Thrower">ICollection&lt;T&gt;</a></code>.
     </div>
 								</td>
 							</tr>
@@ -416,7 +423,7 @@ class Type type-node
 								<td>bool</td>
 								<td>
 									<div>
-      Removes the element with the specified key from the <code class="cs">System.Collections.Generic.IDictionary`2</code>.
+      Removes the element with the specified key from the <code class="cs"><a href="/Thrower">IDictionary&lt;TKey, TValue&gt;</a></code>.
     </div>
 								</td>
 							</tr>

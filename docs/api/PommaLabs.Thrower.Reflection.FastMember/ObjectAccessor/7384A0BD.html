@@ -109,7 +109,7 @@
             } else {					
                 for(var i = 0; i < results.length; ++i){
                     var res = results[i];
-                    listHtml += "<li><a href='" + res.url + "'>" + res.title + "</a></li>";
+                    listHtml += "<li><a href='" + res.url + "'>" + htmlEscape(res.title) + "</a></li>";
                 }				
             }
             listHtml += "</ul>";				
@@ -121,6 +121,13 @@
                 runSearch($("#search").val());
             });
         });
+
+        function htmlEscape(html) {
+            return document.createElement('div')
+                .appendChild(document.createTextNode(html))
+                .parentNode
+                .innerHTML;
+        }
     </script>
 	
     <hr>
@@ -176,7 +183,7 @@
 	
 		<h1 id="Summary">Summary</h1>
 	<div class="lead">
-      Copies the elements of the <code class="cs">System.Collections.Generic.ICollection`1</code> to an <code class="cs">System.Array</code>,
+      Copies the elements of the <code class="cs"><a href="/Thrower">ICollection&lt;T&gt;</a></code> to an <code class="cs">System.Array</code>,
       starting at a particular <code class="cs">System.Array</code> index.
     </div>
 
@@ -217,7 +224,7 @@
 						<td>KeyValuePair<wbr>&lt;string, <wbr>object&gt;<wbr>[]</td>
 						<td>
       The one-dimensional <code class="cs">System.Array</code> that is the destination of the elements copied
-      from <code class="cs">System.Collections.Generic.ICollection`1</code>. The <code class="cs">System.Array</code> must have zero-based indexing.
+      from <code class="cs"><a href="/Thrower">ICollection&lt;T&gt;</a></code>. The <code class="cs">System.Array</code> must have zero-based indexing.
     </td>
 					</tr>
 					<tr>

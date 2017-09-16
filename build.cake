@@ -1,4 +1,6 @@
-#tool nuget:?package=NUnit.ConsoleRunner&version=3.7.0
+#addin "nuget:?package=Cake.Wyam"
+#tool "nuget:?package=NUnit.ConsoleRunner"
+#tool "nuget:?package=Wyam"
 
 //////////////////////////////////////////////////////////////////////
 // ARGUMENTS
@@ -187,10 +189,12 @@ private void Pack(string cfg)
 
 private void Docs()
 {
-    const string flags = "build -i pages -o docs";
-
     if (IsRunningOnWindows())
     {
-    
+		Wyam(new WyamSettings()
+		{
+			InputPaths = new DirectoryPath[] { Directory("./pages") },
+			OutputPath = Directory("./docs")
+		});
     }
 }

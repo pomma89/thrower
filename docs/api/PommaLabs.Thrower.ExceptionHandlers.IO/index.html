@@ -106,7 +106,7 @@
             } else {					
                 for(var i = 0; i < results.length; ++i){
                     var res = results[i];
-                    listHtml += "<li><a href='" + res.url + "'>" + res.title + "</a></li>";
+                    listHtml += "<li><a href='" + res.url + "'>" + htmlEscape(res.title) + "</a></li>";
                 }				
             }
             listHtml += "</ul>";				
@@ -118,6 +118,13 @@
                 runSearch($("#search").val());
             });
         });
+
+        function htmlEscape(html) {
+            return document.createElement('div')
+                .appendChild(document.createTextNode(html))
+                .parentNode
+                .innerHTML;
+        }
     </script>
 	
     <hr>
@@ -126,6 +133,7 @@
                         
 	<li class="header">Namespaces</li>   
 			<li><a href="/Thrower/api/global">global</a></li>
+			<li><a href="/Thrower/api/JetBrains">JetBrains</a></li>
 
 				<li class="treeview active">
 				<a href="/Thrower/api/PommaLabs">PommaLabs</a> <a href="#" class="expand"></a>
@@ -141,12 +149,8 @@
 						<li class=" selected"><a href="/Thrower/api/PommaLabs.Thrower.ExceptionHandlers.IO">PommaLabs<wbr>.Thrower<wbr>.ExceptionHandlers<wbr>.IO</a></li>
 			<li><a href="/Thrower/api/PommaLabs.Thrower.ExceptionHandlers.Net">PommaLabs<wbr>.Thrower<wbr>.ExceptionHandlers<wbr>.Net</a></li>
 </ul></li>			<li><a href="/Thrower/api/PommaLabs.Thrower.Goodies">PommaLabs<wbr>.Thrower<wbr>.Goodies</a></li>
+			<li><a href="/Thrower/api/PommaLabs.Thrower.Logging">PommaLabs<wbr>.Thrower<wbr>.Logging</a></li>
 
-				<li class="treeview">
-				<a href="/Thrower/api/PommaLabs.Thrower.Logging">PommaLabs<wbr>.Thrower<wbr>.Logging</a> <a href="#" class="expand"></a>
-				<ul class="treeview-menu">
-						<li><a href="/Thrower/api/PommaLabs.Thrower.Logging.LogProviders">PommaLabs<wbr>.Thrower<wbr>.Logging<wbr>.LogProviders</a></li>
-</ul></li>
 				<li class="treeview">
 				<a href="/Thrower/api/PommaLabs.Thrower.Reflection">PommaLabs<wbr>.Thrower<wbr>.Reflection</a> <a href="#" class="expand"></a>
 				<ul class="treeview-menu">
@@ -185,7 +189,7 @@
 							<tbody><tr>
 								<td><a href="/Thrower/api/PommaLabs.Thrower.ExceptionHandlers.IO/DirectoryNotFoundExceptionHandler">Directory<wbr>Not<wbr>Found<wbr>Exception<wbr>Handler</a></td>
 									<td>
-      Handler for <code class="cs"><a href="/Thrower">DirectoryNotFoundException</a></code>.
+      Handler for <code class="cs">System.IO.DirectoryNotFoundException</code>.
     </td>
 							</tr>
 							<tr>

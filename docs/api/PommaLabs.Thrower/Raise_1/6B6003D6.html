@@ -111,7 +111,7 @@
             } else {					
                 for(var i = 0; i < results.length; ++i){
                     var res = results[i];
-                    listHtml += "<li><a href='" + res.url + "'>" + res.title + "</a></li>";
+                    listHtml += "<li><a href='" + res.url + "'>" + htmlEscape(res.title) + "</a></li>";
                 }				
             }
             listHtml += "</ul>";				
@@ -123,6 +123,13 @@
                 runSearch($("#search").val());
             });
         });
+
+        function htmlEscape(html) {
+            return document.createElement('div')
+                .appendChild(document.createTextNode(html))
+                .parentNode
+                .innerHTML;
+        }
     </script>
 	
     <hr>
@@ -195,10 +202,10 @@ public static void IfNot(bool cond, string message)</code></pre>
       If <span name="cond" class="paramref">cond</span> is false, then an exception of type
       <span name="TEx" class="typeparamref">TEx</span>, with the message specified by <span name="message" class="paramref">message</span>,
       will be thrown. <br> In order to do that, <span name="TEx" class="typeparamref">TEx</span> must have either
-      a constructor which takes a <code class="cs"><a href="/Thrower">string</a></code> and an <code class="cs"><a href="/Thrower">Exception</a></code>
+      a constructor which takes a <code class="cs"><a href="/Thrower">string</a></code> and an <code class="cs">System.Exception</code>
       as arguments, or a constructor which takes a <code class="cs"><a href="/Thrower">string</a></code> as only parameter.
       <br> If both constructors are available, then the one which takes a
-      <code class="cs"><a href="/Thrower">string</a></code> and an <code class="cs"><a href="/Thrower">Exception</a></code> will be used to throw the exception.
+      <code class="cs"><a href="/Thrower">string</a></code> and an <code class="cs">System.Exception</code> will be used to throw the exception.
     </div>
 
 	<h1 id="Attributes">Attributes</h1>

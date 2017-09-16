@@ -110,7 +110,7 @@
             } else {					
                 for(var i = 0; i < results.length; ++i){
                     var res = results[i];
-                    listHtml += "<li><a href='" + res.url + "'>" + res.title + "</a></li>";
+                    listHtml += "<li><a href='" + res.url + "'>" + htmlEscape(res.title) + "</a></li>";
                 }				
             }
             listHtml += "</ul>";				
@@ -122,6 +122,13 @@
                 runSearch($("#search").val());
             });
         });
+
+        function htmlEscape(html) {
+            return document.createElement('div')
+                .appendChild(document.createTextNode(html))
+                .parentNode
+                .innerHTML;
+        }
     </script>
 	
     <hr>
@@ -267,7 +274,7 @@ public static class PortableTypeInfo</code></pre>
 							</tr>
 							<tr>
 								<td><a href="/Thrower/api/PommaLabs.Thrower.Reflection/PortableTypeInfo/60C8C574">GetConstructors<wbr>(Type)<wbr></a></td>
-								<td>IList<wbr>&lt;<wbr>Constructor<wbr>Info&gt;<wbr></td>
+								<td>IList<wbr>&lt;T&gt;<wbr></td>
 								<td>
 									<div>
       Gets the constructors for given type.
@@ -277,7 +284,7 @@ public static class PortableTypeInfo</code></pre>
 							</tr>
 							<tr>
 								<td><a href="/Thrower/api/PommaLabs.Thrower.Reflection/PortableTypeInfo/5B98B926">GetConstructors<wbr>&lt;T&gt;<wbr><wbr>()<wbr></a></td>
-								<td>IList<wbr>&lt;<wbr>Constructor<wbr>Info&gt;<wbr></td>
+								<td>IList<wbr>&lt;T&gt;<wbr></td>
 								<td>
 									<div>
       Gets the constructors for given type.
@@ -287,7 +294,7 @@ public static class PortableTypeInfo</code></pre>
 							</tr>
 							<tr>
 								<td><a href="/Thrower/api/PommaLabs.Thrower.Reflection/PortableTypeInfo/E3A3AFBD">GetCustomAttributes<wbr>(MemberInfo, <wbr>bool)<wbr></a></td>
-								<td>IList<wbr>&lt;Attribute&gt;<wbr></td>
+								<td>IList<wbr>&lt;T&gt;<wbr></td>
 								<td>
 									<div>
       Gets the custom attributes for given member.
@@ -297,7 +304,7 @@ public static class PortableTypeInfo</code></pre>
 							</tr>
 							<tr>
 								<td><a href="/Thrower/api/PommaLabs.Thrower.Reflection/PortableTypeInfo/CF703329">GetCustomAttributes<wbr>(Type, <wbr>bool)<wbr></a></td>
-								<td>IList<wbr>&lt;Attribute&gt;<wbr></td>
+								<td>IList<wbr>&lt;T&gt;<wbr></td>
 								<td>
 									<div>
       Gets the custom attributes for given type.
@@ -307,7 +314,7 @@ public static class PortableTypeInfo</code></pre>
 							</tr>
 							<tr>
 								<td><a href="/Thrower/api/PommaLabs.Thrower.Reflection/PortableTypeInfo/4413081D">Get<wbr>Generic<wbr>Type<wbr>Arguments<wbr>(Type)<wbr></a></td>
-								<td>IList<wbr>&lt;Type&gt;<wbr></td>
+								<td>IList<wbr>&lt;T&gt;<wbr></td>
 								<td>
 									<div>
       Gets the generic type arguments of given type.
@@ -327,7 +334,7 @@ public static class PortableTypeInfo</code></pre>
 							</tr>
 							<tr>
 								<td><a href="/Thrower/api/PommaLabs.Thrower.Reflection/PortableTypeInfo/C79D0F87">GetInterfaces<wbr>(Type)<wbr></a></td>
-								<td>IList<wbr>&lt;Type&gt;<wbr></td>
+								<td>IList<wbr>&lt;T&gt;<wbr></td>
 								<td>
 									<div>
       Gets the interfaces for given type.
@@ -337,7 +344,7 @@ public static class PortableTypeInfo</code></pre>
 							</tr>
 							<tr>
 								<td><a href="/Thrower/api/PommaLabs.Thrower.Reflection/PortableTypeInfo/894A0828">GetPublicProperties<wbr>(Type)<wbr></a></td>
-								<td>IList<wbr>&lt;PropertyInfo&gt;<wbr></td>
+								<td>IList<wbr>&lt;T&gt;<wbr></td>
 								<td>
 									<div>
       Gets all the public instance properties for given type.
@@ -347,7 +354,7 @@ public static class PortableTypeInfo</code></pre>
 							</tr>
 							<tr>
 								<td><a href="/Thrower/api/PommaLabs.Thrower.Reflection/PortableTypeInfo/0BCB9201">GetPublicProperties<wbr>&lt;T&gt;<wbr><wbr>()<wbr></a></td>
-								<td>IList<wbr>&lt;PropertyInfo&gt;<wbr></td>
+								<td>IList<wbr>&lt;T&gt;<wbr></td>
 								<td>
 									<div>
       Gets all the instance properties for given type.

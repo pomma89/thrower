@@ -108,7 +108,7 @@
             } else {					
                 for(var i = 0; i < results.length; ++i){
                     var res = results[i];
-                    listHtml += "<li><a href='" + res.url + "'>" + res.title + "</a></li>";
+                    listHtml += "<li><a href='" + res.url + "'>" + htmlEscape(res.title) + "</a></li>";
                 }				
             }
             listHtml += "</ul>";				
@@ -120,6 +120,13 @@
                 runSearch($("#search").val());
             });
         });
+
+        function htmlEscape(html) {
+            return document.createElement('div')
+                .appendChild(document.createTextNode(html))
+                .parentNode
+                .innerHTML;
+        }
     </script>
 	
     <hr>
@@ -132,6 +139,16 @@
 		<li><a href="/Thrower/api/PommaLabs.Thrower.ExceptionHandlers.IO/FileNotFoundExceptionHandler">File<wbr>Not<wbr>Found<wbr>Exception<wbr>Handler</a></li>
 		<li role="separator" class="divider"></li>
 			<li class="header">Method Members</li>
+				<li><a href="/Thrower/api/PommaLabs.Thrower.ExceptionHandlers/GenericExceptionHandler_1/450E048F">If<wbr>(bool, <wbr>string)<wbr></a></li>
+				<li><a href="/Thrower/api/PommaLabs.Thrower.ExceptionHandlers/GenericExceptionHandler_1/E4241B1E">IfIsAssignableFrom<wbr>&lt;TType&gt;<wbr><wbr>(object, <wbr>string)<wbr></a></li>
+				<li><a href="/Thrower/api/PommaLabs.Thrower.ExceptionHandlers/GenericExceptionHandler_1/1E4CEB37">IfIsAssignableFrom<wbr>(object, <wbr>Type, <wbr>string)<wbr></a></li>
+				<li><a href="/Thrower/api/PommaLabs.Thrower.ExceptionHandlers/GenericExceptionHandler_1/191AA603">IfIsInstanceOf<wbr>&lt;TType&gt;<wbr><wbr>(object, <wbr>string)<wbr></a></li>
+				<li><a href="/Thrower/api/PommaLabs.Thrower.ExceptionHandlers/GenericExceptionHandler_1/B916FF3E">IfIsInstanceOf<wbr>(object, <wbr>Type, <wbr>string)<wbr></a></li>
+				<li><a href="/Thrower/api/PommaLabs.Thrower.ExceptionHandlers/GenericExceptionHandler_1/7B6F01F4">If<wbr>Is<wbr>Not<wbr>Assignable<wbr>From<wbr>&lt;TType&gt;<wbr><wbr>(object, <wbr>string)<wbr></a></li>
+				<li><a href="/Thrower/api/PommaLabs.Thrower.ExceptionHandlers/GenericExceptionHandler_1/2EE44122">If<wbr>Is<wbr>Not<wbr>Assignable<wbr>From<wbr>(object, <wbr>Type, <wbr>string)<wbr></a></li>
+				<li><a href="/Thrower/api/PommaLabs.Thrower.ExceptionHandlers/GenericExceptionHandler_1/AE0A8B36">IfIsNotInstanceOf<wbr>&lt;TType&gt;<wbr><wbr>(object, <wbr>string)<wbr></a></li>
+				<li><a href="/Thrower/api/PommaLabs.Thrower.ExceptionHandlers/GenericExceptionHandler_1/84449C94">IfIsNotInstanceOf<wbr>(object, <wbr>Type, <wbr>string)<wbr></a></li>
+				<li><a href="/Thrower/api/PommaLabs.Thrower.ExceptionHandlers/GenericExceptionHandler_1/23C7D757">IfNot<wbr>(bool, <wbr>string)<wbr></a></li>
 				<li><a href="/Thrower/api/PommaLabs.Thrower.ExceptionHandlers.IO/FileNotFoundExceptionHandler/3EA6EF5A">IfNotExists<wbr>(string, <wbr>string)<wbr></a></li>
 				<li><a href="/Thrower/api/PommaLabs.Thrower.ExceptionHandlers.IO/FileNotFoundExceptionHandler/D0971F25">NewWithMessage<wbr>(string)<wbr></a></li>
 			<li class="header">Property Members</li>

@@ -109,7 +109,7 @@
             } else {					
                 for(var i = 0; i < results.length; ++i){
                     var res = results[i];
-                    listHtml += "<li><a href='" + res.url + "'>" + res.title + "</a></li>";
+                    listHtml += "<li><a href='" + res.url + "'>" + htmlEscape(res.title) + "</a></li>";
                 }				
             }
             listHtml += "</ul>";				
@@ -121,6 +121,13 @@
                 runSearch($("#search").val());
             });
         });
+
+        function htmlEscape(html) {
+            return document.createElement('div')
+                .appendChild(document.createTextNode(html))
+                .parentNode
+                .innerHTML;
+        }
     </script>
 	
     <hr>
@@ -172,7 +179,7 @@
 								<dd>
 									<ul class="list-unstyled">										
 											<li>object</li>								
-											<li>Generic<wbr>Exception<wbr>Handler<wbr>&lt;<wbr>File<wbr>Not<wbr>Found<wbr>Exception&gt;<wbr></li>								
+											<li><a href="/Thrower/api/PommaLabs.Thrower.ExceptionHandlers/GenericExceptionHandler_1">Generic<wbr>Exception<wbr>Handler<wbr>&lt;TException&gt;<wbr></a></li>								
 									</ul>
 								</dd>				
 							
@@ -182,7 +189,8 @@
 					<div class="col-md-6">
 						<div class="mermaid">
 							graph TD
-	Base0["GenericExceptionHandler&lt;FileNotFoundException&gt;"]--&gt;Type
+	Base0["GenericExceptionHandler&lt;TException&gt;"]--&gt;Type
+	click Base0 "/Thrower/api/PommaLabs.Thrower.ExceptionHandlers/GenericExceptionHandler_1"
 	Base1["object"]--&gt;Base0
 	Type["FileNotFoundExceptionHandler"]
 class Type type-node
@@ -243,11 +251,119 @@ class Type type-node
 							</tr>
 						</thead>
 							<tbody><tr>
+								<td><a href="/Thrower/api/PommaLabs.Thrower.ExceptionHandlers/GenericExceptionHandler_1/450E048F">If<wbr>(bool, <wbr>string)<wbr></a></td>
+								<td>void</td>
+								<td>
+									<div>
+      Throws <span name="TException" class="typeparamref">TException</span> if given condition is true.
+    </div>
+											<div><small><em>Inherited from <a href="/Thrower/api/PommaLabs.Thrower.ExceptionHandlers/GenericExceptionHandler_1">Generic<wbr>Exception<wbr>Handler<wbr>&lt;TException&gt;<wbr></a></em></small></div>
+								</td>
+							</tr>
+							<tr>
+								<td><a href="/Thrower/api/PommaLabs.Thrower.ExceptionHandlers/GenericExceptionHandler_1/1E4CEB37">IfIsAssignableFrom<wbr>(object, <wbr>Type, <wbr>string)<wbr></a></td>
+								<td>void</td>
+								<td>
+									<div>
+      Throws an exception of type <span name="TException" class="typeparamref">TException</span> if and only if an
+      instance of given type can be assigned to specified object.
+    </div>
+											<div><small><em>Inherited from <a href="/Thrower/api/PommaLabs.Thrower.ExceptionHandlers/GenericExceptionHandler_1">Generic<wbr>Exception<wbr>Handler<wbr>&lt;TException&gt;<wbr></a></em></small></div>
+								</td>
+							</tr>
+							<tr>
+								<td><a href="/Thrower/api/PommaLabs.Thrower.ExceptionHandlers/GenericExceptionHandler_1/E4241B1E">IfIsAssignableFrom<wbr>&lt;TType&gt;<wbr><wbr>(object, <wbr>string)<wbr></a></td>
+								<td>void</td>
+								<td>
+									<div>
+      Throws an exception of type <span name="TException" class="typeparamref">TException</span> if and only if an
+      instance of given type can be assigned to specified object.
+    </div>
+											<div><small><em>Inherited from <a href="/Thrower/api/PommaLabs.Thrower.ExceptionHandlers/GenericExceptionHandler_1">Generic<wbr>Exception<wbr>Handler<wbr>&lt;TException&gt;<wbr></a></em></small></div>
+								</td>
+							</tr>
+							<tr>
+								<td><a href="/Thrower/api/PommaLabs.Thrower.ExceptionHandlers/GenericExceptionHandler_1/B916FF3E">IfIsInstanceOf<wbr>(object, <wbr>Type, <wbr>string)<wbr></a></td>
+								<td>void</td>
+								<td>
+									<div>
+      Throws an exception of type <span name="TException" class="typeparamref">TException</span> if and only if specified
+      object has given type.
+    </div>
+											<div><small><em>Inherited from <a href="/Thrower/api/PommaLabs.Thrower.ExceptionHandlers/GenericExceptionHandler_1">Generic<wbr>Exception<wbr>Handler<wbr>&lt;TException&gt;<wbr></a></em></small></div>
+								</td>
+							</tr>
+							<tr>
+								<td><a href="/Thrower/api/PommaLabs.Thrower.ExceptionHandlers/GenericExceptionHandler_1/191AA603">IfIsInstanceOf<wbr>&lt;TType&gt;<wbr><wbr>(object, <wbr>string)<wbr></a></td>
+								<td>void</td>
+								<td>
+									<div>
+      Throws an exception of type <span name="TException" class="typeparamref">TException</span> if and only if specified
+      object has given type.
+    </div>
+											<div><small><em>Inherited from <a href="/Thrower/api/PommaLabs.Thrower.ExceptionHandlers/GenericExceptionHandler_1">Generic<wbr>Exception<wbr>Handler<wbr>&lt;TException&gt;<wbr></a></em></small></div>
+								</td>
+							</tr>
+							<tr>
+								<td><a href="/Thrower/api/PommaLabs.Thrower.ExceptionHandlers/GenericExceptionHandler_1/2EE44122">If<wbr>Is<wbr>Not<wbr>Assignable<wbr>From<wbr>(object, <wbr>Type, <wbr>string)<wbr></a></td>
+								<td>void</td>
+								<td>
+									<div>
+      Throws an exception of type <span name="TException" class="typeparamref">TException</span> if and only if an
+      instance of given type cannot be assigned to specified object.
+    </div>
+											<div><small><em>Inherited from <a href="/Thrower/api/PommaLabs.Thrower.ExceptionHandlers/GenericExceptionHandler_1">Generic<wbr>Exception<wbr>Handler<wbr>&lt;TException&gt;<wbr></a></em></small></div>
+								</td>
+							</tr>
+							<tr>
+								<td><a href="/Thrower/api/PommaLabs.Thrower.ExceptionHandlers/GenericExceptionHandler_1/7B6F01F4">If<wbr>Is<wbr>Not<wbr>Assignable<wbr>From<wbr>&lt;TType&gt;<wbr><wbr>(object, <wbr>string)<wbr></a></td>
+								<td>void</td>
+								<td>
+									<div>
+      Throws an exception of type <span name="TException" class="typeparamref">TException</span> if and only if an
+      instance of given type cannot be assigned to specified object.
+    </div>
+											<div><small><em>Inherited from <a href="/Thrower/api/PommaLabs.Thrower.ExceptionHandlers/GenericExceptionHandler_1">Generic<wbr>Exception<wbr>Handler<wbr>&lt;TException&gt;<wbr></a></em></small></div>
+								</td>
+							</tr>
+							<tr>
+								<td><a href="/Thrower/api/PommaLabs.Thrower.ExceptionHandlers/GenericExceptionHandler_1/84449C94">IfIsNotInstanceOf<wbr>(object, <wbr>Type, <wbr>string)<wbr></a></td>
+								<td>void</td>
+								<td>
+									<div>
+      Throws an exception of type <span name="TException" class="typeparamref">TException</span> if and only if specified
+      object has not given type.
+    </div>
+											<div><small><em>Inherited from <a href="/Thrower/api/PommaLabs.Thrower.ExceptionHandlers/GenericExceptionHandler_1">Generic<wbr>Exception<wbr>Handler<wbr>&lt;TException&gt;<wbr></a></em></small></div>
+								</td>
+							</tr>
+							<tr>
+								<td><a href="/Thrower/api/PommaLabs.Thrower.ExceptionHandlers/GenericExceptionHandler_1/AE0A8B36">IfIsNotInstanceOf<wbr>&lt;TType&gt;<wbr><wbr>(object, <wbr>string)<wbr></a></td>
+								<td>void</td>
+								<td>
+									<div>
+      Throws an exception of type <span name="TException" class="typeparamref">TException</span> if and only if specified
+      object has not given type.
+    </div>
+											<div><small><em>Inherited from <a href="/Thrower/api/PommaLabs.Thrower.ExceptionHandlers/GenericExceptionHandler_1">Generic<wbr>Exception<wbr>Handler<wbr>&lt;TException&gt;<wbr></a></em></small></div>
+								</td>
+							</tr>
+							<tr>
+								<td><a href="/Thrower/api/PommaLabs.Thrower.ExceptionHandlers/GenericExceptionHandler_1/23C7D757">IfNot<wbr>(bool, <wbr>string)<wbr></a></td>
+								<td>void</td>
+								<td>
+									<div>
+      Throws <span name="TException" class="typeparamref">TException</span> if given condition is false.
+    </div>
+											<div><small><em>Inherited from <a href="/Thrower/api/PommaLabs.Thrower.ExceptionHandlers/GenericExceptionHandler_1">Generic<wbr>Exception<wbr>Handler<wbr>&lt;TException&gt;<wbr></a></em></small></div>
+								</td>
+							</tr>
+							<tr>
 								<td><a href="/Thrower/api/PommaLabs.Thrower.ExceptionHandlers.IO/FileNotFoundExceptionHandler/3EA6EF5A">IfNotExists<wbr>(string, <wbr>string)<wbr></a></td>
 								<td>void</td>
 								<td>
 									<div>
-      Throws <code class="cs"><a href="/Thrower">FileNotFoundException</a></code> if specified file does not exist or the
+      Throws <code class="cs">System.IO.FileNotFoundException</code> if specified file does not exist or the
       caller does not have sufficient permissions to read the specified file.
     </div>
 								</td>

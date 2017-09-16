@@ -110,7 +110,7 @@
             } else {					
                 for(var i = 0; i < results.length; ++i){
                     var res = results[i];
-                    listHtml += "<li><a href='" + res.url + "'>" + res.title + "</a></li>";
+                    listHtml += "<li><a href='" + res.url + "'>" + htmlEscape(res.title) + "</a></li>";
                 }				
             }
             listHtml += "</ul>";				
@@ -122,6 +122,13 @@
                 runSearch($("#search").val());
             });
         });
+
+        function htmlEscape(html) {
+            return document.createElement('div')
+                .appendChild(document.createTextNode(html))
+                .parentNode
+                .innerHTML;
+        }
     </script>
 	
     <hr>
@@ -172,9 +179,9 @@
 								<dt>Interfaces</dt>
 								<dd>
 									<ul class="list-unstyled">
-											<li>IList<wbr>&lt;Member&gt;<wbr></li>								
-											<li>ICollection<wbr>&lt;Member&gt;<wbr></li>								
-											<li>IEnumerable<wbr>&lt;Member&gt;<wbr></li>								
+											<li>IList<wbr>&lt;T&gt;<wbr></li>								
+											<li>ICollection<wbr>&lt;T&gt;<wbr></li>								
+											<li>IEnumerable<wbr>&lt;T&gt;<wbr></li>								
 											<li>IEnumerable</li>								
 									</ul>
 								</dd>
@@ -193,9 +200,9 @@
 						<div class="mermaid">
 							graph TD
 	Base0["object"]--&gt;Type
-	Interface0["IList&lt;Member&gt;"]-.-&gt;Type
-	Interface1["ICollection&lt;Member&gt;"]-.-&gt;Type
-	Interface2["IEnumerable&lt;Member&gt;"]-.-&gt;Type
+	Interface0["IList&lt;T&gt;"]-.-&gt;Type
+	Interface1["ICollection&lt;T&gt;"]-.-&gt;Type
+	Interface2["IEnumerable&lt;T&gt;"]-.-&gt;Type
 	Interface3["IEnumerable"]-.-&gt;Type
 	Type["MemberSet"]
 class Type type-node
@@ -282,7 +289,7 @@ public sealed class MemberSet : IList&lt;Member&gt;, ICollection&lt;Member&gt;, 
 						</thead>
 							<tbody><tr>
 								<td><a href="/Thrower/api/PommaLabs.Thrower.Reflection.FastMember/MemberSet/E240C1EC">GetEnumerator<wbr>()<wbr></a></td>
-								<td>IEnumerator<wbr>&lt;Member&gt;<wbr></td>
+								<td>IEnumerator<wbr>&lt;T&gt;<wbr></td>
 								<td>
 									<div>
       Return a sequence of all defined members.
