@@ -46,6 +46,7 @@ namespace PommaLabs.Thrower.ExceptionHandlers
         /// <param name="condition">The condition.</param>
         /// <exception cref="ArgumentException">If given condition is true.</exception>
         [MethodImpl(Raise.MethodImplOptions)]
+        [ContractAnnotation("condition:true => halt")]
         public void If(bool condition)
         {
             if (condition)
@@ -65,6 +66,7 @@ namespace PommaLabs.Thrower.ExceptionHandlers
         ///   <paramref name="message"/> and <paramref name="argumentName"/> are strictly required arguments.
         /// </remarks>
         [MethodImpl(Raise.MethodImplOptions)]
+        [ContractAnnotation("condition:true => halt")]
         public void If(bool condition, string argumentName, string message = null)
         {
             if (condition)
@@ -83,6 +85,7 @@ namespace PommaLabs.Thrower.ExceptionHandlers
         /// <param name="condition">The condition.</param>
         /// <exception cref="ArgumentException">If given condition is false.</exception>
         [MethodImpl(Raise.MethodImplOptions)]
+        [ContractAnnotation("condition:false => halt")]
         public void IfNot(bool condition)
         {
             if (!condition)
@@ -102,6 +105,7 @@ namespace PommaLabs.Thrower.ExceptionHandlers
         ///   <paramref name="message"/> and <paramref name="argumentName"/> are strictly required arguments.
         /// </remarks>
         [MethodImpl(Raise.MethodImplOptions)]
+        [ContractAnnotation("condition:false => halt")]
         public void IfNot(bool condition, string argumentName, string message = null)
         {
             if (!condition)

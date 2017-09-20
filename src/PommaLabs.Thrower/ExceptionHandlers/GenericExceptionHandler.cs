@@ -56,6 +56,7 @@ namespace PommaLabs.Thrower.ExceptionHandlers
         /// <exception cref="Exception">
         ///   If given condition is true, an exception of type <typeparamref name="TException"/> is thrown.
         /// </exception>
+        [ContractAnnotation("condition:true => halt")]
         public void If(bool condition, string message = null)
         {
             if (condition)
@@ -72,6 +73,7 @@ namespace PommaLabs.Thrower.ExceptionHandlers
         /// <exception cref="Exception">
         ///   If given condition is true, an exception of type <typeparamref name="TException"/> is thrown.
         /// </exception>
+        [ContractAnnotation("condition:false => halt")]
         public void IfNot(bool condition, string message = null)
         {
             if (!condition)

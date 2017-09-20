@@ -21,6 +21,7 @@
 // DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT
 // OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
+using JetBrains.Annotations;
 using System;
 using System.Runtime.CompilerServices;
 
@@ -41,6 +42,7 @@ namespace PommaLabs.Thrower.ExceptionHandlers
         /// <param name="condition">The condition.</param>
         /// <param name="argumentName">The optional name of the argument.</param>
         [MethodImpl(Raise.MethodImplOptions)]
+        [ContractAnnotation("condition:true => halt")]
         public void If(bool condition, string argumentName = null)
         {
             if (condition)
@@ -59,6 +61,7 @@ namespace PommaLabs.Thrower.ExceptionHandlers
         ///   <paramref name="message"/> and <paramref name="argumentName"/> are strictly required arguments.
         /// </remarks>
         [MethodImpl(Raise.MethodImplOptions)]
+        [ContractAnnotation("condition:true => halt")]
         public void If(bool condition, string argumentName, string message)
         {
             if (condition)
@@ -77,6 +80,7 @@ namespace PommaLabs.Thrower.ExceptionHandlers
         /// <param name="condition">The condition.</param>
         /// <param name="argumentName">The optional name of the argument.</param>
         [MethodImpl(Raise.MethodImplOptions)]
+        [ContractAnnotation("condition:false => halt")]
         public void IfNot(bool condition, string argumentName = null)
         {
             if (!condition)
@@ -95,6 +99,7 @@ namespace PommaLabs.Thrower.ExceptionHandlers
         ///   <paramref name="message"/> and <paramref name="argumentName"/> are strictly required arguments.
         /// </remarks>
         [MethodImpl(Raise.MethodImplOptions)]
+        [ContractAnnotation("condition:false => halt")]
         public void IfNot(bool condition, string argumentName, string message)
         {
             if (!condition)

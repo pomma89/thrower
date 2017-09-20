@@ -44,6 +44,7 @@ namespace PommaLabs.Thrower.ExceptionHandlers
         /// <param name="condition">The condition.</param>
         /// <exception cref="ArgumentNullException">If given condition is true.</exception>
         [MethodImpl(Raise.MethodImplOptions)]
+        [ContractAnnotation("condition:true => halt")]
         public void If(bool condition)
         {
             if (condition)
@@ -63,6 +64,7 @@ namespace PommaLabs.Thrower.ExceptionHandlers
         ///   <paramref name="message"/> and <paramref name="argumentName"/> are strictly required arguments.
         /// </remarks>
         [MethodImpl(Raise.MethodImplOptions)]
+        [ContractAnnotation("condition:true => halt")]
         public void If(bool condition, string argumentName, string message = null)
         {
             if (condition)
@@ -77,6 +79,7 @@ namespace PommaLabs.Thrower.ExceptionHandlers
         /// <param name="condition">The condition.</param>
         /// <exception cref="ArgumentNullException">If given condition is false.</exception>
         [MethodImpl(Raise.MethodImplOptions)]
+        [ContractAnnotation("condition:false => halt")]
         public void IfNot(bool condition)
         {
             if (!condition)
@@ -96,6 +99,7 @@ namespace PommaLabs.Thrower.ExceptionHandlers
         ///   <paramref name="message"/> and <paramref name="argumentName"/> are strictly required arguments.
         /// </remarks>
         [MethodImpl(Raise.MethodImplOptions)]
+        [ContractAnnotation("condition:false => halt")]
         public void IfNot(bool condition, string argumentName, string message = null)
         {
             if (!condition)
@@ -115,6 +119,7 @@ namespace PommaLabs.Thrower.ExceptionHandlers
         /// <param name="argument">The argument.</param>
         /// <exception cref="ArgumentNullException">If given argument is null.</exception>
         [MethodImpl(Raise.MethodImplOptions)]
+        [ContractAnnotation("argument:null => halt")]
         public void IfIsNull<TArg>([NoEnumeration] TArg argument)
         {
             if (ReferenceEquals(argument, null))
@@ -132,6 +137,7 @@ namespace PommaLabs.Thrower.ExceptionHandlers
         /// <param name="message">The message that should be put into the exception.</param>
         /// <exception cref="ArgumentNullException">If given argument is null.</exception>
         [MethodImpl(Raise.MethodImplOptions)]
+        [ContractAnnotation("argument:null => halt")]
         public void IfIsNull<TArg>([NoEnumeration] TArg argument, string argumentName, string message = null)
         {
             if (ReferenceEquals(argument, null))
@@ -151,6 +157,7 @@ namespace PommaLabs.Thrower.ExceptionHandlers
         /// <param name="argument">The argument.</param>
         /// <exception cref="ArgumentNullException">If given argument has no value.</exception>
         [MethodImpl(Raise.MethodImplOptions)]
+        [ContractAnnotation("argument:null => halt")]
         public void IfIsNull<TArg>(TArg? argument)
             where TArg : struct
         {
@@ -167,6 +174,7 @@ namespace PommaLabs.Thrower.ExceptionHandlers
         /// <param name="argument">The argument, by reference.</param>
         /// <exception cref="ArgumentNullException">If given argument has no value.</exception>
         [MethodImpl(Raise.MethodImplOptions)]
+        [ContractAnnotation("argument:null => halt")]
         public void IfIsNull<TArg>(ref TArg? argument)
             where TArg : struct
         {
@@ -185,6 +193,7 @@ namespace PommaLabs.Thrower.ExceptionHandlers
         /// <param name="message">The message that should be put into the exception.</param>
         /// <exception cref="ArgumentNullException">If given argument has no value.</exception>
         [MethodImpl(Raise.MethodImplOptions)]
+        [ContractAnnotation("argument:null => halt")]
         public void IfIsNull<TArg>(TArg? argument, string argumentName, string message = null)
             where TArg : struct
         {
@@ -203,6 +212,7 @@ namespace PommaLabs.Thrower.ExceptionHandlers
         /// <param name="message">The message that should be put into the exception.</param>
         /// <exception cref="ArgumentNullException">If given argument has no value.</exception>
         [MethodImpl(Raise.MethodImplOptions)]
+        [ContractAnnotation("argument:null => halt")]
         public void IfIsNull<TArg>(ref TArg? argument, string argumentName, string message = null)
             where TArg : struct
         {
