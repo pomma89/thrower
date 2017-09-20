@@ -192,6 +192,7 @@
 
 	<h1 id="Syntax">Syntax</h1>
 	<pre><code>[MethodImpl(Raise.MethodImplOptions)]
+[ContractAnnotation("argument:null =&gt; halt")]
 public void IfIsNull&lt;TArg&gt;(TArg argument)</code></pre>
 
 
@@ -208,6 +209,10 @@ public void IfIsNull&lt;TArg&gt;(TArg argument)</code></pre>
 				</thead>
 					<tbody><tr>
 						<td>MethodImplAttribute</td>
+						<td></td>
+					</tr>
+					<tr>
+						<td>Contract<wbr>Annotation<wbr>Attribute</td>
 						<td></td>
 					</tr>
 			</tbody></table>

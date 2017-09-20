@@ -227,6 +227,7 @@
 
 	<h1 id="Syntax">Syntax</h1>
 	<pre><code>[MethodImpl(Raise.MethodImplOptions)]
+[ContractAnnotation("condition:false =&gt; halt")]
 public void IfNot(bool condition, string argumentName = null)</code></pre>
 
 
@@ -243,6 +244,10 @@ public void IfNot(bool condition, string argumentName = null)</code></pre>
 				</thead>
 					<tbody><tr>
 						<td>MethodImplAttribute</td>
+						<td></td>
+					</tr>
+					<tr>
+						<td>Contract<wbr>Annotation<wbr>Attribute</td>
 						<td></td>
 					</tr>
 			</tbody></table>
