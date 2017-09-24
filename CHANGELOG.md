@@ -1,5 +1,9 @@
 # Changelog for PommaLabs.Thrower #
 
+### v4.2.3 (2017-09-24)
+
+* Further support for R# ContractAnnotation attribute (issue #4).
+
 ### v4.2.2 (2017-09-20)
 
 * Added support for R# ContractAnnotation attribute (issue #4).

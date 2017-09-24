@@ -595,6 +595,7 @@ namespace PommaLabs.Thrower.ExceptionHandlers
         /// <param name="value">The string value.</param>
         /// <exception cref="ArgumentException">If given string is null or empty.</exception>
         [MethodImpl(Raise.MethodImplOptions)]
+        [ContractAnnotation("value:null => halt")]
         public void IfIsNullOrEmpty(string value)
         {
             if (ReferenceEquals(value, null) || string.Empty.Equals(value))
@@ -614,6 +615,7 @@ namespace PommaLabs.Thrower.ExceptionHandlers
         ///   <paramref name="message"/> and <paramref name="argumentName"/> are strictly required arguments.
         /// </remarks>
         [MethodImpl(Raise.MethodImplOptions)]
+        [ContractAnnotation("value:null => halt")]
         public void IfIsNullOrEmpty(string value, string argumentName, string message = null)
         {
             if (ReferenceEquals(value, null) || string.Empty.Equals(value))
@@ -628,6 +630,7 @@ namespace PommaLabs.Thrower.ExceptionHandlers
         /// <param name="value">The string value.</param>
         /// <exception cref="ArgumentException">If given string is null, empty or blank.</exception>
         [MethodImpl(Raise.MethodImplOptions)]
+        [ContractAnnotation("value:null => halt")]
         public void IfIsNullOrWhiteSpace(string value)
         {
             if (ReferenceEquals(value, null) || string.Empty.Equals(value.Trim()))
@@ -647,6 +650,7 @@ namespace PommaLabs.Thrower.ExceptionHandlers
         ///   <paramref name="message"/> and <paramref name="argumentName"/> are strictly required arguments.
         /// </remarks>
         [MethodImpl(Raise.MethodImplOptions)]
+        [ContractAnnotation("value:null => halt")]
         public void IfIsNullOrWhiteSpace(string value, string argumentName, string message = null)
         {
             if (ReferenceEquals(value, null) || string.Empty.Equals(value.Trim()))
@@ -669,6 +673,7 @@ namespace PommaLabs.Thrower.ExceptionHandlers
         /// <param name="value">The collection.</param>
         /// <exception cref="ArgumentException">If given collection is null or empty.</exception>
         [MethodImpl(Raise.MethodImplOptions)]
+        [ContractAnnotation("value:null => halt")]
         public void IfIsNullOrEmpty<TItem>(ICollection<TItem> value)
         {
             if (ReferenceEquals(value, null) || value.Count == 0)
@@ -689,6 +694,7 @@ namespace PommaLabs.Thrower.ExceptionHandlers
         ///   <paramref name="message"/> and <paramref name="argumentName"/> are strictly required arguments.
         /// </remarks>
         [MethodImpl(Raise.MethodImplOptions)]
+        [ContractAnnotation("value:null => halt")]
         public void IfIsNullOrEmpty<TItem>(ICollection<TItem> value, string argumentName, string message = null)
         {
             if (ReferenceEquals(value, null) || value.Count == 0)
@@ -704,6 +710,7 @@ namespace PommaLabs.Thrower.ExceptionHandlers
         /// <param name="value">The enumerable.</param>
         /// <exception cref="ArgumentException">If given enumerable is null or empty.</exception>
         [MethodImpl(Raise.MethodImplOptions)]
+        [ContractAnnotation("value:null => halt")]
         public void IfIsNullOrEmpty<TItem>([NoEnumeration] IEnumerable<TItem> value)
         {
             if (ReferenceEquals(value, null) || !value.GetEnumerator().MoveNext())
@@ -724,6 +731,7 @@ namespace PommaLabs.Thrower.ExceptionHandlers
         ///   <paramref name="message"/> and <paramref name="argumentName"/> are strictly required arguments.
         /// </remarks>
         [MethodImpl(Raise.MethodImplOptions)]
+        [ContractAnnotation("value:null => halt")]
         public void IfIsNullOrEmpty<TItem>([NoEnumeration] IEnumerable<TItem> value, string argumentName, string message = null)
         {
             if (ReferenceEquals(value, null) || !value.GetEnumerator().MoveNext())
