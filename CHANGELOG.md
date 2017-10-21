@@ -1,5 +1,9 @@
 # Changelog for PommaLabs.Thrower #
 
+### v4.2.4 (2017-10-21)
+
+* Restored AssemblyVersion attribute, which was probably lost during migration to .NET Standard 2.0.
+
 ### v4.2.3 (2017-09-24)
 
 * Further support for R# ContractAnnotation attribute (issue #4).
