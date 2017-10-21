@@ -216,6 +216,7 @@
 
 	<h1 id="Syntax">Syntax</h1>
 	<pre><code>[MethodImpl(Raise.MethodImplOptions)]
+[ContractAnnotation("value:null =&gt; halt")]
 public void IfIsNullOrEmpty(string value, string argumentName, string message = null)</code></pre>
 
 
@@ -236,6 +237,10 @@ public void IfIsNullOrEmpty(string value, string argumentName, string message = 
 				</thead>
 					<tbody><tr>
 						<td>MethodImplAttribute</td>
+						<td></td>
+					</tr>
+					<tr>
+						<td>Contract<wbr>Annotation<wbr>Attribute</td>
 						<td></td>
 					</tr>
 			</tbody></table>

@@ -137,8 +137,6 @@
 			<li class="header">Namespace</li>
 		<li><a href="/Thrower/api/PommaLabs.Thrower.Validation">PommaLabs<wbr>.Thrower<wbr>.Validation</a></li>
 		<li role="separator" class="divider"></li>
-			<li class="header">Struct Types</li>
-				<li><a href="/Thrower/api/PommaLabs.Thrower.Validation/ValidationError">ValidationError</a></li>
 			<li class="header">Class Types</li>
 				<li><a href="/Thrower/api/PommaLabs.Thrower.Validation/EmailAddressAttribute">Email<wbr>Address<wbr>Attribute</a></li>
 				<li><a href="/Thrower/api/PommaLabs.Thrower.Validation/EmailAddressValidator">Email<wbr>Address<wbr>Validator</a></li>
@@ -148,6 +146,8 @@
 				<li><a href="/Thrower/api/PommaLabs.Thrower.Validation/PhoneNumberAttribute">PhoneNumberAttribute</a></li>
 				<li><a href="/Thrower/api/PommaLabs.Thrower.Validation/PhoneNumberValidator">PhoneNumberValidator</a></li>
 				<li class="selected"><a href="/Thrower/api/PommaLabs.Thrower.Validation/ValidateAttribute">ValidateAttribute</a></li>
+			<li class="header">Struct Types</li>
+				<li><a href="/Thrower/api/PommaLabs.Thrower.Validation/ValidationError">ValidationError</a></li>
 
 
                     </ul>
@@ -284,7 +284,7 @@ public sealed class ValidateAttribute : Attribute, _Attribute</code></pre>
 								<td>bool</td>
 								<td>
 									<div>
-       If the property is an <code class="cs"><a href="/Thrower">IEnumerable</a></code>, then this flag controls whether it
+       If the property is an <code class="cs">System.Collections.IEnumerable</code>, then this flag controls whether it
        should enumerated or not.
     
        Default value is true.
@@ -296,7 +296,7 @@ public sealed class ValidateAttribute : Attribute, _Attribute</code></pre>
 								<td>bool</td>
 								<td>
 									<div>
-       If the property is an <code class="cs"><a href="/Thrower">IEnumerable</a></code>, then this flag controls whether its
+       If the property is an <code class="cs">System.Collections.IEnumerable</code>, then this flag controls whether its
        items are required or not.
     
        Default value is false.
