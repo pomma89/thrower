@@ -22,6 +22,7 @@
 // OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 using System;
+using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Net;
 
@@ -31,8 +32,11 @@ namespace PommaLabs.Thrower
     ///   Additional info which will be included into <see cref="HttpException"/>.
     /// </summary>
     [Serializable]
-    public struct HttpExceptionInfo
+    public struct HttpExceptionInfo : IEquatable<HttpExceptionInfo>
     {
+        private readonly object _errorCode;
+        private readonly string _userMessage;
+
         /// <summary>
         ///   Builds the additional exception info.
         /// </summary>
@@ -40,19 +44,71 @@ namespace PommaLabs.Thrower
         /// <param name="userMessage">The user message.</param>
         public HttpExceptionInfo(object errorCode = null, string userMessage = null)
         {
-            ErrorCode = errorCode ?? HttpException.DefaultErrorCode;
-            UserMessage = userMessage ?? HttpException.DefaultUserMessage;
+            _errorCode = errorCode ?? HttpException.DefaultErrorCode;
+            _userMessage = userMessage ?? HttpException.DefaultUserMessage;
         }
 
         /// <summary>
         ///   The application defined error code.
         /// </summary>
-        public object ErrorCode { get; set; }
+        public object ErrorCode => _errorCode ?? HttpException.DefaultErrorCode;
 
         /// <summary>
         ///   An error message which can be shown to user.
         /// </summary>
-        public string UserMessage { get; set; }
+        public string UserMessage => _userMessage ?? HttpException.DefaultUserMessage;
+
+        /// <summary>
+        ///   Compares two info.
+        /// </summary>
+        /// <param name="info1">Left info.</param>
+        /// <param name="info2">Right info.</param>
+        /// <returns>True if they are not equal, false otherwise.</returns>
+        public static bool operator !=(HttpExceptionInfo info1, HttpExceptionInfo info2) => !(info1 == info2);
+
+        /// <summary>
+        ///   Compares two info.
+        /// </summary>
+        /// <param name="info1">Left info.</param>
+        /// <param name="info2">Right info.</param>
+        /// <returns>True if they are equal, false otherwise.</returns>
+        public static bool operator ==(HttpExceptionInfo info1, HttpExceptionInfo info2) => info1.Equals(info2);
+
+        /// <summary>
+        ///   Indicates whether this instance and a specified object are equal.
+        /// </summary>
+        /// <returns>
+        ///   true if <paramref name="obj"/> and this instance are the same type and represent the
+        ///   same value; otherwise, false.
+        /// </returns>
+        /// <param name="obj">The object to compare with the current instance.</param>
+        public override bool Equals(object obj) => obj is HttpExceptionInfo && Equals((HttpExceptionInfo) obj);
+
+        /// <summary>
+        ///   Indicates whether the current object is equal to another object of the same type.
+        /// </summary>
+        /// <returns>
+        ///   true if the current object is equal to the <paramref name="other"/> parameter;
+        ///   otherwise, false.
+        /// </returns>
+        /// <param name="other">An object to compare with this object.</param>
+        public bool Equals(HttpExceptionInfo other) => ErrorCode == other.ErrorCode && UserMessage == other.UserMessage;
+
+        /// <summary>
+        ///   Returns the hash code for this instance.
+        /// </summary>
+        /// <returns>A 32-bit signed integer that is the hash code for this instance.</returns>
+        public override int GetHashCode()
+        {
+            unchecked
+            {
+                const int prime = -1521134295;
+                var hash = 12345701;
+                hash = hash * prime + EqualityComparer<object>.Default.GetHashCode(ErrorCode);
+                hash = hash * prime + EqualityComparer<string>.Default.GetHashCode(UserMessage);
+                return hash;
+            }
+        }
     }
 
     /// <summary>

@@ -160,11 +160,7 @@ namespace PommaLabs.Thrower.UnitTests.ExceptionHandlers.Net
             const string message = "Serialization test - Message";
             const string userMessage = "Serialization test - User message";
 
-            var ex = new HttpException(statusCode, message, new HttpExceptionInfo
-            {
-                ErrorCode = errorCode,
-                UserMessage = userMessage
-            });
+            var ex = new HttpException(statusCode, message, new HttpExceptionInfo(errorCode, userMessage));
 
             var json = JsonConvert.SerializeObject(ex, Formatting.Indented);
             var jobj = JsonConvert.DeserializeObject<JObject>(json)["Data"];

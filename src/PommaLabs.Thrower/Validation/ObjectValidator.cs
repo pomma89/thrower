@@ -108,11 +108,7 @@ namespace PommaLabs.Thrower.Validation
                 foreach (var netValidationError in netValidationErrors)
                     foreach (var memberName in netValidationError.MemberNames)
                     {
-                        validationErrors.Add(new ValidationError
-                        {
-                            Path = $"{RootPlaceholder}.{memberName}",
-                            Reason = netValidationError.ErrorMessage
-                        });
+                        validationErrors.Add(new ValidationError($"{RootPlaceholder}.{memberName}", netValidationError.ErrorMessage));
                     }
             }
 
@@ -128,7 +124,7 @@ namespace PommaLabs.Thrower.Validation
             {
                 if (validation.Required)
                 {
-                    validationErrors.Add(new ValidationError { Path = path, Reason = "Property is required, found null" });
+                    validationErrors.Add(new ValidationError(path, "Property is required, found null"));
                     return false;
                 }
 
@@ -153,7 +149,7 @@ namespace PommaLabs.Thrower.Validation
 
                 if ((bool) PortableTypeInfo.GetPublicPropertyValue(obj, nullableHasValueProp))
                 {
-                    validationErrors.Add(new ValidationError { Path = path, Reason = "Property is required, found null" });
+                    validationErrors.Add(new ValidationError(path, "Property is required, found null"));
                     return false;
                 }
 
@@ -168,11 +164,11 @@ namespace PommaLabs.Thrower.Validation
                 var c = collection.Count;
                 if (c < validation.CollectionItemsMinCount)
                 {
-                    validationErrors.Add(new ValidationError { Path = path, Reason = $"Minimum item count is {validation.CollectionItemsMinCount}, found {c}" });
+                    validationErrors.Add(new ValidationError(path, $"Minimum item count is {validation.CollectionItemsMinCount}, found {c}"));
                 }
                 if (c > validation.CollectionItemsMaxCount)
                 {
-                    validationErrors.Add(new ValidationError { Path = path, Reason = $"Maximum item count is {validation.CollectionItemsMaxCount}, found {c}" });
+                    validationErrors.Add(new ValidationError(path, $"Maximum item count is {validation.CollectionItemsMaxCount}, found {c}"));
                 }
             }
 
