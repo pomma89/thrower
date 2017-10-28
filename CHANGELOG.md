@@ -3,7 +3,7 @@
 ### v4.3.0 (2017-10-28)
 
 * Added support for .NET Framework 4.7.1.
-* ValidationError and HttpExceptionInfo are now a proper structs.
+* ValidationError and HttpExceptionInfo are now proper structs.
 
 ### v4.2.4 (2017-10-21)
 
