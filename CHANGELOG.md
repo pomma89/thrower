@@ -1,5 +1,9 @@
 # Changelog for PommaLabs.Thrower #
 
+### v4.2.5 (2017-10-28)
+
+* Added support for .NET Framework 4.7.1.
+
 ### v4.2.4 (2017-10-21)
 
 * Restored AssemblyVersion attribute, which was probably lost during migration to .NET Standard 2.0.

@@ -4,7 +4,7 @@
     <AssemblyTitle>Thrower - Compact preconditions helpers</AssemblyTitle>
     <VersionPrefix>4.2.4</VersionPrefix>
     <AssemblyVersion>4.0.0</AssemblyVersion>
-    <TargetFrameworks>netstandard1.0;netstandard1.1;netstandard1.3;netstandard2.0;net35;net40;net45</TargetFrameworks>
+    <TargetFrameworks>netstandard1.0;netstandard1.1;netstandard1.3;netstandard2.0;net35;net40;net452;net461;net471</TargetFrameworks>
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
     <AssemblyOriginatorKeyFile>../../pomma89.snk</AssemblyOriginatorKeyFile>
     <SignAssembly>true</SignAssembly>
@@ -25,12 +25,6 @@
     <RepositoryType>git</RepositoryType>
     <RepositoryUrl>https://github.com/pomma89/Thrower</RepositoryUrl>
   </PropertyGroup>
-
-  <ItemGroup>
-    <Compile Remove="doc\**" />
-    <EmbeddedResource Remove="doc\**" />
-    <None Remove="doc\**" />
-  </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="HellBrick.Diagnostics" Version="2.0.0">
@@ -102,11 +96,33 @@
     <Reference Include="System.Data" />
   </ItemGroup>
 
-  <PropertyGroup Condition=" '$(TargetFramework)' == 'net45' ">
+  <PropertyGroup Condition=" '$(TargetFramework)' == 'net452' ">
     <DefineConstants>$(DefineConstants);NET45;FAST_MEMBER;LIBLOG_PUBLIC</DefineConstants>
   </PropertyGroup>
 
-  <ItemGroup Condition=" '$(TargetFramework)' == 'net45' ">
+  <ItemGroup Condition=" '$(TargetFramework)' == 'net452' ">
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Data" />
+  </ItemGroup>
+
+  <PropertyGroup Condition=" '$(TargetFramework)' == 'net461' ">
+    <DefineConstants>$(DefineConstants);NET46;FAST_MEMBER;LIBLOG_PUBLIC</DefineConstants>
+  </PropertyGroup>
+
+  <ItemGroup Condition=" '$(TargetFramework)' == 'net461' ">
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Data" />
+  </ItemGroup>
+
+  <PropertyGroup Condition=" '$(TargetFramework)' == 'net471' ">
+    <DefineConstants>$(DefineConstants);NET47;FAST_MEMBER;LIBLOG_PUBLIC</DefineConstants>
+  </PropertyGroup>
+
+  <ItemGroup Condition=" '$(TargetFramework)' == 'net471' ">
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />

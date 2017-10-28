@@ -31,7 +31,7 @@ namespace PommaLabs.Thrower.Reflection.FastMember
     [SecuritySafeCritical]
     public sealed class MemberSet : IEnumerable<Member>, IList<Member>
     {
-        private Member[] members;
+        private readonly Member[] members;
 
         internal MemberSet(Type type)
         {
