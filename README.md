@@ -1,21 +1,34 @@
-![](http://pomma89.altervista.org/thrower/logo-64.png "Thrower Logo") Thrower
-==================================================================================================================
+# ![](http://pomma89.altervista.org/thrower/logo-64.png "Thrower Logo") Thrower
 
 *Fully managed library providing convenience methods to perform argument checks.*
 
-## Summary ##
+## Summary
 
 * Latest release version: `v4.3.0`
 * Build status on [Travis CI](https://travis-ci.org): [![Build Status](https://travis-ci.org/pomma89/Thrower.svg?branch=master)](https://travis-ci.org/pomma89/Thrower)
 * Build status on [AppVeyor](https://www.appveyor.com/): [![Build status](https://ci.appveyor.com/api/projects/status/9rkyahvneyxil2dm/branch/master?svg=true)](https://ci.appveyor.com/project/pomma89/thrower/branch/master)
-* [Doxygen](http://www.stack.nl/~dimitri/doxygen/index.html) documentation:
-    + [HTML](http://pomma89.altervista.org/thrower/doc/html/index.html)
-    + [CHM](http://pomma89.altervista.org/thrower/doc/refman.chm)
-    + [PDF](http://pomma89.altervista.org/thrower/doc/refman.pdf)
+* [Wyam](https://wyam.io/) generated API documentation: [https://pomma89.github.io/Thrower/api/](https://pomma89.github.io/Thrower/api/)
 * [NuGet](https://www.nuget.org) package(s):
     + [Thrower](https://nuget.org/packages/Thrower/)
 
-## Introduction ##
+### How to build
+
+#### Windows
+
+Clone the project, go to the root and run PowerShell script `build.ps1`. In order for it to work, you need:
+
+* At least Windows 10 Fall Creators Update
+* At least Visual Studio 2017 Update 4
+* .NET Framework 4.7.1 Developer Pack
+* .NET Core 2.0 SDK
+
+#### Linux
+
+Clone the project, go to the root and run Bash script `build.sh`. In order for it to work, you need:
+
+* TODO, still need to make it building reliably.
+
+## Introduction
 
 This library allows to write preconditions like the ones exposed in the following example:
 
@@ -189,7 +202,7 @@ You can find more examples under the [Examples](https://github.com/pomma89/Throw
 and [Unit Tests](https://github.com/pomma89/Thrower/tree/master/test/PommaLabs.Thrower.UnitTests) projects.
 In any case, usage of this library should be pretty straightforward.
 
-## Exception handlers ##
+## Exception handlers
 
 `Raise` static class exposes an increasing number of what we call "exception handlers", that is,
 custom objects which allow writing preconditions as shown in above example.
@@ -202,7 +215,7 @@ I will evaluate whether it can be added safely and, if possible, I will gladly a
 
 Let's see some examples.
 
-### System ###
+### System
 
 ```cs
 
@@ -214,7 +227,7 @@ Raise.ArgumentOutOfRangeException.IfIsGreater(loginAttemptCount, 5, nameof(login
 
 ```
 
-### System.IO ###
+### System.IO
 
 ```cs
 
@@ -224,7 +237,7 @@ Raise.IOException.IfNot(outStream.CanWrite, "Specified output stream does not al
 
 ```
 
-### System.Net ###
+### System.Net
 
 ```cs
 
@@ -232,7 +245,7 @@ Raise.HttpException.IfNot(user.IsLoggedIn, HttpStatusCode.Unauthorized, "User sh
 
 ```
 
-## Generic exception handler ##
+## Generic exception handler
 
 If a standard handler has not been provided for an exception you would like to use, then you can try using the generic exception handler.
 Through the usage of reflection, it will try to discover required exception constructors and it will use them when it will need to create an exception object.
@@ -257,11 +270,11 @@ Raise<FileNotFoundException>.If(condition, message, fileName);
 
 ```
 
-## Benchmarks ##
+## Benchmarks
 
 All benchmarks were implemented and run using the wonderful [BenchmarkDotNet](https://github.com/dotnet/BenchmarkDotNet) library.
 
-### Raise VS Throw ###
+### Raise VS Throw
 
 In this benchmark we try to understand how great is the speed difference between the standard .NET `if (true) throw exception` statement
 and our fluent syntax based on the `Raise` static classes.
@@ -269,7 +282,7 @@ and our fluent syntax based on the `Raise` static classes.
 As we can see by the results, the speed difference, if any, is really small.
 Therefore, using Thrower does not impose a penalty on your application performance, even on hot paths.
 
-#### ArgumentNullException ####
+#### ArgumentNullException
 
 ``` ini
 
@@ -291,7 +304,7 @@ Job=RyuJitX64  Jit=RyuJit  Platform=X64
 
 ![](http://pomma89.altervista.org/thrower/perf/RaiseVsThrow_ArgumentNullException-barplot.png "ArgumentNullException barplot")
 
-#### ArgumentOutOfRangeException ####
+#### ArgumentOutOfRangeException
 
 ``` ini
 
@@ -313,7 +326,7 @@ Job=RyuJitX64  Jit=RyuJit  Platform=X64
 
 ![](http://pomma89.altervista.org/thrower/perf/RaiseVsThrow_ArgumentOutOfRangeException-barplot.png "ArgumentOutOfRangeException barplot")
 
-#### FileNotFoundException ####
+#### FileNotFoundException
 
 ``` ini
 
@@ -335,7 +348,7 @@ Job=RyuJitX64  Jit=RyuJit  Platform=X64
 
 ![](http://pomma89.altervista.org/thrower/perf/RaiseVsThrow_FileNotFoundException-barplot.png "FileNotFoundException barplot")
 
-#### NotSupportedException ####
+#### NotSupportedException
 
 ``` ini
 
@@ -357,7 +370,7 @@ Job=RyuJitX64  Jit=RyuJit  Platform=X64
 
 ![](http://pomma89.altervista.org/thrower/perf/RaiseVsThrow_NotSupportedException-barplot.png "NotSupportedException barplot")
 
-## About this repository and its maintainer ##
+## About this repository and its maintainer
 
 Everything done on this repository is freely offered on the terms of the project license. You are free to do everything you want with the code and its related files, as long as you respect the license and use common sense while doing it :-)
 
