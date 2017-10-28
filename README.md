@@ -376,4 +376,6 @@ Everything done on this repository is freely offered on the terms of the project
 
 I maintain this project during my spare time, so I can offer limited assistance and I can offer **no kind of warranty**.
 
-Development of this project is sponsored by [Finsa SpA](https://www.finsa.it), my current employer.
+However, if this project helps you, then you might offer me an hot cup of coffee:
+
+[![Donate](http://pomma89.altervista.org/buy-me-a-coffee.png)](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=ELJWKEYS9QGKA)

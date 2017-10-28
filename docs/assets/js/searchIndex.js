@@ -34,62 +34,22 @@ var searchModule = function() {
 
     a({
         id:0,
-        title:"ILogProvider",
-        content:"ILogProvider",
+        title:"LogProvider",
+        content:"LogProvider",
         description:'',
         tags:''
     });
 
     a({
         id:1,
-        title:"InvalidCastExceptionHandler",
-        content:"InvalidCastExceptionHandler",
+        title:"ObjectReader",
+        content:"ObjectReader",
         description:'',
         tags:''
     });
 
     a({
         id:2,
-        title:"HttpExceptionHandler",
-        content:"HttpExceptionHandler",
-        description:'',
-        tags:''
-    });
-
-    a({
-        id:3,
-        title:"StringExtensions",
-        content:"StringExtensions",
-        description:'',
-        tags:''
-    });
-
-    a({
-        id:4,
-        title:"HttpExceptionInfo",
-        content:"HttpExceptionInfo",
-        description:'',
-        tags:''
-    });
-
-    a({
-        id:5,
-        title:"ObjectAccessor",
-        content:"ObjectAccessor",
-        description:'',
-        tags:''
-    });
-
-    a({
-        id:6,
-        title:"PortableTypeInfo",
-        content:"PortableTypeInfo",
-        description:'',
-        tags:''
-    });
-
-    a({
-        id:7,
         title:"NotSupportedExceptionHandler",
         content:"NotSupportedExceptionHandler",
         description:'',
@@ -97,15 +57,79 @@ var searchModule = function() {
     });
 
     a({
+        id:3,
+        title:"EnumerationValidator",
+        content:"EnumerationValidator",
+        description:'',
+        tags:''
+    });
+
+    a({
+        id:4,
+        title:"EmailAddressValidator",
+        content:"EmailAddressValidator",
+        description:'',
+        tags:''
+    });
+
+    a({
+        id:5,
+        title:"IndexOutOfRangeExceptionHandler",
+        content:"IndexOutOfRangeExceptionHandler",
+        description:'',
+        tags:''
+    });
+
+    a({
+        id:6,
+        title:"HttpExceptionInfo",
+        content:"HttpExceptionInfo",
+        description:'',
+        tags:''
+    });
+
+    a({
+        id:7,
+        title:"Member",
+        content:"Member",
+        description:'',
+        tags:''
+    });
+
+    a({
         id:8,
-        title:"ObjectValidator",
-        content:"ObjectValidator",
+        title:"PhoneNumberValidator",
+        content:"PhoneNumberValidator",
         description:'',
         tags:''
     });
 
     a({
         id:9,
+        title:"Raise",
+        content:"Raise",
+        description:'',
+        tags:''
+    });
+
+    a({
+        id:10,
+        title:"StringExtensions",
+        content:"StringExtensions",
+        description:'',
+        tags:''
+    });
+
+    a({
+        id:11,
+        title:"TypeAccessor RuntimeTypeAccessor",
+        content:"TypeAccessor RuntimeTypeAccessor",
+        description:'',
+        tags:''
+    });
+
+    a({
+        id:12,
         title:"HttpException",
         content:"HttpException",
         description:'',
@@ -113,23 +137,23 @@ var searchModule = function() {
     });
 
     a({
-        id:10,
-        title:"EnvironmentExtensions",
-        content:"EnvironmentExtensions",
+        id:13,
+        title:"FileNotFoundExceptionHandler",
+        content:"FileNotFoundExceptionHandler",
         description:'',
         tags:''
     });
 
     a({
-        id:11,
-        title:"DirectoryNotFoundExceptionHandler",
-        content:"DirectoryNotFoundExceptionHandler",
+        id:14,
+        title:"HttpExceptionHandler",
+        content:"HttpExceptionHandler",
         description:'',
         tags:''
     });
 
     a({
-        id:12,
+        id:15,
         title:"RaiseBase",
         content:"RaiseBase",
         description:'',
@@ -137,33 +161,9 @@ var searchModule = function() {
     });
 
     a({
-        id:13,
-        title:"PhoneNumberAttribute",
-        content:"PhoneNumberAttribute",
-        description:'',
-        tags:''
-    });
-
-    a({
-        id:14,
-        title:"InvalidOperationExceptionHandler",
-        content:"InvalidOperationExceptionHandler",
-        description:'',
-        tags:''
-    });
-
-    a({
-        id:15,
-        title:"IOExceptionHandler",
-        content:"IOExceptionHandler",
-        description:'',
-        tags:''
-    });
-
-    a({
         id:16,
-        title:"GenericExceptionHandler",
-        content:"GenericExceptionHandler",
+        title:"ArgumentOutOfRangeExceptionHandler",
+        content:"ArgumentOutOfRangeExceptionHandler",
         description:'',
         tags:''
     });
@@ -178,94 +178,14 @@ var searchModule = function() {
 
     a({
         id:18,
-        title:"FileNotFoundExceptionHandler",
-        content:"FileNotFoundExceptionHandler",
+        title:"InvalidCastExceptionHandler",
+        content:"InvalidCastExceptionHandler",
         description:'',
         tags:''
     });
 
     a({
         id:19,
-        title:"ObjectReader",
-        content:"ObjectReader",
-        description:'',
-        tags:''
-    });
-
-    a({
-        id:20,
-        title:"ArgumentOutOfRangeExceptionHandler",
-        content:"ArgumentOutOfRangeExceptionHandler",
-        description:'',
-        tags:''
-    });
-
-    a({
-        id:21,
-        title:"PhoneNumberValidator",
-        content:"PhoneNumberValidator",
-        description:'',
-        tags:''
-    });
-
-    a({
-        id:22,
-        title:"ArgumentNullExceptionHandler",
-        content:"ArgumentNullExceptionHandler",
-        description:'',
-        tags:''
-    });
-
-    a({
-        id:23,
-        title:"EmailAddressValidator Options",
-        content:"EmailAddressValidator Options",
-        description:'',
-        tags:''
-    });
-
-    a({
-        id:24,
-        title:"ThrowerException",
-        content:"ThrowerException",
-        description:'',
-        tags:''
-    });
-
-    a({
-        id:25,
-        title:"ArgumentExceptionHandler",
-        content:"ArgumentExceptionHandler",
-        description:'',
-        tags:''
-    });
-
-    a({
-        id:26,
-        title:"IndexOutOfRangeExceptionHandler",
-        content:"IndexOutOfRangeExceptionHandler",
-        description:'',
-        tags:''
-    });
-
-    a({
-        id:27,
-        title:"Member",
-        content:"Member",
-        description:'',
-        tags:''
-    });
-
-    a({
-        id:28,
-        title:"EnumerationValidator",
-        content:"EnumerationValidator",
-        description:'',
-        tags:''
-    });
-
-    a({
-        id:29,
         title:"ValidateAttribute",
         content:"ValidateAttribute",
         description:'',
@@ -273,71 +193,7 @@ var searchModule = function() {
     });
 
     a({
-        id:30,
-        title:"EnumerationAttribute",
-        content:"EnumerationAttribute",
-        description:'',
-        tags:''
-    });
-
-    a({
-        id:31,
-        title:"ValidationError",
-        content:"ValidationError",
-        description:'',
-        tags:''
-    });
-
-    a({
-        id:32,
-        title:"EmailAddressAttribute",
-        content:"EmailAddressAttribute",
-        description:'',
-        tags:''
-    });
-
-    a({
-        id:33,
-        title:"ObjectDisposedExceptionHandler",
-        content:"ObjectDisposedExceptionHandler",
-        description:'',
-        tags:''
-    });
-
-    a({
-        id:34,
-        title:"InvalidDataExceptionHandler",
-        content:"InvalidDataExceptionHandler",
-        description:'',
-        tags:''
-    });
-
-    a({
-        id:35,
-        title:"TypeAccessor RuntimeTypeAccessor",
-        content:"TypeAccessor RuntimeTypeAccessor",
-        description:'',
-        tags:''
-    });
-
-    a({
-        id:36,
-        title:"LogProvider",
-        content:"LogProvider",
-        description:'',
-        tags:''
-    });
-
-    a({
-        id:37,
-        title:"FormattableObject",
-        content:"FormattableObject",
-        description:'',
-        tags:''
-    });
-
-    a({
-        id:38,
+        id:20,
         title:"EquatableObject",
         content:"EquatableObject",
         description:'',
@@ -345,23 +201,23 @@ var searchModule = function() {
     });
 
     a({
-        id:39,
-        title:"Raise",
-        content:"Raise",
+        id:21,
+        title:"ObjectDisposedExceptionHandler",
+        content:"ObjectDisposedExceptionHandler",
         description:'',
         tags:''
     });
 
     a({
-        id:40,
-        title:"Logger",
-        content:"Logger",
+        id:22,
+        title:"EmailAddressValidator Options",
+        content:"EmailAddressValidator Options",
         description:'',
         tags:''
     });
 
     a({
-        id:41,
+        id:23,
         title:"TypeAccessor",
         content:"TypeAccessor",
         description:'',
@@ -369,15 +225,7 @@ var searchModule = function() {
     });
 
     a({
-        id:42,
-        title:"EmailAddressValidator",
-        content:"EmailAddressValidator",
-        description:'',
-        tags:''
-    });
-
-    a({
-        id:43,
+        id:24,
         title:"MemberSet",
         content:"MemberSet",
         description:'',
@@ -385,7 +233,7 @@ var searchModule = function() {
     });
 
     a({
-        id:44,
+        id:25,
         title:"Raise",
         content:"Raise",
         description:'',
@@ -393,124 +241,168 @@ var searchModule = function() {
     });
 
     a({
-        id:45,
+        id:26,
+        title:"EmailAddressAttribute",
+        content:"EmailAddressAttribute",
+        description:'',
+        tags:''
+    });
+
+    a({
+        id:27,
+        title:"ValidationError",
+        content:"ValidationError",
+        description:'',
+        tags:''
+    });
+
+    a({
+        id:28,
+        title:"ILogProvider",
+        content:"ILogProvider",
+        description:'',
+        tags:''
+    });
+
+    a({
+        id:29,
+        title:"PhoneNumberAttribute",
+        content:"PhoneNumberAttribute",
+        description:'',
+        tags:''
+    });
+
+    a({
+        id:30,
+        title:"EnvironmentExtensions",
+        content:"EnvironmentExtensions",
+        description:'',
+        tags:''
+    });
+
+    a({
+        id:31,
+        title:"EnumerationAttribute",
+        content:"EnumerationAttribute",
+        description:'',
+        tags:''
+    });
+
+    a({
+        id:32,
+        title:"ObjectValidator",
+        content:"ObjectValidator",
+        description:'',
+        tags:''
+    });
+
+    a({
+        id:33,
+        title:"Logger",
+        content:"Logger",
+        description:'',
+        tags:''
+    });
+
+    a({
+        id:34,
+        title:"ThrowerException",
+        content:"ThrowerException",
+        description:'',
+        tags:''
+    });
+
+    a({
+        id:35,
+        title:"ObjectAccessor",
+        content:"ObjectAccessor",
+        description:'',
+        tags:''
+    });
+
+    a({
+        id:36,
+        title:"PortableTypeInfo",
+        content:"PortableTypeInfo",
+        description:'',
+        tags:''
+    });
+
+    a({
+        id:37,
+        title:"ArgumentNullExceptionHandler",
+        content:"ArgumentNullExceptionHandler",
+        description:'',
+        tags:''
+    });
+
+    a({
+        id:38,
+        title:"ArgumentExceptionHandler",
+        content:"ArgumentExceptionHandler",
+        description:'',
+        tags:''
+    });
+
+    a({
+        id:39,
+        title:"InvalidDataExceptionHandler",
+        content:"InvalidDataExceptionHandler",
+        description:'',
+        tags:''
+    });
+
+    a({
+        id:40,
+        title:"FormattableObject",
+        content:"FormattableObject",
+        description:'',
+        tags:''
+    });
+
+    a({
+        id:41,
+        title:"IOExceptionHandler",
+        content:"IOExceptionHandler",
+        description:'',
+        tags:''
+    });
+
+    a({
+        id:42,
         title:"LogLevel",
         content:"LogLevel",
         description:'',
         tags:''
     });
 
-    y({
-        url:'/Thrower/api/PommaLabs.Thrower.Logging/ILogProvider',
-        title:"ILogProvider",
-        description:""
+    a({
+        id:43,
+        title:"GenericExceptionHandler",
+        content:"GenericExceptionHandler",
+        description:'',
+        tags:''
     });
 
-    y({
-        url:'/Thrower/api/PommaLabs.Thrower.ExceptionHandlers/InvalidCastExceptionHandler',
-        title:"InvalidCastExceptionHandler",
-        description:""
-    });
-
-    y({
-        url:'/Thrower/api/PommaLabs.Thrower.ExceptionHandlers.Net/HttpExceptionHandler',
-        title:"HttpExceptionHandler",
-        description:""
-    });
-
-    y({
-        url:'/Thrower/api/PommaLabs.Thrower.Goodies/StringExtensions',
-        title:"StringExtensions",
-        description:""
-    });
-
-    y({
-        url:'/Thrower/api/PommaLabs.Thrower/HttpExceptionInfo',
-        title:"HttpExceptionInfo",
-        description:""
-    });
-
-    y({
-        url:'/Thrower/api/PommaLabs.Thrower.Reflection.FastMember/ObjectAccessor',
-        title:"ObjectAccessor",
-        description:""
-    });
-
-    y({
-        url:'/Thrower/api/PommaLabs.Thrower.Reflection/PortableTypeInfo',
-        title:"PortableTypeInfo",
-        description:""
-    });
-
-    y({
-        url:'/Thrower/api/PommaLabs.Thrower.ExceptionHandlers/NotSupportedExceptionHandler',
-        title:"NotSupportedExceptionHandler",
-        description:""
-    });
-
-    y({
-        url:'/Thrower/api/PommaLabs.Thrower.Validation/ObjectValidator',
-        title:"ObjectValidator",
-        description:""
-    });
-
-    y({
-        url:'/Thrower/api/PommaLabs.Thrower/HttpException',
-        title:"HttpException",
-        description:""
-    });
-
-    y({
-        url:'/Thrower/api/PommaLabs.Thrower.Goodies/EnvironmentExtensions',
-        title:"EnvironmentExtensions",
-        description:""
-    });
-
-    y({
-        url:'/Thrower/api/PommaLabs.Thrower.ExceptionHandlers.IO/DirectoryNotFoundExceptionHandler',
-        title:"DirectoryNotFoundExceptionHandler",
-        description:""
-    });
-
-    y({
-        url:'/Thrower/api/PommaLabs.Thrower/RaiseBase',
-        title:"RaiseBase",
-        description:""
-    });
-
-    y({
-        url:'/Thrower/api/PommaLabs.Thrower.Validation/PhoneNumberAttribute',
-        title:"PhoneNumberAttribute",
-        description:""
-    });
-
-    y({
-        url:'/Thrower/api/PommaLabs.Thrower.ExceptionHandlers/InvalidOperationExceptionHandler',
+    a({
+        id:44,
         title:"InvalidOperationExceptionHandler",
-        description:""
+        content:"InvalidOperationExceptionHandler",
+        description:'',
+        tags:''
+    });
+
+    a({
+        id:45,
+        title:"DirectoryNotFoundExceptionHandler",
+        content:"DirectoryNotFoundExceptionHandler",
+        description:'',
+        tags:''
     });
 
     y({
-        url:'/Thrower/api/PommaLabs.Thrower.ExceptionHandlers.IO/IOExceptionHandler',
-        title:"IOExceptionHandler",
-        description:""
-    });
-
-    y({
-        url:'/Thrower/api/PommaLabs.Thrower.ExceptionHandlers/GenericExceptionHandler_1',
-        title:"GenericExceptionHandler<TException>",
-        description:""
-    });
-
-    y({
-        url:'/Thrower/api/PommaLabs.Thrower.Reflection/CastTo_1',
-        title:"PortableTypeInfo.CastTo<T>",
-        description:""
-    });
-
-    y({
-        url:'/Thrower/api/PommaLabs.Thrower.ExceptionHandlers.IO/FileNotFoundExceptionHandler',
-        title:"FileNotFoundExceptionHandler",
+        url:'/Thrower/api/PommaLabs.Thrower.Logging/LogProvider',
+        title:"LogProvider",
         description:""
     });
 
@@ -521,50 +413,8 @@ var searchModule = function() {
     });
 
     y({
-        url:'/Thrower/api/PommaLabs.Thrower.ExceptionHandlers/ArgumentOutOfRangeExceptionHandler',
-        title:"ArgumentOutOfRangeExceptionHandler",
-        description:""
-    });
-
-    y({
-        url:'/Thrower/api/PommaLabs.Thrower.Validation/PhoneNumberValidator',
-        title:"PhoneNumberValidator",
-        description:""
-    });
-
-    y({
-        url:'/Thrower/api/PommaLabs.Thrower.ExceptionHandlers/ArgumentNullExceptionHandler',
-        title:"ArgumentNullExceptionHandler",
-        description:""
-    });
-
-    y({
-        url:'/Thrower/api/PommaLabs.Thrower.Validation/Options',
-        title:"EmailAddressValidator.Options",
-        description:""
-    });
-
-    y({
-        url:'/Thrower/api/PommaLabs.Thrower/ThrowerException',
-        title:"ThrowerException",
-        description:""
-    });
-
-    y({
-        url:'/Thrower/api/PommaLabs.Thrower.ExceptionHandlers/ArgumentExceptionHandler',
-        title:"ArgumentExceptionHandler",
-        description:""
-    });
-
-    y({
-        url:'/Thrower/api/PommaLabs.Thrower.ExceptionHandlers/IndexOutOfRangeExceptionHandler',
-        title:"IndexOutOfRangeExceptionHandler",
-        description:""
-    });
-
-    y({
-        url:'/Thrower/api/PommaLabs.Thrower.Reflection.FastMember/Member',
-        title:"Member",
+        url:'/Thrower/api/PommaLabs.Thrower.ExceptionHandlers/NotSupportedExceptionHandler',
+        title:"NotSupportedExceptionHandler",
         description:""
     });
 
@@ -575,62 +425,32 @@ var searchModule = function() {
     });
 
     y({
-        url:'/Thrower/api/PommaLabs.Thrower.Validation/ValidateAttribute',
-        title:"ValidateAttribute",
+        url:'/Thrower/api/PommaLabs.Thrower.Validation/EmailAddressValidator',
+        title:"EmailAddressValidator",
         description:""
     });
 
     y({
-        url:'/Thrower/api/PommaLabs.Thrower.Validation/EnumerationAttribute',
-        title:"EnumerationAttribute",
+        url:'/Thrower/api/PommaLabs.Thrower.ExceptionHandlers/IndexOutOfRangeExceptionHandler',
+        title:"IndexOutOfRangeExceptionHandler",
         description:""
     });
 
     y({
-        url:'/Thrower/api/PommaLabs.Thrower.Validation/ValidationError',
-        title:"ValidationError",
+        url:'/Thrower/api/PommaLabs.Thrower/HttpExceptionInfo',
+        title:"HttpExceptionInfo",
         description:""
     });
 
     y({
-        url:'/Thrower/api/PommaLabs.Thrower.Validation/EmailAddressAttribute',
-        title:"EmailAddressAttribute",
+        url:'/Thrower/api/PommaLabs.Thrower.Reflection.FastMember/Member',
+        title:"Member",
         description:""
     });
 
     y({
-        url:'/Thrower/api/PommaLabs.Thrower.ExceptionHandlers/ObjectDisposedExceptionHandler',
-        title:"ObjectDisposedExceptionHandler",
-        description:""
-    });
-
-    y({
-        url:'/Thrower/api/PommaLabs.Thrower.ExceptionHandlers.IO/InvalidDataExceptionHandler',
-        title:"InvalidDataExceptionHandler",
-        description:""
-    });
-
-    y({
-        url:'/Thrower/api/PommaLabs.Thrower.Reflection.FastMember/RuntimeTypeAccessor',
-        title:"TypeAccessor.RuntimeTypeAccessor",
-        description:""
-    });
-
-    y({
-        url:'/Thrower/api/PommaLabs.Thrower.Logging/LogProvider',
-        title:"LogProvider",
-        description:""
-    });
-
-    y({
-        url:'/Thrower/api/PommaLabs.Thrower.Goodies/FormattableObject',
-        title:"FormattableObject",
-        description:""
-    });
-
-    y({
-        url:'/Thrower/api/PommaLabs.Thrower.Goodies/EquatableObject_1',
-        title:"EquatableObject<T>",
+        url:'/Thrower/api/PommaLabs.Thrower.Validation/PhoneNumberValidator',
+        title:"PhoneNumberValidator",
         description:""
     });
 
@@ -641,20 +461,86 @@ var searchModule = function() {
     });
 
     y({
-        url:'/Thrower/api/PommaLabs.Thrower.Logging/Logger',
-        title:"Logger",
+        url:'/Thrower/api/PommaLabs.Thrower.Goodies/StringExtensions',
+        title:"StringExtensions",
+        description:""
+    });
+
+    y({
+        url:'/Thrower/api/PommaLabs.Thrower.Reflection.FastMember/RuntimeTypeAccessor',
+        title:"TypeAccessor.RuntimeTypeAccessor",
+        description:""
+    });
+
+    y({
+        url:'/Thrower/api/PommaLabs.Thrower/HttpException',
+        title:"HttpException",
+        description:""
+    });
+
+    y({
+        url:'/Thrower/api/PommaLabs.Thrower.ExceptionHandlers.IO/FileNotFoundExceptionHandler',
+        title:"FileNotFoundExceptionHandler",
+        description:""
+    });
+
+    y({
+        url:'/Thrower/api/PommaLabs.Thrower.ExceptionHandlers.Net/HttpExceptionHandler',
+        title:"HttpExceptionHandler",
+        description:""
+    });
+
+    y({
+        url:'/Thrower/api/PommaLabs.Thrower/RaiseBase',
+        title:"RaiseBase",
+        description:""
+    });
+
+    y({
+        url:'/Thrower/api/PommaLabs.Thrower.ExceptionHandlers/ArgumentOutOfRangeExceptionHandler',
+        title:"ArgumentOutOfRangeExceptionHandler",
+        description:""
+    });
+
+    y({
+        url:'/Thrower/api/PommaLabs.Thrower.Reflection/CastTo_1',
+        title:"PortableTypeInfo.CastTo<T>",
+        description:""
+    });
+
+    y({
+        url:'/Thrower/api/PommaLabs.Thrower.ExceptionHandlers/InvalidCastExceptionHandler',
+        title:"InvalidCastExceptionHandler",
+        description:""
+    });
+
+    y({
+        url:'/Thrower/api/PommaLabs.Thrower.Validation/ValidateAttribute',
+        title:"ValidateAttribute",
+        description:""
+    });
+
+    y({
+        url:'/Thrower/api/PommaLabs.Thrower.Goodies/EquatableObject_1',
+        title:"EquatableObject<T>",
+        description:""
+    });
+
+    y({
+        url:'/Thrower/api/PommaLabs.Thrower.ExceptionHandlers/ObjectDisposedExceptionHandler',
+        title:"ObjectDisposedExceptionHandler",
+        description:""
+    });
+
+    y({
+        url:'/Thrower/api/PommaLabs.Thrower.Validation/Options',
+        title:"EmailAddressValidator.Options",
         description:""
     });
 
     y({
         url:'/Thrower/api/PommaLabs.Thrower.Reflection.FastMember/TypeAccessor',
         title:"TypeAccessor",
-        description:""
-    });
-
-    y({
-        url:'/Thrower/api/PommaLabs.Thrower.Validation/EmailAddressValidator',
-        title:"EmailAddressValidator",
         description:""
     });
 
@@ -671,8 +557,122 @@ var searchModule = function() {
     });
 
     y({
+        url:'/Thrower/api/PommaLabs.Thrower.Validation/EmailAddressAttribute',
+        title:"EmailAddressAttribute",
+        description:""
+    });
+
+    y({
+        url:'/Thrower/api/PommaLabs.Thrower.Validation/ValidationError',
+        title:"ValidationError",
+        description:""
+    });
+
+    y({
+        url:'/Thrower/api/PommaLabs.Thrower.Logging/ILogProvider',
+        title:"ILogProvider",
+        description:""
+    });
+
+    y({
+        url:'/Thrower/api/PommaLabs.Thrower.Validation/PhoneNumberAttribute',
+        title:"PhoneNumberAttribute",
+        description:""
+    });
+
+    y({
+        url:'/Thrower/api/PommaLabs.Thrower.Goodies/EnvironmentExtensions',
+        title:"EnvironmentExtensions",
+        description:""
+    });
+
+    y({
+        url:'/Thrower/api/PommaLabs.Thrower.Validation/EnumerationAttribute',
+        title:"EnumerationAttribute",
+        description:""
+    });
+
+    y({
+        url:'/Thrower/api/PommaLabs.Thrower.Validation/ObjectValidator',
+        title:"ObjectValidator",
+        description:""
+    });
+
+    y({
+        url:'/Thrower/api/PommaLabs.Thrower.Logging/Logger',
+        title:"Logger",
+        description:""
+    });
+
+    y({
+        url:'/Thrower/api/PommaLabs.Thrower/ThrowerException',
+        title:"ThrowerException",
+        description:""
+    });
+
+    y({
+        url:'/Thrower/api/PommaLabs.Thrower.Reflection.FastMember/ObjectAccessor',
+        title:"ObjectAccessor",
+        description:""
+    });
+
+    y({
+        url:'/Thrower/api/PommaLabs.Thrower.Reflection/PortableTypeInfo',
+        title:"PortableTypeInfo",
+        description:""
+    });
+
+    y({
+        url:'/Thrower/api/PommaLabs.Thrower.ExceptionHandlers/ArgumentNullExceptionHandler',
+        title:"ArgumentNullExceptionHandler",
+        description:""
+    });
+
+    y({
+        url:'/Thrower/api/PommaLabs.Thrower.ExceptionHandlers/ArgumentExceptionHandler',
+        title:"ArgumentExceptionHandler",
+        description:""
+    });
+
+    y({
+        url:'/Thrower/api/PommaLabs.Thrower.ExceptionHandlers.IO/InvalidDataExceptionHandler',
+        title:"InvalidDataExceptionHandler",
+        description:""
+    });
+
+    y({
+        url:'/Thrower/api/PommaLabs.Thrower.Goodies/FormattableObject',
+        title:"FormattableObject",
+        description:""
+    });
+
+    y({
+        url:'/Thrower/api/PommaLabs.Thrower.ExceptionHandlers.IO/IOExceptionHandler',
+        title:"IOExceptionHandler",
+        description:""
+    });
+
+    y({
         url:'/Thrower/api/PommaLabs.Thrower.Logging/LogLevel',
         title:"LogLevel",
+        description:""
+    });
+
+    y({
+        url:'/Thrower/api/PommaLabs.Thrower.ExceptionHandlers/GenericExceptionHandler_1',
+        title:"GenericExceptionHandler<TException>",
+        description:""
+    });
+
+    y({
+        url:'/Thrower/api/PommaLabs.Thrower.ExceptionHandlers/InvalidOperationExceptionHandler',
+        title:"InvalidOperationExceptionHandler",
+        description:""
+    });
+
+    y({
+        url:'/Thrower/api/PommaLabs.Thrower.ExceptionHandlers.IO/DirectoryNotFoundExceptionHandler',
+        title:"DirectoryNotFoundExceptionHandler",
         description:""
     });
 

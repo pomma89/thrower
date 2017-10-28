@@ -6,7 +6,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="shortcut icon" href="/Thrower/assets/img/favicon.ico" type="image/x-icon">
         <link rel="icon" href="/Thrower/assets/img/favicon.ico" type="image/x-icon">
-        <title>PommaLabs.Thrower - API - LogLevel Enum</title>
+        <title>PommaLabs.Thrower - API - HttpExceptionInfo.GetHashCode() Method</title>
         <link href="/Thrower/assets/css/mermaid.css" rel="stylesheet">
         <link href="/Thrower/assets/css/highlight.css" rel="stylesheet">
         <link href="/Thrower/assets/css/bootstrap/bootstrap.css" rel="stylesheet">
@@ -75,7 +75,7 @@
                     	
 	<div id="infobar-headings"><h6>On This Page</h6><p><a href="#Summary">Summary</a></p>
 <p><a href="#Syntax">Syntax</a></p>
-<p><a href="#fields">Fields</a></p>
+<p><a href="#ReturnValue">Return Value</a></p>
 <hr class="infobar-hidden">
 </div>
 
@@ -134,16 +134,19 @@
                     <ul class="sidebar-menu">
                         
 			<li class="header">Namespace</li>
-		<li><a href="/Thrower/api/PommaLabs.Thrower.Logging">PommaLabs<wbr>.Thrower<wbr>.Logging</a></li>
+		<li><a href="/Thrower/api/PommaLabs.Thrower">PommaLabs<wbr>.Thrower</a></li>
+		<li class="header">Type</li>
+		<li><a href="/Thrower/api/PommaLabs.Thrower/HttpExceptionInfo">HttpExceptionInfo</a></li>
 		<li role="separator" class="divider"></li>
-			<li class="header">Delegate Types</li>
-				<li><a href="/Thrower/api/PommaLabs.Thrower.Logging/Logger">Logger</a></li>
-			<li class="header">Enum Types</li>
-				<li class="selected"><a href="/Thrower/api/PommaLabs.Thrower.Logging/LogLevel">LogLevel</a></li>
-			<li class="header">Interface Types</li>
-				<li><a href="/Thrower/api/PommaLabs.Thrower.Logging/ILogProvider">ILogProvider</a></li>
-			<li class="header">Class Types</li>
-				<li><a href="/Thrower/api/PommaLabs.Thrower.Logging/LogProvider">LogProvider</a></li>
+			<li class="header">Constructors</li>
+				<li><a href="/Thrower/api/PommaLabs.Thrower/HttpExceptionInfo/5177F161">HttpExceptionInfo<wbr>(object, <wbr>string)<wbr></a></li>
+			<li class="header">Property Members</li>
+				<li><a href="/Thrower/api/PommaLabs.Thrower/HttpExceptionInfo/4E0C005C">ErrorCode</a></li>
+				<li><a href="/Thrower/api/PommaLabs.Thrower/HttpExceptionInfo/B622D3BF">UserMessage</a></li>
+			<li class="header">Method Members</li>
+				<li><a href="/Thrower/api/PommaLabs.Thrower/HttpExceptionInfo/10B9CE1F">Equals<wbr>(object)<wbr></a></li>
+				<li><a href="/Thrower/api/PommaLabs.Thrower/HttpExceptionInfo/7751185E">Equals<wbr>(HttpExceptionInfo)<wbr></a></li>
+				<li class="selected"><a href="/Thrower/api/PommaLabs.Thrower/HttpExceptionInfo/FE0D8631">GetHashCode<wbr>()<wbr></a></li>
 
 
                     </ul>
@@ -157,140 +160,56 @@
 
 
 <section class="content-header">
-	<h1>LogLevel <small>Enum</small></h1>
+			<h3><a href="/Thrower/api/PommaLabs.Thrower/HttpExceptionInfo">HttpExceptionInfo</a>.</h3>
+	<h1>GetHashCode<wbr>()<wbr> <small>Method</small></h1>
 </section>
 <section class="content">
 	
 	
 		<h1 id="Summary">Summary</h1>
 	<div class="lead">
-      The log level.
+      Returns the hash code for this instance.
     </div>
 
 		<div class="panel panel-default">
-  			<div class="panel-body">
-				<div class="row">
-					<div class="col-md-6">
-						<dl class="dl-horizontal">		
-
-								<dt>Namespace</dt>
-								<dd><a href="/Thrower/api/PommaLabs.Thrower.Logging">PommaLabs<wbr>.Thrower<wbr>.Logging</a></dd>
-											
-								<dt>Interfaces</dt>
-								<dd>
-									<ul class="list-unstyled">
-											<li>IComparable</li>								
-											<li>IFormattable</li>								
-											<li>IConvertible</li>								
-									</ul>
-								</dd>
-							
-								<dt>Base Types</dt>
-								<dd>
-									<ul class="list-unstyled">										
-											<li>object</li>								
-											<li>ValueType</li>								
-											<li>Enum</li>								
-									</ul>
-								</dd>				
-							
-							
-						</dl>
-					</div>		
-					<div class="col-md-6">
-						<div class="mermaid">
-							graph TD
-	Base0["Enum"]--&gt;Type
-	Base1["ValueType"]--&gt;Base0
-	Base2["object"]--&gt;Base1
-	Interface0["IComparable"]-.-&gt;Type
-	Interface1["IFormattable"]-.-&gt;Type
-	Interface2["IConvertible"]-.-&gt;Type
-	Type["LogLevel"]
-class Type type-node
-
-						</div>
-					</div>
-				</div>
+  			<div class="panel-body">	
+				<dl class="dl-horizontal">	
+						
+						<dt>Namespace</dt>
+						<dd><a href="/Thrower/api/PommaLabs.Thrower">PommaLabs<wbr>.Thrower</a></dd>
+					
+						<dt>Containing Type</dt>
+						<dd><a href="/Thrower/api/PommaLabs.Thrower/HttpExceptionInfo">HttpExceptionInfo</a></dd>		
+					
+				</dl>
   			</div>
 		</div>
 
 	<h1 id="Syntax">Syntax</h1>
-	<pre><code>public enum LogLevel</code></pre>
+	<pre><code>public override int GetHashCode()</code></pre>
 
 
 
 
 
 
-
-
-			<h1 id="fields">Fields</h1>
-			<div class="box">
-				<div class="box-body no-padding table-responsive">
-					<table class="table table-striped table-hover three-cols">
-						<thead>
-							<tr>
-								<th>Name</th>
-								<th>Constant Value</th>
-								<th>Summary</th>
-							</tr>
-						</thead>
-							<tbody><tr>
-								<td><a href="/Thrower/api/PommaLabs.Thrower.Logging/LogLevel/22679984">Debug</a></td>
-								<td>1</td>
-								<td>
-									<div></div>
-											<div><small><em>static</em></small></div>
-								</td>
-							</tr>
-							<tr>
-								<td><a href="/Thrower/api/PommaLabs.Thrower.Logging/LogLevel/F49CE1B5">Error</a></td>
-								<td>4</td>
-								<td>
-									<div></div>
-											<div><small><em>static</em></small></div>
-								</td>
-							</tr>
-							<tr>
-								<td><a href="/Thrower/api/PommaLabs.Thrower.Logging/LogLevel/0A72ECD0">Fatal</a></td>
-								<td>5</td>
-								<td>
-									<div></div>
-											<div><small><em>static</em></small></div>
-								</td>
-							</tr>
-							<tr>
-								<td><a href="/Thrower/api/PommaLabs.Thrower.Logging/LogLevel/10877D4F">Info</a></td>
-								<td>2</td>
-								<td>
-									<div></div>
-											<div><small><em>static</em></small></div>
-								</td>
-							</tr>
-							<tr>
-								<td><a href="/Thrower/api/PommaLabs.Thrower.Logging/LogLevel/24F567D9">Trace</a></td>
-								<td>0</td>
-								<td>
-									<div></div>
-											<div><small><em>static</em></small></div>
-								</td>
-							</tr>
-							<tr>
-								<td><a href="/Thrower/api/PommaLabs.Thrower.Logging/LogLevel/42074EAD">Warn</a></td>
-								<td>3</td>
-								<td>
-									<div></div>
-											<div><small><em>static</em></small></div>
-								</td>
-							</tr>
-					</tbody></table>
-				</div>
-			</div>
-		
-
-
-
+	<h1 id="ReturnValue">Return Value</h1>
+	<div class="box">
+		<div class="box-body no-padding table-responsive">
+			<table class="table table-striped table-hover two-cols">
+				<thead>
+					<tr>
+						<th>Type</th>
+						<th>Description</th>
+					</tr>
+				</thead>
+				<tbody><tr>
+					<td>int</td>
+					<td>A 32-bit signed integer that is the hash code for this instance.</td>
+				</tr>
+			</tbody></table>
+		</div>
+	</div>	
 
 
 	
