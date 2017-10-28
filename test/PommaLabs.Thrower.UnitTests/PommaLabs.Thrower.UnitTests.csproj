@@ -1,6 +1,6 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <TargetFrameworks>netcoreapp1.0;netcoreapp1.1;netcoreapp2.0;net35;net40;net452;net461;net471</TargetFrameworks>
+    <TargetFrameworks>netcoreapp1.0;netcoreapp1.1;netcoreapp2.0;net35;net40;net45;net461;net471</TargetFrameworks>
     <OutputType>exe</OutputType>
   </PropertyGroup>
 
@@ -59,11 +59,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
 
-  <PropertyGroup Condition=" '$(TargetFramework)' == 'net452' ">
+  <PropertyGroup Condition=" '$(TargetFramework)' == 'net45' ">
     <DefineConstants>$(DefineConstants);NET45</DefineConstants>
   </PropertyGroup>
 
-  <ItemGroup Condition=" '$(TargetFramework)' == 'net452' ">
+  <ItemGroup Condition=" '$(TargetFramework)' == 'net45' ">
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
@@ -71,7 +71,7 @@
   </ItemGroup>
 
   <PropertyGroup Condition=" '$(TargetFramework)' == 'net461' ">
-    <DefineConstants>$(DefineConstants);NET45</DefineConstants>
+    <DefineConstants>$(DefineConstants);NET46</DefineConstants>
   </PropertyGroup>
 
   <ItemGroup Condition=" '$(TargetFramework)' == 'net461' ">

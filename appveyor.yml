@@ -1,4 +1,4 @@
-version: 4.2.4.{build}
+version: 4.3.0.{build}
 image: Visual Studio 2017 Preview
 build_script:
 - ps: .\build.ps1

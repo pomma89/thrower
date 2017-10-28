@@ -2,9 +2,9 @@
   <PropertyGroup>
     <AssemblyName>PommaLabs.Thrower</AssemblyName>
     <AssemblyTitle>Thrower - Compact preconditions helpers</AssemblyTitle>
-    <VersionPrefix>4.2.4</VersionPrefix>
+    <VersionPrefix>4.3.0</VersionPrefix>
     <AssemblyVersion>4.0.0</AssemblyVersion>
-    <TargetFrameworks>netstandard1.0;netstandard1.1;netstandard1.3;netstandard2.0;net35;net40;net452;net461;net471</TargetFrameworks>
+    <TargetFrameworks>netstandard1.0;netstandard1.1;netstandard1.3;netstandard2.0;net35;net40;net45;net461;net471</TargetFrameworks>
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
     <AssemblyOriginatorKeyFile>../../pomma89.snk</AssemblyOriginatorKeyFile>
     <SignAssembly>true</SignAssembly>
@@ -96,11 +96,11 @@
     <Reference Include="System.Data" />
   </ItemGroup>
 
-  <PropertyGroup Condition=" '$(TargetFramework)' == 'net452' ">
+  <PropertyGroup Condition=" '$(TargetFramework)' == 'net45' ">
     <DefineConstants>$(DefineConstants);NET45;FAST_MEMBER;LIBLOG_PUBLIC</DefineConstants>
   </PropertyGroup>
 
-  <ItemGroup Condition=" '$(TargetFramework)' == 'net452' ">
+  <ItemGroup Condition=" '$(TargetFramework)' == 'net45' ">
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />

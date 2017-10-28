@@ -5,7 +5,7 @@
 
 ## Summary ##
 
-* Latest release version: `v4.2.4`
+* Latest release version: `v4.3.0`
 * Build status on [Travis CI](https://travis-ci.org): [![Build Status](https://travis-ci.org/pomma89/Thrower.svg?branch=master)](https://travis-ci.org/pomma89/Thrower)
 * Build status on [AppVeyor](https://www.appveyor.com/): [![Build status](https://ci.appveyor.com/api/projects/status/9rkyahvneyxil2dm/branch/master?svg=true)](https://ci.appveyor.com/project/pomma89/thrower/branch/master)
 * [Doxygen](http://www.stack.nl/~dimitri/doxygen/index.html) documentation:
