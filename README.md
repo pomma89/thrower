@@ -2,6 +2,8 @@
 
 *Fully managed library providing convenience methods to perform argument checks.*
 
+[![Donate](https://img.shields.io/badge/Donate-PayPal-green.svg)](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=ELJWKEYS9QGKA)
+
 ## Summary
 
 * Latest release version: `v4.3.0`
