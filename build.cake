@@ -175,6 +175,8 @@ private void Pack(string cfg)
             settings.WithTarget("pack");
             settings.WithProperty("IncludeSource", new[] { "true" });
             settings.WithProperty("IncludeSymbols", new[] { "true" });
+            settings.WithProperty("SourceLinkCreate", new[] { "true" });
+            settings.WithProperty("SourceLinkTest", new[] { "true" });
             if (!IsRunningOnWindows())
             { 
                 // Hack for Linux bug - Missing MSBuild path.
@@ -191,10 +193,10 @@ private void Docs()
 {
     if (IsRunningOnWindows())
     {
-		Wyam(new WyamSettings()
-		{
-			InputPaths = new DirectoryPath[] { Directory("./pages") },
-			OutputPath = Directory("./docs")
-		});
+        Wyam(new WyamSettings()
+        {
+            InputPaths = new DirectoryPath[] { Directory("./pages") },
+            OutputPath = Directory("./docs")
+        });
     }
 }
