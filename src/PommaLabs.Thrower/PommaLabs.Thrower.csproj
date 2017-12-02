@@ -30,10 +30,13 @@
 
   <ItemGroup>
     <PackageReference Include="HellBrick.Diagnostics" Version="2.0.0" PrivateAssets="All" />
+    <PackageReference Include="SourceLink.Create.CommandLine" Version="2.6.0" PrivateAssets="All" />
     <PackageReference Include="SourceLink.Create.GitHub" Version="2.6.0" PrivateAssets="All" />
+    <PackageReference Include="SourceLink.Test" Version="2.6.0" PrivateAssets="All" />
   </ItemGroup>
 
   <ItemGroup>
+    <DotNetCliToolReference Include="dotnet-sourcelink" Version="2.6.0" />
     <DotNetCliToolReference Include="dotnet-sourcelink-git" Version="2.6.0" />
   </ItemGroup>
 
