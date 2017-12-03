@@ -123,8 +123,6 @@ private void Build(string cfg)
         settings.SetMaxCpuCount(0);
         settings.SetVerbosity(Verbosity.Quiet);
         settings.WithTarget("rebuild");
-        settings.WithProperty("DebugSymbols", new[] { "true" });
-        settings.WithProperty("DebugType", new[] { "embedded" });
         settings.WithProperty("SourceLinkCreate", new[] { "true" });
         settings.WithProperty("SourceLinkServerType", new[] { "GitHub" });
         settings.WithProperty("SourceLinkTest", new[] { "true" });
