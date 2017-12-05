@@ -1,22 +1,13 @@
-﻿// File name: ArgumentExceptionHandler.cs
-//
-// Author(s): Alessio Parma <alessio.parma@gmail.com>
-//
-// The MIT License (MIT)
-//
-// Copyright (c) 2013-2018 Alessio Parma <alessio.parma@gmail.com>
-//
+﻿// File name: ArgumentExceptionHandler.cs // Author(s): Alessio Parma <alessio.parma@gmail.com> //
+// The MIT License (MIT) // Copyright (c) 2013-2018 Alessio Parma <alessio.parma@gmail.com> //
 // Permission is hereby granted, free of charge, to any person obtaining a copy of this software and
 // associated documentation files (the "Software"), to deal in the Software without restriction,
 // including without limitation the rights to use, copy, modify, merge, publish, distribute,
 // sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is
-// furnished to do so, subject to the following conditions:
-//
-// The above copyright notice and this permission notice shall be included in all copies or
-// substantial portions of the Software.
-//
-// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT
-// NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+// furnished to do so, subject to the following conditions: // The above copyright notice and this
+// permission notice shall be included in all copies or substantial portions of the Software. // THE
+// SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT
+// LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
 // NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM,
 // DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT
 // OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
@@ -448,9 +439,8 @@ namespace PommaLabs.Thrower.ExceptionHandlers
         /// <param name="message">The message.</param>
         /// <exception cref="ArgumentException">If given enumeration argument is not defined.</exception>
         /// <remarks>
-        ///   <paramref name="message"/> and <paramref name="argumentName"/> are strictly required arguments.
-        ///
-        ///   This methid is slower than
+        ///   <paramref name="message"/> and <paramref name="argumentName"/> are strictly required
+        ///   arguments. /// This methid is slower than
         ///   <see cref="IfIsNotValidEnum{TEnum}(TEnum, string, string)"/>, please use that one if possible.
         /// </remarks>
         [MethodImpl(Raise.MethodImplOptions)]
@@ -660,6 +650,47 @@ namespace PommaLabs.Thrower.ExceptionHandlers
         }
 
         #endregion String validation
+
+        #region Guid validation
+
+        private const string GuidIsEmptyMessage = "Argument cannot be an empty Guid";
+
+        /// <summary>
+        ///   Throws <see cref="ArgumentException"/> if given <see cref="Guid"/> is equal to <see cref="Guid.Empty"/>.
+        /// </summary>
+        /// <param name="value">The <see cref="Guid"/> value.</param>
+        /// <exception cref="ArgumentException">If given string is null or empty.</exception>
+        [MethodImpl(Raise.MethodImplOptions)]
+        [ContractAnnotation("value:null => halt")]
+        public void IfIsEmpty(Guid value)
+        {
+            if (Guid.Empty.Equals(value))
+            {
+                throw new ArgumentException(StringIsNullOrEmptyMessage);
+            }
+        }
+
+        /// <summary>
+        ///   Throws <see cref="ArgumentException"/> if given string is null or empty.
+        /// </summary>
+        /// <param name="value">The string value.</param>
+        /// <param name="argumentName">The name of the argument.</param>
+        /// <param name="message">The optional message.</param>
+        /// <exception cref="ArgumentException">If given string is null or empty.</exception>
+        /// <remarks>
+        ///   <paramref name="message"/> and <paramref name="argumentName"/> are strictly required arguments.
+        /// </remarks>
+        [MethodImpl(Raise.MethodImplOptions)]
+        [ContractAnnotation("value:null => halt")]
+        public void IfIsEmpty(Guid value, string argumentName, string message = null)
+        {
+            if (ReferenceEquals(value, null) || string.Empty.Equals(value))
+            {
+                throw new ArgumentException(message ?? StringIsNullOrEmptyMessage, argumentName);
+            }
+        }
+
+        #endregion Guid validation
 
         #region Collection and enumerable validation
 
