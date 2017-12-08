@@ -659,34 +659,30 @@ namespace PommaLabs.Thrower.ExceptionHandlers
         ///   Throws <see cref="ArgumentException"/> if given <see cref="Guid"/> is equal to <see cref="Guid.Empty"/>.
         /// </summary>
         /// <param name="value">The <see cref="Guid"/> value.</param>
-        /// <exception cref="ArgumentException">If given string is null or empty.</exception>
+        /// <exception cref="ArgumentException">If given <see cref="Guid"/> is equal to <see cref="Guid.Empty"/>.</exception>
         [MethodImpl(Raise.MethodImplOptions)]
-        [ContractAnnotation("value:null => halt")]
         public void IfIsEmpty(Guid value)
         {
             if (Guid.Empty.Equals(value))
             {
-                throw new ArgumentException(StringIsNullOrEmptyMessage);
+                throw new ArgumentException(GuidIsEmptyMessage);
             }
         }
 
         /// <summary>
-        ///   Throws <see cref="ArgumentException"/> if given string is null or empty.
+        ///   Throws <see cref="ArgumentException"/> if given <see cref="Guid"/> is equal to <see cref="Guid.Empty"/>.
         /// </summary>
-        /// <param name="value">The string value.</param>
+        /// <param name="value">The <see cref="Guid"/> value.</param>
         /// <param name="argumentName">The name of the argument.</param>
         /// <param name="message">The optional message.</param>
-        /// <exception cref="ArgumentException">If given string is null or empty.</exception>
-        /// <remarks>
-        ///   <paramref name="message"/> and <paramref name="argumentName"/> are strictly required arguments.
-        /// </remarks>
+        /// <exception cref="ArgumentException">If given <see cref="Guid"/> is equal to <see cref="Guid.Empty"/>.</exception>
+        /// <remarks><paramref name="argumentName"/> is a strictly required argument.</remarks>
         [MethodImpl(Raise.MethodImplOptions)]
-        [ContractAnnotation("value:null => halt")]
         public void IfIsEmpty(Guid value, string argumentName, string message = null)
         {
-            if (ReferenceEquals(value, null) || string.Empty.Equals(value))
+            if (Guid.Empty.Equals(value))
             {
-                throw new ArgumentException(message ?? StringIsNullOrEmptyMessage, argumentName);
+                throw new ArgumentException(message ?? GuidIsEmptyMessage, argumentName);
             }
         }
 
