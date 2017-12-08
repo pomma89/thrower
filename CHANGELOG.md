@@ -1,8 +1,9 @@
 # Changelog for PommaLabs.Thrower #
 
-## v4.3.1 (2017-12-03)
+## v4.3.1 (2017-12-10)
 
 * Added SourceLink support.
+* Added Raise.ArgumentException.IfIsEmpty for Guid values (issue #5).
 
 ## v4.3.0 (2017-10-28)
 

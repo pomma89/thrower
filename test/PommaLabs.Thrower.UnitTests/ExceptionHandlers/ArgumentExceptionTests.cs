@@ -755,5 +755,33 @@ namespace PommaLabs.Thrower.UnitTests.ExceptionHandlers
         }
 
         #endregion IfIs(Not)SameAs
+
+        #region Guid validation
+
+        [Test]
+        public void IfIsEmptyGuid_ShouldNotThrowWithFullGuid()
+        {
+            Should.NotThrow(() => Raise.ArgumentException.IfIsEmpty(Guid.NewGuid()));
+        }
+
+        [Test]
+        public void IfIsEmptyGuid_ShouldThrowWithEmptyGuid()
+        {
+            Should.Throw<ArgumentException>(() => Raise.ArgumentException.IfIsEmpty(Guid.Empty));
+        }
+
+        [Test]
+        public void IfIsEmptyGuid_ShouldNotThrowWithFullGuid_WithArgumentNameAndMessage()
+        {
+            Should.NotThrow(() => Raise.ArgumentException.IfIsEmpty(Guid.NewGuid(), TestMessage, TestMessage));
+        }
+
+        [Test]
+        public void IfIsEmptyGuid_ShouldThrowWithEmptyGuid_WithArgumentNameAndMessage()
+        {
+            Should.Throw<ArgumentException>(() => Raise.ArgumentException.IfIsEmpty(Guid.Empty, TestMessage, TestMessage));
+        }
+
+        #endregion Guid validation
     }
 }
