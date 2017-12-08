@@ -2,13 +2,11 @@
   <PropertyGroup>
     <AssemblyName>PommaLabs.Thrower</AssemblyName>
     <AssemblyTitle>Thrower - Compact preconditions helpers</AssemblyTitle>
-    <VersionPrefix>4.3.1</VersionPrefix>
-    <AssemblyVersion>4.0.0</AssemblyVersion>
     <TargetFrameworks>netstandard1.0;netstandard1.1;netstandard1.3;netstandard2.0;net35;net40;net45;net461;net471</TargetFrameworks>
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
     <SignAssembly>true</SignAssembly>
     <PublicSign Condition=" '$(OS)' != 'Windows_NT' ">true</PublicSign>
-    <AssemblyOriginatorKeyFile>../../pomma89.snk</AssemblyOriginatorKeyFile>    
+    <AssemblyOriginatorKeyFile>../../pomma89.snk</AssemblyOriginatorKeyFile>
     <DebugType>embedded</DebugType>
     <LangVersion>latest</LangVersion>
   </PropertyGroup>
