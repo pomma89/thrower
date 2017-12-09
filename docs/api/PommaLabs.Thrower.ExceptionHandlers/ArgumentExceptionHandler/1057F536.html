@@ -144,6 +144,8 @@
 			<li class="header">Method Members</li>
 				<li><a href="/Thrower/api/PommaLabs.Thrower.ExceptionHandlers/ArgumentExceptionHandler/50B55D69">If<wbr>(bool)<wbr></a></li>
 				<li><a href="/Thrower/api/PommaLabs.Thrower.ExceptionHandlers/ArgumentExceptionHandler/D3FF2404">If<wbr>(bool, <wbr>string, <wbr>string)<wbr></a></li>
+				<li><a href="/Thrower/api/PommaLabs.Thrower.ExceptionHandlers/ArgumentExceptionHandler/422230FC">IfIsEmpty<wbr>(Guid)<wbr></a></li>
+				<li><a href="/Thrower/api/PommaLabs.Thrower.ExceptionHandlers/ArgumentExceptionHandler/CE6F2376">IfIsEmpty<wbr>(Guid, <wbr>string, <wbr>string)<wbr></a></li>
 				<li><a href="/Thrower/api/PommaLabs.Thrower.ExceptionHandlers/ArgumentExceptionHandler/38087B36">IfIsEqualTo<wbr>&lt;TArg1, <wbr>TArg2&gt;<wbr><wbr>(TArg1, <wbr>TArg2)<wbr></a></li>
 				<li><a href="/Thrower/api/PommaLabs.Thrower.ExceptionHandlers/ArgumentExceptionHandler/4946C552">IfIsEqualTo<wbr>&lt;TArg1, <wbr>TArg2&gt;<wbr><wbr>(TArg1, <wbr>TArg2, <wbr>string, <wbr>string)<wbr></a></li>
 				<li><a href="/Thrower/api/PommaLabs.Thrower.ExceptionHandlers/ArgumentExceptionHandler/848B74D9">IfIsNotEqualTo<wbr>&lt;TArg1, <wbr>TArg2&gt;<wbr><wbr>(TArg1, <wbr>TArg2)<wbr></a></li>
@@ -197,8 +199,8 @@
 	
 		<h1 id="Summary">Summary</h1>
 	<div class="lead">
-       Throws <code class="cs">System.ArgumentException</code> if given enumeration argument is not defined.
-     </div>
+      Throws <code class="cs">System.ArgumentException</code> if given enumeration argument is not defined.
+    </div>
 
 		<div class="panel panel-default">
   			<div class="panel-body">	
@@ -221,11 +223,10 @@ public void IfIsNotValidEnum(Type enumType, object argument, string argumentName
 
 	<h1 id="Remarks">Remarks</h1>
 	<div>
-       <span name="message" class="paramref">message</span> and <span name="argumentName" class="paramref">argumentName</span> are strictly required arguments.
-    
-       This methid is slower than
-       <code class="cs"><a href="/Thrower/api/PommaLabs.Thrower.ExceptionHandlers/ArgumentExceptionHandler/DACB433E">IfIsNotValidEnum&lt;TEnum&gt;(TEnum, string, string)</a></code>, please use that one if possible.
-     </div>
+      <span name="message" class="paramref">message</span> and <span name="argumentName" class="paramref">argumentName</span> are strictly required
+      arguments. /// This methid is slower than
+      <code class="cs"><a href="/Thrower/api/PommaLabs.Thrower.ExceptionHandlers/ArgumentExceptionHandler/DACB433E">IfIsNotValidEnum&lt;TEnum&gt;(TEnum, string, string)</a></code>, please use that one if possible.
+    </div>
 
 	<h1 id="Attributes">Attributes</h1>
 	<div class="box">

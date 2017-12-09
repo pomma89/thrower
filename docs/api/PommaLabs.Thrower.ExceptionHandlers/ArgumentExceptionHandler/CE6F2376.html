@@ -6,7 +6,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="shortcut icon" href="/Thrower/assets/img/favicon.ico" type="image/x-icon">
         <link rel="icon" href="/Thrower/assets/img/favicon.ico" type="image/x-icon">
-        <title>PommaLabs.Thrower - API - ArgumentExceptionHandler.IfIsNullOrWhiteSpace(string, string, string) Method</title>
+        <title>PommaLabs.Thrower - API - ArgumentExceptionHandler.IfIsEmpty(Guid, string, string) Method</title>
         <link href="/Thrower/assets/css/mermaid.css" rel="stylesheet">
         <link href="/Thrower/assets/css/highlight.css" rel="stylesheet">
         <link href="/Thrower/assets/css/bootstrap/bootstrap.css" rel="stylesheet">
@@ -145,7 +145,7 @@
 				<li><a href="/Thrower/api/PommaLabs.Thrower.ExceptionHandlers/ArgumentExceptionHandler/50B55D69">If<wbr>(bool)<wbr></a></li>
 				<li><a href="/Thrower/api/PommaLabs.Thrower.ExceptionHandlers/ArgumentExceptionHandler/D3FF2404">If<wbr>(bool, <wbr>string, <wbr>string)<wbr></a></li>
 				<li><a href="/Thrower/api/PommaLabs.Thrower.ExceptionHandlers/ArgumentExceptionHandler/422230FC">IfIsEmpty<wbr>(Guid)<wbr></a></li>
-				<li><a href="/Thrower/api/PommaLabs.Thrower.ExceptionHandlers/ArgumentExceptionHandler/CE6F2376">IfIsEmpty<wbr>(Guid, <wbr>string, <wbr>string)<wbr></a></li>
+				<li class="selected"><a href="/Thrower/api/PommaLabs.Thrower.ExceptionHandlers/ArgumentExceptionHandler/CE6F2376">IfIsEmpty<wbr>(Guid, <wbr>string, <wbr>string)<wbr></a></li>
 				<li><a href="/Thrower/api/PommaLabs.Thrower.ExceptionHandlers/ArgumentExceptionHandler/38087B36">IfIsEqualTo<wbr>&lt;TArg1, <wbr>TArg2&gt;<wbr><wbr>(TArg1, <wbr>TArg2)<wbr></a></li>
 				<li><a href="/Thrower/api/PommaLabs.Thrower.ExceptionHandlers/ArgumentExceptionHandler/4946C552">IfIsEqualTo<wbr>&lt;TArg1, <wbr>TArg2&gt;<wbr><wbr>(TArg1, <wbr>TArg2, <wbr>string, <wbr>string)<wbr></a></li>
 				<li><a href="/Thrower/api/PommaLabs.Thrower.ExceptionHandlers/ArgumentExceptionHandler/848B74D9">IfIsNotEqualTo<wbr>&lt;TArg1, <wbr>TArg2&gt;<wbr><wbr>(TArg1, <wbr>TArg2)<wbr></a></li>
@@ -173,7 +173,7 @@
 				<li><a href="/Thrower/api/PommaLabs.Thrower.ExceptionHandlers/ArgumentExceptionHandler/6B54074A">IfIsNullOrEmpty<wbr>&lt;TItem&gt;<wbr><wbr>(IEnumerable<wbr>&lt;TItem&gt;<wbr>)<wbr></a></li>
 				<li><a href="/Thrower/api/PommaLabs.Thrower.ExceptionHandlers/ArgumentExceptionHandler/FE766D63">IfIsNullOrEmpty<wbr>&lt;TItem&gt;<wbr><wbr>(IEnumerable<wbr>&lt;TItem&gt;<wbr>, <wbr>string, <wbr>string)<wbr></a></li>
 				<li><a href="/Thrower/api/PommaLabs.Thrower.ExceptionHandlers/ArgumentExceptionHandler/9F284839">IfIsNullOrWhiteSpace<wbr>(string)<wbr></a></li>
-				<li class="selected"><a href="/Thrower/api/PommaLabs.Thrower.ExceptionHandlers/ArgumentExceptionHandler/BEA7EF33">IfIsNullOrWhiteSpace<wbr>(string, <wbr>string, <wbr>string)<wbr></a></li>
+				<li><a href="/Thrower/api/PommaLabs.Thrower.ExceptionHandlers/ArgumentExceptionHandler/BEA7EF33">IfIsNullOrWhiteSpace<wbr>(string, <wbr>string, <wbr>string)<wbr></a></li>
 				<li><a href="/Thrower/api/PommaLabs.Thrower.ExceptionHandlers/ArgumentExceptionHandler/D8FF0E2F">IfIsSameAs<wbr>&lt;TArg1, <wbr>TArg2&gt;<wbr><wbr>(TArg1, <wbr>TArg2)<wbr></a></li>
 				<li><a href="/Thrower/api/PommaLabs.Thrower.ExceptionHandlers/ArgumentExceptionHandler/5AF46522">IfIsSameAs<wbr>&lt;TArg1, <wbr>TArg2&gt;<wbr><wbr>(TArg1, <wbr>TArg2, <wbr>string, <wbr>string)<wbr></a></li>
 				<li><a href="/Thrower/api/PommaLabs.Thrower.ExceptionHandlers/ArgumentExceptionHandler/BB902D8A">IfNot<wbr>(bool)<wbr></a></li>
@@ -192,14 +192,14 @@
 
 <section class="content-header">
 			<h3><a href="/Thrower/api/PommaLabs.Thrower.ExceptionHandlers/ArgumentExceptionHandler">Argument<wbr>Exception<wbr>Handler</a>.</h3>
-	<h1>IfIsNullOrWhiteSpace<wbr>(string, <wbr>string, <wbr>string)<wbr> <small>Method</small></h1>
+	<h1>IfIsEmpty<wbr>(Guid, <wbr>string, <wbr>string)<wbr> <small>Method</small></h1>
 </section>
 <section class="content">
 	
 	
 		<h1 id="Summary">Summary</h1>
 	<div class="lead">
-      Throws <code class="cs">System.ArgumentException</code> if given string is null, empty or blank.
+      Throws <code class="cs">System.ArgumentException</code> if given <code class="cs"><a href="/Thrower">Guid</a></code> is equal to <code class="cs">System.Guid.Empty</code>.
     </div>
 
 		<div class="panel panel-default">
@@ -218,14 +218,11 @@
 
 	<h1 id="Syntax">Syntax</h1>
 	<pre><code>[MethodImpl(Raise.MethodImplOptions)]
-[ContractAnnotation("value:null =&gt; halt")]
-public void IfIsNullOrWhiteSpace(string value, string argumentName, string message = null)</code></pre>
+public void IfIsEmpty(Guid value, string argumentName, string message = null)</code></pre>
 
 
 	<h1 id="Remarks">Remarks</h1>
-	<div>
-      <span name="message" class="paramref">message</span> and <span name="argumentName" class="paramref">argumentName</span> are strictly required arguments.
-    </div>
+	<div><span name="argumentName" class="paramref">argumentName</span> is a strictly required argument.</div>
 
 	<h1 id="Attributes">Attributes</h1>
 	<div class="box">
@@ -239,10 +236,6 @@ public void IfIsNullOrWhiteSpace(string value, string argumentName, string messa
 				</thead>
 					<tbody><tr>
 						<td>MethodImplAttribute</td>
-						<td></td>
-					</tr>
-					<tr>
-						<td>Contract<wbr>Annotation<wbr>Attribute</td>
 						<td></td>
 					</tr>
 			</tbody></table>
@@ -263,8 +256,8 @@ public void IfIsNullOrWhiteSpace(string value, string argumentName, string messa
 				</thead>
 					<tbody><tr>
 						<td>value</td>
-						<td>string</td>
-						<td>The string value.</td>
+						<td>Guid</td>
+						<td>The <code class="cs"><a href="/Thrower">Guid</a></code> value.</td>
 					</tr>
 					<tr>
 						<td>argumentName</td>
