@@ -7,8 +7,6 @@
     <SignAssembly>true</SignAssembly>
     <PublicSign Condition=" '$(OS)' != 'Windows_NT' ">true</PublicSign>
     <AssemblyOriginatorKeyFile>../../pomma89.snk</AssemblyOriginatorKeyFile>
-    <DebugType>embedded</DebugType>
-    <LangVersion>latest</LangVersion>
   </PropertyGroup>
 
   <PropertyGroup Label="NuGet">
@@ -26,16 +24,6 @@
     <RepositoryType>git</RepositoryType>
     <RepositoryUrl>https://github.com/pomma89/Thrower</RepositoryUrl>
   </PropertyGroup>
-
-  <ItemGroup>
-    <PackageReference Include="HellBrick.Diagnostics" Version="2.0.0" PrivateAssets="All" />
-    <PackageReference Include="SourceLink.Embed.AllSourceFiles" Version="2.6.0" PrivateAssets="All" />
-    <PackageReference Include="SourceLink.Test" Version="2.6.0" PrivateAssets="All" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <DotNetCliToolReference Include="dotnet-sourcelink" Version="2.6.0" />
-  </ItemGroup>
 
   <PropertyGroup Condition=" '$(TargetFramework)' == 'netstandard1.0' ">
     <DefineConstants>$(DefineConstants);NETSTD10;LIBLOG_PUBLIC;LIBLOG_PORTABLE</DefineConstants>

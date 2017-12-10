@@ -3,6 +3,6 @@
     <Version>4.3.1</Version>
     <AssemblyVersion>4.0.0.0</AssemblyVersion>
     <FileVersion>4.3.1.0</FileVersion>
-    <InformationalVersion>4.3.1+6</InformationalVersion>
+    <InformationalVersion>4.3.1+0</InformationalVersion>
   </PropertyGroup>
 </Project>

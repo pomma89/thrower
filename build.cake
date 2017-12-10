@@ -160,7 +160,6 @@ private void Build(string cfg)
         settings.SetVerbosity(Verbosity.Quiet);
         settings.WithTarget("rebuild");
         settings.WithProperty("SourceLinkCreate", new[] { "true" });
-        settings.WithProperty("SourceLinkServerType", new[] { "GitHub" });
         settings.WithProperty("SourceLinkTest", new[] { "true" });
         if (!IsRunningOnWindows())
         { 
