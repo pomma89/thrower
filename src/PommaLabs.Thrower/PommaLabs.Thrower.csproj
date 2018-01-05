@@ -2,7 +2,7 @@
   <PropertyGroup>
     <AssemblyName>PommaLabs.Thrower</AssemblyName>
     <AssemblyTitle>Thrower - Compact preconditions helpers</AssemblyTitle>
-    <TargetFrameworks>netstandard1.0;netstandard1.1;netstandard1.3;netstandard2.0;net35;net40;net45;net461;net471</TargetFrameworks>
+    <TargetFrameworks>netstandard1.0;netstandard1.1;netstandard1.3;netstandard2.0;net35;net40;net45;net461</TargetFrameworks>
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
     <SignAssembly>true</SignAssembly>
     <PublicSign Condition=" '$(OS)' != 'Windows_NT' ">true</PublicSign>
@@ -105,17 +105,6 @@
   </PropertyGroup>
 
   <ItemGroup Condition=" '$(TargetFramework)' == 'net461' ">
-    <Reference Include="Microsoft.CSharp" />
-    <Reference Include="System" />
-    <Reference Include="System.ComponentModel.DataAnnotations" />
-    <Reference Include="System.Data" />
-  </ItemGroup>
-
-  <PropertyGroup Condition=" '$(TargetFramework)' == 'net471' ">
-    <DefineConstants>$(DefineConstants);NET47;FAST_MEMBER;LIBLOG_PUBLIC</DefineConstants>
-  </PropertyGroup>
-
-  <ItemGroup Condition=" '$(TargetFramework)' == 'net471' ">
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
