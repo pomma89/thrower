@@ -2,6 +2,6 @@
 
 *Fully managed library providing convenience methods to perform argument checks.*
 
-Project repository has been moved to GitLab:
+**Project repository has been moved to GitLab:**
 
 https://gitlab.com/pomma89/thrower
