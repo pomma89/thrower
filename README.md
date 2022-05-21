@@ -4,4 +4,4 @@
 
 **Project repository has been moved to GitLab:**
 
-https://gitlab.com/pomma89/thrower
+https://gitlab.com/pommalabs/thrower
